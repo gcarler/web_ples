@@ -1,6 +1,7 @@
 import Link from 'next/link';
-import { Facebook, Twitter, Instagram, Code } from 'lucide-react'; // Assuming X is Twitter for icons
+import { Facebook, Twitter, Instagram } from 'lucide-react'; // Removed Code icon import
 import { Separator } from '@/components/ui/separator';
+import { PlesGroupLogo } from '@/components/logo'; // Import the new logo component
 
 export function Footer() {
   return (
@@ -10,7 +11,8 @@ export function Footer() {
           {/* Column 1: Logo and About */}
           <div className="space-y-4">
              <Link href="/" className="flex items-center gap-2 text-xl font-semibold text-primary mb-4">
-              <Code className="h-7 w-7 text-white" />
+               {/* Replace Code icon with PlesGroupLogo SVG */}
+              <PlesGroupLogo className="h-8 w-8" />
               <span className="text-white">AngularFlow</span>
             </Link>
             <p className="text-gray-400 text-sm">

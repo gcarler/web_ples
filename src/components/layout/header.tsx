@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
-import { Code } from 'lucide-react'; // Using Code icon as a placeholder logo
 import { Carousel, type CarouselSlideProps } from '@/components/ui/carousel'; // Import Carousel
+import { PlesGroupLogo } from '@/components/logo'; // Import the new logo component
 
 export function Header() {
   // Sample slide data (replace with your actual data)
@@ -56,7 +56,8 @@ export function Header() {
       {/* Navigation Bar */}
       <nav className="container mx-auto px-4 py-4 flex flex-wrap justify-between items-center">
         <Link href="/" className="flex items-center gap-2 text-xl font-semibold text-primary mb-4 sm:mb-0">
-          <Code className="h-6 w-6" />
+          {/* Replace Code icon with PlesGroupLogo SVG */}
+          <PlesGroupLogo className="h-8 w-8" />
           <span>AngularFlow</span>
         </Link>
         <ul className="flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-2 items-center justify-center sm:justify-end w-full sm:w-auto">
