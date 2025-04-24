@@ -2,48 +2,57 @@
 import Link from 'next/link';
 import { Carousel, type CarouselSlideProps } from '@/components/ui/carousel'; // Import Carousel
 import { PlesGroupLogo } from '@/components/logo'; // Import the new logo component
+import { Button } from '@/components/ui/button'; // Import Button for CTAs
+import { ArrowRight } from 'lucide-react'; // Import icon for buttons
 
 export function Header() {
-  // Sample slide data (replace with your actual data)
+  // Updated slide data with provided variants
   const slides: CarouselSlideProps[] = [
     {
       type: 'image',
       src: 'https://picsum.photos/1200/400?random=1',
-      alt: 'Random Landscape 1',
+      alt: 'Abstract technology background',
       content: (
         <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-center p-4">
-          <h2 className="text-3xl font-bold text-white mb-2">Discover Our Services</h2>
-          <p className="text-lg text-gray-200 mb-4">Innovative solutions tailored for you.</p>
-          <Link href="/ples-crea" className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
-            Learn More
-          </Link>
+          <h2 className="text-3xl font-bold text-white mb-2">Innovamos territorios con tecnología sostenible</h2>
+          <p className="text-lg text-gray-200 mb-4 max-w-xl">Diseñamos proyectos y plataformas que mejoran vidas en toda Latinoamérica.</p>
+          {/* Using Button component directly */}
+          <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+            <Link href="/about"> {/* Example Link */}
+              Conoce cómo <ArrowRight className="ml-2" />
+            </Link>
+          </Button>
         </div>
       ),
     },
     {
       type: 'image',
       src: 'https://picsum.photos/1200/400?random=2',
-      alt: 'Random Landscape 2',
+      alt: 'Data visualization concept',
        content: (
         <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center text-center p-4">
-          <h2 className="text-3xl font-bold text-white mb-2">Expert Consulting</h2>
-          <p className="text-lg text-gray-200 mb-4">Guidance to achieve your goals.</p>
-           <Link href="/ples-consulting" className="inline-flex items-center justify-center rounded-md bg-accent px-4 py-2 text-sm font-medium text-accent-foreground ring-offset-background transition-colors hover:bg-accent/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
-            Get Started
-          </Link>
+          <h2 className="text-3xl font-bold text-white mb-2">Datos, ingeniería y propósito para el desarrollo</h2>
+          <p className="text-lg text-gray-200 mb-4 max-w-xl">De la idea a la acción: acompañamos gobiernos y empresas a generar impacto real.</p>
+           <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
+            <Link href="/forms"> {/* Example Link */}
+              Empieza hoy <ArrowRight className="ml-2" />
+            </Link>
+          </Button>
         </div>
       ),
     },
      {
-      type: 'video',
-      src: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4', // Replace with a real video URL or local path if configured
+      type: 'video', // Keeping video for variety, can be changed to image if needed
+      src: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4', // Replace with a relevant video or image
       content: (
         <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center p-4">
-          <h2 className="text-3xl font-bold text-white mb-2">Watch Our Intro</h2>
-          <p className="text-lg text-gray-200 mb-4">See how we make a difference.</p>
-           <Link href="/about" className="inline-flex items-center justify-center rounded-md bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground ring-offset-background transition-colors hover:bg-secondary/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
-            About Us
-          </Link>
+          <h2 className="text-3xl font-bold text-white mb-2">Construimos soluciones que cambian comunidades</h2>
+          <p className="text-lg text-gray-200 mb-4 max-w-xl">Integramos participación, tecnología y gestión para superar tus desafíos.</p>
+           <Button asChild size="lg" className="bg-secondary text-secondary-foreground hover:bg-secondary/80">
+            <Link href="/ples-tic"> {/* Example Link */}
+              Hagámoslo juntos <ArrowRight className="ml-2" />
+            </Link>
+          </Button>
         </div>
       ),
       videoProps: { autoPlay: true, muted: true, loop: true } // Example video props
