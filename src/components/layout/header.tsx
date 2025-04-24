@@ -9,15 +9,35 @@ export function Header() {
           <Code className="h-6 w-6" />
           <span>AngularFlow</span>
         </Link>
-        <ul className="flex gap-6 items-center">
+        <ul className="flex flex-wrap gap-x-6 gap-y-2 items-center justify-end">
           <li>
             <Link href="/" className="hover:text-accent-foreground/80 transition-colors">
-              Home
+              inicio
             </Link>
           </li>
           <li>
-            <Link href="/forms" className="hover:text-accent-foreground/80 transition-colors">
-              Forms
+            <Link href="/about" className="hover:text-accent-foreground/80 transition-colors">
+              sobre nosotros
+            </Link>
+          </li>
+          <li>
+            <Link href="/ples-crea" className="hover:text-accent-foreground/80 transition-colors">
+              Ples CREA
+            </Link>
+          </li>
+          <li>
+            <Link href="/ples-tic" className="hover:text-accent-foreground/80 transition-colors">
+              Ples TIC
+            </Link>
+          </li>
+          <li>
+            <Link href="/ples-catastro" className="hover:text-accent-foreground/80 transition-colors">
+              Ples catastro
+            </Link>
+          </li>
+          <li>
+            <Link href="/ples-consulting" className="hover:text-accent-foreground/80 transition-colors">
+              Ples consulting
             </Link>
           </li>
         </ul>
