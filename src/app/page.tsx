@@ -14,15 +14,15 @@ export default function Home() {
         <h1 className="text-4xl font-bold tracking-tight mb-6 mt-8">Experiencia + inteligencia = mejores resultados</h1>
         <div className="flex flex-col md:flex-row justify-center items-center gap-8 text-lg text-foreground mb-10">
           <div className="flex items-center gap-2">
-            <CheckCircle className="h-6 w-6 text-primary" />
+            <CheckCircle className="h-12 w-12 text-primary" /> {/* Increased size */}
             <span>+15 proyectos ejecutados</span>
           </div>
           <div className="flex items-center gap-2">
-            <Database className="h-6 w-6 text-primary" />
+            <Database className="h-12 w-12 text-primary" /> {/* Increased size */}
             <span>42 sistemas de información desarrollados</span>
           </div>
           <div className="flex items-center gap-2">
-             <UsersRound className="h-6 w-6 text-primary" /> {/* Changed from Users to UsersRound */}
+             <UsersRound className="h-12 w-12 text-primary" /> {/* Increased size */}
             <span>8 alianzas académicas y comunitarias</span>
           </div>
         </div>
