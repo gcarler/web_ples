@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import Image from 'next/image'; // Import Image for the updated slide
 import { Carousel, type CarouselSlideProps } from '@/components/ui/carousel'; // Import Carousel
 import { PlesGroupLogo } from '@/components/logo'; // Import the new logo component
 import { Button } from '@/components/ui/button'; // Import Button for CTAs
@@ -42,8 +43,9 @@ export function Header() {
       ),
     },
      {
-      type: 'video', // Keeping video for variety, can be changed to image if needed
-      src: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4', // Replace with a relevant video or image
+      type: 'image', // Changed from 'video' to 'image'
+      src: 'https://picsum.photos/1200/400?random=8', // Changed to a placeholder image source
+      alt: 'Community building concept', // Added alt text for the image
       content: (
         <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center p-4">
           <h2 className="text-3xl font-bold text-white mb-2">Construimos soluciones que cambian comunidades</h2>
@@ -55,7 +57,7 @@ export function Header() {
           </Button>
         </div>
       ),
-      videoProps: { autoPlay: true, muted: true, loop: true } // Example video props
+      // Removed videoProps
     },
   ];
 
