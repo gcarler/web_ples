@@ -25,15 +25,11 @@ export default function Home() {
         </Button>
       </section>
 
-      {/* Sección 1: Conócenos */}
+      {/* Sección 1: Nuestra Misión (Removed "Conócenos" heading) */}
       <section className="relative py-16 bg-card rounded-lg shadow-lg overflow-hidden">
         <div className="container mx-auto px-4">
-          <div className="absolute inset-x-0 top-0 flex justify-center -mt-8 z-10">
-             <h1 className="text-5xl font-extrabold text-primary bg-background px-6 py-2 rounded-md shadow-md">
-               Conócenos
-             </h1>
-           </div>
-           <div className="grid md:grid-cols-2 gap-8 items-center pt-12">
+           {/* Removed the absolute positioned h1 heading */}
+           <div className="grid md:grid-cols-2 gap-8 items-center pt-8"> {/* Adjusted padding-top */}
              <div>
               <h2 className="text-3xl font-semibold mb-4 text-primary">Nuestra Misión</h2>
               <p className="text-lg text-foreground mb-4">
