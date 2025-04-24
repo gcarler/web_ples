@@ -58,7 +58,7 @@ export function Header() {
         <Link href="/" className="flex items-center gap-2 text-xl font-semibold text-primary mb-4 sm:mb-0">
           {/* Replace Code icon with PlesGroupLogo SVG */}
           <PlesGroupLogo className="h-8 w-8" />
-          <span>AngularFlow</span>
+          <span>PLES</span> {/* Replaced AngularFlow with PLES */}
         </Link>
         <ul className="flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-2 items-center justify-center sm:justify-end w-full sm:w-auto">
            <li>

@@ -5,7 +5,7 @@ import { Footer } from '@/components/layout/footer';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'AngularFlow',
+  title: 'PLES', // Replaced AngularFlow with PLES
   description: 'Web page demonstrating Angular-like features with Next.js.',
 };
 

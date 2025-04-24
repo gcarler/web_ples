@@ -13,7 +13,7 @@ export function Footer() {
              <Link href="/" className="flex items-center gap-2 text-xl font-semibold text-primary mb-4">
                {/* Replace Code icon with PlesGroupLogo SVG */}
               <PlesGroupLogo className="h-8 w-8" />
-              <span className="text-white">AngularFlow</span>
+              <span className="text-white">PLES</span> {/* Replaced AngularFlow with PLES */}
             </Link>
             <p className="text-gray-400 text-sm">
               Demostrando características fundamentales del desarrollo web como enrutamiento y formularios interactivos, imitando la estructura de un proyecto profesional.
@@ -91,7 +91,7 @@ export function Footer() {
         <Separator className="bg-gray-700 my-8" />
 
         <div className="text-center text-sm text-gray-500">
-          <p>&copy; {new Date().getFullYear()} AngularFlow. Todos los derechos reservados.</p>
+          <p>&copy; {new Date().getFullYear()} PLES. Todos los derechos reservados.</p> {/* Replaced AngularFlow with PLES */}
           <p className="mt-1">Construido con Next.js y <span role="img" aria-label="corazón">❤️</span>.</p>
         </div>
       </div>
