@@ -3,24 +3,32 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { ArrowRight, Building, Users, Handshake, Target, Quote } from 'lucide-react';
+import { ArrowRight, Building, Users, Handshake, Target, Quote, CheckCircle, Database, UsersRound } from 'lucide-react'; // Added CheckCircle, Database, UsersRound
 
 export default function Home() {
   return (
     <div className="space-y-16">
-      {/* Hero Section - Can be kept or removed based on preference */}
+      {/* Hero Section - Updated Content */}
       <section className="text-center py-12 relative">
         {/* The Carousel in the Header now serves as the main visual */}
-        <h1 className="text-4xl font-bold tracking-tight mb-4 mt-8">Bienvenido a AngularFlow</h1>
-        <p className="text-xl text-muted-foreground mb-6">
-          Explorando conceptos similares a Angular dentro de una aplicación Next.js.
-        </p>
-        <p className="max-w-3xl mx-auto text-foreground mb-8">
-          Esta aplicación demuestra características fundamentales del desarrollo web como enrutamiento y formularios interactivos, utilizando Tailwind CSS y componentes ShadCN UI, imitando la estructura y sensación de un proyecto profesional de Angular.
-        </p>
-         <Button asChild size="lg">
-          <Link href="/forms">
-            Explorar Formularios <ArrowRight className="ml-2" />
+        <h1 className="text-4xl font-bold tracking-tight mb-6 mt-8">Experiencia + inteligencia = mejores resultados</h1>
+        <div className="flex flex-col md:flex-row justify-center items-center gap-8 text-lg text-foreground mb-10">
+          <div className="flex items-center gap-2">
+            <CheckCircle className="h-6 w-6 text-primary" />
+            <span>+15 proyectos ejecutados</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Database className="h-6 w-6 text-primary" />
+            <span>42 sistemas de información desarrollados</span>
+          </div>
+          <div className="flex items-center gap-2">
+             <UsersRound className="h-6 w-6 text-primary" /> {/* Changed from Users to UsersRound */}
+            <span>8 alianzas académicas y comunitarias</span>
+          </div>
+        </div>
+         <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+          <Link href="/about"> {/* Changed link to /about */}
+            Saber Más <ArrowRight className="ml-2" /> {/* Changed text to Saber Más */}
           </Link>
         </Button>
       </section>
