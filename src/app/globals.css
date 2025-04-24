@@ -2,8 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import Comfortaa font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap');
+
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  /* Set default body font - applies to most elements */
+  font-family: 'Comfortaa', Arial, sans-serif;
 }
 
 @layer base {
@@ -83,7 +87,13 @@ body {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-sans; /* Apply sans font */
+    @apply bg-background text-foreground;
+    font-family: 'Comfortaa', sans-serif; /* Apply Comfortaa font to body */
+  }
+
+  /* Ensure h1 elements specifically use Comfortaa */
+  h1 {
+    font-family: 'Comfortaa', sans-serif;
   }
 
   /* Ensure header navigation appears above carousel content */
