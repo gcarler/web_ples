@@ -85,4 +85,9 @@ body {
   body {
     @apply bg-background text-foreground font-sans; /* Apply sans font */
   }
+
+  /* Ensure header navigation appears above carousel content */
+  header nav {
+    @apply relative z-30;
+  }
 }

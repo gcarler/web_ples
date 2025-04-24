@@ -16,6 +16,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+       { // Added for sample video placeholder
+        protocol: 'https',
+        hostname: 'sample-videos.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };
