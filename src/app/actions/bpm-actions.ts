@@ -2,20 +2,18 @@
 'use server';
 
 import { ProcessInstance, ProcessInstanceFirestore, ProcessInstanceFirestoreSchema } from '@/lib/models/bpm';
-import * as BpmService from '@/services/bpm-service'; // Import functions from BPM service
+import * as BpmService from '@/services/bpm-service'; // Import functions from BPM service which now use Firestore
 import { adminDb } from '@/lib/firebase/firebase-admin-config';
-import { collection, getDocs, query, orderBy, Timestamp } from 'firebase/firestore';
+import { collection, getDocs, query, orderBy, Timestamp, getDoc, doc, serverTimestamp } from 'firebase/firestore';
 import { revalidatePath } from 'next/cache';
 
 /**
- * Fetches all process instances from the system.
- * In a real system, this might include pagination and filtering.
+ * Fetches all process instances from Firestore.
  * @returns A list of process instances.
  */
 export async function getProcessInstances(): Promise<ProcessInstanceFirestore[]> {
-    console.log("BPM Action: Fetching process instances");
+    console.log("BPM Action: Fetching process instances from Firestore");
     try {
-        // This would query the 'processInstances' collection in Firestore
         const instancesCol = collection(adminDb, 'processInstances');
         const q = query(instancesCol, orderBy('lastUpdatedAt', 'desc')); // Order by most recently updated
         const snapshot = await getDocs(q);
@@ -58,34 +56,37 @@ export async function getProcessInstances(): Promise<ProcessInstanceFirestore[]>
 
 /**
  * Manually triggers a re-check or retry for a suspended or failed process instance.
- * (This is a simplified example; real BPM engines have more sophisticated retry mechanisms)
+ * Updates the process instance status in Firestore.
  * @param processInstanceId The ID of the process instance to resume/retry.
  * @returns Object indicating success and a message.
  */
 export async function resumeProcessInstance(processInstanceId: string): Promise<{ message: string | null; success: boolean }> {
-    console.log(`BPM Action: Attempting to resume process instance ${processInstanceId}`);
+    console.log(`BPM Action: Attempting to resume process instance ${processInstanceId} in Firestore`);
     try {
-        // 1. Fetch the process instance data (TODO: Implement findProcessInstanceById in bpm-service or here)
-        // const instance = await BpmService.getProcessInstanceDetails(processInstanceId);
-        // if (!instance) {
-        //     return { message: 'Process instance not found.', success: false };
-        // }
-        // if (instance.status !== 'Suspended' && instance.status !== 'Failed') {
-        //     return { message: 'Process can only be resumed if Suspended or Failed.', success: false };
-        // }
+        const instanceRef = doc(adminDb, 'processInstances', processInstanceId);
+        const instanceSnap = await getDoc(instanceRef);
 
-        // 2. Logic to determine what to do next (highly dependent on the process)
-        //    - If suspended due to stock, maybe re-check stock?
-        //    - If failed due to external API, maybe retry the API call?
-        //    For this example, we'll just set it back to 'Running' and update the task name.
+        if (!instanceSnap.exists()) {
+            return { message: 'Process instance not found.', success: false };
+        }
 
-        const success = await BpmService.updateProcessInstance(processInstanceId, {
+        const instanceData = instanceSnap.data();
+        if (instanceData.status !== 'Suspended' && instanceData.status !== 'Failed') {
+           return { message: `Process can only be resumed if Suspended or Failed. Current status: ${instanceData.status}`, success: false };
+        }
+
+        // In a real system, this would trigger logic based on the process definition
+        // and current task. For now, just reset status and clear error.
+        const updateData: Partial<ProcessInstanceFirestore> = {
             status: 'Running',
             currentTaskName: 'Resumed - Checking Next Step', // Generic resumption task name
             errorDetails: '', // Clear previous error
             failedAt: undefined, // Clear failed timestamp
-            lastUpdatedAt: Timestamp.now(),
-        });
+            // 'lastUpdatedAt' will be handled by the service using serverTimestamp
+        };
+
+        // Call the BPM service to handle the update (ensures serverTimestamp)
+        const success = await BpmService.updateProcessInstance(processInstanceId, updateData);
 
         if (success) {
              console.log(`Process instance ${processInstanceId} resumed.`);

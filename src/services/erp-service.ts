@@ -1,122 +1,147 @@
 // src/services/erp-service.ts
 'use server'; // Mark this module for server-side execution
 
-import { Product, ProductFirestore, Order, OrderFirestore, OrderStatus } from '@/lib/models/erp';
+import { Product, ProductFirestore, ProductFirestoreSchema, Order, OrderFirestore, OrderFirestoreSchema, OrderStatus } from '@/lib/models/erp';
 import { adminDb } from '@/lib/firebase/firebase-admin-config';
-import { collection, query, where, getDocs, doc, getDoc, addDoc, Timestamp, updateDoc } from 'firebase/firestore';
+import { collection, query, where, getDocs, doc, getDoc, addDoc, Timestamp, updateDoc, writeBatch, serverTimestamp } from 'firebase/firestore';
 import { startShippingProcess } from './bpm-service'; // Import BPM service
 
-// --- Mock Product Data (Replace with actual Firestore calls) ---
-const mockProductsDb: ProductFirestore[] = [
-    { id: 'prod_1', name: 'PLES Consulting Hour', description: 'One hour of expert consulting.', price: 150, stockLevel: 1000, sku: 'PLES-CONS-01', category: 'Services', createdAt: Timestamp.now(), updatedAt: Timestamp.now() },
-    { id: 'prod_2', name: 'PLES TIC Platform Setup', description: 'Initial setup fee for our TIC platform.', price: 5000, stockLevel: 1, sku: 'PLES-TIC-SETUP', category: 'Services', createdAt: Timestamp.now(), updatedAt: Timestamp.now() },
-    { id: 'prod_3', name: 'PLES Catastro Data Package', description: 'Standard cadastral data package.', price: 1200, stockLevel: 500, sku: 'PLES-CATA-PKG-STD', category: 'Data', createdAt: Timestamp.now(), updatedAt: Timestamp.now() },
-    { id: 'prod_4', name: 'PLES CREA Design Sprint', description: 'One-week intensive design sprint.', price: 8000, stockLevel: 10, sku: 'PLES-CREA-SPRINT', category: 'Services', createdAt: Timestamp.now(), updatedAt: Timestamp.now() },
-];
-
 /**
- * Simulates fetching a product's details from the ERP system (Firestore in this case).
- * In a real scenario, this would query the 'products' collection.
+ * Fetches a product's details from the Firestore 'products' collection.
  * @param productId The ID of the product to fetch.
- * @returns Product details or null if not found.
+ * @returns Product details or null if not found or data is invalid.
  */
 export async function getProductDetails(productId: string): Promise<ProductFirestore | null> {
-  console.log(`ERP Service: Fetching details for product ${productId}`);
-  // --- Replace with actual Firestore call ---
-  // const productRef = doc(adminDb, 'products', productId);
-  // const productSnap = await getDoc(productRef);
-  // if (productSnap.exists()) {
-  //     const data = productSnap.data();
-  //     const parsed = ProductFirestoreSchema.safeParse(data);
-  //     if (parsed.success) {
-  //         return { id: productSnap.id, ...parsed.data };
-  //     } else {
-  //         console.error(`Invalid product data in Firestore for ID ${productId}:`, parsed.error);
-  //         return null;
-  //     }
-  // }
-  // return null;
-  // --- Mock Implementation ---
-  await new Promise(resolve => setTimeout(resolve, 50)); // Simulate network delay
-  const product = mockProductsDb.find(p => p.id === productId);
-  return product || null;
+  console.log(`ERP Service: Fetching details for product ${productId} from Firestore`);
+  try {
+    const productRef = doc(adminDb, 'products', productId);
+    const productSnap = await getDoc(productRef);
+
+    if (productSnap.exists()) {
+        const data = productSnap.data();
+        // Ensure Timestamps are correctly handled if they are plain objects
+        if (data.createdAt && !(data.createdAt instanceof Timestamp)) {
+            data.createdAt = Timestamp.fromMillis(data.createdAt.seconds * 1000);
+        }
+        if (data.updatedAt && !(data.updatedAt instanceof Timestamp)) {
+            data.updatedAt = Timestamp.fromMillis(data.updatedAt.seconds * 1000);
+        }
+
+        const parsed = ProductFirestoreSchema.safeParse(data);
+        if (parsed.success) {
+            return { id: productSnap.id, ...parsed.data };
+        } else {
+            console.error(`Invalid product data in Firestore for ID ${productId}:`, parsed.error);
+            return null;
+        }
+    }
+    console.log(`Product with ID ${productId} not found in Firestore.`);
+    return null;
+  } catch (error) {
+      console.error(`Error fetching product ${productId} from Firestore:`, error);
+      return null;
+  }
 }
 
 /**
- * Simulates checking the current stock level for a product in the ERP.
+ * Checks the current stock level for a product in Firestore.
  * @param productId The ID of the product.
  * @returns Stock level information or null if product not found.
  */
 export async function checkProductStock(productId: string): Promise<{ stockLevel: number } | null> {
-  console.log(`ERP Service: Checking stock for product ${productId}`);
-   // --- Replace with actual Firestore call ---
-   // const productRef = doc(adminDb, 'products', productId);
-   // const productSnap = await getDoc(productRef);
-   // if (productSnap.exists()) {
-   //     return { stockLevel: productSnap.data().stockLevel || 0 };
-   // }
-   // return null;
-   // --- Mock Implementation ---
-  await new Promise(resolve => setTimeout(resolve, 30)); // Simulate network delay
-  const product = mockProductsDb.find(p => p.id === productId);
-  return product ? { stockLevel: product.stockLevel } : null;
+  console.log(`ERP Service: Checking stock for product ${productId} from Firestore`);
+   try {
+       const productRef = doc(adminDb, 'products', productId);
+       const productSnap = await getDoc(productRef);
+       if (productSnap.exists()) {
+           const data = productSnap.data();
+           return { stockLevel: data?.stockLevel ?? 0 };
+       }
+       console.log(`Product with ID ${productId} not found for stock check.`);
+       return null;
+   } catch (error) {
+       console.error(`Error checking stock for product ${productId}:`, error);
+       return null;
+   }
 }
 
 /**
- * Simulates creating an order in the ERP system based on CRM data.
- * In a real system, this would interact with Firestore.
+ * Creates an order in the Firestore 'orders' collection.
+ * It also attempts to decrement stock levels for ordered items atomically using a batch write.
  * @param orderData Data for the new order.
  * @returns The ID of the created order or null on failure.
  */
 export async function createErpOrder(orderData: Omit<Order, 'id' | 'createdAt' | 'updatedAt'>): Promise<string | null> {
-  console.log(`ERP Service: Creating order for contact ${orderData.contactId}`);
+  console.log(`ERP Service: Creating order for contact ${orderData.contactId} in Firestore`);
+  const batch = writeBatch(adminDb);
+  const ordersCol = collection(adminDb, 'orders');
+  const newOrderRef = doc(ordersCol); // Generate a ref for the new order
+
   try {
-    // --- Replace with actual Firestore call ---
-    // const orderWithTimestamps = {
-    //   ...orderData,
-    //   orderDate: Timestamp.fromDate(orderData.orderDate instanceof Date ? orderData.orderDate : new Date()), // Ensure Timestamp
-    //   createdAt: Timestamp.now(),
-    //   updatedAt: Timestamp.now(),
-    // };
-    // const docRef = await addDoc(collection(adminDb, 'orders'), orderWithTimestamps);
-    // console.log('ERP Order created with ID:', docRef.id);
+    // 1. Prepare order data with timestamps
+    const orderWithTimestamps = {
+      ...orderData,
+      // Ensure Timestamps are correct - Firestore expects Timestamps, not JS Dates sometimes
+      orderDate: orderData.orderDate instanceof Date ? Timestamp.fromDate(orderData.orderDate) : orderData.orderDate,
+      createdAt: serverTimestamp(), // Use server timestamp for creation
+      updatedAt: serverTimestamp(), // Use server timestamp for initial update
+    };
 
-    // ** Trigger BPM Shipping Process **
-    // await startShippingProcess(docRef.id);
+    // 2. Decrement stock for each item in the order within the batch
+    for (const item of orderData.items) {
+      const productRef = doc(adminDb, 'products', item.productId);
+      const productSnap = await getDoc(productRef); // Get current stock first (important for validation before batch commit)
 
-    // return docRef.id;
-    // --- Mock Implementation ---
-    await new Promise(resolve => setTimeout(resolve, 100)); // Simulate DB write
-    const mockOrderId = `order_${Date.now()}`;
-    console.log('Mock ERP Order created with ID:', mockOrderId);
-    // ** Trigger Mock BPM Shipping Process **
-    await startShippingProcess(mockOrderId);
-    return mockOrderId;
+      if (!productSnap.exists()) {
+        throw new Error(`Product with ID ${item.productId} not found.`);
+      }
+
+      const currentStock = productSnap.data()?.stockLevel ?? 0;
+      if (currentStock < item.quantity) {
+        throw new Error(`Insufficient stock for product ${item.productId}. Required: ${item.quantity}, Available: ${currentStock}`);
+      }
+      const newStock = currentStock - item.quantity;
+      batch.update(productRef, { stockLevel: newStock, updatedAt: serverTimestamp() });
+    }
+
+    // 3. Add the order creation to the batch
+    batch.set(newOrderRef, orderWithTimestamps);
+
+    // 4. Commit the batch
+    await batch.commit();
+    console.log('ERP Order created with ID:', newOrderRef.id);
+
+    // 5. Trigger BPM Shipping Process (after successful order creation and stock update)
+    await startShippingProcess(newOrderRef.id);
+
+    return newOrderRef.id;
 
   } catch (error) {
-    console.error('ERP Service Error: Failed to create order:', error);
+    console.error('ERP Service Error: Failed to create order or update stock:', error);
+    // Note: Batch commit failure automatically rolls back all operations in the batch.
     return null;
   }
 }
 
 /**
- * Simulates updating an order's status in the ERP system.
+ * Updates an order's status in the Firestore 'orders' collection.
  * @param orderId The ID of the order to update.
  * @param status The new status.
  * @returns Boolean indicating success.
  */
 export async function updateErpOrderStatus(orderId: string, status: OrderStatus): Promise<boolean> {
-    console.log(`ERP Service: Updating order ${orderId} to status ${status}`);
+    console.log(`ERP Service: Updating order ${orderId} to status ${status} in Firestore`);
+    if (!orderId) {
+        console.error("ERP Service Error: Invalid orderId provided for status update.");
+        return false;
+    }
     try {
-        // --- Replace with actual Firestore call ---
-        // const orderRef = doc(adminDb, 'orders', orderId);
-        // await updateDoc(orderRef, {
-        //     status: status,
-        //     updatedAt: Timestamp.now(),
-        // });
-        // --- Mock Implementation ---
-        await new Promise(resolve => setTimeout(resolve, 50)); // Simulate DB update
-        console.log(`Mock ERP Order ${orderId} status updated to ${status}`);
+        const orderRef = doc(adminDb, 'orders', orderId);
+        await updateDoc(orderRef, {
+            status: status,
+            updatedAt: serverTimestamp(), // Use server timestamp for updates
+        });
+        console.log(`ERP Order ${orderId} status updated to ${status}`);
         return true;
     } catch (error) {
         console.error(`ERP Service Error: Failed to update status for order ${orderId}:`, error);
@@ -125,41 +150,45 @@ export async function updateErpOrderStatus(orderId: string, status: OrderStatus)
 }
 
 /**
- * Simulates fetching order details from the ERP.
+ * Fetches order details from the Firestore 'orders' collection.
  * @param orderId The ID of the order.
- * @returns Order details or null if not found.
+ * @returns Order details or null if not found or data is invalid.
  */
 export async function getErpOrderDetails(orderId: string): Promise<OrderFirestore | null> {
-    console.log(`ERP Service: Fetching details for order ${orderId}`);
-    // --- Replace with actual Firestore call ---
-    // const orderRef = doc(adminDb, 'orders', orderId);
-    // const orderSnap = await getDoc(orderRef);
-    // if (orderSnap.exists()) {
-    //     const data = orderSnap.data();
-    //     const parsed = OrderFirestoreSchema.safeParse(data);
-    //     if (parsed.success) {
-    //         return { id: orderSnap.id, ...parsed.data };
-    //     } else {
-    //        console.error(`Invalid order data in Firestore for ID ${orderId}:`, parsed.error);
-    //         return null;
-    //     }
-    // }
-    // return null;
-    // --- Mock Implementation ---
-     await new Promise(resolve => setTimeout(resolve, 60));
-     // Find a mock order or return a default mock structure
-     console.warn(`ERP Service: Mock order data returned for ${orderId}. Implement actual fetch.`);
-     return {
-        id: orderId,
-        orderNumber: `ORD-${orderId.slice(-4)}`,
-        contactId: 'contact_mock_123',
-        orderDate: Timestamp.now(),
-        items: [{ productId: 'prod_1', productName: 'Mock Product', quantity: 1, price: 100 }],
-        subtotal: 100,
-        totalAmount: 100,
-        status: 'Processing',
-        createdAt: Timestamp.now(),
-        updatedAt: Timestamp.now(),
-        paymentStatus: 'Paid',
-     } as OrderFirestore;
+    console.log(`ERP Service: Fetching details for order ${orderId} from Firestore`);
+    if (!orderId) {
+         console.error("ERP Service Error: Invalid orderId provided for fetching details.");
+         return null;
+    }
+    try {
+        const orderRef = doc(adminDb, 'orders', orderId);
+        const orderSnap = await getDoc(orderRef);
+
+        if (orderSnap.exists()) {
+            const data = orderSnap.data();
+             // Ensure Timestamps are correctly handled
+             if (data.orderDate && !(data.orderDate instanceof Timestamp)) {
+                 data.orderDate = Timestamp.fromMillis(data.orderDate.seconds * 1000);
+             }
+            if (data.createdAt && !(data.createdAt instanceof Timestamp)) {
+                 data.createdAt = Timestamp.fromMillis(data.createdAt.seconds * 1000);
+            }
+            if (data.updatedAt && !(data.updatedAt instanceof Timestamp)) {
+                 data.updatedAt = Timestamp.fromMillis(data.updatedAt.seconds * 1000);
+            }
+
+            const parsed = OrderFirestoreSchema.safeParse(data);
+            if (parsed.success) {
+                return { id: orderSnap.id, ...parsed.data };
+            } else {
+               console.error(`Invalid order data in Firestore for ID ${orderId}:`, parsed.error);
+                return null;
+            }
+        }
+        console.log(`Order with ID ${orderId} not found in Firestore.`);
+        return null;
+    } catch (error) {
+        console.error(`Error fetching order ${orderId} from Firestore:`, error);
+        return null;
+    }
 }
