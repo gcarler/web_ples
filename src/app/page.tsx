@@ -159,8 +159,10 @@ export default function Home() {
           <p className="text-lg text-foreground mb-8 max-w-2xl mx-auto">
             Contáctenos hoy mismo para descubrir cómo nuestras soluciones pueden ayudarle a alcanzar sus objetivos.
           </p>
-          <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
-            Contactar Ahora <ArrowRight className="ml-2" />
+          <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90" asChild>
+             <Link href="/forms"> {/* Link to the forms page */}
+              Contactar Ahora <ArrowRight className="ml-2" />
+            </Link>
           </Button>
         </div>
       </section>

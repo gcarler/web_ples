@@ -18,8 +18,9 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
 import { Send } from 'lucide-react';
+import { addOrUpdateContact } from "@/services/crm-service"; // Import the CRM service
 
-
+// Define the Zod schema for form validation
 const formSchema = z.object({
   name: z.string().min(2, {
     message: "Name must be at least 2 characters.",
@@ -31,10 +32,14 @@ const formSchema = z.object({
   subscribe: z.boolean().default(false).optional(),
 })
 
+// Define the type based on the Zod schema
+type UserFormData = z.infer<typeof formSchema>;
+
 export function UserForm() {
   const { toast } = useToast();
 
-  const form = useForm<z.infer<typeof formSchema>>({
+  // Initialize react-hook-form
+  const form = useForm<UserFormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
@@ -44,24 +49,42 @@ export function UserForm() {
     },
   })
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Simulate form submission
-    console.log(values)
-    toast({
-        title: "Form Submitted!",
-        description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-            <code className="text-white">{JSON.stringify(values, null, 2)}</code>
-        </pre>
-        ),
-        variant: "default", // Use default variant which will pick up theme colors
-      })
-    form.reset(); // Reset form after submission
+  // Handle form submission
+  async function onSubmit(values: UserFormData) {
+    try {
+        // Call the CRM service to add/update the contact
+        await addOrUpdateContact(values);
+
+        // Show success toast
+        toast({
+            title: "Form Submitted!",
+            description: "Your information has been successfully sent.",
+            variant: "default", // Use default variant which will pick up theme colors
+        });
+        form.reset(); // Reset form after successful submission
+
+    } catch (error) {
+        console.error("Failed to submit form to CRM:", error);
+        // Show error toast
+        toast({
+            title: "Submission Failed",
+            description: "Could not submit your information. Please try again later.",
+            variant: "destructive", // Use destructive variant for errors
+        });
+        // Optionally, do not reset the form on error so the user can retry
+    }
   }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      {/* Display loading state while submitting */}
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 relative">
+         {form.formState.isSubmitting && (
+            <div className="absolute inset-0 bg-white/50 dark:bg-black/50 flex items-center justify-center z-10 rounded-md">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                <span className="ml-3 text-foreground">Submitting...</span>
+            </div>
+        )}
         <FormField
           control={form.control}
           name="name"
@@ -69,7 +92,7 @@ export function UserForm() {
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input placeholder="John Doe" {...field} />
+                <Input placeholder="John Doe" {...field} disabled={form.formState.isSubmitting} />
               </FormControl>
               <FormDescription>
                 Your full name.
@@ -85,7 +108,7 @@ export function UserForm() {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input type="email" placeholder="you@example.com" {...field} />
+                <Input type="email" placeholder="you@example.com" {...field} disabled={form.formState.isSubmitting} />
               </FormControl>
               <FormDescription>
                 Your primary email address.
@@ -105,6 +128,7 @@ export function UserForm() {
                   placeholder="Tell us a little bit about yourself"
                   className="resize-none"
                   {...field}
+                  disabled={form.formState.isSubmitting}
                 />
               </FormControl>
               <FormDescription>
@@ -123,6 +147,7 @@ export function UserForm() {
                     <Checkbox
                     checked={field.value}
                     onCheckedChange={field.onChange}
+                    disabled={form.formState.isSubmitting}
                     />
                 </FormControl>
                 <div className="space-y-1 leading-none">
@@ -136,8 +161,13 @@ export function UserForm() {
                 </FormItem>
             )}
          />
-        <Button type="submit" className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
-          Submit Form <Send className="ml-2" />
+        <Button
+            type="submit"
+            className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
+            disabled={form.formState.isSubmitting} // Disable button during submission
+        >
+          {form.formState.isSubmitting ? 'Submitting...' : 'Submit Form'}
+          {!form.formState.isSubmitting && <Send className="ml-2" />}
         </Button>
       </form>
     </Form>
