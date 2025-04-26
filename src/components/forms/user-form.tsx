@@ -18,27 +18,49 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
 import { Send } from 'lucide-react';
-import { addOrUpdateContact } from "@/services/crm-service"; // Import the CRM service
+import { addContact } from "@/app/actions/crm-actions"; // Import the server action
+import { useFormState, useFormStatus } from "react-dom"; // Import hooks for Server Actions
+import { useEffect } from "react"; // Import useEffect
 
-// Define the Zod schema for form validation
+// Define the Zod schema for form validation (client-side, matching server action input)
 const formSchema = z.object({
   name: z.string().min(2, {
     message: "Name must be at least 2 characters.",
-  }).max(50, { message: "Name cannot exceed 50 characters."}),
+  }).max(100, { message: "Name cannot exceed 100 characters."}),
   email: z.string().email({
     message: "Please enter a valid email address.",
-  }),
-  bio: z.string().max(160, { message: "Bio cannot exceed 160 characters."}).optional(),
+  }).max(100),
+  bio: z.string().max(500, { message: "Bio cannot exceed 500 characters."}).optional(),
   subscribe: z.boolean().default(false).optional(),
 })
 
 // Define the type based on the Zod schema
 type UserFormData = z.infer<typeof formSchema>;
 
+// Separate SubmitButton to use useFormStatus
+function SubmitButton() {
+    const { pending } = useFormStatus();
+    return (
+        <Button
+            type="submit"
+            className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
+            disabled={pending} // Disable button when form is pending
+        >
+          {pending ? 'Submitting...' : 'Submit Form'}
+          {!pending && <Send className="ml-2" />}
+        </Button>
+    );
+}
+
+
 export function UserForm() {
   const { toast } = useToast();
+  // Initial state for the form action
+  const initialState = { message: null, success: false };
+  // useFormState hook to manage form state with Server Action
+  const [state, formAction] = useFormState(addContact, initialState);
 
-  // Initialize react-hook-form
+  // Initialize react-hook-form (still useful for client-side validation)
   const form = useForm<UserFormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -47,44 +69,36 @@ export function UserForm() {
       bio: "",
       subscribe: false,
     },
-  })
+  });
 
-  // Handle form submission
-  async function onSubmit(values: UserFormData) {
-    try {
-        // Call the CRM service to add/update the contact
-        await addOrUpdateContact(values);
-
-        // Show success toast
-        toast({
-            title: "Form Submitted!",
-            description: "Your information has been successfully sent.",
-            variant: "default", // Use default variant which will pick up theme colors
-        });
-        form.reset(); // Reset form after successful submission
-
-    } catch (error) {
-        console.error("Failed to submit form to CRM:", error);
-        // Show error toast
-        toast({
-            title: "Submission Failed",
-            description: "Could not submit your information. Please try again later.",
-            variant: "destructive", // Use destructive variant for errors
-        });
-        // Optionally, do not reset the form on error so the user can retry
+  // Effect to show toast message based on the server action response state
+  useEffect(() => {
+    if (state.message) {
+      toast({
+        title: state.success ? "Success!" : "Error",
+        description: state.message,
+        variant: state.success ? "default" : "destructive",
+      });
+      if (state.success) {
+        form.reset(); // Reset form on successful submission
+      }
     }
-  }
+     // Reset message after showing toast to prevent re-showing on re-render
+    // Note: This depends on how useFormState internally manages state updates.
+    // A more robust approach might involve clearing the message in the server action
+    // or using a separate state variable to track if the toast has been shown.
+    // For simplicity, we rely on the state changing again if another submission occurs.
+
+  }, [state, toast, form]);
+
 
   return (
+    // Use react-hook-form's Form provider for client-side validation context
     <Form {...form}>
-      {/* Display loading state while submitting */}
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 relative">
-         {form.formState.isSubmitting && (
-            <div className="absolute inset-0 bg-white/50 dark:bg-black/50 flex items-center justify-center z-10 rounded-md">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-                <span className="ml-3 text-foreground">Submitting...</span>
-            </div>
-        )}
+       {/* The form now uses the formAction */}
+       <form action={formAction} className="space-y-6 relative">
+         {/* We no longer need form.formState.isSubmitting, use useFormStatus in SubmitButton */}
+
         <FormField
           control={form.control}
           name="name"
@@ -92,12 +106,13 @@ export function UserForm() {
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input placeholder="John Doe" {...field} disabled={form.formState.isSubmitting} />
+                 {/* Pass field props for react-hook-form integration */}
+                <Input placeholder="John Doe" {...field} />
               </FormControl>
               <FormDescription>
                 Your full name.
               </FormDescription>
-              <FormMessage />
+              <FormMessage /> {/* Shows client-side validation errors */}
             </FormItem>
           )}
         />
@@ -108,7 +123,7 @@ export function UserForm() {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input type="email" placeholder="you@example.com" {...field} disabled={form.formState.isSubmitting} />
+                <Input type="email" placeholder="you@example.com" {...field} />
               </FormControl>
               <FormDescription>
                 Your primary email address.
@@ -128,7 +143,6 @@ export function UserForm() {
                   placeholder="Tell us a little bit about yourself"
                   className="resize-none"
                   {...field}
-                  disabled={form.formState.isSubmitting}
                 />
               </FormControl>
               <FormDescription>
@@ -138,6 +152,7 @@ export function UserForm() {
             </FormItem>
           )}
         />
+         {/* Use field.value and field.onChange for controlled checkbox */}
         <FormField
             control={form.control}
             name="subscribe"
@@ -145,9 +160,11 @@ export function UserForm() {
                 <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow-sm">
                 <FormControl>
                     <Checkbox
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                    disabled={form.formState.isSubmitting}
+                        // Ensure 'name' attribute matches the FormData key expected by the server action
+                        name="subscribe"
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                        // We don't pass {...field} directly as Checkbox needs specific props
                     />
                 </FormControl>
                 <div className="space-y-1 leading-none">
@@ -158,17 +175,16 @@ export function UserForm() {
                     Receive updates via email.
                     </FormDescription>
                 </div>
+                 {/* FormMessage is usually not needed for a single checkbox, but can be kept */}
+                 <FormMessage />
                 </FormItem>
             )}
          />
-        <Button
-            type="submit"
-            className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
-            disabled={form.formState.isSubmitting} // Disable button during submission
-        >
-          {form.formState.isSubmitting ? 'Submitting...' : 'Submit Form'}
-          {!form.formState.isSubmitting && <Send className="ml-2" />}
-        </Button>
+         {/* Display server-side action message if not successful */}
+         {state.message && !state.success && (
+             <p className="text-sm font-medium text-destructive">{state.message}</p>
+         )}
+         <SubmitButton />
       </form>
     </Form>
   )
