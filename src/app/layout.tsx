@@ -26,6 +26,10 @@ export default function RootLayout({
         <div className="text-center my-6 px-4">
             <p className="text-xs text-muted-foreground mb-2">Admin Sections (Dev)</p>
             <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-2">
+                 <Link href="/admin/dashboard" className="text-sm text-muted-foreground hover:text-primary underline">
+                    Dashboard
+                </Link>
+                 <Separator orientation="vertical" className="h-4 bg-border" />
                 <Link href="/admin/crm" className="text-sm text-muted-foreground hover:text-primary underline">
                     CRM Contacts
                 </Link>
