@@ -2,7 +2,7 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
-import { OpportunityFirestore, OpportunityStageSchema } from "@/lib/models/opportunity"
+import { OpportunityFirestore, OpportunityStage, OpportunityStageSchema } from "@/lib/models/opportunity"
 import { DataTableColumnHeader } from "@/components/ui/data-table-column-header"
 import { Badge } from "@/components/ui/badge"
 import { format } from 'date-fns'

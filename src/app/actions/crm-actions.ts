@@ -4,8 +4,8 @@
 import { z } from 'zod';
 import { collection, addDoc, getDocs, Timestamp, query, orderBy, doc, updateDoc, getDoc } from 'firebase/firestore';
 import { adminDb } from '@/lib/firebase/firebase-admin-config'; // Use Admin SDK for server actions
-import { ContactSchema, Contact, ContactFirestore, LeadSourceSchema } from '@/lib/models/contact';
-import { OpportunitySchema, Opportunity, OpportunityFirestore, OpportunityStageSchema } from '@/lib/models/opportunity';
+import { ContactSchema, Contact, ContactFirestore, ContactFirestoreSchema, LeadSourceSchema } from '@/lib/models/contact';
+import { OpportunitySchema, Opportunity, OpportunityFirestore, OpportunityFirestoreSchema, OpportunityStageSchema, OpportunityStage } from '@/lib/models/opportunity';
 import { revalidatePath } from 'next/cache';
 import { checkProductStock } from '@/services/erp-service'; // Mock ERP call
 import { startOpportunityToCashProcess } from '@/services/bpm-service'; // Mock BPM call

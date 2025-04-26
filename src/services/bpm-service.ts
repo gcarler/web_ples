@@ -1,8 +1,9 @@
 // src/services/bpm-service.ts
 'use server'; // Mark this module for server-side execution
 
-import { ProcessInstance, ProcessInstanceFirestore, ProcessStatusSchema } from '@/lib/models/bpm';
+import { ProcessInstance, ProcessInstanceFirestore, ProcessStatus, ProcessStatusSchema } from '@/lib/models/bpm';
 import { OpportunityFirestore } from '@/lib/models/opportunity'; // Import Opportunity type
+import { Order } from '@/lib/models/erp'; // Import Order type
 import { adminDb } from '@/lib/firebase/firebase-admin-config';
 import { collection, addDoc, Timestamp, doc, updateDoc, serverTimestamp } from 'firebase/firestore';
 import { checkProductStock, createErpOrder, getErpOrderDetails, updateErpOrderStatus } from './erp-service'; // Import ERP service
@@ -45,7 +46,13 @@ export async function startOpportunityToCashProcess(opportunityId: string, oppor
         // --- Mock Implementation ---
         const mockProcessInstanceId = `proc_${Date.now()}`;
         console.log(`Mock BPM Process Instance created with ID: ${mockProcessInstanceId}`);
-        await new Promise(resolve => setTimeout(resolve, 50)); // Simulate DB write
+        // Simulate DB write by creating a dummy document (or skip if purely mock)
+        const mockInstanceRef = await addDoc(collection(adminDb, 'processInstances'), {
+            ...processInstanceData,
+            id: mockProcessInstanceId, // Add the generated ID for reference
+            lastUpdatedAt: Timestamp.now(), // Ensure timestamp is set
+        });
+        // In a real scenario, you'd use mockInstanceRef.id, but here we use the pre-generated one
 
 
         // ** Simulate next step: Create ERP Order **
@@ -56,7 +63,7 @@ export async function startOpportunityToCashProcess(opportunityId: string, oppor
         // 1. Prepare order data (example structure, adapt as needed)
         //    You might need to fetch product details based on the opportunity
         const orderItems = [ // Example: Assume opportunity implies specific products
-             { productId: 'prod_1', productName: 'PLES Consulting Hour', quantity: opportunityData.amount && opportunityData.amount > 1000 ? 10 : 1, price: 150 },
+             { productId: 'prod_1', productName: 'PLES Consulting Hour', sku: 'PLES-CONS-01', quantity: opportunityData.amount && opportunityData.amount > 1000 ? 10 : 1, price: 150 },
              // Add more items based on opportunity details if possible
         ];
         const subtotal = orderItems.reduce((sum, item) => sum + item.quantity * item.price, 0);
@@ -80,7 +87,7 @@ export async function startOpportunityToCashProcess(opportunityId: string, oppor
         if (erpOrderId) {
             console.log(`BPM Service (Mock): ERP Order ${erpOrderId} created successfully.`);
             // Update process instance variables if needed
-            await updateProcessInstance(mockProcessInstanceId, {
+            await updateProcessInstance(mockInstanceRef.id, { // Use the actual Firestore doc ID
                  variables: { ...processInstanceData.variables, erpOrderId: erpOrderId },
                  currentTaskName: 'ERP Order Created, Awaiting Payment/Shipment', // Update task name
                  lastUpdatedAt: Timestamp.now(),
@@ -88,7 +95,7 @@ export async function startOpportunityToCashProcess(opportunityId: string, oppor
         } else {
             console.error(`BPM Service Error: Failed to create ERP Order for Opportunity ${opportunityId}.`);
             // Update process instance to reflect failure
-             await updateProcessInstance(mockProcessInstanceId, {
+             await updateProcessInstance(mockInstanceRef.id, { // Use the actual Firestore doc ID
                  status: 'Failed',
                  errorDetails: 'Failed to create ERP order.',
                  failedAt: Timestamp.now(),
@@ -138,15 +145,21 @@ export async function startShippingProcess(orderId: string): Promise<boolean> {
         // --- Mock Implementation ---
         const mockProcessInstanceId = `proc_ship_${Date.now()}`;
         console.log(`Mock BPM Shipping Process Instance created with ID: ${mockProcessInstanceId}`);
-        await new Promise(resolve => setTimeout(resolve, 40)); // Simulate DB write
+         // Simulate DB write by creating a dummy document (or skip if purely mock)
+         const mockInstanceRef = await addDoc(collection(adminDb, 'processInstances'), {
+             ...processInstanceData,
+             id: mockProcessInstanceId, // Add the generated ID for reference
+             lastUpdatedAt: Timestamp.now(), // Ensure timestamp is set
+         });
+
 
         // ** Simulate next step: Check Inventory **
-        console.log(`BPM Service (Mock): Transitioning to Check Inventory step for process ${mockProcessInstanceId}`);
+        console.log(`BPM Service (Mock): Transitioning to Check Inventory step for process ${mockInstanceRef.id}`);
         // Fetch order details to know what items are needed
-        const orderDetails = await getErpOrderDetails(orderId);
+        const orderDetails = await getErpOrderDetails(orderId); // Use the real Order ID here
         if (!orderDetails) {
              console.error(`BPM Service Error: Could not fetch details for order ${orderId} to check inventory.`);
-             await updateProcessInstance(mockProcessInstanceId, { status: 'Failed', errorDetails: 'Failed to fetch order details', failedAt: Timestamp.now(), lastUpdatedAt: Timestamp.now(), currentTaskName: 'Process Failed' });
+             await updateProcessInstance(mockInstanceRef.id, { status: 'Failed', errorDetails: 'Failed to fetch order details', failedAt: Timestamp.now(), lastUpdatedAt: Timestamp.now(), currentTaskName: 'Process Failed' });
              return false;
         }
 
@@ -157,10 +170,10 @@ export async function startShippingProcess(orderId: string): Promise<boolean> {
                 allItemsAvailable = false;
                 console.warn(`BPM Service: Insufficient stock for product ${item.productId} (Order ${orderId}). Required: ${item.quantity}, Available: ${stockInfo?.stockLevel ?? 0}`);
                 // Handle backorder logic or notify someone
-                 await updateProcessInstance(mockProcessInstanceId, {
+                 await updateProcessInstance(mockInstanceRef.id, {
                      status: 'Suspended', // Or Failed, depending on policy
                      currentTaskName: 'Insufficient Stock - Manual Intervention Required',
-                     variables: { ...processInstanceData.variables, missingProductId: item.productId, requiredQty: item.quantity, availableQty: stockInfo?.stockLevel ?? 0 },
+                     variables: { ...(processInstanceData.variables || {}), missingProductId: item.productId, requiredQty: item.quantity, availableQty: stockInfo?.stockLevel ?? 0 },
                      lastUpdatedAt: Timestamp.now(),
                  });
                 break; // Stop checking if one item is unavailable
@@ -170,9 +183,9 @@ export async function startShippingProcess(orderId: string): Promise<boolean> {
         if (allItemsAvailable) {
              console.log(`BPM Service: All items available for order ${orderId}. Proceeding to dispatch.`);
               // Update ERP order status (e.g., to 'Awaiting Shipment')
-              await updateErpOrderStatus(orderId, 'Awaiting Shipment');
+              await updateErpOrderStatus(orderId, 'Awaiting Shipment'); // Use the real Order ID
               // Update Process Instance
-              await updateProcessInstance(mockProcessInstanceId, {
+              await updateProcessInstance(mockInstanceRef.id, {
                    currentTaskName: 'Ready for Dispatch',
                    lastUpdatedAt: Timestamp.now(),
                });
@@ -193,23 +206,42 @@ export async function startShippingProcess(orderId: string): Promise<boolean> {
  * @param updates An object containing the fields to update.
  * @returns Boolean indicating success.
  */
-export async function updateProcessInstance(processInstanceId: string, updates: Partial<ProcessInstance>): Promise<boolean> {
+export async function updateProcessInstance(processInstanceId: string, updates: Partial<ProcessInstanceFirestore>): Promise<boolean> {
     console.log(`BPM Service: Updating Process Instance ${processInstanceId}`);
+    if (!processInstanceId) {
+         console.error("BPM Service Error: Invalid processInstanceId provided for update.");
+         return false;
+    }
     try {
-         // --- Replace with actual Firestore call ---
-        // const processRef = doc(adminDb, 'processInstances', processInstanceId);
-        // // Ensure lastUpdatedAt is always included
-        // const dataToUpdate = { ...updates, lastUpdatedAt: Timestamp.now() };
-        // await updateDoc(processRef, dataToUpdate);
-        // --- Mock Implementation ---
-        console.log(`Mock BPM Process Instance ${processInstanceId} updated with:`, updates);
-        await new Promise(resolve => setTimeout(resolve, 30)); // Simulate DB update
+        const processRef = doc(adminDb, 'processInstances', processInstanceId);
+        // Ensure lastUpdatedAt is always included and is a server timestamp for accuracy
+        // Merge existing variables with new ones if variables are being updated
+        const dataToUpdate: Record<string, any> = { ...updates };
+        if (updates.variables) {
+            // Fetch existing doc to merge variables correctly (optional but safer)
+            const docSnap = await getDoc(processRef);
+            if (docSnap.exists()) {
+                const existingData = docSnap.data();
+                dataToUpdate.variables = { ...(existingData.variables || {}), ...updates.variables };
+            }
+        }
+         // Convert dates back to Timestamps if they are Date objects
+        if (updates.startedAt instanceof Date) dataToUpdate.startedAt = Timestamp.fromDate(updates.startedAt);
+        if (updates.completedAt instanceof Date) dataToUpdate.completedAt = Timestamp.fromDate(updates.completedAt);
+        if (updates.failedAt instanceof Date) dataToUpdate.failedAt = Timestamp.fromDate(updates.failedAt);
+        // Always set lastUpdatedAt server-side
+        dataToUpdate.lastUpdatedAt = serverTimestamp();
+
+
+        await updateDoc(processRef, dataToUpdate);
+        console.log(`BPM Process Instance ${processInstanceId} updated successfully.`);
         return true;
     } catch (error) {
         console.error(`BPM Service Error: Failed to update process instance ${processInstanceId}:`, error);
         return false;
     }
 }
+
 
 // Add helper functions like findProcessInstanceByCorrelationId if needed for real implementation
 // export async function findProcessInstanceByCorrelationId(correlationId: string, processDefinitionId: string): Promise<ProcessInstanceFirestore | null> { ... }

@@ -2,11 +2,11 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
-import { OrderFirestore, OrderStatusSchema } from "@/lib/models/erp"
+import { OrderFirestore, OrderStatus, OrderStatusSchema } from "@/lib/models/erp"
 import { DataTableColumnHeader } from "@/components/ui/data-table-column-header"
 import { Badge } from "@/components/ui/badge"
 import { format } from 'date-fns'
-import { Calendar, CheckCircle, CircleDollarSign, Clock, Package, RefreshCcw, Truck, User, XCircle } from "lucide-react" // Example icons
+import { Calendar, CheckCircle, CircleDollarSign, Clock, Package, RefreshCcw, RotateCcw, Truck, User, XCircle } from "lucide-react" // Example icons
 import Link from "next/link"
 
 // Helper to format currency
@@ -19,6 +19,7 @@ const formatCurrency = (amount: number | null | undefined) => {
 const OrderStatusPill = ({ status }: { status: OrderStatus }) => {
   let variant: "default" | "secondary" | "destructive" | "outline" = "secondary";
   let Icon = Clock;
+  let className = ''; // Added for specific styling like completed green
 
   switch (status) {
     case 'Pending': variant = 'secondary'; Icon = Clock; break;
@@ -29,12 +30,12 @@ const OrderStatusPill = ({ status }: { status: OrderStatus }) => {
     case 'Delivered': variant = 'default'; Icon = CheckCircle; break; // Use primary/success color
     case 'Completed': variant = 'default'; Icon = CheckCircle; className = "bg-green-100 text-green-800 border-green-200 dark:bg-green-900/30 dark:text-green-300 dark:border-green-700/50"; break;
     case 'Cancelled': variant = 'destructive'; Icon = XCircle; break;
-    case 'Refunded': variant = 'destructive'; Icon = RotateCcw; break;
+    case 'Refunded': variant = 'destructive'; Icon = RotateCcw; break; // Using destructive for refunded too
     default: variant = 'secondary'; Icon = Clock;
   }
 
   return (
-    <Badge variant={variant} className={`capitalize px-2.5 py-0.5 text-xs w-[140px] justify-start ${status === 'Completed' ? 'bg-green-100 text-green-800 border-green-200 dark:bg-green-900/30 dark:text-green-300 dark:border-green-700/50' : ''}`}>
+    <Badge variant={variant} className={`capitalize px-2.5 py-0.5 text-xs w-[140px] justify-start ${className}`}>
       <Icon className="mr-1 h-3 w-3" />
       {status}
     </Badge>
@@ -125,10 +126,11 @@ export const orderColumns: ColumnDef<OrderFirestore>[] = [
      cell: ({ row }) => {
         const status = row.getValue("paymentStatus") as string;
          let variant: "default" | "secondary" | "destructive" | "outline" = "secondary";
-         if (status === 'Paid') variant = 'default'; // Use primary/success color
+         let className = ''; // Added for specific styling
+         if (status === 'Paid') { variant = 'default'; className = 'bg-green-100 text-green-800 border-green-200 dark:bg-green-900/30 dark:text-green-300 dark:border-green-700/50'; }
          if (status === 'Failed' || status === 'Refunded') variant = 'destructive';
 
-        return <Badge variant={variant} className={`capitalize ${status === 'Paid' ? 'bg-green-100 text-green-800 border-green-200 dark:bg-green-900/30 dark:text-green-300 dark:border-green-700/50' : ''}`}>{status}</Badge>;
+        return <Badge variant={variant} className={`capitalize ${className}`}>{status}</Badge>;
      },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))

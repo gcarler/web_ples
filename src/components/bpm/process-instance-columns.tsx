@@ -2,7 +2,7 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
-import { ProcessInstanceFirestore, ProcessStatusSchema } from "@/lib/models/bpm"
+import { ProcessInstanceFirestore, ProcessStatus, ProcessStatusSchema } from "@/lib/models/bpm"
 import { DataTableColumnHeader } from "@/components/ui/data-table-column-header"
 import { Badge } from "@/components/ui/badge"
 import { format } from 'date-fns'
@@ -12,11 +12,13 @@ import { Button } from "../ui/button"
 import { resumeProcessInstance } from "@/app/actions/bpm-actions"
 import { useToast } from "@/hooks/use-toast"
 import React from "react"
+import { cn } from "@/lib/utils"
 
 // Component for Process Status Pill
 const ProcessStatusPill = ({ status }: { status: ProcessStatus }) => {
   let variant: "default" | "secondary" | "destructive" | "outline" = "secondary";
   let Icon = Clock;
+  let className = ''; // For additional styling
 
   switch (status) {
     case 'Not Started': variant = 'secondary'; Icon = PlayCircle; break;
@@ -29,7 +31,7 @@ const ProcessStatusPill = ({ status }: { status: ProcessStatus }) => {
   }
 
   return (
-    <Badge variant={variant} className={`capitalize px-2.5 py-0.5 text-xs w-[120px] justify-start ${className ?? ''}`}>
+    <Badge variant={variant} className={cn(`capitalize px-2.5 py-0.5 text-xs w-[120px] justify-start`, className)}>
       <Icon className="mr-1 h-3 w-3" />
       {status}
     </Badge>
@@ -47,7 +49,7 @@ const ProcessInstanceRowActions = ({ row }: { row: any /* Row<ProcessInstanceFir
         const result = await resumeProcessInstance(instance.id);
         toast({
             title: result.success ? "Process Resumed" : "Resume Failed",
-            description: result.message,
+            description: result.message ?? (result.success ? 'Process successfully resumed.' : 'Failed to resume process.'),
             variant: result.success ? "default" : "destructive",
         });
         setIsResuming(false);
@@ -113,9 +115,14 @@ export const processInstanceColumns: ColumnDef<ProcessInstanceFirestore>[] = [
       let linkPath = '';
       if (correlationId) {
           if (definitionId?.includes('opportunity')) {
-              linkPath = `/admin/crm/opportunities/${correlationId}`;
+              // Assuming opportunity IDs might be fetched and need a link
+              // linkPath = `/admin/crm/opportunities/${correlationId}`;
+              // For now, just display the ID if no link structure is confirmed
+               return <span className="text-muted-foreground w-[150px] truncate">{correlationId} (Opportunity)</span>;
           } else if (definitionId?.includes('shipping') || definitionId?.includes('order')) {
-              linkPath = `/admin/erp/orders/${correlationId}`;
+              // Assuming order IDs might be fetched and need a link
+              // linkPath = `/admin/erp/orders/${correlationId}`;
+               return <span className="text-muted-foreground w-[150px] truncate">{correlationId} (Order)</span>;
           }
       }
 

@@ -1,7 +1,7 @@
 // src/services/erp-service.ts
 'use server'; // Mark this module for server-side execution
 
-import { Product, ProductFirestore, Order, OrderFirestore } from '@/lib/models/erp';
+import { Product, ProductFirestore, Order, OrderFirestore, OrderStatus } from '@/lib/models/erp';
 import { adminDb } from '@/lib/firebase/firebase-admin-config';
 import { collection, query, where, getDocs, doc, getDoc, addDoc, Timestamp, updateDoc } from 'firebase/firestore';
 import { startShippingProcess } from './bpm-service'; // Import BPM service
