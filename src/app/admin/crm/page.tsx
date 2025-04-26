@@ -2,26 +2,54 @@
 import { getContacts } from '@/app/actions/crm-actions';
 import { ContactDataTable } from '@/components/crm/contact-data-table';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { contactColumns } from '@/components/crm/contact-columns'; // Assuming columns are defined here
+import { contactColumns } from '@/components/crm/contact-columns';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { PlusCircle } from 'lucide-react';
+
+// Metadata for the page
+export const metadata = {
+  title: 'CRM Contacts - PLES Admin',
+  description: 'View and manage contact submissions.',
+};
 
 export default async function CrmAdminPage() {
   // Fetch contacts using the Server Action
   const contacts = await getContacts();
 
   return (
-    <div className="container mx-auto py-10">
-      <Card className="shadow-lg">
-        <CardHeader>
-          <CardTitle className="text-2xl">CRM Contacts</CardTitle>
-          <CardDescription>
-            View and manage contact submissions.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
+    <div className="container mx-auto py-10 space-y-6">
+      <div className="flex justify-between items-center">
+        <div>
+            <h1 className="text-3xl font-bold tracking-tight">CRM Contacts</h1>
+            <p className="text-muted-foreground">
+                 View and manage contact submissions.
+            </p>
+        </div>
+        {/* Optional: Add Button to add new contact directly */}
+        {/* <Button asChild>
+            <Link href="/admin/crm/new">
+                <PlusCircle className="mr-2 h-4 w-4" /> Add Contact
+            </Link>
+        </Button> */}
+      </div>
+
+      <Card className="shadow-lg border">
+        {/* Removed CardHeader as title is now outside the card */}
+        <CardContent className="pt-6"> {/* Added padding top */}
           {contacts.length > 0 ? (
             <ContactDataTable columns={contactColumns} data={contacts} />
           ) : (
-            <p className="text-muted-foreground text-center py-4">No contacts found.</p>
+            <div className="text-center py-10">
+                <p className="text-muted-foreground">No contacts found.</p>
+                <p className="mt-2 text-sm text-muted-foreground">
+                    Contacts submitted through the website form will appear here.
+                </p>
+                 {/* Optional: Link to the form page */}
+                 <Button variant="outline" size="sm" className="mt-4" asChild>
+                    <Link href="/forms">Go to Contact Form</Link>
+                 </Button>
+            </div>
           )}
         </CardContent>
       </Card>
@@ -29,6 +57,5 @@ export default async function CrmAdminPage() {
   );
 }
 
-// Force dynamic rendering to ensure fresh data on each load
-// export const dynamic = 'force-dynamic';
-// Alternatively, use revalidatePath in the action to update the cache
+// Force dynamic rendering or use revalidatePath for fresh data
+export const dynamic = 'force-dynamic';

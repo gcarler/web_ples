@@ -19,8 +19,10 @@ import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
 import { Send } from 'lucide-react';
 import { addContact } from "@/app/actions/crm-actions"; // Import the server action
-import { useFormState, useFormStatus } from "react-dom"; // Import hooks for Server Actions
-import { useEffect } from "react"; // Import useEffect
+import { useFormState, useFormStatus } from "react-dom";
+import { useEffect } from "react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select" // Import Select
+import { LeadSourceSchema, LeadSource } from "@/lib/models/contact" // Import LeadSource types
 
 // Define the Zod schema for form validation (client-side, matching server action input)
 const formSchema = z.object({
@@ -30,8 +32,12 @@ const formSchema = z.object({
   email: z.string().email({
     message: "Please enter a valid email address.",
   }).max(100),
+  phone: z.string().optional(),
+  company: z.string().optional(),
+  title: z.string().optional(),
   bio: z.string().max(500, { message: "Bio cannot exceed 500 characters."}).optional(),
   subscribe: z.boolean().default(false).optional(),
+  leadSource: LeadSourceSchema.optional().default('Web Form'), // Default to Web Form for this form
 })
 
 // Define the type based on the Zod schema
@@ -55,23 +61,23 @@ function SubmitButton() {
 
 export function UserForm() {
   const { toast } = useToast();
-  // Initial state for the form action
   const initialState = { message: null, success: false };
-  // useFormState hook to manage form state with Server Action
   const [state, formAction] = useFormState(addContact, initialState);
 
-  // Initialize react-hook-form (still useful for client-side validation)
   const form = useForm<UserFormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
       email: "",
+      phone: "",
+      company: "",
+      title: "",
       bio: "",
       subscribe: false,
+      leadSource: "Web Form", // Explicitly set default for the form
     },
   });
 
-  // Effect to show toast message based on the server action response state
   useEffect(() => {
     if (state.message) {
       toast({
@@ -83,76 +89,136 @@ export function UserForm() {
         form.reset(); // Reset form on successful submission
       }
     }
-     // Reset message after showing toast to prevent re-showing on re-render
-    // Note: This depends on how useFormState internally manages state updates.
-    // A more robust approach might involve clearing the message in the server action
-    // or using a separate state variable to track if the toast has been shown.
-    // For simplicity, we rely on the state changing again if another submission occurs.
-
   }, [state, toast, form]);
 
 
   return (
-    // Use react-hook-form's Form provider for client-side validation context
     <Form {...form}>
-       {/* The form now uses the formAction */}
        <form action={formAction} className="space-y-6 relative">
-         {/* We no longer need form.formState.isSubmitting, use useFormStatus in SubmitButton */}
 
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Name</FormLabel>
-              <FormControl>
-                 {/* Pass field props for react-hook-form integration */}
-                <Input placeholder="John Doe" {...field} />
-              </FormControl>
-              <FormDescription>
-                Your full name.
-              </FormDescription>
-              <FormMessage /> {/* Shows client-side validation errors */}
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input type="email" placeholder="you@example.com" {...field} />
-              </FormControl>
-              <FormDescription>
-                Your primary email address.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        {/* Name and Email side-by-side on larger screens */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+                <FormItem>
+                <FormLabel>Name</FormLabel>
+                <FormControl>
+                    <Input placeholder="John Doe" {...field} />
+                </FormControl>
+                <FormMessage />
+                </FormItem>
+            )}
+            />
+            <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+                <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                    <Input type="email" placeholder="you@example.com" {...field} />
+                </FormControl>
+                <FormMessage />
+                </FormItem>
+            )}
+            />
+        </div>
+
+         {/* Phone and Company side-by-side on larger screens */}
+         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                    <FormItem>
+                    <FormLabel>Phone (Optional)</FormLabel>
+                    <FormControl>
+                        <Input type="tel" placeholder="+1 234 567 890" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                    </FormItem>
+                )}
+            />
+            <FormField
+                control={form.control}
+                name="company"
+                render={({ field }) => (
+                    <FormItem>
+                    <FormLabel>Company (Optional)</FormLabel>
+                    <FormControl>
+                        <Input placeholder="Acme Corporation" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                    </FormItem>
+                )}
+            />
+         </div>
+
+         {/* Title and Lead Source */}
+         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <FormField
+                control={form.control}
+                name="title"
+                render={({ field }) => (
+                    <FormItem>
+                    <FormLabel>Job Title (Optional)</FormLabel>
+                    <FormControl>
+                        <Input placeholder="Project Manager" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                    </FormItem>
+                )}
+            />
+             {/* Hidden Lead Source - Defaults to Web Form */}
+             <input type="hidden" {...form.register("leadSource")} value="Web Form" />
+            {/* If you want to show lead source: */}
+            {/* <FormField
+                control={form.control}
+                name="leadSource"
+                render={({ field }) => (
+                    <FormItem>
+                        <FormLabel>Lead Source</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <FormControl>
+                                <SelectTrigger>
+                                    <SelectValue placeholder="Select a lead source" />
+                                </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                                {LeadSourceSchema.options.map((source) => (
+                                    <SelectItem key={source} value={source}>
+                                        {source}
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+                        <FormMessage />
+                    </FormItem>
+                )}
+            /> */}
+         </div>
+
+
          <FormField
           control={form.control}
           name="bio"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Bio</FormLabel>
+              <FormLabel>Message / Bio (Optional)</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="Tell us a little bit about yourself"
+                  placeholder="Tell us a little bit about how we can help"
                   className="resize-none"
                   {...field}
                 />
               </FormControl>
-              <FormDescription>
-                A short description about yourself (optional).
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-         {/* Use field.value and field.onChange for controlled checkbox */}
+
         <FormField
             control={form.control}
             name="subscribe"
@@ -160,11 +226,9 @@ export function UserForm() {
                 <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow-sm">
                 <FormControl>
                     <Checkbox
-                        // Ensure 'name' attribute matches the FormData key expected by the server action
                         name="subscribe"
                         checked={field.value}
                         onCheckedChange={field.onChange}
-                        // We don't pass {...field} directly as Checkbox needs specific props
                     />
                 </FormControl>
                 <div className="space-y-1 leading-none">
@@ -175,12 +239,11 @@ export function UserForm() {
                     Receive updates via email.
                     </FormDescription>
                 </div>
-                 {/* FormMessage is usually not needed for a single checkbox, but can be kept */}
                  <FormMessage />
                 </FormItem>
             )}
          />
-         {/* Display server-side action message if not successful */}
+
          {state.message && !state.success && (
              <p className="text-sm font-medium text-destructive">{state.message}</p>
          )}

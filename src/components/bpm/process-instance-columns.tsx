@@ -1,0 +1,197 @@
+// src/components/bpm/process-instance-columns.tsx
+"use client"
+
+import { ColumnDef } from "@tanstack/react-table"
+import { ProcessInstanceFirestore, ProcessStatusSchema } from "@/lib/models/bpm"
+import { DataTableColumnHeader } from "@/components/ui/data-table-column-header"
+import { Badge } from "@/components/ui/badge"
+import { format } from 'date-fns'
+import { CheckCircle, Clock, Cog, ExternalLink, PlayCircle, Siren, Workflow, XCircle } from "lucide-react" // Example icons
+import Link from "next/link"
+import { Button } from "../ui/button"
+import { resumeProcessInstance } from "@/app/actions/bpm-actions"
+import { useToast } from "@/hooks/use-toast"
+import React from "react"
+
+// Component for Process Status Pill
+const ProcessStatusPill = ({ status }: { status: ProcessStatus }) => {
+  let variant: "default" | "secondary" | "destructive" | "outline" = "secondary";
+  let Icon = Clock;
+
+  switch (status) {
+    case 'Not Started': variant = 'secondary'; Icon = PlayCircle; break;
+    case 'Running': variant = 'default'; Icon = Cog; className = "bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-700/50 animate-pulse"; break; // Primary/Blue + pulse for running
+    case 'Suspended': variant = 'outline'; Icon = Clock; className = "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-900/30 dark:text-yellow-300 dark:border-yellow-700/50"; break; // Yellow/Outline for suspended
+    case 'Completed': variant = 'default'; Icon = CheckCircle; className = "bg-green-100 text-green-800 border-green-200 dark:bg-green-900/30 dark:text-green-300 dark:border-green-700/50"; break; // Green/Success
+    case 'Failed': variant = 'destructive'; Icon = Siren; break; // Destructive/Red for failed
+    case 'Cancelled': variant = 'destructive'; Icon = XCircle; className = "opacity-70"; break; // Destructive + faded
+    default: variant = 'secondary'; Icon = Clock;
+  }
+
+  return (
+    <Badge variant={variant} className={`capitalize px-2.5 py-0.5 text-xs w-[120px] justify-start ${className ?? ''}`}>
+      <Icon className="mr-1 h-3 w-3" />
+      {status}
+    </Badge>
+  );
+};
+
+// Row Actions Component (Specific for Process Instances)
+const ProcessInstanceRowActions = ({ row }: { row: any /* Row<ProcessInstanceFirestore> */ }) => {
+    const instance = row.original as ProcessInstanceFirestore;
+    const { toast } = useToast();
+    const [isResuming, setIsResuming] = React.useState(false);
+
+    const handleResume = async () => {
+        setIsResuming(true);
+        const result = await resumeProcessInstance(instance.id);
+        toast({
+            title: result.success ? "Process Resumed" : "Resume Failed",
+            description: result.message,
+            variant: result.success ? "default" : "destructive",
+        });
+        setIsResuming(false);
+    };
+
+    return (
+        <div className="flex items-center space-x-2">
+            {/* Add link to view details if a detail page exists */}
+            {/* <Button variant="ghost" size="sm" asChild>
+                <Link href={`/admin/bpm/processes/${instance.id}`}>View</Link>
+            </Button> */}
+            {(instance.status === 'Suspended' || instance.status === 'Failed') && (
+                <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleResume}
+                    disabled={isResuming}
+                    className="text-xs h-7"
+                >
+                    {isResuming ? "Resuming..." : "Resume/Retry"}
+                </Button>
+            )}
+        </div>
+    );
+};
+
+
+export const processInstanceColumns: ColumnDef<ProcessInstanceFirestore>[] = [
+  {
+    accessorKey: "processDefinitionId",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Process Name" />
+    ),
+    cell: ({ row }) => (
+        <div className="w-[180px] truncate font-medium flex items-center gap-2">
+            <Workflow className="h-4 w-4 text-muted-foreground"/>
+            {row.getValue("processDefinitionId")}
+        </div>
+    ),
+    enableSorting: true,
+    enableHiding: true,
+  },
+  {
+    accessorKey: "status",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Status" />
+    ),
+    cell: ({ row }) => <ProcessStatusPill status={row.getValue("status")} />,
+    filterFn: (row, id, value) => {
+      return value.includes(row.getValue(id))
+    },
+    enableSorting: true,
+    enableHiding: true,
+  },
+  {
+    accessorKey: "correlationId", // Link to related entity (Opportunity/Order)
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Related To" />
+    ),
+    cell: ({ row }) => {
+      const correlationId = row.getValue("correlationId") as string | undefined;
+      const definitionId = row.original.processDefinitionId;
+      let linkPath = '';
+      if (correlationId) {
+          if (definitionId?.includes('opportunity')) {
+              linkPath = `/admin/crm/opportunities/${correlationId}`;
+          } else if (definitionId?.includes('shipping') || definitionId?.includes('order')) {
+              linkPath = `/admin/erp/orders/${correlationId}`;
+          }
+      }
+
+      return correlationId ? (
+          linkPath ? (
+             <Link href={linkPath} className="flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline truncate w-[150px]">
+                <ExternalLink className="h-3.5 w-3.5"/>
+                {correlationId}
+             </Link>
+          ) : (
+             <span className="text-muted-foreground w-[150px] truncate">{correlationId}</span>
+          )
+      ) : (
+        <span className="text-muted-foreground">-</span>
+      );
+    },
+    enableSorting: true,
+    enableHiding: true,
+  },
+  {
+    accessorKey: "currentTaskName",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Current Step" />
+    ),
+    cell: ({ row }) => <div className="w-[200px] truncate text-muted-foreground">{row.getValue("currentTaskName") || "-"}</div>,
+    enableSorting: false,
+    enableHiding: true,
+  },
+
+  {
+    accessorKey: "lastUpdatedAt",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Last Update" />
+    ),
+    cell: ({ row }) => {
+      const timestamp = row.getValue("lastUpdatedAt");
+      if (timestamp && typeof timestamp === 'object' && 'toDate' in timestamp) {
+        const date = (timestamp as any).toDate();
+        return <div className="w-[100px] text-muted-foreground">{format(date, 'PP pp')}</div>; // Include time
+      }
+      return <div className="w-[100px] text-muted-foreground">Invalid Date</div>;
+    },
+    enableSorting: true,
+    enableHiding: true,
+  },
+    {
+    accessorKey: "errorDetails",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Error" />
+    ),
+    cell: ({ row }) => (
+        <div className="w-[150px] truncate text-destructive text-xs">
+            {row.getValue("errorDetails") || ""}
+        </div>
+    ),
+    enableSorting: false,
+    enableHiding: true,
+  },
+   {
+    id: "actions",
+    cell: ({ row }) => <ProcessInstanceRowActions row={row} />,
+     enableSorting: false,
+     enableHiding: false,
+  },
+]
+
+// Define options for faceted filter for status
+export const processStatusFilterOptions = ProcessStatusSchema.options.map(status => ({
+    label: status,
+    value: status,
+    // Add icons if desired, similar to ProcessStatusPill
+}));
+
+// Options for process definition (replace with dynamic fetch if needed)
+export const processDefinitionFilterOptions = [
+    { label: 'Opportunity to Cash', value: 'opportunity-to-cash-v1' },
+    { label: 'Shipping Process', value: 'shipping-process-v1' },
+    // Add others
+];

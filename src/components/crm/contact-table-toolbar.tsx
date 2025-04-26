@@ -6,16 +6,9 @@ import { Table } from "@tanstack/react-table"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { DataTableViewOptions } from "@/components/ui/data-table-view-options" // Assuming you have this
-
-// Define options for the faceted filter (e.g., Subscribed Yes/No)
-const subscribedOptions = [
-    { label: "Yes", value: "true" },
-    { label: "No", value: "false" },
-]
-
-import { DataTableFacetedFilter } from "@/components/ui/data-table-faceted-filter" // Assuming you have this
-import { CheckCircle, XCircle } from "lucide-react" // Icons for faceted filter
+import { DataTableViewOptions } from "@/components/ui/data-table-view-options"
+import { DataTableFacetedFilter } from "@/components/ui/data-table-faceted-filter"
+import { subscribedFilterOptions, leadSourceFilterOptions } from "./contact-columns"; // Import defined options
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>
@@ -31,12 +24,13 @@ export function DataTableToolbar<TData>({
       <div className="flex flex-1 items-center space-x-2">
         {/* Global search (filter by name or email) */}
         <Input
-          placeholder="Filter by name or email..."
-          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""} // Example using name column
+          placeholder="Filter contacts..." // Generic placeholder
+          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""} // Primarily filter name
           onChange={(event) => {
-            // Apply filter to multiple columns if needed
-            table.getColumn("name")?.setFilterValue(event.target.value)
-            table.getColumn("email")?.setFilterValue(event.target.value) // You might want a more complex filter logic
+             // Can target multiple columns if needed:
+             table.getColumn("name")?.setFilterValue(event.target.value)
+             table.getColumn("email")?.setFilterValue(event.target.value)
+             table.getColumn("company")?.setFilterValue(event.target.value)
           }}
           className="h-8 w-[150px] lg:w-[250px]"
         />
@@ -45,11 +39,15 @@ export function DataTableToolbar<TData>({
           <DataTableFacetedFilter
             column={table.getColumn("subscribe")}
             title="Subscribed"
-            options={subscribedOptions.map(opt => ({
-                ...opt,
-                // Add icons if desired
-                icon: opt.value === 'true' ? CheckCircle : XCircle
-            }))}
+            options={subscribedFilterOptions}
+          />
+        )}
+         {/* Faceted filter for 'leadSource' column */}
+         {table.getColumn("leadSource") && (
+          <DataTableFacetedFilter
+            column={table.getColumn("leadSource")}
+            title="Lead Source"
+            options={leadSourceFilterOptions} // Use imported options
           />
         )}
         {/* Clear filters button */}
