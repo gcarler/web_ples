@@ -4,6 +4,12 @@
 import { useMemo } from "react";
 import { Pie, PieChart, Cell } from "recharts"
 import { LeadSourceSchema } from "@/lib/models/contact"
+import {
+    ChartConfig,
+    ChartContainer,
+    ChartTooltip,
+    ChartTooltipContent,
+ } from "@/components/ui/chart"
 
 // Define base colors from the theme variables
 const baseColors = [
@@ -14,12 +20,7 @@ const baseColors = [
   "hsl(var(--chart-5))",
   "hsl(var(--muted))",
 ];
-import {
-    ChartConfig,
-    ChartContainer,
-    ChartTooltip,
-    ChartTooltipContent,
-];
+
 
 const chartConfig = {
   count: {
@@ -82,7 +83,8 @@ export function ContactsBySourceChart({ data }: ContactsBySourceChartProps) {
           >
              {/* Map over chartData to render Cell components with assigned fill colors */}
              {chartData.map((entry, index) => (
-                 <Cell key={`cell-${index}-${entry.name}`} fill={entry.fill} />
+                 // Use index in the key for guaranteed uniqueness and simpler parsing
+                 <Cell key={`cell-${index}`} fill={entry.fill} />
              ))}
           </Pie>
         </PieChart>

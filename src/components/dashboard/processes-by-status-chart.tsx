@@ -1,7 +1,7 @@
 // src/components/dashboard/processes-by-status-chart.tsx
 "use client"
 
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts"
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Cell } from "recharts" // Added Cell import
 
 import {
   Card,
@@ -64,7 +64,7 @@ export function ProcessesByStatusChart({ data }: ProcessesByStatusChartProps) {
             tickLine={false}
             tickMargin={10}
             axisLine={false}
-            width={80} // Adjust width if labels are long
+            width={110} // Adjust width if labels are long
           />
           <XAxis dataKey="count" type="number" hide /> {/* Hide X-axis numerical labels */}
           <ChartTooltip
@@ -75,8 +75,8 @@ export function ProcessesByStatusChart({ data }: ProcessesByStatusChartProps) {
            <ChartLegend content={<ChartLegendContent />} />
           */}
            <Bar dataKey="count" layout="vertical" radius={4}>
-              {chartData.map((entry) => (
-                 <Cell key={`cell-${entry.status}`} fill={entry.fill} />
+              {chartData.map((entry, index) => (
+                 <Cell key={`cell-${index}`} fill={entry.fill} />
              ))}
            </Bar>
         </BarChart>
