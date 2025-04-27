@@ -94,7 +94,8 @@ export function OrdersByStatusChart({ data }: OrdersByStatusChartProps) {
           >
              {/* Map over chartData to render Cell components with assigned fill colors and unique keys */}
              {chartData.map((entry, index) => (
-                 <Cell key={`cell-${index}`} fill={entry.fill} /> // Ensure unique key with index
+                 // Use just the index as the key, ensuring uniqueness within this map iteration
+                 <Cell key={`cell-${index}`} fill={entry.fill} />
              ))}
           </Pie>
         </PieChart>
