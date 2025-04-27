@@ -81,9 +81,8 @@ export function ContactsBySourceChart({ data }: ContactsBySourceChartProps) {
             labelLine={false}
             label={({ percent }) => null } // Hide default labels using percent or other props
           >
-             {/* Map over chartData to render Cell components with assigned fill colors */}
+             {/* Map over chartData to render Cell components with assigned fill colors and use index for key */}
              {chartData.map((entry, index) => (
-                 // Use index in the key for guaranteed uniqueness and simpler parsing
                  <Cell key={`cell-${index}`} fill={entry.fill} />
              ))}
           </Pie>

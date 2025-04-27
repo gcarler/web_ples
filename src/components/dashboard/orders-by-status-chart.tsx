@@ -1,17 +1,8 @@
 // src/components/dashboard/orders-by-status-chart.tsx
 "use client"
 
-import { TrendingUp } from "lucide-react"
 import { Pie, PieChart, Cell } from "recharts"
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
 import {
   ChartConfig,
   ChartContainer,
@@ -92,9 +83,8 @@ export function OrdersByStatusChart({ data }: OrdersByStatusChartProps) {
             labelLine={false}
             label={({ percent, ...props }) => null} // Standardize label prop, hide default labels
           >
-             {/* Map over chartData to render Cell components with assigned fill colors and unique keys */}
+             {/* Map over chartData to render Cell components with assigned fill colors and use index for key */}
              {chartData.map((entry, index) => (
-                 // Use just the index as the key, ensuring uniqueness within this map iteration
                  <Cell key={`cell-${index}`} fill={entry.fill} />
              ))}
           </Pie>
@@ -102,5 +92,3 @@ export function OrdersByStatusChart({ data }: OrdersByStatusChartProps) {
       </ChartContainer>
   )
 }
-
-
