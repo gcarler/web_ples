@@ -3,13 +3,6 @@
 
 import { useMemo } from "react";
 import { Pie, PieChart, Cell } from "recharts"
-
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart"
 import { LeadSourceSchema } from "@/lib/models/contact"
 
 // Define base colors from the theme variables
@@ -20,6 +13,12 @@ const baseColors = [
   "hsl(var(--chart-4))",
   "hsl(var(--chart-5))",
   "hsl(var(--muted))",
+];
+import {
+    ChartConfig,
+    ChartContainer,
+    ChartTooltip,
+    ChartTooltipContent,
 ];
 
 const chartConfig = {
@@ -68,7 +67,7 @@ export function ContactsBySourceChart({ data }: ContactsBySourceChartProps) {
         className="mx-auto aspect-square max-h-[300px]"
       >
         <PieChart>
-          <ChartTooltip
+            <ChartTooltip
             cursor={false}
             content={<ChartTooltipContent hideLabel />}
           />
@@ -79,7 +78,7 @@ export function ContactsBySourceChart({ data }: ContactsBySourceChartProps) {
             innerRadius={60}
             strokeWidth={5}
             labelLine={false}
-            label={({ percent, ...props }) => null } // Hide default labels using percent or other props
+            label={({ percent }) => null } // Hide default labels using percent or other props
           >
              {/* Map over chartData to render Cell components with assigned fill colors */}
              {chartData.map((entry, index) => (
