@@ -120,10 +120,10 @@ export default function LoginPage() {
             <div className="flex justify-between w-full text-sm">
               {/* Ensure Link is the only direct child when using asChild */}
               <Button variant="link" asChild className="px-0 text-muted-foreground hover:text-primary">
-                <Link href="/register">Register an account</Link>
+                <Link href="/register"><span>Register an account</span></Link>
               </Button>
               <Button variant="link" asChild className="px-0 text-muted-foreground hover:text-primary">
-                 <Link href="/forgot-password">Forgot password?</Link>
+                 <Link href="/forgot-password"><span>Forgot password?</span></Link>
               </Button>
             </div>
           </CardFooter>
