@@ -63,7 +63,7 @@ export const config = {
      // Explicitly include admin routes if the negative lookahead isn't sufficient
      '/admin/:path*',
     ],
-    // runtime: 'nodejs', // Optional: Uncomment if explicit Node.js runtime is needed - Replaced by explicit export below
+    // runtime: 'nodejs', // Ensure this is commented out or removed if using the standalone export below
 };
 
 // Force Node.js runtime for this middleware
