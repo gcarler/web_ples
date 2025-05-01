@@ -4,26 +4,45 @@ import admin from 'firebase-admin';
 // This function ensures Firebase Admin SDK is initialized only once
 export function initializeAdminApp() {
   if (admin.apps.length === 0) {
+    console.log('Attempting Firebase Admin SDK initialization...');
     try {
-      const privateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n');
+      const projectId = process.env.FIREBASE_PROJECT_ID;
+      const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
+      const privateKeyEnv = process.env.FIREBASE_PRIVATE_KEY;
 
-      if (!process.env.FIREBASE_PROJECT_ID || !process.env.FIREBASE_CLIENT_EMAIL || !privateKey) {
-        throw new Error('Missing Firebase Admin SDK configuration in environment variables for Admin Init.');
+      if (!projectId) {
+        throw new Error('FIREBASE_PROJECT_ID environment variable is not set.');
       }
+      if (!clientEmail) {
+        throw new Error('FIREBASE_CLIENT_EMAIL environment variable is not set.');
+      }
+      if (!privateKeyEnv) {
+        throw new Error('FIREBASE_PRIVATE_KEY environment variable is not set.');
+      }
+
+      // Clean the private key
+      const privateKey = privateKeyEnv.replace(/\\n/g, '\n');
 
       admin.initializeApp({
         credential: admin.credential.cert({
-          projectId: process.env.FIREBASE_PROJECT_ID,
-          clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+          projectId: projectId,
+          clientEmail: clientEmail,
           privateKey: privateKey,
         }),
+        // Optional: Add databaseURL if using Realtime Database
+        // databaseURL: `https://${projectId}.firebaseio.com`,
       });
       console.log('Firebase Admin SDK initialized successfully (from init helper).');
-    } catch (error) {
-      console.error('Firebase Admin SDK initialization error (from init helper):', error);
-      // Depending on your error handling strategy, you might want to throw
-      // throw error; // Commenting out to avoid crashing server on minor init issues, log is sufficient for now.
+    } catch (error: any) {
+      // Log a more detailed error message, especially for configuration issues
+      console.error('Firebase Admin SDK initialization error (from init helper):', error.message);
+      // Re-throwing the error is important, as middleware loading might depend on successful initialization.
+      // If the app can function partially without admin features, you might reconsider throwing.
+      throw new Error(`Failed to initialize Firebase Admin SDK: ${error.message}`);
     }
+  } else {
+    console.log('Firebase Admin SDK already initialized.');
   }
-  return admin; // Return the initialized admin instance
+  // Return the initialized admin instance (or the existing one)
+  return admin;
 }

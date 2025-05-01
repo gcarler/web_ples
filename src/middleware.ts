@@ -4,11 +4,17 @@ import type { NextRequest } from 'next/server';
 import { getAuth } from 'firebase-admin/auth'; // Use Admin SDK for server-side auth check
 import { initializeAdminApp } from './lib/firebase/firebase-admin-init'; // Import the initializer
 
-// Initialize Firebase Admin SDK conditionally (important for server environments)
-// This initialization must happen before the middleware function uses the SDK.
-// Ensure firebase-admin-init.ts only initializes once.
-initializeAdminApp();
-
+// Attempt to initialize Firebase Admin SDK
+// This needs to run successfully for the middleware to use getAuth()
+let adminInitialized = false;
+try {
+    initializeAdminApp();
+    adminInitialized = true;
+} catch (error: any) {
+    console.error("Middleware: Firebase Admin SDK failed to initialize. Auth checks will fail.", error.message);
+    // Depending on the desired behavior, you could redirect all admin routes immediately,
+    // or let the auth check fail later. We'll log the error here.
+}
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -29,18 +35,26 @@ export async function middleware(request: NextRequest) {
     }
 
   // Check if the current path is one of the defined public routes
-  const isPublicRoute = publicRoutes.some(route => pathname === route);
+  const isPublicRoute = publicRoutes.some(route => pathname === route || pathname === '/'); // Ensure root path '/' is public
 
   // Allow access to public routes without authentication check
   if (isPublicRoute) {
       return NextResponse.next();
   }
 
-
   // Check if the current path starts with any of the admin routes
   const isAdminRoute = adminRoutes.some(route => pathname.startsWith(route));
 
   if (isAdminRoute) {
+    // Check if admin SDK initialized properly before attempting to use it
+    if (!adminInitialized) {
+        console.error("Middleware: Cannot verify token because Firebase Admin SDK failed to initialize.");
+        // Redirect to login or show an error page
+        const loginUrl = new URL('/login', request.url);
+        loginUrl.searchParams.set('error', 'config_error');
+        return NextResponse.redirect(loginUrl);
+    }
+
     const token = request.cookies.get('firebaseIdToken')?.value; // Assuming you store the ID token in a cookie
 
     if (!token) {
@@ -56,7 +70,7 @@ export async function middleware(request: NextRequest) {
       // console.log('Middleware: Token verified, allowing access.');
       return NextResponse.next(); // User is authenticated, proceed
     } catch (error) {
-      console.error('Middleware: Invalid token, redirecting to login.', error);
+      console.error('Middleware: Invalid or expired token, redirecting to login.', error);
        // Clear the invalid cookie if needed (optional)
        const response = NextResponse.redirect(new URL('/login', request.url));
        response.cookies.set('firebaseIdToken', '', { maxAge: -1 });
@@ -65,28 +79,9 @@ export async function middleware(request: NextRequest) {
   }
 
   // If the route is not explicitly public and not admin, allow access (or define other rules)
-  // For now, let's allow other routes - adjust if needed
   return NextResponse.next();
 }
 
 // Force Node.js runtime for this middleware
+// This is crucial because firebase-admin uses Node.js APIs.
 export const runtime = 'nodejs';
-
-// Removed the config object entirely to simplify and rely solely on the runtime export.
-// By default, middleware applies to all paths unless a matcher is specified.
-// The logic inside the middleware now handles which paths require auth.
-// export const config = {
-//   matcher: [
-//     /*
-//      * Match all request paths except for the ones starting with:
-//      * - api (API routes)
-//      * - _next/static (static files)
-//      * - _next/image (image optimization files)
-//      * - favicon.ico (favicon file)
-//      * - login (the login page itself)
-//      */
-//     // '/((?!api|_next/static|_next/image|favicon.ico|login).*)', // This complex regex might be causing issues
-//      // Explicitly include admin routes if the negative lookahead isn't sufficient
-//      '/admin/:path*',
-//   ],
-// };
