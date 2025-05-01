@@ -1,19 +1,9 @@
 // src/app/forgot-password/page.tsx
+'use client';
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
-
-// Basic placeholder form - replace with actual password reset form component
-function ForgotPasswordFormPlaceholder() {
-    return (
-        <div className="text-center py-8">
-            <p className="text-muted-foreground">Password reset form will be here.</p>
-            <Link href="/login" className="text-primary hover:underline mt-4 inline-block">
-                 Back to Login
-             </Link>
-        </div>
-    );
-}
-
+import { ForgotPasswordForm } from '@/components/auth/forgot-password-form'; // Import the actual form
 
 export default function ForgotPasswordPage() {
   return (
@@ -28,7 +18,12 @@ export default function ForgotPasswordPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-            <ForgotPasswordFormPlaceholder />
+            <ForgotPasswordForm /> {/* Use the actual form */}
+             <div className="mt-4 text-center text-sm">
+               <Link href="/login" className="text-primary hover:underline">
+                 Back to Login
+               </Link>
+             </div>
         </CardContent>
       </Card>
     </div>
