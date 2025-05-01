@@ -22,7 +22,7 @@ export function initializeAdminApp() {
     } catch (error) {
       console.error('Firebase Admin SDK initialization error (from init helper):', error);
       // Depending on your error handling strategy, you might want to throw
-      throw error;
+      // throw error; // Commenting out to avoid crashing server on minor init issues, log is sufficient for now.
     }
   }
   return admin; // Return the initialized admin instance

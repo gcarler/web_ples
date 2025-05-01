@@ -5,9 +5,9 @@ import { getAuth } from 'firebase-admin/auth'; // Use Admin SDK for server-side 
 import { initializeAdminApp } from './lib/firebase/firebase-admin-init'; // Import the initializer
 
 // Initialize Firebase Admin SDK conditionally (important for server environments)
-if (typeof process !== 'undefined') { // Ensure this runs only in Node.js-like environment
-    initializeAdminApp();
-}
+// This initialization must happen before the middleware function uses the SDK.
+// Ensure firebase-admin-init.ts only initializes once.
+initializeAdminApp();
 
 
 export async function middleware(request: NextRequest) {
