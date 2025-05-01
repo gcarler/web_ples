@@ -1,17 +1,19 @@
+// src/app/actions/crm-actions.ts
 'use server';
 
 import { z } from 'zod';
 import { collection, addDoc, getDocs, Timestamp, query, orderBy, doc, updateDoc, getDoc, serverTimestamp } from 'firebase/firestore';
 import { adminDb } from '@/lib/firebase/firebase-admin-config'; // Use Admin SDK for server actions
-import { ContactInputSchema, Contact, LeadSourceSchema } from '@/lib/models/contact';
-import type { ContactFirestore } from '@/lib/models/contact';
-import { ContactOutputSchema } from '@/lib/models/contact';
-import { OpportunityInputSchema, Opportunity, OpportunityFirestore, OpportunityFirestoreSchema, OpportunityStageSchema, OpportunityStage } from '@/lib/models/opportunity';
+import { ContactInputSchema, Contact, LeadSourceSchema } from '@/lib/models/contact'; // Import Input schema and base type
+import type { ContactFirestore } from '@/lib/models/contact'; // Import Firestore specific type
+import { ContactOutputSchema, ContactFirestoreSchema } from '@/lib/models/contact'; // Import Output/Firestore schema
+import { OpportunityInputSchema, Opportunity, OpportunityFirestore, OpportunityFirestoreSchema, OpportunityStageSchema, OpportunityStage } from '@/lib/models/opportunity'; // Import Opportunity schemas/types
 import { revalidatePath } from 'next/cache';
 import { checkProductStock } from '@/services/erp-service'; // Import ERP service
 import { startOpportunityToCashProcess } from '@/services/bpm-service'; // Import BPM service
 
 // --- Add Contact Action ---
+// Use ContactInputSchema for validating incoming form data
 const AddContactInputSchema = ContactInputSchema.omit({ createdAt: true, updatedAt: true });
 
 export async function addContact(
@@ -107,8 +109,8 @@ export async function getContacts(): Promise<ContactFirestore[]> {
            data.updatedAt = Timestamp.fromMillis(data.updatedAt.seconds * 1000);
        }
 
-      // Validate data retrieved from Firestore
-      const parsedData = ContactOutputSchema.safeParse(data); // Use Firestore schema
+      // Validate data retrieved from Firestore using the specific Firestore schema
+      const parsedData = ContactFirestoreSchema.safeParse(data); // Use Firestore schema
 
       if (!parsedData.success) {
         console.warn(`Invalid contact data found in Firestore document ${doc.id}:`, parsedData.error);
@@ -119,7 +121,13 @@ export async function getContacts(): Promise<ContactFirestore[]> {
           email: '',
           createdAt: Timestamp.now(),
           updatedAt: Timestamp.now(),
-          leadSource: 'Other',
+          leadSource: 'Other', // Ensure all required fields have defaults
+          address: undefined,
+          bio: undefined,
+          company: undefined,
+          phone: undefined,
+          subscribe: false,
+          title: undefined,
         } as ContactFirestore;
       }
 
@@ -134,12 +142,14 @@ export async function getContacts(): Promise<ContactFirestore[]> {
 }
 
 // --- Create Opportunity Action ---
+// Use OpportunityInputSchema for creation
 const CreateOpportunityInputSchema = OpportunityInputSchema.omit({ createdAt: true, updatedAt: true, id: true });
 
 export async function createOpportunity(
     input: Omit<Opportunity, 'id' | 'createdAt' | 'updatedAt'>
 ): Promise<{ id: string; message: string | null; success: boolean }> {
     try {
+        // Validate input using the derived schema
         const validatedData = CreateOpportunityInputSchema.safeParse(input);
 
         if (!validatedData.success) {
@@ -194,16 +204,34 @@ export async function getOpportunities(): Promise<OpportunityFirestore[]> {
       const data = doc.data();
         // Ensure Timestamps are handled correctly
         if (data.closeDate && !(data.closeDate instanceof Timestamp)) {
-             data.closeDate = Timestamp.fromMillis(data.closeDate.seconds * 1000);
+             // Convert plain object to Timestamp if needed
+             if (typeof data.closeDate === 'object' && data.closeDate && 'seconds' in data.closeDate && 'nanoseconds' in data.closeDate) {
+                 data.closeDate = new Timestamp(data.closeDate.seconds, data.closeDate.nanoseconds);
+             } else {
+                 // Handle potential invalid date formats or log an error
+                 console.warn(`Invalid closeDate format in Firestore for doc ${doc.id}`);
+                 data.closeDate = undefined; // Or set to null/default
+             }
         }
        if (data.createdAt && !(data.createdAt instanceof Timestamp)) {
-           data.createdAt = Timestamp.fromMillis(data.createdAt.seconds * 1000);
+             if (typeof data.createdAt === 'object' && data.createdAt && 'seconds' in data.createdAt && 'nanoseconds' in data.createdAt) {
+                 data.createdAt = new Timestamp(data.createdAt.seconds, data.createdAt.nanoseconds);
+             } else {
+                  console.warn(`Invalid createdAt format in Firestore for doc ${doc.id}`);
+                 data.createdAt = Timestamp.now(); // Fallback to now
+             }
        }
        if (data.updatedAt && !(data.updatedAt instanceof Timestamp)) {
-           data.updatedAt = Timestamp.fromMillis(data.updatedAt.seconds * 1000);
+            if (typeof data.updatedAt === 'object' && data.updatedAt && 'seconds' in data.updatedAt && 'nanoseconds' in data.updatedAt) {
+                 data.updatedAt = new Timestamp(data.updatedAt.seconds, data.updatedAt.nanoseconds);
+             } else {
+                 console.warn(`Invalid updatedAt format in Firestore for doc ${doc.id}`);
+                 data.updatedAt = Timestamp.now(); // Fallback to now
+             }
        }
 
-      const parsedData = OpportunityFirestoreSchema.safeParse(data); // Validate against Firestore schema
+      // Validate against Firestore schema
+      const parsedData = OpportunityFirestoreSchema.safeParse(data);
 
       if (!parsedData.success) {
         console.warn(`Invalid opportunity data found in Firestore document ${doc.id}:`, parsedData.error);
@@ -213,10 +241,12 @@ export async function getOpportunities(): Promise<OpportunityFirestore[]> {
           name: 'Invalid Opportunity Data',
           contactId: '',
           stage: 'Prospecting',
-          createdAt: Timestamp.now(),
-          updatedAt: Timestamp.now(),
+          createdAt: data.createdAt || Timestamp.now(), // Use converted or fallback timestamp
+          updatedAt: data.updatedAt || Timestamp.now(), // Use converted or fallback timestamp
+          // Add other required fields with defaults if needed
         } as OpportunityFirestore;
       }
+      // Ensure the id is included in the returned object
       return { id: doc.id, ...parsedData.data };
     });
 
@@ -267,18 +297,31 @@ export async function updateOpportunityStage(
              console.log(`Opportunity ${opportunityId} won! Triggering BPM process...`);
              // Ensure Timestamps are handled before passing to BPM
              if (currentOppData.closeDate && !(currentOppData.closeDate instanceof Timestamp)) {
-                 currentOppData.closeDate = Timestamp.fromMillis(currentOppData.closeDate.seconds * 1000);
+                 if (typeof currentOppData.closeDate === 'object' && currentOppData.closeDate && 'seconds' in currentOppData.closeDate && 'nanoseconds' in currentOppData.closeDate) {
+                    currentOppData.closeDate = new Timestamp(currentOppData.closeDate.seconds, currentOppData.closeDate.nanoseconds);
+                 } else {
+                    currentOppData.closeDate = undefined; // Or handle appropriately
+                 }
              }
              if (currentOppData.createdAt && !(currentOppData.createdAt instanceof Timestamp)) {
-                currentOppData.createdAt = Timestamp.fromMillis(currentOppData.createdAt.seconds * 1000);
+                 if (typeof currentOppData.createdAt === 'object' && currentOppData.createdAt && 'seconds' in currentOppData.createdAt && 'nanoseconds' in currentOppData.createdAt) {
+                    currentOppData.createdAt = new Timestamp(currentOppData.createdAt.seconds, currentOppData.createdAt.nanoseconds);
+                 } else {
+                     currentOppData.createdAt = Timestamp.now(); // Fallback
+                 }
             }
              if (currentOppData.updatedAt && !(currentOppData.updatedAt instanceof Timestamp)) {
-                currentOppData.updatedAt = Timestamp.fromMillis(currentOppData.updatedAt.seconds * 1000);
+                if (typeof currentOppData.updatedAt === 'object' && currentOppData.updatedAt && 'seconds' in currentOppData.updatedAt && 'nanoseconds' in currentOppData.updatedAt) {
+                    currentOppData.updatedAt = new Timestamp(currentOppData.updatedAt.seconds, currentOppData.updatedAt.nanoseconds);
+                 } else {
+                     currentOppData.updatedAt = Timestamp.now(); // Fallback
+                 }
             }
+            // Reparse the potentially modified data before passing to BPM
              const parsedCurrentData = OpportunityFirestoreSchema.safeParse(currentOppData);
 
              if (!parsedCurrentData.success) {
-                 console.error(`Failed to parse opportunity data ${opportunityId} before triggering BPM.`);
+                 console.error(`Failed to parse opportunity data ${opportunityId} before triggering BPM:`, parsedCurrentData.error);
                   // Optionally, still proceed with revalidation but log the error prominently
                  revalidatePath('/admin/crm/opportunities');
                  return { message: 'Opportunity stage updated, but failed to parse data for order process.', success: true }; // Partial success

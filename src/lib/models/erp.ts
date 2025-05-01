@@ -18,13 +18,14 @@ export const ProductInputSchema = z.object({
 
 export type ProductInput = z.infer<typeof ProductInputSchema> & { id?: string };
 
+// Schema representing data structure in Firestore
 export const ProductOutputSchema = ProductInputSchema.extend({
   createdAt: z.instanceof(Timestamp), // Creation timestamp (mandatory when retrieved from Firestore)
   updatedAt: z.instanceof(Timestamp), // Last update timestamp (mandatory when retrieved from Firestore)
 });
 
-export type ProductOutput = z.infer<typeof ProductOutputSchema> & { id: string };
-
+// Type for data retrieved from Firestore, including the ID
+export type ProductFirestore = z.infer<typeof ProductOutputSchema> & { id: string };
 
 // --- Order Model ---
 export const OrderStatusSchema = z.enum([
@@ -52,67 +53,52 @@ export const OrderItemSchema = z.object({
 export type OrderItem = z.infer<typeof OrderItemSchema>;
 
 
+// Schema representing the structure of an Order in Firestore
 export const OrderFirestoreSchema = z.object({
   orderNumber: z.string().min(1, "Order number is required."), // Unique identifier for the order (can be auto-generated)
   contactId: z.string().min(1, "Contact ID is required."), // Unique identifier of the contact associated with this order
   opportunityId: z.string().optional(), // Link to CRM Opportunity if applicable
-  orderDate: z.instanceof(Timestamp),
-  items: z.array(OrderItemSchema).min(1, "Order must contain at least one item."),
-  subtotal: z.number().nonnegative(),
-  totalAmount: z.number().nonnegative(),
-  discountAmount: z.number().nonnegative().default(0).optional(), // discountAmount amount for the order
-  status: OrderStatusSchema.default('Pending'), // Current status of the order (defaults to 'Pending')
-  paymentStatus: z.enum(['Pending', 'Paid', 'Failed', 'Refunded']).default('Pending'), // Status of the payment (defaults to 'Pending')
-  createdAt: z.instanceof(Timestamp), // Creation timestamp (mandatory when retrieved from Firestore)
-  updatedAt: z.instanceof(Timestamp), // Last update timestamp (mandatory when retrieved from Firestore)
-});
-export type OrderFirestore = z.infer<typeof OrderFirestoreSchema>;
-
-
-export const OrderInputSchema = z.object({
-  orderNumber: z.string().min(1, "Order number is required."), // Unique identifier for the order (can be auto-generated)
-  contactId: z.string().min(1, "Contact ID is required."), // Unique identifier of the contact associated with this order
-  opportunityId: z.string().optional(), // Link to CRM Opportunity if applicable
-  orderDate: z.instanceof(Timestamp),
-  items: z.array(OrderItemSchema).min(1, "Order must contain at least one item."),
-  subtotal: z.number().nonnegative(),
-  shippingCost: z.number().nonnegative().default(0),
-  taxAmount: z.number().nonnegative().default(0),
-  totalAmount: z.number().nonnegative(),
-  discountAmount: z.number().nonnegative().default(0).optional(), // discountAmount amount for the order
-  status: OrderStatusSchema.default('Pending'), // Current status of the order (defaults to 'Pending')
-  shippingAddress: z.object({ // Shipping address structure
-    street: z.string(), // Street address
-    city: z.string(), // City
-    state: z.string(), // State
-    postalCode: z.string(), // Postal code
-    country: z.string(), // Country
+  orderDate: z.instanceof(Timestamp), // Date the order was placed
+  items: z.array(OrderItemSchema).min(1, "Order must contain at least one item."), // List of items in the order
+  subtotal: z.number().nonnegative(), // Subtotal before taxes, shipping, discounts
+  totalAmount: z.number().nonnegative(), // Final total amount
+  discountAmount: z.number().nonnegative().default(0).optional(), // Discount amount for the order
+  status: OrderStatusSchema.default('Pending'), // Current status of the order
+  paymentStatus: z.enum(['Pending', 'Paid', 'Failed', 'Refunded']).default('Pending'), // Status of the payment
+  createdAt: z.instanceof(Timestamp), // Creation timestamp
+  updatedAt: z.instanceof(Timestamp), // Last update timestamp
+  // Optional fields that might be added later in the process
+  shippingAddress: z.object({
+    street: z.string(), city: z.string(), state: z.string(), postalCode: z.string(), country: z.string()
   }).optional(),
-  billingAddress: z.object({ // Billing address structure
-    street: z.string(), // Street address
-    city: z.string(), // City
-    state: z.string(), // State
-    postalCode: z.string(), // Postal code
-    country: z.string(), // Country
+  billingAddress: z.object({
+    street: z.string(), city: z.string(), state: z.string(), postalCode: z.string(), country: z.string()
   }).optional(),
-  paymentMethod: z.string().optional(), // Method used for payment (e.g., 'Credit Card', 'PayPal')
-  paymentStatus: z.enum(['Pending', 'Paid', 'Failed', 'Refunded']).default('Pending'), // Status of the payment (defaults to 'Pending')
-  trackingNumber: z.string().optional(), // Tracking number for the shipment (if applicable)
-  notes: z.string().optional(), // Any additional notes about the order
-  createdAt: z.instanceof(Timestamp).optional(), // Creation timestamp (optional on input, set by server)
-  updatedAt: z.instanceof(Timestamp).optional(), // Last update timestamp (optional on input, set by server)
+  shippingCost: z.number().nonnegative().optional(),
+  taxAmount: z.number().nonnegative().optional(),
+  paymentMethod: z.string().optional(),
+  trackingNumber: z.string().optional(),
+  notes: z.string().optional(),
 });
 
+// Type for data retrieved from Firestore, including the ID
+export type OrderFirestore = z.infer<typeof OrderFirestoreSchema> & { id: string };
+
+
+// Schema for input when creating an order (might differ slightly from Firestore structure, e.g., timestamps)
+export const OrderInputSchema = OrderFirestoreSchema.omit({ createdAt: true, updatedAt: true }).extend({
+  orderDate: z.instanceof(Timestamp).optional(), // Allow omitting on input, will default to now() or serverTimestamp()
+  // Make other fields optional if they are set later in the process
+}).partial({
+    // Make fields optional if they aren't required at the initial creation step
+    status: true,
+    paymentStatus: true,
+    // etc.
+});
+
+// Type for input when creating an order
 export type OrderInput = z.infer<typeof OrderInputSchema> & { id?: string };
 
-export type Order = OrderInput | OrderOutput | OrderFirestore;
-
-export const OrderOutputSchema = OrderInputSchema.extend({
-  orderDate: z.instanceof(Timestamp), // Date when the order was placed (mandatory when retrieved from Firestore)
-  createdAt: z.instanceof(Timestamp), // Creation timestamp (mandatory when retrieved from Firestore)
-  updatedAt: z.instanceof(Timestamp), // Last update timestamp (mandatory when retrieved from Firestore)
-});
-
-export type OrderOutput = z.infer<typeof OrderOutputSchema> & { id: string };
-
-
+// Generic types for flexibility
+export type Product = ProductInput | ProductFirestore;
+export type Order = OrderInput | OrderFirestore;

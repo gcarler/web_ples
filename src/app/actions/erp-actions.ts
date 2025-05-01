@@ -5,12 +5,12 @@ import { z } from 'zod';
 import { revalidatePath } from 'next/cache';
 import { Timestamp, collection, addDoc, getDocs, query, orderBy, doc, getDoc, updateDoc, deleteDoc, serverTimestamp } from 'firebase/firestore';
 import { adminDb } from '@/lib/firebase/firebase-admin-config';
-import { ProductSchema, ProductFirestoreSchema, Product, ProductFirestore, OrderSchema, OrderFirestoreSchema, Order, OrderFirestore, OrderStatusSchema, OrderStatus } from '@/lib/models/erp';
+import { ProductInputSchema, ProductOutputSchema, Product, ProductFirestore, OrderFirestoreSchema, Order, OrderFirestore, OrderStatusSchema, OrderStatus } from '@/lib/models/erp';
 import * as ErpService from '@/services/erp-service'; // Use functions from ERP service which now hit Firestore
 
 // --- Product Actions ---
 
-const AddProductInputSchema = ProductSchema.omit({ id: true, createdAt: true, updatedAt: true });
+const AddProductInputSchema = ProductInputSchema.omit({ id: true, createdAt: true, updatedAt: true });
 
 export async function addProduct(
     prevState: { message: string | null; success: boolean },
@@ -77,12 +77,26 @@ export async function getProducts(): Promise<ProductFirestore[]> {
              if (data.updatedAt && !(data.updatedAt instanceof Timestamp)) {
                  data.updatedAt = Timestamp.fromMillis(data.updatedAt.seconds * 1000);
              }
-            const parsed = ProductFirestoreSchema.safeParse(data);
+            // Use ProductOutputSchema for validation as it represents Firestore data structure
+            const parsed = ProductOutputSchema.safeParse(data);
             if (!parsed.success) {
                 console.warn(`Invalid product data in Firestore ${doc.id}:`, parsed.error);
-                return { id: doc.id, name: 'Invalid Data', price: 0, stockLevel: 0, createdAt: Timestamp.now(), updatedAt: Timestamp.now() } as ProductFirestore;
+                // Provide default fallback values, ensuring all mandatory fields are present
+                return {
+                    id: doc.id,
+                    name: 'Invalid Data',
+                    price: 0,
+                    stockLevel: 0,
+                    createdAt: Timestamp.now(),
+                    updatedAt: Timestamp.now(),
+                    sku: 'INVALID_SKU', // Ensure SKU is provided even in fallback
+                    // Add defaults for other optional fields if necessary
+                    description: undefined,
+                    category: undefined,
+                    imageUrl: undefined,
+                } as ProductFirestore;
             }
-            return { id: doc.id, ...parsed.data };
+            return { id: doc.id, ...parsed.data } as ProductFirestore;
         });
         return products;
 
@@ -151,6 +165,7 @@ export async function getOrders(): Promise<OrderFirestore[]> {
              if (data.updatedAt && !(data.updatedAt instanceof Timestamp)) {
                  data.updatedAt = Timestamp.fromMillis(data.updatedAt.seconds * 1000);
              }
+             // Validate against OrderFirestoreSchema
              const parsed = OrderFirestoreSchema.safeParse(data);
              if (!parsed.success) {
                  console.warn(`Invalid order data in Firestore ${doc.id}:`, parsed.error);

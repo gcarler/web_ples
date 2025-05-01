@@ -1,7 +1,7 @@
 // src/services/erp-service.ts
 'use server'; // Mark this module for server-side execution
 
-import { Product, ProductFirestore, ProductFirestoreSchema, Order, OrderFirestore, OrderFirestoreSchema, OrderStatus } from '@/lib/models/erp';
+import { Product, ProductFirestore, ProductOutputSchema, Order, OrderFirestore, OrderFirestoreSchema, OrderStatus } from '@/lib/models/erp';
 import { adminDb } from '@/lib/firebase/firebase-admin-config';
 import { collection, query, where, getDocs, doc, getDoc, addDoc, Timestamp, updateDoc, writeBatch, serverTimestamp } from 'firebase/firestore';
 import { startShippingProcess } from './bpm-service'; // Import BPM service
@@ -27,9 +27,10 @@ export async function getProductDetails(productId: string): Promise<ProductFires
             data.updatedAt = Timestamp.fromMillis(data.updatedAt.seconds * 1000);
         }
 
-        const parsed = ProductFirestoreSchema.safeParse(data);
+        // Use ProductOutputSchema for validation as it represents Firestore data structure
+        const parsed = ProductOutputSchema.safeParse(data);
         if (parsed.success) {
-            return { id: productSnap.id, ...parsed.data };
+            return { id: productSnap.id, ...parsed.data } as ProductFirestore; // Cast to include ID
         } else {
             console.error(`Invalid product data in Firestore for ID ${productId}:`, parsed.error);
             return null;

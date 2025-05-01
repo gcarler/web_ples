@@ -24,7 +24,7 @@ export const ContactInputSchema = z.object({
 // TypeScript type for Contact Input
 export type ContactInput = z.infer<typeof ContactInputSchema> & { id?: string };
 
-// Schema for Contact Output (retrieved from Firestore)
+// Schema for Contact Output (retrieved from Firestore) - includes required timestamps
 export const ContactOutputSchema = ContactInputSchema.extend({
   createdAt: z.instanceof(Timestamp), // Creation timestamp (mandatory when retrieved from Firestore)
   updatedAt: z.instanceof(Timestamp), // Last update timestamp (mandatory when retrieved from Firestore)
@@ -32,3 +32,10 @@ export const ContactOutputSchema = ContactInputSchema.extend({
 
 // TypeScript type for Contact Output
 export type ContactOutput = z.infer<typeof ContactOutputSchema> & { id: string }; // ID is mandatory when retrieved from Firestore
+
+// Re-exporting ContactOutputSchema as ContactFirestoreSchema for backward compatibility or clearer naming in certain contexts
+export const ContactFirestoreSchema = ContactOutputSchema;
+export type ContactFirestore = ContactOutput; // Use ContactOutput type for Firestore data structure
+
+// Base Contact type covering both input and output possibilities
+export type Contact = ContactInput | ContactOutput;
