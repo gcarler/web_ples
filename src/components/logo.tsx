@@ -12,8 +12,8 @@ export function PlesGroupLogo({ className, ...props }: LogoProps) {
       className={cn('h-6 w-6', className)} // Default size, can be overridden
       {...props}
     >
-      {/* White outline circle */}
-      <circle cx="13" cy="13" r="11" stroke="white" strokeWidth="2.5" />
+      {/* Grey outline circle - Changed from white to grey */}
+      <circle cx="13" cy="13" r="11" stroke="#808080" strokeWidth="2.5" />
       {/* Primary blue inner circle - uses CSS variable for color */}
       <circle cx="13" cy="13" r="8.5" fill="hsl(var(--primary))" />
     </svg>
