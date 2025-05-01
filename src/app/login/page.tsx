@@ -72,8 +72,8 @@ export default function LoginPage() {
   return (
     // Centered layout, using theme colors
     <div className="flex flex-col items-center justify-center min-h-screen bg-background px-4 py-12">
-      {/* Card with theme-based background, rounded corners, and shadow */}
-      <Card className="w-full max-w-md border shadow-xl rounded-xl bg-card text-card-foreground">
+      {/* Increased max-width from md to lg */}
+      <Card className="w-full max-w-lg border shadow-xl rounded-xl bg-card text-card-foreground">
         <CardHeader className="space-y-4 text-center pt-8">
            <PlesGroupLogo className="h-12 w-12 mx-auto text-primary" />
           {/* Title removed from here */}
@@ -120,9 +120,11 @@ export default function LoginPage() {
             <div className="flex justify-between w-full text-sm">
               {/* Ensure Link is the only direct child when using asChild */}
               <Button variant="link" asChild className="px-0 text-muted-foreground hover:text-primary">
-                <Link href="/register"><span>Register an account</span></Link>
+                 {/* Wrap Link content in a span or other element */}
+                 <Link href="/register"><span>Register an account</span></Link>
               </Button>
               <Button variant="link" asChild className="px-0 text-muted-foreground hover:text-primary">
+                 {/* Wrap Link content in a span or other element */}
                  <Link href="/forgot-password"><span>Forgot password?</span></Link>
               </Button>
             </div>
