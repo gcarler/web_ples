@@ -1,20 +1,21 @@
-// src/app/admin/layout.tsx
-import type { Metadata } from 'next';
+import { UserForm } from '@/components/forms/user-form';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
-export const metadata: Metadata = {
-  title: 'PLES Admin',
-  description: 'Admin section for PLES application',
-};
-
-export default function AdminLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function FormsPage() {
   return (
-    // Removed container mx-auto to allow full width for admin pages
-    <div className="w-full">
-      {children}
+    // Removed container mx-auto for full-width design, added padding
+    <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+       <Card className="shadow-lg">
+         <CardHeader>
+           <CardTitle className="text-2xl">User Information Form</CardTitle>
+           <CardDescription>
+             Please fill out the form below. This demonstrates input handling, validation, and submission using React Hook Form.
+           </CardDescription>
+         </CardHeader>
+         <CardContent>
+            <UserForm />
+         </CardContent>
+       </Card>
     </div>
   );
 }

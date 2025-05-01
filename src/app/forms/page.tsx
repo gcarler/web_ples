@@ -3,8 +3,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 
 export default function FormsPage() {
   return (
-    // Add container mx-auto here for constrained width
-    <div className="container mx-auto max-w-2xl">
+    // Removed container mx-auto for full-width design, added padding
+    <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
        <Card className="shadow-lg">
          <CardHeader>
            <CardTitle className="text-2xl">User Information Form</CardTitle>

@@ -7,8 +7,8 @@ import { ArrowRight, Building, Users, Handshake, Target, Quote, CheckCircle, Dat
 
 export default function Home() {
   return (
-    // Add container and mx-auto here for constrained width
-    <div className="container mx-auto space-y-16">
+    // Removed container and mx-auto for full-width design
+    <div className="space-y-16 px-4 sm:px-6 lg:px-8"> {/* Added padding for content spacing */}
       {/* Hero Section - Updated Content */}
       <section className="text-center py-12 relative">
         {/* The Carousel in the Header now serves as the main visual */}
@@ -36,7 +36,8 @@ export default function Home() {
 
       {/* Sección 1: Nuestra Misión (Removed "Conócenos" heading) */}
       <section className="relative py-16 bg-card rounded-lg shadow-lg overflow-hidden">
-        <div className="container mx-auto px-4">
+        {/* Removed container mx-auto, added padding */}
+        <div className="px-4 sm:px-6 lg:px-8">
            {/* Removed the absolute positioned h1 heading */}
            <div className="grid md:grid-cols-2 gap-8 items-center pt-8"> {/* Adjusted padding-top */}
              <div>
@@ -71,6 +72,7 @@ export default function Home() {
       {/* Sección 2: Nuestras Marcas */}
       <section className="py-16">
         <h2 className="text-3xl font-bold text-center mb-10">Nuestras Marcas</h2>
+        {/* Removed container mx-auto, relies on parent padding */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {[
             { title: 'Ples CREA', description: 'Soluciones creativas y de diseño.', icon: Building, href: "/ples-crea" },
@@ -101,7 +103,8 @@ export default function Home() {
       {/* Sección 3: Nuestro Público Objetivo */}
       <section className="py-16 bg-secondary rounded-lg">
         <h2 className="text-3xl font-bold text-center mb-10">Nuestro Público Objetivo</h2>
-        <div className="grid md:grid-cols-3 gap-8 container mx-auto px-4">
+        {/* Removed container mx-auto, relies on parent padding */}
+        <div className="grid md:grid-cols-3 gap-8">
            <Card className="shadow-sm">
              <CardHeader>
               <div className="flex items-center gap-3 mb-2">
@@ -157,7 +160,8 @@ export default function Home() {
           />
            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-background"></div>
         </div>
-        <div className="container mx-auto px-4 text-center relative z-10">
+        {/* Removed container mx-auto, added padding */}
+        <div className="px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h2 className="text-3xl font-bold mb-4 text-primary">¿Listo para Transformar su Organización?</h2>
           <p className="text-lg text-foreground mb-8 max-w-2xl mx-auto">
             Contáctenos hoy mismo para descubrir cómo nuestras soluciones pueden ayudarle a alcanzar sus objetivos.
@@ -173,7 +177,8 @@ export default function Home() {
       {/* Sección 5: Testimonios */}
       <section className="py-16">
         <h2 className="text-3xl font-bold text-center mb-10">Testimonios</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 container mx-auto px-4">
+        {/* Removed container mx-auto, relies on parent padding */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[
             { name: 'Cliente Satisfecho 1', title: 'CEO, Empresa X', text: '¡Increíble servicio! Superaron nuestras expectativas.', image: 'https://picsum.photos/100/100?random=5', hint: 'person face ceo' },
             { name: 'Cliente Satisfecho 2', title: 'Gerente, Organización Y', text: 'La implementación fue fluida y el soporte excelente.', image: 'https://picsum.photos/100/100?random=6', hint: 'person face manager' },

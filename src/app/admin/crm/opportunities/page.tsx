@@ -16,8 +16,8 @@ export default async function OpportunitiesAdminPage() {
   const opportunities = await getOpportunities();
 
   return (
-    // Removed container mx-auto
-    <div className="py-10 space-y-6">
+    // Added padding for content spacing in full-width design
+    <div className="py-10 space-y-6 px-4 sm:px-6 lg:px-8">
       <div className="flex justify-between items-center">
          <div>
              <h1 className="text-3xl font-bold tracking-tight">CRM Opportunities</h1>

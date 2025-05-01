@@ -20,8 +20,8 @@ export default function RootLayout({
     <html lang="en">
       <body className="min-h-screen flex flex-col antialiased">
         <Header />
-        {/* Removed container mx-auto to allow child pages/layouts to control width */}
-        <main className="flex-grow px-4 py-8">{children}</main>
+        {/* Removed container mx-auto and padding to allow child pages/layouts to control width */}
+        <main className="flex-grow">{children}</main>
 
         {/* Development Admin Links Area */}
         <div className="text-center my-6 px-4">
