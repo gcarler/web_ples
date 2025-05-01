@@ -67,13 +67,16 @@ export default function LoginPage() {
 
   return (
     // Centered layout with dark background
-    <div className="flex items-center justify-center min-h-screen bg-gray-900 dark text-white px-4">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 dark text-white px-4 py-12">
+       {/* Large Title Above Card */}
+       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-gray-100 mb-8">
+         EL USO INTELIGENTE DE LA EXPERIENCIA
+       </h1>
       {/* Card with dark background, rounded corners, and shadow */}
       <Card className="w-full max-w-md bg-gray-800/90 border-gray-700 shadow-xl rounded-xl">
         <CardHeader className="space-y-4 text-center pt-8">
            <PlesGroupLogo className="h-12 w-12 mx-auto text-primary" /> {/* Logo Added */}
-          <CardTitle className="text-xl font-semibold text-gray-100">EL USO INTELIGENTE DE A EXPERIENCIA</CardTitle>
-          {/* Removed CardDescription for closer match to image */}
+          {/* Title removed from here */}
         </CardHeader>
         <form onSubmit={handleLogin}>
           <CardContent className="space-y-4 px-8">
