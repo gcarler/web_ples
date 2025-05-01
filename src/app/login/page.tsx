@@ -50,28 +50,32 @@ export default function LoginPage() {
         errorMessage = 'Invalid email or password.';
       } else if (err.code === 'auth/invalid-email') {
           errorMessage = 'Please enter a valid email address.';
-      } else if (err.code === 'auth/api-key-not-valid') {
+      } else if (err.code === 'auth/api-key-not-valid' || err.code === 'auth/api-key-not-valid.-please-pass-a-valid-api-key.') {
           errorMessage = 'Firebase API Key is invalid. Please check your environment variables.';
            console.error("Firebase Config Error: API Key is not valid. Ensure NEXT_PUBLIC_FIREBASE_API_KEY is set correctly in your .env.local file and the server was restarted.");
+           toast({ title: "Firebase Configuration Error", description: "The Firebase API Key is invalid. Please contact the administrator.", variant: "destructive"})
       }
       setError(errorMessage);
-      toast({
-        title: 'Login Failed',
-        description: errorMessage,
-        variant: 'destructive',
-      });
+      // Don't show generic toast if it's the API key error, already shown above.
+      if (err.code !== 'auth/api-key-not-valid' && err.code !== 'auth/api-key-not-valid.-please-pass-a-valid-api-key.') {
+        toast({
+          title: 'Login Failed',
+          description: errorMessage,
+          variant: 'destructive',
+        });
+      }
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    // Centered layout, removed dark theme specific classes
+    // Centered layout, using theme colors
     <div className="flex flex-col items-center justify-center min-h-screen bg-background px-4 py-12">
       {/* Card with theme-based background, rounded corners, and shadow */}
-      <Card className="w-full max-w-md border shadow-xl rounded-xl"> {/* Removed bg-gray-800/90 border-gray-700 */}
+      <Card className="w-full max-w-md border shadow-xl rounded-xl bg-card text-card-foreground">
         <CardHeader className="space-y-4 text-center pt-8">
-           <PlesGroupLogo className="h-12 w-12 mx-auto text-primary" /> {/* Logo Added */}
+           <PlesGroupLogo className="h-12 w-12 mx-auto text-primary" />
           {/* Title removed from here */}
         </CardHeader>
         <form onSubmit={handleLogin}>
@@ -86,7 +90,7 @@ export default function LoginPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 disabled={isLoading}
-                className="rounded-md" // Simplified styling, remove dark specifics
+                className="rounded-md" // Use theme radius
               />
             </div>
             <div className="space-y-2">
@@ -94,12 +98,12 @@ export default function LoginPage() {
               <Input
                 id="password"
                 type="password"
-                placeholder="Contraseña"
+                placeholder="Password" // Changed placeholder to English for consistency
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 disabled={isLoading}
-                 className="rounded-md" // Simplified styling, remove dark specifics
+                 className="rounded-md" // Use theme radius
               />
             </div>
             {error && (
@@ -108,17 +112,17 @@ export default function LoginPage() {
           </CardContent>
           <CardFooter className="flex flex-col space-y-4 px-8 pb-8">
              {/* Login button with theme-based colors and rounded corners */}
-            <Button type="submit" className="w-full rounded-md" disabled={isLoading}> {/* Use default button variant */}
+            <Button type="submit" className="w-full rounded-md" disabled={isLoading}>
               {isLoading ? 'Logging in...' : 'Login'}
               {!isLoading && <LogIn className="ml-2 h-4 w-4" />}
             </Button>
              {/* Register and Forgot Password links */}
             <div className="flex justify-between w-full text-sm">
-              {/* Link buttons inherit styling */}
-              <Button variant="link" asChild className="px-0 text-muted-foreground hover:text-primary"> {/* Adjusted colors for default theme */}
+              {/* Ensure Link is the only direct child when using asChild */}
+              <Button variant="link" asChild className="px-0 text-muted-foreground hover:text-primary">
                 <Link href="/register">Register an account</Link>
               </Button>
-              <Button variant="link" asChild className="px-0 text-muted-foreground hover:text-primary"> {/* Adjusted colors for default theme */}
+              <Button variant="link" asChild className="px-0 text-muted-foreground hover:text-primary">
                  <Link href="/forgot-password">Forgot password?</Link>
               </Button>
             </div>
