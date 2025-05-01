@@ -2,9 +2,13 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { getAuth } from 'firebase-admin/auth'; // Use Admin SDK for server-side auth check
-import { initializeAdminApp } from './lib/firebase/firebase-admin-init'; // Helper to init admin app
+import { initializeAdminApp } from './lib/firebase/firebase-admin-init'; // Import the initializer
 
-initializeAdminApp(); // Ensure admin app is initialized
+// Initialize Firebase Admin SDK conditionally (important for server environments)
+if (typeof process !== 'undefined') { // Ensure this runs only in Node.js-like environment
+    initializeAdminApp();
+}
+
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -27,6 +31,7 @@ export async function middleware(request: NextRequest) {
 
     try {
       // Verify the ID token using Firebase Admin SDK
+      // This requires the middleware to run in the Node.js runtime.
       await getAuth().verifyIdToken(token);
       // console.log('Middleware: Token verified, allowing access.');
       return NextResponse.next(); // User is authenticated, proceed
@@ -58,4 +63,8 @@ export const config = {
      // Explicitly include admin routes if the negative lookahead isn't sufficient
      '/admin/:path*',
     ],
+    // runtime: 'nodejs', // Optional: Uncomment if explicit Node.js runtime is needed - Replaced by explicit export below
 };
+
+// Force Node.js runtime for this middleware
+export const runtime = 'nodejs';
