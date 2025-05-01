@@ -11,6 +11,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { LogIn } from 'lucide-react';
+import Link from 'next/link'; // Import Link
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -32,6 +33,13 @@ export default function LoginPage() {
         title: 'Login Successful',
         description: 'Welcome back!',
       });
+      // Store token in cookie (client-side) after successful login
+      const user = auth.currentUser;
+      if (user) {
+        const token = await user.getIdToken();
+        // Set cookie - adjust path, domain, maxAge/expires as needed
+        document.cookie = `firebaseIdToken=${token}; path=/; max-age=${60 * 60 * 24 * 7}`; // Example: 7 days
+      }
       router.push('/admin/dashboard'); // Redirect to dashboard after successful login
     } catch (err: any) {
       console.error('Login Error:', err);
@@ -91,11 +99,20 @@ export default function LoginPage() {
               <p className="text-sm text-destructive text-center">{error}</p>
             )}
           </CardContent>
-          <CardFooter>
+          <CardFooter className="flex flex-col space-y-4">
             <Button type="submit" className="w-full" disabled={isLoading}>
               {isLoading ? 'Logging in...' : 'Login'}
               {!isLoading && <LogIn className="ml-2 h-4 w-4" />}
             </Button>
+             {/* Add Register and Forgot Password links */}
+            <div className="flex justify-between w-full text-sm">
+              <Button variant="link" asChild className="px-0">
+                <Link href="/register">Register an account</Link>
+              </Button>
+              <Button variant="link" asChild className="px-0">
+                 <Link href="/forgot-password">Forgot password?</Link>
+              </Button>
+            </div>
           </CardFooter>
         </form>
       </Card>
