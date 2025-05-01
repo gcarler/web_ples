@@ -17,23 +17,40 @@ if (!admin.apps.length) {
         console.log(`DEBUG: typeof FIREBASE_PRIVATE_KEY: ${typeof privateKeyEnv}, Value: ${privateKeyEnv ? 'Present' : 'MISSING/Empty'}`);
 
         if (!projectId || !clientEmail || !privateKeyEnv || typeof privateKeyEnv !== 'string' || privateKeyEnv.trim() === '') {
+            const missingVars = [
+                !projectId && 'FIREBASE_PROJECT_ID',
+                !clientEmail && 'FIREBASE_CLIENT_EMAIL',
+                (!privateKeyEnv || typeof privateKeyEnv !== 'string' || privateKeyEnv.trim() === '') && 'FIREBASE_PRIVATE_KEY',
+            ].filter(Boolean).join(', ');
+
             console.error(
                 'Firebase Admin SDK Error: CRITICAL - Missing or invalid required environment variables.\n' +
+                `Missing/Invalid Vars: ${missingVars}\n` +
                 'Ensure FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL, and FIREBASE_PRIVATE_KEY are set correctly in your .env.local file.\n' +
                 'FIREBASE_PRIVATE_KEY must be a non-empty string.\n' +
                 '>>> SEE DETAILED INSTRUCTIONS AT THE BOTTOM OF THIS FILE. <<<'
             );
-            throw new Error('Missing or invalid Firebase Admin SDK configuration environment variables.');
+            throw new Error(`Missing or invalid Firebase Admin SDK config env vars: ${missingVars}. SEE DETAILED INSTRUCTIONS IN firebase-admin-config.ts`);
         } else {
              console.log('OK: Found non-empty string values for required Firebase Admin env vars.');
-             const rawKeyPreviewStart = privateKeyEnv.substring(0, 20);
-             const rawKeyPreviewEnd = privateKeyEnv.substring(privateKeyEnv.length - 20);
+             // **Log Raw Key Preview**
+             const rawKeyPreviewStart = privateKeyEnv.substring(0, 20).replace(/\n/g, '\\n');
+             const rawKeyPreviewEnd = privateKeyEnv.substring(privateKeyEnv.length - 20).replace(/\n/g, '\\n');
              console.log(`DEBUG: Raw FIREBASE_PRIVATE_KEY from env - Starts with: "${rawKeyPreviewStart}..." Ends with: "...${rawKeyPreviewEnd}" (Length: ${privateKeyEnv.length})`);
              if (privateKeyEnv !== privateKeyEnv.trim()) {
                  console.warn('DEBUG: Warning: Raw FIREBASE_PRIVATE_KEY from env appears to have leading or trailing whitespace.');
              }
-             if (!privateKeyEnv.includes('-----BEGIN PRIVATE KEY-----') || !privateKeyEnv.includes('-----END PRIVATE KEY-----')) {
-                console.warn('DEBUG: Warning: Raw FIREBASE_PRIVATE_KEY from env might be missing BEGIN/END markers or is malformed.');
+             // Check for common formatting errors in the RAW key
+             if (!privateKeyEnv.includes('-----BEGIN PRIVATE KEY-----')) {
+                console.warn('DEBUG: WARNING: Raw FIREBASE_PRIVATE_KEY from env is MISSING the "-----BEGIN PRIVATE KEY-----" marker.');
+             }
+              if (!privateKeyEnv.includes('-----END PRIVATE KEY-----')) {
+                console.warn('DEBUG: WARNING: Raw FIREBASE_PRIVATE_KEY from env is MISSING the "-----END PRIVATE KEY-----" marker.');
+             }
+            if (!privateKeyEnv.includes('\\n') && privateKeyEnv.includes('\n')) {
+                 console.warn("DEBUG: Warning: Raw FIREBASE_PRIVATE_KEY from env contains actual newlines ('\\n') but not literal '\\\\n'. This might be okay, but double-check .env.local format if errors persist.");
+             } else if (!privateKeyEnv.includes('\\n') && !privateKeyEnv.includes('\n')) {
+                 console.warn("DEBUG: WARNING: Raw FIREBASE_PRIVATE_KEY from env contains NEITHER literal '\\\\n' nor actual newlines '\\n'. This is likely INCORRECT. Key requires escaped newlines (\\\\n) within double quotes in .env.local.");
              }
         }
 
@@ -45,12 +62,9 @@ if (!admin.apps.length) {
             console.log("DEBUG: Replacing literal string '\\\\n' with actual newline characters ('\\n').");
             privateKey = privateKeyEnv.replace(/\\n/g, '\n');
             replacedNewlines = true;
-        } else if (privateKeyEnv.includes('\n')) {
-            console.warn("DEBUG: Found actual newline characters ('\\n') but not literal '\\\\n'. Assuming correct format. Check .env.local if errors occur.");
-            privateKey = privateKeyEnv;
         } else {
-            console.warn("DEBUG: Neither literal '\\\\n' nor actual newline '\\n' found. Key might be malformed. Check .env.local.");
-            privateKey = privateKeyEnv;
+            console.warn("DEBUG: No literal '\\\\n' strings found to replace. Assuming key might use actual newlines or is malformed. Ensure .env.local has the key in double quotes with '\\\\n' for newlines.");
+            privateKey = privateKeyEnv; // Use as-is if no literal \n found
         }
 
         if (replacedNewlines) {
@@ -74,15 +88,18 @@ if (!admin.apps.length) {
         const endsCorrectly = privateKey.endsWith('-----END PRIVATE KEY-----');
 
         if (!startsCorrectly || !endsCorrectly) {
+             const formatErrorReason = `${!startsCorrectly ? 'Missing/incorrect "-----BEGIN PRIVATE KEY-----" marker.' : ''} ${!endsCorrectly ? 'Missing/incorrect "-----END PRIVATE KEY-----" marker.' : ''}`.trim();
              console.error(
                 'Firebase Admin SDK Error: CRITICAL - Processed & Trimmed FIREBASE_PRIVATE_KEY is INVALID before initialization.\n' +
-                `DEBUG (Key Format Check): Starts correctly: ${startsCorrectly}\n` +
-                `DEBUG (Key Format Check): Ends correctly: ${endsCorrectly}\n` +
-                'Reason: Missing or incorrect "-----BEGIN/END PRIVATE KEY-----" markers.\n' +
-                'This means the key value in `.env.local` is fundamentally wrong or the processing failed.\n' +
+                `Reason: ${formatErrorReason}\n` +
+                'This means the key value in `.env.local` is fundamentally wrong OR the `\\n` processing failed.\n' +
                 '>>> RE-READ AND FOLLOW THE `.env.local` FORMATTING INSTRUCTIONS BELOW VERY CAREFULLY. <<<'
              );
-             throw new Error('Invalid Firebase Private Key format detected before initialization (BEGIN/END markers missing/incorrect).');
+             // THROW error with specific instructions
+             throw new Error(
+                'Invalid Firebase Private Key format detected BEFORE initialization (BEGIN/END markers missing/incorrect).\n' +
+                '>>> PLEASE CAREFULLY CHECK THE `FIREBASE_PRIVATE_KEY` FORMAT IN YOUR `.env.local` FILE - SEE INSTRUCTIONS IN `firebase-admin-config.ts`. <<<'
+             );
         } else {
             console.log("OK: Processed & Trimmed Private Key pre-validation (start/end markers) PASSED.");
         }
@@ -115,7 +132,10 @@ if (!admin.apps.length) {
         console.error('Error Type:', error.constructor.name);
         console.error('Error Message:', error.message);
 
-        if (error.message?.includes('Invalid PEM formatted message') || error.message?.includes('Failed to parse private key')) {
+        // Check if the error message specifically indicates PEM parsing failure
+        const isPemError = error.message?.includes('Invalid PEM formatted message') || error.message?.includes('Failed to parse private key');
+
+        if (isPemError) {
             console.error(
                  '\n\n******************** PEM PARSING ERROR DETECTED ********************\n' +
                  'Hint: This *STRONGLY* indicates the FIREBASE_PRIVATE_KEY in your .env.local file is MISSING, EMPTY, or INCORRECTLY FORMATTED.\n' +
@@ -144,29 +164,43 @@ if (!admin.apps.length) {
                  '9. ✅ Did you **RESTART** your Next.js server (`npm run dev`) **AFTER** saving `.env.local`? (THIS IS REQUIRED)\n' +
                  '\n' +
                  'Refer to the detailed example structure in the comments below this file.\n' +
+                 'Review the "DEBUG: Raw FIREBASE_PRIVATE_KEY from env" log above to see exactly what the code is reading.\n' +
                  '**********************************************************************\n'
             );
         } else {
+             // Log full stack for other unexpected errors
              console.error("Full Error Stack Trace:", error.stack);
         }
-        // THROWING ERROR due to initialization failure
-        throw new Error(`Firebase Admin SDK failed to initialize: ${error.message}`);
+
+        // IMPORTANT: Re-throw the error to prevent the application from proceeding in a broken state.
+        // The error message now includes specific guidance for PEM issues.
+        let finalErrorMessage = `Firebase Admin SDK failed to initialize: ${error.message}`;
+        if (isPemError) {
+            finalErrorMessage += '\n>>> LIKELY CAUSE: Incorrect FIREBASE_PRIVATE_KEY format in .env.local. Please review the detailed instructions in the console logs and firebase-admin-config.ts.';
+        }
+        throw new Error(finalErrorMessage);
     }
 } else {
      console.log('Firebase Admin SDK already initialized.');
 }
 
 // --- Attempt to get Firestore and Auth instances ---
+// It's crucial this part runs *after* the initialization block.
 let adminDb: admin.firestore.Firestore;
 let adminAuth: admin.auth.Auth;
 
 try {
+    // Check again if the app was actually initialized before trying to get services
+    if (!admin.apps.length) {
+        // This should ideally not happen if the above logic is correct, but as a safeguard:
+        throw new Error("Attempted to get Firestore/Auth instance, but Firebase Admin SDK was not initialized.");
+    }
     adminDb = admin.firestore();
     adminAuth = admin.auth();
     console.log("OK: Successfully retrieved Firestore and Auth instances from Admin SDK.");
 } catch (instanceError: any) {
     console.error("CRITICAL ERROR: Failed to get Firestore/Auth instance AFTER initialization check.", instanceError);
-    console.error("This likely means the Admin SDK initialization failed silently or partially. The application cannot proceed safely.");
+    console.error("This likely means the Admin SDK initialization failed silently or partially, or there's a deeper issue. The application cannot proceed safely.");
     // THROWING ERROR due to inability to get DB/Auth instances
     throw new Error(`Failed to get Firestore/Auth instances from Firebase Admin SDK: ${instanceError.message}`);
 }
@@ -206,13 +240,13 @@ export { adminDb, adminAuth, admin };
 // FIREBASE_CLIENT_EMAIL=firebase-adminsdk-blahblah@my-cool-project-12345.iam.gserviceaccount.com
 // FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDudxr[...]oZ/\nT9PIC0irj2k3g=\n-----END PRIVATE KEY-----\n"
 // ```
-// (Note: `[...]` represents the bulk of your key where original newlines are replaced by `\n`)
+// (Note: `[...]` represents the bulk of your key where original newlines are replaced by `\\n`)
 //
 // **Common Mistakes:**
 //    - Using single quotes or no quotes.
 //    - Missing `-----BEGIN...` or `-----END...` markers.
-//    - Using actual line breaks instead of the literal string `\n`.
-//    - Missing the **FINAL `\n`** before the closing quote.
+//    - Using actual line breaks instead of the literal string `\\n`.
+//    - Missing the **FINAL `\\n`** before the closing quote.
 //    - Extra spaces inside the quotes.
 //
 // 8. **SAVE** the `.env.local` file.
