@@ -28,6 +28,10 @@ if (!admin.apps.length) {
              const rawKeyPreviewStart = privateKeyEnv.substring(0, 20);
              const rawKeyPreviewEnd = privateKeyEnv.substring(privateKeyEnv.length - 20);
              console.log(`DEBUG: Raw FIREBASE_PRIVATE_KEY from env - Starts with: "${rawKeyPreviewStart}..." Ends with: "...${rawKeyPreviewEnd}" (Length: ${privateKeyEnv.length})`);
+             // Check for leading/trailing whitespace
+             if (privateKeyEnv !== privateKeyEnv.trim()) {
+                 console.warn('DEBUG: Warning: Raw FIREBASE_PRIVATE_KEY from env appears to have leading or trailing whitespace. This can cause parsing errors.');
+             }
         }
 
         // 2. Check if private key is just whitespace
@@ -49,7 +53,7 @@ if (!admin.apps.length) {
         } else {
             console.warn("DEBUG: Processing FIREBASE_PRIVATE_KEY: No literal '\\n' found. Assuming newlines are already present OR the key is malformed if literal '\\n' was intended but missing.");
             // Warn if it doesn't look like a PEM key at all
-            if (!privateKeyEnv.startsWith('-----BEGIN') || !privateKeyEnv.includes('PRIVATE KEY')) {
+            if (!privateKeyEnv.trim().startsWith('-----BEGIN') || !privateKeyEnv.includes('PRIVATE KEY')) {
                  console.warn("DEBUG: Warning: Raw FIREBASE_PRIVATE_KEY does not contain '\\n' and doesn't look like a standard PEM key. Ensure it's formatted correctly in .env.local, especially check quotes and literal '\\n'.");
             }
             privateKey = privateKeyEnv;
@@ -59,28 +63,34 @@ if (!admin.apps.length) {
          const processedKeyPreviewStart = privateKey.substring(0, 40).replace(/\n/g, '\\n'); // Show newlines as \n in preview
          const processedKeyPreviewEnd = privateKey.substring(privateKey.length - 40).replace(/\n/g, '\\n');
          console.log(`DEBUG: Processed Private Key Preview - Starts with: "${processedKeyPreviewStart}..." Ends with: "...${processedKeyPreviewEnd}"`);
+         // Log if processed key still has whitespace issues
+         if (privateKey !== privateKey.trim()) {
+             console.warn('DEBUG: Warning: Processed private key still has leading/trailing whitespace after replacing "\\n". Check the original value in .env.local.');
+         }
 
 
         // 4. Validate that the processed key starts and ends correctly (basic PEM check)
-        const startsCorrectly = privateKey.startsWith('-----BEGIN PRIVATE KEY-----');
+        const trimmedPrivateKey = privateKey.trim(); // Trim before checking start/end
+        const startsCorrectly = trimmedPrivateKey.startsWith('-----BEGIN PRIVATE KEY-----');
         // Check for ending with or without a final newline, as SDK might handle both
-        const endsCorrectly = privateKey.endsWith('-----END PRIVATE KEY-----\n') || privateKey.endsWith('-----END PRIVATE KEY-----');
+        const endsCorrectly = trimmedPrivateKey.endsWith('-----END PRIVATE KEY-----'); // Trimmed check is sufficient
 
         if (!startsCorrectly || !endsCorrectly) {
              console.error(
                 'Firebase Admin SDK Error: CRITICAL - Processed FIREBASE_PRIVATE_KEY appears incorrectly formatted.\n' +
                 `DEBUG: Starts with "-----BEGIN PRIVATE KEY-----": ${startsCorrectly}\n` +
-                `DEBUG: Ends with "-----END PRIVATE KEY-----" (potentially followed by newline): ${endsCorrectly}\n` +
+                `DEBUG: Ends with "-----END PRIVATE KEY-----": ${endsCorrectly}\n` +
                 'This strongly suggests an issue with how the key is formatted in .env.local. It MUST start with "-----BEGIN PRIVATE KEY-----" and end with "-----END PRIVATE KEY-----".\n' +
                 '>>> DOUBLE-CHECK `.env.local` FOR THESE REQUIREMENTS: <<<\n' +
                 '1. Is the ENTIRE value enclosed in DOUBLE QUOTES (`"`)? (e.g., FIREBASE_PRIVATE_KEY="...")\n' +
                 '2. Does the value include the *exact* BEGIN and END header/footer lines?\n' +
                 '3. Are newline characters represented as literal `\\n` (backslash followed by n) *inside* the quotes?\n' +
-                '4. **CRITICAL:** Is the final `\\n` AFTER `-----END PRIVATE KEY-----` present *inside* the closing double quote (`"`)?\n' +
-                '5. Did you **RESTART** the Next.js server after saving `.env.local`? (`npm run dev`)\n' +
+                '4. **CRITICAL:** Is the final `\\n` AFTER `-----END PRIVATE KEY-----` present *inside* the closing double quote (`"`)? (e.g., "...-----END PRIVATE KEY-----\\n")\n' +
+                '5. Are there any extra spaces or characters before `-----BEGIN` or after the final `\\n"`?\n' +
+                '6. Did you **RESTART** the Next.js server after saving `.env.local`? (`npm run dev`)\n' +
                 'See detailed instructions at the bottom of this file.'
              );
-             throw new Error('Invalid Firebase Private Key format after processing (header/footer or newline issue).');
+             throw new Error('Invalid Firebase Private Key format after processing (header/footer, newline, or extra whitespace issue).');
         } else {
              console.log("OK: Processed Private Key format validation (start/end markers) PASSED.");
         }
@@ -89,7 +99,10 @@ if (!admin.apps.length) {
         const serviceAccount = {
             projectId: projectId,
             clientEmail: clientEmail,
-            privateKey: privateKey, // Use the processed key
+            // Use the potentially trimmed key if whitespace was the only issue,
+            // but the original `privateKey` should be correct if formatting is right.
+            // Sticking with `privateKey` as the SDK might handle minor whitespace nuances itself.
+            privateKey: privateKey,
         };
 
         // 6. Initialize Firebase Admin
@@ -113,8 +126,9 @@ if (!admin.apps.length) {
                  '1. Is the ENTIRE value enclosed in DOUBLE QUOTES (e.g., FIREBASE_PRIVATE_KEY="...")?\n' +
                  '2. Does the value include the *exact* "-----BEGIN PRIVATE KEY-----" and "-----END PRIVATE KEY-----" headers/footers?\n' +
                  '3. Are the newline characters represented as literal `\\n` (backslash followed by n) *inside* the quotes?\n' +
-                 '4. **CRITICAL:** Is the final `\\n` AFTER `-----END PRIVATE KEY-----` present *inside* the closing double quote (`"`)?\n' +
-                 '5. Did you **RESTART** your Next.js server (`npm run dev` or `yarn dev`) after saving changes to `.env.local`?\n\n' +
+                 '4. **CRITICAL:** Is the final `\\n` AFTER `-----END PRIVATE KEY-----` present *inside* the closing double quote (`"`)? (e.g., "...-----END PRIVATE KEY-----\\n")\n' +
+                 '5. Are there any extra spaces or characters before `-----BEGIN` or after the final `\\n"`?\n' +
+                 '6. Did you **RESTART** your Next.js server (`npm run dev` or `yarn dev`) after saving changes to `.env.local`?\n\n' +
                  'Refer to the detailed instructions at the bottom of this file (src/lib/firebase/firebase-admin-config.ts).'
             );
         } else {
@@ -181,7 +195,7 @@ export { adminDb, adminAuth, admin };
 //        "
 //        ```
 //      - Missing the FINAL `\n` before the closing quote: `FIREBASE_PRIVATE_KEY="...-----END PRIVATE KEY-----"` (WRONG)
-//      - Extra spaces before/after the key within the quotes.
+//      - Extra spaces before/after the key within the quotes (e.g., `" -----BEGIN...KEY-----\n "`).
 //
 // 8. **RESTART YOUR NEXT.JS SERVER** (`npm run dev` or `yarn dev`) after creating or modifying `.env.local`. This is **ESSENTIAL** for Next.js to pick up the changes.
 // 9. Add `.env.local` and the service account JSON file (`*.json`) to your `.gitignore` file.
