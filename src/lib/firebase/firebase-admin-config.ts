@@ -1,5 +1,6 @@
 // src/lib/firebase/firebase-admin-config.ts
 import admin from 'firebase-admin';
+import { Timestamp } from 'firebase/firestore'; // Ensure Timestamp is imported if used later
 
 // Ensure Firebase Admin SDK is initialized only once
 if (!admin.apps.length) {
@@ -148,16 +149,16 @@ if (!admin.apps.length) {
                  '\n' +
                  '3. ✅ Does the value end *exactly* with `-----END PRIVATE KEY-----`?\n' +
                  '\n' +
-                 '4. ✅ Are **ALL** newline characters represented as the **LITERAL STRING `\\n`** (backslash followed by n)?\n' +
-                 '   -> Example segment: `...keypart1\\nkeypart2\\nkeypart3...`\n' +
+                 '4. ✅ Are **ALL** newline characters represented as the **LITERAL STRING `\\\\n`** (backslash followed by n)?\n' +
+                 '   -> Example segment: `...keypart1\\\\nkeypart2\\\\nkeypart3...`\n' +
                  '\n' +
-                 '5. ✅ **CRITICAL:** Is the **FINAL `\\n`** PRESENT immediately AFTER `-----END PRIVATE KEY-----` and **INSIDE** the closing double quote (`"`)?\n' +
-                 '   -> Correct end: `...-----END PRIVATE KEY-----\\n"`\n' +
-                 '   -> Incorrect end: `...-----END PRIVATE KEY-----"` (Missing `\\n`)\n' +
+                 '5. ✅ **CRITICAL:** Is the **FINAL `\\\\n`** PRESENT immediately AFTER `-----END PRIVATE KEY-----` and **INSIDE** the closing double quote (`"`)?\n' +
+                 '   -> Correct end: `...-----END PRIVATE KEY-----\\\\n"`\n' +
+                 '   -> Incorrect end: `...-----END PRIVATE KEY-----"` (Missing `\\\\n`)\n' +
                  '\n' +
                  '6. ✅ Are there **NO** extra spaces or characters **BEFORE** `-----BEGIN PRIVATE KEY-----` (inside the quotes)?\n' +
                  '\n' +
-                 '7. ✅ Are there **NO** extra spaces or characters **AFTER** the final `\\n"`?\n' +
+                 '7. ✅ Are there **NO** extra spaces or characters **AFTER** the final `\\\\n"`?\n' +
                  '\n' +
                  '8. ✅ Did you **SAVE** the `.env.local` file?\n' +
                  '\n' +
@@ -228,25 +229,25 @@ export { adminDb, adminAuth, admin };
 // **CRITICAL FORMATTING FOR `FIREBASE_PRIVATE_KEY` in `.env.local`:**
 //    - **MUST** be enclosed in **DOUBLE QUOTES (`"..."`)**. Single quotes or no quotes will NOT work.
 //    - Copy the **ENTIRE** private key value, starting *exactly* with `-----BEGIN PRIVATE KEY-----` and ending *exactly* with `-----END PRIVATE KEY-----`.
-//    - Replace **ALL** actual newline characters within the key block with the **LITERAL STRING `\\n`**.
-//    - **VERY IMPORTANT:** Ensure the **FINAL LITERAL `\\n`** is present immediately AFTER `-----END PRIVATE KEY-----` and **BEFORE** the closing double quote (`"`).
+//    - Replace **ALL** actual newline characters within the key block with the **LITERAL STRING `\\\\n`**.
+//    - **VERY IMPORTANT:** Ensure the **FINAL LITERAL `\\\\n`** is present immediately AFTER `-----END PRIVATE KEY-----` and **BEFORE** the closing double quote (`"`).
 //    - NO extra spaces/chars before `-----BEGIN PRIVATE KEY-----`.
-//    - NO extra spaces/chars after the final `\\n"`.
+//    - NO extra spaces/chars after the final `\\\\n"`.
 //
 // **CORRECT Example Structure in `.env.local`:**
 //
 // ```env
 // FIREBASE_PROJECT_ID=my-cool-project-12345
 // FIREBASE_CLIENT_EMAIL=firebase-adminsdk-blahblah@my-cool-project-12345.iam.gserviceaccount.com
-// FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDudxr[...]oZ/\nT9PIC0irj2k3g=\n-----END PRIVATE KEY-----\n"
+// FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDudxr[...]oZ/\\nT9PIC0irj2k3g=\\n-----END PRIVATE KEY-----\\n"
 // ```
-// (Note: `[...]` represents the bulk of your key where original newlines are replaced by `\\n`)
+// (Note: `[...]` represents the bulk of your key where original newlines are replaced by `\\\\n`)
 //
 // **Common Mistakes:**
 //    - Using single quotes or no quotes.
 //    - Missing `-----BEGIN...` or `-----END...` markers.
-//    - Using actual line breaks instead of the literal string `\\n`.
-//    - Missing the **FINAL `\\n`** before the closing quote.
+//    - Using actual line breaks instead of the literal string `\\\\n`.
+//    - Missing the **FINAL `\\\\n`** before the closing quote.
 //    - Extra spaces inside the quotes.
 //
 // 8. **SAVE** the `.env.local` file.
