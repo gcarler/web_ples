@@ -5,6 +5,7 @@ import { Footer } from '@/components/layout/footer';
 import { Toaster } from '@/components/ui/toaster';
 import Link from 'next/link';
 import { Separator } from '@/components/ui/separator'; // Import Separator
+import { AuthProvider } from '@/contexts/AuthContext'; // Import AuthProvider
 
 export const metadata: Metadata = {
   title: 'PLES',
@@ -19,15 +20,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col antialiased">
-        <Header />
-        {/* Removed container mx-auto and padding to allow child pages/layouts to control width */}
-        <main className="flex-grow">{children}</main>
+        <AuthProvider> {/* Wrap content with AuthProvider */}
+          <Header />
+          {/* Removed container mx-auto and padding to allow child pages/layouts to control width */}
+          <main className="flex-grow">{children}</main>
 
-        {/* Development Admin Links Area - REMOVED */}
-        {/* The admin links will be moved to the header and shown conditionally after login */}
-
-        <Footer />
-        <Toaster />
+          <Footer />
+          <Toaster />
+        </AuthProvider>
       </body>
     </html>
   );

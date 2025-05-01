@@ -4,9 +4,47 @@ import Image from 'next/image'; // Import Image for the updated slide
 import { Carousel, type CarouselSlideProps } from '@/components/ui/carousel'; // Import Carousel
 import { PlesGroupLogo } from '@/components/logo'; // Import the new logo component
 import { Button } from '@/components/ui/button'; // Import Button for CTAs
-import { ArrowRight, LogIn } from 'lucide-react'; // Import icon for buttons
+import { ArrowRight, LogIn, LogOut, LayoutDashboard, Users, Package, ShoppingCart, Workflow } from 'lucide-react'; // Import icons
+import { useAuth } from '@/contexts/AuthContext'; // Import useAuth hook
+import { getAuth, signOut } from 'firebase/auth';
+import { app } from '@/lib/firebase/firebase-config';
+import { useToast } from '@/hooks/use-toast';
+import { useRouter } from 'next/navigation';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"; // Import Dropdown components
+
 
 export function Header() {
+  const { user, loading } = useAuth(); // Get user and loading state
+  const auth = getAuth(app);
+  const { toast } = useToast();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      toast({
+        title: 'Logged Out',
+        description: 'You have been successfully logged out.',
+      });
+      router.push('/'); // Redirect to home page after logout
+    } catch (error) {
+      console.error('Logout Error:', error);
+      toast({
+        title: 'Logout Failed',
+        description: 'An error occurred during logout. Please try again.',
+        variant: 'destructive',
+      });
+    }
+  };
+
+
   // Updated slide data with provided variants
   const slides: CarouselSlideProps[] = [
     {
@@ -69,7 +107,7 @@ export function Header() {
         <Link href="/" className="flex items-center gap-2 text-xl font-semibold text-primary mb-4 sm:mb-0">
           {/* Use CSS class for stroke */}
           <PlesGroupLogo className="h-8 w-8 logo-outline" />
-          <span>PLES</span> {/* Replaced AngularFlow with PLES */}
+          <span>PLES</span>
         </Link>
         <div className="flex items-center gap-4">
             <ul className="flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-2 items-center justify-center sm:justify-end w-full sm:w-auto">
@@ -103,33 +141,65 @@ export function Header() {
                   Ples consulting
                 </Link>
               </li>
-              {/* TODO: Add Conditional Admin Links Here after implementing authentication */}
-              {/*
-              Placeholder for Admin Dropdown (requires authentication check)
-              If user is logged in:
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="sm">Admin</Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  <DropdownMenuItem asChild><Link href="/admin/dashboard">Dashboard</Link></DropdownMenuItem>
-                  <DropdownMenuItem asChild><Link href="/admin/crm">CRM Contacts</Link></DropdownMenuItem>
-                  <DropdownMenuItem asChild><Link href="/admin/crm/opportunities">CRM Opportunities</Link></DropdownMenuItem>
-                  <DropdownMenuItem asChild><Link href="/admin/erp/products">ERP Products</Link></DropdownMenuItem>
-                  <DropdownMenuItem asChild><Link href="/admin/erp/orders">ERP Orders</Link></DropdownMenuItem>
-                  <DropdownMenuItem asChild><Link href="/admin/bpm/processes">BPM Processes</Link></DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-              */}
+
             </ul>
-            {/* Add Login Button */}
-             {/* TODO: Add authentication logic and link */}
-             <Button variant="outline" size="sm" asChild>
-               <Link href="/login"> {/* Replace with your actual login page route */}
-                 <LogIn className="mr-2 h-4 w-4" />
-                 Iniciar sesión
-               </Link>
-             </Button>
+            {/* Conditional Admin Dropdown or Login Button */}
+             {!loading && (
+               user ? (
+                 <DropdownMenu>
+                   <DropdownMenuTrigger asChild>
+                     <Button variant="outline" size="sm">Admin</Button>
+                   </DropdownMenuTrigger>
+                   <DropdownMenuContent align="end">
+                    <DropdownMenuLabel>Admin Panel</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                     <DropdownMenuItem asChild>
+                       <Link href="/admin/dashboard" className="flex items-center">
+                         <LayoutDashboard className="mr-2 h-4 w-4" /> Dashboard
+                       </Link>
+                     </DropdownMenuItem>
+                     <DropdownMenuItem asChild>
+                       <Link href="/admin/crm" className="flex items-center">
+                         <Users className="mr-2 h-4 w-4" /> CRM Contacts
+                       </Link>
+                     </DropdownMenuItem>
+                     <DropdownMenuItem asChild>
+                       <Link href="/admin/crm/opportunities" className="flex items-center">
+                         <Users className="mr-2 h-4 w-4" /> CRM Opportunities {/* Consider different icon */}
+                       </Link>
+                     </DropdownMenuItem>
+                     <DropdownMenuItem asChild>
+                       <Link href="/admin/erp/products" className="flex items-center">
+                         <Package className="mr-2 h-4 w-4" /> ERP Products
+                       </Link>
+                     </DropdownMenuItem>
+                     <DropdownMenuItem asChild>
+                       <Link href="/admin/erp/orders" className="flex items-center">
+                         <ShoppingCart className="mr-2 h-4 w-4" /> ERP Orders
+                       </Link>
+                     </DropdownMenuItem>
+                     <DropdownMenuItem asChild>
+                       <Link href="/admin/bpm/processes" className="flex items-center">
+                         <Workflow className="mr-2 h-4 w-4" /> BPM Processes
+                       </Link>
+                     </DropdownMenuItem>
+                     {/* TODO: Add Admin User Management Link */}
+                      {/* <DropdownMenuItem asChild><Link href="/admin/users">Manage Users</Link></DropdownMenuItem> */}
+                     <DropdownMenuSeparator />
+                     <DropdownMenuItem onClick={handleLogout} className="text-destructive focus:text-destructive focus:bg-destructive/10 cursor-pointer flex items-center">
+                       <LogOut className="mr-2 h-4 w-4" /> Logout
+                     </DropdownMenuItem>
+                   </DropdownMenuContent>
+                 </DropdownMenu>
+               ) : (
+                 <Button variant="outline" size="sm" asChild>
+                   <Link href="/login">
+                     <LogIn className="mr-2 h-4 w-4" />
+                     Iniciar sesión
+                   </Link>
+                 </Button>
+               )
+             )}
         </div>
 
       </nav>
