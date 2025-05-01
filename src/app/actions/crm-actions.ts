@@ -1,17 +1,18 @@
-// src/app/actions/crm-actions.ts
 'use server';
 
 import { z } from 'zod';
 import { collection, addDoc, getDocs, Timestamp, query, orderBy, doc, updateDoc, getDoc, serverTimestamp } from 'firebase/firestore';
 import { adminDb } from '@/lib/firebase/firebase-admin-config'; // Use Admin SDK for server actions
-import { ContactSchema, Contact, ContactFirestore, ContactFirestoreSchema, LeadSourceSchema } from '@/lib/models/contact';
-import { OpportunitySchema, Opportunity, OpportunityFirestore, OpportunityFirestoreSchema, OpportunityStageSchema, OpportunityStage } from '@/lib/models/opportunity';
+import { ContactInputSchema, Contact, LeadSourceSchema } from '@/lib/models/contact';
+import type { ContactFirestore } from '@/lib/models/contact';
+import { ContactOutputSchema } from '@/lib/models/contact';
+import { OpportunityInputSchema, Opportunity, OpportunityFirestore, OpportunityFirestoreSchema, OpportunityStageSchema, OpportunityStage } from '@/lib/models/opportunity';
 import { revalidatePath } from 'next/cache';
 import { checkProductStock } from '@/services/erp-service'; // Import ERP service
 import { startOpportunityToCashProcess } from '@/services/bpm-service'; // Import BPM service
 
 // --- Add Contact Action ---
-const AddContactInputSchema = ContactSchema.omit({ createdAt: true, updatedAt: true });
+const AddContactInputSchema = ContactInputSchema.omit({ createdAt: true, updatedAt: true });
 
 export async function addContact(
   prevState: { message: string | null; success: boolean },
@@ -107,7 +108,7 @@ export async function getContacts(): Promise<ContactFirestore[]> {
        }
 
       // Validate data retrieved from Firestore
-      const parsedData = ContactFirestoreSchema.safeParse(data); // Use Firestore schema
+      const parsedData = ContactOutputSchema.safeParse(data); // Use Firestore schema
 
       if (!parsedData.success) {
         console.warn(`Invalid contact data found in Firestore document ${doc.id}:`, parsedData.error);
@@ -133,7 +134,7 @@ export async function getContacts(): Promise<ContactFirestore[]> {
 }
 
 // --- Create Opportunity Action ---
-const CreateOpportunityInputSchema = OpportunitySchema.omit({ createdAt: true, updatedAt: true, id: true });
+const CreateOpportunityInputSchema = OpportunityInputSchema.omit({ createdAt: true, updatedAt: true, id: true });
 
 export async function createOpportunity(
     input: Omit<Opportunity, 'id' | 'createdAt' | 'updatedAt'>
