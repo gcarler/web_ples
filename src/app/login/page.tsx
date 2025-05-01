@@ -66,14 +66,10 @@ export default function LoginPage() {
   };
 
   return (
-    // Centered layout with dark background
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 dark text-white px-4 py-12">
-       {/* Removed Large Title Above Card */}
-       {/* <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-gray-100 mb-8">
-         EL USO INTELIGENTE DE LA EXPERIENCIA
-       </h1> */}
-      {/* Card with dark background, rounded corners, and shadow */}
-      <Card className="w-full max-w-md bg-gray-800/90 border-gray-700 shadow-xl rounded-xl">
+    // Centered layout, removed dark theme specific classes
+    <div className="flex flex-col items-center justify-center min-h-screen bg-background px-4 py-12">
+      {/* Card with theme-based background, rounded corners, and shadow */}
+      <Card className="w-full max-w-md border shadow-xl rounded-xl"> {/* Removed bg-gray-800/90 border-gray-700 */}
         <CardHeader className="space-y-4 text-center pt-8">
            <PlesGroupLogo className="h-12 w-12 mx-auto text-primary" /> {/* Logo Added */}
           {/* Title removed from here */}
@@ -81,52 +77,48 @@ export default function LoginPage() {
         <form onSubmit={handleLogin}>
           <CardContent className="space-y-4 px-8">
             <div className="space-y-2">
-              {/* Label removed to match image */}
-              {/* <Label htmlFor="email" className="text-gray-300">Email</Label> */}
-              {/* Input with rounded corners and lighter background */}
+              {/* Input with theme-based background and rounded corners */}
               <Input
                 id="email"
                 type="email"
-                placeholder="Email" // Changed placeholder
+                placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 disabled={isLoading}
-                className="bg-gray-700 border-gray-600 text-gray-100 rounded-md placeholder:text-gray-400" // Adjusted styling
+                className="rounded-md" // Simplified styling, remove dark specifics
               />
             </div>
             <div className="space-y-2">
-              {/* Label removed */}
-              {/* <Label htmlFor="password" className="text-gray-300">Password</Label> */}
-              {/* Input with rounded corners */}
+              {/* Input with theme-based background and rounded corners */}
               <Input
                 id="password"
                 type="password"
-                placeholder="Contraseña" // Changed placeholder
+                placeholder="Contraseña"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 disabled={isLoading}
-                 className="bg-gray-700 border-gray-600 text-gray-100 rounded-md placeholder:text-gray-400" // Adjusted styling
+                 className="rounded-md" // Simplified styling, remove dark specifics
               />
             </div>
             {error && (
-              <p className="text-sm text-red-400 text-center">{error}</p> // Adjusted error color
+              <p className="text-sm text-destructive text-center">{error}</p> // Use theme's destructive color
             )}
           </CardContent>
           <CardFooter className="flex flex-col space-y-4 px-8 pb-8">
-             {/* Login button with rounded corners */}
-            <Button type="submit" className="w-full bg-gray-600 hover:bg-gray-500 text-white rounded-md" disabled={isLoading}>
+             {/* Login button with theme-based colors and rounded corners */}
+            <Button type="submit" className="w-full rounded-md" disabled={isLoading}> {/* Use default button variant */}
               {isLoading ? 'Logging in...' : 'Login'}
               {!isLoading && <LogIn className="ml-2 h-4 w-4" />}
             </Button>
              {/* Register and Forgot Password links */}
             <div className="flex justify-between w-full text-sm">
               {/* Link buttons inherit styling */}
-              <Button variant="link" asChild className="px-0 text-gray-400 hover:text-gray-200">
+              <Button variant="link" asChild className="px-0 text-muted-foreground hover:text-primary"> {/* Adjusted colors for default theme */}
                 <Link href="/register">Register an account</Link>
               </Button>
-              <Button variant="link" asChild className="px-0 text-gray-400 hover:text-gray-200">
+              <Button variant="link" asChild className="px-0 text-muted-foreground hover:text-primary"> {/* Adjusted colors for default theme */}
                  <Link href="/forgot-password">Forgot password?</Link>
               </Button>
             </div>
