@@ -7,7 +7,8 @@ import { ArrowRight, Building, Users, Handshake, Target, Quote, CheckCircle, Dat
 
 export default function Home() {
   return (
-    <div className="space-y-16">
+    // Add container and mx-auto here for constrained width
+    <div className="container mx-auto space-y-16">
       {/* Hero Section - Updated Content */}
       <section className="text-center py-12 relative">
         {/* The Carousel in the Header now serves as the main visual */}
@@ -59,6 +60,7 @@ export default function Home() {
                 layout="fill"
                 objectFit="cover"
                 className="rounded-lg"
+                data-ai-hint="team working collaboration"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
             </div>
@@ -151,6 +153,7 @@ export default function Home() {
             layout="fill"
             objectFit="cover"
             className="opacity-30"
+             data-ai-hint="abstract background technology"
           />
            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-background"></div>
         </div>
@@ -172,9 +175,9 @@ export default function Home() {
         <h2 className="text-3xl font-bold text-center mb-10">Testimonios</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 container mx-auto px-4">
           {[
-            { name: 'Cliente Satisfecho 1', title: 'CEO, Empresa X', text: '¡Increíble servicio! Superaron nuestras expectativas.', image: 'https://picsum.photos/100/100?random=5' },
-            { name: 'Cliente Satisfecho 2', title: 'Gerente, Organización Y', text: 'La implementación fue fluida y el soporte excelente.', image: 'https://picsum.photos/100/100?random=6' },
-            { name: 'Cliente Satisfecho 3', title: 'Director, Fundación Z', text: 'Nos ayudaron a optimizar nuestros procesos clave.', image: 'https://picsum.photos/100/100?random=7' },
+            { name: 'Cliente Satisfecho 1', title: 'CEO, Empresa X', text: '¡Increíble servicio! Superaron nuestras expectativas.', image: 'https://picsum.photos/100/100?random=5', hint: 'person face ceo' },
+            { name: 'Cliente Satisfecho 2', title: 'Gerente, Organización Y', text: 'La implementación fue fluida y el soporte excelente.', image: 'https://picsum.photos/100/100?random=6', hint: 'person face manager' },
+            { name: 'Cliente Satisfecho 3', title: 'Director, Fundación Z', text: 'Nos ayudaron a optimizar nuestros procesos clave.', image: 'https://picsum.photos/100/100?random=7', hint: 'person face director' },
           ].map((testimonial) => (
             <Card key={testimonial.name} className="flex flex-col">
               <CardContent className="pt-6 flex-grow">
@@ -183,7 +186,7 @@ export default function Home() {
               </CardContent>
                <CardHeader className="flex flex-row items-center gap-4 pt-0 mt-auto">
                  <Avatar>
-                   <AvatarImage src={testimonial.image} alt={testimonial.name} />
+                   <AvatarImage src={testimonial.image} alt={testimonial.name} data-ai-hint={testimonial.hint}/>
                    <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
                  </Avatar>
                  <div>

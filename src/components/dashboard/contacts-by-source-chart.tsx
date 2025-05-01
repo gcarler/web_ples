@@ -26,6 +26,7 @@ const chartConfig = {
   count: {
     label: "Contacts",
   },
+
   ...LeadSourceSchema.options.reduce((acc, source, index) => {
     acc[source] = {
       label: source,
@@ -34,10 +35,10 @@ const chartConfig = {
     };
     return acc;
   }, {} as Record<string, { label: string; color: string }>),
-  Unknown: { // Add fallback for unknown/null sources or sources not in enum
-    label: "Unknown",
-    color: "hsl(var(--muted))",
-  }
+   Unknown: { // Add fallback for unknown/null sources or sources not in enum
+       label: "Unknown",
+       color: "hsl(var(--muted))",
+   }
 } satisfies ChartConfig
 
 interface ContactsBySourceChartProps {
@@ -48,10 +49,10 @@ export function ContactsBySourceChart({ data }: ContactsBySourceChartProps) {
    // Ensure data uses the defined config keys and assigns fill colors
    const chartData = useMemo(() => {
        return data.map(item => {
-           const configEntry = chartConfig[item.name as keyof typeof chartConfig] || chartConfig.Unknown;
+           const configEntry = chartConfig[item.name as keyof typeof chartConfig] ?? chartConfig.Unknown;
            return {
                ...item,
-               name: configEntry.label, // Use the formatted label from config
+               name: configEntry.label,
                fill: configEntry.color, // Assign fill color based on config
            };
        });

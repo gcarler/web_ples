@@ -1,11 +1,11 @@
 // src/services/bpm-service.ts
 'use server'; // Mark this module for server-side execution
 
-import { ProcessInstance, ProcessInstanceFirestore, ProcessInstanceFirestoreSchema, ProcessStatus, ProcessStatusSchema } from '@/lib/models/bpm';
+import { ProcessInstance, ProcessInstanceFirestore, ProcessInstanceFirestoreSchema } from '@/lib/models/bpm';
 import { OpportunityFirestore } from '@/lib/models/opportunity'; // Import Opportunity type
-import { Order } from '@/lib/models/erp'; // Import Order type
+import { Order} from '@/lib/models/erp'; // Import Order type
 import { adminDb } from '@/lib/firebase/firebase-admin-config';
-import { collection, addDoc, Timestamp, doc, updateDoc, serverTimestamp, getDoc, query, where, getDocs, limit } from 'firebase/firestore';
+import { addDoc, Timestamp, updateDoc, serverTimestamp, getDoc, query, where, getDocs, limit, DocumentReference } from 'firebase/firestore';
 import { checkProductStock, createErpOrder, getErpOrderDetails, updateErpOrderStatus } from './erp-service'; // Import ERP service
 
 const PROCESS_DEFINITIONS = {
@@ -22,10 +22,11 @@ const PROCESS_DEFINITIONS = {
  * @returns Boolean indicating if the process was successfully initiated.
  */
 export async function startOpportunityToCashProcess(opportunityId: string, opportunityData: OpportunityFirestore): Promise<boolean> {
-    console.log(`BPM Service: Starting Opportunity-to-Cash process for Opportunity ID: ${opportunityId}`);
+    console.log(`BPM Service: Starting Opportunity-to-Cash process for Opportunity ID: ${opportunityId}`);    
     try {
         const processInstanceData: Omit<ProcessInstance, 'id'> = {
             processDefinitionId: PROCESS_DEFINITIONS.OPPORTUNITY_TO_CASH,
+            processDefinitionName: 'Opportunity To Cash',
             status: 'Running', // Start as running
             correlationId: opportunityId, // Link to the opportunity
             variables: {
@@ -40,7 +41,7 @@ export async function startOpportunityToCashProcess(opportunityId: string, oppor
         };
 
         // --- Create Process Instance in Firestore ---
-        const processInstancesCol = collection(adminDb, 'processInstances');
+        const processInstancesCol = adminDb.collection('processInstances').withConverter(ProcessInstanceFirestoreSchema);
         const docRef = await addDoc(processInstancesCol, {
             ...processInstanceData,
             lastUpdatedAt: serverTimestamp(), // Set initial update time server-side
@@ -125,6 +126,7 @@ export async function startShippingProcess(orderId: string): Promise<boolean> {
 
         const processInstanceData: Omit<ProcessInstance, 'id'> = {
             processDefinitionId: PROCESS_DEFINITIONS.SHIPPING_PROCESS,
+            processDefinitionName: 'Shipping Process',
             status: 'Running',
             correlationId: orderId, // Link to the order
             variables: { orderId: orderId },
@@ -133,7 +135,7 @@ export async function startShippingProcess(orderId: string): Promise<boolean> {
         };
 
          // --- Create Process Instance in Firestore ---
-        const processInstancesCol = collection(adminDb, 'processInstances');
+        const processInstancesCol = adminDb.collection('processInstances').withConverter(ProcessInstanceFirestoreSchema);
         const docRef = await addDoc(processInstancesCol, {
             ...processInstanceData,
             lastUpdatedAt: serverTimestamp(), // Set initial update time server-side
@@ -212,16 +214,12 @@ export async function updateProcessInstance(processInstanceId: string, updates: 
          return false;
     }
     try {
-        const processRef = doc(adminDb, 'processInstances', processInstanceId);
+        const processRef = adminDb.doc(`processInstances/${processInstanceId}`).withConverter(ProcessInstanceFirestoreSchema);
+        
         const dataToUpdate: Record<string, any> = { ...updates };
 
-        // Convert specific Date objects to Timestamps if necessary
-        if (updates.startedAt instanceof Date) dataToUpdate.startedAt = Timestamp.fromDate(updates.startedAt);
-        if (updates.completedAt instanceof Date) dataToUpdate.completedAt = Timestamp.fromDate(updates.completedAt);
-        if (updates.failedAt instanceof Date) dataToUpdate.failedAt = Timestamp.fromDate(updates.failedAt);
-
         // Merge variables intelligently if provided
-        if (updates.variables) {
+        if (updates.variables) {            
             const docSnap = await getDoc(processRef);
             if (docSnap.exists()) {
                 const existingData = docSnap.data();
@@ -254,16 +252,16 @@ export async function findProcessInstanceByCorrelationId(correlationId: string, 
     if (!correlationId || !processDefinitionId) return null;
 
     try {
-        const instancesCol = collection(adminDb, 'processInstances');
+        const instancesCol = adminDb.collection('processInstances').withConverter(ProcessInstanceFirestoreSchema);        
         const q = query(
             instancesCol,
-            where('correlationId', '==', correlationId),
+           where('correlationId', '==', correlationId),
             where('processDefinitionId', '==', processDefinitionId),
             limit(1) // We only expect one active instance per correlation/definition
         );
 
         const snapshot = await getDocs(q);
-
+        
         if (snapshot.empty) {
             console.log(`No process instance found for correlationId=${correlationId}, definitionId=${processDefinitionId}`);
             return null;
@@ -272,14 +270,8 @@ export async function findProcessInstanceByCorrelationId(correlationId: string, 
         const docSnap = snapshot.docs[0];
         const data = docSnap.data();
 
-         // Ensure Timestamps are correctly handled
-         if (data.startedAt && !(data.startedAt instanceof Timestamp)) data.startedAt = Timestamp.fromMillis(data.startedAt.seconds * 1000);
-         if (data.completedAt && !(data.completedAt instanceof Timestamp)) data.completedAt = Timestamp.fromMillis(data.completedAt.seconds * 1000);
-         if (data.failedAt && !(data.failedAt instanceof Timestamp)) data.failedAt = Timestamp.fromMillis(data.failedAt.seconds * 1000);
-         if (data.lastUpdatedAt && !(data.lastUpdatedAt instanceof Timestamp)) data.lastUpdatedAt = Timestamp.fromMillis(data.lastUpdatedAt.seconds * 1000);
-
-
         const parsed = ProcessInstanceFirestoreSchema.safeParse(data);
+
         if (parsed.success) {
             return { id: docSnap.id, ...parsed.data };
         } else {

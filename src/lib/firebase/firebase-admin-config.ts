@@ -16,16 +16,16 @@ if (!admin.apps.length) {
                 clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
                 privateKey: privateKey,
             }),
-            // Optional: databaseURL if using Realtime Database
-            // databaseURL: `https://${process.env.FIREBASE_PROJECT_ID}.firebaseio.com`
+            databaseURL: `https://${process.env.FIREBASE_PROJECT_ID}.firebaseio.com`, // Optional: databaseURL if using Realtime Database
         });
         console.log('Firebase Admin SDK initialized successfully.');
     } catch (error) {
         console.error('Firebase Admin SDK initialization error:', error);
         // Depending on your error handling strategy, you might want to:
-        // - Log the error and continue (potentially with limited functionality)
+        // - Log the error and continue (potentially with limited functionality).
         // - Throw the error to stop the application startup
         // For now, we log it. Critical server actions will likely fail later.
+        throw error; // Throwing the error to halt the application
     }
 }
 

@@ -1,32 +1,34 @@
 // src/lib/models/contact.ts
 import { z } from 'zod';
-import { Timestamp } from 'firebase/firestore'; // Import Timestamp
+import { Timestamp } from 'firebase/firestore';
 
 // Define lead sources
 export const LeadSourceSchema = z.enum(['Web Form', 'Referral', 'Cold Call', 'Event', 'Other']);
 export type LeadSource = z.infer<typeof LeadSourceSchema>;
 
-// Zod schema for validating contact data when creating/updating
-export const ContactSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters.").max(100),
-  email: z.string().email("Please enter a valid email address.").max(100),
-  phone: z.string().optional(), // Added phone number
-  company: z.string().optional(), // Added company
-  title: z.string().optional(), // Added title
-  bio: z.string().max(500, "Bio cannot exceed 500 characters.").optional(),
-  subscribe: z.boolean().default(false).optional(),
-  createdAt: z.instanceof(Timestamp).optional(), // Optional on input, set by server
-  updatedAt: z.instanceof(Timestamp).optional(), // Optional on input, set by server
-  leadSource: LeadSourceSchema.optional().default('Other'), // Added lead source with enum type
+// Schema for Contact Input (creating/updating)
+export const ContactInputSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters.").max(100), // Contact's full name
+  email: z.string().email("Please enter a valid email address.").max(100), // Contact's email address
+  phone: z.string().optional(), // Contact's phone number (optional)
+  company: z.string().optional(), // Contact's company name (optional)
+  title: z.string().optional(), // Contact's job title (optional)
+  bio: z.string().max(500, "Bio cannot exceed 500 characters.").optional(), // Short bio about the contact (optional)
+  address: z.string().optional(), // Contact's address (optional)
+  subscribe: z.boolean().default(false).optional(), // Whether the contact is subscribed to newsletters/updates (optional, defaults to false)
+  createdAt: z.instanceof(Timestamp).optional(), // Creation timestamp (optional on input, set by server)
+  updatedAt: z.instanceof(Timestamp).optional(), // Last update timestamp (optional on input, set by server)
+  leadSource: LeadSourceSchema.optional().default('Other'), // The source from which the contact was acquired (optional, defaults to 'Other')
 });
 
-// TypeScript type derived from the schema (used in code)
-export type Contact = z.infer<typeof ContactSchema> & { id?: string }; // Add optional id
+// TypeScript type for Contact Input
+export type ContactInput = z.infer<typeof ContactInputSchema> & { id?: string };
 
-// Schema for data retrieved from Firestore (includes server-generated timestamps)
-export const ContactFirestoreSchema = ContactSchema.extend({
-  createdAt: z.instanceof(Timestamp),
-  updatedAt: z.instanceof(Timestamp),
+// Schema for Contact Output (retrieved from Firestore)
+export const ContactOutputSchema = ContactInputSchema.extend({
+  createdAt: z.instanceof(Timestamp), // Creation timestamp (mandatory when retrieved from Firestore)
+  updatedAt: z.instanceof(Timestamp), // Last update timestamp (mandatory when retrieved from Firestore)
 });
 
-export type ContactFirestore = z.infer<typeof ContactFirestoreSchema> & { id: string }; // id is mandatory when retrieved
+// TypeScript type for Contact Output
+export type ContactOutput = z.infer<typeof ContactOutputSchema> & { id: string }; // ID is mandatory when retrieved from Firestore
