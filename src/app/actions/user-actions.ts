@@ -8,12 +8,14 @@ import { collection, getDocs, doc, setDoc, updateDoc, serverTimestamp, Timestamp
 import { revalidatePath } from 'next/cache';
 import { CreateUserRequest } from 'firebase-admin/auth';
 
-// Schema for adding a new user
+// Schema for adding/registering a new user (used by the server action)
+// Note: confirmPassword is only for client-side validation and not sent here.
+// Role might default differently for self-registration vs admin creation.
 const AddUserInputSchema = z.object({
   email: z.string().email(),
   password: z.string().min(6, 'Password must be at least 6 characters.'),
   displayName: z.string().optional(),
-  role: UserRoleSchema.default('read_only'),
+  role: UserRoleSchema.default('read_only'), // Default role can be adjusted
 });
 
 export async function addUser(
@@ -22,6 +24,8 @@ export async function addUser(
 ): Promise<{ message: string | null; success: boolean }> {
   try {
     const rawData = Object.fromEntries(formData.entries());
+
+    // Validate using the server-side schema
     const validatedData = AddUserInputSchema.safeParse(rawData);
 
     if (!validatedData.success) {
@@ -40,16 +44,17 @@ export async function addUser(
       email: email,
       password: password,
       displayName: displayName,
-      emailVerified: false, // Optional: Set email verification status
+      emailVerified: false, // Optional: Set email verification status (usually false initially)
       disabled: false,
     } as CreateUserRequest);
 
     // 2. Create user profile document in Firestore
+    // Use the validated 'role' from input (which might be default 'read_only' for registration)
     const userProfile: Omit<UserProfile, 'createdAt' | 'updatedAt'> = {
       uid: userRecord.uid,
       email: email,
       displayName: displayName,
-      role: role,
+      role: role, // Use the role passed from the form (could be default)
       // tenantId: // Assign tenant ID if using multi-tenancy
     };
 
@@ -61,7 +66,10 @@ export async function addUser(
     });
 
     console.log('User created successfully:', userRecord.uid);
-    revalidatePath('/admin/users'); // Revalidate the user list page
+    // Revalidate relevant pages
+    revalidatePath('/admin/users'); // If created via admin panel
+    revalidatePath('/register');    // If created via registration page
+    revalidatePath('/login');       // To potentially update UI state if needed
     return { message: 'User created successfully!', success: true };
 
   } catch (error: any) {
@@ -70,6 +78,7 @@ export async function addUser(
     if (error.code === 'auth/email-already-exists') {
       errorMessage = 'Email address is already in use by another account.';
     } else if (error instanceof z.ZodError) {
+        // This case might not happen often if client-side validation is robust
       errorMessage = 'Invalid data provided.';
     } else if (error.message) {
         errorMessage = error.message;
