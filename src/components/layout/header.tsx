@@ -4,7 +4,7 @@ import Image from 'next/image'; // Import Image for the updated slide
 import { Carousel, type CarouselSlideProps } from '@/components/ui/carousel'; // Import Carousel
 import { PlesGroupLogo } from '@/components/logo'; // Import the new logo component
 import { Button } from '@/components/ui/button'; // Import Button for CTAs
-import { ArrowRight } from 'lucide-react'; // Import icon for buttons
+import { ArrowRight, LogIn } from 'lucide-react'; // Import icon for buttons
 
 export function Header() {
   // Updated slide data with provided variants
@@ -67,42 +67,53 @@ export function Header() {
       {/* Navigation Bar */}
       <nav className="container mx-auto px-4 py-4 flex flex-wrap justify-between items-center">
         <Link href="/" className="flex items-center gap-2 text-xl font-semibold text-primary mb-4 sm:mb-0">
-          {/* Replace Code icon with PlesGroupLogo SVG */}
+          {/* Use CSS class for stroke */}
           <PlesGroupLogo className="h-8 w-8" />
           <span>PLES</span> {/* Replaced AngularFlow with PLES */}
         </Link>
-        <ul className="flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-2 items-center justify-center sm:justify-end w-full sm:w-auto">
-           <li>
-            <Link href="/" className="text-sm font-medium hover:text-primary transition-colors">
-              inicio
-            </Link>
-          </li>
-          <li>
-            <Link href="/about" className="text-sm font-medium hover:text-primary transition-colors">
-              sobre nosotros
-            </Link>
-          </li>
-          <li>
-            <Link href="/ples-crea" className="text-sm font-medium hover:text-primary transition-colors">
-              Ples CREA
-            </Link>
-          </li>
-          <li>
-            <Link href="/ples-tic" className="text-sm font-medium hover:text-primary transition-colors">
-              Ples TIC
-            </Link>
-          </li>
-          <li>
-            <Link href="/ples-catastro" className="text-sm font-medium hover:text-primary transition-colors">
-              Ples catastro
-            </Link>
-          </li>
-          <li>
-            <Link href="/ples-consulting" className="text-sm font-medium hover:text-primary transition-colors">
-              Ples consulting
-            </Link>
-          </li>
-        </ul>
+        <div className="flex items-center gap-4">
+            <ul className="flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-2 items-center justify-center sm:justify-end w-full sm:w-auto">
+               <li>
+                <Link href="/" className="text-sm font-medium hover:text-primary transition-colors">
+                  inicio
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" className="text-sm font-medium hover:text-primary transition-colors">
+                  sobre nosotros
+                </Link>
+              </li>
+              <li>
+                <Link href="/ples-crea" className="text-sm font-medium hover:text-primary transition-colors">
+                  Ples CREA
+                </Link>
+              </li>
+              <li>
+                <Link href="/ples-tic" className="text-sm font-medium hover:text-primary transition-colors">
+                  Ples TIC
+                </Link>
+              </li>
+              <li>
+                <Link href="/ples-catastro" className="text-sm font-medium hover:text-primary transition-colors">
+                  Ples catastro
+                </Link>
+              </li>
+              <li>
+                <Link href="/ples-consulting" className="text-sm font-medium hover:text-primary transition-colors">
+                  Ples consulting
+                </Link>
+              </li>
+            </ul>
+            {/* Add Login Button */}
+             {/* TODO: Add authentication logic and link */}
+             <Button variant="outline" size="sm" asChild>
+               <Link href="/login"> {/* Replace with your actual login page route */}
+                 <LogIn className="mr-2 h-4 w-4" />
+                 Iniciar sesión
+               </Link>
+             </Button>
+        </div>
+
       </nav>
 
       {/* Carousel Section */}
