@@ -84,4 +84,6 @@ export async function middleware(request: NextRequest) {
 
 // Force Node.js runtime for this middleware
 // This is crucial because firebase-admin uses Node.js APIs.
-export const runtime = 'nodejs';
+export const config = {
+    runtime: 'nodejs', // Correct way to specify runtime in Next.js 13+ App Router middleware
+};
