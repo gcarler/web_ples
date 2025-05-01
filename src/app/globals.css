@@ -103,4 +103,9 @@ body {
   header nav {
     @apply relative z-30;
   }
+
+  /* Define stroke color for the logo outline */
+  .logo-outline {
+    stroke: hsl(var(--border));
+  }
 }

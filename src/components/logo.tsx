@@ -12,8 +12,8 @@ export function PlesGroupLogo({ className, ...props }: LogoProps) {
       className={cn('h-6 w-6', className)} // Default size, can be overridden
       {...props}
     >
-      {/* Use CSS variable for stroke */}
-      <circle cx="13" cy="13" r="11" stroke="hsl(var(--border))" strokeWidth="2.5" />
+      {/* Apply stroke color via CSS class */}
+      <circle cx="13" cy="13" r="11" className="logo-outline" strokeWidth="2.5" />
       {/* Primary blue inner circle - uses CSS variable for color */}
       <circle cx="13" cy="13" r="8.5" fill="hsl(var(--primary))" />
     </svg>
