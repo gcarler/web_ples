@@ -23,35 +23,8 @@ export default function RootLayout({
         {/* Removed container mx-auto and padding to allow child pages/layouts to control width */}
         <main className="flex-grow">{children}</main>
 
-        {/* Development Admin Links Area */}
-        <div className="text-center my-6 px-4">
-            <p className="text-xs text-muted-foreground mb-2">Admin Sections (Dev)</p>
-            <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-2">
-                 <Link href="/admin/dashboard" className="text-sm text-muted-foreground hover:text-primary underline">
-                    Dashboard
-                </Link>
-                 <Separator orientation="vertical" className="h-4 bg-border" />
-                <Link href="/admin/crm" className="text-sm text-muted-foreground hover:text-primary underline">
-                    CRM Contacts
-                </Link>
-                 <Separator orientation="vertical" className="h-4 bg-border" />
-                <Link href="/admin/crm/opportunities" className="text-sm text-muted-foreground hover:text-primary underline">
-                    CRM Opportunities
-                </Link>
-                <Separator orientation="vertical" className="h-4 bg-border" />
-                 <Link href="/admin/erp/products" className="text-sm text-muted-foreground hover:text-primary underline">
-                    ERP Products
-                </Link>
-                 <Separator orientation="vertical" className="h-4 bg-border" />
-                 <Link href="/admin/erp/orders" className="text-sm text-muted-foreground hover:text-primary underline">
-                    ERP Orders
-                </Link>
-                 <Separator orientation="vertical" className="h-4 bg-border" />
-                 <Link href="/admin/bpm/processes" className="text-sm text-muted-foreground hover:text-primary underline">
-                    BPM Processes
-                </Link>
-            </div>
-        </div>
+        {/* Development Admin Links Area - REMOVED */}
+        {/* The admin links will be moved to the header and shown conditionally after login */}
 
         <Footer />
         <Toaster />

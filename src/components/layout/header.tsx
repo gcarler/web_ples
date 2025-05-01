@@ -68,7 +68,7 @@ export function Header() {
       <nav className="container mx-auto px-4 py-4 flex flex-wrap justify-between items-center">
         <Link href="/" className="flex items-center gap-2 text-xl font-semibold text-primary mb-4 sm:mb-0">
           {/* Use CSS class for stroke */}
-          <PlesGroupLogo className="h-8 w-8" />
+          <PlesGroupLogo className="h-8 w-8 logo-outline" />
           <span>PLES</span> {/* Replaced AngularFlow with PLES */}
         </Link>
         <div className="flex items-center gap-4">
@@ -103,6 +103,24 @@ export function Header() {
                   Ples consulting
                 </Link>
               </li>
+              {/* TODO: Add Conditional Admin Links Here after implementing authentication */}
+              {/*
+              Placeholder for Admin Dropdown (requires authentication check)
+              If user is logged in:
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm">Admin</Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuItem asChild><Link href="/admin/dashboard">Dashboard</Link></DropdownMenuItem>
+                  <DropdownMenuItem asChild><Link href="/admin/crm">CRM Contacts</Link></DropdownMenuItem>
+                  <DropdownMenuItem asChild><Link href="/admin/crm/opportunities">CRM Opportunities</Link></DropdownMenuItem>
+                  <DropdownMenuItem asChild><Link href="/admin/erp/products">ERP Products</Link></DropdownMenuItem>
+                  <DropdownMenuItem asChild><Link href="/admin/erp/orders">ERP Orders</Link></DropdownMenuItem>
+                  <DropdownMenuItem asChild><Link href="/admin/bpm/processes">BPM Processes</Link></DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+              */}
             </ul>
             {/* Add Login Button */}
              {/* TODO: Add authentication logic and link */}
