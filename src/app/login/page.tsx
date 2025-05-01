@@ -49,6 +49,9 @@ export default function LoginPage() {
         errorMessage = 'Invalid email or password.';
       } else if (err.code === 'auth/invalid-email') {
           errorMessage = 'Please enter a valid email address.';
+      } else if (err.code === 'auth/api-key-not-valid') {
+          errorMessage = 'Firebase API Key is invalid. Please check your environment variables.';
+           console.error("Firebase Config Error: API Key is not valid. Ensure NEXT_PUBLIC_FIREBASE_API_KEY is set correctly in your .env.local file and the server was restarted.");
       }
       setError(errorMessage);
       toast({
@@ -62,8 +65,9 @@ export default function LoginPage() {
   };
 
   return (
+    // Centered layout, Card will inherit rounded corners from theme (--radius)
     <div className="flex items-center justify-center min-h-screen bg-background px-4">
-      <Card className="w-full max-w-md shadow-lg border">
+      <Card className="w-full max-w-md shadow-lg border rounded-lg"> {/* Explicitly add rounded-lg if needed */}
         <CardHeader className="space-y-1 text-center">
           <CardTitle className="text-2xl">Login to PLES Admin</CardTitle>
           <CardDescription>
@@ -74,6 +78,7 @@ export default function LoginPage() {
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
+              {/* Input inherits rounded-md from theme */}
               <Input
                 id="email"
                 type="email"
@@ -86,6 +91,7 @@ export default function LoginPage() {
             </div>
             <div className="space-y-2">
               <Label htmlFor="password">Password</Label>
+               {/* Input inherits rounded-md from theme */}
               <Input
                 id="password"
                 type="password"
@@ -100,12 +106,14 @@ export default function LoginPage() {
             )}
           </CardContent>
           <CardFooter className="flex flex-col space-y-4">
-            <Button type="submit" className="w-full" disabled={isLoading}>
+             {/* Button inherits rounded-md from theme */}
+            <Button type="submit" className="w-full rounded-md" disabled={isLoading}>
               {isLoading ? 'Logging in...' : 'Login'}
               {!isLoading && <LogIn className="ml-2 h-4 w-4" />}
             </Button>
              {/* Add Register and Forgot Password links */}
             <div className="flex justify-between w-full text-sm">
+              {/* Link buttons inherit styling */}
               <Button variant="link" asChild className="px-0">
                 <Link href="/register">Register an account</Link>
               </Button>

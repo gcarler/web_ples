@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import Image from 'next/image'; // Import Image for the updated slide
+import { usePathname } from 'next/navigation'; // Import usePathname
 import { Carousel, type CarouselSlideProps } from '@/components/ui/carousel'; // Import Carousel
 import { PlesGroupLogo } from '@/components/logo'; // Import the new logo component
 import { Button } from '@/components/ui/button'; // Import Button for CTAs
@@ -18,6 +19,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"; // Import Dropdown components
+import { cn } from '@/lib/utils'; // Import cn utility
 
 
 export function Header() {
@@ -25,10 +27,17 @@ export function Header() {
   const auth = getAuth(app);
   const { toast } = useToast();
   const router = useRouter();
+  const pathname = usePathname(); // Get the current path
+
+   // Define routes where the carousel should be hidden
+  const hideCarouselRoutes = ['/login', '/register', '/forgot-password'];
+  const shouldShowCarousel = !hideCarouselRoutes.includes(pathname) && !pathname.startsWith('/admin'); // Also hide on admin routes
 
   const handleLogout = async () => {
     try {
       await signOut(auth);
+      // Clear the cookie on logout
+      document.cookie = `firebaseIdToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
       toast({
         title: 'Logged Out',
         description: 'You have been successfully logged out.',
@@ -101,11 +110,11 @@ export function Header() {
 
 
   return (
-    <header className="bg-card text-card-foreground shadow-md">
+    // Apply rounded corners from theme via globals.css --radius variable
+    <header className="bg-card text-card-foreground shadow-md rounded-lg">
       {/* Navigation Bar */}
       <nav className="container mx-auto px-4 py-4 flex flex-wrap justify-between items-center">
         <Link href="/" className="flex items-center gap-2 text-xl font-semibold text-primary mb-4 sm:mb-0">
-          {/* Use CSS class for stroke */}
           <PlesGroupLogo className="h-8 w-8 logo-outline" />
           <span>PLES</span>
         </Link>
@@ -148,7 +157,8 @@ export function Header() {
                user ? (
                  <DropdownMenu>
                    <DropdownMenuTrigger asChild>
-                     <Button variant="outline" size="sm">Admin</Button>
+                      {/* Apply rounded corners to trigger button */}
+                     <Button variant="outline" size="sm" className="rounded-md">Admin</Button>
                    </DropdownMenuTrigger>
                    <DropdownMenuContent align="end">
                     <DropdownMenuLabel>Admin Panel</DropdownMenuLabel>
@@ -158,33 +168,11 @@ export function Header() {
                          <LayoutDashboard className="mr-2 h-4 w-4" /> Dashboard
                        </Link>
                      </DropdownMenuItem>
-                     <DropdownMenuItem asChild>
-                       <Link href="/admin/crm" className="flex items-center">
-                         <Users className="mr-2 h-4 w-4" /> CRM Contacts
-                       </Link>
-                     </DropdownMenuItem>
-                     <DropdownMenuItem asChild>
-                       <Link href="/admin/crm/opportunities" className="flex items-center">
-                         <Users className="mr-2 h-4 w-4" /> CRM Opportunities {/* Consider different icon */}
-                       </Link>
-                     </DropdownMenuItem>
-                     <DropdownMenuItem asChild>
-                       <Link href="/admin/erp/products" className="flex items-center">
-                         <Package className="mr-2 h-4 w-4" /> ERP Products
-                       </Link>
-                     </DropdownMenuItem>
-                     <DropdownMenuItem asChild>
-                       <Link href="/admin/erp/orders" className="flex items-center">
-                         <ShoppingCart className="mr-2 h-4 w-4" /> ERP Orders
-                       </Link>
-                     </DropdownMenuItem>
-                     <DropdownMenuItem asChild>
-                       <Link href="/admin/bpm/processes" className="flex items-center">
-                         <Workflow className="mr-2 h-4 w-4" /> BPM Processes
-                       </Link>
-                     </DropdownMenuItem>
-                     {/* TODO: Add Admin User Management Link */}
-                      {/* <DropdownMenuItem asChild><Link href="/admin/users">Manage Users</Link></DropdownMenuItem> */}
+                      {/* Add other admin links as needed */}
+                     {/* <DropdownMenuItem asChild><Link href="/admin/crm">CRM</Link></DropdownMenuItem> */}
+                     {/* <DropdownMenuItem asChild><Link href="/admin/erp">ERP</Link></DropdownMenuItem> */}
+                     {/* <DropdownMenuItem asChild><Link href="/admin/bpm">BPM</Link></DropdownMenuItem> */}
+                     {/* <DropdownMenuItem asChild><Link href="/admin/users">Manage Users</Link></DropdownMenuItem> */}
                      <DropdownMenuSeparator />
                      <DropdownMenuItem onClick={handleLogout} className="text-destructive focus:text-destructive focus:bg-destructive/10 cursor-pointer flex items-center">
                        <LogOut className="mr-2 h-4 w-4" /> Logout
@@ -192,7 +180,8 @@ export function Header() {
                    </DropdownMenuContent>
                  </DropdownMenu>
                ) : (
-                 <Button variant="outline" size="sm" asChild>
+                 // Apply rounded corners to login button
+                 <Button variant="outline" size="sm" asChild className="rounded-md">
                    <Link href="/login">
                      <LogIn className="mr-2 h-4 w-4" />
                      Iniciar sesión
@@ -204,10 +193,12 @@ export function Header() {
 
       </nav>
 
-      {/* Carousel Section */}
-      <div className="w-full border-t border-border">
-        <Carousel slides={slides} />
-      </div>
+      {/* Carousel Section - Conditionally render based on path */}
+       {shouldShowCarousel && (
+          <div className="w-full border-t border-border">
+              <Carousel slides={slides} />
+          </div>
+       )}
     </header>
   );
 }
