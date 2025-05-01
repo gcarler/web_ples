@@ -6,24 +6,28 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 import { Sidebar, SidebarProvider, SidebarInset, SidebarHeader, SidebarTrigger, SidebarContent, SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarFooter } from '@/components/ui/sidebar'; // Assuming you have a Sidebar component
 import { PlesGroupLogo } from '@/components/logo';
-import { LayoutDashboard, Users, Package, ShoppingCart, Workflow, LogOut } from 'lucide-react';
+import { LayoutDashboard, Users, Package, ShoppingCart, Workflow, LogOut, ShieldCheck } from 'lucide-react'; // Added ShieldCheck for potential admin management
 import { getAuth, signOut } from 'firebase/auth';
 import { app } from '@/lib/firebase/firebase-config';
 import { useToast } from '@/hooks/use-toast';
 import Link from 'next/link';
 import { Skeleton } from '@/components/ui/skeleton'; // Import Skeleton
+import { hasPermission } from '@/lib/models/user'; // Import permission checker
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
-  const { user, loading } = useAuth();
+  const { user, userProfile, loading } = useAuth(); // Get userProfile which contains the role
   const router = useRouter();
   const auth = getAuth(app);
   const { toast } = useToast();
+  const userRole = userProfile?.role; // Get the role from the profile
 
   useEffect(() => {
     // If not loading and no user is found, redirect to login
     if (!loading && !user) {
       router.push('/login');
     }
+    // Optional: Add role-based redirection if a user lands here without sufficient permissions
+    // This might be better handled within specific pages or middleware if rules are complex
   }, [user, loading, router]);
 
   const handleLogout = async () => {
@@ -45,7 +49,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
   };
 
 
-  // Show loading state or nothing while checking auth
+  // Show loading state or nothing while checking auth and fetching profile
   if (loading) {
     return (
          <div className="flex h-screen">
@@ -57,6 +61,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
                 <Skeleton className="h-8 w-full" />
                 <Skeleton className="h-8 w-full" />
                  <Skeleton className="h-8 w-full" />
+                 <Skeleton className="h-8 w-full" /> {/* Added for admin management */}
             </div>
             {/* Simulate Main content loading */}
             <div className="flex-1 p-6 space-y-4">
@@ -91,6 +96,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
                 <SidebarGroup>
                     {/* <SidebarGroupLabel>Navigation</SidebarGroupLabel> */}
                     <SidebarMenu>
+                         {/* Always show Dashboard */}
                          <SidebarMenuItem>
                              <SidebarMenuButton asChild>
                                 <Link href="/admin/dashboard">
@@ -99,50 +105,74 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
                                 </Link>
                             </SidebarMenuButton>
                          </SidebarMenuItem>
-                          <SidebarMenuItem>
-                             <SidebarMenuButton asChild>
-                                <Link href="/admin/crm">
-                                     <Users />
-                                     <span>CRM Contacts</span>
-                                </Link>
-                            </SidebarMenuButton>
-                         </SidebarMenuItem>
-                         <SidebarMenuItem>
-                             <SidebarMenuButton asChild>
-                                <Link href="/admin/crm/opportunities">
-                                     <Users /> {/* Consider diff icon */}
-                                     <span>CRM Opportunities</span>
-                                </Link>
-                            </SidebarMenuButton>
-                         </SidebarMenuItem>
-                         <SidebarMenuItem>
-                             <SidebarMenuButton asChild>
-                                <Link href="/admin/erp/products">
-                                     <Package />
-                                     <span>ERP Products</span>
-                                </Link>
-                            </SidebarMenuButton>
-                         </SidebarMenuItem>
-                         <SidebarMenuItem>
-                             <SidebarMenuButton asChild>
-                                <Link href="/admin/erp/orders">
-                                     <ShoppingCart />
-                                     <span>ERP Orders</span>
-                                </Link>
-                            </SidebarMenuButton>
-                         </SidebarMenuItem>
-                          <SidebarMenuItem>
-                             <SidebarMenuButton asChild>
-                                <Link href="/admin/bpm/processes">
-                                     <Workflow />
-                                     <span>BPM Processes</span>
-                                </Link>
-                            </SidebarMenuButton>
-                         </SidebarMenuItem>
-                        {/* TODO: Add Manage Users link */}
-                         {/* <SidebarMenuItem>
-                            <SidebarMenuButton asChild><Link href="/admin/users">...</Link></SidebarMenuButton>
-                         </SidebarMenuItem> */}
+
+                         {/* CRM Links - Visible if user has 'manage_crm' or 'admin' role */}
+                          {hasPermission(userRole, 'manage_crm') && (
+                            <>
+                              <SidebarMenuItem>
+                                 <SidebarMenuButton asChild>
+                                    <Link href="/admin/crm">
+                                         <Users />
+                                         <span>CRM Contacts</span>
+                                    </Link>
+                                </SidebarMenuButton>
+                              </SidebarMenuItem>
+                              <SidebarMenuItem>
+                                 <SidebarMenuButton asChild>
+                                    <Link href="/admin/crm/opportunities">
+                                         <Users /> {/* Consider diff icon */}
+                                         <span>CRM Opportunities</span>
+                                    </Link>
+                                </SidebarMenuButton>
+                              </SidebarMenuItem>
+                            </>
+                          )}
+
+                         {/* ERP Links - Visible if user has 'manage_erp' or 'admin' role */}
+                         {hasPermission(userRole, 'manage_erp') && (
+                           <>
+                             <SidebarMenuItem>
+                                 <SidebarMenuButton asChild>
+                                    <Link href="/admin/erp/products">
+                                         <Package />
+                                         <span>ERP Products</span>
+                                    </Link>
+                                </SidebarMenuButton>
+                             </SidebarMenuItem>
+                             <SidebarMenuItem>
+                                 <SidebarMenuButton asChild>
+                                    <Link href="/admin/erp/orders">
+                                         <ShoppingCart />
+                                         <span>ERP Orders</span>
+                                    </Link>
+                                </SidebarMenuButton>
+                             </SidebarMenuItem>
+                           </>
+                         )}
+
+                         {/* BPM Links - Visible if user has 'manage_bpm', 'view_bpm', or 'admin' role */}
+                          {hasPermission(userRole, 'manage_bpm') || hasPermission(userRole, 'view_bpm') && (
+                              <SidebarMenuItem>
+                                 <SidebarMenuButton asChild>
+                                    <Link href="/admin/bpm/processes">
+                                         <Workflow />
+                                         <span>BPM Processes</span>
+                                    </Link>
+                                </SidebarMenuButton>
+                             </SidebarMenuItem>
+                          )}
+
+                        {/* Manage Users Link - Visible only if user has 'manage_users' (typically admin) */}
+                         {hasPermission(userRole, 'manage_users') && (
+                             <SidebarMenuItem>
+                                <SidebarMenuButton asChild>
+                                   <Link href="/admin/users">
+                                        <ShieldCheck /> {/* Icon for user management */}
+                                        <span>Manage Users</span>
+                                   </Link>
+                               </SidebarMenuButton>
+                             </SidebarMenuItem>
+                         )}
                     </SidebarMenu>
                  </SidebarGroup>
             </SidebarContent>
@@ -151,7 +181,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
                      <SidebarMenuItem>
                          <SidebarMenuButton onClick={handleLogout} className="text-destructive hover:bg-destructive/10 focus:bg-destructive/10">
                              <LogOut />
-                             <span>Logout</span>
+                             <span>Logout ({userProfile?.email})</span> {/* Show user email */}
                          </SidebarMenuButton>
                      </SidebarMenuItem>
                 </SidebarMenu>

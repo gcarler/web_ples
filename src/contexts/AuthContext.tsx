@@ -2,35 +2,85 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { getAuth, onAuthStateChanged, User } from 'firebase/auth';
-import { app } from '@/lib/firebase/firebase-config'; // Import your Firebase app instance
+import { getAuth, onAuthStateChanged, User as FirebaseAuthUser } from 'firebase/auth';
+import { doc, getDoc, Timestamp, onSnapshot } from 'firebase/firestore'; // Import Firestore functions
+import { app, db } from '@/lib/firebase/firebase-config'; // Import Firebase app instance and Firestore db
+import { UserProfile, UserProfileSchema, UserRole } from '@/lib/models/user'; // Import UserProfile types
 import { Skeleton } from '@/components/ui/skeleton'; // For loading state
 
 interface AuthContextType {
-  user: User | null;
+  user: FirebaseAuthUser | null;
+  userProfile: UserProfile | null;
   loading: boolean;
+  userRole: UserRole | null; // Add userRole to context
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<FirebaseAuthUser | null>(null);
+  const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
   const auth = getAuth(app);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribeAuth = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
-      setLoading(false);
+      if (currentUser) {
+        // User is logged in, fetch profile from Firestore using onSnapshot for real-time updates
+        const userDocRef = doc(db, 'users', currentUser.uid);
+        const unsubscribeProfile = onSnapshot(userDocRef, (docSnap) => {
+          if (docSnap.exists()) {
+            const data = docSnap.data();
+            // Ensure Timestamps are correctly handled
+            if (data.createdAt && !(data.createdAt instanceof Timestamp)) {
+                data.createdAt = data.createdAt.toDate ? data.createdAt.toDate() : new Date(); // Convert potential server timestamp
+            }
+             if (data.updatedAt && !(data.updatedAt instanceof Timestamp)) {
+                 data.updatedAt = data.updatedAt.toDate ? data.updatedAt.toDate() : new Date(); // Convert potential server timestamp
+            }
+
+            // Zod validation (consider handling errors)
+            const parsedProfile = UserProfileSchema.safeParse({ ...data, uid: currentUser.uid });
+            if(parsedProfile.success){
+                 // Convert JS Dates back to Timestamps for consistency if needed, or adjust schema
+                setUserProfile({
+                    ...parsedProfile.data,
+                    createdAt: parsedProfile.data.createdAt instanceof Date ? Timestamp.fromDate(parsedProfile.data.createdAt) : parsedProfile.data.createdAt,
+                    updatedAt: parsedProfile.data.updatedAt instanceof Date ? Timestamp.fromDate(parsedProfile.data.updatedAt) : parsedProfile.data.updatedAt,
+                });
+            } else {
+                console.error("Firestore User Profile validation error:", parsedProfile.error);
+                setUserProfile(null); // Handle invalid profile data
+            }
+
+          } else {
+            // Handle case where user exists in Auth but not in Firestore 'users' collection
+            console.warn(`User profile not found in Firestore for uid: ${currentUser.uid}`);
+            // Potentially create a default profile here or assign a default role
+            setUserProfile(null);
+          }
+          setLoading(false); // Set loading to false after profile fetched/checked
+        }, (error) => {
+            console.error("Error fetching user profile:", error);
+            setUserProfile(null);
+            setLoading(false);
+        });
+         return () => unsubscribeProfile(); // Cleanup profile listener on auth state change or unmount
+
+      } else {
+        // User is logged out
+        setUserProfile(null);
+        setLoading(false);
+      }
     });
 
-    // Cleanup subscription on unmount
-    return () => unsubscribe();
+    // Cleanup auth subscription on unmount
+    return () => unsubscribeAuth();
   }, [auth]);
 
-  // Show a loading state while authentication status is being determined
+  // Show a loading state while authentication status and profile are being determined
   if (loading) {
-    // You can replace this with a more sophisticated loading component or screen
      return (
         <div className="flex items-center justify-center min-h-screen">
             <div className="space-y-2">
@@ -41,8 +91,10 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         );
   }
 
+  const userRole = userProfile?.role ?? null;
+
   return (
-    <AuthContext.Provider value={{ user, loading }}>
+    <AuthContext.Provider value={{ user, userProfile, loading, userRole }}>
       {children}
     </AuthContext.Provider>
   );
@@ -53,7 +105,5 @@ export const useAuth = (): AuthContextType => {
   if (context === undefined) {
     throw new Error('useAuth must be used within an AuthProvider');
   }
-  // Return a default value when loading to avoid errors in consumers
-  // Or handle loading state explicitly in consumers
   return context;
 };

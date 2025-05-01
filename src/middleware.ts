@@ -3,73 +3,98 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { getAuth, Auth } from 'firebase-admin/auth';
 import admin from 'firebase-admin';
+import { UserProfile, UserRole, ROLES, hasPermission } from '@/lib/models/user'; // Import user models and permissions
+import { adminDb } from '@/lib/firebase/firebase-admin-config'; // Use existing admin init
+import { Timestamp } from 'firebase/firestore';
 
-// Helper function to initialize Firebase Admin SDK safely
-function initializeFirebaseAdmin(): Auth | null {
-    // Ensure initialization happens only once
-    if (admin.apps.length > 0) {
-        // console.log('Firebase Admin SDK already initialized.');
-        return getAuth(admin.app());
-    }
+// Helper function to get user profile from Firestore
+async function getUserProfile(uid: string): Promise<UserProfile | null> {
     try {
-        console.log('Attempting Firebase Admin SDK initialization in middleware...');
-        const projectId = process.env.FIREBASE_PROJECT_ID;
-        const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
-        const privateKeyEnv = process.env.FIREBASE_PRIVATE_KEY;
-
-        if (!projectId || !clientEmail || !privateKeyEnv) {
-            throw new Error('Missing Firebase Admin SDK environment variables.');
+        const userDocRef = adminDb.collection('users').doc(uid);
+        const docSnap = await userDocRef.get();
+        if (docSnap.exists) {
+            const data = docSnap.data() as any; // Cast needed for timestamp conversion
+             // Basic timestamp conversion (might need more robust handling)
+             if (data.createdAt && typeof data.createdAt.toDate === 'function') {
+                 data.createdAt = data.createdAt.toDate();
+             }
+             if (data.updatedAt && typeof data.updatedAt.toDate === 'function') {
+                 data.updatedAt = data.updatedAt.toDate();
+             }
+             // Convert back to Firestore Timestamps for schema validation
+            return {
+                ...data,
+                uid: uid,
+                 createdAt: data.createdAt instanceof Date ? Timestamp.fromDate(data.createdAt) : data.createdAt,
+                 updatedAt: data.updatedAt instanceof Date ? Timestamp.fromDate(data.updatedAt) : data.updatedAt,
+             } as UserProfile;
         }
-        const privateKey = privateKeyEnv.replace(/\\n/g, '\n');
-
-        admin.initializeApp({
-            credential: admin.credential.cert({ projectId, clientEmail, privateKey }),
-        });
-        console.log('Firebase Admin SDK initialized successfully in middleware.');
-        return getAuth(admin.app());
-    } catch (error: any) {
-        console.error("Middleware: Firebase Admin SDK failed to initialize.", error.message);
-        // Log the error but don't necessarily throw, allow middleware to proceed and handle auth check failure
-        return null; // Return null if initialization fails
+        return null;
+    } catch (error) {
+        console.error("Middleware: Error fetching user profile:", error);
+        return null;
     }
 }
 
-// Attempt to initialize Firebase Admin when the module loads.
-// If it fails, adminAuth will be null, and the middleware will handle it.
-const adminAuth = initializeFirebaseAdmin();
+
+// Mapping of admin routes to required permissions
+const routePermissions: Record<string, string> = {
+    '/admin/dashboard': 'view_dashboard',
+    '/admin/crm': 'manage_crm',
+    '/admin/crm/opportunities': 'manage_crm',
+    '/admin/erp/products': 'manage_erp',
+    '/admin/erp/orders': 'manage_erp',
+    '/admin/bpm/processes': 'view_bpm', // Assuming view_bpm allows viewing list
+    '/admin/users': 'manage_users',
+    '/admin/users/new': 'manage_users',
+    // Add more specific routes if needed, e.g., /admin/erp/orders/[id] might require 'manage_erp'
+};
+
+// Function to check permission for a given path
+function checkRoutePermission(role: UserRole | undefined | null, pathname: string): boolean {
+    if (!role) return false; // No role, no access
+
+    // Allow admin access to everything
+    if (role === 'admin') return true;
+
+    // Find the permission required for the specific or base path
+    let requiredPermission: string | undefined = undefined;
+    for (const route in routePermissions) {
+        // Check for exact match or if the path starts with a defined route base
+        if (pathname === route || pathname.startsWith(route + '/')) {
+            requiredPermission = routePermissions[route];
+            break;
+        }
+    }
+
+    // If no specific permission is defined for the route, deny access by default for safety
+    if (!requiredPermission) {
+        console.warn(`Middleware: No permission defined for route: ${pathname}. Denying access.`);
+        return false;
+    }
+
+    // Check if the user's role has the required permission
+    return hasPermission(role, requiredPermission);
+}
+
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const loginUrl = new URL('/login', request.url); // Base URL for login redirect
+  const dashboardUrl = new URL('/admin/dashboard', request.url); // Default admin page
+  const forbiddenUrl = new URL('/403', request.url); // Create a 403 Forbidden page if needed
 
-  // If Firebase Admin SDK failed to initialize, block access to admin routes immediately.
-  if (pathname.startsWith('/admin') && !adminAuth) {
-      console.error("Middleware: Blocking admin access, Firebase Admin SDK not initialized.");
-      loginUrl.searchParams.set('error', 'config_error'); // Add error param
-      return NextResponse.redirect(loginUrl);
-  }
-
-  // No need to run auth checks if adminAuth is null (initialization failed)
-  // Allow non-admin routes even if admin SDK init failed
-  if (!adminAuth && !pathname.startsWith('/admin')) {
-      return NextResponse.next();
-  }
-   // Handle the case where adminAuth failed but we are on a non-admin path
-    if (!adminAuth && pathname !== '/login' && !pathname.startsWith('/_next') && !pathname.startsWith('/favicon.ico') && !pathname.startsWith('/api') && !pathname.startsWith('/images') ) {
-         // Allow access to non-admin pages even if admin SDK fails
-         // console.log('Middleware: Allowing non-admin path despite Admin SDK init failure.');
-         return NextResponse.next();
-    }
-
-
-  // Check if the route is an admin route (paths starting with /admin)
+  // Check if the route is an admin route
   if (pathname.startsWith('/admin')) {
-      // Check again if adminAuth is initialized, just in case
-       if (!adminAuth) {
-         console.error("Middleware: Blocking admin access, Firebase Admin SDK not initialized (redundant check).");
-         loginUrl.searchParams.set('error', 'config_error');
-         return NextResponse.redirect(loginUrl);
-       }
+      // Firebase Admin SDK should already be initialized via firebase-admin-config.ts
+      let adminAuthInstance: Auth | null = null;
+      try {
+          adminAuthInstance = getAuth(admin.app());
+      } catch (e) {
+           console.error("Middleware: Firebase Admin SDK not initialized.", e);
+           loginUrl.searchParams.set('error', 'config_error');
+           return NextResponse.redirect(loginUrl);
+      }
 
       const token = request.cookies.get('firebaseIdToken')?.value;
 
@@ -79,15 +104,36 @@ export async function middleware(request: NextRequest) {
       }
 
       try {
-          // Verify the ID token using the initialized adminAuth
-          await adminAuth.verifyIdToken(token);
-          // console.log('Middleware: Token verified, allowing access to admin route.');
-          return NextResponse.next(); // User is authenticated
+          // Verify the ID token
+          const decodedToken = await adminAuthInstance.verifyIdToken(token);
+          const uid = decodedToken.uid;
+
+          // Fetch user profile to get the role
+          const userProfile = await getUserProfile(uid);
+
+          if (!userProfile) {
+              console.warn(`Middleware: User profile not found for UID ${uid}. Redirecting to login.`);
+              const response = NextResponse.redirect(loginUrl);
+              response.cookies.set('firebaseIdToken', '', { path: '/', maxAge: -1 }); // Clear cookie
+              return response;
+          }
+
+          // Check if the user's role has permission for the requested route
+          if (!checkRoutePermission(userProfile.role, pathname)) {
+              console.warn(`Middleware: User ${uid} (${userProfile.role}) does not have permission for ${pathname}. Redirecting.`);
+              // Redirect to dashboard or a dedicated 'forbidden' page
+              // For simplicity, redirecting to dashboard for now
+              return NextResponse.redirect(dashboardUrl); // Or forbiddenUrl
+          }
+
+          // User is authenticated and has permission
+          // console.log(`Middleware: User ${uid} (${userProfile.role}) allowed access to ${pathname}.`);
+          return NextResponse.next();
+
       } catch (error) {
           console.error('Middleware: Invalid or expired token for admin route, redirecting to login.', error);
           const response = NextResponse.redirect(loginUrl);
-          // Clear invalid cookie on redirect
-          response.cookies.set('firebaseIdToken', '', { path: '/', maxAge: -1 });
+          response.cookies.set('firebaseIdToken', '', { path: '/', maxAge: -1 }); // Clear invalid cookie
           return response;
       }
   }
@@ -98,16 +144,11 @@ export async function middleware(request: NextRequest) {
 
 // Configuration for the middleware
 export const config = {
-  // IMPORTANT: Middleware needs Node.js runtime because firebase-admin uses Node.js APIs
+  // Use Node.js runtime because firebase-admin requires it
   runtime: 'nodejs',
-  // Matcher defines which paths the middleware runs on.
-  // Apply to all admin routes.
-  // Exclude public files (_next/static, images, favicon.ico) and API routes.
-  // Also exclude the login page itself to avoid redirect loops.
   matcher: [
-    '/admin/:path*', // Matches all routes under /admin/
-    // The matcher below might be too broad if you only want to protect /admin
-    // '/((?!api|_next/static|_next/image|favicon.ico|login).*)', // Example of broader matcher excluding specifics
-    // Let's stick to just protecting /admin/* for now
+    '/admin/:path*', // Apply middleware to all routes under /admin/
+    // Exclude API routes, static files, image optimization files etc. by convention
+    // '/((?!api|_next/static|_next/image|favicon.ico|login).*)', // This matcher might be too broad if login isn't excluded properly
   ],
 };
