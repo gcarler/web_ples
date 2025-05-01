@@ -15,7 +15,7 @@ if (!admin.apps.length) {
             console.error(
                 'Firebase Admin SDK Error: CRITICAL - Missing required environment variables.\n' +
                 'Ensure FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL, and FIREBASE_PRIVATE_KEY are set correctly in your .env.local file.\n' +
-                'See detailed instructions at the bottom of this file (src/lib/firebase/firebase-admin-config.ts).'
+                '>>> Check instructions at the bottom of src/lib/firebase/firebase-admin-config.ts <<<'
             );
             throw new Error('Missing Firebase Admin SDK configuration environment variables.');
         }
@@ -47,7 +47,7 @@ if (!admin.apps.length) {
          // Log the beginning and end of the processed key for validation (DO NOT log the full key)
          const keyPreviewStart = privateKey.substring(0, 40).replace(/\n/g, '\\n'); // Show newlines as \n in preview
          const keyPreviewEnd = privateKey.substring(privateKey.length - 40).replace(/\n/g, '\\n');
-         console.log(`Processed Private Key Preview - Starts with: "${keyPreviewStart}..." Ends with: "...${keyPreviewEnd}"`);
+         // console.log(`Processed Private Key Preview - Starts with: "${keyPreviewStart}..." Ends with: "...${keyPreviewEnd}"`);
 
 
         // 4. Validate that the processed key starts and ends correctly (basic PEM check)
@@ -65,7 +65,7 @@ if (!admin.apps.length) {
                 '2. Include the exact BEGIN and END header/footer lines.\n' +
                 '3. Use literal `\\n` for newlines INSIDE the quotes.\n' +
                 '4. Ensure the final `\\n` is present just before the closing quote.\n'+
-                'See detailed instructions at the bottom of this file.'
+                '>>> Check instructions at the bottom of src/lib/firebase/firebase-admin-config.ts <<<'
              );
              throw new Error('Invalid Firebase Private Key format after processing (header/footer or newline issue).');
         } else {
@@ -95,7 +95,7 @@ if (!admin.apps.length) {
                  '3. Are the newline characters represented as literal `\\n` (backslash followed by n) *inside* the quotes?\n' +
                  '4. **CRITICAL:** Is the final `\\n` AFTER `-----END PRIVATE KEY-----` present *inside* the closing double quote?\n' +
                  '5. Did you **RESTART** your Next.js server (`npm run dev` or `yarn dev`) after saving changes to `.env.local`?\n' +
-                 'Refer to the detailed instructions at the bottom of this file.'
+                 '>>> Refer to the detailed instructions at the bottom of src/lib/firebase/firebase-admin-config.ts <<<'
             );
         }
         // Re-throw the error to stop the application if initialization fails critically
