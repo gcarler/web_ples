@@ -42,9 +42,9 @@ export default function AboutPage() {
   return (
     // Updated layout for better structure and padding
     <div className="container mx-auto py-10 px-4 sm:px-6 lg:px-8 space-y-12">
-      {/* Main "Sobre Nosotros" Section */}
-      <section className="border rounded-lg p-8 shadow-md bg-card text-card-foreground">
-        <h1 className="text-4xl font-bold mb-6 text-center text-primary">Sobre Nosotros</h1>
+      {/* Main "Sobre Nosotros" Section - Removed card styling, adjusted width and centering */}
+      <section className="max-w-2xl mx-auto text-center">
+        <h1 className="text-4xl font-bold mb-6 text-primary">Sobre Nosotros</h1>
         <p className="text-lg mb-4">
           Con una visión global y un enfoque multidisciplinario, nuestro equipo converge talentos y conocimientos diversos para la consecución de objetivos trascendentes. En PLES, valoramos la riqueza de cada perspectiva, cultivando un espacio donde las ideas disruptivas e innovadoras florecen, permitiendo intervenciones estratégicas y perspicaces en cualquier escenario.
         </p>
