@@ -1,6 +1,8 @@
 import { Button } from '@/components/ui/button';
 import DynamicSection from '@/components/DynamicSection';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'; // Import Card components
+import { ArrowLeft } from 'lucide-react';
+import Link from 'next/link';
 
 // Metadata for SEO
 export const metadata = {
@@ -49,7 +51,8 @@ export default function AboutPage() {
         <p className="text-lg mb-4">
           Con una visión global y un enfoque multidisciplinario, nuestro equipo converge talentos y conocimientos diversos para la consecución de objetivos trascendentes. En PLES, valoramos la riqueza de cada perspectiva, cultivando un espacio donde las ideas disruptivas e innovadoras florecen, permitiendo intervenciones estratégicas y perspicaces en cualquier escenario.
         </p>
-        <p className="text-lg">
+        {/* Make text larger and bold */}
+        <p className="text-xl font-bold">
           CON LOS ATRIBUTOS QUE TRAE.
         </p>
          {/* Moved Valores Fundamentales here, added blue background and text color */}
