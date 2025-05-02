@@ -52,9 +52,9 @@ export default function AboutPage() {
         <p className="text-lg">
           CON LOS ATRIBUTOS QUE TRAE.
         </p>
-         {/* Moved Valores Fundamentales here */}
-         <div className="border rounded-lg p-8 shadow-md bg-card text-card-foreground mt-8">
-             <h2 className="text-2xl font-bold mb-4 text-center text-primary">Nuestros Valores Fundamentales</h2>
+         {/* Moved Valores Fundamentales here, added blue background and text color */}
+         <div className="border rounded-lg p-8 shadow-md bg-primary text-primary-foreground mt-8">
+             <h2 className="text-2xl font-bold mb-4 text-center">Nuestros Valores Fundamentales</h2>
              <p className="text-base"> {/* Adjusted text size */}
                  Integridad como principio rector, innovación como motor de progreso y colaboración como esencia de nuestro accionar. Estos valores se manifiestan en nuestro compromiso inquebrantable con la resiliencia ambiental y la equidad de género, buscando generar un legado significativo y duradero en cada comunidad que abrazamos.
              </p>
