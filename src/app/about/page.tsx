@@ -44,22 +44,13 @@ export default function AboutPage() {
           <section className="flex-1 flex flex-col justify-start h-full">
              <div className="p-8 rounded-lg shadow-md">
               <h2 className="text-4xl font-bold mb-4">Somos PLES</h2> {/* Title */}
-              <p className="text-xl"><span className="font-bold">
-                <span className="font-bold">
-                  {' '}
-                  somos un equipo de personas apasionadas por el poder
-                  transformador
-                </span>
-                <span className="text-green-500">
-                  {' '}
-                  de la innovación y la tecnología.
-                </span>{' '}
-                <span className="font-semibold">Creemos firmemente que, mediante la colaboración y la interdisciplinariedad, es posible construir soluciones</span>
-                <span className="text-gray-600"> que impacten positivamente a la sociedad.</span>
-                </span></p> {/* Description */}
+              {/* Updated paragraph with specific formatting */}
+              <p className="text-xl">
+                Somos un equipo de <span className="text-accent font-bold">PERSONAS APASIONADAS</span> por el poder transformador de la INNOVACIÓN y la TECNOLOGÍA. CREEMOS firmemente que, mediante la <span className="text-accent font-bold">COLABORACIÓN</span> y la <span className="text-accent">interdisciplinariedad</span>, es posible construir soluciones que impacten positivamente a la sociedad.
+              </p>
               </div>
           </section>
-          {/* Right column: Dynamic sections */}          
+          {/* Right column: Dynamic sections */}
           <div className="flex-1 space-y-4"> {/* Container for the dynamic sections with spacing */}
             {sections.map((section, index) => (
               <DynamicSection key={index} {...section} /> // Render each dynamic section
