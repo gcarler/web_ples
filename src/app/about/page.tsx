@@ -65,7 +65,10 @@ export default function AboutPage() {
       <section className="grid grid-cols-1 sm:grid-cols-2 gap-6"> {/* Inner grid for cards */}
         {sections.map((section, index) => (
           // Wrap DynamicSection in a Card for consistent styling
-           <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
+           <Card
+             key={index}
+             className="hover:shadow-lg hover:bg-primary hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out group" // Added hover effects and group
+            >
              <CardContent className="p-0"> {/* Remove default CardContent padding */}
                  <DynamicSection {...section} />
              </CardContent>
