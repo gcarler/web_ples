@@ -6,16 +6,15 @@ import { useRouter } from 'next/navigation';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'; // Import Firebase Auth functions
 import { app } from '@/lib/firebase/firebase-config'; // Import Firebase app instance
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
-import { LogIn } from 'lucide-react';
+import { LogIn, User, Lock } from 'lucide-react'; // Import icons
 import Link from 'next/link'; // Import Link
-import { PlesGroupLogo } from '@/components/logo'; // Import the logo
+import Image from 'next/image'; // Import Image
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState(''); // Use email for username field
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -31,8 +30,8 @@ export default function LoginPage() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       toast({
-        title: 'Login Successful',
-        description: 'Welcome back!',
+        title: 'Inicio de Sesión Exitoso', // Changed to Spanish
+        description: '¡Bienvenido de nuevo!', // Changed to Spanish
       });
       // Store token in cookie (client-side) after successful login
       const user = auth.currentUser;
@@ -44,22 +43,22 @@ export default function LoginPage() {
       router.push('/admin/dashboard'); // Redirect to dashboard after successful login
     } catch (err: any) {
       console.error('Login Error:', err);
-      let errorMessage = 'Failed to log in. Please check your credentials.';
+      let errorMessage = 'Fallo al iniciar sesión. Por favor revise sus credenciales.'; // Changed to Spanish
       // Provide more specific Firebase error messages if needed
       if (err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential') {
-        errorMessage = 'Invalid email or password.';
+        errorMessage = 'Email o contraseña inválidos.'; // Changed to Spanish
       } else if (err.code === 'auth/invalid-email') {
-          errorMessage = 'Please enter a valid email address.';
+          errorMessage = 'Por favor ingrese una dirección de email válida.'; // Changed to Spanish
       } else if (err.code === 'auth/api-key-not-valid' || err.code === 'auth/api-key-not-valid.-please-pass-a-valid-api-key.') {
-          errorMessage = 'Firebase API Key is invalid. Please check your environment variables.';
+          errorMessage = 'La clave API de Firebase es inválida. Por favor revise sus variables de entorno.'; // Changed to Spanish
            console.error("Firebase Config Error: API Key is not valid. Ensure NEXT_PUBLIC_FIREBASE_API_KEY is set correctly in your .env.local file and the server was restarted.");
-           toast({ title: "Firebase Configuration Error", description: "The Firebase API Key is invalid. Please contact the administrator.", variant: "destructive"})
+           toast({ title: "Error de Configuración de Firebase", description: "La clave API de Firebase es inválida. Por favor contacte al administrador.", variant: "destructive"}) // Changed to Spanish
       }
       setError(errorMessage);
       // Don't show generic toast if it's the API key error, already shown above.
       if (err.code !== 'auth/api-key-not-valid' && err.code !== 'auth/api-key-not-valid.-please-pass-a-valid-api-key.') {
         toast({
-          title: 'Login Failed',
+          title: 'Inicio de Sesión Fallido', // Changed to Spanish
           description: errorMessage,
           variant: 'destructive',
         });
@@ -70,67 +69,93 @@ export default function LoginPage() {
   };
 
   return (
-    // Centered layout, using theme colors
-    <div className="flex flex-col items-center justify-center min-h-screen bg-background px-4 py-12">
-      {/* Increased max-width from md to lg */}
-      <Card className="w-full max-w-lg border shadow-xl rounded-xl bg-card text-card-foreground">
-        <CardHeader className="space-y-4 text-center pt-8">
-           <PlesGroupLogo className="h-12 w-12 mx-auto text-primary" />
-          {/* Title removed from here */}
-        </CardHeader>
-        <form onSubmit={handleLogin}>
-          <CardContent className="space-y-4 px-8">
-            <div className="space-y-2">
-              {/* Input with theme-based background and rounded corners */}
+    // Two-column layout for the login page
+    <div className="flex min-h-screen bg-background">
+      {/* Left Column: Image */}
+      <div className="relative hidden lg:block lg:w-1/2">
+        <Image
+          src="https://picsum.photos/1200/1600?random=42" // Placeholder image, replace with actual one
+          alt="GestorDoc Background"
+          layout="fill"
+          objectFit="cover"
+          data-ai-hint="document management interface"
+        />
+        {/* Text Overlay - Adjust styling as needed */}
+        <div className="absolute bottom-10 left-10 z-10">
+           <span className="text-white text-5xl font-bold tracking-wider">gestordoc</span>
+        </div>
+      </div>
+
+      {/* Right Column: Login Form */}
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 sm:p-12">
+        <div className="w-full max-w-md space-y-6">
+          <div>
+            <h1 className="text-3xl font-bold">Entrar</h1>
+            <p className="text-muted-foreground mt-2">Por favor complete su información a continuación</p>
+          </div>
+
+          <form onSubmit={handleLogin} className="space-y-4">
+             {/* Username (Email) Input */}
+            <div className="relative">
+              <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
               <Input
                 id="email"
                 type="email"
-                placeholder="Email"
+                placeholder="Nombre de Usuario" // Using Email for username
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 disabled={isLoading}
-                className="rounded-md" // Use theme radius
+                className="pl-10 py-2 h-12 rounded-lg bg-muted/50 border-none focus:ring-primary focus:ring-2" // Updated styling
               />
             </div>
-            <div className="space-y-2">
-              {/* Input with theme-based background and rounded corners */}
+
+            {/* Password Input */}
+            <div className="relative">
+              <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
               <Input
                 id="password"
                 type="password"
-                placeholder="Password" // Changed placeholder to English for consistency
+                placeholder="Contraseña"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 disabled={isLoading}
-                 className="rounded-md" // Use theme radius
+                className="pl-10 py-2 h-12 rounded-lg bg-muted/50 border-none focus:ring-primary focus:ring-2" // Updated styling
               />
             </div>
+
             {error && (
-              <p className="text-sm text-destructive text-center">{error}</p> // Use theme's destructive color
+              <p className="text-sm text-destructive text-center">{error}</p>
             )}
-          </CardContent>
-          <CardFooter className="flex flex-col space-y-4 px-8 pb-8">
-             {/* Login button with theme-based colors and rounded corners */}
-            <Button type="submit" className="w-full rounded-md" disabled={isLoading}>
-              {isLoading ? 'Logging in...' : 'Login'}
+
+             {/* Login Button */}
+            <Button
+              type="submit"
+              className="w-full h-12 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 text-base" // Updated styling, using theme primary color
+              disabled={isLoading}
+            >
+              {isLoading ? 'Iniciando...' : 'Iniciar Sección'}
               {!isLoading && <LogIn className="ml-2 h-4 w-4" />}
             </Button>
-             {/* Register and Forgot Password links */}
-            <div className="flex justify-between w-full text-sm">
-              {/* Ensure Link is the only direct child when using asChild */}
-              <Button variant="link" asChild className="px-0 text-muted-foreground hover:text-primary">
-                 {/* Wrap Link content in a span or other element */}
-                 <Link href="/register"><span>Register an account</span></Link>
-              </Button>
-              <Button variant="link" asChild className="px-0 text-muted-foreground hover:text-primary">
-                 {/* Wrap Link content in a span or other element */}
-                 <Link href="/forgot-password"><span>Forgot password?</span></Link>
-              </Button>
-            </div>
-          </CardFooter>
-        </form>
-      </Card>
+          </form>
+
+           {/* Forgot Password Link */}
+          <div className="text-center">
+            <Button variant="link" asChild className="text-primary text-sm hover:underline px-0">
+              <Link href="/forgot-password">¿Olvidaste tu contraseña?</Link>
+            </Button>
+          </div>
+
+           {/* Register Link (Optional, uncomment if needed) */}
+           {/* <div className="text-center text-sm text-muted-foreground">
+             ¿No tienes cuenta?{' '}
+             <Button variant="link" asChild className="text-primary hover:underline px-0">
+               <Link href="/register">Regístrate aquí</Link>
+             </Button>
+           </div> */}
+        </div>
+      </div>
     </div>
   );
 }

@@ -119,12 +119,12 @@ export function Header() {
           <span>PLES</span>
         </Link>
         <div className="flex items-center gap-4">
-            <ul className="flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-2 items-center justify-center sm:justify-end w-full sm:w-auto">
+            <ul className="flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-2 items-center justify-center sm:justify-end w-full sm:w-auto mr-4">
                <li>
                 <Link href="/" className="text-sm font-medium hover:text-primary transition-colors">
-                  inicio
+                  Inicio
                 </Link>
-              </li>
+              </li>  
               <li>
                 <Link href="/about" className="text-sm font-medium hover:text-primary transition-colors">
                   sobre nosotros
@@ -149,7 +149,12 @@ export function Header() {
                 <Link href="/ples-consulting" className="text-sm font-medium hover:text-primary transition-colors">
                   Ples consulting
                 </Link>
-              </li>
+                </li>
+                <li>
+                <Link href="/forms" className="text-sm font-medium hover:text-primary transition-colors">
+                  forms
+                </Link>
+                </li>
 
             </ul>
             {/* Conditional Admin Dropdown or Login Button */}

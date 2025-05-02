@@ -1,18 +1,49 @@
 // src/services/bpm-service.ts
 'use server'; // Mark this module for server-side execution
 
-import { ProcessInstance, ProcessInstanceFirestore, ProcessInstanceFirestoreSchema } from '@/lib/models/bpm';
+import { ProcessInstance, ProcessInstanceFirestore, ProcessInstanceFirestoreSchema, ProcessInstanceOutputSchema, ProcessInstanceInput } from '@/lib/models/bpm';
 import { OpportunityFirestore } from '@/lib/models/opportunity'; // Import Opportunity type
-import { Order} from '@/lib/models/erp'; // Import Order type
+import { Order } from '@/lib/models/erp'; // Import Order type
 import { adminDb } from '@/lib/firebase/firebase-admin-config';
-import { addDoc, Timestamp, updateDoc, serverTimestamp, getDoc, query, where, getDocs, limit, DocumentReference } from 'firebase/firestore';
+import { addDoc, Timestamp, updateDoc, serverTimestamp, getDoc, query, where, getDocs, limit, collection, doc, FirestoreDataConverter, QueryDocumentSnapshot, SnapshotOptions, DocumentData } from 'firebase/firestore';
 import { checkProductStock, createErpOrder, getErpOrderDetails, updateErpOrderStatus } from './erp-service'; // Import ERP service
+import { z } from 'zod';
 
 const PROCESS_DEFINITIONS = {
     OPPORTUNITY_TO_CASH: 'opportunity-to-cash-v1',
     SHIPPING_PROCESS: 'shipping-process-v1',
     // Add other process definitions here
 };
+// Define Process Instances collection name
+const PROCESS_INSTANCES_COLLECTION = 'processInstances';
+
+
+const processInstanceConverter: FirestoreDataConverter<ProcessInstanceFirestore> = {
+    toFirestore(processInstance: ProcessInstanceFirestore): DocumentData {
+        // Validate with Zod before converting to Firestore
+        const validatedData = ProcessInstanceOutputSchema.parse(processInstance);
+        return validatedData; // Firestore can store the validated data as-is
+    },
+    fromFirestore(
+        snapshot: QueryDocumentSnapshot,
+        options: SnapshotOptions
+    ): ProcessInstanceFirestore {
+        const data = snapshot.data(options);
+
+        // Validate data from Firestore with Zod
+        const parsedData = ProcessInstanceOutputSchema.safeParse(data);
+        if (!parsedData.success) {
+            console.error('Error parsing data from Firestore:', parsedData.error);
+            throw new Error('Invalid data received from Firestore');
+        }
+        return { id: snapshot.id, ...parsedData.data };
+    },
+};
+
+
+const processInstancesCol = collection(adminDb, PROCESS_INSTANCES_COLLECTION).withConverter(processInstanceConverter);
+
+
 
 /**
  * Starts the "Opportunity to Cash" process when an opportunity is won.
@@ -21,7 +52,7 @@ const PROCESS_DEFINITIONS = {
  * @param opportunityData The full opportunity data.
  * @returns Boolean indicating if the process was successfully initiated.
  */
-export async function startOpportunityToCashProcess(opportunityId: string, opportunityData: OpportunityFirestore): Promise<boolean> {
+export async function startOpportunityToCashProcess(opportunityId: string, opportunityData: OpportunityFirestore) {
     console.log(`BPM Service: Starting Opportunity-to-Cash process for Opportunity ID: ${opportunityId}`);    
     try {
         const processInstanceData: Omit<ProcessInstance, 'id'> = {
@@ -41,8 +72,7 @@ export async function startOpportunityToCashProcess(opportunityId: string, oppor
         };
 
         // --- Create Process Instance in Firestore ---
-        const processInstancesCol = adminDb.collection('processInstances').withConverter(ProcessInstanceFirestoreSchema);
-        const docRef = await addDoc(processInstancesCol, {
+        const docRef = await addDoc(collection(adminDb, PROCESS_INSTANCES_COLLECTION).withConverter(processInstanceConverter), {
             ...processInstanceData,
             lastUpdatedAt: serverTimestamp(), // Set initial update time server-side
         });
@@ -112,7 +142,7 @@ export async function startOpportunityToCashProcess(opportunityId: string, oppor
  * @param orderId The ID of the ERP order to be shipped.
  * @returns Boolean indicating success.
  */
-export async function startShippingProcess(orderId: string): Promise<boolean> {
+export async function startShippingProcess(orderId: string) {
     console.log(`BPM Service: Starting Shipping Process for Order ID: ${orderId}`);
      try {
         // Check if a shipping process already exists for this order
@@ -135,8 +165,7 @@ export async function startShippingProcess(orderId: string): Promise<boolean> {
         };
 
          // --- Create Process Instance in Firestore ---
-        const processInstancesCol = adminDb.collection('processInstances').withConverter(ProcessInstanceFirestoreSchema);
-        const docRef = await addDoc(processInstancesCol, {
+        const docRef = await addDoc(collection(adminDb, PROCESS_INSTANCES_COLLECTION).withConverter(processInstanceConverter), {
             ...processInstanceData,
             lastUpdatedAt: serverTimestamp(), // Set initial update time server-side
         });
@@ -207,14 +236,14 @@ export async function startShippingProcess(orderId: string): Promise<boolean> {
  * @param updates An object containing the fields to update. Uses serverTimestamp for lastUpdatedAt.
  * @returns Boolean indicating success.
  */
-export async function updateProcessInstance(processInstanceId: string, updates: Partial<Omit<ProcessInstanceFirestore, 'id' | 'lastUpdatedAt'>>): Promise<boolean> {
+export async function updateProcessInstance(processInstanceId: string, updates: Partial<ProcessInstanceInput>): Promise<boolean> {
     console.log(`BPM Service: Updating Process Instance ${processInstanceId} in Firestore`);
     if (!processInstanceId) {
-         console.error("BPM Service Error: Invalid processInstanceId provided for update.");
-         return false;
+        console.error("BPM Service Error: Invalid processInstanceId provided for update.");
+        return false;
     }
     try {
-        const processRef = adminDb.doc(`processInstances/${processInstanceId}`).withConverter(ProcessInstanceFirestoreSchema);
+        const processRef = adminDb.doc(`processInstances/${processInstanceId}`).withConverter(processInstanceConverter);
         
         const dataToUpdate: Record<string, any> = { ...updates };
 
@@ -252,15 +281,14 @@ export async function findProcessInstanceByCorrelationId(correlationId: string, 
     if (!correlationId || !processDefinitionId) return null;
 
     try {
-        const instancesCol = adminDb.collection('processInstances').withConverter(ProcessInstanceFirestoreSchema);        
+        const instancesCol = collection(adminDb, PROCESS_INSTANCES_COLLECTION).withConverter(processInstanceConverter);      
         const q = query(
             instancesCol,
            where('correlationId', '==', correlationId),
             where('processDefinitionId', '==', processDefinitionId),
             limit(1) // We only expect one active instance per correlation/definition
         );
-
-        const snapshot = await getDocs(q);
+        const snapshot = await getDocs(q);        
         
         if (snapshot.empty) {
             console.log(`No process instance found for correlationId=${correlationId}, definitionId=${processDefinitionId}`);
@@ -281,5 +309,32 @@ export async function findProcessInstanceByCorrelationId(correlationId: string, 
     } catch (error) {
         console.error(`Error finding process instance by correlation ID ${correlationId}:`, error);
         return null;
+    }
+}
+
+export async function addProcessInstance(processInstance: ProcessInstanceInput) {
+    console.log(`BPM Service: Adding Process Instance in Firestore`);
+    try {
+        // --- Create Process Instance in Firestore ---
+        const docRef = await addDoc(collection(adminDb, PROCESS_INSTANCES_COLLECTION).withConverter(processInstanceConverter), {
+            ...processInstance,
+            lastUpdatedAt: serverTimestamp(), // Set initial update time server-side
+        } as ProcessInstanceFirestore);
+        const processInstanceId = docRef.id;
+        console.log(`BPM Process Instance created with ID: ${processInstanceId}`);
+        return { id: processInstanceId, ...processInstance } as ProcessInstanceFirestore;
+    } catch (error) {
+        console.error(`BPM Service Error: Failed to add process instance:`, error);
+        throw error;
+    }
+}
+
+export async function getProcessInstance(id: string): Promise<ProcessInstanceFirestore | undefined> {
+    try {
+        const processInstanceRef = doc(collection(adminDb, PROCESS_INSTANCES_COLLECTION).withConverter(processInstanceConverter), id);
+        const docSnap = await getDoc(processInstanceRef);
+        return docSnap.data();
+    } catch (error) {
+        throw error;
     }
 }

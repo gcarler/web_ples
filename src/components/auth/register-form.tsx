@@ -18,8 +18,8 @@ import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useToast } from "@/hooks/use-toast"
 import { addUser } from "@/app/actions/user-actions"; // Import the server action
-import { useFormState, useFormStatus } from "react-dom";
-import { useEffect } from "react";
+import { useFormStatus } from "react-dom";
+import { useEffect, useActionState } from "react";
 import { UserRoleSchema, UserRole } from "@/lib/models/user" // Import Role types
 
 // Define the Zod schema for form validation (client-side)
@@ -53,7 +53,7 @@ export function RegisterForm() {
   const { toast } = useToast();
   const initialState = { message: null, success: false };
   // Use the addUser server action
-  const [state, formAction] = useFormState(addUser, initialState);
+  const [state, formAction] = useActionState(addUser, initialState);
 
   const form = useForm<RegisterFormData>({
     resolver: zodResolver(formSchema),

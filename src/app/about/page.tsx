@@ -1,46 +1,76 @@
-// src/app/about/page.tsx
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import Image from 'next/image';
+import { Button } from '@/components/ui/button';
+import DynamicSection from '@/components/DynamicSection';
 
+// Metadata for SEO
 export const metadata = {
-  title: 'About Us - PLES',
-  description: 'Learn more about PLES and our mission.',
+  title: 'Sobre Nosotros - PLES', // Page title
+  description: 'Conoce más sobre PLES y nuestra misión.', // Page description
 };
-
+// Main component for the About Us page
 export default function AboutPage() {
+  // Define the data for the sections to be rendered dynamically
+  const sections = [
+    {
+      title: 'Nuestra Esencia',
+      content: 'Comprendiendo quienes somos.',
+      link: '/about/esencia',
+    },
+    {
+      title: 'Nuestro Propósito',
+      content: 'Explorando nuestro motor.',
+      link: '/about/proposito',
+    },
+    {
+      title: 'Colaboración Global',
+      content: 'Conoce cómo trabajamos.',
+      link: '/about/colaboracion',
+    },
+    {
+      title: 'Nuestra Misión',
+      content: 'Guiando nuestras acciones.',
+      link: '/about/mision',
+    },
+    {
+      title: 'Nuestra Visión',
+      content: 'Definiendo nuestro horizonte.',
+      link: '/about/vision',
+    },
+  ];
   return (
-    <div className="py-10 space-y-6 px-4 sm:px-6 lg:px-8">
-      <Card className="shadow-lg border">
-        <CardHeader>
-          <CardTitle className="text-2xl">About PLES</CardTitle>
-          <CardDescription>
-            Our mission is to provide innovative and efficient solutions that drive growth and digital transformation.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="grid gap-6">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div>
-              <p className="text-lg text-muted-foreground mb-4">
-                We are dedicated to delivering exceptional value through technology and expertise.
-              </p>
-              <p className="text-muted-foreground">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
-            </div>
-            <div className="relative h-64 md:h-80 rounded-lg overflow-hidden shadow-inner">
-              <Image
-                src="https://picsum.photos/600/400?random=8"
-                alt="PLES Team"
-                layout="fill"
-                objectFit="cover"
-                className="rounded-lg"
-                data-ai-hint="company team collaboration"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-            </div>
+    <section className="border rounded-lg p-8 shadow-md">
+      <div className="container mx-auto py-10 px-4 sm:px-6 lg:px-8 w-full"> {/* Main container for the page */}
+        <div className="flex w-full space-x-8 items-start p-4"> {/* Flex layout for the main content */}
+          {/* Left column: Somos PLES section, now enclosed in a box */}
+          <section className="flex-1 flex flex-col justify-start h-full">
+             <div className="p-8 rounded-lg shadow-md">
+              <h2 className="text-4xl font-bold mb-4">Somos PLES</h2> {/* Title */}
+              <p className="text-xl"><span className="font-bold">
+                <span className="font-bold">
+                  {' '}
+                  somos un equipo de personas apasionadas por el poder
+                  transformador
+                </span>
+                <span className="text-green-500">
+                  {' '}
+                  de la innovación y la tecnología.
+                </span>{' '}
+                <span className="font-semibold">Creemos firmemente que, mediante la colaboración y la interdisciplinariedad, es posible construir soluciones</span>
+                <span className="text-gray-600"> que impacten positivamente a la sociedad.</span>
+                </span></p> {/* Description */}
+              </div>
+          </section>
+          {/* Right column: Dynamic sections */}          
+          <div className="flex-1 space-y-4"> {/* Container for the dynamic sections with spacing */}
+            {sections.map((section, index) => (
+              <DynamicSection key={index} {...section} /> // Render each dynamic section
+            ))}
           </div>
-        </CardContent>
-      </Card>
-    </div>
+        </div>
+        {/* Call to action */}
+        <section className="calltoaction text-center mt-8">
+          <Button>Conoce nuestros proyectos</Button>
+        </section>
+      </div>
+    </section>
   );
 }

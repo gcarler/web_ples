@@ -4,7 +4,7 @@
 import { z } from 'zod';
 import { adminAuth, adminDb } from '@/lib/firebase/firebase-admin-config';
 import { UserProfile, UserProfileSchema, UserRoleSchema } from '@/lib/models/user';
-import { collection, getDocs, doc, setDoc, updateDoc, serverTimestamp, Timestamp, deleteDoc } from 'firebase/firestore';
+import { collection, getDocs, doc, setDoc, updateDoc, serverTimestamp, Timestamp, deleteDoc } from 'firebase-admin/firestore';
 import { revalidatePath } from 'next/cache';
 import { CreateUserRequest } from 'firebase-admin/auth';
 
@@ -27,6 +27,8 @@ export async function addUser(
 
     // Validate using the server-side schema
     const validatedData = AddUserInputSchema.safeParse(rawData);
+    console.log('validatedData:', validatedData);
+
 
     if (!validatedData.success) {
       console.error('Validation Error:', validatedData.error.flatten().fieldErrors);
@@ -40,7 +42,8 @@ export async function addUser(
     const { email, password, displayName, role } = validatedData.data;
 
     // 1. Create user in Firebase Authentication
-    const userRecord = await adminAuth.createUser({
+    console.log('Data being sent to adminAuth.createUser:', { email, password, displayName });
+      const userRecord = await adminAuth.createUser({
       email: email,
       password: password,
       displayName: displayName,
@@ -58,7 +61,8 @@ export async function addUser(
       // tenantId: // Assign tenant ID if using multi-tenancy
     };
 
-    const userDocRef = doc(adminDb, 'users', userRecord.uid);
+    console.log('Data being sent to setDoc:', userProfile);
+      const userDocRef = doc(adminDb, 'users', userRecord.uid);
     await setDoc(userDocRef, {
       ...userProfile,
       createdAt: serverTimestamp(),
@@ -73,6 +77,7 @@ export async function addUser(
     return { message: 'User created successfully!', success: true };
 
   } catch (error: any) {
+    console.error("Error catched", error)
     console.error('Error adding user:', error);
     let errorMessage = 'Failed to add user.';
     if (error.code === 'auth/email-already-exists') {
@@ -96,15 +101,15 @@ export async function getUsers(): Promise<UserProfile[]> {
     const users: UserProfile[] = userSnapshot.docs.map(doc => {
       const data = doc.data();
        // Ensure Timestamps are correctly handled
-       if (data.createdAt && !(data.createdAt instanceof Timestamp)) {
-         data.createdAt = Timestamp.fromMillis(data.createdAt.seconds * 1000);
-       }
-       if (data.updatedAt && !(data.updatedAt instanceof Timestamp)) {
-         data.updatedAt = Timestamp.fromMillis(data.updatedAt.seconds * 1000);
-       }
+      if (data.createdAt && !(data.createdAt instanceof Timestamp)) {
+          data.createdAt = Timestamp.fromMillis(data.createdAt.seconds * 1000)
+      }
+      if (data.updatedAt && !(data.updatedAt instanceof Timestamp)) {
+          data.updatedAt = Timestamp.fromMillis(data.updatedAt.seconds * 1000)
+      }
 
-      // Validate using UserProfileSchema
-      const parsedData = UserProfileSchema.safeParse({ uid: doc.id, ...data });
+        // Validate using UserProfileSchema
+       const parsedData = UserProfileSchema.safeParse({ uid: doc.id, ...data });
 
       if (!parsedData.success) {
         console.warn(`Invalid user profile data found in Firestore document ${doc.id}:`, parsedData.error);
@@ -144,7 +149,7 @@ export async function updateUserRole(
             return { message: 'Invalid input data.', success: false };
         }
 
-        const userDocRef = doc(adminDb, 'users', uid);
+        const userDocRef = doc(collection(adminDb, 'users'), uid);
         await updateDoc(userDocRef, {
             role: validatedData.data.role,
             updatedAt: serverTimestamp(),
@@ -168,21 +173,21 @@ export async function deleteUser(uid: string): Promise<{ message: string | null;
         await adminAuth.deleteUser(uid);
 
         // 2. Delete user profile from Firestore
-        const userDocRef = doc(adminDb, 'users', uid);
+        const userDocRef = doc(collection(adminDb, 'users'), uid);
         await deleteDoc(userDocRef);
 
         console.log(`User deleted successfully: ${uid}`);
         revalidatePath('/admin/users');
         return { message: 'User deleted successfully!', success: true };
     } catch (error: any) {
-        console.error(`Error deleting user ${uid}:`, error);
+     console.error(`Error deleting user ${uid}:`, error);
         let errMsg = 'Failed to delete user.';
         if (error.code === 'auth/user-not-found') {
             errMsg = 'User not found in Authentication. Firestore profile might still exist.';
              // Optionally try deleting Firestore doc again if auth user doesn't exist
              try {
                 const userDocRef = doc(adminDb, 'users', uid);
-                await deleteDoc(userDocRef);
+             await deleteDoc(userDocRef);
                 revalidatePath('/admin/users');
                 return { message: 'User deleted from Firestore (was not in Auth).', success: true };
              } catch (fsError) {

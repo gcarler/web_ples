@@ -1,7 +1,7 @@
 // src/app/actions/crm-actions.ts
 'use server';
 
-import { z } from 'zod';
+import { Timestamp as AdminTimestamp } from 'firebase-admin/firestore';
 import { collection, addDoc, getDocs, Timestamp, query, orderBy, doc, updateDoc, getDoc, serverTimestamp } from 'firebase/firestore';
 import { adminDb } from '@/lib/firebase/firebase-admin-config'; // Use Admin SDK for server actions
 import { ContactInputSchema, Contact, LeadSourceSchema } from '@/lib/models/contact'; // Import Input schema and base type
@@ -9,8 +9,9 @@ import type { ContactFirestore } from '@/lib/models/contact'; // Import Firestor
 import { ContactOutputSchema, ContactFirestoreSchema } from '@/lib/models/contact'; // Import Output/Firestore schema
 import { OpportunityInputSchema, Opportunity, OpportunityFirestore, OpportunityFirestoreSchema, OpportunityStageSchema, OpportunityStage } from '@/lib/models/opportunity'; // Import Opportunity schemas/types
 import { revalidatePath } from 'next/cache';
-import { checkProductStock } from '@/services/erp-service'; // Import ERP service
+import { checkProductStock, ProductStockInfo } from '@/services/erp-service'; // Import ERP service
 import { startOpportunityToCashProcess } from '@/services/bpm-service'; // Import BPM service
+import { addDays } from 'date-fns';
 
 // --- Add Contact Action ---
 // Use ContactInputSchema for validating incoming form data
@@ -24,12 +25,13 @@ export async function addContact(
     const rawData = Object.fromEntries(formData.entries());
 
     // Prepare data, ensuring 'subscribe' is boolean and validating leadSource
-    const dataToValidate = {
+     const dataToValidate = {
       ...rawData,
-      subscribe: rawData.subscribe === 'on',
-      leadSource: rawData.leadSource ? LeadSourceSchema.parse(rawData.leadSource) : undefined, // Validate enum
+      subscribe: rawData.subscribe === 'on' || false,
+      leadSource: rawData.leadSource,
       phone: rawData.phone || undefined,
       company: rawData.company || undefined,
+       email: rawData.email || undefined,
       title: rawData.title || undefined,
       bio: rawData.bio || undefined,
     };
@@ -38,10 +40,12 @@ export async function addContact(
     const validatedData = AddContactInputSchema.safeParse(dataToValidate);
 
     if (!validatedData.success) {
-      console.error('Validation Error:', validatedData.error.flatten().fieldErrors);
-      const errorMessages = Object.values(validatedData.error.flatten().fieldErrors)
-        .map(errors => errors?.join(', '))
-        .filter(Boolean)
+      const errorMessages = validatedData.error.issues
+        .map((issue) => {
+          // Customize error messages based on the issue path (field) if needed
+          return `Error in field '${issue.path.join('.')}': ${issue.message}`;
+        })
+        .filter((message): message is string => !!message) // Ensure it's a string
         .join('; ');
       return { message: `Invalid form data: ${errorMessages}`, success: false };
     }
@@ -62,14 +66,17 @@ export async function addContact(
 
     // Example: Optionally create a default opportunity for web form leads
     if (contactData.leadSource === 'Web Form') {
-       await createOpportunity({
-           name: `Opportunity for ${contactData.name} (Web Lead)`,
-           contactId: docRef.id,
-           stage: 'Qualification', // Start at qualification
-           description: `Generated from web form submission. Bio: ${contactData.bio || 'N/A'}`,
-           // amount: 0, // Set initial amount if desired
-           // closeDate: // Set an estimated close date?
-       });
+      await createOpportunity({
+        name: `Opportunity for ${contactData.name} (Web Lead)`,
+        contactId: docRef.id,
+        stage: 'Prospecting', // Start at qualification
+        description: `Generated from web form submission. Bio: ${contactData.bio || 'N/A'}`,
+        amount: 0,
+        // Set the close date 30 days in the future from now
+        closeDate: addDays(new Date(), 30),
+      });
+      
+
         revalidatePath('/admin/crm/opportunities'); // Revalidate opportunities page
     }
 
@@ -83,11 +90,11 @@ export async function addContact(
     let errorMessage = 'Failed to add contact due to a server error.';
     if (error instanceof Error) {
       errorMessage = `Failed to add contact: ${error.message}`;
-    }
-     if (error instanceof z.ZodError) {
-       errorMessage = `Invalid lead source value provided.`; // More specific error for Zod enum failure
-     }
+    } 
     return { message: errorMessage, success: false };
+  } finally {
+     // Execute this block always, whether there was an error or not
+      revalidatePath('/admin/crm');
   }
 }
 
@@ -101,13 +108,15 @@ export async function getContacts(): Promise<ContactFirestore[]> {
 
     const contacts: ContactFirestore[] = contactSnapshot.docs.map(doc => {
       const data = doc.data();
-       // Ensure Timestamps are correctly handled if they are plain objects
-       if (data.createdAt && !(data.createdAt instanceof Timestamp)) {
-           data.createdAt = Timestamp.fromMillis(data.createdAt.seconds * 1000);
-       }
-       if (data.updatedAt && !(data.updatedAt instanceof Timestamp)) {
-           data.updatedAt = Timestamp.fromMillis(data.updatedAt.seconds * 1000);
-       }
+        // Ensure Timestamps are correctly handled if they are plain objects
+        if (data.createdAt && !(data.createdAt instanceof AdminTimestamp)) {
+            console.warn(`createdAt is not a Timestamp for contact ${doc.id}, attempting to convert. Data:`, data.createdAt);
+            data.createdAt = AdminTimestamp.fromMillis(data.createdAt.seconds * 1000);
+        }
+        if (data.updatedAt && !(data.updatedAt instanceof AdminTimestamp)) {
+            console.warn(`updatedAt is not a Timestamp for contact ${doc.id}, attempting to convert. Data:`, data.updatedAt);
+            data.updatedAt = AdminTimestamp.fromMillis(data.updatedAt.seconds * 1000);
+        }
 
       // Validate data retrieved from Firestore using the specific Firestore schema
       const parsedData = ContactFirestoreSchema.safeParse(data); // Use Firestore schema
@@ -119,9 +128,9 @@ export async function getContacts(): Promise<ContactFirestore[]> {
           id: doc.id,
           name: 'Invalid Data',
           email: '',
-          createdAt: Timestamp.now(),
-          updatedAt: Timestamp.now(),
-          leadSource: 'Other', // Ensure all required fields have defaults
+          createdAt: AdminTimestamp.now(),
+          updatedAt: AdminTimestamp.now(),
+          leadSource: 'Other', 
           address: undefined,
           bio: undefined,
           company: undefined,
@@ -153,10 +162,12 @@ export async function createOpportunity(
         const validatedData = CreateOpportunityInputSchema.safeParse(input);
 
         if (!validatedData.success) {
-            console.error('Opportunity Validation Error:', validatedData.error.flatten().fieldErrors);
-            const errorMessages = Object.values(validatedData.error.flatten().fieldErrors)
-                .map(errors => errors?.join(', '))
-                .filter(Boolean)
+            const errorMessages = validatedData.error.issues
+                .map((issue) => {
+                    // Customize error messages based on the issue path (field) if needed
+                    return `Error in field '${issue.path.join('.')}': ${issue.message}`;
+                })
+                .filter((message): message is string => !!message) // Ensure it's a string
                 .join('; ');
             return { id: '', message: `Invalid opportunity data: ${errorMessages}`, success: false };
         }
@@ -164,7 +175,7 @@ export async function createOpportunity(
         const opportunityData = validatedData.data;
 
         // Convert JS Date to Firestore Timestamp if present
-        const closeDateTimestamp = opportunityData.closeDate ? Timestamp.fromDate(opportunityData.closeDate) : undefined;
+        const closeDateTimestamp = opportunityData.closeDate ? AdminTimestamp.fromDate(opportunityData.closeDate) : undefined;
 
         // Use serverTimestamp for creation and update times
         const opportunityWithTimestamps = {
@@ -203,31 +214,31 @@ export async function getOpportunities(): Promise<OpportunityFirestore[]> {
     const opportunities: OpportunityFirestore[] = snapshot.docs.map(doc => {
       const data = doc.data();
         // Ensure Timestamps are handled correctly
-        if (data.closeDate && !(data.closeDate instanceof Timestamp)) {
-             // Convert plain object to Timestamp if needed
-             if (typeof data.closeDate === 'object' && data.closeDate && 'seconds' in data.closeDate && 'nanoseconds' in data.closeDate) {
-                 data.closeDate = new Timestamp(data.closeDate.seconds, data.closeDate.nanoseconds);
-             } else {
-                 // Handle potential invalid date formats or log an error
-                 console.warn(`Invalid closeDate format in Firestore for doc ${doc.id}`);
-                 data.closeDate = undefined; // Or set to null/default
-             }
+      if (data.closeDate && !(data.closeDate instanceof AdminTimestamp)) {
+        // Convert plain object to Timestamp if needed
+        if (typeof data.closeDate === 'object' && data.closeDate && 'seconds' in data.closeDate && 'nanoseconds' in data.closeDate) {
+          data.closeDate = new AdminTimestamp(data.closeDate.seconds, data.closeDate.nanoseconds);
+        } else {
+          // Handle potential invalid date formats or log an error
+          console.warn(`Invalid closeDate format in Firestore for doc ${doc.id}`);
+          data.closeDate = undefined; // Or set to null/default
         }
-       if (data.createdAt && !(data.createdAt instanceof Timestamp)) {
-             if (typeof data.createdAt === 'object' && data.createdAt && 'seconds' in data.createdAt && 'nanoseconds' in data.createdAt) {
-                 data.createdAt = new Timestamp(data.createdAt.seconds, data.createdAt.nanoseconds);
-             } else {
-                  console.warn(`Invalid createdAt format in Firestore for doc ${doc.id}`);
-                 data.createdAt = Timestamp.now(); // Fallback to now
-             }
-       }
-       if (data.updatedAt && !(data.updatedAt instanceof Timestamp)) {
-            if (typeof data.updatedAt === 'object' && data.updatedAt && 'seconds' in data.updatedAt && 'nanoseconds' in data.updatedAt) {
-                 data.updatedAt = new Timestamp(data.updatedAt.seconds, data.updatedAt.nanoseconds);
-             } else {
-                 console.warn(`Invalid updatedAt format in Firestore for doc ${doc.id}`);
-                 data.updatedAt = Timestamp.now(); // Fallback to now
-             }
+      }
+      if (data.createdAt && !(data.createdAt instanceof AdminTimestamp)) {
+        if (typeof data.createdAt === 'object' && data.createdAt && 'seconds' in data.createdAt && 'nanoseconds' in data.createdAt) {
+          data.createdAt = new AdminTimestamp(data.createdAt.seconds, data.createdAt.nanoseconds);
+        } else {
+          console.warn(`Invalid createdAt format in Firestore for doc ${doc.id}`);
+          data.createdAt = AdminTimestamp.now(); // Fallback to now
+        }
+      }
+      if (data.updatedAt && !(data.updatedAt instanceof AdminTimestamp)) {
+        if (typeof data.updatedAt === 'object' && data.updatedAt && 'seconds' in data.updatedAt && 'nanoseconds' in data.updatedAt) {
+          data.updatedAt = new AdminTimestamp(data.updatedAt.seconds, data.updatedAt.nanoseconds);
+        } else {
+          console.warn(`Invalid updatedAt format in Firestore for doc ${doc.id}`);
+          data.updatedAt = Timestamp.now(); // Fallback to now
+        }
        }
 
       // Validate against Firestore schema
@@ -241,23 +252,26 @@ export async function getOpportunities(): Promise<OpportunityFirestore[]> {
           name: 'Invalid Opportunity Data',
           contactId: '',
           stage: 'Prospecting',
-          createdAt: data.createdAt || Timestamp.now(), // Use converted or fallback timestamp
-          updatedAt: data.updatedAt || Timestamp.now(), // Use converted or fallback timestamp
+          createdAt: data.createdAt || AdminTimestamp.now(), // Use converted or fallback timestamp
+          updatedAt: data.updatedAt || AdminTimestamp.now(), // Use converted or fallback timestamp
           // Add other required fields with defaults if needed
         } as OpportunityFirestore;
       }
       // Ensure the id is included in the returned object
       return { id: doc.id, ...parsedData.data };
-    });
+      });
 
-    // Optional: Sort by closeDate client-side if needed after fetching, as Firestore multi-field sort has limitations
-     opportunities.sort((a, b) => {
+    const isDataValid = opportunities.every(opp => opp.closeDate instanceof Timestamp);
+
+    // Only sort if all the dates are valid
+    if (isDataValid){
+       opportunities.sort((a, b) => {
         const dateA = a.closeDate?.toDate()?.getTime() ?? Number.MAX_SAFE_INTEGER; // Treat undefined as far future
         const dateB = b.closeDate?.toDate()?.getTime() ?? Number.MAX_SAFE_INTEGER;
         return dateB - dateA; // Descending by close date
-    });
-
-
+      });
+    }
+    
     return opportunities;
   } catch (error) {
     console.error('Error fetching opportunities:', error);
@@ -274,16 +288,26 @@ export async function updateOpportunityStage(
         // Validate the input stage
         const validatedStage = OpportunityStageSchema.safeParse(newStage);
         if (!validatedStage.success) {
+             const errorMessages = validatedStage.error.issues
+            .map(issue => `Error in field '${issue.path.join('.')}': ${issue.message}`)
+            .filter((message): message is string => !!message)
+            .join('; ');
             return { message: 'Invalid stage provided.', success: false };
         }
 
-        const oppRef = doc(adminDb, 'opportunities', opportunityId);
+        const oppRef = doc(collection(adminDb, 'opportunities'), opportunityId);
         const oppSnap = await getDoc(oppRef);
 
         if (!oppSnap.exists()) {
              return { message: 'Opportunity not found.', success: false };
         }
         const currentOppData = oppSnap.data();
+        
+        if (currentOppData.amount === undefined) {
+          console.warn(`Opportunity ${opportunityId} has no amount, setting to 0.`);
+          currentOppData.amount = 0;
+        }
+
 
         await updateDoc(oppRef, {
             stage: validatedStage.data,
@@ -294,28 +318,21 @@ export async function updateOpportunityStage(
 
         // ** Integration Point: Trigger BPM on "Closed Won" **
         if (validatedStage.data === 'Closed Won') {
-             console.log(`Opportunity ${opportunityId} won! Triggering BPM process...`);
-             // Ensure Timestamps are handled before passing to BPM
-             if (currentOppData.closeDate && !(currentOppData.closeDate instanceof Timestamp)) {
-                 if (typeof currentOppData.closeDate === 'object' && currentOppData.closeDate && 'seconds' in currentOppData.closeDate && 'nanoseconds' in currentOppData.closeDate) {
-                    currentOppData.closeDate = new Timestamp(currentOppData.closeDate.seconds, currentOppData.closeDate.nanoseconds);
-                 } else {
-                    currentOppData.closeDate = undefined; // Or handle appropriately
-                 }
-             }
-             if (currentOppData.createdAt && !(currentOppData.createdAt instanceof Timestamp)) {
-                 if (typeof currentOppData.createdAt === 'object' && currentOppData.createdAt && 'seconds' in currentOppData.createdAt && 'nanoseconds' in currentOppData.createdAt) {
-                    currentOppData.createdAt = new Timestamp(currentOppData.createdAt.seconds, currentOppData.createdAt.nanoseconds);
-                 } else {
-                     currentOppData.createdAt = Timestamp.now(); // Fallback
-                 }
-            }
-             if (currentOppData.updatedAt && !(currentOppData.updatedAt instanceof Timestamp)) {
-                if (typeof currentOppData.updatedAt === 'object' && currentOppData.updatedAt && 'seconds' in currentOppData.updatedAt && 'nanoseconds' in currentOppData.updatedAt) {
-                    currentOppData.updatedAt = new Timestamp(currentOppData.updatedAt.seconds, currentOppData.updatedAt.nanoseconds);
-                 } else {
-                     currentOppData.updatedAt = Timestamp.now(); // Fallback
-                 }
+            console.log(`Opportunity ${opportunityId} won! Triggering BPM process...`);
+            // Ensure Timestamps are handled before passing to BPM
+            currentOppData.closeDate = handleTimestampConversion(currentOppData.closeDate, `closeDate in opportunity ${opportunityId}`);
+            currentOppData.createdAt = handleTimestampConversion(currentOppData.createdAt, `createdAt in opportunity ${opportunityId}`);
+            currentOppData.updatedAt = handleTimestampConversion(currentOppData.updatedAt, `updatedAt in opportunity ${opportunityId}`);
+            
+
+             // Reparse the potentially modified data before passing to BPM
+             const parsedCurrentData = OpportunityFirestoreSchema.safeParse(currentOppData);
+
+            if (!parsedCurrentData.success) {
+                 console.error(`Failed to parse opportunity data ${opportunityId} before triggering BPM:`, parsedCurrentData.error);
+                  // Optionally, still proceed with revalidation but log the error prominently
+                 revalidatePath('/admin/crm/opportunities');
+                 return { message: 'Opportunity stage updated, but failed to parse data for order process.', success: true }; // Partial success
             }
             // Reparse the potentially modified data before passing to BPM
              const parsedCurrentData = OpportunityFirestoreSchema.safeParse(currentOppData);
@@ -337,22 +354,28 @@ export async function updateOpportunityStage(
                  // return { message: 'Opportunity stage updated, but failed to start order process.', success: true };
              }
         }
-
         revalidatePath('/admin/crm/opportunities'); // Revalidate the list page
         // Also potentially revalidate a specific opportunity page if you have one:
         // revalidatePath(`/admin/crm/opportunities/${opportunityId}`);
         return { message: 'Opportunity stage updated successfully!', success: true };
-
-    } catch (error) {
+    } catch (error: any) {
         console.error('Error updating opportunity stage:', error);
-        let errorMessage = 'Failed to update opportunity stage.';
-        if (error instanceof Error) {
-            errorMessage = `Failed to update opportunity stage: ${error.message}`;
-        }
-        return { message: errorMessage, success: false };
+        return { message: `Failed to update opportunity stage: ${error.message}`, success: false };
     }
 }
-
+function handleTimestampConversion(timestamp: any, fieldName: string): AdminTimestamp | undefined {
+    if (!timestamp) return undefined;
+  
+    if (timestamp instanceof Timestamp) {
+      return timestamp;
+    } else if (typeof timestamp === 'object' && timestamp && 'seconds' in timestamp && 'nanoseconds' in timestamp) {
+      return new Timestamp(timestamp.seconds, timestamp.nanoseconds);
+    } else {
+        console.warn(`Invalid ${fieldName} format, attempting to set now(). Data:`, timestamp);
+        return AdminTimestamp.now();
+    }
+  }
+  
 // Example of calling the ERP service (could be part of another action)
 export async function checkProductAvailability(productId: string): Promise<{ available: boolean; stockLevel: number | null }> {
     try {
