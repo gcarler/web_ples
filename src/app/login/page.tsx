@@ -74,15 +74,15 @@ export default function LoginPage() {
       {/* Left Column: Image */}
       <div className="relative hidden lg:block lg:w-1/2">
         <Image
-          src="https://picsum.photos/1200/1600?random=42" // Placeholder image, replace with actual one
-          alt="GestorDoc Background"
+          src="https://picsum.photos/1200/1600?random=101" // Placeholder for the new image
+          alt="Coding desk with laptop and monitor" // Updated alt text
           layout="fill"
           objectFit="cover"
-          data-ai-hint="document management interface"
+          data-ai-hint="coding desk developer setup" // Updated AI hint
         />
         {/* Text Overlay - Adjust styling as needed */}
         <div className="absolute bottom-10 left-10 z-10">
-           <span className="text-white text-5xl font-bold tracking-wider">gestordoc</span>
+           {/* Removed the text overlay as it's not present in the new image */}
         </div>
       </div>
 
@@ -147,15 +147,15 @@ export default function LoginPage() {
             </Button>
           </div>
 
-           {/* Register Link (Optional, uncomment if needed) */}
-           {/* <div className="text-center text-sm text-muted-foreground">
+           {/* Register Link */}
+           <div className="text-center text-sm text-muted-foreground">
              ¿No tienes cuenta?{' '}
              <Button variant="link" asChild className="text-primary hover:underline px-0">
                <Link href="/register">Regístrate aquí</Link>
              </Button>
-           </div> */}
+           </div>
         </div>
-      </div>
+       </div>
     </div>
   );
 }
