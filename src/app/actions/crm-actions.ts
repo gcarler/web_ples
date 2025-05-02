@@ -75,7 +75,7 @@ export async function addContact(
         // Set the close date 30 days in the future from now
         closeDate: addDays(new Date(), 30),
       });
-      
+
 
         revalidatePath('/admin/crm/opportunities'); // Revalidate opportunities page
     }
@@ -90,7 +90,7 @@ export async function addContact(
     let errorMessage = 'Failed to add contact due to a server error.';
     if (error instanceof Error) {
       errorMessage = `Failed to add contact: ${error.message}`;
-    } 
+    }
     return { message: errorMessage, success: false };
   } finally {
      // Execute this block always, whether there was an error or not
@@ -130,7 +130,7 @@ export async function getContacts(): Promise<ContactFirestore[]> {
           email: '',
           createdAt: AdminTimestamp.now(),
           updatedAt: AdminTimestamp.now(),
-          leadSource: 'Other', 
+          leadSource: 'Other',
           address: undefined,
           bio: undefined,
           company: undefined,
@@ -261,7 +261,8 @@ export async function getOpportunities(): Promise<OpportunityFirestore[]> {
       return { id: doc.id, ...parsedData.data };
       });
 
-    const isDataValid = opportunities.every(opp => opp.closeDate instanceof Timestamp);
+    const isDataValid = opportunities.every(opp => opp.closeDate instanceof Timestamp || opp.closeDate === undefined);
+
 
     // Only sort if all the dates are valid
     if (isDataValid){
@@ -271,7 +272,7 @@ export async function getOpportunities(): Promise<OpportunityFirestore[]> {
         return dateB - dateA; // Descending by close date
       });
     }
-    
+
     return opportunities;
   } catch (error) {
     console.error('Error fetching opportunities:', error);
@@ -302,7 +303,7 @@ export async function updateOpportunityStage(
              return { message: 'Opportunity not found.', success: false };
         }
         const currentOppData = oppSnap.data();
-        
+
         if (currentOppData.amount === undefined) {
           console.warn(`Opportunity ${opportunityId} has no amount, setting to 0.`);
           currentOppData.amount = 0;
@@ -323,7 +324,7 @@ export async function updateOpportunityStage(
             currentOppData.closeDate = handleTimestampConversion(currentOppData.closeDate, `closeDate in opportunity ${opportunityId}`);
             currentOppData.createdAt = handleTimestampConversion(currentOppData.createdAt, `createdAt in opportunity ${opportunityId}`);
             currentOppData.updatedAt = handleTimestampConversion(currentOppData.updatedAt, `updatedAt in opportunity ${opportunityId}`);
-            
+
 
              // Reparse the potentially modified data before passing to BPM
              const parsedCurrentData = OpportunityFirestoreSchema.safeParse(currentOppData);
@@ -333,19 +334,10 @@ export async function updateOpportunityStage(
                   // Optionally, still proceed with revalidation but log the error prominently
                  revalidatePath('/admin/crm/opportunities');
                  return { message: 'Opportunity stage updated, but failed to parse data for order process.', success: true }; // Partial success
-            }
-            // Reparse the potentially modified data before passing to BPM
-             const parsedCurrentData = OpportunityFirestoreSchema.safeParse(currentOppData);
-
-             if (!parsedCurrentData.success) {
-                 console.error(`Failed to parse opportunity data ${opportunityId} before triggering BPM:`, parsedCurrentData.error);
-                  // Optionally, still proceed with revalidation but log the error prominently
-                 revalidatePath('/admin/crm/opportunities');
-                 return { message: 'Opportunity stage updated, but failed to parse data for order process.', success: true }; // Partial success
              }
 
-
-             const success = await startOpportunityToCashProcess(opportunityId, {id: opportunityId, ...parsedCurrentData.data}); // Pass Opp data
+             // Pass Opp data, including its ID
+             const success = await startOpportunityToCashProcess(opportunityId, {id: opportunityId, ...parsedCurrentData.data});
              if (!success) {
                  // Log the failure but maybe don't fail the entire stage update?
                  // Or return a specific message indicating BPM trigger failure.
@@ -365,7 +357,7 @@ export async function updateOpportunityStage(
 }
 function handleTimestampConversion(timestamp: any, fieldName: string): AdminTimestamp | undefined {
     if (!timestamp) return undefined;
-  
+
     if (timestamp instanceof Timestamp) {
       return timestamp;
     } else if (typeof timestamp === 'object' && timestamp && 'seconds' in timestamp && 'nanoseconds' in timestamp) {
@@ -375,7 +367,7 @@ function handleTimestampConversion(timestamp: any, fieldName: string): AdminTime
         return AdminTimestamp.now();
     }
   }
-  
+
 // Example of calling the ERP service (could be part of another action)
 export async function checkProductAvailability(productId: string): Promise<{ available: boolean; stockLevel: number | null }> {
     try {
@@ -389,3 +381,5 @@ export async function checkProductAvailability(productId: string): Promise<{ ava
         return { available: false, stockLevel: null };
     }
 }
+
+    
