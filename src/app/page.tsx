@@ -12,7 +12,8 @@ export default function Home() {
       {/* Hero Section - Updated Content */}
       <section className="text-center py-12 relative">
         {/* The Carousel in the Header now serves as the main visual */}
-        <h1 className="text-4xl font-bold tracking-tight mb-6 mt-8">Experiencia + inteligencia = mejores resultados</h1>
+        {/* Updated heading text */}
+        <h1 className="text-4xl font-bold tracking-tight mb-6 mt-8">Innovación = (Creatividad × Factibilidad × Ejecución) + Valor + Resiliencia + Colaboración</h1>
         <div className="flex flex-col md:flex-row justify-center items-center gap-8 text-lg text-foreground mb-10">
           <div className="flex items-center gap-2">
             <CheckCircle className="h-12 w-12 text-primary" /> {/* Increased size */}
@@ -207,3 +208,4 @@ export default function Home() {
     </div>
   );
 }
+
