@@ -30,7 +30,7 @@ export function Header() {
   const pathname = usePathname(); // Get the current path
 
    // Define routes where the carousel should be hidden
-  const hideCarouselRoutes = ['/login', '/register', '/forgot-password'];
+  const hideCarouselRoutes = ['/login', '/register', '/forgot-password', '/forms']; // Added '/forms'
   const shouldShowCarousel = !hideCarouselRoutes.includes(pathname) && !pathname.startsWith('/admin'); // Also hide on admin routes
 
   const handleLogout = async () => {
