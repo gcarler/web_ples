@@ -1,21 +1,36 @@
 import { UserForm } from '@/components/forms/user-form';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import Image from 'next/image'; // Import Image
 
 export default function FormsPage() {
   return (
-    // Removed container mx-auto for full-width design, added padding
-    <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-       <Card className="shadow-lg">
-         <CardHeader>
-           <CardTitle className="text-2xl">User Information Form</CardTitle>
-           <CardDescription>
-             Please fill out the form below. This demonstrates input handling, validation, and submission using React Hook Form.
-           </CardDescription>
-         </CardHeader>
-         <CardContent>
-            <UserForm />
-         </CardContent>
-       </Card>
+    // Two-column layout similar to login page
+    <div className="flex min-h-screen bg-background">
+       {/* Left Column: Image */}
+      <div className="relative hidden lg:block lg:w-1/2">
+        <Image
+          src="https://picsum.photos/1200/1600?random=102" // New placeholder image
+          alt="Abstract contact background" // Updated alt text
+          layout="fill"
+          objectFit="cover"
+          data-ai-hint="abstract office contact" // AI hint for image search
+        />
+      </div>
+
+      {/* Right Column: Contact Form */}
+       <div className="w-full lg:w-1/2 flex items-center justify-center p-8 sm:p-12">
+         <div className="w-full max-w-2xl space-y-6"> {/* Increased max-width for form */}
+            <div>
+               <h1 className="text-3xl font-bold">Contáctenos</h1> {/* Updated Title */}
+               <p className="text-muted-foreground mt-2">Por favor complete su información a continuación</p> {/* Updated Description */}
+            </div>
+            <Card className="shadow-lg border rounded-lg w-full"> {/* Make card full width of container */}
+                <CardContent className="pt-6"> {/* Added padding-top */}
+                   <UserForm />
+                </CardContent>
+            </Card>
+         </div>
+      </div>
     </div>
   );
 }
