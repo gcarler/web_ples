@@ -24,11 +24,8 @@ export default function FormsPage() {
                <h1 className="text-3xl font-bold">Contáctenos</h1> {/* Updated Title */}
                <p className="text-muted-foreground mt-2">Por favor complete su información a continuación</p> {/* Updated Description */}
             </div>
-            <Card className="shadow-lg border rounded-lg w-full"> {/* Make card full width of container */}
-                <CardContent className="pt-6"> {/* Added padding-top */}
-                   <UserForm />
-                </CardContent>
-            </Card>
+            {/* Removed Card component */}
+            <UserForm />
          </div>
       </div>
     </div>
