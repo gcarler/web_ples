@@ -34,11 +34,7 @@ export function Footer() {
                   Sobre Nosotros
                 </Link>
               </li>
-               <li>
-                <Link href="/forms" className="text-gray-300 hover:text-white transition-colors">
-                    Formularios
-                </Link>
-                </li>
+               {/* Removed Formularios link */}
               <li>
                 <Link href="/ples-crea" className="text-gray-300 hover:text-white transition-colors">
                   Ples CREA

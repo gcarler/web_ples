@@ -124,7 +124,7 @@ export function Header() {
                 <Link href="/" className="text-sm font-medium hover:text-primary transition-colors">
                   Inicio
                 </Link>
-              </li>  
+              </li>
               <li>
                 <Link href="/about" className="text-sm font-medium hover:text-primary transition-colors">
                   sobre nosotros
@@ -150,12 +150,7 @@ export function Header() {
                   Ples consulting
                 </Link>
                 </li>
-                <li>
-                <Link href="/forms" className="text-sm font-medium hover:text-primary transition-colors">
-                  forms
-                </Link>
-                </li>
-
+                {/* Removed forms link */}
             </ul>
             {/* Conditional Admin Dropdown or Login Button */}
              {!loading && (

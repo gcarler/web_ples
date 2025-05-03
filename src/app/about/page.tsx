@@ -53,7 +53,7 @@ export default function AboutPage() {
         </p>
         {/* Make text larger and bold */}
         <p className="text-xl font-bold">
-          CON LOS ATRIBUTOS QUE TRAE.
+          CON LOS ATRIBUTOS QUE TRAE:.
         </p>
          {/* Moved Valores Fundamentales here, added blue background and text color */}
          {/* Added hover effects: black background, white text, scale-up */}
