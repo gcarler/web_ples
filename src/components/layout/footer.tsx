@@ -55,6 +55,11 @@ export function Footer() {
                   Ples Consulting
                 </Link>
               </li>
+               <li>
+                 <Link href="/forms" className="text-gray-300 hover:text-white transition-colors">
+                   Contáctenos
+                 </Link>
+               </li>
             </ul>
           </div>
 
