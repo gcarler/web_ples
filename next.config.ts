@@ -50,12 +50,12 @@ const nextConfig: NextConfig = {
         http2: false,
         vm: false,
       };
+    } else {
+      // For server-side, explicitly mark 'crypto' as an external module.
+      // This tells Webpack (and by extension, Turbopack) not to try to bundle it,
+      // as it's a built-in Node.js module and will be available at runtime.
+      config.externals = [...(config.externals || []), 'crypto'];
     }
-
-    // For server-side, 'crypto' is a built-in Node.js module and should be resolved
-    // automatically. The error "Can't resolve 'crypto'" from within firebase-admin
-    // during build suggests a bundler issue rather than crypto not being available at runtime.
-    // No specific server-side webpack changes for 'crypto' should typically be needed.
 
     return config;
   },
