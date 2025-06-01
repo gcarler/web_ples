@@ -6,6 +6,7 @@ import { Toaster } from '@/components/ui/toaster';
 import Link from 'next/link';
 import { Separator } from '@/components/ui/separator'; // Import Separator
 import { AuthProvider } from '@/contexts/AuthContext'; // Import AuthProvider
+import { ThemeProvider } from "next-themes"; // Import ThemeProvider
 
 export const metadata: Metadata = {
   title: 'PLES',
@@ -18,16 +19,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning> {/* Add suppressHydrationWarning for next-themes */}
       <body className="min-h-screen flex flex-col antialiased">
-        <AuthProvider> {/* Wrap content with AuthProvider */}
-          <Header />
-          {/* Removed container mx-auto and padding to allow child pages/layouts to control width */}
-          <main className="flex-grow">{children}</main>
-
-          <Footer />
-          <Toaster />
-        </AuthProvider>
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+        >
+          <AuthProvider> {/* Wrap content with AuthProvider */}
+            <Header />
+            {/* Removed container mx-auto and padding to allow child pages/layouts to control width */}
+            <main className="flex-grow">{children}</main>
+            <Footer />
+            <Toaster />
+          </AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -20,6 +20,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"; // Import Dropdown components
 import { cn } from '@/lib/utils'; // Import cn utility
+import { ThemeToggle } from "@/components/theme-toggle"; // Import the new component
 
 
 export function Header() {
@@ -118,8 +119,8 @@ export function Header() {
           <PlesGroupLogo className="h-8 w-8 logo-outline" />
           <span>PLES</span>
         </Link>
-        <div className="flex items-center gap-4">
-            <ul className="flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-2 items-center justify-center sm:justify-end w-full sm:w-auto mr-4">
+        <div className="flex items-center gap-2"> {/* Main container for nav items and action buttons */}
+            <ul className="flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-2 items-center justify-center sm:justify-end w-full sm:w-auto mr-2"> {/* Reduced margin */}
                <li>
                 <Link href="/" className="text-sm font-medium hover:text-primary transition-colors">
                   Inicio
@@ -156,43 +157,46 @@ export function Header() {
                  </Link>
                </li>
             </ul>
-            {/* Conditional Admin Dropdown or Login Button */}
-             {!loading && (
-               user ? (
-                 <DropdownMenu>
-                   <DropdownMenuTrigger asChild>
-                      {/* Apply rounded corners to trigger button */}
-                     <Button variant="outline" size="sm" className="rounded-md">Admin</Button>
-                   </DropdownMenuTrigger>
-                   <DropdownMenuContent align="end">
-                    <DropdownMenuLabel>Admin Panel</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                     <DropdownMenuItem asChild>
-                       <Link href="/admin/dashboard" className="flex items-center">
-                         <LayoutDashboard className="mr-2 h-4 w-4" /> Dashboard
-                       </Link>
-                     </DropdownMenuItem>
-                      {/* Add other admin links as needed */}
-                     {/* <DropdownMenuItem asChild><Link href="/admin/crm">CRM</Link></DropdownMenuItem> */}
-                     {/* <DropdownMenuItem asChild><Link href="/admin/erp">ERP</Link></DropdownMenuItem> */}
-                     {/* <DropdownMenuItem asChild><Link href="/admin/bpm">BPM</Link></DropdownMenuItem> */}
-                     {/* <DropdownMenuItem asChild><Link href="/admin/users">Manage Users</Link></DropdownMenuItem> */}
-                     <DropdownMenuSeparator />
-                     <DropdownMenuItem onClick={handleLogout} className="text-destructive focus:text-destructive focus:bg-destructive/10 cursor-pointer flex items-center">
-                       <LogOut className="mr-2 h-4 w-4" /> Logout
-                     </DropdownMenuItem>
-                   </DropdownMenuContent>
-                 </DropdownMenu>
-               ) : (
-                 // Apply rounded corners to login button
-                 <Button variant="outline" size="sm" asChild className="rounded-md">
-                   <Link href="/login">
-                     <LogIn className="mr-2 h-4 w-4" />
-                     Iniciar sesión
-                   </Link>
-                 </Button>
-               )
-             )}
+            {/* Container for ThemeToggle and Auth Button */}
+            <div className="flex items-center gap-2">
+                <ThemeToggle />
+                {!loading && (
+                user ? (
+                    <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        {/* Apply rounded corners to trigger button */}
+                        <Button variant="outline" size="sm" className="rounded-md">Admin</Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                        <DropdownMenuLabel>Admin Panel</DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem asChild>
+                        <Link href="/admin/dashboard" className="flex items-center">
+                            <LayoutDashboard className="mr-2 h-4 w-4" /> Dashboard
+                        </Link>
+                        </DropdownMenuItem>
+                        {/* Add other admin links as needed */}
+                        {/* <DropdownMenuItem asChild><Link href="/admin/crm">CRM</Link></DropdownMenuItem> */}
+                        {/* <DropdownMenuItem asChild><Link href="/admin/erp">ERP</Link></DropdownMenuItem> */}
+                        {/* <DropdownMenuItem asChild><Link href="/admin/bpm">BPM</Link></DropdownMenuItem> */}
+                        {/* <DropdownMenuItem asChild><Link href="/admin/users">Manage Users</Link></DropdownMenuItem> */}
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem onClick={handleLogout} className="text-destructive focus:text-destructive focus:bg-destructive/10 cursor-pointer flex items-center">
+                        <LogOut className="mr-2 h-4 w-4" /> Logout
+                        </DropdownMenuItem>
+                    </DropdownMenuContent>
+                    </DropdownMenu>
+                ) : (
+                    // Apply rounded corners to login button
+                    <Button variant="outline" size="sm" asChild className="rounded-md">
+                    <Link href="/login">
+                        <LogIn className="mr-2 h-4 w-4" />
+                        Iniciar sesión
+                    </Link>
+                    </Button>
+                )
+                )}
+            </div>
         </div>
 
       </nav>
