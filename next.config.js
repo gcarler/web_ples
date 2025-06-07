@@ -26,6 +26,9 @@ const nextConfig = {
     serverComponentsExternalPackages: ['firebase-admin'],
   },
   webpack: (config, { isServer, webpack }) => {
+    // Habilitar WebAssembly asíncrono y topLevelAwait
+    config.experiments = { ...config.experiments, asyncWebAssembly: true, topLevelAwait: true };
+
     // For client-side bundles, prevent Node.js modules from being included.
     if (!isServer) {
       config.plugins.push(new webpack.IgnorePlugin({ resourceRegExp: /^firebase-admin$/ }));
