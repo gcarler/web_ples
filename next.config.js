@@ -1,3 +1,4 @@
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   typescript: {
@@ -20,23 +21,30 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'placehold.co',
+        port: '',
+        pathname: '/**',
+      }
     ],
   },
   experimental: {
     serverComponentsExternalPackages: ['firebase-admin'],
-    asyncWebAssembly: true,
-    topLevelAwait: true,
+    // 'asyncWebAssembly' and 'topLevelAwait' should not be here
+    // if they cause "Unrecognized key" errors.
+    // They are correctly placed within the webpack function's config.experiments.
   },
   webpack: (config, { isServer, webpack }) => {
-    // Note: config.experiments for asyncWebAssembly and topLevelAwait is already set in the experimental block above.
-    // No need to set it again here.
+    // Correctly place WebAssembly and topLevelAwait experiments here
+    config.experiments = { ...(config.experiments || {}), asyncWebAssembly: true, topLevelAwait: true };
 
     // For client-side bundles, prevent Node.js modules from being included.
     if (!isServer) {
       config.plugins.push(new webpack.IgnorePlugin({ resourceRegExp: /^firebase-admin$/ }));
       
       config.resolve.fallback = {
-        ...config.resolve.fallback,
+        ...(config.resolve.fallback || {}),
         crypto: false,
         fs: false,
         path: false,
@@ -47,7 +55,7 @@ const nextConfig = {
         async_hooks: false,
         http2: false,
         vm: false,
-        process: require.resolve('process/browser'), // Added polyfill for process
+        process: require.resolve('process/browser'), // This line requires 'process' package
       };
     } else {
       // For server-side, explicitly mark 'crypto' as an external module.
