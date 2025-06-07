@@ -24,10 +24,12 @@ const nextConfig = {
   },
   experimental: {
     serverComponentsExternalPackages: ['firebase-admin'],
+    asyncWebAssembly: true,
+    topLevelAwait: true,
   },
   webpack: (config, { isServer, webpack }) => {
-    // Habilitar WebAssembly asíncrono y topLevelAwait
-    config.experiments = { ...config.experiments, asyncWebAssembly: true, topLevelAwait: true };
+    // Note: config.experiments for asyncWebAssembly and topLevelAwait is already set in the experimental block above.
+    // No need to set it again here.
 
     // For client-side bundles, prevent Node.js modules from being included.
     if (!isServer) {
@@ -45,11 +47,10 @@ const nextConfig = {
         async_hooks: false,
         http2: false,
         vm: false,
+        process: require.resolve('process/browser'), // Added polyfill for process
       };
     } else {
       // For server-side, explicitly mark 'crypto' as an external module.
-      // This tells Webpack (and by extension, Turbopack) not to try to bundle it,
-      // as it's a built-in Node.js module and will be available at runtime.
       config.externals = [...(config.externals || []), 'crypto'];
     }
 
