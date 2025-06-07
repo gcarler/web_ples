@@ -3,8 +3,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import Image from 'next/image';
 
 export const metadata = {
-  title: 'PLES Consulting - Specialized Consulting Services',
-  description: 'Explore our range of specialized consulting services.',
+  title: 'PLES Consulting - Estrategia e Innovación para el Desarrollo Sostenible',
+  description: 'Consultoría especializada para impulsar la estrategia, la innovación y la sostenibilidad en organizaciones públicas y privadas.',
 };
 
 export default function PlesConsultingPage() {
@@ -14,27 +14,31 @@ export default function PlesConsultingPage() {
         <CardHeader>
           <CardTitle className="text-2xl">PLES Consulting</CardTitle>
           <CardDescription>
-            Providing expert consulting services to optimize your business strategy.
+            Estrategia e Innovación para el Desarrollo Sostenible
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-6">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
               <p className="text-lg text-muted-foreground mb-4">
-                Strategic consulting to drive innovation and efficiency.
+                En PLES Consulting, colaboramos con organizaciones para diseñar e implementar estrategias que generan impacto positivo y duradero. Nuestro enfoque combina análisis riguroso, pensamiento innovador y un profundo entendimiento de los desafíos del desarrollo sostenible.
               </p>
-              <p className="text-muted-foreground">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
+              <ul className="list-disc list-inside text-muted-foreground space-y-2">
+                <li>Planificación estratégica y desarrollo organizacional.</li>
+                <li>Diseño y evaluación de políticas públicas.</li>
+                <li>Gestión de proyectos de desarrollo sostenible.</li>
+                <li>Innovación social y transformación digital.</li>
+                <li>Fortalecimiento de capacidades y asistencia técnica.</li>
+              </ul>
             </div>
             <div className="relative h-64 md:h-80 rounded-lg overflow-hidden shadow-inner">
               <Image
-                src="https://picsum.photos/600/400?random=12"
-                alt="Consulting Services"
+                src="https://placehold.co/600x400.png"
+                alt="Consultoría Estratégica"
                 layout="fill"
                 objectFit="cover"
                 className="rounded-lg"
-                data-ai-hint="business consulting strategy"
+                data-ai-hint="sustainable development strategy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
             </div>
