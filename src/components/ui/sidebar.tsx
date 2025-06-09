@@ -555,9 +555,9 @@ const sidebarMenuButtonVariants = cva(
   {
     variants: {
       variant: {
-        default: "hover:bg-gradient-to-r hover:from-sidebar-primary hover:to-sidebar-accent hover:text-sidebar-primary-foreground",
+        default: "hover:bg-gradient-to-b hover:from-sidebar-primary hover:to-sidebar-accent hover:text-sidebar-primary-foreground",
         outline:
-          "bg-background shadow-[0_0_0_1px_hsl(var(--sidebar-border))] hover:bg-gradient-to-r hover:from-sidebar-primary hover:to-sidebar-accent hover:text-sidebar-primary-foreground hover:shadow-[0_0_0_1px_hsl(var(--sidebar-accent))]",
+          "bg-background shadow-[0_0_0_1px_hsl(var(--sidebar-border))] hover:bg-gradient-to-b hover:from-sidebar-primary hover:to-sidebar-accent hover:text-sidebar-primary-foreground hover:shadow-[0_0_0_1px_hsl(var(--sidebar-accent))]",
       },
       size: {
         default: "h-8 text-sm",
@@ -762,7 +762,7 @@ const SidebarMenuSubButton = React.forwardRef<
       data-active={isActive}
       className={cn(
         "flex h-7 min-w-0 -translate-x-px items-center gap-2 overflow-hidden rounded-md px-2 text-sidebar-foreground outline-none ring-sidebar-ring focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 [&>svg]:text-sidebar-accent-foreground",
-        "hover:bg-gradient-to-r hover:from-sidebar-primary hover:to-sidebar-accent hover:text-sidebar-primary-foreground",
+        "hover:bg-gradient-to-b hover:from-sidebar-primary hover:to-sidebar-accent hover:text-sidebar-primary-foreground",
         "data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground",
         size === "sm" && "text-xs",
         size === "md" && "text-sm",

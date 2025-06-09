@@ -78,7 +78,7 @@ export default function AboutPage() {
           // Wrap DynamicSection in a Card for consistent styling
            <Card
              key={index}
-             className="hover:shadow-lg hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out group" // Added hover effects and group
+             className="hover:shadow-lg hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out group" // Added hover effects and group
             >
              <CardContent className="p-0"> {/* Remove default CardContent padding */}
                  <DynamicSection {...section} />
