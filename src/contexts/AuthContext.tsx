@@ -1,7 +1,7 @@
 // src/contexts/AuthContext.tsx
 'use client';
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, type ReactNode, type PropsWithChildren } from 'react';
 import { getAuth, onAuthStateChanged, User as FirebaseAuthUser } from 'firebase/auth';
 import { doc, getDoc, Timestamp, onSnapshot } from 'firebase/firestore'; // Import Firestore functions
 import { app, db } from '@/lib/firebase/firebase-config'; // Import Firebase app instance and Firestore db
@@ -17,7 +17,7 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const AuthProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [user, setUser] = useState<FirebaseAuthUser | null>(null);
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
@@ -32,32 +32,22 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         const unsubscribeProfile = onSnapshot(userDocRef, (docSnap) => {
           if (docSnap.exists()) {
             const data = docSnap.data();
-            // Ensure Timestamps are correctly handled
-            if (data.createdAt && !(data.createdAt instanceof Timestamp)) {
-                data.createdAt = data.createdAt.toDate ? data.createdAt.toDate() : new Date(); // Convert potential server timestamp
-            }
-             if (data.updatedAt && !(data.updatedAt instanceof Timestamp)) {
-                 data.updatedAt = data.updatedAt.toDate ? data.updatedAt.toDate() : new Date(); // Convert potential server timestamp
-            }
+            // UserProfileSchema expects Firestore Timestamps.
+            // The client SDK's onSnapshot should provide these directly.
+            const profileToValidate = { ...data, uid: currentUser.uid };
+            const parsedProfile = UserProfileSchema.safeParse(profileToValidate);
 
-            // Zod validation (consider handling errors)
-            const parsedProfile = UserProfileSchema.safeParse({ ...data, uid: currentUser.uid });
-            if(parsedProfile.success){
-                 // Convert JS Dates back to Timestamps for consistency if needed, or adjust schema
-                setUserProfile({
-                    ...parsedProfile.data,
-                    createdAt: parsedProfile.data.createdAt instanceof Date ? Timestamp.fromDate(parsedProfile.data.createdAt) : parsedProfile.data.createdAt,
-                    updatedAt: parsedProfile.data.updatedAt instanceof Date ? Timestamp.fromDate(parsedProfile.data.updatedAt) : parsedProfile.data.updatedAt,
-                });
+            if (parsedProfile.success) {
+                 setUserProfile(parsedProfile.data);
             } else {
                 console.error("Firestore User Profile validation error:", parsedProfile.error);
-                setUserProfile(null); // Handle invalid profile data
+                // Consider how to handle profile data that doesn't match the schema.
+                // For now, setting to null, which might restrict access if role is derived from it.
+                setUserProfile(null);
             }
-
           } else {
             // Handle case where user exists in Auth but not in Firestore 'users' collection
             console.warn(`User profile not found in Firestore for uid: ${currentUser.uid}`);
-            // Potentially create a default profile here or assign a default role
             setUserProfile(null);
           }
           setLoading(false); // Set loading to false after profile fetched/checked

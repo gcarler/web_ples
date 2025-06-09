@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { Separator } from '@/components/ui/separator'; // Import Separator
 import { AuthProvider } from '@/contexts/AuthContext'; // Import AuthProvider
 import { ThemeProvider } from "next-themes"; // Import ThemeProvider
+import type { PropsWithChildren } from 'react';
 
 export const metadata: Metadata = {
   title: 'PLES',
@@ -15,9 +16,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: PropsWithChildren) {
   return (
     <html lang="en" suppressHydrationWarning> {/* Add suppressHydrationWarning for next-themes */}
       <body className="min-h-screen flex flex-col antialiased">

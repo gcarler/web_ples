@@ -61,6 +61,7 @@ export function Header() {
       type: 'image',
       src: 'https://picsum.photos/1200/400?random=1',
       alt: 'Abstract technology background',
+      dataAiHint: 'technology abstract',
       content: (
         <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-center p-4">
           <h2 className="text-3xl font-bold text-white mb-2">Innovamos territorios con tecnología sostenible</h2>
@@ -78,6 +79,7 @@ export function Header() {
       type: 'image',
       src: 'https://picsum.photos/1200/400?random=2',
       alt: 'Data visualization concept',
+      dataAiHint: 'data visualization',
        content: (
         <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center text-center p-4">
           <h2 className="text-3xl font-bold text-white mb-2">Datos, ingeniería y propósito para el desarrollo</h2>
@@ -94,6 +96,7 @@ export function Header() {
       type: 'image', // Changed from 'video' to 'image'
       src: 'https://picsum.photos/1200/400?random=8', // Changed to a placeholder image source
       alt: 'Community building concept', // Added alt text for the image
+      dataAiHint: 'community concept',
       content: (
         <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center p-4">
           <h2 className="text-3xl font-bold text-white mb-2">Construimos soluciones que cambian comunidades</h2>
@@ -116,7 +119,7 @@ export function Header() {
       {/* Navigation Bar */}
       <nav className="container mx-auto px-4 py-4 flex flex-wrap justify-between items-center">
         <Link href="/" className="flex items-center gap-2 text-xl font-semibold text-primary mb-4 sm:mb-0">
-          <PlesGroupLogo className="h-8 w-8 logo-outline" />
+          <PlesGroupLogo className="h-8 w-8" />
           <span>PLES</span>
         </Link>
         <div className="flex items-center gap-2"> {/* Main container for nav items and action buttons */}

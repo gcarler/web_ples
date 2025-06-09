@@ -12,6 +12,7 @@ export interface CarouselSlideProps {
   type: 'image' | 'video';
   src: string;
   alt?: string; // Required for images
+  dataAiHint?: string; // For placeholder image hints
   content?: React.ReactNode; // Overlay content (text, button)
   videoProps?: React.VideoHTMLAttributes<HTMLVideoElement>; // Props for video element
 }
@@ -55,6 +56,7 @@ export function Carousel({ slides, className }: CarouselProps) {
             quality={85}
             priority={currentIndex === 0} // Prioritize loading the first image
             unoptimized={currentSlide.src.endsWith('.gif')} // Example: Disable optimization for GIFs
+            data-ai-hint={currentSlide.dataAiHint}
           />
         )}
         {currentSlide.type === 'video' && (

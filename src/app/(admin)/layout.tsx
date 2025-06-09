@@ -1,12 +1,13 @@
 // src/app/(admin)/layout.tsx
 'use client';
 
-import { ReactNode, useEffect } from 'react';
+import type { PropsWithChildren } from 'react';
+import { useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 import { Sidebar, SidebarProvider, SidebarInset, SidebarHeader, SidebarTrigger, SidebarContent, SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarFooter } from '@/components/ui/sidebar'; // Assuming you have a Sidebar component
 import { PlesGroupLogo } from '@/components/logo';
-import { LayoutDashboard, Users, Package, ShoppingCart, Workflow, LogOut, ShieldCheck } from 'lucide-react'; // Added ShieldCheck for potential admin management
+import { LayoutDashboard, Users, Package, ShoppingCart, Workflow, LogOut, ShieldCheck, Gem, HeartPulse, Target, Globe, Rocket, Eye } from 'lucide-react'; // Added ShieldCheck for potential admin management
 import { getAuth, signOut } from 'firebase/auth';
 import { app } from '@/lib/firebase/firebase-config';
 import { useToast } from '@/hooks/use-toast';
@@ -14,7 +15,7 @@ import Link from 'next/link';
 import { Skeleton } from '@/components/ui/skeleton'; // Import Skeleton
 import { hasPermission } from '@/lib/models/user'; // Import permission checker
 
-export default function AdminLayout({ children }: { children: ReactNode }) {
+export default function AdminLayout({ children }: PropsWithChildren) {
   const { user, userProfile, loading } = useAuth(); // Get userProfile which contains the role
   const router = useRouter();
   const auth = getAuth(app);
@@ -151,7 +152,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
                          )}
 
                          {/* BPM Links - Visible if user has 'manage_bpm', 'view_bpm', or 'admin' role */}
-                          {hasPermission(userRole, 'manage_bpm') || hasPermission(userRole, 'view_bpm') && (
+                          {(hasPermission(userRole, 'manage_bpm') || hasPermission(userRole, 'view_bpm')) && (
                               <SidebarMenuItem>
                                  <SidebarMenuButton asChild>
                                     <Link href="/admin/bpm/processes">

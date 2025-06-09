@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { ArrowRight, Building, Users, Handshake, Target, Quote, CheckCircle, Database, UsersRound } from 'lucide-react'; // Added CheckCircle, Database, UsersRound
+import { ArrowRight, Building, Users, Handshake, Target, Quote, CheckCircle, Database, UsersRound, Gem, HeartPulse, Rocket, Eye, Globe } from 'lucide-react'; // Added CheckCircle, Database, UsersRound
 
 export default function Home() {
   return (
@@ -157,7 +157,7 @@ export default function Home() {
             layout="fill"
             objectFit="cover"
             className="opacity-30"
-             data-ai-hint="abstract background technology"
+             data-ai-hint="abstract technology background"
           />
            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-background"></div>
         </div>
@@ -208,4 +208,3 @@ export default function Home() {
     </div>
   );
 }
-
