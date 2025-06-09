@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
@@ -28,7 +29,7 @@ export default function Home() {
             <span>8 alianzas académicas y comunitarias</span>
           </div>
         </div>
-         <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+         <Button asChild size="lg">
           <Link href="/about"> {/* Changed link to /about */}
             Saber Más <ArrowRight className="ml-2" /> {/* Changed text to Saber Más */}
           </Link>
@@ -57,7 +58,7 @@ export default function Home() {
             </div>
             <div className="relative h-64 md:h-80 rounded-lg overflow-hidden shadow-inner">
               <Image
-                src="https://picsum.photos/600/400?random=3"
+                src="https://placehold.co/600x400.png"
                 alt="Equipo trabajando"
                 layout="fill"
                 objectFit="cover"
@@ -81,16 +82,16 @@ export default function Home() {
             { title: 'Ples Catastro', description: 'Servicios relacionados con catastro.', icon: Users, href: "/ples-catastro" }, // Using Users as placeholder
             { title: 'Ples Consulting', description: 'Consultoría especializada.', icon: Handshake, href: "/ples-consulting" },
           ].map((marca) => (
-            <Card key={marca.title} className="text-center hover:shadow-xl transition-shadow duration-300">
+            <Card key={marca.title} className="text-center group hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out">
               <CardHeader>
-                <div className="mx-auto bg-primary/10 text-primary rounded-full p-3 w-fit mb-4">
+                <div className="mx-auto bg-primary/10 text-primary rounded-full p-3 w-fit mb-4 group-hover:bg-primary-foreground/20 group-hover:text-primary-foreground">
                   <marca.icon className="h-8 w-8" />
                 </div>
-                <CardTitle>{marca.title}</CardTitle>
-                <CardDescription>{marca.description}</CardDescription>
+                <CardTitle className="group-hover:text-primary-foreground">{marca.title}</CardTitle>
+                <CardDescription className="group-hover:text-primary-foreground/90">{marca.description}</CardDescription>
               </CardHeader>
               <CardContent>
-                 <Button variant="link" asChild>
+                 <Button variant="link" asChild className="text-primary group-hover:text-primary-foreground">
                    <Link href={marca.href}>
                      Ver Detalles <ArrowRight className="ml-1 h-4 w-4" />
                    </Link>
@@ -152,7 +153,7 @@ export default function Home() {
       <section className="relative py-24 rounded-lg overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://picsum.photos/1200/400?random=4"
+            src="https://placehold.co/1200x400.png"
             alt="Fondo abstracto"
             layout="fill"
             objectFit="cover"
@@ -181,9 +182,9 @@ export default function Home() {
         {/* Removed container mx-auto, relies on parent padding */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[
-            { name: 'Cliente Satisfecho 1', title: 'CEO, Empresa X', text: '¡Increíble servicio! Superaron nuestras expectativas.', image: 'https://picsum.photos/100/100?random=5', hint: 'person face ceo' },
-            { name: 'Cliente Satisfecho 2', title: 'Gerente, Organización Y', text: 'La implementación fue fluida y el soporte excelente.', image: 'https://picsum.photos/100/100?random=6', hint: 'person face manager' },
-            { name: 'Cliente Satisfecho 3', title: 'Director, Fundación Z', text: 'Nos ayudaron a optimizar nuestros procesos clave.', image: 'https://picsum.photos/100/100?random=7', hint: 'person face director' },
+            { name: 'Cliente Satisfecho 1', title: 'CEO, Empresa X', text: '¡Increíble servicio! Superaron nuestras expectativas.', image: 'https://placehold.co/100x100.png', hint: 'person face ceo' },
+            { name: 'Cliente Satisfecho 2', title: 'Gerente, Organización Y', text: 'La implementación fue fluida y el soporte excelente.', image: 'https://placehold.co/100x100.png', hint: 'person face manager' },
+            { name: 'Cliente Satisfecho 3', title: 'Director, Fundación Z', text: 'Nos ayudaron a optimizar nuestros procesos clave.', image: 'https://placehold.co/100x100.png', hint: 'person face director' },
           ].map((testimonial) => (
             <Card key={testimonial.name} className="flex flex-col">
               <CardContent className="pt-6 flex-grow">
@@ -208,3 +209,5 @@ export default function Home() {
     </div>
   );
 }
+
+    
