@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, CheckCircle, Lightbulb, Users, TrendingUp, ShieldCheck, Briefcase, Layers, BookOpen, MessageSquare } from 'lucide-react';
+import { ArrowRight, CheckCircle, Lightbulb, Users, TrendingUp, ShieldCheck, Briefcase, Layers, BookOpen, MessageSquare, Search, Users2, BarChart3, Zap } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 export const metadata = {
@@ -16,52 +16,85 @@ export default function PlesConsultingPage() {
     {
       icon: <TrendingUp className="h-10 w-10 text-primary mb-4" />,
       title: 'Planificación Estratégica y Desarrollo Organizacional',
-      description: 'Facilitamos procesos de planificación y transformación para alinear sus recursos con objetivos de alto impacto.',
+      description: 'Facilitamos procesos de planificación y transformación para alinear sus recursos con objetivos de alto impacto, fortaleciendo la visión a largo plazo y la capacidad de adaptación.',
+      details: ['Diagnóstico Organizacional 360°', 'Diseño de Modelos de Negocio Sostenibles', 'Gestión del Cambio y Cultura Organizacional', 'Optimización de Procesos y Eficiencia Operativa']
     },
     {
       icon: <Layers className="h-10 w-10 text-primary mb-4" />,
       title: 'Diseño y Evaluación de Políticas Públicas',
-      description: 'Apoyamos la formulación de políticas efectivas, basadas en evidencia y orientadas a resultados medibles.',
+      description: 'Apoyamos la formulación de políticas efectivas, basadas en evidencia y orientadas a resultados medibles, con un enfoque en la inclusión y la sostenibilidad.',
+      details: ['Análisis de Viabilidad y Factibilidad', 'Formulación Basada en Evidencia', 'Monitoreo y Evaluación de Impacto (M&E)', 'Participación Ciudadana en Políticas']
     },
     {
       icon: <Lightbulb className="h-10 w-10 text-primary mb-4" />,
       title: 'Innovación Social y Transformación Digital',
-      description: 'Impulsamos la adopción de enfoques innovadores y tecnologías digitales para resolver desafíos sociales complejos.',
+      description: 'Impulsamos la adopción de enfoques innovadores y tecnologías digitales para resolver desafíos sociales complejos, fomentando la colaboración y la escalabilidad.',
+      details: ['Laboratorios de Innovación Social', 'Estrategias de Transformación Digital', 'Soluciones Tecnológicas con Propósito', 'Modelos de Inversión de Impacto']
     },
     {
       icon: <BookOpen className="h-10 w-10 text-primary mb-4" />,
       title: 'Gestión del Conocimiento y Fortalecimiento de Capacidades',
-      description: 'Diseñamos e implementamos estrategias para mejorar el aprendizaje organizacional y las competencias de los equipos.',
+      description: 'Diseñamos e implementamos estrategias para mejorar el aprendizaje organizacional, la gestión del conocimiento y las competencias de los equipos.',
+      details: ['Sistemas de Gestión del Conocimiento', 'Programas de Capacitación a Medida', 'Comunidades de Práctica y Aprendizaje', 'Evaluación de Competencias']
     },
   ];
 
   const differentiators = [
-    { icon: <CheckCircle className="h-6 w-6 text-green-500" />, text: 'Enfoque Multidisciplinario y Visión Global' },
-    { icon: <CheckCircle className="h-6 w-6 text-green-500" />, text: 'Soluciones Co-creadas y Adaptadas al Contexto' },
-    { icon: <CheckCircle className="h-6 w-6 text-green-500" />, text: 'Compromiso con la Sostenibilidad y la Equidad' },
-    { icon: <CheckCircle className="h-6 w-6 text-green-500" />, text: 'Resultados Medibles y de Impacto Duradero' },
+    { icon: <Users2 className="h-8 w-8 text-accent" />, title: 'Enfoque Multidisciplinario', text: 'Combinamos experticia en diversas áreas para ofrecer soluciones integrales y creativas adaptadas a la complejidad de cada desafío.' },
+    { icon: <Zap className="h-8 w-8 text-accent" />, title: 'Innovación Constante', text: 'Nos mantenemos a la vanguardia de metodologías y tecnologías para proponer soluciones que no solo resuelven, sino que transforman.' },
+    { icon: <BarChart3 className="h-8 w-8 text-accent" />, title: 'Orientación a Resultados Medibles', text: 'Definimos indicadores claros y medimos el impacto de nuestras intervenciones para asegurar la generación de valor tangible.' },
+    { icon: <ShieldCheck className="h-8 w-8 text-accent" />, title: 'Compromiso Ético y Sostenible', text: 'Nuestras recomendaciones buscan la sostenibilidad a largo plazo y se basan en principios de equidad, transparencia e integridad.' },
   ];
 
-  const methodologies = ['Design Thinking', 'Gestión Ágil de Proyectos', 'Análisis de Datos Cualitativos y Cuantitativos', 'Facilitación Estratégica', 'Marco Lógico'];
+  const methodologies = ['Design Thinking', 'Gestión Ágil de Proyectos (Scrum/Kanban)', 'Análisis de Datos Avanzado (Cualitativo y Cuantitativo)', 'Facilitación Estratégica y Co-creación', 'Marco Lógico y Teoría del Cambio', 'Investigación Acción Participativa'];
+
+  const processSteps = [
+    {
+        icon: <Search className="h-10 w-10 text-primary mx-auto mb-3"/>,
+        title: "1. Diagnóstico Profundo y Escucha Activa",
+        description: "Iniciamos con una inmersión total para comprender sus desafíos, contexto, necesidades y aspiraciones. Escuchamos a todas las partes interesadas y analizamos la información existente para construir una base sólida."
+    },
+    {
+        icon: <Lightbulb className="h-10 w-10 text-primary mx-auto mb-3"/>,
+        title: "2. Co-creación de Soluciones Estratégicas",
+        description: "Trabajamos de la mano con su equipo para diseñar estrategias y soluciones innovadoras y a la medida. Fomentamos la participación activa para asegurar la apropiación y la viabilidad de las propuestas."
+    },
+    {
+        icon: <TrendingUp className="h-10 w-10 text-primary mx-auto mb-3"/>,
+        title: "3. Implementación Ágil y Acompañamiento",
+        description: "Apoyamos la puesta en marcha de las soluciones con un enfoque flexible y adaptativo. Brindamos acompañamiento continuo, transferimos capacidades y ajustamos el rumbo según sea necesario para garantizar resultados sostenibles."
+    }
+  ];
 
   return (
-    <div className="py-10 space-y-12 px-4 sm:px-6 lg:px-8">
+    <div className="py-10 space-y-16 px-4 sm:px-6 lg:px-8">
       {/* Hero Section */}
-      <section className="text-center py-12 bg-card rounded-lg shadow-xl">
-        <div className="container mx-auto">
-          <Briefcase className="h-16 w-16 text-primary mx-auto mb-6" />
-          <h1 className="text-4xl font-bold text-primary mb-4">PLES Consulting</h1>
-          <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-            Estrategia, Innovación y Transformación para el Impacto. Colaboramos con organizaciones para generar un cambio positivo y duradero.
+      <section className="relative py-20 md:py-28 rounded-lg overflow-hidden bg-card shadow-xl">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://placehold.co/1200x500.png"
+            alt="Fondo abstracto de consultoría y estrategia"
+            layout="fill"
+            objectFit="cover"
+            className="opacity-20"
+            data-ai-hint="abstract strategy meeting"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/30"></div>
+        </div>
+        <div className="container mx-auto text-center relative z-10">
+          <Briefcase className="h-20 w-20 text-primary mx-auto mb-6" />
+          <h1 className="text-4xl md:text-5xl font-bold text-primary mb-6">PLES Consulting</h1>
+          <p className="text-lg md:text-xl text-foreground mb-8 max-w-3xl mx-auto">
+            Aliados estratégicos para la innovación y la transformación. Colaboramos con organizaciones para diseñar e implementar soluciones que generan un impacto positivo y duradero.
           </p>
-           <div className="flex flex-wrap justify-center gap-2 mb-8">
-            <Badge variant="secondary" className="text-md px-3 py-1">#Estrategia</Badge>
-            <Badge variant="secondary" className="text-md px-3 py-1">#Innovacion</Badge>
-            <Badge variant="secondary" className="text-md px-3 py-1">#DesarrolloSostenible</Badge>
+           <div className="flex flex-wrap justify-center gap-2 mb-10">
+            <Badge variant="default" className="text-md px-4 py-2 shadow-md">#EstrategiaOrganizacional</Badge>
+            <Badge variant="default" className="text-md px-4 py-2 shadow-md">#InnovacionConProposito</Badge>
+            <Badge variant="default" className="text-md px-4 py-2 shadow-md">#DesarrolloSostenible</Badge>
           </div>
-          <Button size="lg" asChild>
-            <Link href="/forms?service=ples-consulting">
-              Conversemos Sobre sus Desafíos <ArrowRight className="ml-2" />
+          <Button size="lg" className="text-lg px-8 py-3" asChild>
+            <Link href="/forms?service=ples-consulting&subject=Consulta%20PLES%20Consulting">
+              Conversemos Sobre sus Desafíos <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </Button>
         </div>
@@ -69,16 +102,29 @@ export default function PlesConsultingPage() {
 
       {/* Áreas de Expertise */}
       <section>
-        <h2 className="text-3xl font-bold text-center mb-10">Nuestras Áreas de Expertise</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <h2 className="text-3xl font-bold text-center mb-4">Nuestras Áreas de Expertise</h2>
+        <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
+            Desde la planificación estratégica hasta la transformación digital, ofrecemos un abanico de servicios diseñados para potenciar el crecimiento y la eficiencia de su organización.
+        </p>
+        <div className="grid md:grid-cols-2 gap-8">
           {expertiseAreas.map((area) => (
-            <Card key={area.title} className="text-center hover:shadow-lg transition-shadow duration-300 flex flex-col">
-              <CardHeader>
+            <Card key={area.title} className="hover:shadow-xl transition-shadow duration-300">
+              <CardHeader className="flex flex-row items-start gap-4">
                 {area.icon}
-                <CardTitle>{area.title}</CardTitle>
+                <div>
+                  <CardTitle className="text-xl">{area.title}</CardTitle>
+                  <CardDescription className="mt-1">{area.description}</CardDescription>
+                </div>
               </CardHeader>
-              <CardContent className="flex-grow">
-                <CardDescription>{area.description}</CardDescription>
+              <CardContent>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  {area.details.map(detail => (
+                    <li key={detail} className="flex items-center">
+                      <CheckCircle className="h-4 w-4 text-green-500 mr-2 shrink-0" />
+                      {detail}
+                    </li>
+                  ))}
+                </ul>
               </CardContent>
             </Card>
           ))}
@@ -89,86 +135,74 @@ export default function PlesConsultingPage() {
       <section className="py-12 bg-secondary rounded-lg">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center mb-10">Nuestro Valor Diferencial</h2>
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8">
             {differentiators.map((item) => (
-              <div key={item.text} className="flex items-start space-x-4 p-4">
-                {item.icon}
-                <div>
-                  <h3 className="font-semibold text-lg mb-1">{item.text}</h3>
-                  <p className="text-muted-foreground text-sm">Impulsamos soluciones que no solo resuelven problemas actuales, sino que también construyen capacidades para el futuro, asegurando un legado de progreso y bienestar.</p>
-                </div>
-              </div>
+              <Card key={item.title} className="bg-card">
+                <CardHeader className="flex flex-row items-center gap-4">
+                  {item.icon}
+                  <CardTitle className="text-xl">{item.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">{item.text}</p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
       </section>
       
-      {/* Cómo Trabajamos */}
+      {/* Cómo Trabajamos: Nuestro Proceso Colaborativo */}
       <section className="py-12">
         <div className="container mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-10">Cómo Trabajamos: Nuestro Proceso Colaborativo</h2>
-            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                <Card className="hover:shadow-lg transition-shadow">
-                    <CardHeader>
-                        <div className="flex items-center gap-3 mb-2">
-                            <Search className="h-8 w-8 text-primary"/>
-                            <CardTitle className="text-xl">1. Diagnóstico y Escucha Activa</CardTitle>
-                        </div>
-                    </CardHeader>
-                    <CardContent>
-                        <p className="text-muted-foreground">Comprendemos a fondo sus desafíos, contexto y aspiraciones a través de un diálogo abierto y análisis profundo.</p>
-                    </CardContent>
-                </Card>
-                <Card className="hover:shadow-lg transition-shadow">
-                    <CardHeader>
-                        <div className="flex items-center gap-3 mb-2">
-                            <Lightbulb className="h-8 w-8 text-primary"/>
-                            <CardTitle className="text-xl">2. Co-creación de Soluciones</CardTitle>
-                        </div>
-                    </CardHeader>
-                    <CardContent>
-                        <p className="text-muted-foreground">Diseñamos estrategias y soluciones innovadoras de manera conjunta, integrando su conocimiento con nuestra experiencia.</p>
-                    </CardContent>
-                </Card>
-                <Card className="hover:shadow-lg transition-shadow">
-                    <CardHeader>
-                        <div className="flex items-center gap-3 mb-2">
-                            <TrendingUp className="h-8 w-8 text-primary"/>
-                            <CardTitle className="text-xl">3. Implementación y Acompañamiento</CardTitle>
-                        </div>
-                    </CardHeader>
-                    <CardContent>
-                        <p className="text-muted-foreground">Apoyamos la puesta en marcha de las soluciones, asegurando la transferencia de capacidades y el logro de resultados sostenibles.</p>
-                    </CardContent>
-                </Card>
+            <h2 className="text-3xl font-bold mb-4">Cómo Trabajamos: Nuestro Proceso Colaborativo</h2>
+            <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
+                Creemos en un enfoque participativo y adaptado a sus necesidades, asegurando soluciones pertinentes y sostenibles.
+            </p>
+            <div className="grid md:grid-cols-3 gap-8">
+                {processSteps.map((step) => (
+                    <Card key={step.title} className="hover:shadow-lg transition-shadow text-center transform hover:-translate-y-1 flex flex-col">
+                        <CardHeader className="items-center">
+                            {step.icon}
+                            <CardTitle className="mt-2 text-lg">{step.title}</CardTitle>
+                        </CardHeader>
+                        <CardContent className="flex-grow">
+                            <p className="text-muted-foreground text-sm">{step.description}</p>
+                        </CardContent>
+                    </Card>
+                ))}
             </div>
         </div>
       </section>
 
       {/* Metodologías y Herramientas */}
-      <section className="py-12 bg-card rounded-lg shadow-lg">
+      <section className="py-12 bg-card rounded-lg shadow-xl">
         <div className="container mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-8">Metodologías y Herramientas que Aplicamos</h2>
-          <div className="flex flex-wrap justify-center gap-3">
+          <h2 className="text-3xl font-bold mb-4">Metodologías y Herramientas que Potencian el Éxito</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto mb-10">
+            Aplicamos un conjunto diverso de metodologías probadas y herramientas innovadoras para abordar sus desafíos desde múltiples perspectivas y asegurar resultados de alto impacto.
+          </p>
+          <div className="flex flex-wrap justify-center items-center gap-3">
             {methodologies.map((method) => (
-              <Badge key={method} variant="outline" className="text-lg px-4 py-2 border-primary text-primary">{method}</Badge>
+              <Badge key={method} variant="outline" className="text-md md:text-lg px-4 py-2 border-primary text-primary shadow-sm hover:bg-primary/10 transition-colors">{method}</Badge>
             ))}
           </div>
         </div>
       </section>
 
       {/* Call to Action Final */}
-      <section className="text-center py-16">
-        <MessageSquare className="h-12 w-12 text-accent mx-auto mb-6" />
-        <h2 className="text-3xl font-bold mb-4">Impulsemos Juntos la Transformación</h2>
-        <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-          Si busca un aliado estratégico para enfrentar sus desafíos más complejos y generar un impacto significativo, PLES Consulting es su socio ideal.
-        </p>
-        <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90" asChild>
-          <Link href="/forms?service=ples-consulting&subject=Consulta%20Estrategica">
-            Contacte con Nuestros Expertos <ArrowRight className="ml-2" />
-          </Link>
-        </Button>
+      <section className="text-center py-20 bg-primary text-primary-foreground rounded-lg shadow-inner">
+        <div className="container mx-auto">
+            <MessageSquare className="h-16 w-16 mx-auto mb-6 opacity-80" />
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Impulsemos Juntos la Próxima Etapa de su Organización</h2>
+            <p className="text-lg md:text-xl mb-10 max-w-3xl mx-auto opacity-90">
+             Si busca un aliado estratégico para navegar la complejidad, innovar con propósito y alcanzar resultados extraordinarios, PLES Consulting es su socio ideal.
+            </p>
+            <Button size="xl" variant="secondary" className="text-lg px-10 py-4 shadow-lg hover:scale-105 transition-transform" asChild>
+            <Link href="/forms?service=ples-consulting&subject=Solicitud%20Asesoria%20Estrategica">
+                Contacte con Nuestros Expertos <ArrowRight className="ml-3 h-5 w-5" />
+            </Link>
+            </Button>
+        </div>
       </section>
     </div>
   );
