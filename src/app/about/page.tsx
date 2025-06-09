@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import DynamicSection from '@/components/DynamicSection';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'; // Import Card components
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Gem, HeartPulse, Target, Globe, Rocket, Eye } from 'lucide-react'; // Added Gem and other icons
 import Link from 'next/link';
 
 // Metadata for SEO
@@ -18,26 +18,31 @@ export default function AboutPage() {
       title: 'Nuestra Esencia',
       content: 'Comprendiendo quienes somos.',
       link: '/about/esencia',
+      icon: HeartPulse, // Added icon
     },
     {
       title: 'Nuestro Propósito',
       content: 'Explorando nuestro motor.',
       link: '/about/proposito',
+      icon: Target, // Added icon
     },
     {
       title: 'Colaboración Global',
       content: 'Conoce cómo trabajamos.',
       link: '/about/colaboracion',
+      icon: Globe, // Added icon
     },
     {
       title: 'Nuestra Misión',
       content: 'Guiando nuestras acciones.',
       link: '/about/mision',
+      icon: Rocket, // Added icon
     },
     {
       title: 'Nuestra Visión',
       content: 'Definiendo nuestro horizonte.',
       link: '/about/vision',
+      icon: Eye, // Added icon
     },
   ];
 
@@ -53,12 +58,14 @@ export default function AboutPage() {
         </p>
         {/* Make text larger and bold */}
         <p className="text-xl font-bold">
-          CON LOS ATRIBUTOS QUE TRAE:.
+          Pilares de Nuestra Identidad:
         </p>
          {/* Moved Valores Fundamentales here, added blue background and text color */}
          {/* Added hover effects: black background, white text, scale-up */}
          <div className="border rounded-lg p-8 shadow-md bg-primary text-primary-foreground mt-8 hover:bg-black hover:text-white hover:scale-105 transition-all duration-300 ease-in-out">
-             <h2 className="text-2xl font-bold mb-4 text-center">Nuestros Valores Fundamentales</h2>
+             <h2 className="text-2xl font-bold mb-4 text-center flex items-center justify-center">
+                <Gem className="mr-2 h-6 w-6" /> Nuestros Valores Fundamentales
+            </h2>
              <p className="text-base"> {/* Adjusted text size */}
                  Integridad como principio rector, innovación como motor de progreso y colaboración como esencia de nuestro accionar. Estos valores se manifiestan en nuestro compromiso inquebrantable con la resiliencia ambiental y la equidad de género, buscando generar un legado significativo y duradero en cada comunidad que abrazamos.
              </p>
@@ -71,7 +78,7 @@ export default function AboutPage() {
           // Wrap DynamicSection in a Card for consistent styling
            <Card
              key={index}
-             className="hover:shadow-lg hover:bg-primary hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out group" // Added hover effects and group
+             className="hover:shadow-lg hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out group" // Added hover effects and group
             >
              <CardContent className="p-0"> {/* Remove default CardContent padding */}
                  <DynamicSection {...section} />
