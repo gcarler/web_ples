@@ -1,11 +1,9 @@
 import * as React from 'react';
 import { cn } from '@/lib/utils';
 
-interface LogoProps extends React.SVGProps<SVGSVGElement> {
-  innerFillColor?: string;
-}
+interface LogoProps extends React.SVGProps<SVGSVGElement> {}
 
-export function PlesGroupLogo({ className, innerFillColor, ...props }: LogoProps) {
+export function PlesGroupLogo({ className, ...props }: LogoProps) {
   return (
     <svg
       viewBox="0 0 26 26" // Adjusted viewBox to contain the stroke
@@ -16,8 +14,8 @@ export function PlesGroupLogo({ className, innerFillColor, ...props }: LogoProps
     >
       {/* Apply stroke color via CSS class 'logo-outline' or defaults */}
       <circle cx="13" cy="13" r="11" className="logo-outline" strokeWidth="2.5" />
-      {/* Inner circle: uses innerFillColor prop or defaults to primary theme color */}
-      <circle cx="13" cy="13" r="8.5" fill={innerFillColor || "hsl(var(--primary))"} />
+      {/* Inner circle: defaults to primary theme color */}
+      <circle cx="13" cy="13" r="8.5" fill="hsl(var(--primary))"} />
     </svg>
   );
 }
