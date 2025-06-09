@@ -3,35 +3,57 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { getAuth, Auth } from 'firebase-admin/auth';
 import admin from 'firebase-admin';
-import { UserProfile, UserRole, ROLES, hasPermission } from '@/lib/models/user'; // Import user models and permissions
+import { UserProfile, UserProfileSchema, UserRole, ROLES, hasPermission } from '@/lib/models/user'; // Import user models and permissions
 import { adminDb } from '@/lib/firebase/firebase-admin-config'; // Use existing admin init
-import { Timestamp } from 'firebase/firestore';
+import { Timestamp as ClientTimestamp } from 'firebase/firestore'; // Alias for client SDK Timestamp
 
 // Helper function to get user profile from Firestore
 async function getUserProfile(uid: string): Promise<UserProfile | null> {
     try {
         const userDocRef = adminDb.collection('users').doc(uid);
         const docSnap = await userDocRef.get();
-        if (docSnap.exists) {
-            const data = docSnap.data() as any; // Cast needed for timestamp conversion
-             // Basic timestamp conversion (might need more robust handling)
-             if (data.createdAt && typeof data.createdAt.toDate === 'function') {
-                 data.createdAt = data.createdAt.toDate();
-             }
-             if (data.updatedAt && typeof data.updatedAt.toDate === 'function') {
-                 data.updatedAt = data.updatedAt.toDate();
-             }
-             // Convert back to Firestore Timestamps for schema validation
-            return {
+
+        if (docSnap.exists()) {
+            const data = docSnap.data();
+            if (!data) {
+                console.warn(`Middleware: No data found for user profile ${uid} despite document existence.`);
+                return null;
+            }
+
+            // UserProfileSchema uses Timestamp from 'firebase/firestore' (ClientTimestamp)
+            // Data from adminDb.get() has Timestamps from 'firebase-admin/firestore'
+            // Convert admin Timestamps to client Timestamps for Zod validation.
+            const profileToValidate = {
                 ...data,
                 uid: uid,
-                 createdAt: data.createdAt instanceof Date ? Timestamp.fromDate(data.createdAt) : data.createdAt,
-                 updatedAt: data.updatedAt instanceof Date ? Timestamp.fromDate(data.updatedAt) : data.updatedAt,
-             } as UserProfile;
+                createdAt: data.createdAt && typeof data.createdAt.toDate === 'function'
+                    ? ClientTimestamp.fromDate(data.createdAt.toDate())
+                    : undefined,
+                updatedAt: data.updatedAt && typeof data.updatedAt.toDate === 'function'
+                    ? ClientTimestamp.fromDate(data.updatedAt.toDate())
+                    : undefined,
+            };
+
+            // Ensure required timestamps are present and are actual Timestamp instances after conversion
+            if (!(profileToValidate.createdAt instanceof ClientTimestamp) || !(profileToValidate.updatedAt instanceof ClientTimestamp)) {
+                console.error(`Middleware: User profile ${uid} is missing valid createdAt or updatedAt timestamps after conversion. createdAt type: ${typeof profileToValidate.createdAt}, updatedAt type: ${typeof profileToValidate.updatedAt}`);
+                return null;
+            }
+
+            const parsedProfile = UserProfileSchema.safeParse(profileToValidate);
+
+            if (parsedProfile.success) {
+                return parsedProfile.data;
+            } else {
+                console.error(`Middleware: User profile data from Firestore for UID ${uid} failed Zod validation:`, parsedProfile.error.flatten());
+                // console.log("Problematic data for Zod:", profileToValidate); // For deep debugging
+                return null;
+            }
         }
+        console.warn(`Middleware: User profile document not found in Firestore for UID ${uid}.`);
         return null;
     } catch (error) {
-        console.error("Middleware: Error fetching user profile:", error);
+        console.error(`Middleware: Error fetching user profile for UID ${uid}:`, error);
         return null;
     }
 }
@@ -120,9 +142,8 @@ export async function middleware(request: NextRequest) {
 
           // Check if the user's role has permission for the requested route
           if (!checkRoutePermission(userProfile.role, pathname)) {
-              console.warn(`Middleware: User ${uid} (${userProfile.role}) does not have permission for ${pathname}. Redirecting.`);
+              console.warn(`Middleware: User ${uid} (${userProfile.role}) does not have permission for ${pathname}. Redirecting to dashboard.`);
               // Redirect to dashboard or a dedicated 'forbidden' page
-              // For simplicity, redirecting to dashboard for now
               return NextResponse.redirect(dashboardUrl); // Or forbiddenUrl
           }
 
