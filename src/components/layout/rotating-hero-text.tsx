@@ -53,7 +53,7 @@ export function RotatingHeroText({
   return (
     <div
       className={cn(
-        'flex flex-col items-center justify-center text-center p-8 md:p-12 min-h-[300px] md:min-h-[350px] bg-background text-foreground',
+        'flex flex-col items-center justify-center text-center p-12 md:p-16 min-h-[350px] md:min-h-[450px] bg-background text-foreground', // Increased padding and min-height
         className
       )}
     >
@@ -63,10 +63,10 @@ export function RotatingHeroText({
           isFading ? 'opacity-0' : 'opacity-100'
         )}
       >
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 leading-tight">
+        <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 md:mb-8 leading-tight"> {/* Increased font size */}
           {currentStatement.title}
         </h2>
-        <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-6 md:mb-8 max-w-xl lg:max-w-2xl mx-auto">
+        <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-8 md:mb-10 max-w-xl lg:max-w-2xl mx-auto"> {/* Increased font size */}
           {currentStatement.description}
         </p>
         <Button asChild size="lg" variant={currentStatement.ctaVariant || 'default'} className="text-lg px-8 py-3">

@@ -156,7 +156,7 @@ export function Header() {
       </nav>
 
       {shouldShowHero && (
-        <div className="w-full border-t border-border">
+        <div className="w-full"> {/* Removed border-t border-border */}
           <RotatingHeroText statements={heroStatements} />
         </div>
       )}
