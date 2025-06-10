@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <div className="space-y-16 px-4 sm:px-6 lg:px-8">
       <section className="text-center py-16 md:py-20">
-        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-12 mt-8">EL USO INTELIGENTE DE LA EXPERIENCIA</h1>
+        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-12 mt-8 bg-gradient-to-r from-primary to-accent text-transparent bg-clip-text">EL USO INTELIGENTE DE LA EXPERIENCIA</h1>
         <div className="flex flex-col sm:flex-row justify-center items-stretch sm:items-center gap-y-8 sm:gap-x-10 md:gap-x-14 text-xl text-foreground mb-16">
           
           <div className="flex items-center gap-4 p-4 rounded-lg transition-all duration-300 ease-in-out hover:bg-primary/5 hover:shadow-lg hover:scale-105 cursor-default">
