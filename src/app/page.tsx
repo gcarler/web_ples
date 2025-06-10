@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { ArrowRight, Building, Users, Handshake, Target, Quote, CheckCircle, Database, UsersRound, Gem, HeartPulse, Rocket, Eye, Globe, Map, Laptop, Landmark } from 'lucide-react';
+import { ArrowRight, Building, Users, Handshake, Target, Quote, CheckCircle, Database, UsersRound, Gem, HeartPulse, Rocket, Eye, Globe, Server, Home as HomeIcon, Lightbulb } from 'lucide-react';
 
 export default function Home() {
   return (
@@ -77,10 +77,10 @@ export default function Home() {
         <h2 className="text-3xl font-bold text-center mb-10">Nuestras Marcas</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {[
-            { title: 'Ples CREA', description: 'Soluciones cartográficas y de diseño geoespacial.', icon: Map, href: "/ples-crea" },
-            { title: 'Ples TIC', description: 'Tecnologías de la información y comunicación.', icon: Laptop, href: "/ples-tic" },
-            { title: 'Ples Catastro', description: 'Servicios relacionados con catastro y gestión territorial.', icon: Landmark, href: "/ples-catastro" },
-            { title: 'Ples Consulting', description: 'Consultoría especializada y estratégica.', icon: Handshake, href: "/ples-consulting" },
+            { title: 'Ples CREA', description: 'Soluciones cartográficas y de diseño geoespacial.', icon: Globe, href: "/ples-crea" },
+            { title: 'Ples TIC', description: 'Tecnologías de la información y comunicación.', icon: Server, href: "/ples-tic" },
+            { title: 'Ples Catastro', description: 'Servicios relacionados con catastro y gestión territorial.', icon: HomeIcon, href: "/ples-catastro" },
+            { title: 'Ples Consulting', description: 'Consultoría especializada y estratégica.', icon: Lightbulb, href: "/ples-consulting" },
           ].map((marca) => (
             <Card key={marca.title} className="text-center group hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out">
               <CardHeader>
