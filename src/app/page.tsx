@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <div className="space-y-16 px-4 sm:px-6 lg:px-8">
       <section className="text-center py-12 relative">
-        <h1 className="text-4xl font-bold tracking-tight mb-6 mt-8">Innovación = (Creatividad × Factibilidad × Ejecución) + Valor + Resiliencia + Colaboración</h1>
+        <h1 className="text-4xl font-bold tracking-tight mb-6 mt-8">EL USO INTELIGENTE DE LA EXPERIENCIA</h1>
         <div className="flex flex-col md:flex-row justify-center items-center gap-8 text-lg text-foreground mb-10">
           <div className="flex items-center gap-2">
             <CheckCircle className="h-12 w-12 text-primary" />
