@@ -14,25 +14,25 @@ export const metadata = {
 export default function PlesConsultingPage() {
   const expertiseAreas = [
     {
-      icon: <TrendingUp className="h-10 w-10 text-primary mb-4" />,
+      icon: <TrendingUp className="h-10 w-10 text-primary group-hover:text-accent transition-colors duration-300 mb-4" />,
       title: 'Planificación Estratégica y Desarrollo Organizacional',
       description: 'Facilitamos procesos de planificación y transformación para alinear sus recursos con objetivos de alto impacto, fortaleciendo la visión a largo plazo y la capacidad de adaptación.',
       details: ['Diagnóstico Organizacional 360°', 'Diseño de Modelos de Negocio Sostenibles', 'Gestión del Cambio y Cultura Organizacional', 'Optimización de Procesos y Eficiencia Operativa']
     },
     {
-      icon: <Layers className="h-10 w-10 text-primary mb-4" />,
+      icon: <Layers className="h-10 w-10 text-primary group-hover:text-accent transition-colors duration-300 mb-4" />,
       title: 'Diseño y Evaluación de Políticas Públicas',
       description: 'Apoyamos la formulación de políticas efectivas, basadas en evidencia y orientadas a resultados medibles, con un enfoque en la inclusión y la sostenibilidad.',
       details: ['Análisis de Viabilidad y Factibilidad', 'Formulación Basada en Evidencia', 'Monitoreo y Evaluación de Impacto (M&E)', 'Participación Ciudadana en Políticas']
     },
     {
-      icon: <Lightbulb className="h-10 w-10 text-primary mb-4" />,
+      icon: <Lightbulb className="h-10 w-10 text-primary group-hover:text-accent transition-colors duration-300 mb-4" />,
       title: 'Innovación Social y Transformación Digital',
       description: 'Impulsamos la adopción de enfoques innovadores y tecnologías digitales para resolver desafíos sociales complejos, fomentando la colaboración y la escalabilidad.',
       details: ['Laboratorios de Innovación Social', 'Estrategias de Transformación Digital', 'Soluciones Tecnológicas con Propósito', 'Modelos de Inversión de Impacto']
     },
     {
-      icon: <BookOpen className="h-10 w-10 text-primary mb-4" />,
+      icon: <BookOpen className="h-10 w-10 text-primary group-hover:text-accent transition-colors duration-300 mb-4" />,
       title: 'Gestión del Conocimiento y Fortalecimiento de Capacidades',
       description: 'Diseñamos e implementamos estrategias para mejorar el aprendizaje organizacional, la gestión del conocimiento y las competencias de los equipos.',
       details: ['Sistemas de Gestión del Conocimiento', 'Programas de Capacitación a Medida', 'Comunidades de Práctica y Aprendizaje', 'Evaluación de Competencias']
@@ -108,20 +108,24 @@ export default function PlesConsultingPage() {
         </p>
         <div className="grid md:grid-cols-2 gap-8">
           {expertiseAreas.map((area) => (
-            <Card key={area.title} className="hover:shadow-xl transition-shadow duration-300">
+            <Card 
+              key={area.title} 
+              className="group bg-card hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-2 hover:scale-[1.03] border-2 border-transparent hover:border-primary/70 overflow-hidden"
+            >
               <CardHeader className="flex flex-row items-start gap-4">
+                {/* El icono ya tiene su propio group-hover definido en el array */}
                 {area.icon}
                 <div>
-                  <CardTitle className="text-xl">{area.title}</CardTitle>
-                  <CardDescription className="mt-1">{area.description}</CardDescription>
+                  <CardTitle className="text-xl text-foreground group-hover:text-primary transition-colors duration-300">{area.title}</CardTitle>
+                  <CardDescription className="mt-1 text-muted-foreground group-hover:text-foreground/90 transition-colors duration-300">{area.description}</CardDescription>
                 </div>
               </CardHeader>
               <CardContent>
-                <ul className="space-y-2 text-sm text-muted-foreground">
+                <ul className="space-y-2 text-sm">
                   {area.details.map(detail => (
                     <li key={detail} className="flex items-center">
-                      <CheckCircle className="h-4 w-4 text-green-500 mr-2 shrink-0" />
-                      {detail}
+                      <CheckCircle className="h-4 w-4 text-green-500 group-hover:text-green-400 transition-colors duration-300 mr-2 shrink-0" />
+                      <span className="text-muted-foreground group-hover:text-foreground transition-colors duration-300">{detail}</span>
                     </li>
                   ))}
                 </ul>
