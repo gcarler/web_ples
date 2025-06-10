@@ -13,6 +13,7 @@ export interface HeroStatement {
   description: string;
   ctaText: string;
   ctaLink: string;
+  ctaIcon?: React.ElementType; // Added ctaIcon
   ctaVariant?: ButtonProps['variant'];
 }
 
@@ -50,11 +51,12 @@ export function RotatingHeroText({
   }
 
   const currentStatement = statements[currentIndex];
+  const CtaIcon = currentStatement.ctaIcon || ArrowRight; // Use statement's icon or fallback to ArrowRight
 
   return (
     <div
       className={cn(
-        'flex flex-col items-center justify-center text-center p-16 md:p-20 min-h-[400px] md:min-h-[500px] bg-background text-foreground', 
+        'flex flex-col items-center justify-center text-center p-12 md:p-16 min-h-[400px] md:min-h-[500px] bg-background text-foreground',
         className
       )}
     >
@@ -73,7 +75,7 @@ export function RotatingHeroText({
         <Button asChild size="lg" variant={currentStatement.ctaVariant || 'default'} className="text-xl px-10 py-4">
           <Link href={currentStatement.ctaLink}>
             <span className="flex items-center">
-              {currentStatement.ctaText} <ArrowRight className="ml-3 h-6 w-6" />
+              {currentStatement.ctaText} <CtaIcon className="ml-3 h-6 w-6" />
             </span>
           </Link>
         </Button>

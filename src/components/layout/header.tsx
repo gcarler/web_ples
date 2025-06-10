@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { PlesGroupLogo } from '@/components/logo';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, LogIn, LogOut, LayoutDashboard } from 'lucide-react';
+import { LogIn, LogOut, LayoutDashboard, BookOpen, Send, Cpu } from 'lucide-react'; // Added BookOpen, Send, Cpu
 import { useAuth } from '@/contexts/AuthContext';
 import { getAuth, signOut } from 'firebase/auth';
 import { app } from '@/lib/firebase/firebase-config';
@@ -58,6 +58,7 @@ export function Header() {
       description: 'Diseñamos proyectos y plataformas que mejoran vidas en toda Latinoamérica.',
       ctaText: 'Conoce cómo',
       ctaLink: '/about',
+      ctaIcon: BookOpen, // Added icon
       ctaVariant: 'default',
     },
     {
@@ -65,6 +66,7 @@ export function Header() {
       description: 'De la idea a la acción: acompañamos gobiernos y empresas a generar impacto real.',
       ctaText: 'Empieza hoy',
       ctaLink: '/forms',
+      ctaIcon: Send, // Added icon
       ctaVariant: 'accent',
     },
     {
@@ -72,6 +74,7 @@ export function Header() {
       description: 'Integramos participación, tecnología y gestión para superar tus desafíos.',
       ctaText: 'Hagámoslo juntos',
       ctaLink: '/ples-tic',
+      ctaIcon: Cpu, // Added icon
       ctaVariant: 'secondary',
     },
   ];
