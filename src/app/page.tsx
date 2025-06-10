@@ -77,10 +77,10 @@ export default function Home() {
         <h2 className="text-3xl font-bold text-center mb-10">Nuestras Marcas</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {[
-            { title: 'Ples CREA', description: 'Soluciones cartográficas y de diseño geoespacial.', icon: Globe, href: "/ples-crea" },
-            { title: 'Ples TIC', description: 'Tecnologías de la información y comunicación.', icon: Server, href: "/ples-tic" },
-            { title: 'Ples Catastro', description: 'Servicios relacionados con catastro y gestión territorial.', icon: HomeIcon, href: "/ples-catastro" },
-            { title: 'Ples Consulting', description: 'Consultoría especializada y estratégica.', icon: Lightbulb, href: "/ples-consulting" },
+            { title: 'Ples CREA', description: 'Cartografía y diseño geoespacial.', icon: Globe, href: "/ples-crea" },
+            { title: 'Ples TIC', description: 'Tecnologías de la información.', icon: Server, href: "/ples-tic" },
+            { title: 'Ples Catastro', description: 'Catastro y gestión territorial.', icon: HomeIcon, href: "/ples-catastro" },
+            { title: 'Ples Consulting', description: 'Consultoría estratégica.', icon: Lightbulb, href: "/ples-consulting" },
           ].map((marca) => (
             <Card key={marca.title} className="text-center group hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out">
               <CardHeader>
@@ -110,7 +110,7 @@ export default function Home() {
            <Card className="shadow-sm group hover:shadow-xl hover:scale-105 hover:border-primary transition-all duration-300 ease-in-out border">
              <CardHeader>
               <div className="flex items-center gap-3 mb-2">
-                 <Building className="h-6 w-6 text-primary group-hover:text-primary transition-colors"/>
+                 <Building className="h-6 w-6 text-primary group-hover:text-accent transition-colors"/>
                  <CardTitle>Sector Público</CardTitle>
                </div>
              </CardHeader>
@@ -136,7 +136,7 @@ export default function Home() {
            <Card className="shadow-sm group hover:shadow-xl hover:scale-105 hover:border-primary transition-all duration-300 ease-in-out border">
               <CardHeader>
                  <div className="flex items-center gap-3 mb-2">
-                    <Users className="h-6 w-6 text-destructive group-hover:text-primary transition-colors" />
+                    <Users className="h-6 w-6 text-primary group-hover:text-accent transition-colors" />
                    <CardTitle>Sector Social y Comunitario</CardTitle>
                  </div>
              </CardHeader>
