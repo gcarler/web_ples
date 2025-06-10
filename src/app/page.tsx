@@ -10,26 +10,30 @@ import { ArrowRight, Building, Users, Handshake, Target, Quote, CheckCircle, Dat
 export default function Home() {
   return (
     <div className="space-y-16 px-4 sm:px-6 lg:px-8">
-      <section className="text-center py-12 relative">
-        <h1 className="text-4xl font-bold tracking-tight mb-6 mt-8">EL USO INTELIGENTE DE LA EXPERIENCIA</h1>
-        <div className="flex flex-col md:flex-row justify-center items-center gap-8 text-lg text-foreground mb-10">
-          <div className="flex items-center gap-2">
-            <CheckCircle className="h-12 w-12 text-primary" />
-            <span>+15 proyectos ejecutados</span>
+      <section className="text-center py-16 md:py-20">
+        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-12 mt-8">EL USO INTELIGENTE DE LA EXPERIENCIA</h1>
+        <div className="flex flex-col sm:flex-row justify-center items-stretch sm:items-center gap-y-8 sm:gap-x-10 md:gap-x-14 text-xl text-foreground mb-16">
+          
+          <div className="flex items-center gap-4 p-4 rounded-lg transition-all duration-300 ease-in-out hover:bg-primary/5 hover:shadow-lg hover:scale-105 cursor-default">
+            <CheckCircle className="h-12 w-12 text-primary shrink-0" />
+            <span className="text-left leading-tight">+15 proyectos ejecutados</span>
           </div>
-          <div className="flex items-center gap-2">
-            <Database className="h-12 w-12 text-primary" />
-            <span>42 sistemas de información desarrollados</span>
+          
+          <div className="flex items-center gap-4 p-4 rounded-lg transition-all duration-300 ease-in-out hover:bg-primary/5 hover:shadow-lg hover:scale-105 cursor-default">
+            <Database className="h-12 w-12 text-primary shrink-0" />
+            <span className="text-left leading-tight">42 sistemas de información desarrollados</span>
           </div>
-          <div className="flex items-center gap-2">
-             <UsersRound className="h-12 w-12 text-primary" />
-            <span>8 alianzas académicas y comunitarias</span>
+          
+          <div className="flex items-center gap-4 p-4 rounded-lg transition-all duration-300 ease-in-out hover:bg-primary/5 hover:shadow-lg hover:scale-105 cursor-default">
+              <UsersRound className="h-12 w-12 text-primary shrink-0" />
+            <span className="text-left leading-tight">8 alianzas académicas y comunitarias</span>
           </div>
+
         </div>
          <Button asChild size="lg">
           <Link href="/about">
             <span className="flex items-center">
-              Saber Más <ArrowRight className="ml-2" />
+              Saber Más <ArrowRight className="ml-2 h-5 w-5" />
             </span>
           </Link>
         </Button>
