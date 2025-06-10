@@ -14,7 +14,9 @@ export default function ColaboracionPage() {
     <div className="container mx-auto py-10 px-4 sm:px-6 lg:px-8">
        <Button variant="outline" size="sm" asChild className="mb-4">
          <Link href="/about">
-           <ArrowLeft className="mr-2 h-4 w-4" /> Volver a Sobre Nosotros
+           <span className="flex items-center">
+             <ArrowLeft className="mr-2 h-4 w-4" /> Volver a Sobre Nosotros
+           </span>
          </Link>
        </Button>
       <Card className="shadow-lg border">

@@ -93,7 +93,6 @@ export default function PlesCatastroPage() {
 
   return (
     <div className="py-10 space-y-16 px-4 sm:px-6 lg:px-8">
-      {/* Hero Section */}
       <section className="relative py-20 md:py-28 rounded-lg overflow-hidden bg-card shadow-xl">
         <div className="absolute inset-0 z-0">
           <Image
@@ -119,13 +118,14 @@ export default function PlesCatastroPage() {
           </div>
           <Button size="lg" className="text-lg px-8 py-3" asChild>
             <Link href="/forms?service=ples-catastro&subject=Consulta%20PLES%20Catastro">
-              Descubra Nuestras Soluciones <ArrowRight className="ml-2 h-5 w-5" />
+              <span className="flex items-center">
+                Descubra Nuestras Soluciones <ArrowRight className="ml-2 h-5 w-5" />
+              </span>
             </Link>
           </Button>
         </div>
       </section>
 
-      {/* Nuestra Propuesta de Valor */}
       <section>
         <h2 className="text-3xl font-bold text-center mb-12">Nuestra Propuesta de Valor</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -143,7 +143,6 @@ export default function PlesCatastroPage() {
         </div>
       </section>
 
-      {/* Servicios Estratégicos */}
       <section className="py-12 bg-secondary rounded-lg">
         <div className="container mx-auto">
             <h2 className="text-3xl font-bold text-center mb-12">Servicios Catastrales Estratégicos</h2>
@@ -173,7 +172,6 @@ export default function PlesCatastroPage() {
         </div>
       </section>
 
-      {/* Enfoques Integrales con Tabs */}
       <section>
         <h2 className="text-3xl font-bold text-center mb-10">Nuestros Enfoques Integrales</h2>
         <Tabs defaultValue="tecnologico" className="w-full max-w-5xl mx-auto">
@@ -260,8 +258,7 @@ export default function PlesCatastroPage() {
         </Tabs>
       </section>
 
-       {/* Impacto en Cifras */}
-      <section className="py-12">
+       <section className="py-12">
         <div className="container mx-auto text-center">
           <h2 className="text-3xl font-bold mb-12">Impacto en Cifras (Simulado)</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -276,7 +273,6 @@ export default function PlesCatastroPage() {
         </div>
       </section>
 
-      {/* Casos de Estudio Aplicados */}
       <section className="py-12 bg-card rounded-lg shadow-xl">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">Casos de Estudio Aplicados</h2>
@@ -306,7 +302,9 @@ export default function PlesCatastroPage() {
                 <div className="p-6 pt-0">
                     <Button variant="link" asChild className="text-primary">
                         <Link href="/forms?subject=Mas%20Informacion%20Caso%20Estudio%20Catastro">
-                            Conocer Más <ArrowRight className="ml-1 h-4 w-4"/>
+                            <span className="flex items-center">
+                                Conocer Más <ArrowRight className="ml-1 h-4 w-4"/>
+                            </span>
                         </Link>
                     </Button>
                 </div>
@@ -316,7 +314,6 @@ export default function PlesCatastroPage() {
         </div>
       </section>
 
-      {/* Tecnologías Aplicadas */}
       <section className="py-16">
         <div className="container mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">Tecnologías y Herramientas de Vanguardia</h2>
@@ -333,7 +330,6 @@ export default function PlesCatastroPage() {
         </div>
       </section>
 
-      {/* Call to Action Final */}
       <section className="text-center py-20 bg-primary text-primary-foreground rounded-lg shadow-inner">
         <div className="container mx-auto">
             <FileText className="h-16 w-16 mx-auto mb-6 opacity-80" />
@@ -343,7 +339,9 @@ export default function PlesCatastroPage() {
             </p>
             <Button size="xl" variant="secondary" className="text-lg px-10 py-4 shadow-lg hover:scale-105 transition-transform" asChild>
             <Link href="/forms?service=ples-catastro&subject=Consulta%20Modernizacion%20Catastral">
-                Solicitar Asesoría Especializada <ArrowRight className="ml-3 h-5 w-5" />
+                <span className="flex items-center">
+                    Solicitar Asesoría Especializada <ArrowRight className="ml-3 h-5 w-5" />
+                </span>
             </Link>
             </Button>
         </div>

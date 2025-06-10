@@ -1,47 +1,43 @@
 
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { ArrowRight, Building, Users, Handshake, Target, Quote, CheckCircle, Database, UsersRound, Gem, HeartPulse, Rocket, Eye, Globe } from 'lucide-react'; // Added CheckCircle, Database, UsersRound
+import { ArrowRight, Building, Users, Handshake, Target, Quote, CheckCircle, Database, UsersRound, Gem, HeartPulse, Rocket, Eye, Globe } from 'lucide-react';
 
 export default function Home() {
   return (
-    // Removed container and mx-auto for full-width design
-    <div className="space-y-16 px-4 sm:px-6 lg:px-8"> {/* Added padding for content spacing */}
-      {/* Hero Section - Updated Content */}
+    <div className="space-y-16 px-4 sm:px-6 lg:px-8">
       <section className="text-center py-12 relative">
-        {/* The Carousel in the Header now serves as the main visual */}
-        {/* Updated heading text */}
         <h1 className="text-4xl font-bold tracking-tight mb-6 mt-8">Innovación = (Creatividad × Factibilidad × Ejecución) + Valor + Resiliencia + Colaboración</h1>
         <div className="flex flex-col md:flex-row justify-center items-center gap-8 text-lg text-foreground mb-10">
           <div className="flex items-center gap-2">
-            <CheckCircle className="h-12 w-12 text-primary" /> {/* Increased size */}
+            <CheckCircle className="h-12 w-12 text-primary" />
             <span>+15 proyectos ejecutados</span>
           </div>
           <div className="flex items-center gap-2">
-            <Database className="h-12 w-12 text-primary" /> {/* Increased size */}
+            <Database className="h-12 w-12 text-primary" />
             <span>42 sistemas de información desarrollados</span>
           </div>
           <div className="flex items-center gap-2">
-             <UsersRound className="h-12 w-12 text-primary" /> {/* Increased size */}
+             <UsersRound className="h-12 w-12 text-primary" />
             <span>8 alianzas académicas y comunitarias</span>
           </div>
         </div>
          <Button asChild size="lg">
-          <Link href="/about"> {/* Changed link to /about */}
-            Saber Más <ArrowRight className="ml-2" /> {/* Changed text to Saber Más */}
+          <Link href="/about">
+            <span className="flex items-center">
+              Saber Más <ArrowRight className="ml-2" />
+            </span>
           </Link>
         </Button>
       </section>
 
-      {/* Sección 1: Nuestra Misión (Removed "Conócenos" heading) */}
       <section className="relative py-16 bg-card rounded-lg shadow-lg overflow-hidden">
-        {/* Removed container mx-auto, added padding */}
         <div className="px-4 sm:px-6 lg:px-8">
-           {/* Removed the absolute positioned h1 heading */}
-           <div className="grid md:grid-cols-2 gap-8 items-center pt-8"> {/* Adjusted padding-top */}
+           <div className="grid md:grid-cols-2 gap-8 items-center pt-8">
              <div>
               <h2 className="text-3xl font-semibold mb-4 text-primary">Nuestra Misión</h2>
               <p className="text-lg text-foreground mb-4">
@@ -52,7 +48,9 @@ export default function Home() {
                </p>
                <Button asChild className="mt-6">
                  <Link href="/about">
-                   Saber Más <ArrowRight className="ml-2" />
+                   <span className="flex items-center">
+                     Saber Más <ArrowRight className="ml-2" />
+                   </span>
                  </Link>
               </Button>
             </div>
@@ -71,15 +69,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Sección 2: Nuestras Marcas */}
       <section className="py-16">
         <h2 className="text-3xl font-bold text-center mb-10">Nuestras Marcas</h2>
-        {/* Removed container mx-auto, relies on parent padding */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {[
             { title: 'Ples CREA', description: 'Soluciones creativas y de diseño.', icon: Building, href: "/ples-crea" },
-            { title: 'Ples TIC', description: 'Tecnologías de la información y comunicación.', icon: Target, href: "/ples-tic" }, // Using Target as placeholder
-            { title: 'Ples Catastro', description: 'Servicios relacionados con catastro.', icon: Users, href: "/ples-catastro" }, // Using Users as placeholder
+            { title: 'Ples TIC', description: 'Tecnologías de la información y comunicación.', icon: Target, href: "/ples-tic" },
+            { title: 'Ples Catastro', description: 'Servicios relacionados con catastro.', icon: Users, href: "/ples-catastro" },
             { title: 'Ples Consulting', description: 'Consultoría especializada.', icon: Handshake, href: "/ples-consulting" },
           ].map((marca) => (
             <Card key={marca.title} className="text-center group hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out">
@@ -93,7 +89,9 @@ export default function Home() {
               <CardContent>
                  <Button variant="link" asChild className="text-primary group-hover:text-primary-foreground">
                    <Link href={marca.href}>
-                     Ver Detalles <ArrowRight className="ml-1 h-4 w-4" />
+                     <span className="flex items-center">
+                       Ver Detalles <ArrowRight className="ml-1 h-4 w-4" />
+                     </span>
                    </Link>
                  </Button>
               </CardContent>
@@ -102,10 +100,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Sección 3: Nuestro Público Objetivo */}
       <section className="py-16 bg-secondary rounded-lg">
         <h2 className="text-3xl font-bold text-center mb-10">Nuestro Público Objetivo</h2>
-        {/* Removed container mx-auto, relies on parent padding */}
         <div className="grid md:grid-cols-3 gap-8">
            <Card className="shadow-sm group hover:shadow-xl hover:scale-105 hover:border-primary transition-all duration-300 ease-in-out border">
              <CardHeader>
@@ -149,7 +145,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Sección 4: Llamado a la Acción */}
       <section className="relative py-24 rounded-lg overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
@@ -162,24 +157,23 @@ export default function Home() {
           />
            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-background"></div>
         </div>
-        {/* Removed container mx-auto, added padding */}
         <div className="px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h2 className="text-3xl font-bold mb-4 text-primary">¿Listo para Transformar su Organización?</h2>
           <p className="text-lg text-foreground mb-8 max-w-2xl mx-auto">
             Contáctenos hoy mismo para descubrir cómo nuestras soluciones pueden ayudarle a alcanzar sus objetivos.
           </p>
           <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90" asChild>
-             <Link href="/forms"> {/* Link to the forms page */}
-              Contactar Ahora <ArrowRight className="ml-2" />
+             <Link href="/forms">
+               <span className="flex items-center">
+                 Contactar Ahora <ArrowRight className="ml-2" />
+               </span>
             </Link>
           </Button>
         </div>
       </section>
 
-      {/* Sección 5: Testimonios */}
       <section className="py-16">
         <h2 className="text-3xl font-bold text-center mb-10">Testimonios</h2>
-        {/* Removed container mx-auto, relies on parent padding */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[
             { name: 'Cliente Satisfecho 1', title: 'CEO, Empresa X', text: '¡Increíble servicio! Superaron nuestras expectativas.', image: 'https://placehold.co/100x100.png', hint: 'person face ceo' },
@@ -209,5 +203,3 @@ export default function Home() {
     </div>
   );
 }
-
-    

@@ -68,7 +68,6 @@ export default function PlesConsultingPage() {
 
   return (
     <div className="py-10 space-y-16 px-4 sm:px-6 lg:px-8">
-      {/* Hero Section */}
       <section className="relative py-20 md:py-28 rounded-lg overflow-hidden bg-card shadow-xl">
         <div className="absolute inset-0 z-0">
           <Image
@@ -94,13 +93,14 @@ export default function PlesConsultingPage() {
           </div>
           <Button size="lg" className="text-lg px-8 py-3" asChild>
             <Link href="/forms?service=ples-consulting&subject=Consulta%20PLES%20Consulting">
-              Conversemos Sobre sus Desafíos <ArrowRight className="ml-2 h-5 w-5" />
+              <span className="flex items-center">
+                Conversemos Sobre sus Desafíos <ArrowRight className="ml-2 h-5 w-5" />
+              </span>
             </Link>
           </Button>
         </div>
       </section>
 
-      {/* Áreas de Expertise */}
       <section>
         <h2 className="text-3xl font-bold text-center mb-4">Nuestras Áreas de Expertise</h2>
         <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
@@ -113,7 +113,6 @@ export default function PlesConsultingPage() {
               className="group bg-card hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-2 hover:scale-[1.03] border-2 border-transparent hover:border-primary/70 overflow-hidden"
             >
               <CardHeader className="flex flex-row items-start gap-4">
-                {/* El icono ya tiene su propio group-hover definido en el array */}
                 {area.icon}
                 <div>
                   <CardTitle className="text-xl text-foreground group-hover:text-primary transition-colors duration-300">{area.title}</CardTitle>
@@ -135,7 +134,6 @@ export default function PlesConsultingPage() {
         </div>
       </section>
 
-      {/* Nuestro Valor Diferencial */}
       <section className="py-12 bg-secondary rounded-lg">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center mb-10">Nuestro Valor Diferencial</h2>
@@ -155,7 +153,6 @@ export default function PlesConsultingPage() {
         </div>
       </section>
       
-      {/* Cómo Trabajamos: Nuestro Proceso Colaborativo */}
       <section className="py-12">
         <div className="container mx-auto text-center">
             <h2 className="text-3xl font-bold mb-4">Cómo Trabajamos: Nuestro Proceso Colaborativo</h2>
@@ -178,7 +175,6 @@ export default function PlesConsultingPage() {
         </div>
       </section>
 
-      {/* Metodologías y Herramientas */}
       <section className="py-12 bg-card rounded-lg shadow-xl">
         <div className="container mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">Metodologías y Herramientas que Potencian el Éxito</h2>
@@ -193,7 +189,6 @@ export default function PlesConsultingPage() {
         </div>
       </section>
 
-      {/* Call to Action Final */}
       <section className="text-center py-20 bg-primary text-primary-foreground rounded-lg shadow-inner">
         <div className="container mx-auto">
             <MessageSquare className="h-16 w-16 mx-auto mb-6 opacity-80" />
@@ -203,7 +198,9 @@ export default function PlesConsultingPage() {
             </p>
             <Button size="xl" variant="secondary" className="text-lg px-10 py-4 shadow-lg hover:scale-105 transition-transform" asChild>
             <Link href="/forms?service=ples-consulting&subject=Solicitud%20Asesoria%20Estrategica">
-                Contacte con Nuestros Expertos <ArrowRight className="ml-3 h-5 w-5" />
+                <span className="flex items-center">
+                    Contacte con Nuestros Expertos <ArrowRight className="ml-3 h-5 w-5" />
+                </span>
             </Link>
             </Button>
         </div>

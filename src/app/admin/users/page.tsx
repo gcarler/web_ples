@@ -1,22 +1,21 @@
 // src/app/admin/users/page.tsx
-import { getUsers } from '@/app/actions/user-actions'; // Action to fetch users
-import { UserDataTable } from '@/components/admin/user-data-table'; // Component to display users
-import { userColumns } from '@/components/admin/user-columns'; // Columns definition
+import { getUsers } from '@/app/actions/user-actions'; 
+import { UserDataTable } from '@/components/admin/user-data-table'; 
+import { userColumns } from '@/components/admin/user-columns'; 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { PlusCircle } from 'lucide-react';
-import { Suspense } from 'react'; // Import Suspense
-import { Skeleton } from '@/components/ui/skeleton'; // Import Skeleton
+import { Suspense } from 'react'; 
+import { Skeleton } from '@/components/ui/skeleton'; 
 
 export const metadata = {
   title: 'Manage Users - PLES Admin',
   description: 'Create, view, and manage user accounts and roles.',
 };
 
-// Separate async component to fetch data
 async function UserManagementContent() {
-    const users = await getUsers(); // Fetch users using Server Action
+    const users = await getUsers(); 
 
     return (
         <Card className="shadow-lg border">
@@ -30,7 +29,9 @@ async function UserManagementContent() {
                             Add new users to grant them access.
                         </p>
                          <Button variant="outline" size="sm" className="mt-4" asChild>
-                            <Link href="/admin/users/new">Add User</Link>
+                            <Link href="/admin/users/new">
+                                <span className="flex items-center">Add User</span>
+                            </Link>
                          </Button>
                     </div>
                 )}
@@ -39,7 +40,6 @@ async function UserManagementContent() {
     );
 }
 
-// Loading Skeleton for the table content
 function LoadingSkeleton() {
     return (
         <Card className="shadow-lg border">
@@ -59,9 +59,6 @@ function LoadingSkeleton() {
 
 
 export default function ManageUsersPage() {
-  // This page should ideally be protected by middleware to ensure only admins can access it.
-  // Additional client-side checks within the component might be added for extra security.
-
   return (
     <div className="py-10 space-y-6 px-4 sm:px-6 lg:px-8">
       <div className="flex justify-between items-center">
@@ -72,8 +69,10 @@ export default function ManageUsersPage() {
             </p>
         </div>
         <Button asChild>
-            <Link href="/admin/users/new"> {/* Link to a page/modal for creating users */}
-                <PlusCircle className="mr-2 h-4 w-4" /> Add User
+            <Link href="/admin/users/new">
+                <span className="flex items-center">
+                    <PlusCircle className="mr-2 h-4 w-4" /> Add User
+                </span>
             </Link>
         </Button>
       </div>
@@ -84,5 +83,4 @@ export default function ManageUsersPage() {
   );
 }
 
-// Force dynamic rendering as user data can change
 export const dynamic = 'force-dynamic';

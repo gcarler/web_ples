@@ -77,7 +77,7 @@ export function Header() {
   ];
 
   return (
-    <header className="bg-card text-card-foreground rounded-lg"> {/* Eliminado shadow-md */}
+    <header className="bg-card text-card-foreground rounded-lg">
       <nav className="container mx-auto px-4 py-4 flex flex-wrap justify-between items-center">
         <Link href="/" className="flex items-center gap-2 text-xl font-semibold text-primary mb-4 sm:mb-0">
           <PlesGroupLogo className="h-8 w-8" />
@@ -133,8 +133,10 @@ export function Header() {
                     <DropdownMenuLabel>Admin Panel</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem asChild>
-                      <Link href="/admin/dashboard" className="flex items-center">
-                        <LayoutDashboard className="mr-2 h-4 w-4" /> Dashboard
+                      <Link href="/admin/dashboard">
+                        <span className="flex items-center">
+                          <LayoutDashboard className="mr-2 h-4 w-4" /> Dashboard
+                        </span>
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
@@ -146,8 +148,10 @@ export function Header() {
               ) : (
                 <Button variant="outline" size="sm" asChild className="rounded-md">
                   <Link href="/login">
-                    <LogIn className="mr-2 h-4 w-4" />
-                    Iniciar sesión
+                    <span className="flex items-center">
+                      <LogIn className="mr-2 h-4 w-4" />
+                      Iniciar sesión
+                    </span>
                   </Link>
                 </Button>
               )

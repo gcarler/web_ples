@@ -1,5 +1,5 @@
 // src/app/admin/users/new/page.tsx
-import { AddUserForm } from '@/components/admin/add-user-form'; // Create this form component
+import { AddUserForm } from '@/components/admin/add-user-form';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -11,13 +11,13 @@ export const metadata = {
 };
 
 export default function AddUserPage() {
-  // This page should also be protected to ensure only admins can access it.
-
   return (
     <div className="py-10 space-y-6 px-4 sm:px-6 lg:px-8 max-w-2xl mx-auto">
         <Button variant="outline" size="sm" asChild className="mb-4">
             <Link href="/admin/users">
-                <ArrowLeft className="mr-2 h-4 w-4" /> Back to Users
+                <span className="flex items-center">
+                    <ArrowLeft className="mr-2 h-4 w-4" /> Back to Users
+                </span>
             </Link>
         </Button>
        <Card className="shadow-lg border">

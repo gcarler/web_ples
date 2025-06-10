@@ -1,3 +1,4 @@
+
 // src/components/layout/rotating-hero-text.tsx
 'use client';
 
@@ -53,7 +54,7 @@ export function RotatingHeroText({
   return (
     <div
       className={cn(
-        'flex flex-col items-center justify-center text-center p-16 md:p-20 min-h-[400px] md:min-h-[500px] bg-background text-foreground', // Increased padding and min-height
+        'flex flex-col items-center justify-center text-center p-16 md:p-20 min-h-[400px] md:min-h-[500px] bg-background text-foreground', 
         className
       )}
     >
@@ -63,15 +64,17 @@ export function RotatingHeroText({
           isFading ? 'opacity-0' : 'opacity-100'
         )}
       >
-        <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-8 md:mb-10 leading-tight"> {/* Increased font size */}
+        <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-8 md:mb-10 leading-tight">
           {currentStatement.title}
         </h2>
-        <p className="text-xl sm:text-2xl md:text-3xl text-muted-foreground mb-10 md:mb-12 max-w-xl lg:max-w-3xl mx-auto"> {/* Increased font size and max-width */}
+        <p className="text-xl sm:text-2xl md:text-3xl text-muted-foreground mb-10 md:mb-12 max-w-xl lg:max-w-3xl mx-auto">
           {currentStatement.description}
         </p>
-        <Button asChild size="lg" variant={currentStatement.ctaVariant || 'default'} className="text-xl px-10 py-4"> {/* Increased button text and padding */}
+        <Button asChild size="lg" variant={currentStatement.ctaVariant || 'default'} className="text-xl px-10 py-4">
           <Link href={currentStatement.ctaLink}>
-            {currentStatement.ctaText} <ArrowRight className="ml-3 h-6 w-6" /> {/* Increased icon size/margin */}
+            <span className="flex items-center">
+              {currentStatement.ctaText} <ArrowRight className="ml-3 h-6 w-6" />
+            </span>
           </Link>
         </Button>
       </div>

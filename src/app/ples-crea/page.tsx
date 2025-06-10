@@ -64,7 +64,6 @@ export default function PlesCreaPage() {
 
   return (
     <div className="py-10 space-y-12 px-4 sm:px-6 lg:px-8">
-      {/* Hero Section */}
       <section className="text-center py-12 bg-card rounded-lg shadow-xl">
         <div className="container mx-auto">
           <Map className="h-16 w-16 text-primary mx-auto mb-6" />
@@ -74,13 +73,14 @@ export default function PlesCreaPage() {
           </p>
           <Button size="lg" asChild>
             <Link href="/forms?service=ples-crea">
-              Solicitar Consulta <ArrowRight className="ml-2" />
+              <span className="flex items-center">
+                Solicitar Consulta <ArrowRight className="ml-2" />
+              </span>
             </Link>
           </Button>
         </div>
       </section>
 
-      {/* Nuestros Servicios Destacados */}
       <section>
         <h2 className="text-3xl font-bold text-center mb-10">Nuestros Servicios Destacados</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -98,7 +98,6 @@ export default function PlesCreaPage() {
         </div>
       </section>
 
-      {/* Por qué Elegir PLES CREA? */}
       <section className="py-12 bg-secondary rounded-lg">
         <div className="container mx-auto text-center">
           <h2 className="text-3xl font-bold mb-10">¿Por qué Elegir PLES CREA?</h2>
@@ -113,7 +112,6 @@ export default function PlesCreaPage() {
         </div>
       </section>
 
-      {/* Proyectos que Inspiran */}
       <section>
         <h2 className="text-3xl font-bold text-center mb-10">Proyectos que Inspiran</h2>
         <div className="grid md:grid-cols-2 gap-8">
@@ -136,7 +134,6 @@ export default function PlesCreaPage() {
         </div>
       </section>
 
-      {/* Tecnologías que Utilizamos */}
       <section className="py-12">
         <div className="container mx-auto text-center">
           <h2 className="text-3xl font-bold mb-8">Tecnologías que Potencian Nuestras Soluciones</h2>
@@ -148,7 +145,6 @@ export default function PlesCreaPage() {
         </div>
       </section>
 
-      {/* Preguntas Frecuentes */}
       <section className="py-12 bg-card rounded-lg shadow-lg">
         <div className="container mx-auto max-w-3xl">
           <h2 className="text-3xl font-bold text-center mb-8">Preguntas Frecuentes</h2>
@@ -175,7 +171,6 @@ export default function PlesCreaPage() {
         </div>
       </section>
 
-      {/* Call to Action Final */}
       <section className="text-center py-16">
         <HelpCircle className="h-12 w-12 text-accent mx-auto mb-6" />
         <h2 className="text-3xl font-bold mb-4">Descubra el Poder de la Cartografía Inteligente</h2>
@@ -184,7 +179,9 @@ export default function PlesCreaPage() {
         </p>
         <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90" asChild>
           <Link href="/forms?service=ples-crea&subject=Consulta%20Cartografia%20Inteligente">
-            Hablemos de su Proyecto <ArrowRight className="ml-2" />
+            <span className="flex items-center">
+              Hablemos de su Proyecto <ArrowRight className="ml-2" />
+            </span>
           </Link>
         </Button>
       </section>
