@@ -29,7 +29,7 @@ export default function PlesTicPage() {
             </div>
             <div className="relative h-64 md:h-80 rounded-lg overflow-hidden shadow-inner">
               <Image
-                src="https://picsum.photos/600/400?random=10"
+                src="https://placehold.co/600x400.png"
                 alt="IT Solutions"
                 layout="fill"
                 objectFit="cover"

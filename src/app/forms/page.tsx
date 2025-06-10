@@ -9,11 +9,11 @@ export default function FormsPage() {
        {/* Left Column: Image */}
       <div className="relative hidden lg:block lg:w-1/2">
         <Image
-          src="https://picsum.photos/1200/1600?random=102" // New placeholder image
-          alt="Abstract contact background" // Updated alt text
+          src="https://placehold.co/1200x1600.png" 
+          alt="Abstract contact background" 
           layout="fill"
           objectFit="cover"
-          data-ai-hint="abstract office contact" // AI hint for image search
+          data-ai-hint="abstract office contact" 
         />
       </div>
 

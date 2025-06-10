@@ -74,11 +74,11 @@ export default function LoginPage() {
       {/* Left Column: Image */}
       <div className="relative hidden lg:block lg:w-1/2">
         <Image
-          src="https://picsum.photos/1200/1600?random=101" // Placeholder for the new image
-          alt="Coding desk with laptop and monitor" // Updated alt text
+          src="https://placehold.co/1200x1600.png" 
+          alt="Coding desk with laptop and monitor" 
           layout="fill"
           objectFit="cover"
-          data-ai-hint="coding desk developer setup" // Updated AI hint
+          data-ai-hint="coding desk developer setup" 
         />
         {/* Text Overlay - Adjust styling as needed */}
         <div className="absolute bottom-10 left-10 z-10">
