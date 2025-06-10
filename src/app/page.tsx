@@ -107,10 +107,10 @@ export default function Home() {
         <h2 className="text-3xl font-bold text-center mb-10">Nuestro Público Objetivo</h2>
         {/* Removed container mx-auto, relies on parent padding */}
         <div className="grid md:grid-cols-3 gap-8">
-           <Card className="shadow-sm">
+           <Card className="shadow-sm group hover:shadow-xl hover:scale-105 hover:border-primary transition-all duration-300 ease-in-out border">
              <CardHeader>
               <div className="flex items-center gap-3 mb-2">
-                 <Building className="h-6 w-6 text-primary"/>
+                 <Building className="h-6 w-6 text-primary group-hover:text-primary transition-colors"/>
                  <CardTitle>Sector Público</CardTitle>
                </div>
              </CardHeader>
@@ -120,10 +120,10 @@ export default function Home() {
                </p>
              </CardContent>
            </Card>
-           <Card className="shadow-sm">
+           <Card className="shadow-sm group hover:shadow-xl hover:scale-105 hover:border-primary transition-all duration-300 ease-in-out border">
              <CardHeader>
                 <div className="flex items-center gap-3 mb-2">
-                  <Handshake className="h-6 w-6 text-accent"/>
+                  <Handshake className="h-6 w-6 text-accent group-hover:text-primary transition-colors"/>
                  <CardTitle>Sector Privado</CardTitle>
                 </div>
              </CardHeader>
@@ -133,10 +133,10 @@ export default function Home() {
                </p>
              </CardContent>
            </Card>
-           <Card className="shadow-sm">
+           <Card className="shadow-sm group hover:shadow-xl hover:scale-105 hover:border-primary transition-all duration-300 ease-in-out border">
               <CardHeader>
                  <div className="flex items-center gap-3 mb-2">
-                    <Users className="h-6 w-6 text-destructive" /> {/* Using placeholder color */}
+                    <Users className="h-6 w-6 text-destructive group-hover:text-primary transition-colors" />
                    <CardTitle>Sector Social y Comunitario</CardTitle>
                  </div>
              </CardHeader>
