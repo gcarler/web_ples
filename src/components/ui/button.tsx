@@ -15,10 +15,12 @@ const buttonVariants = cva(
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
           "border border-input bg-background hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:border-transparent",
-        secondary:
-          "bg-secondary text-secondary-foreground hover:bg-gradient-to-b hover:from-secondary hover:to-muted",
+        secondary: // Changed to use the primary gradient
+          "bg-gradient-to-r from-primary to-accent text-primary-foreground hover:bg-primary/90",
         ghost: "hover:bg-gradient-to-b hover:from-primary/10 hover:to-accent/10 hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        accent: // Added accent variant to use the primary gradient
+          "bg-gradient-to-r from-primary to-accent text-primary-foreground hover:bg-primary/90",
       },
       size: {
         default: "h-10 px-4 py-2",
