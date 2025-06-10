@@ -1,3 +1,4 @@
+
 // src/components/layout/header.tsx
 'use client';
 import Link from 'next/link';
@@ -20,7 +21,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { cn } from '@/lib/utils';
 import { ThemeToggle } from "@/components/theme-toggle";
-import { RotatingHeroText, type HeroStatement } from './rotating-hero-text'; // Import the new component
+import { RotatingHeroText, type HeroStatement } from './rotating-hero-text';
 
 export function Header() {
   const { user, loading } = useAuth();
@@ -70,13 +71,13 @@ export function Header() {
       title: 'Construimos soluciones que cambian comunidades',
       description: 'Integramos participación, tecnología y gestión para superar tus desafíos.',
       ctaText: 'Hagámoslo juntos',
-      ctaLink: '/ples-tic', // Example link, adjust as needed
+      ctaLink: '/ples-tic',
       ctaVariant: 'secondary',
     },
   ];
 
   return (
-    <header className="bg-card text-card-foreground shadow-md rounded-lg">
+    <header className="bg-card text-card-foreground rounded-lg"> {/* Eliminado shadow-md */}
       <nav className="container mx-auto px-4 py-4 flex flex-wrap justify-between items-center">
         <Link href="/" className="flex items-center gap-2 text-xl font-semibold text-primary mb-4 sm:mb-0">
           <PlesGroupLogo className="h-8 w-8" />
@@ -156,7 +157,7 @@ export function Header() {
       </nav>
 
       {shouldShowHero && (
-        <div className="w-full"> {/* Removed border-t border-border */}
+        <div className="w-full">
           <RotatingHeroText statements={heroStatements} />
         </div>
       )}
