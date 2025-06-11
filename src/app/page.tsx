@@ -180,9 +180,9 @@ export default function Home() {
         <h2 className="text-3xl font-bold text-center mb-10">Testimonios</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[
-            { name: 'Cliente Satisfecho 1', title: 'CEO, Empresa X', text: '¡Increíble servicio! Superaron nuestras expectativas.', image: 'https://placehold.co/100x100.png', hint: 'person face ceo' },
-            { name: 'Cliente Satisfecho 2', title: 'Gerente, Organización Y', text: 'La implementación fue fluida y el soporte excelente.', image: 'https://placehold.co/100x100.png', hint: 'person face manager' },
-            { name: 'Cliente Satisfecho 3', title: 'Director, Fundación Z', text: 'Nos ayudaron a optimizar nuestros procesos clave.', image: 'https://placehold.co/100x100.png', hint: 'person face director' },
+            { name: 'Ruth Gutierrez', title: 'Profesora, Universidad de Cartagena', text: '¡Increíble servicio! Superaron nuestras expectativas.', image: 'https://placehold.co/100x100.png', hint: 'person face professor' },
+            { name: 'Olga Montes', title: 'Directora, Corporación Rhema', text: 'La implementación fue fluida y el soporte excelente.', image: 'https://placehold.co/100x100.png', hint: 'person face director' },
+            { name: 'Laura Janacet', title: 'CEO, Betrip', text: 'Nos ayudaron a optimizar nuestros procesos clave.', image: 'https://placehold.co/100x100.png', hint: 'person face ceo' },
           ].map((testimonial) => (
             <Card key={testimonial.name} className="flex flex-col">
               <CardContent className="pt-6 flex-grow">
