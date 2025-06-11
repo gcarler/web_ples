@@ -1,11 +1,10 @@
-
 // src/components/layout/header.tsx
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { PlesGroupLogo } from '@/components/logo';
 import { Button } from '@/components/ui/button';
-import { LogIn, LogOut, LayoutDashboard, BookOpen, Send, Cpu } from 'lucide-react'; // Added BookOpen, Send, Cpu
+import { LogIn, LogOut, LayoutDashboard } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { getAuth, signOut } from 'firebase/auth';
 import { app } from '@/lib/firebase/firebase-config';
@@ -21,7 +20,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { cn } from '@/lib/utils';
 import { ThemeToggle } from "@/components/theme-toggle";
-import { RotatingHeroText, type HeroStatement } from './rotating-hero-text';
 
 export function Header() {
   const { user, loading } = useAuth();
@@ -29,9 +27,6 @@ export function Header() {
   const { toast } = useToast();
   const router = useRouter();
   const pathname = usePathname();
-
-  const hideHeroRoutes = ['/login', '/register', '/forgot-password', '/forms'];
-  const shouldShowHero = !hideHeroRoutes.includes(pathname) && !pathname.startsWith('/admin');
 
   const handleLogout = async () => {
     try {
@@ -51,33 +46,6 @@ export function Header() {
       });
     }
   };
-
-  const heroStatements: HeroStatement[] = [
-    {
-      title: 'Innovamos territorios con tecnología sostenible',
-      description: 'Diseñamos proyectos y plataformas que mejoran vidas en toda Latinoamérica.',
-      ctaText: 'Conoce cómo',
-      ctaLink: '/about',
-      ctaIcon: BookOpen, // Added icon
-      ctaVariant: 'default',
-    },
-    {
-      title: 'Datos, ingeniería y propósito para el desarrollo',
-      description: 'De la idea a la acción: acompañamos gobiernos y empresas a generar impacto real.',
-      ctaText: 'Empieza hoy',
-      ctaLink: '/forms',
-      ctaIcon: Send, // Added icon
-      ctaVariant: 'accent',
-    },
-    {
-      title: 'Construimos soluciones que cambian comunidades',
-      description: 'Integramos participación, tecnología y gestión para superar tus desafíos.',
-      ctaText: 'Hagámoslo juntos',
-      ctaLink: '/ples-tic',
-      ctaIcon: Cpu, // Added icon
-      ctaVariant: 'secondary',
-    },
-  ];
 
   return (
     <header className="bg-card text-card-foreground rounded-lg">
@@ -143,8 +111,10 @@ export function Header() {
                       </Link>
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem onClick={handleLogout} className="text-destructive focus:text-destructive focus:bg-destructive/10 cursor-pointer flex items-center">
-                      <LogOut className="mr-2 h-4 w-4" /> Logout
+                    <DropdownMenuItem onClick={handleLogout} className="text-destructive focus:text-destructive focus:bg-destructive/10 cursor-pointer">
+                       <span className="flex items-center">
+                        <LogOut className="mr-2 h-4 w-4" /> Logout
+                       </span>
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
@@ -162,12 +132,6 @@ export function Header() {
           </div>
         </div>
       </nav>
-
-      {shouldShowHero && (
-        <div className="w-full">
-          <RotatingHeroText statements={heroStatements} />
-        </div>
-      )}
     </header>
   );
 }
