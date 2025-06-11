@@ -5,15 +5,16 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Button, type ButtonProps } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Send, BookOpen, Layers, Cpu } from 'lucide-react'; // Import all icons here
 import { cn } from '@/lib/utils';
 
+// Define the structure for a single slide
 export interface HeroStatement {
   title: string;
   description: string;
   ctaText: string;
   ctaLink: string;
-  ctaIcon?: React.ElementType;
+  ctaIconName?: string; // Changed from ctaIcon to ctaIconName (string)
   ctaVariant?: ButtonProps['variant'];
 }
 
@@ -25,6 +26,14 @@ interface RotatingHeroTextProps {
   descriptionClassName?: string;
   buttonContainerClassName?: string;
 }
+
+const iconMap: { [key: string]: React.ElementType } = {
+  Send,
+  BookOpen,
+  Layers,
+  Cpu,
+  ArrowRight, // Default
+};
 
 export function RotatingHeroText({
   statements,
@@ -57,7 +66,8 @@ export function RotatingHeroText({
   }
 
   const currentStatement = statements[currentIndex];
-  const CtaIcon = currentStatement.ctaIcon || ArrowRight;
+  // Use ctaIconName to get the component from the map, fallback to ArrowRight
+  const CtaIcon = currentStatement.ctaIconName ? iconMap[currentStatement.ctaIconName] || ArrowRight : ArrowRight;
 
   return (
     <div

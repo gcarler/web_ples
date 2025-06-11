@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { ArrowRight, Building, Users, Handshake, Quote, CheckCircle, Database, UsersRound, Globe, Server, Home as HomeIcon, Lightbulb, Send, BookOpen, Layers, Cpu } from 'lucide-react';
+import { ArrowRight, Building, Users, Handshake, Quote, CheckCircle, Database, UsersRound, Globe, Server, HomeIcon, Lightbulb, Layers, Cpu, BookOpen, Send } from 'lucide-react'; // Added BookOpen, Send - Layers, Cpu were already there. Keep HomeIcon as it's used below.
 import { RotatingHeroText, type HeroStatement } from '@/components/layout/rotating-hero-text';
 
 
@@ -14,21 +14,21 @@ const heroStatements: HeroStatement[] = [
     description: "De la idea a la acción: acompañamos gobiernos y empresas a generar impacto real.",
     ctaText: "Empieza hoy",
     ctaLink: "/forms",
-    ctaIcon: Send,
+    ctaIconName: "Send", // Pass icon name
   },
   {
     title: "EL USO INTELIGENTE DE LA EXPERIENCIA",
     description: "Transformamos datos complejos en decisiones estratégicas para un futuro sostenible.",
     ctaText: "Conoce cómo",
     ctaLink: "/about",
-    ctaIcon: BookOpen,
+    ctaIconName: "BookOpen", // Pass icon name
   },
   {
     title: "Soluciones Integrales para Desafíos Complejos",
     description: "Tecnología, datos y estrategia al servicio de tus metas.",
     ctaText: "Explora Servicios",
     ctaLink: "/#nuestras-marcas",
-    ctaIcon: Layers,
+    ctaIconName: "Layers", // Pass icon name
   },
 ];
 
@@ -67,9 +67,9 @@ export default function Home() {
       {/* "EL USO INTELIGENTE DE LA EXPERIENCIA" Section */}
       <section className="text-center py-20 md:py-28 bg-background"> {/* Increased padding */}
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl sm:text-4xl font-bold text-primary mb-16"> {/* Increased bottom margin */}
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-16"> {/* Increased bottom margin */}
             EL USO INTELIGENTE DE LA EXPERIENCIA
-          </h2>
+          </h1>
           <div className="grid grid-cols-1 sm:grid-cols-3 justify-center items-stretch gap-8 md:gap-12 text-lg text-foreground mb-20"> {/* Changed flex to grid for better wrapping and spacing */}
             {[
               { icon: CheckCircle, text: "+15 proyectos ejecutados", dataAiHint:"projects checkmark" },
