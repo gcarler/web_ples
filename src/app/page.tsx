@@ -43,9 +43,9 @@ export default function Home() {
             {/* Left Visual Part */}
             <div className="w-full lg:w-5/12 flex justify-center items-center relative order-1 lg:order-none">
               <div className="relative w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] md:w-[420px] md:h-[420px] xl:w-[480px] xl:h-[480px]">
-                <div className="absolute -left-[70%] sm:-left-[60%] md:-left-[50%] top-1/2 transform -translate-y-1/2 w-[180%] h-[180%] bg-card rounded-full shadow-2xl"></div>
+                <div className="absolute -left-[65%] sm:-left-[55%] md:-left-[45%] top-1/2 transform -translate-y-1/2 w-[180%] h-[180%] bg-card rounded-full shadow-2xl"></div>
                 <div className="absolute inset-0 flex justify-center items-center z-10 p-4">
-                  <div className="bg-accent rounded-full w-full h-full"></div>
+                  <div className="bg-accent rounded-full w-full h-full shadow-xl"></div>
                 </div>
               </div>
             </div>
