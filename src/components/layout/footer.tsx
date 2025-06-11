@@ -91,7 +91,7 @@ export function Footer() {
 
         <div className="text-center text-sm">
           <p>&copy; {new Date().getFullYear()} PLES. Todos los derechos reservados.</p>
-          <p className="mt-1">Construido con Next.js y <span role="img" aria-label="corazón">❤️</span>.</p>
+          <p className="mt-1">Construido con <span role="img" aria-label="corazón">❤️</span>.</p>
         </div>
       </div>
     </footer>
