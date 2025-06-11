@@ -4,66 +4,83 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { ArrowRight, Building, Users, Handshake, Quote, CheckCircle, Database, UsersRound, Globe, Server, Home as HomeIcon, Lightbulb, Send } from 'lucide-react';
+import { ArrowRight, Building, Users, Handshake, Quote, CheckCircle, Database, UsersRound, Globe, Server, Home as HomeIcon, Lightbulb, Send, BookOpen, Layers, Cpu } from 'lucide-react';
+import { RotatingHeroText, type HeroStatement } from '@/components/layout/rotating-hero-text';
+
+
+const heroStatements: HeroStatement[] = [
+  {
+    title: "Datos, ingeniería y propósito para el desarrollo",
+    description: "De la idea a la acción: acompañamos gobiernos y empresas a generar impacto real.",
+    ctaText: "Empieza hoy",
+    ctaLink: "/forms",
+    ctaIcon: Send,
+  },
+  {
+    title: "EL USO INTELIGENTE DE LA EXPERIENCIA",
+    description: "Transformamos datos complejos en decisiones estratégicas para un futuro sostenible.",
+    ctaText: "Conoce cómo",
+    ctaLink: "/about",
+    ctaIcon: BookOpen,
+  },
+  {
+    title: "Soluciones Integrales para Desafíos Complejos",
+    description: "Tecnología, datos y estrategia al servicio de tus metas.",
+    ctaText: "Explora Servicios",
+    ctaLink: "/#nuestras-marcas",
+    ctaIcon: Layers,
+  },
+];
+
 
 export default function Home() {
   return (
     <div className="space-y-0"> {/* Reduced global space-y if sections manage their own padding */}
-      {/* New Hero Section */}
+      {/* New Hero Section with Rotating Text */}
       <section className="relative bg-background overflow-hidden">
         <div className="container mx-auto min-h-[calc(80vh)] lg:min-h-0 px-4 py-16 sm:py-20 md:py-24 lg:py-32 flex items-center">
           <div className="flex flex-col lg:flex-row items-center w-full gap-8">
             {/* Left Visual Part */}
             <div className="w-full lg:w-5/12 flex justify-center items-center relative order-1 lg:order-none">
               <div className="relative w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] md:w-[420px] md:h-[420px] xl:w-[480px] xl:h-[480px]">
-                {/* Large White Background "Scoop" Shape */}
                 <div className="absolute -left-[70%] sm:-left-[60%] md:-left-[50%] top-1/2 transform -translate-y-1/2 w-[180%] h-[180%] bg-card rounded-full shadow-2xl"></div>
-                {/* Blue Circle, on top of the white scoop */}
-                <div className="absolute inset-0 flex justify-center items-center z-10 p-4"> {/* Added padding to contain circle */}
+                <div className="absolute inset-0 flex justify-center items-center z-10 p-4">
                   <div className="bg-accent rounded-full w-full h-full"></div>
                 </div>
               </div>
             </div>
 
-            {/* Right Text Part */}
+            {/* Right Text Part with RotatingHeroText */}
             <div className="w-full lg:w-7/12 text-center lg:text-left relative z-20 order-2 lg:order-none">
-              <h1 className="text-4xl sm:text-5xl xl:text-6xl font-bold text-foreground mb-6 leading-tight">
-                Datos, ingeniería y propósito para el desarrollo
-              </h1>
-              <p className="text-lg sm:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto lg:mx-0">
-                De la idea a la acción: acompañamos gobiernos y empresas a generar impacto real.
-              </p>
-              <Button size="lg" variant="default" asChild>
-                <Link href="/forms">
-                  <span className="flex items-center">
-                    Empieza hoy <Send className="ml-2 h-5 w-5" />
-                  </span>
-                </Link>
-              </Button>
+              <RotatingHeroText
+                statements={heroStatements}
+                className="items-center text-center lg:items-start lg:text-left" // Handles alignment
+                titleClassName="text-4xl sm:text-5xl xl:text-6xl text-foreground mb-6"
+                descriptionClassName="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0"
+                // buttonContainerClassName="" // Use default margin for button
+              />
             </div>
           </div>
         </div>
       </section>
 
       {/* "EL USO INTELIGENTE DE LA EXPERIENCIA" Section */}
-      <section className="text-center py-16 md:py-20 bg-background">
+      <section className="text-center py-20 md:py-28 bg-background"> {/* Increased padding */}
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl sm:text-4xl font-bold text-primary mb-12">
+          <h2 className="text-3xl sm:text-4xl font-bold text-primary mb-16"> {/* Increased bottom margin */}
             EL USO INTELIGENTE DE LA EXPERIENCIA
           </h2>
-          <div className="flex flex-col sm:flex-row justify-center items-stretch sm:items-center gap-y-8 sm:gap-x-10 md:gap-x-16 text-lg text-foreground mb-16">
-            <div className="flex items-center gap-3">
-              <CheckCircle className="h-8 w-8 text-primary shrink-0" />
-              <span>+15 proyectos ejecutados</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <Database className="h-8 w-8 text-primary shrink-0" />
-              <span>42 sistemas de información desarrollados</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <UsersRound className="h-8 w-8 text-primary shrink-0" />
-              <span>8 alianzas académicas y comunitarias</span>
-            </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 justify-center items-stretch gap-8 md:gap-12 text-lg text-foreground mb-20"> {/* Changed flex to grid for better wrapping and spacing */}
+            {[
+              { icon: CheckCircle, text: "+15 proyectos ejecutados", dataAiHint:"projects checkmark" },
+              { icon: Database, text: "42 sistemas de información desarrollados", dataAiHint:"database systems" },
+              { icon: UsersRound, text: "8 alianzas académicas y comunitarias", dataAiHint:"community alliance" },
+            ].map((metric, index) => (
+              <div key={index} className="flex flex-col items-center p-6 bg-card rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 ease-in-out">
+                <metric.icon className="h-12 w-12 text-primary mb-4" />
+                <span className="text-xl leading-tight">{metric.text}</span>
+              </div>
+            ))}
           </div>
           <Button asChild size="lg" variant="default">
             <Link href="/about">
@@ -110,7 +127,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-16 bg-background">
+      <section className="py-16 bg-background" id="nuestras-marcas">
         <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-10">Nuestras Marcas</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">

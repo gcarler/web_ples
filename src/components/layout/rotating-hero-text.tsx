@@ -13,20 +13,26 @@ export interface HeroStatement {
   description: string;
   ctaText: string;
   ctaLink: string;
-  ctaIcon?: React.ElementType; // Added ctaIcon
+  ctaIcon?: React.ElementType;
   ctaVariant?: ButtonProps['variant'];
 }
 
 interface RotatingHeroTextProps {
   statements: HeroStatement[];
-  interval?: number; // Interval in milliseconds
-  className?: string;
+  interval?: number;
+  className?: string; // For the root container of this component
+  titleClassName?: string;
+  descriptionClassName?: string;
+  buttonContainerClassName?: string;
 }
 
 export function RotatingHeroText({
   statements,
-  interval = 7000, // Default to 7 seconds
+  interval = 7000,
   className,
+  titleClassName,
+  descriptionClassName,
+  buttonContainerClassName,
 }: RotatingHeroTextProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFading, setIsFading] = useState(false);
@@ -51,12 +57,12 @@ export function RotatingHeroText({
   }
 
   const currentStatement = statements[currentIndex];
-  const CtaIcon = currentStatement.ctaIcon || ArrowRight; // Use statement's icon or fallback to ArrowRight
+  const CtaIcon = currentStatement.ctaIcon || ArrowRight;
 
   return (
     <div
       className={cn(
-        'flex flex-col items-center justify-center text-center p-12 md:p-16 min-h-[400px] md:min-h-[500px] bg-background text-foreground',
+        'flex flex-col', // Base styling: flex column
         className
       )}
     >
@@ -66,19 +72,21 @@ export function RotatingHeroText({
           isFading ? 'opacity-0' : 'opacity-100'
         )}
       >
-        <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-8 md:mb-10 leading-tight">
+        <h1 className={cn("font-bold leading-tight", titleClassName)}>
           {currentStatement.title}
-        </h2>
-        <p className="text-xl sm:text-2xl md:text-3xl text-muted-foreground mb-10 md:mb-12 max-w-xl lg:max-w-3xl mx-auto">
+        </h1>
+        <p className={cn("text-muted-foreground mt-6", descriptionClassName)}> {/* Adjusted margin top for description */}
           {currentStatement.description}
         </p>
-        <Button asChild size="lg" variant={currentStatement.ctaVariant || 'default'} className="text-xl px-10 py-4">
-          <Link href={currentStatement.ctaLink}>
-            <span className="flex items-center">
-              {currentStatement.ctaText} <CtaIcon className="ml-3 h-6 w-6" />
-            </span>
-          </Link>
-        </Button>
+        <div className={cn("mt-10", buttonContainerClassName)}> {/* Adjusted margin top for button */}
+            <Button size="lg" variant={currentStatement.ctaVariant || 'default'} asChild>
+                <Link href={currentStatement.ctaLink}>
+                    <span className="flex items-center">
+                    {currentStatement.ctaText} <CtaIcon className="ml-2 h-5 w-5" />
+                    </span>
+                </Link>
+            </Button>
+        </div>
       </div>
     </div>
   );
