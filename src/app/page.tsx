@@ -45,7 +45,7 @@ export default function Home() {
               <div className="relative w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] md:w-[420px] md:h-[420px] xl:w-[480px] xl:h-[480px]">
                 <div className="absolute -left-[65%] sm:-left-[55%] md:-left-[45%] top-1/2 transform -translate-y-1/2 w-[180%] h-[180%] bg-card rounded-full shadow-2xl"></div>
                 <div className="absolute inset-0 flex justify-center items-center z-10 p-4">
-                  <div className="bg-accent rounded-full w-full h-full shadow-xl"></div>
+                  <div className="bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--ring))] bg-[length:200%_200%] animate-gradient rounded-full w-full h-full shadow-xl"></div>
                 </div>
               </div>
             </div>
