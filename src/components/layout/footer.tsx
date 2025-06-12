@@ -16,9 +16,9 @@ export function Footer() {
             <PlesGroupLogo
               className="absolute -bottom-10 -left-4 sm:-left-8 h-40 w-auto z-0 pointer-events-none md:h-48 md:-bottom-12"
               style={{
-                '--logo-letter-color': 'white', // Explicitly white letters for watermark
-                '--logo-accent-color': '#00AEEF',   // Explicitly #00AEEF blue for watermark
-                opacity: 0.4 // Adjust opacity for watermark effect
+                '--logo-letter-color': 'white', // Letters will be white
+                '--logo-accent-color': '#00AEEF',   // Accent will be the original blue
+                opacity: 0.08 // Very low opacity for extreme subtlety
               } as React.CSSProperties}
             />
           </div>
