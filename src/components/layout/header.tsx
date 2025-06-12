@@ -50,8 +50,7 @@ export function Header() {
   return (
     <header className="bg-card text-card-foreground rounded-lg">
       <nav className="container mx-auto px-4 py-4 flex flex-wrap justify-between items-center">
-        <Link href="/" className="flex items-center gap-2 text-xl font-semibold text-primary mb-4 sm:mb-0">
-          <PlesGroupLogo className="h-8 w-8" />
+        <Link href="/" className="text-xl font-semibold text-primary mb-4 sm:mb-0">
           <span>PLES</span>
         </Link>
         <div className="flex items-center gap-2">
