@@ -18,11 +18,11 @@ const heroStatements: HeroStatement[] = [
     ctaIconName: "Send", // Pass icon name
   },
   {
-    title: "EL USO INTELIGENTE DE LA EXPERIENCIA",
-    description: "Transformamos datos complejos en decisiones estratégicas para un futuro sostenible.",
+    title: "Innovación que Impacta, Estrategias que Perduran",
+    description: "Creamos soluciones a medida que impulsan el progreso y construyen un legado sostenible para su organización.",
     ctaText: "Conoce cómo",
     ctaLink: "/about",
-    ctaIconName: "BookOpen", // Pass icon name
+    ctaIconName: "BookOpen",
   },
   {
     title: "Soluciones Integrales para Desafíos Complejos",
