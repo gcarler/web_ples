@@ -13,7 +13,14 @@ export function Footer() {
               Demostrando características fundamentales del desarrollo web como enrutamiento y formularios interactivos, imitando la estructura de un proyecto profesional.
             </p>
             {/* Watermark Logo: Positioned absolutely within this column */}
-            <PlesGroupLogo className="absolute -bottom-10 -left-4 sm:-left-8 h-40 w-auto text-foreground opacity-15 z-0 pointer-events-none md:h-48 md:-bottom-12" />
+            <PlesGroupLogo
+              className="absolute -bottom-10 -left-4 sm:-left-8 h-40 w-auto z-0 pointer-events-none md:h-48 md:-bottom-12"
+              style={{
+                '--logo-letter-color': 'hsl(0 0% 82%)', // Very light gray for letters
+                '--logo-accent-color': 'hsl(200 70% 88%)', // Very light blue for P accent
+                opacity: 0.9 // Slight opacity if needed, or 1 for solid light look
+              } as React.CSSProperties}
+            />
           </div>
 
           {/* Column 2: Quick Links */}
