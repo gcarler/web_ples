@@ -6,7 +6,7 @@ export function PlesGroupLogo({ className, style }: { className?: string, style?
     <svg
       width="100%"
       height="100%"
-      viewBox="0 0 350 160" // User's provided viewBox
+      viewBox="0 0 350 160" // ViewBox from the provided SVG
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       style={style} // Pass style prop for CSS variables
@@ -14,8 +14,8 @@ export function PlesGroupLogo({ className, style }: { className?: string, style?
       role="img"
     >
       <style>{`
-        .letter { fill: var(--logo-letter-color, #000000); } /* Default to black */
-        .p-accent { fill: var(--logo-accent-color, #00AEEF); } /* Default to #00AEEF blue */
+        .letter { fill: var(--logo-letter-color, hsl(var(--foreground))); } /* Default to theme foreground */
+        .p-accent { fill: var(--logo-accent-color, hsl(var(--primary))); }   /* Default to theme primary */
       `}</style>
 
       {/* Letter P */}
