@@ -7,19 +7,12 @@ export function Footer() {
     <footer className="relative bg-muted text-muted-foreground pt-12 pb-8 mt-16 overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12"> {/* Increased gap and mb */}
-          {/* Column 1: About text and Watermark Logo */}
+          {/* Column 1: About text */}
           <div className="space-y-4 relative">
             <p className="text-sm relative z-10">
               Demostrando características fundamentales del desarrollo web como enrutamiento y formularios interactivos, imitando la estructura de un proyecto profesional.
             </p>
-            {/* Watermark Logo: Positioned absolutely within this column */}
-            <PlesGroupLogo
-              className="absolute -bottom-10 -left-4 sm:-left-8 h-40 w-auto z-0 pointer-events-none md:h-48 md:-bottom-12"
-              style={{
-                '--logo-letter-color': 'hsla(0, 0%, 100%, 0.15)', // White with 15% opacity
-                '--logo-accent-color': 'hsla(195, 70%, 50%, 0.15)',   // A pleasant blue with 15% opacity
-              } as React.CSSProperties}
-            />
+            {/* Watermark Logo Removed */}
           </div>
 
           {/* Column 2: Quick Links */}
