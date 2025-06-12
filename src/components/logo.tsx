@@ -1,20 +1,21 @@
 // src/components/logo.tsx
 import * as React from 'react';
 
-export function PlesGroupLogo({ className }: { className?: string }) {
+export function PlesGroupLogo({ className, style }: { className?: string, style?: React.CSSProperties }) {
   return (
     <svg
-      width="100%" // Make it responsive by default
-      height="100%" // Make it responsive by default
-      viewBox="0 0 350 160" // ViewBox from user's SVG
+      width="100%"
+      height="100%"
+      viewBox="0 0 350 160" // User's provided viewBox
       xmlns="http://www.w3.org/2000/svg"
-      className={className} // Allow passing a className for sizing and other styles
-      aria-label="PLES Logo" // Accessibility
-      role="img" // Accessibility
+      className={className}
+      style={style} // Pass style prop for CSS variables
+      aria-label="PLES Logo"
+      role="img"
     >
       <style>{`
-        .letter { fill: var(--logo-letter-color, currentColor); }
-        .p-accent { fill: var(--logo-accent-color, hsl(var(--accent))); }
+        .letter { fill: var(--logo-letter-color, #000000); } /* Default to black */
+        .p-accent { fill: var(--logo-accent-color, #00AEEF); } /* Default to #00AEEF blue */
       `}</style>
 
       {/* Letter P */}
