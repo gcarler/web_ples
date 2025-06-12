@@ -67,6 +67,7 @@ const routePermissions: Record<string, string> = {
     '/admin/erp/products': 'manage_erp',
     '/admin/erp/orders': 'manage_erp',
     '/admin/bpm/processes': 'view_bpm', // Assuming view_bpm allows viewing list
+    '/admin/content-management': 'manage_content', // Added permission for content management
     '/admin/users': 'manage_users',
     '/admin/users/new': 'manage_users',
     // Add more specific routes if needed, e.g., /admin/erp/orders/[id] might require 'manage_erp'

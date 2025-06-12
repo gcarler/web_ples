@@ -10,7 +10,7 @@ export type UserRole = z.infer<typeof UserRoleSchema>;
 // In a real application, this might be more complex and stored elsewhere
 export const ROLES = {
     admin: {
-        permissions: ['manage_users', 'manage_crm', 'manage_erp', 'manage_bpm', 'view_dashboard'],
+        permissions: ['manage_users', 'manage_crm', 'manage_erp', 'manage_bpm', 'view_dashboard', 'manage_content'], // Added manage_content
     },
     crm_user: {
         permissions: ['manage_crm', 'view_dashboard'], // Can manage CRM data

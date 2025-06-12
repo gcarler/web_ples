@@ -7,7 +7,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 import { Sidebar, SidebarProvider, SidebarInset, SidebarHeader, SidebarTrigger, SidebarContent, SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarFooter } from '@/components/ui/sidebar';
 import { PlesGroupLogo } from '@/components/logo';
-import { LayoutDashboard, Users, Package, ShoppingCart, Workflow, LogOut, ShieldCheck } from 'lucide-react'; // Removed unused icons
+import { LayoutDashboard, Users, Package, ShoppingCart, Workflow, LogOut, ShieldCheck, FileText } from 'lucide-react'; // Added FileText
 import { getAuth, signOut } from 'firebase/auth';
 import { app } from '@/lib/firebase/firebase-config';
 import { useToast } from '@/hooks/use-toast';
@@ -58,6 +58,7 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                 <Skeleton className="h-8 w-full" />
                  <Skeleton className="h-8 w-full" />
                  <Skeleton className="h-8 w-full" />
+                 <Skeleton className="h-8 w-full" /> {/* Added for content management */}
             </div>
             <div className="flex-1 p-6 space-y-4">
                 <Skeleton className="h-12 w-1/4" />
@@ -161,6 +162,19 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                                 </SidebarMenuButton>
                              </SidebarMenuItem>
                           )}
+                         
+                         {hasPermission(userRole, 'manage_content') && (
+                             <SidebarMenuItem>
+                                <SidebarMenuButton asChild>
+                                   <Link href="/admin/content-management">
+                                     <span className="flex items-center gap-x-2">
+                                        <FileText />
+                                        Manage Content
+                                     </span>
+                                   </Link>
+                               </SidebarMenuButton>
+                             </SidebarMenuItem>
+                         )}
 
                          {hasPermission(userRole, 'manage_users') && (
                              <SidebarMenuItem>
