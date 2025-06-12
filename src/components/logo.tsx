@@ -13,8 +13,8 @@ export function PlesGroupLogo({ className }: { className?: string }) {
       role="img" // Accessibility
     >
       <style>{`
-        .letter { fill: hsl(var(--foreground)); } /* Use theme foreground color */
-        .p-accent { fill: hsl(var(--primary)); } /* Use theme primary color for the accent */
+        .letter { fill: currentColor; } /* Changed to currentColor to inherit from CSS */
+        .p-accent { fill: hsl(var(--accent)); } /* Changed to accent color for consistency */
       `}</style>
 
       {/* Letter P */}

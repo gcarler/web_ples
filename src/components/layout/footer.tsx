@@ -1,22 +1,19 @@
 import Link from 'next/link';
 import { Facebook, Twitter, Instagram } from 'lucide-react';
-import { Separator } from '@/components/ui/separator';
 import { PlesGroupLogo } from '@/components/logo';
 
 export function Footer() {
   return (
-    <footer className="bg-muted text-muted-foreground py-12 mt-16">
+    <footer className="relative bg-muted text-muted-foreground pt-12 pb-8 mt-16 overflow-hidden">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          {/* Column 1: Logo and About */}
-          <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-2 text-xl font-semibold text-primary mb-4">
-              <PlesGroupLogo className="h-8 w-8 logo-outline" />
-              <span>PLES</span>
-            </Link>
-            <p className="text-sm">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12"> {/* Increased gap and mb */}
+          {/* Column 1: About text and Watermark Logo */}
+          <div className="space-y-4 relative">
+            <p className="text-sm relative z-10">
               Demostrando características fundamentales del desarrollo web como enrutamiento y formularios interactivos, imitando la estructura de un proyecto profesional.
             </p>
+            {/* Watermark Logo: Positioned absolutely within this column */}
+            <PlesGroupLogo className="absolute -bottom-10 -left-4 sm:-left-8 h-40 w-auto text-gray-200 dark:text-gray-700 opacity-25 z-0 pointer-events-none md:h-48 md:-bottom-12" />
           </div>
 
           {/* Column 2: Quick Links */}
@@ -43,21 +40,21 @@ export function Footer() {
                   Ples TIC
                 </Link>
               </li>
-               <li>
+              <li>
                 <Link href="/ples-catastro" className="hover:text-primary transition-colors">
                   Ples Catastro
                 </Link>
               </li>
-               <li>
+              <li>
                 <Link href="/ples-consulting" className="hover:text-primary transition-colors">
                   Ples Consulting
                 </Link>
               </li>
-               <li>
-                 <Link href="/forms" className="hover:text-primary transition-colors">
-                   Contáctenos
-                 </Link>
-               </li>
+              <li>
+                <Link href="/forms" className="hover:text-primary transition-colors">
+                  Contáctenos
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -87,13 +84,17 @@ export function Footer() {
           </div>
         </div>
 
-        <Separator className="my-8 bg-border" />
-
-        <div className="text-center text-sm">
+        {/* Copyright - Centered */}
+        <div className="text-center text-sm relative z-20 mt-8"> {/* Increased mt for spacing from grid */}
           <p>&copy; {new Date().getFullYear()} PLES. Todos los derechos reservados.</p>
-          <p className="mt-1">Construido con <span role="img" aria-label="corazón">❤️</span>.</p>
+          <p className="mt-1">Construido con ❤️.</p>
         </div>
       </div>
+
+      {/* Decorative Circles - positioned relative to the main footer tag */}
+      {/* Adjusted sizes and positions to better match the image */}
+      <div aria-hidden="true" className="absolute -bottom-20 -right-20 w-80 h-80 md:-bottom-28 md:-right-28 md:w-[26rem] md:h-[26rem] bg-card rounded-full opacity-90 z-0"></div>
+      <div aria-hidden="true" className="absolute -bottom-16 -right-16 w-60 h-60 md:-bottom-20 md:-right-20 md:w-[20rem] md:h-[20rem] bg-accent rounded-full z-10"></div>
     </footer>
   );
 }
