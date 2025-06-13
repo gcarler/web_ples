@@ -151,9 +151,9 @@ export default function AiAutomationPage() {
         </div>
       </section>
 
-      {/* Sección 2: El Desafío y Nuestra Solución */}
-      <section className="py-12">
-        <div className="container mx-auto"> {/* Removed max-w-4xl from here */}
+      {/* Sección 2: El Desafío y Nuestra Solución (Problema/Solución) */}
+      <section className="py-12 px-4 sm:px-6 lg:px-8">
+        <div>
           <Card className="shadow-lg border-2 border-secondary">
             <CardHeader className="text-center">
               <CardTitle className="text-3xl font-bold text-primary">¿Cansado de la Improvisación? La IA Requiere Experiencia.</CardTitle>
