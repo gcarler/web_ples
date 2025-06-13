@@ -15,7 +15,6 @@ export function Footer() {
               className="logo-container font-comfortaa text-6xl font-bold select-none relative group"
               style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.1)' }}
             >
-              {/* Letter P with its dot(s) */}
               <span className="letra-p-con-punto relative inline-block">
                 {/* The actual letter 'p' */}
                 <span className="text-muted-foreground group-hover:text-black transition-colors duration-200">
@@ -25,10 +24,10 @@ export function Footer() {
                 {/* Dot for Normal State (theme primary) */}
                 <span
                   className={cn(
-                    "absolute rounded-full z-[-1]",
+                    "absolute rounded-full", // Removed z-index: -1
                     "w-[0.31em] h-[0.31em]", // em-based sizing
                     "top-[0.45em] left-[0.21em]", // em-based positioning
-                    "bg-primary", // Normal state color
+                    "bg-primary",                   // Normal state color
                     "group-hover:opacity-0 opacity-100 transition-opacity duration-300 ease-in-out"
                   )}
                   aria-hidden="true"
@@ -37,9 +36,9 @@ export function Footer() {
                 {/* Dot for Hover State (gradient and shadow) */}
                 <span
                   className={cn(
-                    "absolute rounded-full z-[-1]",
-                    "w-[0.31em] h-[0.31em]", // em-based sizing
-                    "top-[0.45em] left-[0.21em]", // em-based positioning
+                    "absolute rounded-full", // Removed z-index: -1
+                    "w-[0.31em] h-[0.31em]",         // em-based sizing
+                    "top-[0.45em] left-[0.21em]",   // em-based positioning
                     "opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"
                   )}
                   style={{
@@ -125,7 +124,7 @@ export function Footer() {
               123 Calle Ficticia, Ciudad Ejemplo, CP 12345
             </p>
             <p className="text-sm">
-              Email: <a href="mailto:info@angularflow.com" className="hover:text-primary transition-colors">info@ples.com</a>
+              Email: <a href="mailto:info@ples.com" className="hover:text-primary transition-colors">info@ples.com</a>
             </p>
             <p className="text-sm">
               Teléfono: <a href="tel:+1234567890" className="hover:text-primary transition-colors">+1 234 567 890</a>
