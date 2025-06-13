@@ -11,13 +11,12 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
           {/* Column 1: Logo at the top, Descriptive Text at the bottom */}
           <div className="flex flex-col justify-between h-full">
-            {/* PlesGroupLogo SVG */}
-            <div className="mb-4">
+            {/* PlesGroupLogo SVG container with group class for hover */}
+            <div className="mb-4 group">
               <PlesGroupLogo 
-                className="h-16 w-auto text-foreground" 
+                className="h-16 w-auto text-muted-foreground group-hover:text-foreground transition-colors duration-300" 
                 style={{ 
                   // @ts-ignore 
-                  "--logo-letter-color": "hsl(var(--foreground))", 
                   "--logo-accent-color": "hsl(var(--primary))" 
                 } as React.CSSProperties}
               />

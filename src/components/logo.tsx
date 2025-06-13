@@ -14,7 +14,7 @@ export function PlesGroupLogo({ className, style }: { className?: string, style?
       role="img"
     >
       <style>{`
-        .letter { fill: var(--logo-letter-color, hsl(var(--foreground))); } /* Default to theme foreground */
+        .letter { fill: currentColor; } /* Changed to currentColor */
         .p-accent { fill: var(--logo-accent-color, hsl(var(--primary))); }   /* Default to theme primary */
       `}</style>
 
