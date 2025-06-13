@@ -1,46 +1,270 @@
 // src/app/ples-tic/page.tsx
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowRight, CheckCircle, Cpu, Lightbulb, ShieldCheck, TrendingUp, Code, CloudCog, Lock, BarChartBig, Network, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, Rocket, Workflow, Brain, Database, Settings, Server, Shield, Layers } from 'lucide-react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Badge } from '@/components/ui/badge';
 
 export const metadata = {
-  title: 'PLES TIC - Information and Communication Technologies',
-  description: 'Explore the information and communication technology solutions by PLES TIC.',
+  title: 'PLES TIC - Soluciones Tecnológicas Innovadoras para su Negocio',
+  description: 'Impulsamos la transformación digital de su organización con desarrollo de software a medida, soluciones cloud, ciberseguridad y análisis de datos.',
 };
 
 export default function PlesTicPage() {
+  const valuePropositions = [
+    {
+      icon: <Settings className="h-10 w-10 text-accent" />,
+      title: 'Soluciones a Medida',
+      description: 'Desarrollamos software y sistemas adaptados específicamente a sus necesidades y objetivos estratégicos.',
+    },
+    {
+      icon: <Lightbulb className="h-10 w-10 text-accent" />,
+      title: 'Innovación y Vanguardia',
+      description: 'Aplicamos las últimas tecnologías y metodologías para garantizar soluciones modernas, eficientes y preparadas para el futuro.',
+    },
+    {
+      icon: <ShieldCheck className="h-10 w-10 text-accent" />,
+      title: 'Seguridad Integral',
+      description: 'Protegemos sus activos digitales con estrategias de ciberseguridad proactivas y robustas adaptadas a su entorno.',
+    },
+    {
+      icon: <TrendingUp className="h-10 w-10 text-accent" />,
+      title: 'Optimización y Eficiencia',
+      description: 'Automatizamos y optimizamos sus flujos de trabajo para mejorar la productividad, reducir costos y potenciar el crecimiento.',
+    },
+  ];
+
+  const coreServices = [
+    {
+      icon: <Code className="h-8 w-8 text-primary" />,
+      title: 'Desarrollo de Software a Medida',
+      description: 'Creamos aplicaciones web, móviles y empresariales personalizadas, desde la concepción hasta el despliegue y mantenimiento continuo.',
+      details: ["Análisis y Diseño de Sistemas", "Desarrollo Full-Stack (Frontend/Backend)", "Integración de APIs y Servicios Externos", "Metodologías Ágiles (Scrum/Kanban)"]
+    },
+    {
+      icon: <CloudCog className="h-8 w-8 text-primary" />,
+      title: 'Soluciones Cloud y DevOps',
+      description: 'Diseñamos, implementamos y gestionamos infraestructuras cloud seguras, escalables y costo-eficientes (AWS, Azure, GCP).',
+      details: ["Migración Estratégica a la Nube", "Arquitecturas Serverless y Microservicios", "Infraestructura como Código (IaC)", "CI/CD y Automatización DevOps"]
+    },
+    {
+      icon: <Lock className="h-8 w-8 text-primary" />,
+      title: 'Ciberseguridad Avanzada',
+      description: 'Protegemos su información y sistemas contra amenazas cibernéticas con auditorías, consultoría y soluciones de seguridad de última generación.',
+      details: ["Análisis de Vulnerabilidades y Pentesting Ético", "Gestión de Identidad y Acceso (IAM/IGA)", "Seguridad de Redes y Endpoints (EDR/XDR)", "Planes de Respuesta a Incidentes (IRP)"]
+    },
+    {
+      icon: <BarChartBig className="h-8 w-8 text-primary" />,
+      title: 'Análisis de Datos e Inteligencia de Negocio (BI)',
+      description: 'Transformamos sus datos en información valiosa para la toma de decisiones estratégicas, mediante dashboards y reportes interactivos.',
+      details: ["Modelado y Almacenamiento de Datos (Data Warehousing)", "Visualización de Datos (Tableau, Power BI, Looker)", "Análisis Predictivo y Fundamentos de Machine Learning", "Procesos ETL/ELT y Calidad de Datos"]
+    },
+  ];
+
+  const ourApproachSteps = [
+    { icon: <Search className="h-8 w-8 text-primary mb-2" />, title: 'Entendimiento y Diagnóstico', description: 'Analizamos sus necesidades, objetivos y entorno tecnológico actual.' },
+    { icon: <DraftingCompass className="h-8 w-8 text-primary mb-2" />, title: 'Diseño y Planificación Estratégica', description: 'Definimos la arquitectura, tecnologías y hoja de ruta del proyecto.' },
+    { icon: <KanbanSquare className="h-8 w-8 text-primary mb-2" />, title: 'Desarrollo Ágil e Implementación', description: 'Construimos la solución con enfoque en calidad y entregas incrementales.' },
+    { icon: <FlaskConical className="h-8 w-8 text-primary mb-2" />, title: 'Pruebas Exhaustivas y Despliegue', description: 'Realizamos pruebas rigurosas para garantizar funcionalidad y seguridad.' },
+    { icon: <GitPullRequestArrow className="h-8 w-8 text-primary mb-2" />, title: 'Soporte y Evolución Continua', description: 'Ofrecemos soporte post-implementación y planes de mantenimiento.' },
+  ];
+
+  const technologies = ['JavaScript (React, Next.js, Node.js)', 'Python (Django, Flask, FastAPI)', 'Java, C#/.NET', 'Bases de Datos (PostgreSQL, MySQL, MongoDB, Redis)', 'Docker, Kubernetes, Terraform', 'AWS, Azure, Google Cloud Platform', 'Git, Jenkins, GitLab CI', 'Marcos de Ciberseguridad (NIST, ISO 27001)', 'Herramientas BI (Tableau, Power BI)'];
+
+  const caseStudies = [
+    {
+      title: 'Transformación Digital para Empresa Retail Global',
+      challenge: 'Procesos manuales obsoletos, falta de visibilidad de inventario en tiempo real y una experiencia de cliente desactualizada.',
+      solution: 'Desarrollamos una plataforma e-commerce omnicanal, integramos un sistema ERP en la nube y creamos una estrategia de marketing digital personalizada. Resultados: Incremento de ventas online del 45% y mejora en la satisfacción del cliente.',
+      image: 'https://placehold.co/600x400.png',
+      imageHint: 'retail digital online store',
+      tags: ['Desarrollo Web Full-Stack', 'Soluciones Cloud', 'Integración ERP']
+    },
+    {
+      title: 'Plataforma Segura de Gestión de Datos para Sector Salud',
+      challenge: 'Silos de información médica, dificultad para el análisis de datos de pacientes y necesidad de cumplir con estrictas normativas de privacidad (HIPAA/GDPR).',
+      solution: 'Implementamos una plataforma centralizada en la nube para la gestión de datos de pacientes, con dashboards de BI para análisis clínicos y robustas medidas de seguridad y cumplimiento normativo. Se logró una mejora significativa en la toma de decisiones médicas y la eficiencia operativa.',
+      image: 'https://placehold.co/600x400.png',
+      imageHint: 'healthcare data security platform',
+      tags: ['Inteligencia de Negocio', 'Arquitectura Cloud', 'Seguridad de Datos']
+    },
+  ];
+
   return (
-    <div className="py-10 space-y-6 px-4 sm:px-6 lg:px-8">
-      <Card className="shadow-lg border">
-        <CardHeader>
-          <CardTitle className="text-2xl">PLES TIC</CardTitle>
-          <CardDescription>
-            Empowering your business with cutting-edge information and communication technologies.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="grid gap-6">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div>
-              <p className="text-lg text-muted-foreground mb-4">
-                Transform your business with our advanced IT solutions.
-              </p>
-              <p className="text-muted-foreground">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
-            </div>
-            <div className="relative h-64 md:h-80 rounded-lg overflow-hidden shadow-inner">
-              <Image
-                src="https://placehold.co/600x400.png"
-                alt="IT Solutions"
-                layout="fill"
-                objectFit="cover"
-                className="rounded-lg"
-                data-ai-hint="it solutions technology"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-            </div>
+    <div className="py-10 space-y-16 px-4 sm:px-6 lg:px-8">
+      <section className="relative py-20 md:py-28 rounded-lg overflow-hidden bg-card shadow-xl">
+        {/* Optional: Subtle background pattern or image */}
+        <div className="absolute inset-0 z-0 opacity-10">
+            {/* <Image src="https://placehold.co/1200x500.png" alt="Fondo abstracto tecnología" layout="fill" objectFit="cover" data-ai-hint="abstract technology network" /> */}
+            {/* <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-transparent to-accent/30"></div> */}
+        </div>
+        <div className="container mx-auto text-center relative z-10">
+          <Cpu className="h-20 w-20 text-primary mx-auto mb-6" />
+          <h1 className="text-4xl md:text-5xl font-bold text-primary mb-6">PLES TIC</h1>
+          <p className="text-lg md:text-xl text-foreground mb-4 max-w-3xl mx-auto">
+            Innovación Tecnológica y Estrategia Digital para el Futuro de su Empresa.
+          </p>
+          <p className="text-md text-muted-foreground mb-8 max-w-2xl mx-auto">
+             En PLES TIC, combinamos experticia técnica con visión de negocio para desarrollar soluciones de TI robustas, escalables y seguras que impulsan su crecimiento y eficiencia operativa.
+          </p>
+          <div className="flex flex-wrap justify-center gap-2 mb-10">
+            <Badge variant="default" className="text-md px-4 py-2 shadow-md">#DesarrolloDeSoftware</Badge>
+            <Badge variant="default" className="text-md px-4 py-2 shadow-md">#SolucionesCloud</Badge>
+            <Badge variant="default" className="text-md px-4 py-2 shadow-md">#Ciberseguridad</Badge>
+            <Badge variant="default" className="text-md px-4 py-2 shadow-md">#TransformacionDigital</Badge>
           </div>
-        </CardContent>
-      </Card>
+          <Button size="lg" className="text-lg px-8 py-3" asChild>
+            <Link href="/forms?service=ples-tic&subject=Consulta%20Soluciones%20PLES%20TIC">
+              <span className="flex items-center">
+                Descubra Nuestras Soluciones <ArrowRight className="ml-2 h-5 w-5" />
+              </span>
+            </Link>
+          </Button>
+        </div>
+      </section>
+
+      <section>
+        <h2 className="text-3xl font-bold text-center mb-4">¿Por Qué Elegir PLES TIC?</h2>
+        <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
+            Nos enfocamos en resultados tangibles, construyendo alianzas tecnológicas a largo plazo para el éxito de su organización.
+        </p>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {valuePropositions.map((vp) => (
+            <Card key={vp.title} className="text-center hover:shadow-lg transition-shadow duration-300 transform hover:-translate-y-1 flex flex-col">
+              <CardHeader className="items-center">
+                {vp.icon}
+                <CardTitle className="mt-2 text-xl">{vp.title}</CardTitle>
+              </CardHeader>
+              <CardContent className="flex-grow">
+                <p className="text-muted-foreground">{vp.description}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      <section className="py-12 bg-secondary rounded-lg">
+        <div className="container mx-auto">
+            <h2 className="text-3xl font-bold text-center mb-12">Nuestros Servicios Tecnológicos Clave</h2>
+            <div className="grid md:grid-cols-2 gap-8">
+            {coreServices.map((service) => (
+                <Card key={service.title} className="hover:shadow-xl transition-shadow duration-300 bg-card">
+                <CardHeader className="flex flex-row items-start gap-4">
+                    {service.icon}
+                    <div>
+                    <CardTitle className="text-xl">{service.title}</CardTitle>
+                    <CardDescription className="mt-1">{service.description}</CardDescription>
+                    </div>
+                </CardHeader>
+                <CardContent>
+                    <ul className="space-y-2 text-sm text-muted-foreground">
+                    {service.details.map(detail => (
+                        <li key={detail} className="flex items-center">
+                        <CheckCircle className="h-4 w-4 text-green-500 mr-2 shrink-0" />
+                        {detail}
+                        </li>
+                    ))}
+                    </ul>
+                </CardContent>
+                </Card>
+            ))}
+            </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 className="text-3xl font-bold text-center mb-4">Nuestro Enfoque Colaborativo</h2>
+         <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
+            Trabajamos de cerca con usted en cada etapa, desde la idea inicial hasta el soporte continuo, asegurando soluciones que realmente funcionan.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+          {ourApproachSteps.map((step) => (
+            <Card key={step.title} className="text-center p-6 hover:shadow-lg transition-shadow transform hover:-translate-y-1 flex flex-col items-center bg-card">
+              {step.icon}
+              <CardTitle className="text-lg mt-2 mb-1">{step.title}</CardTitle>
+              <p className="text-xs text-muted-foreground flex-grow">{step.description}</p>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      <section className="py-12 bg-card rounded-lg shadow-xl">
+        <div className="container mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-4">Tecnologías y Plataformas que Dominamos</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto mb-10">
+            Utilizamos un stack tecnológico moderno y flexible para construir soluciones robustas, escalables y seguras, adaptadas a los desafíos de su industria.
+          </p>
+          <div className="flex flex-wrap justify-center items-center gap-3">
+            {technologies.map((tech) => (
+              <Badge key={tech} variant="outline" className="text-md md:text-base px-4 py-2 border-primary text-primary shadow-sm hover:bg-primary/10 transition-colors">
+                {tech}
+              </Badge>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-12">
+        <div className="container mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-12">Proyectos Destacados</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            {caseStudies.map((study) => (
+              <Card key={study.title} className="overflow-hidden hover:shadow-2xl transition-shadow duration-300 flex flex-col bg-card">
+                <div className="relative h-56 w-full">
+                  <Image src={study.image} alt={study.title} layout="fill" objectFit="cover" data-ai-hint={study.imageHint} />
+                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                </div>
+                <CardHeader>
+                  <CardTitle className="text-xl">{study.title}</CardTitle>
+                  <div className="mt-2">
+                    {study.tags.map(tag => <Badge key={tag} variant="secondary" className="mr-2 mb-2">{tag}</Badge>)}
+                  </div>
+                </CardHeader>
+                <CardContent className="flex-grow space-y-3">
+                  <div>
+                    <p className="font-semibold text-foreground mb-1">Desafío:</p>
+                    <p className="text-sm text-muted-foreground">{study.challenge}</p>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-foreground mb-1">Solución PLES TIC:</p>
+                    <p className="text-sm text-muted-foreground">{study.solution}</p>
+                  </div>
+                </CardContent>
+                <div className="p-6 pt-0">
+                    <Button variant="link" asChild className="text-primary">
+                        <Link href="/forms?subject=Mas%20Informacion%20Caso%20Estudio%20TIC">
+                            <span className="flex items-center">
+                                Conocer Más <ArrowRight className="ml-1 h-4 w-4"/>
+                            </span>
+                        </Link>
+                    </Button>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="text-center py-20 bg-primary text-primary-foreground rounded-lg shadow-inner">
+        <div className="container mx-auto">
+            <Rocket className="h-16 w-16 mx-auto mb-6 opacity-80" />
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Impulse su Negocio con la Tecnología del Mañana</h2>
+            <p className="text-lg md:text-xl mb-10 max-w-3xl mx-auto opacity-90">
+             Descubra cómo las soluciones personalizadas de PLES TIC pueden transformar su organización, optimizar sus operaciones y abrir nuevas oportunidades de crecimiento.
+            </p>
+            <Button size="xl" variant="secondary" className="text-lg px-10 py-4 shadow-lg hover:scale-105 transition-transform" asChild>
+            <Link href="/forms?service=ples-tic&subject=Solicitud%20Asesoria%20Tecnologica">
+                <span className="flex items-center">
+                    Solicitar Asesoría Tecnológica <ArrowRight className="ml-3 h-5 w-5" />
+                </span>
+            </Link>
+            </Button>
+        </div>
+      </section>
     </div>
   );
 }
+
+    
