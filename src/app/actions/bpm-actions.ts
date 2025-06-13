@@ -12,7 +12,6 @@ import { revalidatePath } from 'next/cache';
  * @returns A list of process instances.
  */
 export async function getProcessInstances(): Promise<ProcessInstanceFirestore[]> {
-    console.log("BPM Action: Fetching process instances from Firestore");
     try {
         const instancesCol = collection(adminDb, 'processInstances');
         const q = query(instancesCol, orderBy('lastUpdatedAt', 'desc')); // Order by most recently updated
