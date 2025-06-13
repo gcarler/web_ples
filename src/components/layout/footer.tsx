@@ -109,7 +109,7 @@ export function Footer() {
 
       {/* Decorative Circles - positioned relative to the main footer tag */}
       <div aria-hidden="true" className="absolute -bottom-20 -right-20 w-80 h-80 md:-bottom-24 md:-right-24 md:w-[26rem] md:h-[26rem] bg-card rounded-full opacity-20 z-0"></div>
-      <div aria-hidden="true" className="absolute -bottom-16 -right-16 w-60 h-60 md:-bottom-20 md:-right-20 md:w-[20rem] md:h-[20rem] bg-accent rounded-full opacity-10 z-10"></div>
+      <div aria-hidden="true" className="absolute -bottom-16 -right-16 w-60 h-60 md:-bottom-20 md:-right-20 md:w-[20rem] md:h-[20rem] bg-muted rounded-full opacity-10 z-10"></div>
     </footer>
   );
 }
