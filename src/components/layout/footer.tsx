@@ -10,44 +10,42 @@ export function Footer() {
           {/* Column 1: Logo at the top, Descriptive Text at the bottom */}
           <div className="flex flex-col justify-between h-full">
             {/* Logo at the top */}
-            <div>
-              <div
-                className="group logo-container font-comfortaa text-6xl font-bold select-none text-muted-foreground relative"
-                style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.1)' }}
-              >
-                <span className="letra-p-con-punto relative inline-block">
-                  {/* Círculo para estado NORMAL (color primario del tema) */}
-                  <span
-                    className="absolute rounded-full z-[-1] bg-primary opacity-100 group-hover:opacity-0 transition-opacity duration-200"
-                    style={{
-                      width: '0.31em',
-                      height: '0.31em',
-                      top: '0.45em',
-                      left: '0.21em',
-                    }}
-                  ></span>
-                  {/* Círculo para estado HOVER (con gradiente y sombra) */}
-                  <span
-                    className="absolute rounded-full z-[-1] opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                    style={{
-                      width: '0.31em',
-                      height: '0.31em',
-                      top: '0.45em',
-                      left: '0.21em',
-                      background: 'radial-gradient(circle at 30% 30%, #29c6ff, #00AEEF 70%, #008fbf)',
-                      boxShadow: 'inset 0 0 5px rgba(255, 255, 255, 0.4), 0 2px 4px rgba(0, 0, 0, 0.2)',
-                    }}
-                  ></span>
-                  <span className="text-muted-foreground group-hover:text-black transition-colors duration-200">p</span>
-                </span>
-                <span className="text-muted-foreground group-hover:text-black transition-colors duration-200">les</span>
-              </div>
+            <div
+              className="group logo-container font-comfortaa text-6xl font-bold select-none text-muted-foreground relative self-start"
+              style={{ textShadow: '1px 1px 3px hsla(var(--foreground), 0.1)' }}
+            >
+              <span className="letra-p-con-punto relative inline-block">
+                {/* Círculo para estado NORMAL (color primario del tema) */}
+                <span
+                  className="absolute rounded-full z-[-1] bg-primary opacity-100 group-hover:opacity-0 transition-all duration-200"
+                  style={{
+                    width: '0.31em',
+                    height: '0.31em',
+                    top: '0.45em',
+                    left: '0.21em',
+                  }}
+                ></span>
+                {/* Círculo para estado HOVER (con gradiente y sombra) */}
+                <span
+                  className="absolute rounded-full z-[-1] opacity-0 group-hover:opacity-100 transition-all duration-200"
+                  style={{
+                    width: '0.31em',
+                    height: '0.31em',
+                    top: '0.45em',
+                    left: '0.21em',
+                    background: 'radial-gradient(circle at 30% 30%, #29c6ff, #00AEEF 70%, #008fbf)',
+                    boxShadow: 'inset 0 0 5px hsla(0,0%,100%,0.4), 0 2px 4px hsla(0,0%,0%,0.2)',
+                  }}
+                ></span>
+                <span className="text-muted-foreground group-hover:text-black transition-colors duration-200">p</span>
+              </span>
+              <span className="text-muted-foreground group-hover:text-black transition-colors duration-200">les</span>
             </div>
 
             {/* Descriptive Text at the bottom */}
             <div className="pt-4 pb-10">
               <p className="text-sm">
-                PLES: Estrategia e innovación fundamentadas en ciencia y tecnología para un impacto trascendente y sostenible.
+                PLES: Fusionando ciencia, tecnología e innovación en estrategias para un impacto trascendente y sostenible.
               </p>
             </div>
           </div>
