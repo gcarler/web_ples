@@ -123,7 +123,7 @@ export default function AiAutomationPage() {
         <div className="container mx-auto text-center relative z-10">
           <Brain className="h-20 w-20 text-primary mx-auto mb-6" />
           <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">
-            Automatización con IA Confiable: PLES, Tu Socio Experto.
+            Automatización con IA Confiable
           </h1>
           <h2 className="text-2xl md:text-3xl font-semibold text-foreground mb-6">
             No hay saltos al vacío. Transformamos tu negocio con IA probada y estratégica.
