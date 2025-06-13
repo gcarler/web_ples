@@ -44,18 +44,19 @@ export function Footer() {
 
             {/* Descriptive Text at the bottom */}
             <div className="pt-4 pb-10">
-              <p className="text-sm text-muted-foreground">
+              <p className="text-xl text-muted-foreground"> {/* Changed to text-xl */}
                 Somos{' '}
-                <span className="inline-block font-semibold text-muted-foreground transition-all duration-300 ease-in-out hover:scale-110 hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:bg-clip-text hover:text-transparent">
+                <span className="font-semibold transition-all duration-300 ease-in-out inline-block hover:scale-110 hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:bg-clip-text hover:text-transparent">
                   Ciencia
                 </span>{' '}
-                <span className="inline-block font-semibold text-muted-foreground transition-all duration-300 ease-in-out hover:scale-110 hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:bg-clip-text hover:text-transparent">
+                <span className="font-semibold transition-all duration-300 ease-in-out inline-block hover:scale-110 hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:bg-clip-text hover:text-transparent">
                   Tecnología
                 </span>{' '}
                 e{' '}
-                <span className="inline-block font-semibold text-muted-foreground transition-all duration-300 ease-in-out hover:scale-110 hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:bg-clip-text hover:text-transparent">
+                <span className="font-semibold transition-all duration-300 ease-in-out inline-block hover:scale-110 hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:bg-clip-text hover:text-transparent">
                   Innovación
-                </span>.
+                </span>
+                .
               </p>
             </div>
           </div>
