@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { Facebook, Twitter, Instagram } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { PlesGroupLogo } from '@/components/logo'; // Import the SVG logo
 
 export function Footer() {
   return (
@@ -10,27 +11,16 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
           {/* Column 1: Logo at the top, Descriptive Text at the bottom */}
           <div className="flex flex-col justify-between h-full">
-            {/* Animated Logo */}
-            <div className="logo-container font-comfortaa text-7xl font-bold text-foreground overflow-hidden">
-              <span
-                className="letra-animada letra-p-con-punto relative inline-block opacity-0"
-                style={{ animationDelay: '0.6s' }}
-              >
-                p
-                <span
-                  className="absolute rounded-full bg-[#00AEEF] opacity-0 animate-expand-in"
-                  style={{
-                    width: '0.31em', height: '0.31em',
-                    top: '0.45em', left: '0.19em', // Ajustado left de 0.21em a 0.19em
-                    transformOrigin: 'center',
-                    animationDelay: '0.2s'
-                  }}
-                  aria-hidden="true"
-                />
-              </span>
-              <span className="letra-animada inline-block opacity-0" style={{ animationDelay: '0.7s' }}>l</span>
-              <span className="letra-animada inline-block opacity-0" style={{ animationDelay: '0.8s' }}>e</span>
-              <span className="letra-animada inline-block opacity-0" style={{ animationDelay: '0.9s' }}>s</span>
+            {/* PlesGroupLogo SVG */}
+            <div className="mb-4">
+              <PlesGroupLogo 
+                className="h-16 w-auto text-foreground" 
+                style={{ 
+                  // @ts-ignore 
+                  "--logo-letter-color": "hsl(var(--foreground))", 
+                  "--logo-accent-color": "hsl(var(--primary))" 
+                } as React.CSSProperties}
+              />
             </div>
 
             {/* Descriptive Text at the bottom */}
