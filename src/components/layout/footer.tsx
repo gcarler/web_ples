@@ -11,7 +11,7 @@ export function Footer() {
           <div className="flex flex-col justify-between h-full">
             {/* Logo at the top */}
             <div
-              className="group logo-container font-comfortaa text-6xl font-bold select-none text-muted-foreground relative self-start"
+              className="group logo-container font-comfortaa text-6xl font-bold select-none text-muted-foreground relative self-start transition-all duration-300 ease-in-out"
               style={{ textShadow: '1px 1px 3px hsla(var(--foreground), 0.1)' }}
             >
               <span className="letra-p-con-punto relative inline-block">
@@ -44,8 +44,18 @@ export function Footer() {
 
             {/* Descriptive Text at the bottom */}
             <div className="pt-4 pb-10">
-              <p className="text-sm">
-                PLES: Fusionando ciencia, tecnología e innovación en estrategias para un impacto trascendente y sostenible.
+              <p className="text-sm text-muted-foreground">
+                Somos{' '}
+                <span className="inline-block font-semibold text-muted-foreground transition-all duration-300 ease-in-out hover:scale-110 hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:bg-clip-text hover:text-transparent">
+                  Ciencia
+                </span>{' '}
+                <span className="inline-block font-semibold text-muted-foreground transition-all duration-300 ease-in-out hover:scale-110 hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:bg-clip-text hover:text-transparent">
+                  Tecnología
+                </span>{' '}
+                e{' '}
+                <span className="inline-block font-semibold text-muted-foreground transition-all duration-300 ease-in-out hover:scale-110 hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:bg-clip-text hover:text-transparent">
+                  Innovación
+                </span>.
               </p>
             </div>
           </div>
