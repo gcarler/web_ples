@@ -21,25 +21,12 @@ export function Footer() {
                   p
                 </span>
 
-                {/* Dot for Normal State (theme primary) */}
+                {/* Punto con gradiente y sombra (siempre visible) */}
                 <span
                   className={cn(
                     "absolute rounded-full",
-                    "w-[0.31em] h-[0.31em]",
-                    "top-[0.38em] left-[0.25em]", // Adjusted position
-                    "bg-primary",
-                    "group-hover:opacity-0 opacity-100 transition-opacity duration-300 ease-in-out"
-                  )}
-                  aria-hidden="true"
-                />
-
-                {/* Dot for Hover State (gradient and shadow) */}
-                <span
-                  className={cn(
-                    "absolute rounded-full",
-                    "w-[0.31em] h-[0.31em]",
-                    "top-[0.38em] left-[0.25em]", // Adjusted position
-                    "opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"
+                    "w-[0.31em] h-[0.31em]", // Tamaño relativo a la fuente
+                    "top-[0.38em] left-[0.25em]" // Posición ajustada
                   )}
                   style={{
                     background: 'radial-gradient(circle at 30% 30%, #29c6ff, #00AEEF 70%, #008fbf)',
