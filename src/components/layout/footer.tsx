@@ -1,18 +1,33 @@
 import Link from 'next/link';
 import { Facebook, Twitter, Instagram } from 'lucide-react';
-import { PlesGroupLogo } from '@/components/logo';
+// PlesGroupLogo is not used in this version if we are replacing it with HTML/CSS logo directly
+// import { PlesGroupLogo } from '@/components/logo';
 
 export function Footer() {
   return (
     <footer className="relative bg-muted text-muted-foreground pt-12 pb-8 mt-16 overflow-hidden">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12"> {/* Increased gap and mb */}
-          {/* Column 1: About text */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
+          {/* Column 1: New HTML/CSS Logo */}
           <div className="space-y-4 relative">
-            <p className="text-sm relative z-10">
-              Demostrando características fundamentales del desarrollo web como enrutamiento y formularios interactivos, imitando la estructura de un proyecto profesional.
-            </p>
-            {/* Watermark Logo Removed */}
+            <div className="font-comfortaa text-4xl font-bold text-muted-foreground">
+              <span className="relative inline-block">
+                {/* This span creates the blue dot behind the 'p' */}
+                <span
+                  className="absolute z-[-1] bg-[#00AEEF] rounded-full"
+                  style={{
+                    width: '0.31em',
+                    height: '0.31em',
+                    top: '0.45em',
+                    left: '0.21em',
+                  }}
+                ></span>
+                p
+              </span>
+              les
+            </div>
+            {/* Optional: You can add a short descriptive text below the logo if needed */}
+            {/* <p className="text-sm mt-2">El uso inteligente de la experiencia.</p> */}
           </div>
 
           {/* Column 2: Quick Links */}
@@ -84,14 +99,13 @@ export function Footer() {
         </div>
 
         {/* Copyright - Centered */}
-        <div className="text-center text-sm relative z-20 mt-8"> {/* Increased mt for spacing from grid */}
+        <div className="text-center text-sm relative z-20 mt-8">
           <p>&copy; {new Date().getFullYear()} PLES. Todos los derechos reservados.</p>
           <p className="mt-1">Construido con ❤️.</p>
         </div>
       </div>
 
       {/* Decorative Circles - positioned relative to the main footer tag */}
-      {/* Adjusted sizes and positions to better match the image */}
       <div aria-hidden="true" className="absolute -bottom-20 -right-20 w-80 h-80 md:-bottom-28 md:-right-28 md:w-[26rem] md:h-[26rem] bg-card rounded-full opacity-90 z-0"></div>
       <div aria-hidden="true" className="absolute -bottom-16 -right-16 w-60 h-60 md:-bottom-20 md:-right-20 md:w-[20rem] md:h-[20rem] bg-accent rounded-full z-10"></div>
     </footer>
