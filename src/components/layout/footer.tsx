@@ -15,8 +15,8 @@ export function Footer() {
                 className="font-comfortaa text-6xl font-bold select-none"
                 style={{
                   // @ts-ignore
-                  '--logo-letter-color': 'hsla(0, 0%, 82%, 0.40)', // Increased alpha from 0.15 to 0.40
-                  '--logo-accent-color': 'hsla(195, 100%, 50%, 0.40)', // Increased alpha from 0.15 to 0.40
+                  '--logo-letter-color': 'hsl(var(--muted-foreground))', 
+                  '--logo-accent-color': 'hsl(var(--primary))',
                 }}
               >
                 <span className="relative inline-block">
