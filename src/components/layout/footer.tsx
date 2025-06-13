@@ -1,16 +1,18 @@
 import Link from 'next/link';
 import { Facebook, Twitter, Instagram } from 'lucide-react';
 // PlesGroupLogo is not used in this version if we are replacing it with HTML/CSS logo directly
-// import { PlesGroupLogo } from '@/components/logo';
 
 export function Footer() {
   return (
     <footer className="relative bg-muted text-muted-foreground pt-12 pb-8 mt-16 overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
-          {/* Column 1: New HTML/CSS Logo */}
-          <div className="space-y-4 relative">
-            <div className="font-comfortaa text-4xl font-bold text-muted-foreground">
+          {/* Column 1: Slogan and New HTML/CSS Logo */}
+          <div className="space-y-4">
+            <p className="text-sm">
+              El uso inteligente de la experiencia.
+            </p>
+            <div className="font-comfortaa text-4xl font-bold text-muted-foreground mt-2"> {/* Added mt-2 for spacing */}
               <span className="relative inline-block">
                 {/* This span creates the blue dot behind the 'p' */}
                 <span
@@ -26,8 +28,6 @@ export function Footer() {
               </span>
               les
             </div>
-            {/* Optional: You can add a short descriptive text below the logo if needed */}
-            {/* <p className="text-sm mt-2">El uso inteligente de la experiencia.</p> */}
           </div>
 
           {/* Column 2: Quick Links */}
