@@ -69,17 +69,7 @@ export default function PlesConsultingPage() {
   return (
     <div className="py-10 space-y-16 px-4 sm:px-6 lg:px-8">
       <section className="relative py-20 md:py-28 rounded-lg overflow-hidden bg-card shadow-xl">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="https://placehold.co/1200x500.png"
-            alt="Fondo abstracto de consultoría y estrategia"
-            layout="fill"
-            objectFit="cover"
-            className="opacity-20"
-            data-ai-hint="abstract strategy meeting"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/30"></div>
-        </div>
+        {/* Removed background image and overlay div here */}
         <div className="container mx-auto text-center relative z-10">
           <Briefcase className="h-20 w-20 text-primary mx-auto mb-6" />
           <h1 className="text-4xl md:text-5xl font-bold text-primary mb-6">PLES Consulting</h1>
