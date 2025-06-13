@@ -12,30 +12,32 @@ export function Footer() {
             {/* Logo at the top */}
             <div>
               <div
-                className="font-comfortaa text-6xl font-bold select-none" // Adjusted size
+                className="font-comfortaa text-6xl font-bold select-none"
                 style={{
-                  color: 'hsla(0, 0%, 82%, 0.15)', // Subtle light gray for letters
+                  // @ts-ignore
+                  '--logo-letter-color': 'hsla(0, 0%, 82%, 0.40)', // Increased alpha from 0.15 to 0.40
+                  '--logo-accent-color': 'hsla(195, 100%, 50%, 0.40)', // Increased alpha from 0.15 to 0.40
                 }}
               >
                 <span className="relative inline-block">
                   <span
                     className="absolute z-[-1] rounded-full"
                     style={{
-                      backgroundColor: 'hsla(195, 100%, 50%, 0.15)', // Subtle light blue for dot accent
+                      backgroundColor: 'var(--logo-accent-color)',
                       width: '0.31em',
                       height: '0.31em',
-                      top: '0.45em', // Reverted to original positioning for smaller sizes
+                      top: '0.45em', // Adjusted top for better centering at this font size
                       left: '0.21em',
                     }}
                   ></span>
-                  p
+                  <span style={{ color: 'var(--logo-letter-color)' }}>p</span>
                 </span>
-                les
+                <span style={{ color: 'var(--logo-letter-color)' }}>les</span>
               </div>
             </div>
 
             {/* Descriptive Text at the bottom */}
-            <div>
+            <div className="pt-4"> {/* Added padding-top to separate from logo if it grows */}
               <p className="text-sm">
                 Demostrando características fundamentales del desarrollo web
                 como enrutamiento y formularios interactivos, imitando la
