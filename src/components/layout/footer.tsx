@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import { Facebook, Twitter, Instagram } from 'lucide-react';
 
@@ -8,11 +9,11 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
           {/* Column 1: Descriptive Text and Watermark Logo */}
           <div className="relative space-y-4">
+            {/* Watermark Logo using HTML/CSS classes */}
             <div
               aria-hidden="true"
               className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none"
             >
-              {/* Watermark Logo using HTML/CSS classes */}
               <div className="font-comfortaa text-9xl font-bold text-gray-500/10 select-none">
                 <span className="relative inline-block">
                   <span
@@ -29,7 +30,8 @@ export function Footer() {
                 les
               </div>
             </div>
-            <div className="relative z-10"> {/* Ensure text is above watermark */}
+            {/* Descriptive Text - Added pb-10 here */}
+            <div className="relative z-10 pb-10">
               <p className="text-sm">
                 Demostrando características fundamentales del desarrollo web
                 como enrutamiento y formularios interactivos, imitando la
