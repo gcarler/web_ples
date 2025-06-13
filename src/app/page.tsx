@@ -206,17 +206,7 @@ export default function Home() {
       </section>
 
       <section className="relative py-24 rounded-lg overflow-hidden bg-background">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="https://placehold.co/1200x400.png"
-            alt="Fondo abstracto"
-            layout="fill"
-            objectFit="cover"
-            className="opacity-30"
-             data-ai-hint="abstract technology background"
-          />
-           <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-background"></div>
-        </div>
+        {/* Background image and overlay removed from here */}
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h2 className="text-3xl font-bold mb-4 text-primary">¿Listo para Transformar su Organización?</h2>
           <p className="text-lg text-foreground mb-8 max-w-2xl mx-auto">
