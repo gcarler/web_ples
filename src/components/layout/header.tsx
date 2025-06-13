@@ -69,8 +69,8 @@ export function Header() {
                 style={{
                   width: '0.31em',
                   height: '0.31em',
-                  top: '0.45em',
-                  left: '0.21em',
+                  top: '0.42em', // Ajustado para mover el punto hacia arriba
+                  left: '0.36em', // Ajustado para mover el punto hacia la derecha
                   background: 'radial-gradient(circle at 30% 30%, #29c6ff, #00AEEF 70%, #008fbf)',
                   boxShadow: 'inset 0 0 5px rgba(255, 255, 255, 0.4), 0 2px 4px rgba(0, 0, 0, 0.2)',
                   animationDelay: '0.2s',
