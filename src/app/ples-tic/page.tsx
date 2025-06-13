@@ -41,9 +41,8 @@ export default function PlesTicPage() {
       icon: <Code className="h-8 w-8 text-primary" />,
       title: 'Desarrollo de Software a Medida',
       description: 'Creamos aplicaciones web, móviles y empresariales personalizadas, desde la concepción hasta el despliegue y mantenimiento continuo.',
-      details: ["Análisis y Diseño de Sistemas", "Desarrollo Full-Stack (Frontend/Backend)", "Integración de APIs y Servicios Externos", "Metodologías Ágiles (Scrum/Kanban)", "Automatización de procesos complejos mediante Inteligencia Artificial (IA)"],
-      ctaLink: "/ples-tic/automatizacion-ia", // Link to the new AI page
-      ctaText: "Más sobre Automatización con IA",
+      details: ["Análisis y Diseño de Sistemas", "Desarrollo Full-Stack (Frontend/Backend)", "Integración de APIs y Servicios Externos", "Metodologías Ágiles (Scrum/Kanban)"],
+      // ctaLink and ctaText removed from here as AI is now its own service
     },
     {
       icon: <CloudCog className="h-8 w-8 text-primary" />,
@@ -62,6 +61,20 @@ export default function PlesTicPage() {
       title: 'Análisis de Datos e Inteligencia de Negocio (BI)',
       description: 'Transformamos sus datos en información valiosa para la toma de decisiones estratégicas, mediante dashboards y reportes interactivos.',
       details: ["Modelado y Almacenamiento de Datos (Data Warehousing)", "Visualización de Datos (Tableau, Power BI, Looker)", "Análisis Predictivo y Fundamentos de Machine Learning", "Procesos ETL/ELT y Calidad de Datos"]
+    },
+    {
+      icon: <Brain className="h-8 w-8 text-primary" />,
+      title: 'Automatización Inteligente con IA',
+      description: 'Potenciamos su negocio con soluciones de IA personalizadas que optimizan procesos, extraen valor de sus datos y mejoran la toma de decisiones.',
+      details: [
+        "Análisis y Diagnóstico de Oportunidades de IA",
+        "Desarrollo de Modelos de Machine Learning y Deep Learning",
+        "Implementación de Chatbots y Asistentes Virtuales Inteligentes",
+        "Procesamiento de Lenguaje Natural (NLP) y Visión por Computadora",
+        "Integración de IA en Sistemas Existentes y Flujos de Trabajo"
+      ],
+      ctaLink: "/ples-tic/automatizacion-ia",
+      ctaText: "Conozca Nuestras Capacidades en IA",
     },
   ];
 
@@ -172,7 +185,7 @@ export default function PlesTicPage() {
                         <Button variant="link" asChild className="text-primary p-0 h-auto">
                           <Link href={service.ctaLink}>
                             <span className="flex items-center">
-                              {service.ctaText} <Brain className="ml-2 h-4 w-4" />
+                              {service.ctaText} <Brain className="ml-2 h-4 w-4" /> {/* Using Brain icon for IA link */}
                             </span>
                           </Link>
                         </Button>
