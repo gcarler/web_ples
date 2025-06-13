@@ -53,9 +53,7 @@ export function Header() {
         <Link href="/" className="mb-4 sm:mb-0">
           <div
             className="logo-container font-comfortaa text-2xl font-bold text-foreground"
-            style={{
-              textShadow: '1px 1px 3px rgba(0, 0, 0, 0.1)',
-            }}
+            // Removed style={{ textShadow: '1px 1px 3px rgba(0, 0, 0, 0.1)' }}
           >
             <span
               className={cn(
@@ -72,7 +70,7 @@ export function Header() {
                   width: '0.31em',
                   height: '0.31em',
                   top: '0.45em',
-                  left: '0.19em', // Adjusted from 0.21em
+                  left: '0.21em',
                   background: 'radial-gradient(circle at 30% 30%, #29c6ff, #00AEEF 70%, #008fbf)',
                   boxShadow: 'inset 0 0 5px rgba(255, 255, 255, 0.4), 0 2px 4px rgba(0, 0, 0, 0.2)',
                   animationDelay: '0.2s',
