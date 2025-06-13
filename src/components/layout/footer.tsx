@@ -1,6 +1,7 @@
 
 import Link from 'next/link';
 import { Facebook, Twitter, Instagram } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 export function Footer() {
   return (
@@ -11,40 +12,53 @@ export function Footer() {
           <div className="flex flex-col justify-between h-full">
             {/* Logo at the top */}
             <div
-              className="group logo-container font-comfortaa text-6xl font-bold select-none text-muted-foreground relative self-start transition-all duration-300 ease-in-out"
-              style={{ textShadow: '1px 1px 3px hsla(var(--foreground), 0.1)' }}
+              className="logo-container font-comfortaa text-6xl font-bold select-none relative group"
+              style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.1)' }}
             >
+              {/* Letter P with its dot(s) */}
               <span className="letra-p-con-punto relative inline-block">
-                {/* Círculo para estado NORMAL (color primario del tema) */}
+                {/* The actual letter 'p' */}
+                <span className="text-muted-foreground group-hover:text-black transition-colors duration-200">
+                  p
+                </span>
+
+                {/* Dot for Normal State (theme primary) */}
                 <span
-                  className="absolute rounded-full z-[-1] bg-primary opacity-100 group-hover:opacity-0 transition-all duration-200"
-                  style={{
-                    width: '0.31em',
-                    height: '0.31em',
-                    top: '0.45em',
-                    left: '0.21em',
-                  }}
-                ></span>
-                {/* Círculo para estado HOVER (con gradiente y sombra) */}
+                  className={cn(
+                    "absolute rounded-full z-[-1]",
+                    "w-[0.31em] h-[0.31em]", // em-based sizing
+                    "top-[0.45em] left-[0.21em]", // em-based positioning
+                    "bg-primary", // Normal state color
+                    "group-hover:opacity-0 opacity-100 transition-opacity duration-300 ease-in-out"
+                  )}
+                  aria-hidden="true"
+                />
+
+                {/* Dot for Hover State (gradient and shadow) */}
                 <span
-                  className="absolute rounded-full z-[-1] opacity-0 group-hover:opacity-100 transition-all duration-200"
+                  className={cn(
+                    "absolute rounded-full z-[-1]",
+                    "w-[0.31em] h-[0.31em]", // em-based sizing
+                    "top-[0.45em] left-[0.21em]", // em-based positioning
+                    "opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"
+                  )}
                   style={{
-                    width: '0.31em',
-                    height: '0.31em',
-                    top: '0.45em',
-                    left: '0.21em',
                     background: 'radial-gradient(circle at 30% 30%, #29c6ff, #00AEEF 70%, #008fbf)',
-                    boxShadow: 'inset 0 0 5px hsla(0,0%,100%,0.4), 0 2px 4px hsla(0,0%,0%,0.2)',
+                    boxShadow: 'inset 0 0 5px rgba(255, 255, 255, 0.4), 0 2px 4px rgba(0, 0, 0, 0.2)'
                   }}
-                ></span>
-                <span className="text-muted-foreground group-hover:text-black transition-colors duration-200">p</span>
+                  aria-hidden="true"
+                />
               </span>
-              <span className="text-muted-foreground group-hover:text-black transition-colors duration-200">les</span>
+
+              {/* Letters 'les' */}
+              <span className="text-muted-foreground group-hover:text-black transition-colors duration-200">
+                les
+              </span>
             </div>
 
             {/* Descriptive Text at the bottom */}
             <div className="pt-4 pb-10">
-              <p className="text-lg text-muted-foreground"> {/* Changed from text-xl to text-lg */}
+              <p className="text-lg text-muted-foreground">
                 Somos{' '}
                 <span className="font-semibold transition-all duration-300 ease-in-out inline-block hover:scale-110 hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:bg-clip-text hover:text-transparent">
                   Ciencia
@@ -111,7 +125,7 @@ export function Footer() {
               123 Calle Ficticia, Ciudad Ejemplo, CP 12345
             </p>
             <p className="text-sm">
-              Email: <a href="mailto:info@angularflow.com" className="hover:text-primary transition-colors">info@angularflow.com</a>
+              Email: <a href="mailto:info@angularflow.com" className="hover:text-primary transition-colors">info@ples.com</a>
             </p>
             <p className="text-sm">
               Teléfono: <a href="tel:+1234567890" className="hover:text-primary transition-colors">+1 234 567 890</a>
