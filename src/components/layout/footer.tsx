@@ -24,10 +24,10 @@ export function Footer() {
                 {/* Dot for Normal State (theme primary) */}
                 <span
                   className={cn(
-                    "absolute rounded-full", // Removed z-index: -1
-                    "w-[0.31em] h-[0.31em]", // em-based sizing
-                    "top-[0.45em] left-[0.21em]", // em-based positioning
-                    "bg-primary",                   // Normal state color
+                    "absolute rounded-full",
+                    "w-[0.31em] h-[0.31em]",
+                    "top-[0.38em] left-[0.25em]", // Adjusted position
+                    "bg-primary",
                     "group-hover:opacity-0 opacity-100 transition-opacity duration-300 ease-in-out"
                   )}
                   aria-hidden="true"
@@ -36,9 +36,9 @@ export function Footer() {
                 {/* Dot for Hover State (gradient and shadow) */}
                 <span
                   className={cn(
-                    "absolute rounded-full", // Removed z-index: -1
-                    "w-[0.31em] h-[0.31em]",         // em-based sizing
-                    "top-[0.45em] left-[0.21em]",   // em-based positioning
+                    "absolute rounded-full",
+                    "w-[0.31em] h-[0.31em]",
+                    "top-[0.38em] left-[0.25em]", // Adjusted position
                     "opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"
                   )}
                   style={{
