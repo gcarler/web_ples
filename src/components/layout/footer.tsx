@@ -12,32 +12,27 @@ export function Footer() {
             {/* Logo at the top */}
             <div>
               <div
-                className="font-comfortaa text-6xl font-bold select-none"
-                style={{
-                  // @ts-ignore
-                  '--logo-letter-color': 'hsl(var(--muted-foreground))', 
-                  '--logo-accent-color': 'hsl(var(--primary))',
-                }}
+                className="group logo-container font-comfortaa text-6xl font-bold select-none"
+                // Removed inline style for CSS variables, will use Tailwind classes directly
               >
-                <span className="relative inline-block">
+                <span className="letra-p-con-punto relative inline-block">
                   <span
-                    className="absolute z-[-1] rounded-full"
+                    className="absolute z-[-1] rounded-full bg-primary group-hover:bg-[#00AEEF] transition-colors duration-200"
                     style={{
-                      backgroundColor: 'var(--logo-accent-color)',
                       width: '0.31em',
                       height: '0.31em',
-                      top: '0.45em', // Adjusted top for better centering at this font size
+                      top: '0.41em', // Adjusted previously
                       left: '0.21em',
                     }}
                   ></span>
-                  <span style={{ color: 'var(--logo-letter-color)' }}>p</span>
+                  <span className="text-muted-foreground group-hover:text-black transition-colors duration-200">p</span>
                 </span>
-                <span style={{ color: 'var(--logo-letter-color)' }}>les</span>
+                <span className="text-muted-foreground group-hover:text-black transition-colors duration-200">les</span>
               </div>
             </div>
 
             {/* Descriptive Text at the bottom */}
-            <div className="pt-4"> {/* Added padding-top to separate from logo if it grows */}
+            <div className="pt-4 pb-10"> {/* Added padding-top to separate from logo if it grows */}
               <p className="text-sm">
                 Demostrando características fundamentales del desarrollo web
                 como enrutamiento y formularios interactivos, imitando la
