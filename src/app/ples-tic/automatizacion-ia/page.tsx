@@ -156,7 +156,7 @@ export default function AiAutomationPage() {
         <div>
           <Card className="shadow-lg border-2 border-secondary">
             <CardHeader className="text-center">
-              <CardTitle className="text-3xl font-bold text-primary">¿Cansado de la Improvisación? La IA Requiere Experiencia.</CardTitle>
+              <CardTitle className="text-3xl font-bold text-primary">La IA Requiere Experiencia.</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6 text-lg">
               <p className="text-muted-foreground">
@@ -243,7 +243,6 @@ export default function AiAutomationPage() {
               </Card>
             ))}
           </div>
-          {/* Testimonio eliminado */}
         </div>
       </section>
 
