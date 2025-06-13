@@ -12,7 +12,7 @@ export function Footer() {
           <div className="flex flex-col justify-between h-full">
             {/* Logo at the top */}
             <div
-              className="logo-container font-comfortaa text-6xl font-bold select-none relative group"
+              className="logo-container font-comfortaa text-7xl font-bold select-none relative group"
               style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.1)' }}
             >
               <span className="letra-p-con-punto relative inline-block">
