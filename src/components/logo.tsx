@@ -6,11 +6,11 @@ export function PlesGroupLogo({ className, style }: { className?: string, style?
     <svg
       width="100%"
       height="100%"
-      viewBox="0 0 350 160" // ViewBox from the provided SVG
+      viewBox="0 0 440 160" // Updated viewBox to accommodate "IA"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       style={style} // Pass style prop for CSS variables
-      aria-label="PLES Logo"
+      aria-label="PLESIA Logo" // Updated aria-label
       role="img"
     >
       <style>{`
@@ -82,6 +82,13 @@ export function PlesGroupLogo({ className, style }: { className?: string, style?
         A 10,10 0 0 1 270,55
         Z
       "/>
+
+      {/* Letter I */}
+      <path className="letter" d="M 340,30 L 340,140 L 355,140 L 355,30 Z" />
+
+      {/* Letter A */}
+      <path className="letter" fillRule="evenodd" d="M 395,30 L 375,140 L 415,140 Z M 395,70 L 385,110 L 405,110 Z" />
+
     </svg>
   );
 }
