@@ -52,35 +52,52 @@ export function Header() {
       <nav className="container mx-auto px-4 py-4 flex flex-wrap justify-between items-center">
         <Link href="/" className="mb-4 sm:mb-0">
           <div
-            className="logo-container font-comfortaa text-2xl font-bold text-foreground overflow-hidden"
+            className="logo-container font-comfortaa text-2xl font-bold text-foreground"
             style={{
               textShadow: '1px 1px 3px rgba(0, 0, 0, 0.1)',
             }}
           >
             <span
-              className="letra-animada letra-p-con-punto relative inline-block opacity-0"
+              className={cn(
+                "letra-p-con-punto relative inline-block opacity-0 animate-fade-in-up"
+              )}
               style={{ animationDelay: '0.6s' }}
             >
               p
               <span
-                className="absolute rounded-full opacity-0 animate-expand-in"
+                className={cn(
+                  "absolute rounded-full opacity-0 animate-expand-in"
+                )}
                 style={{
                   width: '0.31em',
                   height: '0.31em',
-                  top: '0.45em', 
-                  left: '0.21em', 
-                  transformOrigin: 'center',
-                  animationDelay: '0.2s',
+                  top: '0.45em',
+                  left: '0.19em', // Adjusted from 0.21em
                   background: 'radial-gradient(circle at 30% 30%, #29c6ff, #00AEEF 70%, #008fbf)',
                   boxShadow: 'inset 0 0 5px rgba(255, 255, 255, 0.4), 0 2px 4px rgba(0, 0, 0, 0.2)',
-                  // zIndex: -1 was removed previously, ensure it's not causing issues
+                  animationDelay: '0.2s',
                 }}
                 aria-hidden="true"
               />
             </span>
-            <span className="letra-animada inline-block opacity-0" style={{ animationDelay: '0.7s' }}>l</span>
-            <span className="letra-animada inline-block opacity-0" style={{ animationDelay: '0.8s' }}>e</span>
-            <span className="letra-animada inline-block opacity-0" style={{ animationDelay: '0.9s' }}>s</span>
+            <span
+              className={cn("inline-block opacity-0 animate-fade-in-up")}
+              style={{ animationDelay: '0.7s' }}
+            >
+              l
+            </span>
+            <span
+              className={cn("inline-block opacity-0 animate-fade-in-up")}
+              style={{ animationDelay: '0.8s' }}
+            >
+              e
+            </span>
+            <span
+              className={cn("inline-block opacity-0 animate-fade-in-up")}
+              style={{ animationDelay: '0.9s' }}
+            >
+              s
+            </span>
           </div>
         </Link>
 
