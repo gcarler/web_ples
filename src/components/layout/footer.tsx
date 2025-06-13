@@ -12,14 +12,15 @@ export function Footer() {
               aria-hidden="true"
               className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none"
             >
+              {/* Watermark Logo using HTML/CSS classes */}
               <div className="font-comfortaa text-9xl font-bold text-gray-500/10 select-none">
                 <span className="relative inline-block">
                   <span
-                    className="absolute z-[-1] bg-[#00AEEF]/10 rounded-full"
+                    className="absolute z-[-1] rounded-full bg-[#00AEEF]/10"
                     style={{
                       width: '0.31em',
                       height: '0.31em',
-                      top: '0.45em',
+                      top: '0.41em', // Adjusted top position
                       left: '0.21em',
                     }}
                   ></span>
@@ -34,13 +35,11 @@ export function Footer() {
                 como enrutamiento y formularios interactivos, imitando la
                 estructura de un proyecto profesional.
               </p>
-              {/* The HTML/CSS logo is now the watermark above. If a smaller visible logo is still needed here, it can be added. */}
-              {/* For now, we'll assume the watermark is the primary logo display in this column based on the image */}
             </div>
           </div>
 
           {/* Column 2: Quick Links */}
-          <div className="space-y-4 z-10"> {/* Added z-10 to ensure it's above decorative circles if they overlap */}
+          <div className="space-y-4 z-10">
             <h3 className="text-lg font-semibold text-foreground">Enlaces Rápidos</h3>
             <ul className="space-y-2 text-sm">
               <li>
@@ -82,7 +81,7 @@ export function Footer() {
           </div>
 
           {/* Column 3: Contact & Social */}
-          <div className="space-y-4 z-10"> {/* Added z-10 */}
+          <div className="space-y-4 z-10">
             <h3 className="text-lg font-semibold text-foreground">Contacto</h3>
             <p className="text-sm">
               123 Calle Ficticia, Ciudad Ejemplo, CP 12345
