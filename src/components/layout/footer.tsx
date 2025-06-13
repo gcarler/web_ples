@@ -12,27 +12,40 @@ export function Footer() {
             {/* Logo at the top */}
             <div>
               <div
-                className="group logo-container font-comfortaa text-6xl font-bold select-none"
-                // Removed inline style for CSS variables, will use Tailwind classes directly
+                className="group logo-container font-comfortaa text-6xl font-bold select-none text-muted-foreground relative"
+                style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.1)' }}
               >
                 <span className="letra-p-con-punto relative inline-block">
+                  {/* Círculo para estado NORMAL */}
                   <span
-                    className="absolute z-[-1] rounded-full bg-primary group-hover:bg-[#00AEEF] transition-colors duration-200"
+                    className="absolute rounded-full z-[-1] bg-primary group-hover:opacity-0 opacity-100 transition-opacity duration-200"
                     style={{
                       width: '0.31em',
                       height: '0.31em',
-                      top: '0.41em', // Adjusted previously
-                      left: '0.21em',
+                      top: '0.45em', // Posicionamiento original del HTML
+                      left: '0.21em', // Posicionamiento original del HTML
                     }}
                   ></span>
-                  <span className="text-muted-foreground group-hover:text-black transition-colors duration-200">p</span>
+                  {/* Círculo para estado HOVER (con gradiente y sombra) */}
+                  <span
+                    className="absolute rounded-full z-[-1] group-hover:opacity-100 opacity-0 transition-opacity duration-200"
+                    style={{
+                      width: '0.31em',
+                      height: '0.31em',
+                      top: '0.45em', // Posicionamiento original del HTML
+                      left: '0.21em', // Posicionamiento original del HTML
+                      background: 'radial-gradient(circle at 30% 30%, #29c6ff, #00AEEF 70%, #008fbf)',
+                      boxShadow: 'inset 0 0 5px rgba(255, 255, 255, 0.4), 0 2px 4px rgba(0, 0, 0, 0.2)',
+                    }}
+                  ></span>
+                  <span className="group-hover:text-black transition-colors duration-200">p</span>
                 </span>
-                <span className="text-muted-foreground group-hover:text-black transition-colors duration-200">les</span>
+                <span className="group-hover:text-black transition-colors duration-200">les</span>
               </div>
             </div>
 
             {/* Descriptive Text at the bottom */}
-            <div className="pt-4 pb-10"> {/* Added padding-top to separate from logo if it grows */}
+            <div className="pt-4 pb-10">
               <p className="text-sm">
                 Demostrando características fundamentales del desarrollo web
                 como enrutamiento y formularios interactivos, imitando la
