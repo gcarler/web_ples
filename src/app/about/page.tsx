@@ -62,11 +62,11 @@ export default function AboutPage() {
         </p>
          {/* Moved Valores Fundamentales here, added blue background and text color */}
          {/* Added hover effects: black background, white text, scale-up */}
-         <div className="border rounded-lg p-8 shadow-md bg-primary text-primary-foreground mt-8 hover:bg-black hover:text-white hover:scale-105 transition-all duration-300 ease-in-out">
+         <div className="border rounded-lg p-8 shadow-md bg-primary text-primary-foreground mt-8 group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out">
              <h2 className="text-2xl font-bold mb-4 text-center flex items-center justify-center">
-                <Gem className="mr-2 h-6 w-6" /> Nuestros Valores Fundamentales
+                <Gem className="mr-2 h-6 w-6 group-hover:text-primary-foreground" /> <span className="group-hover:text-primary-foreground">Nuestros Valores Fundamentales</span>
             </h2>
-             <p className="text-base"> {/* Adjusted text size */}
+             <p className="text-base group-hover:text-primary-foreground"> {/* Adjusted text size */}
                  Integridad como principio rector, innovación como motor de progreso y colaboración como esencia de nuestro accionar. Estos valores se manifiestan en nuestro compromiso inquebrantable con la resiliencia ambiental y la equidad de género, buscando generar un legado significativo y duradero en cada comunidad que abrazamos.
              </p>
          </div>
@@ -78,7 +78,7 @@ export default function AboutPage() {
           // Wrap DynamicSection in a Card for consistent styling
            <Card
              key={index}
-             className="hover:shadow-lg hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out group" // Added hover effects and group
+             className="group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out" // Added hover effects and group
             >
              <CardContent className="p-0"> {/* Remove default CardContent padding */}
                  <DynamicSection {...section} />

@@ -15,22 +15,22 @@ export const metadata = {
 export default function PlesCreaPage() {
   const services = [
     {
-      icon: <Map className="h-10 w-10 text-primary mb-4" />,
+      icon: <Map className="h-10 w-10 text-primary group-hover:text-primary-foreground mb-4" />,
       title: 'Análisis de Vulnerabilidad y Riesgo',
       description: 'Identificamos y evaluamos riesgos climáticos y socioambientales para desarrollar estrategias de adaptación efectivas.',
     },
     {
-      icon: <Brain className="h-10 w-10 text-primary mb-4" />,
+      icon: <Brain className="h-10 w-10 text-primary group-hover:text-primary-foreground mb-4" />,
       title: 'Mapeo Ecosistémico y Biodiversidad',
       description: 'Cartografiamos ecosistemas, servicios ambientales y biodiversidad para la planificación y conservación territorial.',
     },
     {
-      icon: <Lightbulb className="h-10 w-10 text-primary mb-4" />,
+      icon: <Lightbulb className="h-10 w-10 text-primary group-hover:text-primary-foreground mb-4" />,
       title: 'Plataformas Cartográficas Interactivas',
       description: 'Desarrollamos visores y plataformas web personalizadas para la visualización y análisis de datos geoespaciales.',
     },
     {
-      icon: <Users className="h-10 w-10 text-primary mb-4" />,
+      icon: <Users className="h-10 w-10 text-primary group-hover:text-primary-foreground mb-4" />,
       title: 'Cartografía Social y Participativa',
       description: 'Integramos el conocimiento local y la participación comunitaria en la creación de mapas para la equidad.',
     },
@@ -67,7 +67,7 @@ export default function PlesCreaPage() {
       <section className="text-center py-12 bg-card rounded-lg shadow-xl">
         <div className="container mx-auto">
           <Map className="h-16 w-16 text-primary mx-auto mb-6" />
-          <h1 className="text-4xl font-bold text-primary mb-4">PLES CREA</h1>
+          <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-4">PLES CREA</h1>
           <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
             Cartografía Inteligente para un Futuro Sostenible y Equitativo. Transformamos datos geoespaciales en decisiones estratégicas.
           </p>
@@ -85,13 +85,13 @@ export default function PlesCreaPage() {
         <h2 className="text-3xl font-bold text-center mb-10">Nuestros Servicios Destacados</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service) => (
-            <Card key={service.title} className="text-center hover:shadow-lg transition-shadow duration-300 flex flex-col">
+            <Card key={service.title} className="text-center group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col">
               <CardHeader>
                 {service.icon}
-                <CardTitle>{service.title}</CardTitle>
+                <CardTitle className="group-hover:text-primary-foreground">{service.title}</CardTitle>
               </CardHeader>
               <CardContent className="flex-grow">
-                <CardDescription>{service.description}</CardDescription>
+                <CardDescription className="group-hover:text-primary-foreground/90">{service.description}</CardDescription>
               </CardContent>
             </Card>
           ))}
@@ -116,18 +116,18 @@ export default function PlesCreaPage() {
         <h2 className="text-3xl font-bold text-center mb-10">Proyectos que Inspiran</h2>
         <div className="grid md:grid-cols-2 gap-8">
           {caseStudies.map((study) => (
-            <Card key={study.title} className="overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <Card key={study.title} className="overflow-hidden group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out">
               <div className="relative h-56 w-full">
                 <Image src={study.image} alt={study.title} layout="fill" objectFit="cover" data-ai-hint={study.imageHint} />
               </div>
               <CardHeader>
-                <CardTitle>{study.title}</CardTitle>
+                <CardTitle className="group-hover:text-primary-foreground">{study.title}</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="font-semibold text-muted-foreground mb-1">Desafío:</p>
-                <p className="text-sm mb-3">{study.challenge}</p>
-                <p className="font-semibold text-muted-foreground mb-1">Solución PLES CREA:</p>
-                <p className="text-sm">{study.solution}</p>
+                <p className="font-semibold text-muted-foreground group-hover:text-primary-foreground/90 mb-1">Desafío:</p>
+                <p className="text-sm mb-3 group-hover:text-primary-foreground/90">{study.challenge}</p>
+                <p className="font-semibold text-muted-foreground group-hover:text-primary-foreground/90 mb-1">Solución PLES CREA:</p>
+                <p className="text-sm group-hover:text-primary-foreground/90">{study.solution}</p>
               </CardContent>
             </Card>
           ))}

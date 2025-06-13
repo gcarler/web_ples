@@ -16,25 +16,25 @@ export const metadata = {
 export default function PlesCatastroPage() {
   const coreServices = [
     {
-      icon: <MapPin className="h-8 w-8 text-primary" />,
+      icon: <MapPin className="h-8 w-8 text-primary group-hover:text-primary-foreground" />,
       title: 'Levantamiento Predial Multifinalitario',
       description: 'Ejecutamos levantamientos catastrales precisos (urbanos y rurales) con fines fiscales, jurídicos, económicos y sociales, utilizando tecnología de vanguardia.',
       details: ['Cobertura Urbana y Rural', 'Tecnología GPS y Drones', 'Integración con SIG', 'Generación de Cartografía Base']
     },
     {
-      icon: <FileText className="h-8 w-8 text-primary" />,
+      icon: <FileText className="h-8 w-8 text-primary group-hover:text-primary-foreground" />,
       title: 'Actualización y Mantenimiento Catastral',
       description: 'Implementamos procesos continuos y automatizados para mantener la información catastral actualizada, confiable y accesible.',
       details: ['Flujos de Trabajo Digitales', 'Monitoreo de Cambios', 'Interoperabilidad de Sistemas', 'Capacitación de Personal']
     },
     {
-      icon: <Scale className="h-8 w-8 text-primary" />,
+      icon: <Scale className="h-8 w-8 text-primary group-hover:text-primary-foreground" />,
       title: 'Avalúos Masivos y Puntuales',
       description: 'Realizamos valoraciones de propiedades con metodologías robustas y transparentes para una base imponible justa y una gestión eficiente de activos.',
       details: ['Modelos de Valoración Automatizada (AVM)', 'Análisis de Mercado Inmobiliario', 'Cumplimiento Normativo', 'Informes Detallados']
     },
     {
-      icon: <Landmark className="h-8 w-8 text-primary" />,
+      icon: <Landmark className="h-8 w-8 text-primary group-hover:text-primary-foreground" />,
       title: 'Planes de Ordenamiento Territorial (POT)',
       description: 'Desarrollamos e implementamos planes estratégicos que guían el crecimiento sostenible y la ocupación eficiente del territorio, promoviendo la equidad.',
       details: ['Diagnóstico Territorial Integral', 'Participación Ciudadana Activa', 'Zonificación y Usos del Suelo', 'Instrumentos de Gestión']
@@ -43,31 +43,31 @@ export default function PlesCatastroPage() {
 
   const valuePropositions = [
     {
-      icon: <TrendingUp className="h-10 w-10 text-accent" />,
+      icon: <TrendingUp className="h-10 w-10 text-accent group-hover:text-primary-foreground" />,
       title: 'Incremento de la Recaudación Fiscal',
       description: 'Un catastro actualizado y preciso optimiza la base gravable, mejorando los ingresos municipales y la inversión pública.',
     },
     {
-      icon: <ShieldCheck className="h-10 w-10 text-accent" />,
+      icon: <ShieldCheck className="h-10 w-10 text-accent group-hover:text-primary-foreground" />,
       title: 'Seguridad Jurídica en la Tenencia',
       description: 'Formalizamos la propiedad y reducimos conflictos sobre la tierra, brindando certeza a los ciudadanos e inversionistas.',
     },
     {
-      icon: <Eye className="h-10 w-10 text-accent" />,
+      icon: <Eye className="h-10 w-10 text-accent group-hover:text-primary-foreground" />,
       title: 'Planificación Territorial Informada',
       description: 'Proveemos datos geoespaciales confiables para la toma de decisiones estratégicas en desarrollo urbano, infraestructura y gestión ambiental.',
     },
     {
-      icon: <Settings className="h-10 w-10 text-accent" />,
+      icon: <Settings className="h-10 w-10 text-accent group-hover:text-primary-foreground" />,
       title: 'Transparencia y Eficiencia en la Gestión',
       description: 'Modernizamos los procesos catastrales, haciéndolos más ágiles, transparentes y accesibles para la administración y los ciudadanos.',
     },
   ];
 
   const impactFigures = [
-    { figure: "+30%", label: "Precisión en Levantamientos", icon: <Target className="h-8 w-8 text-primary"/> },
-    { figure: "25%", label: "Reducción en Tiempos de Trámite", icon: <FileText className="h-8 w-8 text-primary"/> },
-    { figure: "150+", label: "Municipios Asesorados", icon: <Briefcase className="h-8 w-8 text-primary"/> },
+    { figure: "+30%", label: "Precisión en Levantamientos", icon: <Target className="h-8 w-8 text-primary group-hover:text-primary-foreground"/> },
+    { figure: "25%", label: "Reducción en Tiempos de Trámite", icon: <FileText className="h-8 w-8 text-primary group-hover:text-primary-foreground"/> },
+    { figure: "150+", label: "Municipios Asesorados", icon: <Briefcase className="h-8 w-8 text-primary group-hover:text-primary-foreground"/> },
   ];
 
   const caseStudies = [
@@ -107,7 +107,7 @@ export default function PlesCatastroPage() {
         </div>
         <div className="container mx-auto text-center relative z-10">
           <Landmark className="h-20 w-20 text-primary mx-auto mb-6" />
-          <h1 className="text-4xl md:text-5xl font-bold text-primary mb-6">PLES Catastro</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-6">PLES Catastro</h1>
           <p className="text-lg md:text-xl text-foreground mb-8 max-w-3xl mx-auto">
             Transformamos la gestión del territorio con soluciones catastrales innovadoras, promoviendo un desarrollo eficiente, equitativo y sostenible.
           </p>
@@ -130,13 +130,13 @@ export default function PlesCatastroPage() {
         <h2 className="text-3xl font-bold text-center mb-12">Nuestra Propuesta de Valor</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {valuePropositions.map((vp) => (
-            <Card key={vp.title} className="text-center hover:shadow-lg transition-shadow duration-300 transform hover:-translate-y-1 flex flex-col">
+            <Card key={vp.title} className="text-center group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out transform flex flex-col">
               <CardHeader className="items-center">
                 {vp.icon}
-                <CardTitle className="mt-2 text-xl">{vp.title}</CardTitle>
+                <CardTitle className="mt-2 text-xl group-hover:text-primary-foreground">{vp.title}</CardTitle>
               </CardHeader>
               <CardContent className="flex-grow">
-                <p className="text-muted-foreground">{vp.description}</p>
+                <p className="text-muted-foreground group-hover:text-primary-foreground/90">{vp.description}</p>
               </CardContent>
             </Card>
           ))}
@@ -148,19 +148,19 @@ export default function PlesCatastroPage() {
             <h2 className="text-3xl font-bold text-center mb-12">Servicios Catastrales Estratégicos</h2>
             <div className="grid md:grid-cols-2 gap-8">
             {coreServices.map((service) => (
-                <Card key={service.title} className="hover:shadow-xl transition-shadow duration-300">
+                <Card key={service.title} className="group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out">
                 <CardHeader className="flex flex-row items-start gap-4">
                     {service.icon}
                     <div>
-                    <CardTitle className="text-xl">{service.title}</CardTitle>
-                    <CardDescription className="mt-1">{service.description}</CardDescription>
+                    <CardTitle className="text-xl group-hover:text-primary-foreground">{service.title}</CardTitle>
+                    <CardDescription className="mt-1 group-hover:text-primary-foreground/90">{service.description}</CardDescription>
                     </div>
                 </CardHeader>
                 <CardContent>
-                    <ul className="space-y-2 text-sm text-muted-foreground">
+                    <ul className="space-y-2 text-sm text-muted-foreground group-hover:text-primary-foreground/90">
                     {service.details.map(detail => (
                         <li key={detail} className="flex items-center">
-                        <CheckCircle className="h-4 w-4 text-green-500 mr-2 shrink-0" />
+                        <CheckCircle className="h-4 w-4 text-green-500 group-hover:text-primary-foreground mr-2 shrink-0" />
                         {detail}
                         </li>
                     ))}
@@ -263,10 +263,10 @@ export default function PlesCatastroPage() {
           <h2 className="text-3xl font-bold mb-12">Impacto en Cifras (Simulado)</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {impactFigures.map((figure) => (
-              <Card key={figure.label} className="p-6 shadow-lg hover:bg-primary/5 transition-colors">
+              <Card key={figure.label} className="p-6 group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out">
                 <div className="flex justify-center mb-4">{figure.icon}</div>
-                <p className="text-4xl font-bold text-primary mb-2">{figure.figure}</p>
-                <p className="text-muted-foreground">{figure.label}</p>
+                <p className="text-4xl font-bold text-primary group-hover:text-primary-foreground mb-2">{figure.figure}</p>
+                <p className="text-muted-foreground group-hover:text-primary-foreground/90">{figure.label}</p>
               </Card>
             ))}
           </div>
@@ -278,29 +278,29 @@ export default function PlesCatastroPage() {
           <h2 className="text-3xl font-bold text-center mb-12">Casos de Estudio Aplicados</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {caseStudies.map((study) => (
-              <Card key={study.title} className="overflow-hidden hover:shadow-2xl transition-shadow duration-300 flex flex-col">
+              <Card key={study.title} className="overflow-hidden group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col">
                 <div className="relative h-56 w-full">
                   <Image src={study.image} alt={study.title} layout="fill" objectFit="cover" data-ai-hint={study.imageHint} />
                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 </div>
                 <CardHeader>
-                  <CardTitle className="text-xl">{study.title}</CardTitle>
+                  <CardTitle className="text-xl group-hover:text-primary-foreground">{study.title}</CardTitle>
                   <div className="mt-2">
-                    {study.tags.map(tag => <Badge key={tag} variant="secondary" className="mr-2 mb-2">{tag}</Badge>)}
+                    {study.tags.map(tag => <Badge key={tag} variant="secondary" className="mr-2 mb-2 group-hover:bg-primary-foreground/20 group-hover:text-accent-foreground">{tag}</Badge>)}
                   </div>
                 </CardHeader>
                 <CardContent className="flex-grow space-y-3">
                   <div>
-                    <p className="font-semibold text-foreground mb-1">Desafío:</p>
-                    <p className="text-sm text-muted-foreground">{study.challenge}</p>
+                    <p className="font-semibold text-foreground group-hover:text-primary-foreground mb-1">Desafío:</p>
+                    <p className="text-sm text-muted-foreground group-hover:text-primary-foreground/90">{study.challenge}</p>
                   </div>
                   <div>
-                    <p className="font-semibold text-foreground mb-1">Solución PLES Catastro:</p>
-                    <p className="text-sm text-muted-foreground">{study.solution}</p>
+                    <p className="font-semibold text-foreground group-hover:text-primary-foreground mb-1">Solución PLES Catastro:</p>
+                    <p className="text-sm text-muted-foreground group-hover:text-primary-foreground/90">{study.solution}</p>
                   </div>
                 </CardContent>
                 <div className="p-6 pt-0">
-                    <Button variant="link" asChild className="text-primary">
+                    <Button variant="link" asChild className="text-primary group-hover:text-primary-foreground">
                         <Link href="/forms?subject=Mas%20Informacion%20Caso%20Estudio%20Catastro">
                             <span className="flex items-center">
                                 Conocer Más <ArrowRight className="ml-1 h-4 w-4"/>

@@ -19,7 +19,7 @@ const DynamicSection: React.FC<DynamicSectionProps> = ({
     // Use padding within the section, it's now inside a Card's content area
     <section className="flex flex-col p-6 w-full h-full justify-between"> {/* Use h-full and justify-between */}
       <div> {/* Group title and description */}
-        <CardTitle className="text-xl font-semibold mb-2">{title}</CardTitle>
+        <CardTitle className="text-xl font-semibold mb-2 group-hover:text-primary-foreground">{title}</CardTitle>
          {/* Ensure description color adapts on hover */}
          <CardDescription className="text-muted-foreground group-hover:text-primary-foreground mb-4">{content}</CardDescription> {/* Use content as description */}
       </div>

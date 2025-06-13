@@ -15,22 +15,22 @@ export const metadata = {
 export default function PlesTicPage() {
   const valuePropositions = [
     {
-      icon: <Settings className="h-10 w-10 text-accent" />,
+      icon: <Settings className="h-10 w-10 text-accent group-hover:text-primary-foreground" />,
       title: 'Soluciones a Medida',
       description: 'Desarrollamos software y sistemas adaptados específicamente a sus necesidades y objetivos estratégicos.',
     },
     {
-      icon: <Lightbulb className="h-10 w-10 text-accent" />,
+      icon: <Lightbulb className="h-10 w-10 text-accent group-hover:text-primary-foreground" />,
       title: 'Innovación y Vanguardia',
       description: 'Aplicamos las últimas tecnologías y metodologías para garantizar soluciones modernas, eficientes y preparadas para el futuro.',
     },
     {
-      icon: <ShieldCheck className="h-10 w-10 text-accent" />,
+      icon: <ShieldCheck className="h-10 w-10 text-accent group-hover:text-primary-foreground" />,
       title: 'Seguridad Integral',
       description: 'Protegemos sus activos digitales con estrategias de ciberseguridad proactivas y robustas adaptadas a su entorno.',
     },
     {
-      icon: <TrendingUp className="h-10 w-10 text-accent" />,
+      icon: <TrendingUp className="h-10 w-10 text-accent group-hover:text-primary-foreground" />,
       title: 'Optimización y Eficiencia',
       description: 'Automatizamos y optimizamos sus flujos de trabajo para mejorar la productividad, reducir costos y potenciar el crecimiento, incluyendo la automatización de procesos complejos con IA.',
     },
@@ -38,32 +38,32 @@ export default function PlesTicPage() {
 
   const coreServices = [
     {
-      icon: <Code className="h-8 w-8 text-primary" />,
+      icon: <Code className="h-8 w-8 text-primary group-hover:text-primary-foreground" />,
       title: 'Desarrollo de Software a Medida',
       description: 'Creamos aplicaciones web, móviles y empresariales personalizadas, desde la concepción hasta el despliegue y mantenimiento continuo.',
       details: ["Análisis y Diseño de Sistemas", "Desarrollo Full-Stack (Frontend/Backend)", "Integración de APIs y Servicios Externos", "Metodologías Ágiles (Scrum/Kanban)"],
       // ctaLink and ctaText removed from here as AI is now its own service
     },
     {
-      icon: <CloudCog className="h-8 w-8 text-primary" />,
+      icon: <CloudCog className="h-8 w-8 text-primary group-hover:text-primary-foreground" />,
       title: 'Soluciones Cloud y DevOps',
       description: 'Diseñamos, implementamos y gestionamos infraestructuras cloud seguras, escalables y costo-eficientes (AWS, Azure, GCP).',
       details: ["Migración Estratégica a la Nube", "Arquitecturas Serverless y Microservicios", "Infraestructura como Código (IaC)", "CI/CD y Automatización DevOps"]
     },
     {
-      icon: <Lock className="h-8 w-8 text-primary" />,
+      icon: <Lock className="h-8 w-8 text-primary group-hover:text-primary-foreground" />,
       title: 'Ciberseguridad Avanzada',
       description: 'Protegemos su información y sistemas contra amenazas cibernéticas con auditorías, consultoría y soluciones de seguridad de última generación.',
       details: ["Análisis de Vulnerabilidades y Pentesting Ético", "Gestión de Identidad y Acceso (IAM/IGA)", "Seguridad de Redes y Endpoints (EDR/XDR)", "Planes de Respuesta a Incidentes (IRP)"]
     },
     {
-      icon: <BarChartBig className="h-8 w-8 text-primary" />,
+      icon: <BarChartBig className="h-8 w-8 text-primary group-hover:text-primary-foreground" />,
       title: 'Análisis de Datos e Inteligencia de Negocio (BI)',
       description: 'Transformamos sus datos en información valiosa para la toma de decisiones estratégicas, mediante dashboards y reportes interactivos.',
       details: ["Modelado y Almacenamiento de Datos (Data Warehousing)", "Visualización de Datos (Tableau, Power BI, Looker)", "Análisis Predictivo y Fundamentos de Machine Learning", "Procesos ETL/ELT y Calidad de Datos"]
     },
     {
-      icon: <Brain className="h-8 w-8 text-primary" />,
+      icon: <Brain className="h-8 w-8 text-primary group-hover:text-primary-foreground" />,
       title: 'Automatización Inteligente con IA',
       description: 'Potenciamos su negocio con soluciones de IA personalizadas que optimizan procesos, extraen valor de sus datos y mejoran la toma de decisiones.',
       details: [
@@ -79,11 +79,11 @@ export default function PlesTicPage() {
   ];
 
   const ourApproachSteps = [
-    { icon: <Search className="h-8 w-8 text-primary mb-2" />, title: 'Entendimiento y Diagnóstico', description: 'Analizamos sus necesidades, objetivos y entorno tecnológico actual.' },
-    { icon: <DraftingCompass className="h-8 w-8 text-primary mb-2" />, title: 'Diseño y Planificación Estratégica', description: 'Definimos la arquitectura, tecnologías y hoja de ruta del proyecto.' },
-    { icon: <KanbanSquare className="h-8 w-8 text-primary mb-2" />, title: 'Desarrollo Ágil e Implementación', description: 'Construimos la solución con enfoque en calidad y entregas incrementales.' },
-    { icon: <FlaskConical className="h-8 w-8 text-primary mb-2" />, title: 'Pruebas Exhaustivas y Despliegue', description: 'Realizamos pruebas rigurosas para garantizar funcionalidad y seguridad.' },
-    { icon: <GitPullRequestArrow className="h-8 w-8 text-primary mb-2" />, title: 'Soporte y Evolución Continua', description: 'Ofrecemos soporte post-implementación y planes de mantenimiento.' },
+    { icon: <Search className="h-8 w-8 text-primary group-hover:text-primary-foreground mb-2" />, title: 'Entendimiento y Diagnóstico', description: 'Analizamos sus necesidades, objetivos y entorno tecnológico actual.' },
+    { icon: <DraftingCompass className="h-8 w-8 text-primary group-hover:text-primary-foreground mb-2" />, title: 'Diseño y Planificación Estratégica', description: 'Definimos la arquitectura, tecnologías y hoja de ruta del proyecto.' },
+    { icon: <KanbanSquare className="h-8 w-8 text-primary group-hover:text-primary-foreground mb-2" />, title: 'Desarrollo Ágil e Implementación', description: 'Construimos la solución con enfoque en calidad y entregas incrementales.' },
+    { icon: <FlaskConical className="h-8 w-8 text-primary group-hover:text-primary-foreground mb-2" />, title: 'Pruebas Exhaustivas y Despliegue', description: 'Realizamos pruebas rigurosas para garantizar funcionalidad y seguridad.' },
+    { icon: <GitPullRequestArrow className="h-8 w-8 text-primary group-hover:text-primary-foreground mb-2" />, title: 'Soporte y Evolución Continua', description: 'Ofrecemos soporte post-implementación y planes de mantenimiento.' },
   ];
 
   const technologies = ['JavaScript (React, Next.js, Node.js)', 'Python (Django, Flask, FastAPI)', 'Java, C#/.NET', 'Bases de Datos (PostgreSQL, MySQL, MongoDB, Redis)', 'Docker, Kubernetes, Terraform', 'AWS, Azure, Google Cloud Platform', 'Inteligencia Artificial (Machine Learning, NLP, Computer Vision)', 'Git, Jenkins, GitLab CI', 'Marcos de Ciberseguridad (NIST, ISO 27001)', 'Herramientas BI (Tableau, Power BI)'];
@@ -114,7 +114,7 @@ export default function PlesTicPage() {
         </div>
         <div className="container mx-auto text-center relative z-10">
           <Cpu className="h-20 w-20 text-primary mx-auto mb-6" />
-          <h1 className="text-4xl md:text-5xl font-bold text-primary mb-6">PLES TIC</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-6">PLES TIC</h1>
           <p className="text-lg md:text-xl text-foreground mb-4 max-w-3xl mx-auto">
             Innovación Tecnológica y Estrategia Digital para el Futuro de su Empresa.
           </p>
@@ -145,13 +145,13 @@ export default function PlesTicPage() {
         </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {valuePropositions.map((vp) => (
-            <Card key={vp.title} className="text-center hover:shadow-lg transition-shadow duration-300 transform hover:-translate-y-1 flex flex-col">
+            <Card key={vp.title} className="text-center group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col">
               <CardHeader className="items-center">
                 {vp.icon}
-                <CardTitle className="mt-2 text-xl">{vp.title}</CardTitle>
+                <CardTitle className="mt-2 text-xl group-hover:text-primary-foreground">{vp.title}</CardTitle>
               </CardHeader>
               <CardContent className="flex-grow">
-                <p className="text-muted-foreground">{vp.description}</p>
+                <p className="text-muted-foreground group-hover:text-primary-foreground/90">{vp.description}</p>
               </CardContent>
             </Card>
           ))}
@@ -163,29 +163,29 @@ export default function PlesTicPage() {
             <h2 className="text-3xl font-bold text-center mb-12">Nuestros Servicios Tecnológicos Clave</h2>
             <div className="grid md:grid-cols-2 gap-8">
             {coreServices.map((service) => (
-                <Card key={service.title} className="hover:shadow-xl transition-shadow duration-300 bg-card">
+                <Card key={service.title} className="group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out bg-card">
                 <CardHeader className="flex flex-row items-start gap-4">
                     {service.icon}
                     <div>
-                    <CardTitle className="text-xl">{service.title}</CardTitle>
-                    <CardDescription className="mt-1">{service.description}</CardDescription>
+                    <CardTitle className="text-xl group-hover:text-primary-foreground">{service.title}</CardTitle>
+                    <CardDescription className="mt-1 group-hover:text-primary-foreground/90">{service.description}</CardDescription>
                     </div>
                 </CardHeader>
                 <CardContent>
-                    <ul className="space-y-2 text-sm text-muted-foreground">
+                    <ul className="space-y-2 text-sm text-muted-foreground group-hover:text-primary-foreground/90">
                     {service.details.map(detail => (
                         <li key={detail} className="flex items-center">
-                        <CheckCircle className="h-4 w-4 text-green-500 mr-2 shrink-0" />
+                        <CheckCircle className="h-4 w-4 text-green-500 group-hover:text-primary-foreground mr-2 shrink-0" />
                         {detail}
                         </li>
                     ))}
                     </ul>
                     {service.ctaLink && service.ctaText && (
                       <div className="mt-4">
-                        <Button variant="link" asChild className="text-primary p-0 h-auto">
+                        <Button variant="link" asChild className="text-primary group-hover:text-primary-foreground p-0 h-auto">
                           <Link href={service.ctaLink}>
                             <span className="flex items-center">
-                              {service.ctaText} <Brain className="ml-2 h-4 w-4" /> {/* Using Brain icon for IA link */}
+                              {service.ctaText} <Brain className="ml-2 h-4 w-4 group-hover:text-primary-foreground" />
                             </span>
                           </Link>
                         </Button>
@@ -205,10 +205,10 @@ export default function PlesTicPage() {
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
           {ourApproachSteps.map((step) => (
-            <Card key={step.title} className="text-center p-6 hover:shadow-lg transition-shadow transform hover:-translate-y-1 flex flex-col items-center bg-card">
+            <Card key={step.title} className="text-center p-6 group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col items-center bg-card">
               {step.icon}
-              <CardTitle className="text-lg mt-2 mb-1">{step.title}</CardTitle>
-              <p className="text-xs text-muted-foreground flex-grow">{step.description}</p>
+              <CardTitle className="text-lg mt-2 mb-1 group-hover:text-primary-foreground">{step.title}</CardTitle>
+              <p className="text-xs text-muted-foreground group-hover:text-primary-foreground/90 flex-grow">{step.description}</p>
             </Card>
           ))}
         </div>
@@ -235,29 +235,29 @@ export default function PlesTicPage() {
           <h2 className="text-3xl font-bold text-center mb-12">Proyectos Destacados</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {caseStudies.map((study) => (
-              <Card key={study.title} className="overflow-hidden hover:shadow-2xl transition-shadow duration-300 flex flex-col bg-card">
+              <Card key={study.title} className="overflow-hidden group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col bg-card">
                 <div className="relative h-56 w-full">
                   <Image src={study.image} alt={study.title} layout="fill" objectFit="cover" data-ai-hint={study.imageHint} />
                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 </div>
                 <CardHeader>
-                  <CardTitle className="text-xl">{study.title}</CardTitle>
+                  <CardTitle className="text-xl group-hover:text-primary-foreground">{study.title}</CardTitle>
                   <div className="mt-2">
-                    {study.tags.map(tag => <Badge key={tag} variant="secondary" className="mr-2 mb-2">{tag}</Badge>)}
+                    {study.tags.map(tag => <Badge key={tag} variant="secondary" className="mr-2 mb-2 group-hover:bg-primary-foreground/20 group-hover:text-accent-foreground">{tag}</Badge>)}
                   </div>
                 </CardHeader>
                 <CardContent className="flex-grow space-y-3">
                   <div>
-                    <p className="font-semibold text-foreground mb-1">Desafío:</p>
-                    <p className="text-sm text-muted-foreground">{study.challenge}</p>
+                    <p className="font-semibold text-foreground group-hover:text-primary-foreground mb-1">Desafío:</p>
+                    <p className="text-sm text-muted-foreground group-hover:text-primary-foreground/90">{study.challenge}</p>
                   </div>
                   <div>
-                    <p className="font-semibold text-foreground mb-1">Solución PLES TIC:</p>
-                    <p className="text-sm text-muted-foreground">{study.solution}</p>
+                    <p className="font-semibold text-foreground group-hover:text-primary-foreground mb-1">Solución PLES TIC:</p>
+                    <p className="text-sm text-muted-foreground group-hover:text-primary-foreground/90">{study.solution}</p>
                   </div>
                 </CardContent>
                 <div className="p-6 pt-0">
-                    <Button variant="link" asChild className="text-primary">
+                    <Button variant="link" asChild className="text-primary group-hover:text-primary-foreground">
                         <Link href="/forms?subject=Mas%20Informacion%20Caso%20Estudio%20TIC">
                             <span className="flex items-center">
                                 Conocer Más <ArrowRight className="ml-1 h-4 w-4"/>

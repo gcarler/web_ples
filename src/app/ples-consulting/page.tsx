@@ -14,25 +14,25 @@ export const metadata = {
 export default function PlesConsultingPage() {
   const expertiseAreas = [
     {
-      icon: <TrendingUp className="h-10 w-10 text-primary group-hover:text-accent transition-colors duration-300 mb-4" />,
+      icon: <TrendingUp className="h-10 w-10 text-primary group-hover:text-primary-foreground transition-colors duration-300 mb-4" />,
       title: 'Planificación Estratégica y Desarrollo Organizacional',
       description: 'Facilitamos procesos de planificación y transformación para alinear sus recursos con objetivos de alto impacto, fortaleciendo la visión a largo plazo y la capacidad de adaptación.',
       details: ['Diagnóstico Organizacional 360°', 'Diseño de Modelos de Negocio Sostenibles', 'Gestión del Cambio y Cultura Organizacional', 'Optimización de Procesos y Eficiencia Operativa']
     },
     {
-      icon: <Layers className="h-10 w-10 text-primary group-hover:text-accent transition-colors duration-300 mb-4" />,
+      icon: <Layers className="h-10 w-10 text-primary group-hover:text-primary-foreground transition-colors duration-300 mb-4" />,
       title: 'Diseño y Evaluación de Políticas Públicas',
       description: 'Apoyamos la formulación de políticas efectivas, basadas en evidencia y orientadas a resultados medibles, con un enfoque en la inclusión y la sostenibilidad.',
       details: ['Análisis de Viabilidad y Factibilidad', 'Formulación Basada en Evidencia', 'Monitoreo y Evaluación de Impacto (M&E)', 'Participación Ciudadana en Políticas']
     },
     {
-      icon: <Lightbulb className="h-10 w-10 text-primary group-hover:text-accent transition-colors duration-300 mb-4" />,
+      icon: <Lightbulb className="h-10 w-10 text-primary group-hover:text-primary-foreground transition-colors duration-300 mb-4" />,
       title: 'Innovación Social y Transformación Digital',
       description: 'Impulsamos la adopción de enfoques innovadores y tecnologías digitales para resolver desafíos sociales complejos, fomentando la colaboración y la escalabilidad.',
       details: ['Laboratorios de Innovación Social', 'Estrategias de Transformación Digital', 'Soluciones Tecnológicas con Propósito', 'Modelos de Inversión de Impacto']
     },
     {
-      icon: <BookOpen className="h-10 w-10 text-primary group-hover:text-accent transition-colors duration-300 mb-4" />,
+      icon: <BookOpen className="h-10 w-10 text-primary group-hover:text-primary-foreground transition-colors duration-300 mb-4" />,
       title: 'Gestión del Conocimiento y Fortalecimiento de Capacidades',
       description: 'Diseñamos e implementamos estrategias para mejorar el aprendizaje organizacional, la gestión del conocimiento y las competencias de los equipos.',
       details: ['Sistemas de Gestión del Conocimiento', 'Programas de Capacitación a Medida', 'Comunidades de Práctica y Aprendizaje', 'Evaluación de Competencias']
@@ -40,27 +40,27 @@ export default function PlesConsultingPage() {
   ];
 
   const differentiators = [
-    { icon: <Users2 className="h-8 w-8 text-accent" />, title: 'Enfoque Multidisciplinario', text: 'Combinamos experticia en diversas áreas para ofrecer soluciones integrales y creativas adaptadas a la complejidad de cada desafío.' },
-    { icon: <Zap className="h-8 w-8 text-accent" />, title: 'Innovación Constante', text: 'Nos mantenemos a la vanguardia de metodologías y tecnologías para proponer soluciones que no solo resuelven, sino que transforman.' },
-    { icon: <BarChart3 className="h-8 w-8 text-accent" />, title: 'Orientación a Resultados Medibles', text: 'Definimos indicadores claros y medimos el impacto de nuestras intervenciones para asegurar la generación de valor tangible.' },
-    { icon: <ShieldCheck className="h-8 w-8 text-accent" />, title: 'Compromiso Ético y Sostenible', text: 'Nuestras recomendaciones buscan la sostenibilidad a largo plazo y se basan en principios de equidad, transparencia e integridad.' },
+    { icon: <Users2 className="h-8 w-8 text-accent group-hover:text-primary-foreground" />, title: 'Enfoque Multidisciplinario', text: 'Combinamos experticia en diversas áreas para ofrecer soluciones integrales y creativas adaptadas a la complejidad de cada desafío.' },
+    { icon: <Zap className="h-8 w-8 text-accent group-hover:text-primary-foreground" />, title: 'Innovación Constante', text: 'Nos mantenemos a la vanguardia de metodologías y tecnologías para proponer soluciones que no solo resuelven, sino que transforman.' },
+    { icon: <BarChart3 className="h-8 w-8 text-accent group-hover:text-primary-foreground" />, title: 'Orientación a Resultados Medibles', text: 'Definimos indicadores claros y medimos el impacto de nuestras intervenciones para asegurar la generación de valor tangible.' },
+    { icon: <ShieldCheck className="h-8 w-8 text-accent group-hover:text-primary-foreground" />, title: 'Compromiso Ético y Sostenible', text: 'Nuestras recomendaciones buscan la sostenibilidad a largo plazo y se basan en principios de equidad, transparencia e integridad.' },
   ];
 
   const methodologies = ['Design Thinking', 'Gestión Ágil de Proyectos (Scrum/Kanban)', 'Análisis de Datos Avanzado (Cualitativo y Cuantitativo)', 'Facilitación Estratégica y Co-creación', 'Marco Lógico y Teoría del Cambio', 'Investigación Acción Participativa'];
 
   const processSteps = [
     {
-        icon: <Search className="h-10 w-10 text-primary mx-auto mb-3"/>,
+        icon: <Search className="h-10 w-10 text-primary group-hover:text-primary-foreground mx-auto mb-3"/>,
         title: "1. Diagnóstico Profundo y Escucha Activa",
         description: "Iniciamos con una inmersión total para comprender sus desafíos, contexto, necesidades y aspiraciones. Escuchamos a todas las partes interesadas y analizamos la información existente para construir una base sólida."
     },
     {
-        icon: <Lightbulb className="h-10 w-10 text-primary mx-auto mb-3"/>,
+        icon: <Lightbulb className="h-10 w-10 text-primary group-hover:text-primary-foreground mx-auto mb-3"/>,
         title: "2. Co-creación de Soluciones Estratégicas",
         description: "Trabajamos de la mano con su equipo para diseñar estrategias y soluciones innovadoras y a la medida. Fomentamos la participación activa para asegurar la apropiación y la viabilidad de las propuestas."
     },
     {
-        icon: <TrendingUp className="h-10 w-10 text-primary mx-auto mb-3"/>,
+        icon: <TrendingUp className="h-10 w-10 text-primary group-hover:text-primary-foreground mx-auto mb-3"/>,
         title: "3. Implementación Ágil y Acompañamiento",
         description: "Apoyamos la puesta en marcha de las soluciones con un enfoque flexible y adaptativo. Brindamos acompañamiento continuo, transferimos capacidades y ajustamos el rumbo según sea necesario para garantizar resultados sostenibles."
     }
@@ -72,7 +72,7 @@ export default function PlesConsultingPage() {
         {/* Removed background image and overlay div here */}
         <div className="container mx-auto text-center relative z-10">
           <Briefcase className="h-20 w-20 text-primary mx-auto mb-6" />
-          <h1 className="text-4xl md:text-5xl font-bold text-primary mb-6">PLES Consulting</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-6">PLES Consulting</h1>
           <p className="text-lg md:text-xl text-foreground mb-8 max-w-3xl mx-auto">
             Aliados estratégicos para la innovación y la transformación. Colaboramos con organizaciones para diseñar e implementar soluciones que generan un impacto positivo y duradero.
           </p>
@@ -100,21 +100,21 @@ export default function PlesConsultingPage() {
           {expertiseAreas.map((area) => (
             <Card 
               key={area.title} 
-              className="group bg-card hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-2 hover:scale-[1.03] border-2 border-transparent hover:border-primary/70 overflow-hidden"
+              className="group bg-card hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-2 hover:scale-[1.03] border-2 border-transparent hover:border-primary/70 overflow-hidden hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground"
             >
               <CardHeader className="flex flex-row items-start gap-4">
                 {area.icon}
                 <div>
-                  <CardTitle className="text-xl text-foreground group-hover:text-primary transition-colors duration-300">{area.title}</CardTitle>
-                  <CardDescription className="mt-1 text-muted-foreground group-hover:text-foreground/90 transition-colors duration-300">{area.description}</CardDescription>
+                  <CardTitle className="text-xl text-foreground group-hover:text-primary-foreground transition-colors duration-300">{area.title}</CardTitle>
+                  <CardDescription className="mt-1 text-muted-foreground group-hover:text-primary-foreground/90 transition-colors duration-300">{area.description}</CardDescription>
                 </div>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-sm">
                   {area.details.map(detail => (
                     <li key={detail} className="flex items-center">
-                      <CheckCircle className="h-4 w-4 text-green-500 group-hover:text-green-400 transition-colors duration-300 mr-2 shrink-0" />
-                      <span className="text-muted-foreground group-hover:text-foreground transition-colors duration-300">{detail}</span>
+                      <CheckCircle className="h-4 w-4 text-green-500 group-hover:text-primary-foreground transition-colors duration-300 mr-2 shrink-0" />
+                      <span className="text-muted-foreground group-hover:text-primary-foreground transition-colors duration-300">{detail}</span>
                     </li>
                   ))}
                 </ul>
@@ -129,13 +129,13 @@ export default function PlesConsultingPage() {
           <h2 className="text-3xl font-bold text-center mb-10">Nuestro Valor Diferencial</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {differentiators.map((item) => (
-              <Card key={item.title} className="bg-card">
+              <Card key={item.title} className="bg-card group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out">
                 <CardHeader className="flex flex-row items-center gap-4">
                   {item.icon}
-                  <CardTitle className="text-xl">{item.title}</CardTitle>
+                  <CardTitle className="text-xl group-hover:text-primary-foreground">{item.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">{item.text}</p>
+                  <p className="text-muted-foreground group-hover:text-primary-foreground/90">{item.text}</p>
                 </CardContent>
               </Card>
             ))}
@@ -151,13 +151,13 @@ export default function PlesConsultingPage() {
             </p>
             <div className="grid md:grid-cols-3 gap-8">
                 {processSteps.map((step) => (
-                    <Card key={step.title} className="hover:shadow-lg transition-shadow text-center transform hover:-translate-y-1 flex flex-col">
+                    <Card key={step.title} className="group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out text-center transform flex flex-col">
                         <CardHeader className="items-center">
                             {step.icon}
-                            <CardTitle className="mt-2 text-lg">{step.title}</CardTitle>
+                            <CardTitle className="mt-2 text-lg group-hover:text-primary-foreground">{step.title}</CardTitle>
                         </CardHeader>
                         <CardContent className="flex-grow">
-                            <p className="text-muted-foreground text-sm">{step.description}</p>
+                            <p className="text-muted-foreground group-hover:text-primary-foreground/90 text-sm">{step.description}</p>
                         </CardContent>
                     </Card>
                 ))}

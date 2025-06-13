@@ -33,32 +33,32 @@ export const metadata = {
 export default function AiAutomationPage() {
   const automatizacionBeneficios = [
     {
-      icon: <Zap className="h-10 w-10 text-primary group-hover:text-accent transition-colors duration-300 mb-4" />,
+      icon: <Zap className="h-10 w-10 text-primary group-hover:text-primary-foreground transition-colors duration-300 mb-4" />,
       title: 'Optimización de Procesos',
       description: 'Elimina tareas repetitivas, reduce errores y acelera flujos de trabajo en áreas como finanzas, RRHH, logística y atención al cliente.',
     },
     {
-      icon: <Brain className="h-10 w-10 text-primary group-hover:text-accent transition-colors duration-300 mb-4" />,
+      icon: <Brain className="h-10 w-10 text-primary group-hover:text-primary-foreground transition-colors duration-300 mb-4" />,
       title: 'Análisis Predictivo',
       description: 'Transforma tus datos en decisiones estratégicas. Anticipa tendencias, optimiza inventarios y personaliza la experiencia del cliente.',
     },
     {
-      icon: <Bot className="h-10 w-10 text-primary group-hover:text-accent transition-colors duration-300 mb-4" />,
+      icon: <Bot className="h-10 w-10 text-primary group-hover:text-primary-foreground transition-colors duration-300 mb-4" />,
       title: 'Atención al Cliente Inteligente',
       description: 'Implementa chatbots y asistentes virtuales que resuelven dudas 24/7, liberando a tu equipo para interacciones de alto valor.',
     },
     {
-      icon: <FileArchive className="h-10 w-10 text-primary group-hover:text-accent transition-colors duration-300 mb-4" />,
+      icon: <FileArchive className="h-10 w-10 text-primary group-hover:text-primary-foreground transition-colors duration-300 mb-4" />,
       title: 'Gestión Documental Avanzada',
       description: 'Digitaliza y clasifica información automáticamente, mejorando el acceso y la seguridad de tus documentos.',
     },
     {
-      icon: <Star className="h-10 w-10 text-primary group-hover:text-accent transition-colors duration-300 mb-4" />,
+      icon: <Star className="h-10 w-10 text-primary group-hover:text-primary-foreground transition-colors duration-300 mb-4" />,
       title: 'Personalización y Experiencia de Usuario',
       description: 'Ofrece experiencias únicas a tus clientes, desde recomendaciones de productos hasta interacciones personalizadas.',
     },
     {
-      icon: <CircleDollarSign className="h-10 w-10 text-primary group-hover:text-accent transition-colors duration-300 mb-4" />,
+      icon: <CircleDollarSign className="h-10 w-10 text-primary group-hover:text-primary-foreground transition-colors duration-300 mb-4" />,
       title: 'Reducción de Costos Operativos',
       description: 'Logra ahorros significativos al automatizar tareas que antes requerían mano de obra intensiva.',
     },
@@ -66,27 +66,27 @@ export default function AiAutomationPage() {
 
   const porquePles = [
     {
-      icon: <Award className="h-8 w-8 text-accent" />,
+      icon: <Award className="h-8 w-8 text-accent group-hover:text-primary-foreground" />,
       title: 'Expertos Certificados',
       description: 'Nuestro equipo cuenta con amplia trayectoria en implementación y consultoría de IA en diversos sectores.',
     },
     {
-      icon: <ClipboardCheck className="h-8 w-8 text-accent" />,
+      icon: <ClipboardCheck className="h-8 w-8 text-accent group-hover:text-primary-foreground" />,
       title: 'Metodología Probada',
       description: 'Desarrollamos estrategias personalizadas, basadas en un análisis profundo de tus necesidades y objetivos, minimizando riesgos.',
     },
     {
-      icon: <BarChart3 className="h-8 w-8 text-accent" />,
+      icon: <BarChart3 className="h-8 w-8 text-accent group-hover:text-primary-foreground" />,
       title: 'Resultados Medibles',
       description: 'Nos enfocamos en soluciones que generan un ROI claro y tangible, demostrando el impacto real en tu negocio.',
     },
     {
-      icon: <LifeBuoy className="h-8 w-8 text-accent" />,
+      icon: <LifeBuoy className="h-8 w-8 text-accent group-hover:text-primary-foreground" />,
       title: 'Soporte Continuo',
       description: 'No te dejamos solo. Ofrecemos acompañamiento post-implementación para asegurar la adaptación y optimización constante.',
     },
     {
-      icon: <Lightbulb className="h-8 w-8 text-accent" />,
+      icon: <Lightbulb className="h-8 w-8 text-accent group-hover:text-primary-foreground" />,
       title: 'Visión Estratégica',
       description: 'La IA no es solo tecnología, es una herramienta para el crecimiento. Te ayudamos a integrarla estratégicamente en tu modelo de negocio.',
     },
@@ -122,7 +122,7 @@ export default function AiAutomationPage() {
         </div>
         <div className="container mx-auto text-center relative z-10">
           <Brain className="h-20 w-20 text-primary mx-auto mb-6" />
-          <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-4">
             Automatización con IA Confiable
           </h1>
           <h2 className="text-2xl md:text-3xl font-semibold text-foreground mb-6">
@@ -179,13 +179,13 @@ export default function AiAutomationPage() {
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {automatizacionBeneficios.map((item) => (
-              <Card key={item.title} className="text-center hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 flex flex-col bg-card group">
+              <Card key={item.title} className="text-center group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out transform flex flex-col bg-card">
                 <CardHeader className="items-center">
                   {item.icon}
-                  <CardTitle className="mt-2 text-xl group-hover:text-primary transition-colors">{item.title}</CardTitle>
+                  <CardTitle className="mt-2 text-xl group-hover:text-primary-foreground transition-colors">{item.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="flex-grow">
-                  <p className="text-muted-foreground">{item.description}</p>
+                  <p className="text-muted-foreground group-hover:text-primary-foreground/90">{item.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -199,13 +199,13 @@ export default function AiAutomationPage() {
           <h2 className="text-3xl font-bold text-center mb-12">La Experiencia PLES: Tu Camino Seguro hacia la IA</h2>
           <div className="grid md:grid-cols-2 gap-8 items-start">
             {porquePles.map((item) => (
-              <Card key={item.title} className="bg-card border hover:shadow-lg">
+              <Card key={item.title} className="bg-card border group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out">
                 <CardHeader className="flex flex-row items-center gap-4">
                   {item.icon}
-                  <CardTitle className="text-xl text-primary">{item.title}</CardTitle>
+                  <CardTitle className="text-xl text-primary group-hover:text-primary-foreground">{item.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground">{item.description}</p>
+                  <p className="text-muted-foreground group-hover:text-primary-foreground/90">{item.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -219,25 +219,25 @@ export default function AiAutomationPage() {
           <h2 className="text-3xl font-bold text-center mb-12">Empresas que ya Transformaron su Operación con PLES</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {caseStudies.map((study) => (
-              <Card key={study.id} className="overflow-hidden hover:shadow-2xl transition-shadow duration-300 flex flex-col">
+              <Card key={study.id} className="overflow-hidden group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col">
                 <div className="relative h-56 w-full">
                   <Image src={study.image} alt={study.title} layout="fill" objectFit="cover" data-ai-hint={study.imageHint} />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 </div>
                 <CardHeader>
-                  <CardTitle className="text-xl">{study.title}</CardTitle>
+                  <CardTitle className="text-xl group-hover:text-primary-foreground">{study.title}</CardTitle>
                   <div className="mt-2">
-                    {study.tags.map(tag => <Badge key={tag} variant="secondary" className="mr-2 mb-2">{tag}</Badge>)}
+                    {study.tags.map(tag => <Badge key={tag} variant="secondary" className="mr-2 mb-2 group-hover:bg-primary-foreground/20 group-hover:text-accent-foreground">{tag}</Badge>)}
                   </div>
                 </CardHeader>
                 <CardContent className="flex-grow space-y-3">
                   <div>
-                    <p className="font-semibold text-foreground mb-1">Desafío:</p>
-                    <p className="text-sm text-muted-foreground">{study.challenge}</p>
+                    <p className="font-semibold text-foreground group-hover:text-primary-foreground mb-1">Desafío:</p>
+                    <p className="text-sm text-muted-foreground group-hover:text-primary-foreground/90">{study.challenge}</p>
                   </div>
                   <div>
-                    <p className="font-semibold text-foreground mb-1">Solución PLES IA:</p>
-                    <p className="text-sm text-muted-foreground">{study.solution}</p>
+                    <p className="font-semibold text-foreground group-hover:text-primary-foreground mb-1">Solución PLES IA:</p>
+                    <p className="text-sm text-muted-foreground group-hover:text-primary-foreground/90">{study.solution}</p>
                   </div>
                 </CardContent>
               </Card>
