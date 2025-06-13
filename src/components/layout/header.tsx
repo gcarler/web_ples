@@ -51,24 +51,26 @@ export function Header() {
     <header className="bg-card text-card-foreground rounded-lg">
       <nav className="container mx-auto px-4 py-4 flex flex-wrap justify-between items-center">
         <Link href="/" className="mb-4 sm:mb-0">
-          {/* Animated Logo */}
           <div className="logo-container font-comfortaa text-2xl font-bold text-foreground overflow-hidden">
-            <span className="relative inline-block opacity-0 animate-fade-in-up" style={{ animationDelay: '0.6s' }}> {/* p */}
+            <span
+              className="letra-animada letra-p-con-punto relative inline-block opacity-0"
+              style={{ animationDelay: '0.6s' }}
+            >
               p
               <span
-                className="absolute rounded-full bg-[#00AEEF] opacity-0 animate-expand-in z-[-1]"
+                className="absolute rounded-full bg-[#00AEEF] opacity-0 animate-expand-in"
                 style={{
                   width: '0.31em', height: '0.31em',
-                  top: '0.45em', left: '0.21em',
+                  top: '0.55em', left: '0.19em', // Ajustado left de 0.21em a 0.19em
                   transformOrigin: 'center',
-                  animationDelay: '0.2s'
+                  animationDelay: '0.2s',
                 }}
                 aria-hidden="true"
               />
             </span>
-            <span className="inline-block opacity-0 animate-fade-in-up" style={{ animationDelay: '0.7s' }}>l</span>
-            <span className="inline-block opacity-0 animate-fade-in-up" style={{ animationDelay: '0.8s' }}>e</span>
-            <span className="inline-block opacity-0 animate-fade-in-up" style={{ animationDelay: '0.9s' }}>s</span>
+            <span className="letra-animada inline-block opacity-0" style={{ animationDelay: '0.7s' }}>l</span>
+            <span className="letra-animada inline-block opacity-0" style={{ animationDelay: '0.8s' }}>e</span>
+            <span className="letra-animada inline-block opacity-0" style={{ animationDelay: '0.9s' }}>s</span>
           </div>
         </Link>
 
