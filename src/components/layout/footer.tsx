@@ -10,36 +10,24 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
           {/* Column 1: Logo at the top, Descriptive Text at the bottom */}
           <div className="flex flex-col justify-between h-full">
-            {/* Logo at the top */}
-            <div
-              className="logo-container font-comfortaa text-7xl font-bold select-none relative group"
-              style={{ textShadow: '1px 1px 0px hsl(var(--card)), 2px 2px 0px hsl(var(--foreground) / 0.2)' }}
-            >
-              <span className="letra-p-con-punto relative inline-block">
-                {/* The actual letter 'p' */}
-                <span className="text-muted-foreground group-hover:text-black transition-colors duration-200">
-                  p
-                </span>
-
-                {/* Punto con gradiente y sombra (siempre visible) */}
+            {/* Animated Logo */}
+            <div className="logo-container font-comfortaa text-7xl font-bold text-foreground overflow-hidden">
+              <span className="relative inline-block opacity-0 animate-fade-in-up" style={{ animationDelay: '0.6s' }}> {/* p */}
+                p
                 <span
-                  className={cn(
-                    "absolute rounded-full",
-                    "w-[0.31em] h-[0.35em]", // Tamaño relativo a la fuente
-                    "top-[0.38em] left-[0.21em]" // Posición ajustada
-                  )}
+                  className="absolute rounded-full bg-[#00AEEF] opacity-0 animate-expand-in z-[-1]"
                   style={{
-                    background: 'radial-gradient(circle at 30% 30%, #29c6ff, #00AEEF 70%, #008fbf)',
-                    boxShadow: 'inset 0 0 5px rgba(255, 255, 255, 0.4), 0 2px 4px rgba(0, 0, 0, 0.2)'
+                    width: '0.31em', height: '0.31em',
+                    top: '0.45em', left: '0.21em',
+                    transformOrigin: 'center',
+                    animationDelay: '0.2s'
                   }}
                   aria-hidden="true"
                 />
               </span>
-
-              {/* Letters 'les' */}
-              <span className="text-muted-foreground group-hover:text-black transition-colors duration-200">
-                les
-              </span>
+              <span className="inline-block opacity-0 animate-fade-in-up" style={{ animationDelay: '0.7s' }}>l</span>
+              <span className="inline-block opacity-0 animate-fade-in-up" style={{ animationDelay: '0.8s' }}>e</span>
+              <span className="inline-block opacity-0 animate-fade-in-up" style={{ animationDelay: '0.9s' }}>s</span>
             </div>
 
             {/* Descriptive Text at the bottom */}

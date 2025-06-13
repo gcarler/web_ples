@@ -1,8 +1,8 @@
+
 // src/components/layout/header.tsx
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-// Removed PlesGroupLogo import as we are using HTML logo now
 import { Button } from '@/components/ui/button';
 import { LogIn, LogOut, LayoutDashboard } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
@@ -50,36 +50,27 @@ export function Header() {
   return (
     <header className="bg-card text-card-foreground rounded-lg">
       <nav className="container mx-auto px-4 py-4 flex flex-wrap justify-between items-center">
-        {/* START: New HTML Logo based on Footer's version */}
         <Link href="/" className="mb-4 sm:mb-0">
-          <div
-            className="logo-container font-comfortaa text-2xl font-bold select-none relative group" // Adjusted font size to text-2xl
-            style={{ textShadow: '1px 1px 0px hsl(var(--card)), 2px 2px 0px hsl(var(--foreground) / 0.2)' }}
-          >
-            <span className="letra-p-con-punto relative inline-block">
-              <span className="text-muted-foreground group-hover:text-black transition-colors duration-200">
-                p
-              </span>
-              {/* Punto con gradiente y sombra (siempre visible) */}
+          {/* Animated Logo */}
+          <div className="logo-container font-comfortaa text-2xl font-bold text-foreground overflow-hidden">
+            <span className="relative inline-block opacity-0 animate-fade-in-up" style={{ animationDelay: '0.6s' }}> {/* p */}
+              p
               <span
-                className={cn(
-                  "absolute rounded-full",
-                  "w-[0.31em] h-[0.31em]", // Tamaño relativo a la fuente
-                  "top-[0.38em] left-[0.25em]" // Posición ajustada para el nuevo tamaño de fuente
-                )}
+                className="absolute rounded-full bg-[#00AEEF] opacity-0 animate-expand-in z-[-1]"
                 style={{
-                  background: 'radial-gradient(circle at 30% 30%, #29c6ff, #00AEEF 70%, #008fbf)',
-                  boxShadow: 'inset 0 0 3px rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.15)' // Sombra ajustada para tamaño menor
+                  width: '0.31em', height: '0.31em',
+                  top: '0.45em', left: '0.21em',
+                  transformOrigin: 'center',
+                  animationDelay: '0.2s'
                 }}
                 aria-hidden="true"
               />
             </span>
-            <span className="text-muted-foreground group-hover:text-black transition-colors duration-200">
-              les
-            </span>
+            <span className="inline-block opacity-0 animate-fade-in-up" style={{ animationDelay: '0.7s' }}>l</span>
+            <span className="inline-block opacity-0 animate-fade-in-up" style={{ animationDelay: '0.8s' }}>e</span>
+            <span className="inline-block opacity-0 animate-fade-in-up" style={{ animationDelay: '0.9s' }}>s</span>
           </div>
         </Link>
-        {/* END: New HTML Logo */}
 
         <div className="flex items-center gap-2">
           <ul className="flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-2 items-center justify-center sm:justify-end w-full sm:w-auto mr-2">
