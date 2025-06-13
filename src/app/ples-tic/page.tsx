@@ -41,7 +41,9 @@ export default function PlesTicPage() {
       icon: <Code className="h-8 w-8 text-primary" />,
       title: 'Desarrollo de Software a Medida',
       description: 'Creamos aplicaciones web, móviles y empresariales personalizadas, desde la concepción hasta el despliegue y mantenimiento continuo.',
-      details: ["Análisis y Diseño de Sistemas", "Desarrollo Full-Stack (Frontend/Backend)", "Integración de APIs y Servicios Externos", "Metodologías Ágiles (Scrum/Kanban)", "Automatización de procesos complejos mediante Inteligencia Artificial (IA)"]
+      details: ["Análisis y Diseño de Sistemas", "Desarrollo Full-Stack (Frontend/Backend)", "Integración de APIs y Servicios Externos", "Metodologías Ágiles (Scrum/Kanban)", "Automatización de procesos complejos mediante Inteligencia Artificial (IA)"],
+      ctaLink: "/ples-tic/automatizacion-ia", // Link to the new AI page
+      ctaText: "Más sobre Automatización con IA",
     },
     {
       icon: <CloudCog className="h-8 w-8 text-primary" />,
@@ -95,10 +97,7 @@ export default function PlesTicPage() {
   return (
     <div className="py-10 space-y-16 px-4 sm:px-6 lg:px-8">
       <section className="relative py-20 md:py-28 rounded-lg overflow-hidden bg-card shadow-xl">
-        {/* Optional: Subtle background pattern or image */}
         <div className="absolute inset-0 z-0 opacity-10">
-            {/* <Image src="https://placehold.co/1200x500.png" alt="Fondo abstracto tecnología" layout="fill" objectFit="cover" data-ai-hint="abstract technology network" /> */}
-            {/* <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-transparent to-accent/30"></div> */}
         </div>
         <div className="container mx-auto text-center relative z-10">
           <Cpu className="h-20 w-20 text-primary mx-auto mb-6" />
@@ -168,6 +167,17 @@ export default function PlesTicPage() {
                         </li>
                     ))}
                     </ul>
+                    {service.ctaLink && service.ctaText && (
+                      <div className="mt-4">
+                        <Button variant="link" asChild className="text-primary p-0 h-auto">
+                          <Link href={service.ctaLink}>
+                            <span className="flex items-center">
+                              {service.ctaText} <Brain className="ml-2 h-4 w-4" />
+                            </span>
+                          </Link>
+                        </Button>
+                      </div>
+                    )}
                 </CardContent>
                 </Card>
             ))}
