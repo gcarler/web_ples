@@ -44,11 +44,12 @@ export function Footer() {
 
             {/* Descriptive Text at the bottom */}
             <div className="pt-4 pb-10">
-              <p className="text-xl text-muted-foreground"> {/* Aumentado a text-xl */}
+              <p className="text-lg text-muted-foreground"> {/* Changed from text-xl to text-lg */}
                 Somos{' '}
                 <span className="font-semibold transition-all duration-300 ease-in-out inline-block hover:scale-110 hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:bg-clip-text hover:text-transparent">
                   Ciencia
-                </span>{' '}
+                </span>
+                ,{' '}
                 <span className="font-semibold transition-all duration-300 ease-in-out inline-block hover:scale-110 hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:bg-clip-text hover:text-transparent">
                   Tecnología
                 </span>{' '}
