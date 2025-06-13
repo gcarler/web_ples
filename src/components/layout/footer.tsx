@@ -7,21 +7,24 @@ export function Footer() {
     <footer className="relative bg-muted text-muted-foreground pt-12 pb-8 mt-16 overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
-          {/* Column 1: Descriptive Text and Watermark Logo */}
-          <div className="relative space-y-4">
-            {/* Watermark Logo using HTML/CSS classes */}
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none"
-            >
-              <div className="font-comfortaa text-9xl font-bold text-gray-500/10 select-none">
+          {/* Column 1: Logo at the top, Descriptive Text at the bottom */}
+          <div className="flex flex-col justify-between h-full">
+            {/* Logo at the top */}
+            <div>
+              <div
+                className="font-comfortaa text-6xl font-bold select-none" // Adjusted size
+                style={{
+                  color: 'hsla(0, 0%, 82%, 0.15)', // Subtle light gray for letters
+                }}
+              >
                 <span className="relative inline-block">
                   <span
-                    className="absolute z-[-1] rounded-full bg-[#00AEEF]/10"
+                    className="absolute z-[-1] rounded-full"
                     style={{
+                      backgroundColor: 'hsla(195, 100%, 50%, 0.15)', // Subtle light blue for dot accent
                       width: '0.31em',
                       height: '0.31em',
-                      top: '0.41em', // Adjusted top position
+                      top: '0.45em', // Reverted to original positioning for smaller sizes
                       left: '0.21em',
                     }}
                   ></span>
@@ -30,8 +33,9 @@ export function Footer() {
                 les
               </div>
             </div>
-            {/* Descriptive Text - Added pb-10 here */}
-            <div className="relative z-10 pb-10">
+
+            {/* Descriptive Text at the bottom */}
+            <div>
               <p className="text-sm">
                 Demostrando características fundamentales del desarrollo web
                 como enrutamiento y formularios interactivos, imitando la
