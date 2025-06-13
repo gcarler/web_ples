@@ -8,6 +8,7 @@ import { Separator } from '@/components/ui/separator'; // Import Separator
 import { AuthProvider } from '@/contexts/AuthContext'; // Import AuthProvider
 import { ThemeProvider } from "next-themes"; // Import ThemeProvider
 import type { PropsWithChildren } from 'react';
+import { ContactOrb } from '@/components/contact-orb'; // Import the new component
 
 export const metadata: Metadata = {
   title: 'PLES',
@@ -30,6 +31,7 @@ export default function RootLayout({
             <Header />
             {/* Removed container mx-auto and padding to allow child pages/layouts to control width */}
             <main className="flex-grow">{children}</main>
+            <ContactOrb /> {/* Add the ContactOrb here */}
             <Footer />
             <Toaster />
           </AuthProvider>
