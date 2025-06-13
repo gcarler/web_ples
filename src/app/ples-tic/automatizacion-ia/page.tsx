@@ -243,22 +243,7 @@ export default function AiAutomationPage() {
               </Card>
             ))}
           </div>
-          <div className="text-center mt-10">
-             <Card className="inline-block p-6 bg-secondary shadow-md">
-                <div className="flex items-center justify-center gap-4">
-                    <Avatar className="h-16 w-16">
-                        <AvatarImage src="https://placehold.co/100x100.png" alt="Cliente Satisfecho" data-ai-hint="client professional" />
-                        <AvatarFallback>CS</AvatarFallback>
-                    </Avatar>
-                    <div>
-                        <p className="text-lg italic text-foreground">
-                            "Gracias a PLES, logramos reducir un 30% los tiempos de procesamiento en nuestro departamento financiero. Su experiencia en IA fue clave para el éxito del proyecto."
-                        </p>
-                        <p className="mt-2 text-sm font-semibold text-primary">Gerente de Finanzas, Empresa Manufacturera XYZ</p>
-                    </div>
-                </div>
-            </Card>
-          </div>
+          {/* Testimonio eliminado */}
         </div>
       </section>
 
