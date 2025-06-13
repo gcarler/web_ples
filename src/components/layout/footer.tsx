@@ -1,37 +1,46 @@
 import Link from 'next/link';
 import { Facebook, Twitter, Instagram } from 'lucide-react';
-// PlesGroupLogo is not used in this version if we are replacing it with HTML/CSS logo directly
 
 export function Footer() {
   return (
     <footer className="relative bg-muted text-muted-foreground pt-12 pb-8 mt-16 overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
-          {/* Column 1: Slogan and New HTML/CSS Logo */}
-          <div className="space-y-4">
-            <p className="text-sm">
-              El uso inteligente de la experiencia.
-            </p>
-            <div className="font-comfortaa text-4xl font-bold text-muted-foreground mt-2"> {/* Added mt-2 for spacing */}
-              <span className="relative inline-block">
-                {/* This span creates the blue dot behind the 'p' */}
-                <span
-                  className="absolute z-[-1] bg-[#00AEEF] rounded-full"
-                  style={{
-                    width: '0.31em',
-                    height: '0.31em',
-                    top: '0.45em',
-                    left: '0.21em',
-                  }}
-                ></span>
-                p
-              </span>
-              les
+          {/* Column 1: Descriptive Text and Watermark Logo */}
+          <div className="relative space-y-4">
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 flex items-center justify-center z-0 pointer-events-none"
+            >
+              <div className="font-comfortaa text-9xl font-bold text-gray-500/10 select-none">
+                <span className="relative inline-block">
+                  <span
+                    className="absolute z-[-1] bg-[#00AEEF]/10 rounded-full"
+                    style={{
+                      width: '0.31em',
+                      height: '0.31em',
+                      top: '0.45em',
+                      left: '0.21em',
+                    }}
+                  ></span>
+                  p
+                </span>
+                les
+              </div>
+            </div>
+            <div className="relative z-10"> {/* Ensure text is above watermark */}
+              <p className="text-sm">
+                Demostrando características fundamentales del desarrollo web
+                como enrutamiento y formularios interactivos, imitando la
+                estructura de un proyecto profesional.
+              </p>
+              {/* The HTML/CSS logo is now the watermark above. If a smaller visible logo is still needed here, it can be added. */}
+              {/* For now, we'll assume the watermark is the primary logo display in this column based on the image */}
             </div>
           </div>
 
           {/* Column 2: Quick Links */}
-          <div className="space-y-4">
+          <div className="space-y-4 z-10"> {/* Added z-10 to ensure it's above decorative circles if they overlap */}
             <h3 className="text-lg font-semibold text-foreground">Enlaces Rápidos</h3>
             <ul className="space-y-2 text-sm">
               <li>
@@ -73,7 +82,7 @@ export function Footer() {
           </div>
 
           {/* Column 3: Contact & Social */}
-          <div className="space-y-4">
+          <div className="space-y-4 z-10"> {/* Added z-10 */}
             <h3 className="text-lg font-semibold text-foreground">Contacto</h3>
             <p className="text-sm">
               123 Calle Ficticia, Ciudad Ejemplo, CP 12345
@@ -101,7 +110,7 @@ export function Footer() {
         {/* Copyright - Centered */}
         <div className="text-center text-sm relative z-20 mt-8">
           <p>&copy; {new Date().getFullYear()} PLES. Todos los derechos reservados.</p>
-          <p className="mt-1">Construido con ❤️.</p>
+          <p className="mt-1">Construido con <span role="img" aria-label="love">❤️</span>.</p>
         </div>
       </div>
 
