@@ -25,8 +25,8 @@ export function Footer() {
                 <span
                   className={cn(
                     "absolute rounded-full",
-                    "w-[0.31em] h-[0.31em]", // Tamaño relativo a la fuente
-                    "top-[0.38em] left-[0.25em]" // Posición ajustada
+                    "w-[0.31em] h-[0.35em]", // Tamaño relativo a la fuente
+                    "top-[0.38em] left-[0.21em]" // Posición ajustada
                   )}
                   style={{
                     background: 'radial-gradient(circle at 30% 30%, #29c6ff, #00AEEF 70%, #008fbf)',
