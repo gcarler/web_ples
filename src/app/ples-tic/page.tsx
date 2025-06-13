@@ -9,7 +9,7 @@ import { Badge } from '@/components/ui/badge';
 
 export const metadata = {
   title: 'PLES TIC - Soluciones Tecnológicas Innovadoras para su Negocio',
-  description: 'Impulsamos la transformación digital de su organización con desarrollo de software a medida, soluciones cloud, ciberseguridad y análisis de datos.',
+  description: 'Impulsamos la transformación digital de su organización con desarrollo de software a medida, soluciones cloud, ciberseguridad, automatización con IA y análisis de datos.',
 };
 
 export default function PlesTicPage() {
@@ -32,7 +32,7 @@ export default function PlesTicPage() {
     {
       icon: <TrendingUp className="h-10 w-10 text-accent" />,
       title: 'Optimización y Eficiencia',
-      description: 'Automatizamos y optimizamos sus flujos de trabajo para mejorar la productividad, reducir costos y potenciar el crecimiento.',
+      description: 'Automatizamos y optimizamos sus flujos de trabajo para mejorar la productividad, reducir costos y potenciar el crecimiento, incluyendo la automatización de procesos complejos con IA.',
     },
   ];
 
@@ -41,7 +41,7 @@ export default function PlesTicPage() {
       icon: <Code className="h-8 w-8 text-primary" />,
       title: 'Desarrollo de Software a Medida',
       description: 'Creamos aplicaciones web, móviles y empresariales personalizadas, desde la concepción hasta el despliegue y mantenimiento continuo.',
-      details: ["Análisis y Diseño de Sistemas", "Desarrollo Full-Stack (Frontend/Backend)", "Integración de APIs y Servicios Externos", "Metodologías Ágiles (Scrum/Kanban)"]
+      details: ["Análisis y Diseño de Sistemas", "Desarrollo Full-Stack (Frontend/Backend)", "Integración de APIs y Servicios Externos", "Metodologías Ágiles (Scrum/Kanban)", "Automatización de procesos complejos mediante Inteligencia Artificial (IA)"]
     },
     {
       icon: <CloudCog className="h-8 w-8 text-primary" />,
@@ -71,7 +71,7 @@ export default function PlesTicPage() {
     { icon: <GitPullRequestArrow className="h-8 w-8 text-primary mb-2" />, title: 'Soporte y Evolución Continua', description: 'Ofrecemos soporte post-implementación y planes de mantenimiento.' },
   ];
 
-  const technologies = ['JavaScript (React, Next.js, Node.js)', 'Python (Django, Flask, FastAPI)', 'Java, C#/.NET', 'Bases de Datos (PostgreSQL, MySQL, MongoDB, Redis)', 'Docker, Kubernetes, Terraform', 'AWS, Azure, Google Cloud Platform', 'Git, Jenkins, GitLab CI', 'Marcos de Ciberseguridad (NIST, ISO 27001)', 'Herramientas BI (Tableau, Power BI)'];
+  const technologies = ['JavaScript (React, Next.js, Node.js)', 'Python (Django, Flask, FastAPI)', 'Java, C#/.NET', 'Bases de Datos (PostgreSQL, MySQL, MongoDB, Redis)', 'Docker, Kubernetes, Terraform', 'AWS, Azure, Google Cloud Platform', 'Inteligencia Artificial (Machine Learning, NLP, Computer Vision)', 'Git, Jenkins, GitLab CI', 'Marcos de Ciberseguridad (NIST, ISO 27001)', 'Herramientas BI (Tableau, Power BI)'];
 
   const caseStudies = [
     {
@@ -113,6 +113,7 @@ export default function PlesTicPage() {
             <Badge variant="default" className="text-md px-4 py-2 shadow-md">#DesarrolloDeSoftware</Badge>
             <Badge variant="default" className="text-md px-4 py-2 shadow-md">#SolucionesCloud</Badge>
             <Badge variant="default" className="text-md px-4 py-2 shadow-md">#Ciberseguridad</Badge>
+            <Badge variant="default" className="text-md px-4 py-2 shadow-md">#AutomatizacionIA</Badge>
             <Badge variant="default" className="text-md px-4 py-2 shadow-md">#TransformacionDigital</Badge>
           </div>
           <Button size="lg" className="text-lg px-8 py-3" asChild>
@@ -266,5 +267,3 @@ export default function PlesTicPage() {
     </div>
   );
 }
-
-    
