@@ -47,7 +47,7 @@ export function Footer() {
             {/* Descriptive Text at the bottom */}
             <div className="pt-4 pb-10">
               <p className="text-sm">
-                PLES: Estrategia, innovación y conocimiento aplicado para un impacto trascendente y sostenible.
+                PLES: Estrategia e innovación fundamentadas en ciencia y tecnología para un impacto trascendente y sostenible.
               </p>
             </div>
           </div>
