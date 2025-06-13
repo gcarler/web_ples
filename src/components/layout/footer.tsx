@@ -13,7 +13,7 @@ export function Footer() {
             {/* Logo at the top */}
             <div
               className="logo-container font-comfortaa text-7xl font-bold select-none relative group"
-              style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.1)' }}
+              style={{ textShadow: '1px 1px 0px hsl(var(--card)), 2px 2px 0px hsl(var(--foreground) / 0.2)' }}
             >
               <span className="letra-p-con-punto relative inline-block">
                 {/* The actual letter 'p' */}
@@ -133,7 +133,7 @@ export function Footer() {
         {/* Copyright - Centered */}
         <div className="text-center text-sm relative z-20 mt-8">
           <p>&copy; {new Date().getFullYear()} PLES. Todos los derechos reservados.</p>
-          <p className="mt-1">Construido con <span role="img" aria-label="love">❤️</span>.</p>
+          <p className="mt-1">PLES: Fusionando ciencia, tecnología e innovación en estrategias para un impacto trascendente y sostenible.</p>
         </div>
       </div>
 
