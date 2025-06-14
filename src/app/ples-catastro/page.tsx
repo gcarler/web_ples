@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, CheckCircle, Home, Scale, Users, BarChart3, FileText, Settings, Briefcase, MapPin, ShieldCheck, Lightbulb, Target, Search, TrendingUp, Layers, Database, Eye } from 'lucide-react'; // Changed Landmark to Home
+import { ArrowRight, CheckCircle, Home, Scale, Users, BarChart3, FileText, Settings, Briefcase, MapPin, ShieldCheck, Lightbulb, Target, Search, TrendingUp, Layers, Database, Eye } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 
@@ -36,7 +36,7 @@ export default function PlesCatastroPage() {
       link: '/ples-catastro/avaluos'
     },
     {
-      icon: <Home className="h-8 w-8 text-primary group-hover:text-primary-foreground" />, // Changed Landmark to Home
+      icon: <Home className="h-8 w-8 text-primary group-hover:text-primary-foreground" />,
       title: 'Planes de Ordenamiento Territorial (POT)',
       description: 'Desarrollamos e implementamos planes estratégicos que guían el crecimiento sostenible y la ocupación eficiente del territorio, promoviendo la equidad.',
       details: ['Diagnóstico Territorial Integral', 'Participación Ciudadana Activa', 'Zonificación y Usos del Suelo', 'Instrumentos de Gestión'],
@@ -98,10 +98,10 @@ export default function PlesCatastroPage() {
     <div className="py-10 space-y-16 px-4 sm:px-6 lg:px-8">
       <section className="relative py-20 md:py-28 rounded-lg overflow-hidden bg-card shadow-xl">
         <div className="container mx-auto text-center relative z-10">
-          <Home className="h-20 w-20 text-primary mx-auto mb-6" /> {/* Changed Landmark to Home */}
-          <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-6">PLES Catastro</h1>
+          <Home className="h-20 w-20 text-primary mx-auto mb-6" />
+          <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-6">PLES Catastro</h1>
           <p className="text-lg md:text-xl text-foreground mb-8 max-w-3xl mx-auto">
-            Transformamos la gestión del territorio con soluciones catastrales innovadoras, promoviendo un desarrollo eficiente, equitativo y sostenible.
+            Transformamos la gestión del territorio con soluciones catastrales innovadoras, promoviendo un desarrollo eficiente, equitativo y sostenible. Aplicamos <strong className="text-primary">el uso inteligente de la experiencia</strong> y tecnología de vanguardia para ofrecer resultados precisos, reducir tiempos y costos, y generar productos de la más alta calidad.
           </p>
           <div className="flex flex-wrap justify-center gap-2 mb-10">
             <Badge variant="default" className="text-md px-4 py-2 shadow-md">#CatastroMultifinalitario</Badge>
@@ -174,7 +174,10 @@ export default function PlesCatastroPage() {
       </section>
 
       <section>
-        <h2 className="text-3xl font-bold text-center mb-10">Nuestros Enfoques Integrales</h2>
+        <h2 className="text-3xl font-bold text-center mb-4">Nuestros Enfoques Integrales</h2>
+        <p className="text-muted-foreground text-center max-w-3xl mx-auto mb-12">
+          Combinamos rigor científico, innovación tecnológica y un profundo entendimiento del marco jurídico y social para ofrecer soluciones catastrales completas y efectivas. Creemos en <strong className="text-primary">el uso inteligente de la experiencia</strong> para optimizar procesos, reducir costos y entregar productos de la más alta calidad.
+        </p>
         <Tabs defaultValue="tecnologico" className="w-full max-w-5xl mx-auto">
           <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 mb-8 h-auto">
             <TabsTrigger value="tecnologico" className="py-3 text-base">Innovación Tecnológica</TabsTrigger>
@@ -201,7 +204,7 @@ export default function PlesCatastroPage() {
                 </div>
                 <div className="flex items-start space-x-3 p-3 bg-background rounded-md">
                   <Lightbulb className="h-6 w-6 text-primary mt-1 shrink-0" />
-                  <p><strong className="text-foreground">Automatización e IA:</strong> Digitalización de procesos y aplicación de inteligencia artificial para una gestión catastral moderna y eficiente.</p>
+                  <p><strong className="text-foreground">Automatización e IA Geoespacial:</strong> Digitalización de procesos y aplicación de inteligencia artificial para una gestión catastral moderna, eficiente y que reduce tiempos operativos.</p>
                 </div>
               </CardContent>
             </Card>
@@ -213,20 +216,20 @@ export default function PlesCatastroPage() {
                   <Scale className="h-8 w-8 text-primary"/>
                   <CardTitle className="text-2xl">Marco Legal Sólido y Actualizado</CardTitle>
                 </div>
-                <CardDescription>Asesoramos en la adecuación de marcos legales y normativos para un catastro moderno, funcional y que brinde seguridad jurídica.</CardDescription>
+                <CardDescription>Asesoramos en la adecuación de marcos legales y normativos para un catastro moderno, funcional y que brinde seguridad jurídica, aplicando nuestra experiencia para optimizar los procesos.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                  <div className="flex items-start space-x-3 p-3 bg-background rounded-md">
                   <FileText className="h-6 w-6 text-primary mt-1 shrink-0" />
-                  <p><strong className="text-foreground">Análisis y Propuestas Normativas:</strong> Mejora de la legislación catastral y de ordenamiento territorial.</p>
+                  <p><strong className="text-foreground">Análisis y Propuestas Normativas:</strong> Mejora de la legislación catastral y de ordenamiento territorial, con base en las mejores prácticas y la experiencia acumulada.</p>
                 </div>
                 <div className="flex items-start space-x-3 p-3 bg-background rounded-md">
                   <ShieldCheck className="h-6 w-6 text-primary mt-1 shrink-0" />
-                  <p><strong className="text-foreground">Formalización y Regularización Predial:</strong> Acompañamiento en la titulación y saneamiento de la tenencia de la tierra.</p>
+                  <p><strong className="text-foreground">Formalización y Regularización Predial:</strong> Acompañamiento en la titulación y saneamiento de la tenencia de la tierra, agilizando trámites y asegurando la calidad jurídica.</p>
                 </div>
                 <div className="flex items-start space-x-3 p-3 bg-background rounded-md">
                   <Briefcase className="h-6 w-6 text-primary mt-1 shrink-0" />
-                  <p><strong className="text-foreground">Procedimientos Transparentes:</strong> Desarrollo de manuales y protocolos para una gestión catastral clara y auditable.</p>
+                  <p><strong className="text-foreground">Procedimientos Transparentes y Eficientes:</strong> Desarrollo de manuales y protocolos para una gestión catastral clara, auditable y que reduce la burocracia.</p>
                 </div>
               </CardContent>
             </Card>
@@ -238,20 +241,20 @@ export default function PlesCatastroPage() {
                   <Users className="h-8 w-8 text-primary"/>
                   <CardTitle className="text-2xl">Catastro con Enfoque Humano</CardTitle>
                 </div>
-                <CardDescription>Involucramos a la comunidad y actores clave para asegurar la aceptación, sostenibilidad y equidad de los proyectos catastrales.</CardDescription>
+                <CardDescription>Involucramos a la comunidad y actores clave para asegurar la aceptación, sostenibilidad y equidad de los proyectos catastrales, construyendo sobre la experiencia local.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-start space-x-3 p-3 bg-background rounded-md">
                   <Users className="h-6 w-6 text-primary mt-1 shrink-0" />
-                  <p><strong className="text-foreground">Catastro Participativo:</strong> Metodologías de inclusión y socialización de proyectos con las comunidades locales.</p>
+                  <p><strong className="text-foreground">Catastro Participativo:</strong> Metodologías de inclusión y socialización de proyectos con las comunidades locales, generando confianza y apropiación.</p>
                 </div>
                 <div className="flex items-start space-x-3 p-3 bg-background rounded-md">
                   <Lightbulb className="h-6 w-6 text-primary mt-1 shrink-0" />
-                  <p><strong className="text-foreground">Fortalecimiento de Capacidades:</strong> Capacitación y transferencia de conocimiento a equipos locales y ciudadanos.</p>
+                  <p><strong className="text-foreground">Fortalecimiento de Capacidades:</strong> Capacitación y transferencia de conocimiento técnico y metodológico a equipos locales y ciudadanos.</p>
                 </div>
                 <div className="flex items-start space-x-3 p-3 bg-background rounded-md">
                   <Search className="h-6 w-6 text-primary mt-1 shrink-0" />
-                  <p><strong className="text-foreground">Comunicación Estratégica:</strong> Diseño de campañas para informar y educar sobre la importancia y beneficios del catastro.</p>
+                  <p><strong className="text-foreground">Comunicación Estratégica y Transparente:</strong> Diseño de campañas para informar y educar sobre la importancia y beneficios del catastro, asegurando la claridad y accesibilidad de la información.</p>
                 </div>
               </CardContent>
             </Card>
@@ -319,7 +322,7 @@ export default function PlesCatastroPage() {
         <div className="container mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4">Tecnologías y Herramientas de Vanguardia</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto mb-10">
-            Combinamos conocimiento experto con las herramientas más avanzadas para ofrecer resultados superiores en cada proyecto catastral.
+            Combinamos conocimiento experto con las herramientas más avanzadas para ofrecer resultados superiores en cada proyecto catastral, asegurando la eficiencia y la calidad de los productos finales.
           </p>
           <div className="flex flex-wrap justify-center items-center gap-4">
             {technologies.map((tech) => (
@@ -336,7 +339,7 @@ export default function PlesCatastroPage() {
             <FileText className="h-16 w-16 mx-auto mb-6 opacity-80" />
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Transforme la Gestión de su Territorio con PLES Catastro</h2>
             <p className="text-lg md:text-xl mb-10 max-w-3xl mx-auto opacity-90">
-            Contáctenos para una evaluación personalizada y descubra cómo nuestras soluciones pueden ayudar a su organización a alcanzar sus objetivos de desarrollo y gestión territorial de manera eficiente y sostenible.
+            Contáctenos para una evaluación personalizada y descubra cómo nuestras soluciones pueden ayudar a su organización a alcanzar sus objetivos de desarrollo y gestión territorial de manera eficiente y sostenible, aprovechando nuestra experiencia para optimizar sus recursos.
             </p>
             <Button size="xl" variant="secondary" className="text-lg px-10 py-4 shadow-lg hover:scale-105 transition-transform" asChild>
             <Link href="/forms?service=ples-catastro&subject=Consulta%20Modernizacion%20Catastral">
