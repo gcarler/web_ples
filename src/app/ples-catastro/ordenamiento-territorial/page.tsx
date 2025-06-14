@@ -2,7 +2,7 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, CheckCircle, Landmark } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle, Home } from 'lucide-react'; // Changed Landmark to Home
 
 export const metadata = {
   title: 'Planes de Ordenamiento Territorial (POT) - PLES Catastro',
@@ -10,7 +10,7 @@ export const metadata = {
 };
 
 const serviceDetails = {
-  icon: <Landmark className="h-12 w-12 text-primary mb-4" />,
+  icon: <Home className="h-12 w-12 text-primary mb-4" />, // Changed Landmark to Home
   title: 'Planes de Ordenamiento Territorial (POT)',
   description: 'Desarrollamos e implementamos planes estratégicos que guían el crecimiento sostenible y la ocupación eficiente del territorio, promoviendo la equidad.',
   points: [

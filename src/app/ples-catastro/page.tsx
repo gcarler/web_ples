@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, CheckCircle, Landmark, Scale, Users, BarChart3, FileText, Settings, Briefcase, MapPin, ShieldCheck, Lightbulb, Target, Search, TrendingUp, Layers, Database, Eye } from 'lucide-react';
+import { ArrowRight, CheckCircle, Home, Scale, Users, BarChart3, FileText, Settings, Briefcase, MapPin, ShieldCheck, Lightbulb, Target, Search, TrendingUp, Layers, Database, Eye } from 'lucide-react'; // Changed Landmark to Home
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 
@@ -36,7 +36,7 @@ export default function PlesCatastroPage() {
       link: '/ples-catastro/avaluos'
     },
     {
-      icon: <Landmark className="h-8 w-8 text-primary group-hover:text-primary-foreground" />,
+      icon: <Home className="h-8 w-8 text-primary group-hover:text-primary-foreground" />, // Changed Landmark to Home
       title: 'Planes de Ordenamiento Territorial (POT)',
       description: 'Desarrollamos e implementamos planes estratégicos que guían el crecimiento sostenible y la ocupación eficiente del territorio, promoviendo la equidad.',
       details: ['Diagnóstico Territorial Integral', 'Participación Ciudadana Activa', 'Zonificación y Usos del Suelo', 'Instrumentos de Gestión'],
@@ -98,7 +98,7 @@ export default function PlesCatastroPage() {
     <div className="py-10 space-y-16 px-4 sm:px-6 lg:px-8">
       <section className="relative py-20 md:py-28 rounded-lg overflow-hidden bg-card shadow-xl">
         <div className="container mx-auto text-center relative z-10">
-          <Landmark className="h-20 w-20 text-primary mx-auto mb-6" />
+          <Home className="h-20 w-20 text-primary mx-auto mb-6" /> {/* Changed Landmark to Home */}
           <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-6">PLES Catastro</h1>
           <p className="text-lg md:text-xl text-foreground mb-8 max-w-3xl mx-auto">
             Transformamos la gestión del territorio con soluciones catastrales innovadoras, promoviendo un desarrollo eficiente, equitativo y sostenible.
