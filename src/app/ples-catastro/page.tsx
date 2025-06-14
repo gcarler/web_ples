@@ -1,4 +1,3 @@
-
 // src/app/ples-catastro/page.tsx
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -19,25 +18,29 @@ export default function PlesCatastroPage() {
       icon: <MapPin className="h-8 w-8 text-primary group-hover:text-primary-foreground" />,
       title: 'Levantamiento Predial Multifinalitario',
       description: 'Ejecutamos levantamientos catastrales precisos (urbanos y rurales) con fines fiscales, jurídicos, económicos y sociales, utilizando tecnología de vanguardia.',
-      details: ['Cobertura Urbana y Rural', 'Tecnología GPS y Drones', 'Integración con SIG', 'Generación de Cartografía Base']
+      details: ['Cobertura Urbana y Rural', 'Tecnología GPS y Drones', 'Integración con SIG', 'Generación de Cartografía Base'],
+      link: '/ples-catastro/levantamiento-predial'
     },
     {
       icon: <FileText className="h-8 w-8 text-primary group-hover:text-primary-foreground" />,
       title: 'Actualización y Mantenimiento Catastral',
       description: 'Implementamos procesos continuos y automatizados para mantener la información catastral actualizada, confiable y accesible.',
-      details: ['Flujos de Trabajo Digitales', 'Monitoreo de Cambios', 'Interoperabilidad de Sistemas', 'Capacitación de Personal']
+      details: ['Flujos de Trabajo Digitales', 'Monitoreo de Cambios', 'Interoperabilidad de Sistemas', 'Capacitación de Personal'],
+      link: '/ples-catastro/actualizacion-mantenimiento'
     },
     {
       icon: <Scale className="h-8 w-8 text-primary group-hover:text-primary-foreground" />,
       title: 'Avalúos Masivos y Puntuales',
       description: 'Realizamos valoraciones de propiedades con metodologías robustas y transparentes para una base imponible justa y una gestión eficiente de activos.',
-      details: ['Modelos de Valoración Automatizada (AVM)', 'Análisis de Mercado Inmobiliario', 'Cumplimiento Normativo', 'Informes Detallados']
+      details: ['Modelos de Valoración Automatizada (AVM)', 'Análisis de Mercado Inmobiliario', 'Cumplimiento Normativo', 'Informes Detallados'],
+      link: '/ples-catastro/avaluos'
     },
     {
       icon: <Landmark className="h-8 w-8 text-primary group-hover:text-primary-foreground" />,
       title: 'Planes de Ordenamiento Territorial (POT)',
       description: 'Desarrollamos e implementamos planes estratégicos que guían el crecimiento sostenible y la ocupación eficiente del territorio, promoviendo la equidad.',
-      details: ['Diagnóstico Territorial Integral', 'Participación Ciudadana Activa', 'Zonificación y Usos del Suelo', 'Instrumentos de Gestión']
+      details: ['Diagnóstico Territorial Integral', 'Participación Ciudadana Activa', 'Zonificación y Usos del Suelo', 'Instrumentos de Gestión'],
+      link: '/ples-catastro/ordenamiento-territorial'
     },
   ];
 
@@ -94,7 +97,6 @@ export default function PlesCatastroPage() {
   return (
     <div className="py-10 space-y-16 px-4 sm:px-6 lg:px-8">
       <section className="relative py-20 md:py-28 rounded-lg overflow-hidden bg-card shadow-xl">
-        {/* Background image and overlay removed */}
         <div className="container mx-auto text-center relative z-10">
           <Landmark className="h-20 w-20 text-primary mx-auto mb-6" />
           <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-6">PLES Catastro</h1>
@@ -138,25 +140,34 @@ export default function PlesCatastroPage() {
             <h2 className="text-3xl font-bold text-center mb-12">Servicios Catastrales Estratégicos</h2>
             <div className="grid md:grid-cols-2 gap-8">
             {coreServices.map((service) => (
-                <Card key={service.title} className="group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out">
-                <CardHeader className="flex flex-row items-start gap-4">
-                    {service.icon}
-                    <div>
-                    <CardTitle className="text-xl group-hover:text-primary-foreground">{service.title}</CardTitle>
-                    <CardDescription className="mt-1 group-hover:text-primary-foreground/90">{service.description}</CardDescription>
-                    </div>
-                </CardHeader>
-                <CardContent>
-                    <ul className="space-y-2 text-sm text-muted-foreground group-hover:text-primary-foreground/90">
-                    {service.details.map(detail => (
-                        <li key={detail} className="flex items-center">
-                        <CheckCircle className="h-4 w-4 text-green-500 group-hover:text-primary-foreground mr-2 shrink-0" />
-                        {detail}
-                        </li>
-                    ))}
-                    </ul>
-                </CardContent>
-                </Card>
+              <Link key={service.title} href={service.link} passHref legacyBehavior>
+                <a className="block group hover:scale-105 transition-all duration-300 ease-in-out">
+                  <Card className="h-full group-hover:shadow-xl group-hover:bg-gradient-to-b group-hover:from-primary group-hover:to-accent group-hover:text-primary-foreground">
+                    <CardHeader className="flex flex-row items-start gap-4">
+                        {service.icon}
+                        <div>
+                        <CardTitle className="text-xl group-hover:text-primary-foreground">{service.title}</CardTitle>
+                        <CardDescription className="mt-1 group-hover:text-primary-foreground/90">{service.description}</CardDescription>
+                        </div>
+                    </CardHeader>
+                    <CardContent>
+                        <ul className="space-y-2 text-sm text-muted-foreground group-hover:text-primary-foreground/90">
+                        {service.details.map(detail => (
+                            <li key={detail} className="flex items-center">
+                            <CheckCircle className="h-4 w-4 text-green-500 group-hover:text-primary-foreground mr-2 shrink-0" />
+                            {detail}
+                            </li>
+                        ))}
+                        </ul>
+                         <div className="mt-4 text-right">
+                            <span className="inline-flex items-center text-sm font-medium text-primary group-hover:text-primary-foreground">
+                                Ver Detalles <ArrowRight className="ml-1 h-4 w-4"/>
+                            </span>
+                        </div>
+                    </CardContent>
+                  </Card>
+                </a>
+              </Link>
             ))}
             </div>
         </div>
@@ -339,5 +350,3 @@ export default function PlesCatastroPage() {
     </div>
   );
 }
-
-    
