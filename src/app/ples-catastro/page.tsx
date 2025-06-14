@@ -178,7 +178,7 @@ export default function PlesCatastroPage() {
         <p className="text-muted-foreground text-center max-w-3xl mx-auto mb-12">
           Combinamos rigor científico, innovación tecnológica y un profundo entendimiento del marco jurídico y social para ofrecer soluciones catastrales completas y efectivas. Creemos en <strong className="text-primary">el uso inteligente de la experiencia</strong> para optimizar procesos, reducir costos y entregar productos de la más alta calidad.
         </p>
-        <Tabs defaultValue="tecnologico" className="w-full max-w-5xl mx-auto">
+        <Tabs defaultValue="tecnologico" className="w-full">
           <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 mb-8 h-auto">
             <TabsTrigger value="tecnologico" className="py-3 text-base">Innovación Tecnológica</TabsTrigger>
             <TabsTrigger value="juridico" className="py-3 text-base">Fortalecimiento Jurídico</TabsTrigger>
