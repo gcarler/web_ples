@@ -19,13 +19,13 @@ export default function EsenciaPage() {
            </span>
          </Link>
        </Button>
-      <Card className="shadow-lg border">
+      <Card className="shadow-lg border group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out">
         <CardHeader>
-          <CardTitle className="text-3xl font-bold text-primary">Nuestra Esencia</CardTitle>
-          <CardDescription>Comprendiendo quienes somos.</CardDescription>
+          <CardTitle className="text-3xl font-bold text-primary group-hover:text-primary-foreground">Nuestra Esencia</CardTitle>
+          <CardDescription className="group-hover:text-primary-foreground/90">Comprendiendo quienes somos.</CardDescription>
         </CardHeader>
         <CardContent>
-          <p className="text-lg">
+          <p className="text-lg group-hover:text-primary-foreground/90">
             Con una visión global y un enfoque multidisciplinario, nuestro equipo converge talentos y conocimientos diversos para la consecución de objetivos trascendentes. En PLES, valoramos la riqueza de cada perspectiva, cultivando un espacio donde las ideas disruptivas e innovadoras florecen, permitiendo intervenciones estratégicas y perspicaces en cualquier escenario.
           </p>
         </CardContent>

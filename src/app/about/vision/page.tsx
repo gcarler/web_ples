@@ -19,13 +19,13 @@ export default function VisionPage() {
            </span>
          </Link>
        </Button>
-      <Card className="shadow-lg border">
+      <Card className="shadow-lg border group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out">
         <CardHeader>
-          <CardTitle className="text-3xl font-bold text-primary">Nuestra Visión</CardTitle>
-          <CardDescription>Definiendo nuestro horizonte.</CardDescription>
+          <CardTitle className="text-3xl font-bold text-primary group-hover:text-primary-foreground">Nuestra Visión</CardTitle>
+          <CardDescription className="group-hover:text-primary-foreground/90">Definiendo nuestro horizonte.</CardDescription>
         </CardHeader>
         <CardContent>
-          <p className="text-lg">
+          <p className="text-lg group-hover:text-primary-foreground/90">
             Anhelamos inspirar un porvenir donde la sostenibilidad y la equidad sean pilares, catalizadas por la innovación en la respuesta a desafíos críticos como el cambio climático y la gestión responsable de los recursos. Nos concebimos como referentes en la creación de un impacto positivo y perdurable, transformando comunidades hacia un mundo más resiliente y justo para las generaciones venideras.
           </p>
         </CardContent>

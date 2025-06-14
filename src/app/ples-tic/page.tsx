@@ -15,24 +15,24 @@ export const metadata = {
 export default function PlesTicPage() {
   const valuePropositions = [
     {
-      icon: <Settings className="h-10 w-10 text-accent group-hover:text-primary-foreground" />,
+      icon: <Settings className="h-10 w-10 text-primary group-hover:text-primary-foreground" />,
       title: 'Soluciones a Medida',
       description: 'Desarrollamos software y sistemas adaptados específicamente a sus necesidades y objetivos estratégicos.',
     },
     {
-      icon: <Lightbulb className="h-10 w-10 text-accent group-hover:text-primary-foreground" />,
+      icon: <Lightbulb className="h-10 w-10 text-primary group-hover:text-primary-foreground" />,
       title: 'Innovación y Vanguardia',
       description: 'Aplicamos las últimas tecnologías y metodologías para garantizar soluciones modernas, eficientes y preparadas para el futuro.',
     },
     {
-      icon: <ShieldCheck className="h-10 w-10 text-accent group-hover:text-primary-foreground" />,
+      icon: <ShieldCheck className="h-10 w-10 text-primary group-hover:text-primary-foreground" />,
       title: 'Seguridad Integral',
       description: 'Protegemos sus activos digitales con estrategias de ciberseguridad proactivas y robustas adaptadas a su entorno.',
     },
     {
-      icon: <TrendingUp className="h-10 w-10 text-accent group-hover:text-primary-foreground" />,
+      icon: <TrendingUp className="h-10 w-10 text-primary group-hover:text-primary-foreground" />,
       title: 'Optimización y Eficiencia',
-      description: 'Automatizamos y optimizamos sus flujos de trabajo para mejorar la productividad, reducir costos y potenciar el crecimiento, incluyendo la automatización de procesos complejos con IA.',
+      description: 'Automatizamos y optimizamos sus flujos de trabajo para mejorar la productividad, reducir costos y potenciar el crecimiento.',
     },
   ];
 
@@ -42,25 +42,32 @@ export default function PlesTicPage() {
       title: 'Desarrollo de Software a Medida',
       description: 'Creamos aplicaciones web, móviles y empresariales personalizadas, desde la concepción hasta el despliegue y mantenimiento continuo.',
       details: ["Análisis y Diseño de Sistemas", "Desarrollo Full-Stack (Frontend/Backend)", "Integración de APIs y Servicios Externos", "Metodologías Ágiles (Scrum/Kanban)"],
-      // ctaLink and ctaText removed from here as AI is now its own service
+      ctaLink: "/ples-tic/desarrollo-software",
+      ctaText: "Más sobre Desarrollo a Medida",
     },
     {
       icon: <CloudCog className="h-8 w-8 text-primary group-hover:text-primary-foreground" />,
       title: 'Soluciones Cloud y DevOps',
       description: 'Diseñamos, implementamos y gestionamos infraestructuras cloud seguras, escalables y costo-eficientes (AWS, Azure, GCP).',
-      details: ["Migración Estratégica a la Nube", "Arquitecturas Serverless y Microservicios", "Infraestructura como Código (IaC)", "CI/CD y Automatización DevOps"]
+      details: ["Migración Estratégica a la Nube", "Arquitecturas Serverless y Microservicios", "Infraestructura como Código (IaC)", "CI/CD y Automatización DevOps"],
+      ctaLink: "/ples-tic/soluciones-cloud",
+      ctaText: "Descubra Soluciones Cloud",
     },
     {
       icon: <Lock className="h-8 w-8 text-primary group-hover:text-primary-foreground" />,
       title: 'Ciberseguridad Avanzada',
       description: 'Protegemos su información y sistemas contra amenazas cibernéticas con auditorías, consultoría y soluciones de seguridad de última generación.',
-      details: ["Análisis de Vulnerabilidades y Pentesting Ético", "Gestión de Identidad y Acceso (IAM/IGA)", "Seguridad de Redes y Endpoints (EDR/XDR)", "Planes de Respuesta a Incidentes (IRP)"]
+      details: ["Análisis de Vulnerabilidades y Pentesting Ético", "Gestión de Identidad y Acceso (IAM/IGA)", "Seguridad de Redes y Endpoints (EDR/XDR)", "Planes de Respuesta a Incidentes (IRP)"],
+      ctaLink: "/ples-tic/ciberseguridad",
+      ctaText: "Fortalezca su Seguridad",
     },
     {
       icon: <BarChartBig className="h-8 w-8 text-primary group-hover:text-primary-foreground" />,
       title: 'Análisis de Datos e Inteligencia de Negocio (BI)',
       description: 'Transformamos sus datos en información valiosa para la toma de decisiones estratégicas, mediante dashboards y reportes interactivos.',
-      details: ["Modelado y Almacenamiento de Datos (Data Warehousing)", "Visualización de Datos (Tableau, Power BI, Looker)", "Análisis Predictivo y Fundamentos de Machine Learning", "Procesos ETL/ELT y Calidad de Datos"]
+      details: ["Modelado y Almacenamiento de Datos (Data Warehousing)", "Visualización de Datos (Tableau, Power BI, Looker)", "Análisis Predictivo y Fundamentos de Machine Learning", "Procesos ETL/ELT y Calidad de Datos"],
+      ctaLink: "/ples-tic/analisis-datos-bi",
+      ctaText: "Explore Inteligencia de Negocio",
     },
     {
       icon: <Brain className="h-8 w-8 text-primary group-hover:text-primary-foreground" />,
@@ -71,7 +78,6 @@ export default function PlesTicPage() {
         "Desarrollo de Modelos de Machine Learning y Deep Learning",
         "Implementación de Chatbots y Asistentes Virtuales Inteligentes",
         "Procesamiento de Lenguaje Natural (NLP) y Visión por Computadora",
-        "Integración de IA en Sistemas Existentes y Flujos de Trabajo"
       ],
       ctaLink: "/ples-tic/automatizacion-ia",
       ctaText: "Conozca Nuestras Capacidades en IA",
@@ -110,11 +116,9 @@ export default function PlesTicPage() {
   return (
     <div className="py-10 space-y-16 px-4 sm:px-6 lg:px-8">
       <section className="relative py-20 md:py-28 rounded-lg overflow-hidden bg-card shadow-xl">
-        <div className="absolute inset-0 z-0 opacity-10">
-        </div>
         <div className="container mx-auto text-center relative z-10">
           <Cpu className="h-20 w-20 text-primary mx-auto mb-6" />
-          <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-6">PLES TIC</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-6">PLES TIC</h1>
           <p className="text-lg md:text-xl text-foreground mb-4 max-w-3xl mx-auto">
             Innovación Tecnológica y Estrategia Digital para el Futuro de su Empresa.
           </p>
@@ -163,36 +167,36 @@ export default function PlesTicPage() {
             <h2 className="text-3xl font-bold text-center mb-12">Nuestros Servicios Tecnológicos Clave</h2>
             <div className="grid md:grid-cols-2 gap-8">
             {coreServices.map((service) => (
-                <Card key={service.title} className="group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out bg-card">
-                <CardHeader className="flex flex-row items-start gap-4">
-                    {service.icon}
-                    <div>
-                    <CardTitle className="text-xl group-hover:text-primary-foreground">{service.title}</CardTitle>
-                    <CardDescription className="mt-1 group-hover:text-primary-foreground/90">{service.description}</CardDescription>
-                    </div>
-                </CardHeader>
-                <CardContent>
-                    <ul className="space-y-2 text-sm text-muted-foreground group-hover:text-primary-foreground/90">
-                    {service.details.map(detail => (
-                        <li key={detail} className="flex items-center">
-                        <CheckCircle className="h-4 w-4 text-green-500 group-hover:text-primary-foreground mr-2 shrink-0" />
-                        {detail}
-                        </li>
-                    ))}
-                    </ul>
-                    {service.ctaLink && service.ctaText && (
-                      <div className="mt-4">
-                        <Button variant="link" asChild className="text-primary group-hover:text-primary-foreground p-0 h-auto">
-                          <Link href={service.ctaLink}>
-                            <span className="flex items-center">
-                              {service.ctaText} <Brain className="ml-2 h-4 w-4 group-hover:text-primary-foreground" />
+              <Link key={service.title} href={service.ctaLink || '#'} passHref legacyBehavior>
+                <a className="block group hover:scale-105 transition-all duration-300 ease-in-out">
+                  <Card className="h-full group-hover:shadow-xl group-hover:bg-gradient-to-b group-hover:from-primary group-hover:to-accent group-hover:text-primary-foreground bg-card">
+                    <CardHeader className="flex flex-row items-start gap-4">
+                        {service.icon}
+                        <div>
+                        <CardTitle className="text-xl group-hover:text-primary-foreground">{service.title}</CardTitle>
+                        <CardDescription className="mt-1 group-hover:text-primary-foreground/90">{service.description}</CardDescription>
+                        </div>
+                    </CardHeader>
+                    <CardContent>
+                        <ul className="space-y-2 text-sm text-muted-foreground group-hover:text-primary-foreground/90">
+                        {service.details.map(detail => (
+                            <li key={detail} className="flex items-center">
+                            <CheckCircle className="h-4 w-4 text-green-500 group-hover:text-green-300 mr-2 shrink-0" />
+                            {detail}
+                            </li>
+                        ))}
+                        </ul>
+                        {service.ctaLink && service.ctaText && (
+                          <div className="mt-4 text-right">
+                            <span className="inline-flex items-center text-sm font-medium text-primary group-hover:text-primary-foreground">
+                              {service.ctaText} <ArrowRight className="ml-1 h-4 w-4"/>
                             </span>
-                          </Link>
-                        </Button>
-                      </div>
-                    )}
-                </CardContent>
-                </Card>
+                          </div>
+                        )}
+                    </CardContent>
+                  </Card>
+                </a>
+              </Link>
             ))}
             </div>
         </div>

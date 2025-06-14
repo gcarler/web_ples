@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, CheckCircle, Lightbulb, Users, TrendingUp, ShieldCheck, Briefcase, Layers, BookOpen, MessageSquare, Search, Users2, BarChart3, Zap } from 'lucide-react';
+import { ArrowRight, CheckCircle, Lightbulb, Users, TrendingUp, ShieldCheck, Briefcase, Layers, BookOpen, MessageSquare, Search, Users2, BarChart3, Zap, Settings } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 export const metadata = {
@@ -40,10 +40,10 @@ export default function PlesConsultingPage() {
   ];
 
   const differentiators = [
-    { icon: <Users2 className="h-8 w-8 text-accent group-hover:text-primary-foreground" />, title: 'Enfoque Multidisciplinario', text: 'Combinamos experticia en diversas áreas para ofrecer soluciones integrales y creativas adaptadas a la complejidad de cada desafío.' },
-    { icon: <Zap className="h-8 w-8 text-accent group-hover:text-primary-foreground" />, title: 'Innovación Constante', text: 'Nos mantenemos a la vanguardia de metodologías y tecnologías para proponer soluciones que no solo resuelven, sino que transforman.' },
-    { icon: <BarChart3 className="h-8 w-8 text-accent group-hover:text-primary-foreground" />, title: 'Orientación a Resultados Medibles', text: 'Definimos indicadores claros y medimos el impacto de nuestras intervenciones para asegurar la generación de valor tangible.' },
-    { icon: <ShieldCheck className="h-8 w-8 text-accent group-hover:text-primary-foreground" />, title: 'Compromiso Ético y Sostenible', text: 'Nuestras recomendaciones buscan la sostenibilidad a largo plazo y se basan en principios de equidad, transparencia e integridad.' },
+    { icon: <Users2 className="h-8 w-8 text-primary group-hover:text-primary-foreground" />, title: 'Enfoque Multidisciplinario', text: 'Combinamos experticia en diversas áreas para ofrecer soluciones integrales y creativas adaptadas a la complejidad de cada desafío.' },
+    { icon: <Zap className="h-8 w-8 text-primary group-hover:text-primary-foreground" />, title: 'Innovación Constante', text: 'Nos mantenemos a la vanguardia de metodologías y tecnologías para proponer soluciones que no solo resuelven, sino que transforman.' },
+    { icon: <BarChart3 className="h-8 w-8 text-primary group-hover:text-primary-foreground" />, title: 'Orientación a Resultados Medibles', text: 'Definimos indicadores claros y medimos el impacto de nuestras intervenciones para asegurar la generación de valor tangible.' },
+    { icon: <ShieldCheck className="h-8 w-8 text-primary group-hover:text-primary-foreground" />, title: 'Compromiso Ético y Sostenible', text: 'Nuestras recomendaciones buscan la sostenibilidad a largo plazo y se basan en principios de equidad, transparencia e integridad.' },
   ];
 
   const methodologies = ['Design Thinking', 'Gestión Ágil de Proyectos (Scrum/Kanban)', 'Análisis de Datos Avanzado (Cualitativo y Cuantitativo)', 'Facilitación Estratégica y Co-creación', 'Marco Lógico y Teoría del Cambio', 'Investigación Acción Participativa'];
@@ -60,7 +60,7 @@ export default function PlesConsultingPage() {
         description: "Trabajamos de la mano con su equipo para diseñar estrategias y soluciones innovadoras y a la medida. Fomentamos la participación activa para asegurar la apropiación y la viabilidad de las propuestas."
     },
     {
-        icon: <TrendingUp className="h-10 w-10 text-primary group-hover:text-primary-foreground mx-auto mb-3"/>,
+        icon: <Settings className="h-10 w-10 text-primary group-hover:text-primary-foreground mx-auto mb-3"/>,
         title: "3. Implementación Ágil y Acompañamiento",
         description: "Apoyamos la puesta en marcha de las soluciones con un enfoque flexible y adaptativo. Brindamos acompañamiento continuo, transferimos capacidades y ajustamos el rumbo según sea necesario para garantizar resultados sostenibles."
     }
@@ -69,10 +69,9 @@ export default function PlesConsultingPage() {
   return (
     <div className="py-10 space-y-16 px-4 sm:px-6 lg:px-8">
       <section className="relative py-20 md:py-28 rounded-lg overflow-hidden bg-card shadow-xl">
-        {/* Removed background image and overlay div here */}
         <div className="container mx-auto text-center relative z-10">
           <Briefcase className="h-20 w-20 text-primary mx-auto mb-6" />
-          <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-6">PLES Consulting</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-6">PLES Consulting</h1>
           <p className="text-lg md:text-xl text-foreground mb-8 max-w-3xl mx-auto">
             Aliados estratégicos para la innovación y la transformación. Colaboramos con organizaciones para diseñar e implementar soluciones que generan un impacto positivo y duradero.
           </p>
@@ -100,7 +99,7 @@ export default function PlesConsultingPage() {
           {expertiseAreas.map((area) => (
             <Card 
               key={area.title} 
-              className="group bg-card hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-2 hover:scale-[1.03] border-2 border-transparent hover:border-primary/70 overflow-hidden hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground"
+              className="group bg-card hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-[1.02] border-2 border-transparent hover:border-primary/50 overflow-hidden hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground"
             >
               <CardHeader className="flex flex-row items-start gap-4">
                 {area.icon}
@@ -113,8 +112,8 @@ export default function PlesConsultingPage() {
                 <ul className="space-y-2 text-sm">
                   {area.details.map(detail => (
                     <li key={detail} className="flex items-center">
-                      <CheckCircle className="h-4 w-4 text-green-500 group-hover:text-primary-foreground transition-colors duration-300 mr-2 shrink-0" />
-                      <span className="text-muted-foreground group-hover:text-primary-foreground transition-colors duration-300">{detail}</span>
+                      <CheckCircle className="h-4 w-4 text-green-500 group-hover:text-green-300 transition-colors duration-300 mr-2 shrink-0" />
+                      <span className="text-muted-foreground group-hover:text-primary-foreground/90 transition-colors duration-300">{detail}</span>
                     </li>
                   ))}
                 </ul>

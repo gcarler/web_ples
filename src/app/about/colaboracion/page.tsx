@@ -19,13 +19,13 @@ export default function ColaboracionPage() {
            </span>
          </Link>
        </Button>
-      <Card className="shadow-lg border">
+      <Card className="shadow-lg border group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out">
         <CardHeader>
-          <CardTitle className="text-3xl font-bold text-primary">Colaboración Global</CardTitle>
-          <CardDescription>Conoce cómo trabajamos.</CardDescription>
+          <CardTitle className="text-3xl font-bold text-primary group-hover:text-primary-foreground">Colaboración Global</CardTitle>
+          <CardDescription className="group-hover:text-primary-foreground/90">Conoce cómo trabajamos.</CardDescription>
         </CardHeader>
         <CardContent>
-          <p className="text-lg">
+          <p className="text-lg group-hover:text-primary-foreground/90">
             Nuestra dinámica de colaboración trasciende fronteras y culturas, enriqueciendo cada plan, política, estrategia y proyecto con una paleta de visiones, disciplinas y enfoques que amplían los horizontes de la solución.
           </p>
         </CardContent>

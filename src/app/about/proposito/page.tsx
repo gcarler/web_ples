@@ -19,13 +19,13 @@ export default function PropositoPage() {
            </span>
          </Link>
        </Button>
-      <Card className="shadow-lg border">
+      <Card className="shadow-lg border group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out">
         <CardHeader>
-          <CardTitle className="text-3xl font-bold text-primary">Nuestro Propósito</CardTitle>
-          <CardDescription>Explorando nuestro motor.</CardDescription>
+          <CardTitle className="text-3xl font-bold text-primary group-hover:text-primary-foreground">Nuestro Propósito</CardTitle>
+          <CardDescription className="group-hover:text-primary-foreground/90">Explorando nuestro motor.</CardDescription>
         </CardHeader>
         <CardContent>
-          <p className="text-lg">
+          <p className="text-lg group-hover:text-primary-foreground/90">
             Impulsados por la convicción en el poder transformador de la experiencia inteligente, forjamos puentes sólidos entre los ámbitos público y privado, así como con las comunidades que servimos. Aprovechamos la sabiduría colectiva para abordar los desafíos globales con una estrategia refinada y una visión de sostenibilidad a largo plazo.
           </p>
         </CardContent>

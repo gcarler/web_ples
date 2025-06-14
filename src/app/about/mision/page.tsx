@@ -19,13 +19,13 @@ export default function MisionPage() {
            </span>
          </Link>
        </Button>
-      <Card className="shadow-lg border">
+      <Card className="shadow-lg border group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out">
         <CardHeader>
-          <CardTitle className="text-3xl font-bold text-primary">Nuestra Misión</CardTitle>
-          <CardDescription>Guiando nuestras acciones.</CardDescription>
+          <CardTitle className="text-3xl font-bold text-primary group-hover:text-primary-foreground">Nuestra Misión</CardTitle>
+          <CardDescription className="group-hover:text-primary-foreground/90">Guiando nuestras acciones.</CardDescription>
         </CardHeader>
         <CardContent>
-          <p className="text-lg">
+          <p className="text-lg group-hover:text-primary-foreground/90">
             Consolidar lazos estratégicos entre sectores y comunidades, aplicando nuestra experiencia con discernimiento para afrontar los retos globales de manera sostenible y con visión de futuro.
           </p>
         </CardContent>
