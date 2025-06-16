@@ -1,3 +1,4 @@
+
 // src/app/ples-tic/page.tsx
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -114,16 +115,22 @@ export default function PlesTicPage() {
   ];
 
   return (
-    <div className="py-10 space-y-16">
+    <div className="space-y-16">
       <section className="relative bg-background overflow-hidden">
         <div className="w-full px-4 sm:px-6 lg:px-8 min-h-[calc(70vh)] lg:min-h-0 py-16 sm:py-20 md:py-24 lg:py-32 flex items-center">
           <div className="flex flex-col lg:flex-row items-center w-full gap-12 lg:gap-8">
             {/* Left Visual Part */}
             <div className="w-full lg:w-5/12 flex justify-center items-center relative order-1 lg:order-none">
               <div className="relative w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] md:w-[420px] md:h-[420px] xl:w-[480px] xl:h-[480px]">
-                <div className="absolute -left-[50%] sm:-left-[40%] md:-left-[30%] top-1/2 transform -translate-y-1/2 w-[160%] h-[160%] bg-card rounded-full shadow-2xl"></div>
+                <div
+                  className="absolute -left-[50%] sm:-left-[40%] md:-left-[30%] top-1/2 transform -translate-y-1/2 w-[160%] h-[160%] bg-card rounded-full shadow-2xl"
+                  style={{ clipPath: 'polygon(0% 0%, 0% 100%, 100% 100%, 100% 50%, 50% 50%, 50% 0%)' }}
+                ></div>
                 <div className="absolute inset-0 flex justify-center items-center z-10 p-4">
-                  <div className="bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--ring))] bg-[length:200%_200%] animate-gradient rounded-full w-full h-full shadow-xl flex justify-center items-center">
+                  <div
+                    className="bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--ring))] bg-[length:200%_200%] animate-gradient rounded-full w-full h-full shadow-xl flex justify-center items-center"
+                    style={{ clipPath: 'polygon(0% 0%, 0% 100%, 100% 100%, 100% 50%, 50% 50%, 50% 0%)' }}
+                  >
                     <Cpu className="h-3/5 w-3/5 text-accent" />
                   </div>
                 </div>
