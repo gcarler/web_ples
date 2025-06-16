@@ -50,8 +50,8 @@ export function Header() {
   return (
     // Header background can be full-width
     <header className="bg-card text-card-foreground">
-      {/* Nav content is centered and max-width */}
-      <nav className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-wrap justify-between items-center">
+      {/* Nav content will now respect only padding, not max-width or centering */}
+      <nav className="w-full px-4 sm:px-6 lg:px-8 py-4 flex flex-wrap justify-between items-center">
         <Link href="/" className="mb-4 sm:mb-0">
           <div
             className="logo-container font-comfortaa text-2xl font-bold text-foreground"
