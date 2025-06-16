@@ -101,7 +101,7 @@ export default function PlesCatastroPage() {
           <Home className="h-20 w-20 text-primary mx-auto mb-6" />
           <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-6">PLES Catastro</h1>
           <p className="text-lg md:text-xl text-foreground mb-8 max-w-3xl mx-auto">
-            Transformamos la gestión del territorio con soluciones catastrales innovadoras, promoviendo un desarrollo eficiente, equitativo y sostenible. Aplicamos <strong className="text-primary">el uso inteligente de la experiencia</strong> y tecnología de vanguardia para ofrecer resultados precisos, reducir tiempos y costos, y generar productos de la más alta calidad.
+            Innovación en gestión territorial para un desarrollo eficiente y sostenible. Con el uso inteligente de la experiencia y tecnología de vanguardia, ofrecemos precisión, optimizamos costos y garantizamos la más alta calidad.
           </p>
           <div className="flex flex-wrap justify-center gap-2 mb-10">
             <Badge variant="default" className="text-md px-4 py-2 shadow-md">#CatastroMultifinalitario</Badge>
@@ -353,3 +353,4 @@ export default function PlesCatastroPage() {
     </div>
   );
 }
+
