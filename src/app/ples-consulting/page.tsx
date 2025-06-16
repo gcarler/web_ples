@@ -68,25 +68,43 @@ export default function PlesConsultingPage() {
 
   return (
     <div className="py-10 space-y-16">
-      <section className="relative py-20 md:py-28 bg-card shadow-xl">
-        <div className="w-full px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <Briefcase className="h-20 w-20 text-primary mx-auto mb-6" />
-          <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-6">PLES Consulting</h1>
-          <p className="text-lg md:text-xl text-foreground mb-8 max-w-3xl mx-auto">
-            Aliados estratégicos para la innovación y la transformación. Colaboramos con organizaciones para diseñar e implementar soluciones que generan un impacto positivo y duradero.
-          </p>
-           <div className="flex flex-wrap justify-center gap-2 mb-10">
-            <Badge variant="default" className="text-md px-4 py-2 shadow-md">#EstrategiaOrganizacional</Badge>
-            <Badge variant="default" className="text-md px-4 py-2 shadow-md">#InnovacionConProposito</Badge>
-            <Badge variant="default" className="text-md px-4 py-2 shadow-md">#DesarrolloSostenible</Badge>
+      <section className="relative bg-background overflow-hidden">
+        <div className="w-full px-4 sm:px-6 lg:px-8 min-h-[calc(70vh)] lg:min-h-0 py-16 sm:py-20 md:py-24 lg:py-32 flex items-center">
+          <div className="flex flex-col lg:flex-row items-center w-full gap-12 lg:gap-8">
+            {/* Left Visual Part */}
+            <div className="w-full lg:w-5/12 flex justify-center items-center relative order-1 lg:order-none">
+              <div className="relative w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] md:w-[420px] md:h-[420px] xl:w-[480px] xl:h-[480px]">
+                <div className="absolute -left-[50%] sm:-left-[40%] md:-left-[30%] top-1/2 transform -translate-y-1/2 w-[160%] h-[160%] bg-card rounded-full shadow-2xl"></div>
+                <div className="absolute inset-0 flex justify-center items-center z-10 p-4">
+                  <div className="bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--ring))] bg-[length:200%_200%] animate-gradient rounded-full w-full h-full shadow-xl flex justify-center items-center">
+                    <Briefcase className="h-3/5 w-3/5 text-primary-foreground opacity-80" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Text Part */}
+            <div className="w-full lg:w-7/12 text-center lg:text-left relative z-20 order-2 lg:order-none">
+              <h1 className="text-4xl sm:text-5xl xl:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-6">
+                PLES Consulting
+              </h1>
+              <p className="text-lg sm:text-xl text-foreground mb-8 max-w-2xl mx-auto lg:mx-0">
+                Aliados estratégicos para la innovación y la transformación. Colaboramos con organizaciones para diseñar e implementar soluciones que generan un impacto positivo y duradero.
+              </p>
+              <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-10">
+                <Badge variant="default" className="text-md px-4 py-2 shadow-md">#EstrategiaOrganizacional</Badge>
+                <Badge variant="default" className="text-md px-4 py-2 shadow-md">#InnovacionConProposito</Badge>
+                <Badge variant="default" className="text-md px-4 py-2 shadow-md">#DesarrolloSostenible</Badge>
+              </div>
+              <Button size="lg" className="text-lg px-8 py-3" asChild>
+                <Link href="/forms?service=ples-consulting&subject=Consulta%20PLES%20Consulting">
+                  <span className="flex items-center">
+                    Conversemos Sobre sus Desafíos <ArrowRight className="ml-2 h-5 w-5" />
+                  </span>
+                </Link>
+              </Button>
+            </div>
           </div>
-          <Button size="lg" className="text-lg px-8 py-3" asChild>
-            <Link href="/forms?service=ples-consulting&subject=Consulta%20PLES%20Consulting">
-              <span className="flex items-center">
-                Conversemos Sobre sus Desafíos <ArrowRight className="ml-2 h-5 w-5" />
-              </span>
-            </Link>
-          </Button>
         </div>
       </section>
 
