@@ -68,9 +68,9 @@ export default function PlesCatastroPage() {
   ];
 
   const impactFigures = [
-    { figure: "+30%", label: "Precisión en Levantamientos", icon: <Target className="h-8 w-8 text-primary group-hover:text-primary-foreground"/>, dataAiHint: "target accuracy" },
-    { figure: "25%", label: "Reducción en Tiempos de Trámite", icon: <FileText className="h-8 w-8 text-primary group-hover:text-primary-foreground"/>, dataAiHint: "document efficiency" },
-    { figure: "150+", label: "Municipios Asesorados", icon: <Briefcase className="h-8 w-8 text-primary group-hover:text-primary-foreground"/>, dataAiHint: "government briefcase" },
+    { figure: "+30%", label: "Precisión en Levantamientos", icon: <Target className="h-10 w-10 text-primary group-hover:text-primary-foreground"/>, dataAiHint: "target accuracy" },
+    { figure: "25%", label: "Reducción en Tiempos de Trámite", icon: <FileText className="h-10 w-10 text-primary group-hover:text-primary-foreground"/>, dataAiHint: "document efficiency" },
+    { figure: "150+", label: "Municipios Asesorados", icon: <Briefcase className="h-10 w-10 text-primary group-hover:text-primary-foreground"/>, dataAiHint: "government briefcase" },
   ];
 
   const caseStudies = [
@@ -96,30 +96,48 @@ export default function PlesCatastroPage() {
 
   return (
     <div className="space-y-16"> {/* Global spacing for sections */}
-      <section className="relative py-20 md:py-28 bg-background text-center">
-        <div className="container mx-auto relative z-10 px-4 sm:px-6 lg:px-8">
-          <Home className="h-20 w-20 text-primary mx-auto mb-6" />
-          <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-6">PLES Catastro</h1>
-          <p className="text-lg md:text-xl text-foreground mb-8 max-w-3xl mx-auto">
-            Innovación en gestión territorial para un desarrollo eficiente y sostenible. Con el uso inteligente de la experiencia y tecnología de vanguardia, ofrecemos precisión, optimizamos costos y garantizamos la más alta calidad.
-          </p>
-          <div className="flex flex-wrap justify-center gap-2 mb-10">
-            <Badge variant="default" className="text-md px-4 py-2 shadow-md">#CatastroMultifinalitario</Badge>
-            <Badge variant="default" className="text-md px-4 py-2 shadow-md">#OrdenamientoTerritorial</Badge>
-            <Badge variant="default" className="text-md px-4 py-2 shadow-md">#AdministracionDeTierras</Badge>
+      <section className="relative bg-background overflow-hidden">
+        <div className="container mx-auto min-h-[calc(70vh)] lg:min-h-0 px-4 py-16 sm:py-20 md:py-24 lg:py-32 flex items-center">
+          <div className="flex flex-col lg:flex-row items-center w-full gap-12 lg:gap-8">
+            {/* Left Visual Part */}
+            <div className="w-full lg:w-5/12 flex justify-center items-center relative order-1 lg:order-none">
+              <div className="relative w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] md:w-[420px] md:h-[420px] xl:w-[480px] xl:h-[480px]">
+                <div className="absolute -left-[50%] sm:-left-[40%] md:-left-[30%] top-1/2 transform -translate-y-1/2 w-[160%] h-[160%] bg-card rounded-full shadow-2xl"></div>
+                <div className="absolute inset-0 flex justify-center items-center z-10 p-4">
+                  <div className="bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--ring))] bg-[length:200%_200%] animate-gradient rounded-full w-full h-full shadow-xl flex justify-center items-center">
+                    <Home className="h-3/5 w-3/5 text-primary-foreground opacity-80" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Text Part */}
+            <div className="w-full lg:w-7/12 text-center lg:text-left relative z-20 order-2 lg:order-none">
+              <h1 className="text-4xl sm:text-5xl xl:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-6">
+                PLES Catastro
+              </h1>
+              <p className="text-lg sm:text-xl text-foreground mb-8 max-w-2xl mx-auto lg:mx-0">
+                Innovación en gestión territorial para un desarrollo eficiente y sostenible. Con el uso inteligente de la experiencia y tecnología de vanguardia, ofrecemos precisión, optimizamos costos y garantizamos la más alta calidad.
+              </p>
+              <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-10">
+                <Badge variant="default" className="text-md px-4 py-2 shadow-md">#CatastroMultifinalitario</Badge>
+                <Badge variant="default" className="text-md px-4 py-2 shadow-md">#OrdenamientoTerritorial</Badge>
+                <Badge variant="default" className="text-md px-4 py-2 shadow-md">#AdministracionDeTierras</Badge>
+              </div>
+              <Button size="lg" className="text-lg px-8 py-3" asChild>
+                <Link href="/forms?service=ples-catastro&subject=Consulta%20PLES%20Catastro">
+                  <span className="flex items-center">
+                    Descubra Nuestras Soluciones <ArrowRight className="ml-2 h-5 w-5" />
+                  </span>
+                </Link>
+              </Button>
+            </div>
           </div>
-          <Button size="lg" className="text-lg px-8 py-3" asChild>
-            <Link href="/forms?service=ples-catastro&subject=Consulta%20PLES%20Catastro">
-              <span className="flex items-center">
-                Descubra Nuestras Soluciones <ArrowRight className="ml-2 h-5 w-5" />
-              </span>
-            </Link>
-          </Button>
         </div>
       </section>
 
       <section className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-center mb-12">Nuestra Propuesta de Valor</h2>
+        <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestra Propuesta de Valor</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {valuePropositions.map((vp) => (
             <Card key={vp.title} className="text-center group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out transform flex flex-col">
@@ -135,9 +153,9 @@ export default function PlesCatastroPage() {
         </div>
       </section>
 
-      <section className="py-12 bg-background"> {/* Changed from bg-secondary */}
+      <section className="py-12 bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center mb-12">Servicios Catastrales Estratégicos</h2>
+            <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Servicios Catastrales Estratégicos</h2>
             <div className="grid md:grid-cols-2 gap-8">
             {coreServices.map((service) => (
               <Link key={service.title} href={service.link} passHref legacyBehavior>
@@ -176,11 +194,11 @@ export default function PlesCatastroPage() {
       </section>
 
       <section className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-center mb-4">Nuestros Enfoques Integrales</h2>
+        <h2 className="text-3xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestros Enfoques Integrales</h2>
         <p className="text-muted-foreground text-center max-w-3xl mx-auto mb-12">
           Combinamos rigor científico, innovación tecnológica y un profundo entendimiento del marco jurídico y social para ofrecer soluciones catastrales completas y efectivas. Creemos en <strong className="text-primary">el uso inteligente de la experiencia</strong> para optimizar procesos, reducir costos y entregar productos de la más alta calidad.
         </p>
-        <Tabs defaultValue="tecnologico" className="w-full"> {/* Removed max-w-5xl mx-auto */}
+        <Tabs defaultValue="tecnologico" className="w-full">
           <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 mb-8 h-auto">
             <TabsTrigger value="tecnologico" className="py-3 text-base">Innovación Tecnológica</TabsTrigger>
             <TabsTrigger value="juridico" className="py-3 text-base">Fortalecimiento Jurídico</TabsTrigger>
@@ -264,9 +282,9 @@ export default function PlesCatastroPage() {
         </Tabs>
       </section>
 
-       <section className="py-12 bg-background"> {/* Consistent background */}
+       <section className="py-12 bg-background">
         <div className="container mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-16">Impacto en Cifras (Simulado)</h2>
+          <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1 mb-16">Impacto en Cifras</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12">
             {impactFigures.map((figure) => (
               <Card key={figure.label} className="p-6 group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col items-center">
@@ -281,7 +299,7 @@ export default function PlesCatastroPage() {
 
       <section className="py-12 bg-card rounded-lg shadow-xl">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">Casos de Estudio Aplicados</h2>
+          <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Casos de Estudio Aplicados</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {caseStudies.map((study) => (
               <Card key={study.title} className="overflow-hidden group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col">
@@ -320,9 +338,9 @@ export default function PlesCatastroPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-background"> {/* Consistent background */}
+      <section className="py-16 bg-background">
         <div className="container mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold mb-4">Tecnologías y Herramientas de Vanguardia</h2>
+          <h2 className="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Tecnologías y Herramientas de Vanguardia</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto mb-10">
             Combinamos conocimiento experto con las herramientas más avanzadas para ofrecer resultados superiores en cada proyecto catastral, asegurando la eficiencia y la calidad de los productos finales.
           </p>
@@ -355,4 +373,3 @@ export default function PlesCatastroPage() {
     </div>
   );
 }
-
