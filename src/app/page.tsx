@@ -39,7 +39,7 @@ export default function Home() {
     <div className="space-y-0">
       {/* New Hero Section with Rotating Text */}
       <section className="relative bg-background overflow-hidden">
-        <div className="w-full max-w-screen-xl mx-auto min-h-[calc(80vh)] lg:min-h-0 px-4 py-16 sm:py-20 md:py-24 lg:py-32 flex items-center">
+        <div className="w-full max-w-screen-xl mx-auto min-h-[calc(80vh)] lg:min-h-0 px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24 lg:py-32 flex items-center">
           <div className="flex flex-col lg:flex-row items-center w-full gap-8">
             {/* Left Visual Part */}
             <div className="w-full lg:w-5/12 flex justify-center items-center relative order-1 lg:order-none">
@@ -92,7 +92,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative py-16 bg-card rounded-lg shadow-lg overflow-hidden">
+      <section className="relative py-16 bg-card shadow-lg overflow-hidden"> {/* Removed rounded-lg */}
         <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
            <div className="grid md:grid-cols-2 gap-8 items-center pt-8">
              <div>
@@ -156,7 +156,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-16 bg-secondary rounded-lg">
+      <section className="py-16 bg-secondary"> {/* Removed rounded-lg */}
          <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-center mb-10">Nuestro Público Objetivo</h2>
             <div className="grid md:grid-cols-3 gap-8">
@@ -203,7 +203,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative py-24 rounded-lg overflow-hidden bg-background">
+      <section className="relative py-24 overflow-hidden bg-background"> {/* Removed rounded-lg */}
         <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h2 className="text-3xl font-bold mb-4 text-primary">¿Listo para Transformar su Organización?</h2>
           <p className="text-lg text-foreground mb-8 max-w-2xl mx-auto">

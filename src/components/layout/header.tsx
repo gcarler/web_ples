@@ -48,12 +48,11 @@ export function Header() {
   };
 
   return (
-    <header className="bg-card text-card-foreground rounded-lg">
-      <nav className="container mx-auto px-4 py-4 flex flex-wrap justify-between items-center">
+    <header className="bg-card text-card-foreground"> {/* Removed rounded-lg */}
+      <nav className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-wrap justify-between items-center"> {/* Changed container */}
         <Link href="/" className="mb-4 sm:mb-0">
           <div
             className="logo-container font-comfortaa text-2xl font-bold text-foreground"
-            // Removed style={{ textShadow: '1px 1px 3px rgba(0, 0, 0, 0.1)' }}
           >
             <span
               className={cn(
@@ -69,8 +68,8 @@ export function Header() {
                 style={{
                   width: '0.31em',
                   height: '0.31em',
-                  top: '0.42em', // Ajustado para mover el punto hacia arriba
-                  left: '0.36em', // Ajustado para mover el punto hacia la derecha
+                  top: '0.42em', 
+                  left: '0.36em', 
                   background: 'radial-gradient(circle at 30% 30%, #29c6ff, #00AEEF 70%, #008fbf)',
                   boxShadow: 'inset 0 0 5px rgba(255, 255, 255, 0.4), 0 2px 4px rgba(0, 0, 0, 0.2)',
                   animationDelay: '0.2s',

@@ -2,17 +2,13 @@
 import Link from 'next/link';
 import { Facebook, Twitter, Instagram } from 'lucide-react';
 import { cn } from '@/lib/utils';
-// PlesGroupLogo import is removed as we are removing the logo from footer entirely for now.
 
 export function Footer() {
   return (
     <footer className="relative bg-muted text-muted-foreground pt-12 pb-8 mt-16 overflow-hidden">
-      <div className="container mx-auto px-4">
+      <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8"> {/* Changed container */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
-          {/* Column 1: Logo at the top, Descriptive Text at the bottom */}
           <div className="flex flex-col justify-between h-full">
-            {/* Logo container is removed */}
-            {/* Descriptive Text at the bottom */}
             <div className="pt-4 pb-10">
               <p className="text-lg text-muted-foreground">
                 Somos{' '}
@@ -32,7 +28,6 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Quick Links */}
           <div className="space-y-4 z-10">
             <h3 className="text-lg font-semibold text-foreground">Enlaces Rápidos</h3>
             <ul className="space-y-2 text-sm">
@@ -74,7 +69,6 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Contact & Social */}
           <div className="space-y-4 z-10">
             <h3 className="text-lg font-semibold text-foreground">Contacto</h3>
             <p className="text-sm">
@@ -100,14 +94,11 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Copyright - Centered */}
         <div className="text-center text-sm relative z-20 mt-8">
           <p>&copy; {new Date().getFullYear()} PLES. Todos los derechos reservados.</p>
           <p className="mt-1">PLES: Fusionando ciencia, tecnología e innovación en estrategias para un impacto trascendente y sostenible.</p>
         </div>
       </div>
-
-      {/* Decorative Circles - REMOVED */}
     </footer>
   );
 }
