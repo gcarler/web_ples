@@ -9,7 +9,7 @@ import { Badge } from '@/components/ui/badge';
 
 export const metadata = {
   title: 'PLES Catastro - Soluciones Innovadoras para la Gestión Territorial',
-  description: 'Transformamos la gestión del territorio con catastro multifinalitario, ordenamiento territorial avanzado y administración de tierras moderna para un desarrollo sostenible, equitativo y eficiente.',
+  description: 'Innovación en gestión territorial para un desarrollo eficiente y sostenible. Con el uso inteligente de la experiencia y tecnología de vanguardia, ofrecemos precisión, optimizamos costos y garantizamos la más alta calidad.',
 };
 
 export default function PlesCatastroPage() {
@@ -95,9 +95,9 @@ export default function PlesCatastroPage() {
   const technologies = ['SIG (QGIS, ArcGIS Pro)', 'GPS y Estaciones Totales de Alta Precisión', 'Drones y Fotogrametría Aérea', 'Bases de Datos Espaciales (PostGIS)', 'Modelos de Avalúo Automatizado (AVM)', 'Plataformas Web GIS', 'Inteligencia Artificial Geoespacial'];
 
   return (
-    <div className="space-y-16"> {/* Global spacing for sections */}
+    <div className="py-10 space-y-16"> {/* Removed horizontal padding */}
       <section className="relative bg-background overflow-hidden">
-        <div className="container mx-auto min-h-[calc(70vh)] lg:min-h-0 px-4 py-16 sm:py-20 md:py-24 lg:py-32 flex items-center">
+        <div className="w-full max-w-screen-xl mx-auto min-h-[calc(70vh)] lg:min-h-0 px-4 py-16 sm:py-20 md:py-24 lg:py-32 flex items-center">
           <div className="flex flex-col lg:flex-row items-center w-full gap-12 lg:gap-8">
             {/* Left Visual Part */}
             <div className="w-full lg:w-5/12 flex justify-center items-center relative order-1 lg:order-none">
@@ -136,25 +136,27 @@ export default function PlesCatastroPage() {
         </div>
       </section>
 
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestra Propuesta de Valor</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {valuePropositions.map((vp) => (
-            <Card key={vp.title} className="text-center group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out transform flex flex-col">
-              <CardHeader className="items-center">
-                {vp.icon}
-                <CardTitle className="mt-2 text-xl group-hover:text-primary-foreground">{vp.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <p className="text-muted-foreground group-hover:text-primary-foreground/90">{vp.description}</p>
-              </CardContent>
-            </Card>
-          ))}
+      <section>
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestra Propuesta de Valor</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {valuePropositions.map((vp) => (
+              <Card key={vp.title} className="text-center group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out transform flex flex-col">
+                <CardHeader className="items-center">
+                  {vp.icon}
+                  <CardTitle className="mt-2 text-xl group-hover:text-primary-foreground">{vp.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="flex-grow">
+                  <p className="text-muted-foreground group-hover:text-primary-foreground/90">{vp.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
 
       <section className="py-12 bg-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Servicios Catastrales Estratégicos</h2>
             <div className="grid md:grid-cols-2 gap-8">
             {coreServices.map((service) => (
@@ -193,97 +195,99 @@ export default function PlesCatastroPage() {
         </div>
       </section>
 
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestros Enfoques Integrales</h2>
-        <p className="text-muted-foreground text-center max-w-3xl mx-auto mb-12">
-          Combinamos rigor científico, innovación tecnológica y un profundo entendimiento del marco jurídico y social para ofrecer soluciones catastrales completas y efectivas. Creemos en <strong className="text-primary">el uso inteligente de la experiencia</strong> para optimizar procesos, reducir costos y entregar productos de la más alta calidad.
-        </p>
-        <Tabs defaultValue="tecnologico" className="w-full">
-          <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 mb-8 h-auto">
-            <TabsTrigger value="tecnologico" className="py-3 text-base">Innovación Tecnológica</TabsTrigger>
-            <TabsTrigger value="juridico" className="py-3 text-base">Fortalecimiento Jurídico</TabsTrigger>
-            <TabsTrigger value="social" className="py-3 text-base">Participación Social</TabsTrigger>
-          </TabsList>
-          <TabsContent value="tecnologico">
-            <Card className="shadow-lg border-primary border-2 group hover:shadow-2xl hover:bg-gradient-to-b hover:from-primary/5 hover:to-accent/5 transition-all duration-300 ease-in-out">
-              <CardHeader>
-                <div className="flex items-center gap-3 mb-2">
-                  <Settings className="h-8 w-8 text-primary group-hover:text-accent"/>
-                  <CardTitle className="text-2xl group-hover:text-primary">Tecnología al Servicio del Territorio</CardTitle>
-                </div>
-                <CardDescription className="group-hover:text-foreground">Utilizamos herramientas de vanguardia para garantizar la precisión, eficiencia y accesibilidad de la información catastral.</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-start space-x-3 p-3 bg-background rounded-md group-hover:bg-card/30">
-                  <Layers className="h-6 w-6 text-primary group-hover:text-accent mt-1 shrink-0" />
-                  <p><strong className="text-foreground group-hover:text-foreground">Sistemas de Información Geográfica (SIG):</strong> Implementación de plataformas robustas y escalables para análisis espacial y gestión de datos.</p>
-                </div>
-                <div className="flex items-start space-x-3 p-3 bg-background rounded-md group-hover:bg-card/30">
-                  <Database className="h-6 w-6 text-primary group-hover:text-accent mt-1 shrink-0" />
-                  <p><strong className="text-foreground group-hover:text-foreground">Tecnologías de Captura Avanzada:</strong> Uso de drones, GPS de alta precisión y software especializado para levantamientos y modelado 3D.</p>
-                </div>
-                <div className="flex items-start space-x-3 p-3 bg-background rounded-md group-hover:bg-card/30">
-                  <Lightbulb className="h-6 w-6 text-primary group-hover:text-accent mt-1 shrink-0" />
-                  <p><strong className="text-foreground group-hover:text-foreground">Automatización e IA Geoespacial:</strong> Digitalización de procesos y aplicación de inteligencia artificial para una gestión catastral moderna, eficiente y que reduce tiempos operativos.</p>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-          <TabsContent value="juridico">
-            <Card className="shadow-lg border-primary border-2 group hover:shadow-2xl hover:bg-gradient-to-b hover:from-primary/5 hover:to-accent/5 transition-all duration-300 ease-in-out">
-              <CardHeader>
-                <div className="flex items-center gap-3 mb-2">
-                  <Scale className="h-8 w-8 text-primary group-hover:text-accent"/>
-                  <CardTitle className="text-2xl group-hover:text-primary">Marco Legal Sólido y Actualizado</CardTitle>
-                </div>
-                <CardDescription className="group-hover:text-foreground">Asesoramos en la adecuación de marcos legales y normativos para un catastro moderno, funcional y que brinde seguridad jurídica, aplicando nuestra experiencia para optimizar los procesos.</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                 <div className="flex items-start space-x-3 p-3 bg-background rounded-md group-hover:bg-card/30">
-                  <FileText className="h-6 w-6 text-primary group-hover:text-accent mt-1 shrink-0" />
-                  <p><strong className="text-foreground group-hover:text-foreground">Análisis y Propuestas Normativas:</strong> Mejora de la legislación catastral y de ordenamiento territorial, con base en las mejores prácticas y la experiencia acumulada.</p>
-                </div>
-                <div className="flex items-start space-x-3 p-3 bg-background rounded-md group-hover:bg-card/30">
-                  <ShieldCheck className="h-6 w-6 text-primary group-hover:text-accent mt-1 shrink-0" />
-                  <p><strong className="text-foreground group-hover:text-foreground">Formalización y Regularización Predial:</strong> Acompañamiento en la titulación y saneamiento de la tenencia de la tierra, agilizando trámites y asegurando la calidad jurídica.</p>
-                </div>
-                <div className="flex items-start space-x-3 p-3 bg-background rounded-md group-hover:bg-card/30">
-                  <Briefcase className="h-6 w-6 text-primary group-hover:text-accent mt-1 shrink-0" />
-                  <p><strong className="text-foreground group-hover:text-foreground">Procedimientos Transparentes y Eficientes:</strong> Desarrollo de manuales y protocolos para una gestión catastral clara, auditable y que reduce la burocracia.</p>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-          <TabsContent value="social">
-            <Card className="shadow-lg border-primary border-2 group hover:shadow-2xl hover:bg-gradient-to-b hover:from-primary/5 hover:to-accent/5 transition-all duration-300 ease-in-out">
-              <CardHeader>
-                <div className="flex items-center gap-3 mb-2">
-                  <Users className="h-8 w-8 text-primary group-hover:text-accent"/>
-                  <CardTitle className="text-2xl group-hover:text-primary">Catastro con Enfoque Humano</CardTitle>
-                </div>
-                <CardDescription className="group-hover:text-foreground">Involucramos a la comunidad y actores clave para asegurar la aceptación, sostenibilidad y equidad de los proyectos catastrales, construyendo sobre la experiencia local.</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-start space-x-3 p-3 bg-background rounded-md group-hover:bg-card/30">
-                  <Users className="h-6 w-6 text-primary group-hover:text-accent mt-1 shrink-0" />
-                  <p><strong className="text-foreground group-hover:text-foreground">Catastro Participativo:</strong> Metodologías de inclusión y socialización de proyectos con las comunidades locales, generando confianza y apropiación.</p>
-                </div>
-                <div className="flex items-start space-x-3 p-3 bg-background rounded-md group-hover:bg-card/30">
-                  <Lightbulb className="h-6 w-6 text-primary group-hover:text-accent mt-1 shrink-0" />
-                  <p><strong className="text-foreground group-hover:text-foreground">Fortalecimiento de Capacidades:</strong> Capacitación y transferencia de conocimiento técnico y metodológico a equipos locales y ciudadanos.</p>
-                </div>
-                <div className="flex items-start space-x-3 p-3 bg-background rounded-md group-hover:bg-card/30">
-                  <Search className="h-6 w-6 text-primary group-hover:text-accent mt-1 shrink-0" />
-                  <p><strong className="text-foreground group-hover:text-foreground">Comunicación Estratégica y Transparente:</strong> Diseño de campañas para informar y educar sobre la importancia y beneficios del catastro, asegurando la claridad y accesibilidad de la información.</p>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-        </Tabs>
+      <section>
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestros Enfoques Integrales</h2>
+          <p className="text-muted-foreground text-center max-w-3xl mx-auto mb-12">
+            Combinamos rigor científico, innovación tecnológica y un profundo entendimiento del marco jurídico y social para ofrecer soluciones catastrales completas y efectivas. Creemos en <strong className="text-primary">el uso inteligente de la experiencia</strong> para optimizar procesos, reducir costos y entregar productos de la más alta calidad.
+          </p>
+          <Tabs defaultValue="tecnologico" className="w-full"> {/* Tabs is already w-full */}
+            <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 mb-8 h-auto">
+              <TabsTrigger value="tecnologico" className="py-3 text-base">Innovación Tecnológica</TabsTrigger>
+              <TabsTrigger value="juridico" className="py-3 text-base">Fortalecimiento Jurídico</TabsTrigger>
+              <TabsTrigger value="social" className="py-3 text-base">Participación Social</TabsTrigger>
+            </TabsList>
+            <TabsContent value="tecnologico">
+              <Card className="shadow-lg border-primary border-2 group hover:shadow-2xl hover:bg-gradient-to-b hover:from-primary/5 hover:to-accent/5 transition-all duration-300 ease-in-out">
+                <CardHeader>
+                  <div className="flex items-center gap-3 mb-2">
+                    <Settings className="h-8 w-8 text-primary group-hover:text-accent"/>
+                    <CardTitle className="text-2xl group-hover:text-primary">Tecnología al Servicio del Territorio</CardTitle>
+                  </div>
+                  <CardDescription className="group-hover:text-foreground">Utilizamos herramientas de vanguardia para garantizar la precisión, eficiencia y accesibilidad de la información catastral.</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="flex items-start space-x-3 p-3 bg-background rounded-md group-hover:bg-card/30">
+                    <Layers className="h-6 w-6 text-primary group-hover:text-accent mt-1 shrink-0" />
+                    <p><strong className="text-foreground group-hover:text-foreground">Sistemas de Información Geográfica (SIG):</strong> Implementación de plataformas robustas y escalables para análisis espacial y gestión de datos.</p>
+                  </div>
+                  <div className="flex items-start space-x-3 p-3 bg-background rounded-md group-hover:bg-card/30">
+                    <Database className="h-6 w-6 text-primary group-hover:text-accent mt-1 shrink-0" />
+                    <p><strong className="text-foreground group-hover:text-foreground">Tecnologías de Captura Avanzada:</strong> Uso de drones, GPS de alta precisión y software especializado para levantamientos y modelado 3D.</p>
+                  </div>
+                  <div className="flex items-start space-x-3 p-3 bg-background rounded-md group-hover:bg-card/30">
+                    <Lightbulb className="h-6 w-6 text-primary group-hover:text-accent mt-1 shrink-0" />
+                    <p><strong className="text-foreground group-hover:text-foreground">Automatización e IA Geoespacial:</strong> Digitalización de procesos y aplicación de inteligencia artificial para una gestión catastral moderna, eficiente y que reduce tiempos operativos.</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+            <TabsContent value="juridico">
+              <Card className="shadow-lg border-primary border-2 group hover:shadow-2xl hover:bg-gradient-to-b hover:from-primary/5 hover:to-accent/5 transition-all duration-300 ease-in-out">
+                <CardHeader>
+                  <div className="flex items-center gap-3 mb-2">
+                    <Scale className="h-8 w-8 text-primary group-hover:text-accent"/>
+                    <CardTitle className="text-2xl group-hover:text-primary">Marco Legal Sólido y Actualizado</CardTitle>
+                  </div>
+                  <CardDescription className="group-hover:text-foreground">Asesoramos en la adecuación de marcos legales y normativos para un catastro moderno, funcional y que brinde seguridad jurídica, aplicando nuestra experiencia para optimizar los procesos.</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                   <div className="flex items-start space-x-3 p-3 bg-background rounded-md group-hover:bg-card/30">
+                    <FileText className="h-6 w-6 text-primary group-hover:text-accent mt-1 shrink-0" />
+                    <p><strong className="text-foreground group-hover:text-foreground">Análisis y Propuestas Normativas:</strong> Mejora de la legislación catastral y de ordenamiento territorial, con base en las mejores prácticas y la experiencia acumulada.</p>
+                  </div>
+                  <div className="flex items-start space-x-3 p-3 bg-background rounded-md group-hover:bg-card/30">
+                    <ShieldCheck className="h-6 w-6 text-primary group-hover:text-accent mt-1 shrink-0" />
+                    <p><strong className="text-foreground group-hover:text-foreground">Formalización y Regularización Predial:</strong> Acompañamiento en la titulación y saneamiento de la tenencia de la tierra, agilizando trámites y asegurando la calidad jurídica.</p>
+                  </div>
+                  <div className="flex items-start space-x-3 p-3 bg-background rounded-md group-hover:bg-card/30">
+                    <Briefcase className="h-6 w-6 text-primary group-hover:text-accent mt-1 shrink-0" />
+                    <p><strong className="text-foreground group-hover:text-foreground">Procedimientos Transparentes y Eficientes:</strong> Desarrollo de manuales y protocolos para una gestión catastral clara, auditable y que reduce la burocracia.</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+            <TabsContent value="social">
+              <Card className="shadow-lg border-primary border-2 group hover:shadow-2xl hover:bg-gradient-to-b hover:from-primary/5 hover:to-accent/5 transition-all duration-300 ease-in-out">
+                <CardHeader>
+                  <div className="flex items-center gap-3 mb-2">
+                    <Users className="h-8 w-8 text-primary group-hover:text-accent"/>
+                    <CardTitle className="text-2xl group-hover:text-primary">Catastro con Enfoque Humano</CardTitle>
+                  </div>
+                  <CardDescription className="group-hover:text-foreground">Involucramos a la comunidad y actores clave para asegurar la aceptación, sostenibilidad y equidad de los proyectos catastrales, construyendo sobre la experiencia local.</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="flex items-start space-x-3 p-3 bg-background rounded-md group-hover:bg-card/30">
+                    <Users className="h-6 w-6 text-primary group-hover:text-accent mt-1 shrink-0" />
+                    <p><strong className="text-foreground group-hover:text-foreground">Catastro Participativo:</strong> Metodologías de inclusión y socialización de proyectos con las comunidades locales, generando confianza y apropiación.</p>
+                  </div>
+                  <div className="flex items-start space-x-3 p-3 bg-background rounded-md group-hover:bg-card/30">
+                    <Lightbulb className="h-6 w-6 text-primary group-hover:text-accent mt-1 shrink-0" />
+                    <p><strong className="text-foreground group-hover:text-foreground">Fortalecimiento de Capacidades:</strong> Capacitación y transferencia de conocimiento técnico y metodológico a equipos locales y ciudadanos.</p>
+                  </div>
+                  <div className="flex items-start space-x-3 p-3 bg-background rounded-md group-hover:bg-card/30">
+                    <Search className="h-6 w-6 text-primary group-hover:text-accent mt-1 shrink-0" />
+                    <p><strong className="text-foreground group-hover:text-foreground">Comunicación Estratégica y Transparente:</strong> Diseño de campañas para informar y educar sobre la importancia y beneficios del catastro, asegurando la claridad y accesibilidad de la información.</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </Tabs>
+        </div>
       </section>
 
        <section className="py-12 bg-background">
-        <div className="container mx-auto text-center px-4 sm:px-6 lg:px-8">
+        <div className="w-full max-w-screen-xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1 mb-16">Impacto en Cifras</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12">
             {impactFigures.map((figure) => (
@@ -297,8 +301,8 @@ export default function PlesCatastroPage() {
         </div>
       </section>
 
-      <section className="py-12 bg-card rounded-lg shadow-xl">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 bg-card rounded-lg shadow-xl"> {/* This section uses bg-card, rounded-lg might be ok if body is bg-background */}
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Casos de Estudio Aplicados</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {caseStudies.map((study) => (
@@ -339,7 +343,7 @@ export default function PlesCatastroPage() {
       </section>
 
       <section className="py-16 bg-background">
-        <div className="container mx-auto text-center px-4 sm:px-6 lg:px-8">
+        <div className="w-full max-w-screen-xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Tecnologías y Herramientas de Vanguardia</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto mb-10">
             Combinamos conocimiento experto con las herramientas más avanzadas para ofrecer resultados superiores en cada proyecto catastral, asegurando la eficiencia y la calidad de los productos finales.
@@ -354,8 +358,8 @@ export default function PlesCatastroPage() {
         </div>
       </section>
 
-      <section className="text-center py-20 bg-primary text-primary-foreground rounded-lg shadow-inner">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="text-center py-20 bg-primary text-primary-foreground"> {/* Removed rounded-lg shadow-inner */}
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
             <FileText className="h-16 w-16 mx-auto mb-6 opacity-80" />
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Transforme la Gestión de su Territorio con PLES Catastro</h2>
             <p className="text-lg md:text-xl mb-10 max-w-3xl mx-auto opacity-90">
