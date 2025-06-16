@@ -18,8 +18,8 @@ export default async function CrmAdminPage() {
   const contacts = await getContacts();
 
   return (
-    // Added padding for content spacing in full-width design
-    <div className="py-10 space-y-6 px-4 sm:px-6 lg:px-8">
+    // Removed horizontal padding (px-4 sm:px-6 lg:px-8) to rely on AdminLayout's SidebarInset padding
+    <div className="py-10 space-y-6">
       <div className="flex justify-between items-center">
         <div>
             <h1 className="text-3xl font-bold tracking-tight">CRM Contacts</h1>
