@@ -95,9 +95,9 @@ export default function PlesCatastroPage() {
   const technologies = ['SIG (QGIS, ArcGIS Pro)', 'GPS y Estaciones Totales de Alta Precisión', 'Drones y Fotogrametría Aérea', 'Bases de Datos Espaciales (PostGIS)', 'Modelos de Avalúo Automatizado (AVM)', 'Plataformas Web GIS', 'Inteligencia Artificial Geoespacial'];
 
   return (
-    <div className="py-10 space-y-16"> {/* Removed horizontal padding */}
+    <div className="py-10 space-y-16">
       <section className="relative bg-background overflow-hidden">
-        <div className="w-full max-w-screen-xl mx-auto min-h-[calc(70vh)] lg:min-h-0 px-4 py-16 sm:py-20 md:py-24 lg:py-32 flex items-center">
+        <div className="w-full px-4 sm:px-6 lg:px-8 min-h-[calc(70vh)] lg:min-h-0 py-16 sm:py-20 md:py-24 lg:py-32 flex items-center">
           <div className="flex flex-col lg:flex-row items-center w-full gap-12 lg:gap-8">
             {/* Left Visual Part */}
             <div className="w-full lg:w-5/12 flex justify-center items-center relative order-1 lg:order-none">
@@ -137,7 +137,7 @@ export default function PlesCatastroPage() {
       </section>
 
       <section>
-        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestra Propuesta de Valor</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {valuePropositions.map((vp) => (
@@ -156,7 +156,7 @@ export default function PlesCatastroPage() {
       </section>
 
       <section className="py-12 bg-background">
-        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Servicios Catastrales Estratégicos</h2>
             <div className="grid md:grid-cols-2 gap-8">
             {coreServices.map((service) => (
@@ -196,12 +196,12 @@ export default function PlesCatastroPage() {
       </section>
 
       <section>
-        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestros Enfoques Integrales</h2>
           <p className="text-muted-foreground text-center max-w-3xl mx-auto mb-12">
             Combinamos rigor científico, innovación tecnológica y un profundo entendimiento del marco jurídico y social para ofrecer soluciones catastrales completas y efectivas. Creemos en <strong className="text-primary">el uso inteligente de la experiencia</strong> para optimizar procesos, reducir costos y entregar productos de la más alta calidad.
           </p>
-          <Tabs defaultValue="tecnologico" className="w-full"> {/* Tabs is already w-full */}
+          <Tabs defaultValue="tecnologico" className="w-full">
             <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 mb-8 h-auto">
               <TabsTrigger value="tecnologico" className="py-3 text-base">Innovación Tecnológica</TabsTrigger>
               <TabsTrigger value="juridico" className="py-3 text-base">Fortalecimiento Jurídico</TabsTrigger>
@@ -287,7 +287,7 @@ export default function PlesCatastroPage() {
       </section>
 
        <section className="py-12 bg-background">
-        <div className="w-full max-w-screen-xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1 mb-16">Impacto en Cifras</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12">
             {impactFigures.map((figure) => (
@@ -301,8 +301,8 @@ export default function PlesCatastroPage() {
         </div>
       </section>
 
-      <section className="py-12 bg-card rounded-lg shadow-xl"> {/* This section uses bg-card, rounded-lg might be ok if body is bg-background */}
-        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 bg-card shadow-xl">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Casos de Estudio Aplicados</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {caseStudies.map((study) => (
@@ -343,7 +343,7 @@ export default function PlesCatastroPage() {
       </section>
 
       <section className="py-16 bg-background">
-        <div className="w-full max-w-screen-xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Tecnologías y Herramientas de Vanguardia</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto mb-10">
             Combinamos conocimiento experto con las herramientas más avanzadas para ofrecer resultados superiores en cada proyecto catastral, asegurando la eficiencia y la calidad de los productos finales.
@@ -358,8 +358,8 @@ export default function PlesCatastroPage() {
         </div>
       </section>
 
-      <section className="text-center py-20 bg-primary text-primary-foreground"> {/* Removed rounded-lg shadow-inner */}
-        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="text-center py-20 bg-primary text-primary-foreground">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
             <FileText className="h-16 w-16 mx-auto mb-6 opacity-80" />
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Transforme la Gestión de su Territorio con PLES Catastro</h2>
             <p className="text-lg md:text-xl mb-10 max-w-3xl mx-auto opacity-90">

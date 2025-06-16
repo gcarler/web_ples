@@ -25,7 +25,7 @@ const serviceDetails = {
 export default function AvaluosPage() {
   return (
     <div className="py-10">
-      <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
         <Button variant="outline" size="sm" asChild className="mb-8">
           <Link href="/ples-catastro">
             <ArrowLeft className="mr-2 h-4 w-4" />

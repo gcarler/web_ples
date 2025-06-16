@@ -44,7 +44,7 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="w-full max-w-screen-xl mx-auto py-10 px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12">
+    <div className="w-full py-10 px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12">
 
       <section className="space-y-6">
         <h1 className="text-4xl font-bold mb-6 text-primary">Sobre Nosotros</h1>

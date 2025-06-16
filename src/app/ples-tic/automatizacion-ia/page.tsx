@@ -124,7 +124,7 @@ export default function AiAutomationPage() {
 
       {/* Hero Section */}
       <section className="w-full py-20 md:py-32 lg:py-40 bg-background text-center relative overflow-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 z-10 relative">
+        <div className="w-full px-4 sm:px-6 lg:px-8 z-10 relative">
           <Brain className="h-24 w-24 md:h-32 md:w-32 text-primary mx-auto mb-8" />
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-6">
             Automatización con IA Confiable
@@ -148,7 +148,7 @@ export default function AiAutomationPage() {
 
       {/* Sección 2: La IA Requiere Experiencia (Problema/Solución) */}
       <section className="w-full py-16 md:py-24 bg-muted">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <Card className="shadow-xl border-2 border-primary/20 bg-card max-w-4xl mx-auto">
             <CardHeader className="text-center p-8 md:p-12">
               <CardTitle className="text-3xl md:text-4xl font-bold text-primary mb-4">La IA Requiere Experiencia.</CardTitle>
@@ -167,7 +167,7 @@ export default function AiAutomationPage() {
 
       {/* Sección 3: Descubre el Potencial */}
       <section className="w-full py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Descubre el Potencial de la Automatización con IA</h2>
           <p className="text-lg text-muted-foreground text-center max-w-2xl mx-auto mb-16">
             Implementamos soluciones inteligentes que resuelven desafíos reales y generan valor medible en diversas áreas de tu negocio.
@@ -186,7 +186,7 @@ export default function AiAutomationPage() {
 
       {/* Sección 4: La Experiencia PLES */}
       <section className="w-full py-16 md:py-24 bg-muted">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">La Experiencia PLES: Tu Camino Seguro hacia la IA</h2>
           <p className="text-lg text-muted-foreground text-center max-w-2xl mx-auto mb-16">
             Combinamos conocimiento experto con una metodología probada para asegurar que cada proyecto de IA sea un éxito.
@@ -205,7 +205,7 @@ export default function AiAutomationPage() {
 
       {/* Sección 5: Casos de Éxito */}
       <section className="w-full py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Empresas que ya Transformaron su Operación con PLES</h2>
           <p className="text-lg text-muted-foreground text-center max-w-2xl mx-auto mb-16">
             Vea cómo hemos ayudado a organizaciones como la suya a alcanzar nuevos niveles de eficiencia e innovación.
@@ -240,7 +240,7 @@ export default function AiAutomationPage() {
 
       {/* Sección 6: CTA Final */}
       <section className="w-full py-20 md:py-32 bg-gradient-to-r from-primary to-accent text-primary-foreground">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
           <MessageSquare className="h-20 w-20 mx-auto mb-8 opacity-90" />
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Comienza Tu Transformación con IA</h2>
           <p className="text-lg md:text-xl mb-12 max-w-3xl mx-auto opacity-90">

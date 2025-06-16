@@ -51,7 +51,7 @@ export default function CiberseguridadPage() {
 
   return (
     <div className="py-10 space-y-16">
-      <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
         <Button variant="outline" size="sm" asChild className="mb-8">
           <Link href="/ples-tic">
             <ArrowLeft className="mr-2 h-4 w-4" />
@@ -60,8 +60,8 @@ export default function CiberseguridadPage() {
         </Button>
       </div>
 
-      <section className="relative py-20 md:py-28 bg-card shadow-xl rounded-lg overflow-hidden">
-        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <section className="relative py-20 md:py-28 bg-card shadow-xl">
+        <div className="w-full px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <ShieldCheck className="h-20 w-20 text-primary mx-auto mb-6" />
           <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-6">
             Ciberseguridad Avanzada
@@ -80,7 +80,7 @@ export default function CiberseguridadPage() {
       </section>
 
       <section className="py-12">
-        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestros Servicios de Ciberseguridad</h2>
           <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
             Un enfoque de 360 grados para la protección de su infraestructura, datos y aplicaciones.
@@ -101,8 +101,8 @@ export default function CiberseguridadPage() {
         </div>
       </section>
 
-      <section className="py-12 bg-secondary rounded-lg">
-        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 bg-secondary">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">¿Por Qué Confiar su Ciberseguridad a PLES TIC?</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {benefits.map((benefit) => (
@@ -120,8 +120,8 @@ export default function CiberseguridadPage() {
         </div>
       </section>
       
-      <section className="py-12 bg-card rounded-lg shadow-xl">
-        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="py-12 bg-card shadow-xl">
+        <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Marcos de Referencia y Herramientas</h2>
            <p className="text-muted-foreground max-w-2xl mx-auto mb-6">
             Nos basamos en estándares internacionales y utilizamos tecnología de punta para ofrecerle la mejor protección.
@@ -145,8 +145,8 @@ export default function CiberseguridadPage() {
         </div>
       </section>
 
-      <section className="text-center py-20 bg-primary text-primary-foreground rounded-lg shadow-inner">
-        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="text-center py-20 bg-primary text-primary-foreground">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <ShieldAlert className="h-16 w-16 mx-auto mb-6 opacity-80" />
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Proteja su Futuro Digital</h2>
           <p className="text-lg md:text-xl mb-10 max-w-3xl mx-auto opacity-90">

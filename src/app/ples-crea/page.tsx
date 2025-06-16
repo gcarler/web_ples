@@ -66,8 +66,8 @@ export default function PlesCreaPage() {
 
   return (
     <div className="py-10 space-y-16">
-      <section className="relative py-20 md:py-28 rounded-lg overflow-hidden bg-card shadow-xl">
-        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <section className="relative py-20 md:py-28 bg-card shadow-xl">
+        <div className="w-full px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <Map className="h-20 w-20 text-primary mx-auto mb-6" />
           <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-6">PLES CREA</h1>
           <p className="text-lg md:text-xl text-foreground mb-8 max-w-3xl mx-auto">
@@ -89,7 +89,7 @@ export default function PlesCreaPage() {
       </section>
 
       <section>
-        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestros Servicios Destacados</h2>
             <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
                 Soluciones geoespaciales innovadoras para abordar los desafíos ambientales y sociales más apremiantes.
@@ -110,8 +110,8 @@ export default function PlesCreaPage() {
         </div>
       </section>
 
-      <section className="py-12 bg-secondary rounded-lg">
-        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="py-12 bg-secondary">
+        <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Beneficios de Trabajar con PLES CREA</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {benefits.map((benefit) => (
@@ -126,7 +126,7 @@ export default function PlesCreaPage() {
       </section>
 
       <section>
-        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Proyectos que Inspiran: Casos de Estudio</h2>
             <div className="grid md:grid-cols-2 gap-8">
             {caseStudies.map((study) => (
@@ -166,8 +166,8 @@ export default function PlesCreaPage() {
         </div>
       </section>
 
-      <section className="py-12 bg-card rounded-lg shadow-xl">
-        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="py-12 bg-card shadow-xl">
+        <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Tecnologías que Potencian Nuestras Soluciones</h2>
            <p className="text-muted-foreground max-w-2xl mx-auto mb-10">
             Dominamos un amplio espectro de herramientas geoespaciales y de análisis de datos para ofrecer resultados precisos y visualizaciones impactantes.
@@ -180,8 +180,8 @@ export default function PlesCreaPage() {
         </div>
       </section>
 
-      <section className="py-12 bg-secondary rounded-lg">
-        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
+      <section className="py-12 bg-secondary">
+        <div className="w-full px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Preguntas Frecuentes (FAQ)</h2>
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
@@ -212,8 +212,8 @@ export default function PlesCreaPage() {
         </div>
       </section>
 
-      <section className="text-center py-20 bg-primary text-primary-foreground rounded-lg shadow-inner">
-        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="text-center py-20 bg-primary text-primary-foreground">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
             <HelpCircle className="h-16 w-16 mx-auto mb-6 opacity-80" />
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Descubra el Poder de la Cartografía Inteligente</h2>
             <p className="text-lg md:text-xl mb-10 max-w-3xl mx-auto opacity-90">
