@@ -36,9 +36,12 @@ const heroStatements: HeroStatement[] = [
 
 export default function Home() {
   return (
+    // This root div does not restrict width.
     <div className="space-y-0">
       {/* New Hero Section with Rotating Text */}
+      {/* Section background can be full-width */}
       <section className="relative bg-background overflow-hidden">
+        {/* Content within section is centered and max-width */}
         <div className="w-full max-w-screen-xl mx-auto min-h-[calc(80vh)] lg:min-h-0 px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24 lg:py-32 flex items-center">
           <div className="flex flex-col lg:flex-row items-center w-full gap-8">
             {/* Left Visual Part */}
@@ -65,8 +68,10 @@ export default function Home() {
       </section>
 
       {/* "EL USO INTELIGENTE DE LA EXPERIENCIA" Section */}
-      <section className="text-center py-20 md:py-28 bg-background">
-        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Section background can be full-width */}
+      <section className="py-20 md:py-28 bg-background">
+        {/* Content within section is centered and max-width */}
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-16">
             EL USO INTELIGENTE DE LA EXPERIENCIA
           </h1>
@@ -92,7 +97,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative py-16 bg-card shadow-lg overflow-hidden"> {/* Removed rounded-lg */}
+      {/* Section background can be full-width */}
+      <section className="relative py-16 bg-card shadow-lg overflow-hidden">
+        {/* Content within section is centered and max-width */}
         <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
            <div className="grid md:grid-cols-2 gap-8 items-center pt-8">
              <div>
@@ -123,7 +130,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Section background can be full-width */}
       <section className="py-16 bg-background" id="nuestras-marcas">
+        {/* Content within section is centered and max-width */}
         <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-center mb-10">Nuestras Marcas</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -156,7 +165,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-16 bg-secondary"> {/* Removed rounded-lg */}
+      {/* Section background can be full-width */}
+      <section className="py-16 bg-secondary">
+        {/* Content within section is centered and max-width */}
          <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-center mb-10">Nuestro Público Objetivo</h2>
             <div className="grid md:grid-cols-3 gap-8">
@@ -203,7 +214,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative py-24 overflow-hidden bg-background"> {/* Removed rounded-lg */}
+      {/* Section background can be full-width */}
+      <section className="relative py-24 overflow-hidden bg-background">
+        {/* Content within section is centered and max-width */}
         <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h2 className="text-3xl font-bold mb-4 text-primary">¿Listo para Transformar su Organización?</h2>
           <p className="text-lg text-foreground mb-8 max-w-2xl mx-auto">
@@ -219,7 +232,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Section background can be full-width */}
       <section className="py-16 bg-background">
+        {/* Content within section is centered and max-width */}
          <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-center mb-10">Testimonios</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

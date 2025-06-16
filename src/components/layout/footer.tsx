@@ -5,8 +5,10 @@ import { cn } from '@/lib/utils';
 
 export function Footer() {
   return (
+    // Footer background can be full-width
     <footer className="relative bg-muted text-muted-foreground pt-12 pb-8 mt-16 overflow-hidden">
-      <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8"> {/* Changed container */}
+      {/* Footer content is centered and max-width */}
+      <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
           <div className="flex flex-col justify-between h-full">
             <div className="pt-4 pb-10">

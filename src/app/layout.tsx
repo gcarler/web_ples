@@ -19,7 +19,7 @@ export default function RootLayout({
 }: PropsWithChildren) {
   return (
     <html lang="en" suppressHydrationWarning> {/* Add suppressHydrationWarning for next-themes */}
-      <body className="min-h-screen flex flex-col antialiased">
+      <body className="min-h-screen flex flex-col antialiased bg-background text-foreground">
         <ThemeProvider
             attribute="class"
             defaultTheme="system"
@@ -28,8 +28,8 @@ export default function RootLayout({
         >
           <AuthProvider> {/* Wrap content with AuthProvider */}
             <Header />
-            {/* Removed container mx-auto and padding to allow child pages/layouts to control width */}
-            <main className="flex-grow">{children}</main>
+            {/* main tag should allow children to dictate their own width and padding strategy */}
+            <main className="flex-grow w-full">{children}</main>
             <Footer />
             <Toaster />
           </AuthProvider>
