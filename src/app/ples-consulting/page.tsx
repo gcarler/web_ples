@@ -67,9 +67,9 @@ export default function PlesConsultingPage() {
   ];
 
   return (
-    <div className="py-10 space-y-16 px-4 sm:px-6 lg:px-8">
+    <div className="py-10 space-y-16">
       <section className="relative py-20 md:py-28 rounded-lg overflow-hidden bg-card shadow-xl">
-        <div className="container mx-auto text-center relative z-10">
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <Briefcase className="h-20 w-20 text-primary mx-auto mb-6" />
           <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-6">PLES Consulting</h1>
           <p className="text-lg md:text-xl text-foreground mb-8 max-w-3xl mx-auto">
@@ -91,41 +91,43 @@ export default function PlesConsultingPage() {
       </section>
 
       <section>
-        <h2 className="text-3xl font-bold text-center mb-4">Nuestras Áreas de Expertise</h2>
-        <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
-            Desde la planificación estratégica hasta la transformación digital, ofrecemos un abanico de servicios diseñados para potenciar el crecimiento y la eficiencia de su organización.
-        </p>
-        <div className="grid md:grid-cols-2 gap-8">
-          {expertiseAreas.map((area) => (
-            <Card 
-              key={area.title} 
-              className="group bg-card hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-[1.02] border-2 border-transparent hover:border-primary/50 overflow-hidden hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground"
-            >
-              <CardHeader className="flex flex-row items-start gap-4">
-                {area.icon}
-                <div>
-                  <CardTitle className="text-xl text-foreground group-hover:text-primary-foreground transition-colors duration-300">{area.title}</CardTitle>
-                  <CardDescription className="mt-1 text-muted-foreground group-hover:text-primary-foreground/90 transition-colors duration-300">{area.description}</CardDescription>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm">
-                  {area.details.map(detail => (
-                    <li key={detail} className="flex items-center">
-                      <CheckCircle className="h-4 w-4 text-green-500 group-hover:text-green-300 transition-colors duration-300 mr-2 shrink-0" />
-                      <span className="text-muted-foreground group-hover:text-primary-foreground/90 transition-colors duration-300">{detail}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestras Áreas de Expertise</h2>
+            <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
+                Desde la planificación estratégica hasta la transformación digital, ofrecemos un abanico de servicios diseñados para potenciar el crecimiento y la eficiencia de su organización.
+            </p>
+            <div className="grid md:grid-cols-2 gap-8">
+            {expertiseAreas.map((area) => (
+                <Card 
+                key={area.title} 
+                className="group bg-card hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-[1.02] border-2 border-transparent hover:border-primary/50 overflow-hidden hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground"
+                >
+                <CardHeader className="flex flex-row items-start gap-4">
+                    {area.icon}
+                    <div>
+                    <CardTitle className="text-xl text-foreground group-hover:text-primary-foreground transition-colors duration-300">{area.title}</CardTitle>
+                    <CardDescription className="mt-1 text-muted-foreground group-hover:text-primary-foreground/90 transition-colors duration-300">{area.description}</CardDescription>
+                    </div>
+                </CardHeader>
+                <CardContent>
+                    <ul className="space-y-2 text-sm">
+                    {area.details.map(detail => (
+                        <li key={detail} className="flex items-center">
+                        <CheckCircle className="h-4 w-4 text-green-500 group-hover:text-green-300 transition-colors duration-300 mr-2 shrink-0" />
+                        <span className="text-muted-foreground group-hover:text-primary-foreground/90 transition-colors duration-300">{detail}</span>
+                        </li>
+                    ))}
+                    </ul>
+                </CardContent>
+                </Card>
+            ))}
+            </div>
         </div>
       </section>
 
       <section className="py-12 bg-secondary rounded-lg">
-        <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-10">Nuestro Valor Diferencial</h2>
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestro Valor Diferencial</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {differentiators.map((item) => (
               <Card key={item.title} className="bg-card group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out">
@@ -143,8 +145,8 @@ export default function PlesConsultingPage() {
       </section>
       
       <section className="py-12">
-        <div className="container mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-4">Cómo Trabajamos: Nuestro Proceso Colaborativo</h2>
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Cómo Trabajamos: Nuestro Proceso Colaborativo</h2>
             <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
                 Creemos en un enfoque participativo y adaptado a sus necesidades, asegurando soluciones pertinentes y sostenibles.
             </p>
@@ -165,8 +167,8 @@ export default function PlesConsultingPage() {
       </section>
 
       <section className="py-12 bg-card rounded-lg shadow-xl">
-        <div className="container mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">Metodologías y Herramientas que Potencian el Éxito</h2>
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Metodologías y Herramientas que Potencian el Éxito</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto mb-10">
             Aplicamos un conjunto diverso de metodologías probadas y herramientas innovadoras para abordar sus desafíos desde múltiples perspectivas y asegurar resultados de alto impacto.
           </p>
@@ -179,7 +181,7 @@ export default function PlesConsultingPage() {
       </section>
 
       <section className="text-center py-20 bg-primary text-primary-foreground rounded-lg shadow-inner">
-        <div className="container mx-auto">
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
             <MessageSquare className="h-16 w-16 mx-auto mb-6 opacity-80" />
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Impulsemos Juntos la Próxima Etapa de su Organización</h2>
             <p className="text-lg md:text-xl mb-10 max-w-3xl mx-auto opacity-90">

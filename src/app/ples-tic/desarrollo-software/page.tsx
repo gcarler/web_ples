@@ -49,16 +49,18 @@ export default function DesarrolloSoftwarePage() {
   const technologies = ['React', 'Next.js', 'Node.js', 'Python (Django/Flask)', 'Java', '.NET', 'Swift', 'Kotlin', 'Docker', 'Kubernetes', 'SQL & NoSQL DBs'];
 
   return (
-    <div className="py-10 space-y-16 px-4 sm:px-6 lg:px-8">
-      <Button variant="outline" size="sm" asChild className="mb-8">
-        <Link href="/ples-tic">
-          <ArrowLeft className="mr-2 h-4 w-4" />
-          Volver a PLES TIC
-        </Link>
-      </Button>
+    <div className="py-10 space-y-16">
+      <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Button variant="outline" size="sm" asChild className="mb-8">
+          <Link href="/ples-tic">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Volver a PLES TIC
+          </Link>
+        </Button>
+      </div>
 
       <section className="relative py-20 md:py-28 bg-card shadow-xl rounded-lg overflow-hidden">
-        <div className="container mx-auto text-center relative z-10">
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <Code className="h-20 w-20 text-primary mx-auto mb-6" />
           <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-6">
             Desarrollo de Software a Medida
@@ -77,8 +79,8 @@ export default function DesarrolloSoftwarePage() {
       </section>
 
       <section className="py-12">
-        <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-4">Tipos de Software que Desarrollamos</h2>
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Tipos de Software que Desarrollamos</h2>
           <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
             Desde aplicaciones web interactivas hasta complejos sistemas empresariales, tenemos la experiencia para materializar su visión.
           </p>
@@ -99,8 +101,8 @@ export default function DesarrolloSoftwarePage() {
       </section>
 
       <section className="py-12 bg-secondary rounded-lg">
-        <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Beneficios de un Desarrollo a Medida</h2>
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Beneficios de un Desarrollo a Medida</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {benefits.map((benefit) => (
               <Card key={benefit.title} className="bg-card p-6 group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out">
@@ -118,8 +120,8 @@ export default function DesarrolloSoftwarePage() {
       </section>
       
       <section className="py-12 bg-card rounded-lg shadow-xl">
-        <div className="container mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">Tecnologías y Frameworks</h2>
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Tecnologías y Frameworks</h2>
            <p className="text-muted-foreground max-w-2xl mx-auto mb-10">
             Utilizamos un stack tecnológico moderno y probado para construir aplicaciones robustas, seguras y de alto rendimiento.
           </p>
@@ -132,7 +134,7 @@ export default function DesarrolloSoftwarePage() {
       </section>
 
       <section className="text-center py-20 bg-primary text-primary-foreground rounded-lg shadow-inner">
-        <div className="container mx-auto">
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <MessageSquare className="h-16 w-16 mx-auto mb-6 opacity-80" />
           <h2 className="text-3xl md:text-4xl font-bold mb-4">¿Listo para Construir su Próxima Gran Solución?</h2>
           <p className="text-lg md:text-xl mb-10 max-w-3xl mx-auto opacity-90">

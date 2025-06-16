@@ -2,7 +2,7 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, CheckCircle, Home } from 'lucide-react'; // Changed Landmark to Home
+import { ArrowLeft, ArrowRight, CheckCircle, Home } from 'lucide-react';
 
 export const metadata = {
   title: 'Planes de Ordenamiento Territorial (POT) - PLES Catastro',
@@ -10,7 +10,7 @@ export const metadata = {
 };
 
 const serviceDetails = {
-  icon: <Home className="h-12 w-12 text-primary mb-4" />, // Changed Landmark to Home
+  icon: <Home className="h-12 w-12 text-primary mb-4" />,
   title: 'Planes de Ordenamiento Territorial (POT)',
   description: 'Desarrollamos e implementamos planes estratégicos que guían el crecimiento sostenible y la ocupación eficiente del territorio, promoviendo la equidad.',
   points: [
@@ -24,8 +24,8 @@ const serviceDetails = {
 
 export default function OrdenamientoTerritorialPage() {
   return (
-    <div className="py-10 px-4 sm:px-6 lg:px-8">
-      <div className="container mx-auto">
+    <div className="py-10">
+      <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <Button variant="outline" size="sm" asChild className="mb-8">
           <Link href="/ples-catastro">
             <ArrowLeft className="mr-2 h-4 w-4" />

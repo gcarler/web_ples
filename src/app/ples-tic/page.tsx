@@ -114,9 +114,9 @@ export default function PlesTicPage() {
   ];
 
   return (
-    <div className="py-10 space-y-16 px-4 sm:px-6 lg:px-8">
+    <div className="py-10 space-y-16">
       <section className="relative py-20 md:py-28 rounded-lg overflow-hidden bg-card shadow-xl">
-        <div className="container mx-auto text-center relative z-10">
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <Cpu className="h-20 w-20 text-primary mx-auto mb-6" />
           <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-6">PLES TIC</h1>
           <p className="text-lg md:text-xl text-foreground mb-4 max-w-3xl mx-auto">
@@ -143,28 +143,30 @@ export default function PlesTicPage() {
       </section>
 
       <section>
-        <h2 className="text-3xl font-bold text-center mb-4">¿Por Qué Elegir PLES TIC?</h2>
-        <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
-            Nos enfocamos en resultados tangibles, construyendo alianzas tecnológicas a largo plazo para el éxito de su organización.
-        </p>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {valuePropositions.map((vp) => (
-            <Card key={vp.title} className="text-center group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col">
-              <CardHeader className="items-center">
-                {vp.icon}
-                <CardTitle className="mt-2 text-xl group-hover:text-primary-foreground">{vp.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <p className="text-muted-foreground group-hover:text-primary-foreground/90">{vp.description}</p>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">¿Por Qué Elegir PLES TIC?</h2>
+            <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
+                Nos enfocamos en resultados tangibles, construyendo alianzas tecnológicas a largo plazo para el éxito de su organización.
+            </p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {valuePropositions.map((vp) => (
+                <Card key={vp.title} className="text-center group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col">
+                <CardHeader className="items-center">
+                    {vp.icon}
+                    <CardTitle className="mt-2 text-xl group-hover:text-primary-foreground">{vp.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="flex-grow">
+                    <p className="text-muted-foreground group-hover:text-primary-foreground/90">{vp.description}</p>
+                </CardContent>
+                </Card>
+            ))}
+            </div>
         </div>
       </section>
 
       <section className="py-12 bg-secondary rounded-lg">
-        <div className="container mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">Nuestros Servicios Tecnológicos Clave</h2>
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestros Servicios Tecnológicos Clave</h2>
             <div className="grid md:grid-cols-2 gap-8">
             {coreServices.map((service) => (
               <Link key={service.title} href={service.ctaLink || '#'} passHref legacyBehavior>
@@ -203,24 +205,26 @@ export default function PlesTicPage() {
       </section>
 
       <section>
-        <h2 className="text-3xl font-bold text-center mb-4">Nuestro Enfoque Colaborativo</h2>
-         <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
-            Trabajamos de cerca con usted en cada etapa, desde la idea inicial hasta el soporte continuo, asegurando soluciones que realmente funcionan.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-          {ourApproachSteps.map((step) => (
-            <Card key={step.title} className="text-center p-6 group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col items-center bg-card">
-              {step.icon}
-              <CardTitle className="text-lg mt-2 mb-1 group-hover:text-primary-foreground">{step.title}</CardTitle>
-              <p className="text-xs text-muted-foreground group-hover:text-primary-foreground/90 flex-grow">{step.description}</p>
-            </Card>
-          ))}
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestro Enfoque Colaborativo</h2>
+            <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
+                Trabajamos de cerca con usted en cada etapa, desde la idea inicial hasta el soporte continuo, asegurando soluciones que realmente funcionan.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+            {ourApproachSteps.map((step) => (
+                <Card key={step.title} className="text-center p-6 group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col items-center bg-card">
+                {step.icon}
+                <CardTitle className="text-lg mt-2 mb-1 group-hover:text-primary-foreground">{step.title}</CardTitle>
+                <p className="text-xs text-muted-foreground group-hover:text-primary-foreground/90 flex-grow">{step.description}</p>
+                </Card>
+            ))}
+            </div>
         </div>
       </section>
 
       <section className="py-12 bg-card rounded-lg shadow-xl">
-        <div className="container mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">Tecnologías y Plataformas que Dominamos</h2>
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Tecnologías y Plataformas que Dominamos</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto mb-10">
             Utilizamos un stack tecnológico moderno y flexible para construir soluciones robustas, escalables y seguras, adaptadas a los desafíos de su industria.
           </p>
@@ -235,8 +239,8 @@ export default function PlesTicPage() {
       </section>
 
       <section className="py-12">
-        <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Proyectos Destacados</h2>
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Proyectos Destacados</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {caseStudies.map((study) => (
               <Card key={study.title} className="overflow-hidden group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col bg-card">
@@ -276,7 +280,7 @@ export default function PlesTicPage() {
       </section>
 
       <section className="text-center py-20 bg-primary text-primary-foreground rounded-lg shadow-inner">
-        <div className="container mx-auto">
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
             <Rocket className="h-16 w-16 mx-auto mb-6 opacity-80" />
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Impulse su Negocio con la Tecnología del Mañana</h2>
             <p className="text-lg md:text-xl mb-10 max-w-3xl mx-auto opacity-90">

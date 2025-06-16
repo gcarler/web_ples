@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { ArrowRight, Building, Users, Handshake, Quote, CheckCircle, Database, UsersRound, Globe, Server, HomeIcon, Lightbulb, Layers, Cpu, BookOpen, Send } from 'lucide-react'; // Added BookOpen, Send - Layers, Cpu were already there. Keep HomeIcon as it's used below.
+import { ArrowRight, Building, Users, Handshake, Quote, CheckCircle, Database, UsersRound, Globe, Server, HomeIcon, Lightbulb, Layers, Cpu, BookOpen, Send } from 'lucide-react';
 import { RotatingHeroText, type HeroStatement } from '@/components/layout/rotating-hero-text';
 
 
@@ -15,7 +15,7 @@ const heroStatements: HeroStatement[] = [
     description: "De la idea a la acción: acompañamos gobiernos y empresas a generar impacto real.",
     ctaText: "Empieza hoy",
     ctaLink: "/forms",
-    ctaIconName: "Send", // Pass icon name
+    ctaIconName: "Send",
   },
   {
     title: "Innovación que Impacta, Estrategias que Perduran",
@@ -29,17 +29,17 @@ const heroStatements: HeroStatement[] = [
     description: "Tecnología, datos y estrategia al servicio de tus metas.",
     ctaText: "Explora Servicios",
     ctaLink: "/#nuestras-marcas",
-    ctaIconName: "Layers", // Pass icon name
+    ctaIconName: "Layers",
   },
 ];
 
 
 export default function Home() {
   return (
-    <div className="space-y-0"> {/* Reduced global space-y if sections manage their own padding */}
+    <div className="space-y-0">
       {/* New Hero Section with Rotating Text */}
       <section className="relative bg-background overflow-hidden">
-        <div className="container mx-auto min-h-[calc(80vh)] lg:min-h-0 px-4 py-16 sm:py-20 md:py-24 lg:py-32 flex items-center">
+        <div className="w-full max-w-screen-xl mx-auto min-h-[calc(80vh)] lg:min-h-0 px-4 py-16 sm:py-20 md:py-24 lg:py-32 flex items-center">
           <div className="flex flex-col lg:flex-row items-center w-full gap-8">
             {/* Left Visual Part */}
             <div className="w-full lg:w-5/12 flex justify-center items-center relative order-1 lg:order-none">
@@ -55,10 +55,9 @@ export default function Home() {
             <div className="w-full lg:w-7/12 text-center lg:text-left relative z-20 order-2 lg:order-none">
               <RotatingHeroText
                 statements={heroStatements}
-                className="items-center text-center lg:items-start lg:text-left" // Handles alignment
+                className="items-center text-center lg:items-start lg:text-left"
                 titleClassName="text-4xl sm:text-5xl xl:text-6xl text-foreground mb-6"
                 descriptionClassName="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0"
-                // buttonContainerClassName="" // Use default margin for button
               />
             </div>
           </div>
@@ -66,12 +65,12 @@ export default function Home() {
       </section>
 
       {/* "EL USO INTELIGENTE DE LA EXPERIENCIA" Section */}
-      <section className="text-center py-20 md:py-28 bg-background"> {/* Increased padding */}
-        <div className="container mx-auto px-4">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-16"> {/* Increased bottom margin */}
+      <section className="text-center py-20 md:py-28 bg-background">
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-16">
             EL USO INTELIGENTE DE LA EXPERIENCIA
           </h1>
-          <div className="grid grid-cols-1 sm:grid-cols-3 justify-center items-stretch gap-8 md:gap-12 text-lg text-foreground mb-20"> {/* Changed flex to grid for better wrapping and spacing */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 justify-center items-stretch gap-8 md:gap-12 text-lg text-foreground mb-20">
             {[
               { icon: CheckCircle, text: "+15 proyectos ejecutados", dataAiHint:"projects checkmark" },
               { icon: Database, text: "42 sistemas de información desarrollados", dataAiHint:"database systems" },
@@ -93,9 +92,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Remaining sections from original page.tsx - these can be styled later or removed if not part of the new design */}
       <section className="relative py-16 bg-card rounded-lg shadow-lg overflow-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
            <div className="grid md:grid-cols-2 gap-8 items-center pt-8">
              <div>
               <h2 className="text-3xl font-semibold mb-4 text-primary">Nuestra Misión</h2>
@@ -126,7 +124,7 @@ export default function Home() {
       </section>
 
       <section className="py-16 bg-background" id="nuestras-marcas">
-        <div className="container mx-auto px-4">
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-center mb-10">Nuestras Marcas</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
@@ -159,7 +157,7 @@ export default function Home() {
       </section>
 
       <section className="py-16 bg-secondary rounded-lg">
-         <div className="container mx-auto px-4">
+         <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-center mb-10">Nuestro Público Objetivo</h2>
             <div className="grid md:grid-cols-3 gap-8">
             <Card className="shadow-sm group hover:shadow-xl hover:scale-105 hover:border-primary transition-all duration-300 ease-in-out border">
@@ -206,8 +204,7 @@ export default function Home() {
       </section>
 
       <section className="relative py-24 rounded-lg overflow-hidden bg-background">
-        {/* Background image and overlay removed from here */}
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h2 className="text-3xl font-bold mb-4 text-primary">¿Listo para Transformar su Organización?</h2>
           <p className="text-lg text-foreground mb-8 max-w-2xl mx-auto">
             Contáctenos hoy mismo para descubrir cómo nuestras soluciones pueden ayudarle a alcanzar sus objetivos.
@@ -223,7 +220,7 @@ export default function Home() {
       </section>
 
       <section className="py-16 bg-background">
-         <div className="container mx-auto px-4">
+         <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-center mb-10">Testimonios</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[

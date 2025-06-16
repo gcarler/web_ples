@@ -65,9 +65,9 @@ export default function PlesCreaPage() {
   const technologies = ['SIG (QGIS, ArcGIS Pro, Google Earth Engine)', 'Teledetección (Sentinel, Landsat, Planet)', 'Python (GeoPandas, Rasterio, Scikit-learn)', 'Bases de Datos Espaciales (PostGIS)', 'Plataformas Web GIS (Leaflet, Mapbox GL JS)', 'Inteligencia Artificial Geoespacial', 'Estándares OGC (WMS, WFS, WCS)'];
 
   return (
-    <div className="py-10 space-y-16 px-4 sm:px-6 lg:px-8">
+    <div className="py-10 space-y-16">
       <section className="relative py-20 md:py-28 rounded-lg overflow-hidden bg-card shadow-xl">
-        <div className="container mx-auto text-center relative z-10">
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <Map className="h-20 w-20 text-primary mx-auto mb-6" />
           <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-6">PLES CREA</h1>
           <p className="text-lg md:text-xl text-foreground mb-8 max-w-3xl mx-auto">
@@ -89,28 +89,30 @@ export default function PlesCreaPage() {
       </section>
 
       <section>
-        <h2 className="text-3xl font-bold text-center mb-4">Nuestros Servicios Destacados</h2>
-         <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
-            Soluciones geoespaciales innovadoras para abordar los desafíos ambientales y sociales más apremiantes.
-        </p>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {services.map((service) => (
-            <Card key={service.title} className="text-center group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out transform flex flex-col">
-              <CardHeader className="items-center">
-                {service.icon}
-                <CardTitle className="mt-2 text-xl group-hover:text-primary-foreground">{service.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <p className="text-muted-foreground group-hover:text-primary-foreground/90">{service.description}</p>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestros Servicios Destacados</h2>
+            <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
+                Soluciones geoespaciales innovadoras para abordar los desafíos ambientales y sociales más apremiantes.
+            </p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {services.map((service) => (
+                <Card key={service.title} className="text-center group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out transform flex flex-col">
+                <CardHeader className="items-center">
+                    {service.icon}
+                    <CardTitle className="mt-2 text-xl group-hover:text-primary-foreground">{service.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="flex-grow">
+                    <p className="text-muted-foreground group-hover:text-primary-foreground/90">{service.description}</p>
+                </CardContent>
+                </Card>
+            ))}
+            </div>
         </div>
       </section>
 
       <section className="py-12 bg-secondary rounded-lg">
-        <div className="container mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-12">Beneficios de Trabajar con PLES CREA</h2>
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Beneficios de Trabajar con PLES CREA</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {benefits.map((benefit) => (
               <Card key={benefit.title} className="p-6 group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out text-center">
@@ -124,47 +126,49 @@ export default function PlesCreaPage() {
       </section>
 
       <section>
-        <h2 className="text-3xl font-bold text-center mb-12">Proyectos que Inspiran: Casos de Estudio</h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          {caseStudies.map((study) => (
-            <Card key={study.title} className="overflow-hidden group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col">
-              <div className="relative h-56 w-full">
-                <Image src={study.image} alt={study.title} layout="fill" objectFit="cover" data-ai-hint={study.imageHint} />
-                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-              </div>
-              <CardHeader>
-                <CardTitle className="text-xl group-hover:text-primary-foreground">{study.title}</CardTitle>
-                 <div className="mt-2">
-                    {study.tags.map(tag => <Badge key={tag} variant="secondary" className="mr-2 mb-2 group-hover:bg-primary-foreground/20 group-hover:text-accent-foreground">{tag}</Badge>)}
-                  </div>
-              </CardHeader>
-              <CardContent className="flex-grow space-y-3">
-                 <div>
-                    <p className="font-semibold text-foreground group-hover:text-primary-foreground mb-1">Desafío:</p>
-                    <p className="text-sm text-muted-foreground group-hover:text-primary-foreground/90">{study.challenge}</p>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-foreground group-hover:text-primary-foreground mb-1">Solución PLES CREA:</p>
-                    <p className="text-sm text-muted-foreground group-hover:text-primary-foreground/90">{study.solution}</p>
-                  </div>
-              </CardContent>
-               <div className="p-6 pt-0">
-                    <Button variant="link" asChild className="text-primary group-hover:text-primary-foreground">
-                        <Link href="/forms?subject=Mas%20Informacion%20Caso%20Estudio%20CREA">
-                            <span className="flex items-center">
-                                Conocer Más <ArrowRight className="ml-1 h-4 w-4"/>
-                            </span>
-                        </Link>
-                    </Button>
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Proyectos que Inspiran: Casos de Estudio</h2>
+            <div className="grid md:grid-cols-2 gap-8">
+            {caseStudies.map((study) => (
+                <Card key={study.title} className="overflow-hidden group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col">
+                <div className="relative h-56 w-full">
+                    <Image src={study.image} alt={study.title} layout="fill" objectFit="cover" data-ai-hint={study.imageHint} />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 </div>
-            </Card>
-          ))}
+                <CardHeader>
+                    <CardTitle className="text-xl group-hover:text-primary-foreground">{study.title}</CardTitle>
+                    <div className="mt-2">
+                        {study.tags.map(tag => <Badge key={tag} variant="secondary" className="mr-2 mb-2 group-hover:bg-primary-foreground/20 group-hover:text-accent-foreground">{tag}</Badge>)}
+                    </div>
+                </CardHeader>
+                <CardContent className="flex-grow space-y-3">
+                    <div>
+                        <p className="font-semibold text-foreground group-hover:text-primary-foreground mb-1">Desafío:</p>
+                        <p className="text-sm text-muted-foreground group-hover:text-primary-foreground/90">{study.challenge}</p>
+                    </div>
+                    <div>
+                        <p className="font-semibold text-foreground group-hover:text-primary-foreground mb-1">Solución PLES CREA:</p>
+                        <p className="text-sm text-muted-foreground group-hover:text-primary-foreground/90">{study.solution}</p>
+                    </div>
+                </CardContent>
+                <div className="p-6 pt-0">
+                        <Button variant="link" asChild className="text-primary group-hover:text-primary-foreground">
+                            <Link href="/forms?subject=Mas%20Informacion%20Caso%20Estudio%20CREA">
+                                <span className="flex items-center">
+                                    Conocer Más <ArrowRight className="ml-1 h-4 w-4"/>
+                                </span>
+                            </Link>
+                        </Button>
+                    </div>
+                </Card>
+            ))}
+            </div>
         </div>
       </section>
 
       <section className="py-12 bg-card rounded-lg shadow-xl">
-        <div className="container mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">Tecnologías que Potencian Nuestras Soluciones</h2>
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Tecnologías que Potencian Nuestras Soluciones</h2>
            <p className="text-muted-foreground max-w-2xl mx-auto mb-10">
             Dominamos un amplio espectro de herramientas geoespaciales y de análisis de datos para ofrecer resultados precisos y visualizaciones impactantes.
           </p>
@@ -177,8 +181,8 @@ export default function PlesCreaPage() {
       </section>
 
       <section className="py-12 bg-secondary rounded-lg">
-        <div className="container mx-auto max-w-3xl">
-          <h2 className="text-3xl font-bold text-center mb-8">Preguntas Frecuentes (FAQ)</h2>
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
+          <h2 className="text-3xl font-bold text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Preguntas Frecuentes (FAQ)</h2>
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
               <AccordionTrigger className="text-lg hover:text-primary">¿Qué tipo de datos utilizan para sus análisis?</AccordionTrigger>
@@ -209,7 +213,7 @@ export default function PlesCreaPage() {
       </section>
 
       <section className="text-center py-20 bg-primary text-primary-foreground rounded-lg shadow-inner">
-        <div className="container mx-auto">
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
             <HelpCircle className="h-16 w-16 mx-auto mb-6 opacity-80" />
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Descubra el Poder de la Cartografía Inteligente</h2>
             <p className="text-lg md:text-xl mb-10 max-w-3xl mx-auto opacity-90">

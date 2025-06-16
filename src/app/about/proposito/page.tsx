@@ -11,7 +11,7 @@ export const metadata = {
 
 export default function PropositoPage() {
   return (
-    <div className="container mx-auto py-10 px-4 sm:px-6 lg:px-8">
+    <div className="w-full max-w-screen-xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
        <Button variant="outline" size="sm" asChild className="mb-4">
          <Link href="/about">
            <span className="flex items-center">
