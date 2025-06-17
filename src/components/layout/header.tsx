@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { LogIn, LogOut, LayoutDashboard } from 'lucide-react';
+import { LogIn, LogOut, LayoutDashboard, Menu } from 'lucide-react'; // Added Menu
 import { useAuth } from '@/contexts/AuthContext';
 import { getAuth, signOut } from 'firebase/auth';
 import { app } from '@/lib/firebase/firebase-config';
@@ -18,8 +18,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet"; // Added Sheet components
 import { cn } from '@/lib/utils';
 import { ThemeToggle } from "@/components/theme-toggle";
+import { PlesGroupLogo } from '@/components/logo'; // Import PlesGroupLogo
+import { Separator } from '@/components/ui/separator';
 
 export function Header() {
   const { user, loading } = useAuth();
@@ -47,108 +50,51 @@ export function Header() {
     }
   };
 
+  const navLinks = [
+    { href: "/", label: "Inicio" },
+    { href: "/about", label: "Sobre nosotros" },
+    { href: "/ples-crea", label: "Ples CREA" },
+    { href: "/ples-tic", label: "Ples TIC" },
+    { href: "/ples-catastro", label: "Ples catastro" },
+    { href: "/ples-consulting", label: "Ples consulting" },
+    { href: "/forms", label: "Contáctenos" },
+  ];
+
   return (
-    // Header background can be full-width
-    <header className="bg-card text-card-foreground">
-      {/* Nav content will now respect only padding, not max-width or centering */}
-      <nav className="w-full px-4 sm:px-6 lg:px-8 py-4 flex flex-wrap justify-between items-center">
-        <Link href="/" className="mb-4 sm:mb-0">
-          <div
-            className={cn(
-              "logo-container font-comfortaa text-2xl font-bold text-foreground"
-            )}
-          >
-            <span
-              className={cn(
-                "letra-p-con-punto relative inline-block opacity-0 animate-fade-in-up"
-              )}
-              style={{ animationDelay: '0.6s' }}
-            >
-              p
-              <span
-                className={cn(
-                  "absolute rounded-full opacity-0 animate-expand-in"
-                )}
-                style={{
-                  width: '0.31em',
-                  height: '0.31em',
-                  top: '0.42em',
-                  left: '0.36em',
-                  background: 'hsl(var(--accent))', // Changed to use theme accent color
-                  boxShadow: 'inset 0 0 5px rgba(255, 255, 255, 0.4), 0 2px 4px rgba(0, 0, 0, 0.2)',
-                  animationDelay: '0.2s',
-                }}
-                aria-hidden="true"
-              />
-            </span>
-            <span
-              className={cn("inline-block opacity-0 animate-fade-in-up")}
-              style={{ animationDelay: '0.7s' }}
-            >
-              l
-            </span>
-            <span
-              className={cn("inline-block opacity-0 animate-fade-in-up")}
-              style={{ animationDelay: '0.8s' }}
-            >
-              e
-            </span>
-            <span
-              className={cn("inline-block opacity-0 animate-fade-in-up")}
-              style={{ animationDelay: '0.9s' }}
-            >
-              s
-            </span>
-          </div>
+    // Make header sticky, add z-index and a subtle shadow
+    <header className="bg-card text-card-foreground sticky top-0 z-50 shadow-sm">
+      <nav className="w-full px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+        {/* Logo */}
+        <Link href="/" className="flex-shrink-0">
+          <PlesGroupLogo className="h-7" /> {/* Use PlesGroupLogo, adjust size as needed */}
         </Link>
 
-        <div className="flex items-center gap-2">
-          <ul className="flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-2 items-center justify-center sm:justify-end w-full sm:w-auto mr-2">
-            <li>
-              <Link href="/" className="text-sm font-medium hover:text-primary transition-colors">
-                Inicio
-              </Link>
-            </li>
-            <li>
-              <Link href="/about" className="text-sm font-medium hover:text-primary transition-colors">
-                Sobre nosotros
-              </Link>
-            </li>
-            <li>
-              <Link href="/ples-crea" className="text-sm font-medium hover:text-primary transition-colors">
-                Ples CREA
-              </Link>
-            </li>
-            <li>
-              <Link href="/ples-tic" className="text-sm font-medium hover:text-primary transition-colors">
-                Ples TIC
-              </Link>
-            </li>
-            <li>
-              <Link href="/ples-catastro" className="text-sm font-medium hover:text-primary transition-colors">
-                Ples catastro
-              </Link>
-            </li>
-            <li>
-              <Link href="/ples-consulting" className="text-sm font-medium hover:text-primary transition-colors">
-                Ples consulting
-              </Link>
-            </li>
-            <li>
-              <Link href="/forms" className="text-sm font-medium hover:text-primary transition-colors">
-                Contáctenos
-              </Link>
-            </li>
+        {/* Desktop Navigation & Controls */}
+        <div className="hidden md:flex items-center space-x-6">
+          <ul className="flex items-center space-x-4 lg:space-x-6">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className={cn(
+                    "text-sm font-medium hover:text-primary transition-colors",
+                    pathname === link.href ? "text-primary font-semibold" : "text-foreground/70"
+                  )}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
           </ul>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center space-x-2">
             <ThemeToggle />
             {!loading && (
               user ? (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="outline" size="sm" className="rounded-md">Admin</Button>
+                    <Button variant="ghost" size="sm" className="rounded-md">Admin</Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
+                  <DropdownMenuContent align="end" className="w-56">
                     <DropdownMenuLabel>Admin Panel</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem asChild>
@@ -179,7 +125,101 @@ export function Header() {
             )}
           </div>
         </div>
+
+        {/* Mobile Navigation Trigger & Controls */}
+        <div className="md:hidden flex items-center">
+          {/* Sheet component for mobile menu */}
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <Menu className="h-6 w-6" />
+                <span className="sr-only">Abrir menú</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[280px] p-0 flex flex-col bg-card"> {/* Ensure bg-card for sheet */}
+              <div className="p-4 flex justify-between items-center border-b border-border">
+                <SheetClose asChild>
+                   <Link href="/" className="flex-shrink-0">
+                     <PlesGroupLogo className="h-6" />
+                   </Link>
+                </SheetClose>
+                {/* Optional: Add an explicit close X button if desired */}
+              </div>
+              
+              <div className="flex-grow p-4 space-y-3 overflow-y-auto">
+                <ul className="flex flex-col space-y-1">
+                  {navLinks.map((link) => (
+                    <li key={link.href}>
+                      <SheetClose asChild>
+                        <Link
+                          href={link.href}
+                          className={cn(
+                            "block py-2.5 px-3 rounded-md text-base hover:bg-accent hover:text-accent-foreground transition-colors",
+                            pathname === link.href && "bg-accent text-accent-foreground font-semibold"
+                          )}
+                        >
+                          {link.label}
+                        </Link>
+                      </SheetClose>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+              <Separator />
+              
+              <div className="p-4 space-y-4 mt-auto border-t border-border"> {/* Added border-t */}
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-muted-foreground">Tema</span>
+                  <ThemeToggle />
+                </div>
+                <div className="pt-2">
+                  {!loading && (
+                    user ? (
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button variant="outline" className="w-full justify-start">
+                            <LayoutDashboard className="mr-2 h-4 w-4" /> Admin Panel
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end" sideOffset={5} className="w-56">
+                          <DropdownMenuLabel>Admin Panel</DropdownMenuLabel>
+                          <DropdownMenuSeparator />
+                          <DropdownMenuItem asChild>
+                           <SheetClose asChild>
+                            <Link href="/admin/dashboard">
+                              <span className="flex items-center">
+                                <LayoutDashboard className="mr-2 h-4 w-4" /> Dashboard
+                              </span>
+                            </Link>
+                           </SheetClose>
+                          </DropdownMenuItem>
+                          <DropdownMenuSeparator />
+                          <DropdownMenuItem onClick={handleLogout} className="text-destructive focus:text-destructive focus:bg-destructive/10 cursor-pointer">
+                            <span className="flex items-center">
+                              <LogOut className="mr-2 h-4 w-4" /> Logout
+                            </span>
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    ) : (
+                      <SheetClose asChild>
+                        <Button variant="default" className="w-full" asChild>
+                          <Link href="/login">
+                            <LogIn className="mr-2 h-4 w-4" />
+                            Iniciar sesión
+                          </Link>
+                        </Button>
+                      </SheetClose>
+                    )
+                  )}
+                </div>
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
       </nav>
     </header>
   );
 }
+
