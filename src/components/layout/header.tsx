@@ -54,7 +54,9 @@ export function Header() {
       <nav className="w-full px-4 sm:px-6 lg:px-8 py-4 flex flex-wrap justify-between items-center">
         <Link href="/" className="mb-4 sm:mb-0">
           <div
-            className="logo-container font-comfortaa text-2xl font-bold text-foreground"
+            className={cn(
+              "logo-container font-comfortaa text-2xl font-bold text-foreground"
+            )}
           >
             <span
               className={cn(
@@ -70,9 +72,9 @@ export function Header() {
                 style={{
                   width: '0.31em',
                   height: '0.31em',
-                  top: '0.42em', 
-                  left: '0.36em', 
-                  background: 'radial-gradient(circle at 30% 30%, #29c6ff, #00AEEF 70%, #008fbf)',
+                  top: '0.42em',
+                  left: '0.36em',
+                  background: 'hsl(var(--accent))', // Changed to use theme accent color
                   boxShadow: 'inset 0 0 5px rgba(255, 255, 255, 0.4), 0 2px 4px rgba(0, 0, 0, 0.2)',
                   animationDelay: '0.2s',
                 }}
