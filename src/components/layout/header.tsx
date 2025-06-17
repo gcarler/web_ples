@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { LogIn, LogOut, LayoutDashboard, Menu } from 'lucide-react'; // Added Menu
+import { LogIn, LogOut, LayoutDashboard, Menu, ChevronsLeftRight } from 'lucide-react'; // Added ChevronsLeftRight
 import { useAuth } from '@/contexts/AuthContext';
 import { getAuth, signOut } from 'firebase/auth';
 import { app } from '@/lib/firebase/firebase-config';
@@ -18,11 +18,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet"; // Added Sheet components
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { cn } from '@/lib/utils';
 import { ThemeToggle } from "@/components/theme-toggle";
-import { PlesGroupLogo } from '@/components/logo'; // Import PlesGroupLogo
+import { PlesGroupLogo } from '@/components/logo';
 import { Separator } from '@/components/ui/separator';
+import React from 'react'; // Import React for useState
 
 export function Header() {
   const { user, loading } = useAuth();
@@ -30,6 +31,7 @@ export function Header() {
   const { toast } = useToast();
   const router = useRouter();
   const pathname = usePathname();
+  const [desktopNavVisible, setDesktopNavVisible] = React.useState(true); // State for desktop nav visibility
 
   const handleLogout = async () => {
     try {
@@ -66,27 +68,40 @@ export function Header() {
       <nav className="w-full px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="flex-shrink-0">
-          <PlesGroupLogo className="h-7" /> {/* Use PlesGroupLogo, adjust size as needed */}
+          <PlesGroupLogo className="h-7" />
         </Link>
 
         {/* Desktop Navigation & Controls */}
-        <div className="hidden md:flex items-center space-x-6">
-          <ul className="flex items-center space-x-4 lg:space-x-6">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className={cn(
-                    "text-sm font-medium hover:text-primary transition-colors",
-                    pathname === link.href ? "text-primary font-semibold" : "text-foreground/70"
-                  )}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+        <div className="hidden md:flex items-center space-x-2"> {/* Adjusted overall spacing */}
+          {desktopNavVisible && (
+            <ul className="flex items-center space-x-4 lg:space-x-6">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className={cn(
+                      "text-sm font-medium hover:text-primary transition-colors",
+                      pathname === link.href ? "text-primary font-semibold" : "text-foreground/70"
+                    )}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+          
+          {/* Group for toggle, theme, and login/admin buttons */}
           <div className="flex items-center space-x-2">
+            <Button
+              variant="ghost"
+              size="icon" // Using "icon" size for a compact toggle
+              onClick={() => setDesktopNavVisible(!desktopNavVisible)}
+              aria-label={desktopNavVisible ? "Ocultar navegación" : "Mostrar navegación"}
+              className="rounded-md h-9 w-9" // Ensure consistent button size with ThemeToggle
+            >
+              <ChevronsLeftRight className="h-5 w-5" />
+            </Button>
             <ThemeToggle />
             {!loading && (
               user ? (
@@ -136,14 +151,13 @@ export function Header() {
                 <span className="sr-only">Abrir menú</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[280px] p-0 flex flex-col bg-card"> {/* Ensure bg-card for sheet */}
+            <SheetContent side="right" className="w-[280px] p-0 flex flex-col bg-card">
               <div className="p-4 flex justify-between items-center border-b border-border">
                 <SheetClose asChild>
                    <Link href="/" className="flex-shrink-0">
                      <PlesGroupLogo className="h-6" />
                    </Link>
                 </SheetClose>
-                {/* Optional: Add an explicit close X button if desired */}
               </div>
               
               <div className="flex-grow p-4 space-y-3 overflow-y-auto">
@@ -168,7 +182,7 @@ export function Header() {
               
               <Separator />
               
-              <div className="p-4 space-y-4 mt-auto border-t border-border"> {/* Added border-t */}
+              <div className="p-4 space-y-4 mt-auto border-t border-border">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-muted-foreground">Tema</span>
                   <ThemeToggle />
@@ -222,4 +236,3 @@ export function Header() {
     </header>
   );
 }
-
