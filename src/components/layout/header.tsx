@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { LogIn, LogOut, LayoutDashboard, Menu, ChevronsLeftRight } from 'lucide-react'; // Added ChevronsLeftRight
+import { LogIn, LogOut, LayoutDashboard, Menu } from 'lucide-react'; // Removed ChevronsLeftRight, Menu is already here
 import { useAuth } from '@/contexts/AuthContext';
 import { getAuth, signOut } from 'firebase/auth';
 import { app } from '@/lib/firebase/firebase-config';
@@ -100,7 +100,7 @@ export function Header() {
               aria-label={desktopNavVisible ? "Ocultar navegación" : "Mostrar navegación"}
               className="rounded-md h-9 w-9" // Ensure consistent button size with ThemeToggle
             >
-              <ChevronsLeftRight className="h-5 w-5" />
+              <Menu className="h-5 w-5" /> {/* Changed icon here */}
             </Button>
             <ThemeToggle />
             {!loading && (
