@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { LogIn, LogOut, LayoutDashboard, Menu } from 'lucide-react'; // Removed ChevronsLeftRight, Menu is already here
+import { LogIn, LogOut, LayoutDashboard, Menu } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { getAuth, signOut } from 'firebase/auth';
 import { app } from '@/lib/firebase/firebase-config';
@@ -66,13 +66,15 @@ export function Header() {
     // Make header sticky, add z-index and a subtle shadow
     <header className="bg-card text-card-foreground sticky top-0 z-50 shadow-sm">
       <nav className="w-full px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
-        {/* Logo */}
+        {/* Logo - Commented out */}
+        {/*
         <Link href="/" className="flex-shrink-0">
           <PlesGroupLogo className="h-7" />
         </Link>
+        */}
 
         {/* Desktop Navigation & Controls */}
-        <div className="hidden md:flex items-center space-x-2"> {/* Adjusted overall spacing */}
+        <div className="hidden md:flex items-center space-x-2 flex-grow justify-end"> {/* Added flex-grow and justify-end */}
           {desktopNavVisible && (
             <ul className="flex items-center space-x-4 lg:space-x-6">
               {navLinks.map((link) => (
@@ -100,7 +102,7 @@ export function Header() {
               aria-label={desktopNavVisible ? "Ocultar navegación" : "Mostrar navegación"}
               className="rounded-md h-9 w-9" // Ensure consistent button size with ThemeToggle
             >
-              <Menu className="h-5 w-5" /> {/* Changed icon here */}
+              <Menu className="h-5 w-5" />
             </Button>
             <ThemeToggle />
             {!loading && (
@@ -142,7 +144,7 @@ export function Header() {
         </div>
 
         {/* Mobile Navigation Trigger & Controls */}
-        <div className="md:hidden flex items-center">
+        <div className="md:hidden flex items-center w-full justify-end"> {/* Ensured this also justifies to the end if logo is removed */}
           {/* Sheet component for mobile menu */}
           <Sheet>
             <SheetTrigger asChild>
@@ -154,9 +156,13 @@ export function Header() {
             <SheetContent side="right" className="w-[280px] p-0 flex flex-col bg-card">
               <div className="p-4 flex justify-between items-center border-b border-border">
                 <SheetClose asChild>
+                   {/*
                    <Link href="/" className="flex-shrink-0">
                      <PlesGroupLogo className="h-6" />
                    </Link>
+                   */}
+                   {/* If no logo, maybe a text title or just keep it clean */}
+                   <span className="font-semibold text-lg">PLES</span>
                 </SheetClose>
               </div>
               
