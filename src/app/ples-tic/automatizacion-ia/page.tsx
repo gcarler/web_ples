@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {
-  ArrowRight, ArrowLeft, CheckCircle, Brain, Zap, Bot, FileArchive, Store, Users, MessageSquare, Cpu, Settings
+  ArrowRight, ArrowLeft, CheckCircle, Brain, Zap, Bot, FileArchive, Store, Users, MessageSquare, Cpu, Settings, Search, UsersRound, TrendingUp, FileSearch, ClipboardEdit
 } from 'lucide-react';
 import React from 'react';
 
@@ -61,6 +61,67 @@ const serviceDetails = {
     'Liberación del Talento Humano para Tareas de Mayor Valor Estratégico',
     'Escalabilidad y Adaptabilidad a las Demandas del Mercado',
   ],
+  caseStudiesHeading: 'Estudios de Caso: La Transformación en Acción',
+  caseStudies: [
+    {
+      title: 'Transformación del Soporte al Cliente con IA',
+      icon: <MessageSquare />,
+      sections: [
+        {
+          subtitle: 'El Desafío: Soporte Manual y Lento',
+          description: 'Una empresa de servicios enfrentaba altos volúmenes de consultas, resultando en largos tiempos de espera, costos operativos elevados y baja satisfacción del cliente debido a la dependencia de agentes humanos para todas las interacciones.',
+          points: ['Tiempos de respuesta promedio de más de 15 minutos.', 'Altos costos de personal en el contact center.', 'Inconsistencia en las respuestas proporcionadas.', 'Dificultad para escalar durante picos de demanda.'],
+          sectionIcon: <UsersRound className="h-7 w-7 text-primary" />,
+        },
+        {
+          subtitle: 'La Solución: Plataforma de Soporte Potenciada por IA',
+          description: 'Se implementó un sistema de IA que incluía chatbots para respuestas instantáneas a preguntas frecuentes, análisis de sentimiento para priorizar casos urgentes y enrutamiento inteligente de tickets a los agentes especializados. Los modelos de NLP fueron entrenados con datos históricos para comprender las intenciones del cliente.',
+          points: ['Chatbots con NLP para atención 24/7.', 'Análisis de sentimiento en tiempo real.', 'Enrutamiento inteligente de consultas complejas.', 'Base de conocimiento auto-actualizable para el chatbot.'],
+          sectionIcon: <Bot className="h-7 w-7 text-primary" />,
+        },
+        {
+          subtitle: 'Resultados: Eficiencia y Clientes Satisfechos',
+          description: 'La implementación de IA revolucionó el soporte al cliente, generando un impacto medible y positivo en múltiples frentes.',
+          points: [
+            'Reducción del 60% en el tiempo promedio de respuesta.',
+            'Disminución de los costos operativos del contact center en un 35%.',
+            'Aumento del 25% en los índices de satisfacción del cliente (CSAT).',
+            'Liberación del 40% del tiempo de los agentes para enfocarse en casos complejos y de alto valor.'
+          ],
+          sectionIcon: <TrendingUp className="h-7 w-7 text-primary" />,
+        }
+      ]
+    },
+    {
+      title: 'Optimización del Procesamiento de Facturas con IA',
+      icon: <FileSearch />,
+      sections: [
+        {
+          subtitle: 'El Desafío: Procesamiento Manual de Facturas',
+          description: 'Una compañía gestionaba miles de facturas de proveedores mensualmente, un proceso manual propenso a errores, costoso en tiempo y recursos, y que generaba retrasos en los pagos.',
+          points: ['Promedio de 5-7 minutos para procesar cada factura.', 'Tasa de error del 8% en la entrada de datos.', 'Visibilidad limitada del flujo de caja y pagos pendientes.', 'Altos costos asociados a la mano de obra manual.'],
+          sectionIcon: <ClipboardEdit className="h-7 w-7 text-primary" />,
+        },
+        {
+          subtitle: 'La Solución: Procesamiento Inteligente de Documentos (IDP)',
+          description: 'Se desplegó una solución de IDP con IA que utilizaba OCR (Reconocimiento Óptico de Caracteres) para digitalizar facturas, NLP para entender el contenido y ML para extraer datos clave (proveedor, montos, fechas, ítems) y validarlos contra órdenes de compra.',
+          points: ['Implementación de OCR avanzado para alta precisión.', 'Modelos de Machine Learning para extracción y validación de datos.', 'Integración con el sistema ERP existente.', 'Flujo de aprobación automatizado para facturas validadas.'],
+          sectionIcon: <Cpu className="h-7 w-7 text-primary" />,
+        },
+        {
+          subtitle: 'Resultados: Agilidad Financiera y Reducción de Errores',
+          description: 'La automatización inteligente del procesamiento de facturas optimizó drásticamente las operaciones financieras.',
+          points: [
+            'Reducción del tiempo de procesamiento por factura a menos de 1 minuto.',
+            'Disminución de la tasa de error en la entrada de datos a menos del 1%.',
+            'Mejora del 90% en la velocidad de procesamiento general.',
+            'Ahorro anual estimado de 50,000 USD en costos operativos.'
+          ],
+          sectionIcon: <TrendingUp className="h-7 w-7 text-primary" />,
+        }
+      ]
+    }
+  ],
   ctaText: 'Solicita tu Diagnóstico Gratuito de IA',
   formSubject: 'Diagnostico%20Gratuito%20IA'
 };
@@ -97,7 +158,7 @@ export default function AiAutomationPage() {
               {serviceDetails.keyServices.map((service) => (
                 <Card key={service.title} className="p-6 group transition-all duration-300 ease-in-out hover:shadow-2xl hover:scale-[1.03] hover:border-primary/50 hover:bg-primary/5 dark:hover:bg-accent/5">
                   <div className="flex flex-col items-center text-center md:items-start md:text-left">
-                    {service.icon}
+                    {React.cloneElement(service.icon, { className: "h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" })}
                     <CardTitle className="text-xl font-semibold mb-2 text-foreground group-hover:text-primary transition-colors">{service.title}</CardTitle>
                     <CardContent className="p-0">
                       <p className="text-muted-foreground group-hover:text-foreground/90 transition-colors text-sm">{service.text}</p>
@@ -122,6 +183,47 @@ export default function AiAutomationPage() {
                 </li>
               ))}
             </ul>
+          </section>
+        )}
+
+        {serviceDetails.caseStudies && serviceDetails.caseStudies.length > 0 && (
+          <section className="mb-16">
+            <h2 className="text-3xl font-semibold text-foreground mb-12 text-center">
+              {serviceDetails.caseStudiesHeading}
+            </h2>
+            <div className="space-y-12">
+              {serviceDetails.caseStudies.map((study) => (
+                <Card key={study.title} className="overflow-hidden shadow-lg border group hover:shadow-2xl transition-all duration-300 ease-in-out hover:border-primary/30">
+                  <CardHeader className="bg-muted/30 p-6">
+                    <div className="flex items-center gap-3">
+                       {React.cloneElement(study.icon, { className: "h-10 w-10 text-primary group-hover:text-accent transition-colors" })}
+                      <CardTitle className="text-2xl text-primary group-hover:text-accent transition-colors">{study.title}</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="p-0">
+                    <div className="grid grid-cols-1 lg:grid-cols-3">
+                      {study.sections.map((section, index) => (
+                        <div key={section.subtitle} className={`p-6 ${index < study.sections.length -1 ? 'lg:border-r border-border' : ''} ${index > 0 ? 'border-t border-border lg:border-t-0' : ''}`}>
+                          <div className="flex items-center gap-3 mb-3">
+                            {section.sectionIcon}
+                            <h4 className="text-lg font-semibold text-foreground">{section.subtitle}</h4>
+                          </div>
+                          <p className="text-sm text-muted-foreground mb-4">{section.description}</p>
+                          <ul className="space-y-1.5">
+                            {section.points.map(point => (
+                              <li key={point} className="flex items-start text-sm text-foreground">
+                                <CheckCircle className="h-4 w-4 text-green-500 mr-2 mt-0.5 shrink-0" />
+                                <span>{point}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </section>
         )}
             
