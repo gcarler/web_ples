@@ -1,5 +1,5 @@
 // src/app/ples-catastro/ordenamiento-territorial/page.tsx
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, CheckCircle, Home, Users, Map, Layers, Edit3 } from 'lucide-react';
@@ -41,12 +41,20 @@ export default function OrdenamientoTerritorialPage() {
   return (
     <div className="py-10 w-full px-4 sm:px-6 lg:px-8">
       <div className="max-w-screen-xl mx-auto">
-        <Button variant="outline" size="sm" asChild className="mb-8 group hover:bg-primary hover:text-primary-foreground transition-colors">
-          <Link href={serviceDetails.parentLink}>
-            <ArrowLeft className="mr-2 h-4 w-4 group-hover:text-primary-foreground" />
-            PLES Home / {serviceDetails.parentName}
-          </Link>
-        </Button>
+        <div className="flex items-center space-x-2 mb-8">
+          <Button variant="outline" size="sm" asChild className="group hover:bg-primary hover:text-primary-foreground transition-colors">
+            <Link href={serviceDetails.parentLink}>
+              <ArrowLeft className="mr-2 h-4 w-4 group-hover:text-primary-foreground" />
+              Volver a {serviceDetails.parentName}
+            </Link>
+          </Button>
+          <span className="text-muted-foreground">|</span>
+          <Button variant="outline" size="sm" asChild className="group hover:bg-primary hover:text-primary-foreground transition-colors">
+            <Link href="/">
+               PLES Home
+            </Link>
+          </Button>
+        </div>
 
         <section className="text-center mb-16">
           <div className="inline-block p-4 bg-primary/10 rounded-lg mb-6">
@@ -69,11 +77,9 @@ export default function OrdenamientoTerritorialPage() {
               {serviceDetails.keyServices.map((service) => (
                 <Card key={service.title} className="p-6 group transition-all duration-300 ease-in-out hover:shadow-2xl hover:scale-[1.03] hover:border-primary/50 hover:bg-primary/5 dark:hover:bg-accent/5">
                   <div className="flex flex-col items-center text-center md:items-start md:text-left">
-                    {service.icon}
+                    {React.cloneElement(service.icon, { className: "h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" })}
                     <CardTitle className="text-xl font-semibold mb-2 text-foreground group-hover:text-primary transition-colors">{service.title}</CardTitle>
-                    <CardContent className="p-0">
-                      <p className="text-muted-foreground group-hover:text-foreground/90 transition-colors text-sm">{service.text}</p>
-                    </CardContent>
+                    <CardDescription className="text-muted-foreground group-hover:text-foreground/90 transition-colors text-sm">{service.text}</CardDescription>
                   </div>
                 </Card>
               ))}

@@ -1,5 +1,5 @@
 // src/app/ples-catastro/levantamiento-predial/page.tsx
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, CheckCircle, MapPin, Settings, Layers, Cpu, BarChart3, ShieldCheck, Clock, DraftingCompass, Target, Globe } from 'lucide-react';
@@ -18,7 +18,7 @@ const serviceDetails = {
   title: 'Levantamiento Predial Multifinalitario',
   description: 'Ejecutamos levantamientos catastrales precisos (urbanos y rurales) con fines fiscales, jurídicos, económicos y sociales. Aplicamos <strong class="text-primary group-hover:text-accent transition-colors">el uso inteligente de la experiencia</strong>, metodologías científicas y tecnología de vanguardia para garantizar información territorial confiable, optimizar tiempos y costos, y entregar productos de alta calidad.',
   keyServicesHeading: 'Características Clave del Servicio:',
-  keyServices: [ // This will be adapted to "keyServices" structure if desired, or remain as list for now.
+  keyServices: [ 
     { title: 'Cobertura Exhaustiva', text: 'Levantamientos detallados en zonas urbanas y rurales, adaptados a las particularidades de cada territorio.', icon: <Globe className="h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" /> },
     { title: 'Tecnología de Precisión', text: 'Uso de GPS RTK/PPK, drones con sensores LiDAR/Fotogramétricos y estaciones totales robóticas para máxima exactitud.', icon: <Cpu className="h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" /> },
     { title: 'Integración SIG', text: 'Compatibilidad nativa con Sistemas de Información Geográfica (SIG) y Bases de Datos Espaciales para una gestión eficiente.', icon: <Layers className="h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" /> },
@@ -61,12 +61,20 @@ export default function LevantamientoPredialPage() {
   return (
     <div className="py-10 w-full px-4 sm:px-6 lg:px-8">
       <div className="max-w-screen-xl mx-auto">
-        <Button variant="outline" size="sm" asChild className="mb-8 group hover:bg-primary hover:text-primary-foreground transition-colors">
-          <Link href={serviceDetails.parentLink}>
-            <ArrowLeft className="mr-2 h-4 w-4 group-hover:text-primary-foreground" />
-            PLES Home / {serviceDetails.parentName}
-          </Link>
-        </Button>
+        <div className="flex items-center space-x-2 mb-8">
+          <Button variant="outline" size="sm" asChild className="group hover:bg-primary hover:text-primary-foreground transition-colors">
+            <Link href={serviceDetails.parentLink}>
+              <ArrowLeft className="mr-2 h-4 w-4 group-hover:text-primary-foreground" />
+              Volver a {serviceDetails.parentName}
+            </Link>
+          </Button>
+          <span className="text-muted-foreground">|</span>
+          <Button variant="outline" size="sm" asChild className="group hover:bg-primary hover:text-primary-foreground transition-colors">
+            <Link href="/">
+               PLES Home
+            </Link>
+          </Button>
+        </div>
 
         <section className="text-center mb-16">
           <div className="inline-block p-4 bg-primary/10 rounded-lg mb-6">
@@ -89,11 +97,9 @@ export default function LevantamientoPredialPage() {
               {serviceDetails.keyServices.map((service) => (
                 <Card key={service.title} className="p-6 group transition-all duration-300 ease-in-out hover:shadow-2xl hover:scale-[1.03] hover:border-primary/50 hover:bg-primary/5 dark:hover:bg-accent/5">
                   <div className="flex flex-col items-center text-center md:items-start md:text-left">
-                    {service.icon}
+                    {React.cloneElement(service.icon, { className: "h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" })}
                     <CardTitle className="text-xl font-semibold mb-2 text-foreground group-hover:text-primary transition-colors">{service.title}</CardTitle>
-                    <CardContent className="p-0">
-                      <p className="text-muted-foreground group-hover:text-foreground/90 transition-colors text-sm">{service.text}</p>
-                    </CardContent>
+                    <CardDescription className="text-muted-foreground group-hover:text-foreground/90 transition-colors text-sm">{service.text}</CardDescription>
                   </div>
                 </Card>
               ))}

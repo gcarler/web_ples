@@ -9,16 +9,26 @@ export const metadata = {
   description: 'Explorando nuestro motor y convicción en la experiencia inteligente.',
 };
 
+const parentLink = "/about";
+const parentName = "Sobre Nosotros";
+
 export default function PropositoPage() {
   return (
     <div className="w-full py-10 px-4 sm:px-6 lg:px-8">
-       <Button variant="outline" size="sm" asChild className="mb-4 group hover:bg-primary hover:text-primary-foreground transition-colors">
-         <Link href="/about">
-           <span className="flex items-center">
-             <ArrowLeft className="mr-2 h-4 w-4 group-hover:text-primary-foreground" /> PLES Home / Sobre Nosotros
-           </span>
-         </Link>
-       </Button>
+      <div className="flex items-center space-x-2 mb-8">
+          <Button variant="outline" size="sm" asChild className="group hover:bg-primary hover:text-primary-foreground transition-colors">
+            <Link href={parentLink}>
+              <ArrowLeft className="mr-2 h-4 w-4 group-hover:text-primary-foreground" />
+              Volver a {parentName}
+            </Link>
+          </Button>
+          <span className="text-muted-foreground">|</span>
+          <Button variant="outline" size="sm" asChild className="group hover:bg-primary hover:text-primary-foreground transition-colors">
+            <Link href="/">
+               PLES Home
+            </Link>
+          </Button>
+        </div>
       <Card className="shadow-lg border group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out">
         <CardHeader>
           <CardTitle className="text-3xl font-bold text-primary group-hover:text-primary-foreground">Nuestro Propósito</CardTitle>
