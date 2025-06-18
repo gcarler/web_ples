@@ -3,8 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {
-  ArrowRight, ArrowLeft, CheckCircle, Brain, Zap, Bot, FileArchive, Star, CircleDollarSign, Settings, MessageSquare, Cpu
-} from 'lucide-react';
+  ArrowRight, ArrowLeft, CheckCircle, Brain, Zap, Bot, FileArchive, Store, Users, MessageSquare, Cpu, Settings
+} from 'lucide-react'; // Added Store, Users, MessageSquare
 import React from 'react';
 
 export const metadata = {
@@ -19,12 +19,28 @@ const serviceDetails = {
   mainIcon: <Brain />,
   title: 'Automatización Inteligente con IA',
   description: 'No hay saltos al vacío. Transformamos tu negocio con Inteligencia Artificial probada y estratégica, optimizando tus procesos, reduciendo costos y liberando el potencial de tu equipo con soluciones implementadas por expertos.',
-  keyServicesHeading: 'Aplicaciones Estratégicas de IA:',
+  keyServicesHeading: 'Descubra Cómo la IA Transforma Áreas Clave de su Negocio:',
   keyServices: [
-    { title: 'Optimización de Procesos (RPA y BPA)', text: 'Automatizamos tareas repetitivas y flujos de trabajo complejos, reduciendo errores y aumentando la eficiencia operativa.', icon: <Zap className="h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" /> },
-    { title: 'Análisis Predictivo y Modelado', text: 'Utilizamos Machine Learning para transformar datos en insights predictivos, optimizando inventarios, demanda y personalizando experiencias.', icon: <Cpu className="h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" /> },
-    { title: 'Asistentes Virtuales y Chatbots Inteligentes', text: 'Implementamos soluciones de IA conversacional que resuelven dudas y gestionan solicitudes 24/7, mejorando la atención al cliente.', icon: <Bot className="h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" /> },
-    { title: 'Gestión Documental Avanzada (IDP)', text: 'Digitalizamos, clasificamos y extraemos información de documentos automáticamente, mejorando el acceso, la seguridad y la toma de decisiones.', icon: <FileArchive className="h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" /> },
+    {
+      title: 'IA para la Excelencia en la Experiencia del Cliente',
+      text: 'Transforme cada interacción en una oportunidad. Implementamos asistentes virtuales y chatbots avanzados para soporte 24/7, personalización de ofertas y análisis de sentimiento en tiempo real, mejorando la satisfacción y fidelizando a sus clientes.',
+      icon: <MessageSquare className="h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" />
+    },
+    {
+      title: 'IA para la Optimización Inteligente de Tiendas y Retail',
+      text: 'Revolucione su operación minorista. Usamos IA para predecir la demanda con precisión, optimizar la gestión de inventarios, personalizar las recomendaciones de productos en tienda y online, y analizar el flujo de clientes para mejorar la disposición y las ventas.',
+      icon: <Store className="h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" />
+    },
+    {
+      title: 'IA para la Gestión Estratégica del Talento Humano',
+      text: 'Potencie su equipo de RRHH con IA. Desde el reclutamiento inteligente con filtrado avanzado de CVs y chatbots para candidatos, hasta el análisis predictivo de desempeño y la identificación de necesidades de desarrollo, optimizando cada etapa del ciclo de vida del empleado.',
+      icon: <Users className="h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" />
+    },
+    {
+      title: 'IA para la Eficiencia Operativa y Decisiones Basadas en Datos',
+      text: 'Maximice la eficiencia y la toma de decisiones. Automatizamos procesos de negocio (RPA/BPA), digitalizamos y extraemos valor de sus documentos (IDP), y aplicamos modelos de Machine Learning para análisis predictivos que optimizan operaciones, finanzas y estrategias.',
+      icon: <Zap className="h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" />
+    },
   ],
   benefitsHeading: 'Beneficios de la Automatización con IA:',
   benefits: [
@@ -112,3 +128,4 @@ export default function AiAutomationPage() {
     </div>
   );
 }
+
