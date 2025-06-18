@@ -1,9 +1,9 @@
 // src/app/ples-tic/soluciones-cloud/page.tsx
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {
-  ArrowRight, ArrowLeft, CloudCog, CheckCircle, Server, UploadCloud, Scaling, Shield, Repeat, Zap, Settings, MessageSquare
+  ArrowRight, ArrowLeft, CloudCog, CheckCircle, Server, UploadCloud, Scaling, Shield, Repeat, Zap, Settings, MessageSquare, GitBranch, Database
 } from 'lucide-react';
 import React from 'react';
 
@@ -16,97 +16,100 @@ const serviceDetails = {
   parentLink: "/ples-tic",
   parentName: "PLES TIC",
   serviceSlug: "soluciones-cloud",
-  icon: <CloudCog />,
-  title: 'Soluciones Cloud y DevOps',
-  description: 'Acelere su innovación y optimice sus operaciones con nuestras soluciones expertas en la nube y prácticas DevOps. Diseñamos, implementamos y gestionamos infraestructuras cloud seguras, escalables y costo-eficientes.',
-  pointsHeading: 'Nuestros Servicios Cloud y DevOps:',
-  points: [
-    { title: 'Migración Estratégica a la Nube', text: 'Planificamos y ejecutamos migraciones a AWS, Azure o GCP, minimizando riesgos y optimizando costos y rendimiento.', icon: <UploadCloud /> },
-    { title: 'Arquitecturas Nativas de la Nube', text: 'Diseñamos soluciones basadas en microservicios, serverless y contenedores (Docker, Kubernetes) para máxima agilidad y escalabilidad.', icon: <Server /> },
-    { title: 'Automatización DevOps y CI/CD', text: 'Implementamos pipelines de Integración Continua y Entrega Continua (CI/CD) para acelerar el desarrollo y mejorar la calidad.', icon: <Repeat /> },
-    { title: 'Infraestructura como Código (IaC)', text: 'Gestionamos su infraestructura de forma programática (Terraform, CloudFormation) para mayor consistencia, velocidad y control.', icon: <Settings /> },
+  mainIcon: <CloudCog />,
+  title: 'Soluciones Cloud Estratégicas y DevOps',
+  description: 'Acelere su innovación y optimice sus operaciones con nuestras soluciones expertas en la nube (AWS, Azure, GCP) y prácticas DevOps. Diseñamos, implementamos y gestionamos infraestructuras cloud seguras, escalables y costo-eficientes.',
+  keyServicesHeading: 'Nuestros Servicios Cloud y DevOps:',
+  keyServices: [
+    { title: 'Migración Estratégica a la Nube', text: 'Planificamos y ejecutamos migraciones eficientes y seguras a AWS, Azure o GCP, minimizando riesgos y optimizando costos y rendimiento.', icon: <UploadCloud className="h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" /> },
+    { title: 'Arquitecturas Nativas de la Nube', text: 'Diseñamos soluciones basadas en microservicios, serverless y contenedores (Docker, Kubernetes) para máxima agilidad, resiliencia y escalabilidad.', icon: <Server className="h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" /> },
+    { title: 'Automatización DevOps (CI/CD)', text: 'Implementamos pipelines de Integración Continua y Entrega Continua (CI/CD) para acelerar el desarrollo, mejorar la calidad y la frecuencia de los despliegues.', icon: <Repeat className="h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" /> },
+    { title: 'Infraestructura como Código (IaC)', text: 'Gestionamos su infraestructura de forma programática (Terraform, CloudFormation, Ansible) para mayor consistencia, velocidad, control de versiones y reproducibilidad.', icon: <GitBranch className="h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" /> },
+     { title: 'Optimización de Costos en la Nube (FinOps)', text: 'Analizamos y optimizamos sus gastos en la nube, identificando ahorros y asegurando el uso eficiente de los recursos.', icon: <Scaling className="h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" /> },
+    { title: 'Bases de Datos y Almacenamiento en la Nube', text: 'Diseñamos e implementamos soluciones de bases de datos (SQL, NoSQL) y almacenamiento escalables, seguras y de alto rendimiento en la nube.', icon: <Database className="h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" /> },
   ],
-  benefitsHeading: "Beneficios de Adoptar la Nube:",
+  benefitsHeading: "Beneficios de Adoptar la Nube con PLES TIC:",
   benefits: [
-    'Escalabilidad Dinámica y Pago por Uso',
-    'Mayor Agilidad en Despliegues y Respuesta al Mercado',
-    'Reducción de Costos de Infraestructura y Mantenimiento',
-    'Seguridad Mejorada con Capacidades Robustas de Proveedores',
-    'Alta Disponibilidad y Continuidad del Negocio',
-    'Innovación Acelerada con Servicios Avanzados (IA, Big Data)',
+    'Escalabilidad Dinámica y Flexibilidad para Adaptarse a la Demanda',
+    'Mayor Agilidad en Despliegues y Rápida Respuesta al Mercado',
+    'Reducción de Costos de Infraestructura Física y Mantenimiento',
+    'Seguridad Mejorada con Capacidades Robustas de Proveedores Cloud',
+    'Alta Disponibilidad, Resiliencia y Continuidad del Negocio',
+    'Acceso a Innovación Acelerada con Servicios Avanzados (IA, Big Data)',
   ],
+  ctaText: 'Impulse su Negocio a la Nube',
   formSubject: 'Consulta%20Soluciones%20Cloud%20y%20DevOps'
 };
 
 export default function SolucionesCloudPage() {
   return (
-    <div className="py-10">
-      <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Button variant="outline" size="sm" asChild className="mb-8">
+    <div className="py-10 w-full px-4 sm:px-6 lg:px-8">
+      <div className="max-w-screen-xl mx-auto">
+        <Button variant="outline" size="sm" asChild className="mb-8 group hover:bg-primary hover:text-primary-foreground transition-colors">
           <Link href={serviceDetails.parentLink}>
-            <ArrowLeft className="mr-2 h-4 w-4" />
+            <ArrowLeft className="mr-2 h-4 w-4 group-hover:text-primary-foreground" />
             Volver a {serviceDetails.parentName}
           </Link>
         </Button>
 
-        <Card className="shadow-xl border border-border/30 hover:shadow-2xl transition-shadow duration-300 ease-in-out bg-card group hover:bg-gradient-to-br hover:from-primary/5 hover:to-accent/5">
-          <CardHeader className="items-center text-center pt-10 pb-8">
-            {React.cloneElement(serviceDetails.icon, { className: "h-16 w-16 text-primary mb-6" })}
-            <CardTitle className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2">
-              {serviceDetails.title}
-            </CardTitle>
-            <CardDescription className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mt-3 group-hover:text-foreground/90">
-              {serviceDetails.description}
-            </CardDescription>
-          </CardHeader>
+        <section className="text-center mb-16">
+          <div className="inline-block p-4 bg-primary/10 rounded-lg mb-6">
+            {React.cloneElement(serviceDetails.mainIcon, { className: "h-16 w-16 text-primary" })}
+          </div>
+          <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-6">
+            {serviceDetails.title}
+          </h1>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+            {serviceDetails.description}
+          </p>
+        </section>
 
-          <CardContent className="px-6 md:px-8 pb-10">
-            {serviceDetails.points && serviceDetails.points.length > 0 && (
-              <section className="mb-12">
-                <h3 className="text-xl md:text-2xl font-semibold text-foreground mb-8 text-center group-hover:text-inherit">
-                  {serviceDetails.pointsHeading}
-                </h3>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-6 max-w-3xl mx-auto">
-                  {serviceDetails.points.map((point) => (
-                    <li key={point.title} className="flex items-start text-foreground group-hover:text-inherit">
-                       {React.cloneElement(point.icon, { className: "h-7 w-7 text-green-500 mr-4 mt-1 shrink-0 group-hover:text-green-400"})}
-                      <div>
-                        <span className="text-md font-semibold">{point.title}</span>
-                        <p className="text-sm text-muted-foreground group-hover:text-inherit/90">{point.text}</p>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            )}
-
-            {serviceDetails.benefits && serviceDetails.benefits.length > 0 && (
-              <section className="mb-12">
-                <h3 className="text-xl md:text-2xl font-semibold text-foreground mb-8 text-center group-hover:text-inherit">
-                  {serviceDetails.benefitsHeading}
-                </h3>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-5 max-w-3xl mx-auto">
-                  {serviceDetails.benefits.map((benefit) => (
-                    <li key={benefit} className="flex items-start text-foreground group-hover:text-inherit">
-                      <CheckCircle className="h-6 w-6 text-green-500 mr-3 mt-1 shrink-0 group-hover:text-green-400" />
-                      <span className="text-md">{benefit}</span>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            )}
-            
-            <div className="text-center mt-8">
-              <Button size="lg" asChild className="text-lg px-8 py-4 group-hover:bg-gradient-to-r group-hover:from-accent group-hover:to-primary shadow-md hover:shadow-lg transition-all">
-                <Link href={`/forms?service=${serviceDetails.serviceSlug}&subject=${serviceDetails.formSubject}`}>
-                  <span className="flex items-center">
-                    Impulse su Negocio a la Nube <ArrowRight className="ml-2 h-5 w-5" />
-                  </span>
-                </Link>
-              </Button>
+        {serviceDetails.keyServices && serviceDetails.keyServices.length > 0 && (
+          <section className="mb-16">
+            <h2 className="text-3xl font-semibold text-foreground mb-10 text-center">
+              {serviceDetails.keyServicesHeading}
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {serviceDetails.keyServices.map((service) => (
+                <Card key={service.title} className="p-6 group transition-all duration-300 ease-in-out hover:shadow-2xl hover:scale-[1.03] hover:border-primary/50 hover:bg-primary/5 dark:hover:bg-accent/5">
+                  <div className="flex flex-col items-center text-center md:items-start md:text-left">
+                    {service.icon}
+                    <CardTitle className="text-xl font-semibold mb-2 text-foreground group-hover:text-primary transition-colors">{service.title}</CardTitle>
+                    <CardContent className="p-0">
+                      <p className="text-muted-foreground group-hover:text-foreground/90 transition-colors text-sm">{service.text}</p>
+                    </CardContent>
+                  </div>
+                </Card>
+              ))}
             </div>
-          </CardContent>
-        </Card>
+          </section>
+        )}
+
+        {serviceDetails.benefits && serviceDetails.benefits.length > 0 && (
+          <section className="mb-16">
+            <h2 className="text-3xl font-semibold text-foreground mb-10 text-center">
+              {serviceDetails.benefitsHeading}
+            </h2>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 max-w-3xl mx-auto">
+              {serviceDetails.benefits.map((benefit) => (
+                <li key={benefit} className="flex items-start text-foreground p-2 rounded-md transition-colors hover:bg-muted/50 hover:text-primary">
+                  <CheckCircle className="h-6 w-6 text-green-500 mr-3 mt-0.5 shrink-0" />
+                  <span className="text-md">{benefit}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+            
+        <section className="text-center">
+          <Button size="lg" asChild className="text-lg px-8 py-4 shadow-lg hover:shadow-xl hover:scale-105 transition-transform">
+            <Link href={`/forms?service=${serviceDetails.serviceSlug}&subject=${serviceDetails.formSubject}`}>
+              <span className="flex items-center">
+                {serviceDetails.ctaText} <ArrowRight className="ml-2 h-5 w-5" />
+              </span>
+            </Link>
+          </Button>
+        </section>
       </div>
     </div>
   );
