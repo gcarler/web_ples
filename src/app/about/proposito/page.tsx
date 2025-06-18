@@ -12,10 +12,10 @@ export const metadata = {
 export default function PropositoPage() {
   return (
     <div className="w-full py-10 px-4 sm:px-6 lg:px-8">
-       <Button variant="outline" size="sm" asChild className="mb-4">
+       <Button variant="outline" size="sm" asChild className="mb-4 group hover:bg-primary hover:text-primary-foreground transition-colors">
          <Link href="/about">
            <span className="flex items-center">
-             <ArrowLeft className="mr-2 h-4 w-4" /> Volver a Sobre Nosotros
+             <ArrowLeft className="mr-2 h-4 w-4 group-hover:text-primary-foreground" /> PLES Home / Sobre Nosotros
            </span>
          </Link>
        </Button>

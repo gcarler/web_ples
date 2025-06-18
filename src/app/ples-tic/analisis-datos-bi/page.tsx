@@ -46,7 +46,7 @@ export default function AnalisisDatosBiPage() {
         <Button variant="outline" size="sm" asChild className="mb-8 group hover:bg-primary hover:text-primary-foreground transition-colors">
           <Link href={serviceDetails.parentLink}>
             <ArrowLeft className="mr-2 h-4 w-4 group-hover:text-primary-foreground" />
-            Volver a {serviceDetails.parentName}
+            PLES Home / {serviceDetails.parentName}
           </Link>
         </Button>
 
