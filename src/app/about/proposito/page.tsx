@@ -15,7 +15,7 @@ const pageDetails = {
   title: "Nuestro Propósito",
   subtitle: "Explorando nuestro motor.",
   mainIcon: <Lightbulb className="h-12 w-12 md:h-16 md:h-16" />,
-  mainParagraph: "Impulsados por la convicción en el poder transformador de la experiencia inteligente, forjamos puentes sólidos entre los ámbitos público y privado, así como con las comunidades que servimos. Aprovechamos la sabiduría colectiva para abordar los desafíos globales con una estrategia refinada y una visión de sostenibilidad a largo plazo.",
+  // mainParagraph will be JSX now
   ctaLink: "/forms?subject=Consulta%20Nuestro%20Proposito",
   ctaText: "Descubra Cómo Podemos Ayudar"
 };
@@ -53,12 +53,10 @@ export default function PropositoPage() {
           </div>
         </section>
 
-        <section className="max-w-3xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
-          <div className="bg-card p-8 md:p-10 rounded-lg shadow-xl border border-border/30 hover:shadow-2xl transition-shadow duration-300">
-            <p className="text-lg md:text-xl text-foreground leading-relaxed">
-              {pageDetails.mainParagraph}
-            </p>
-          </div>
+        <section className="max-w-4xl mx-auto py-12 px-6 animate-fade-in-up text-center" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
+          <p className="text-lg md:text-xl text-foreground leading-relaxed">
+            Impulsados por la <span className="text-2xl md:text-3xl font-semibold text-primary">convicción</span> en el <span className="text-xl md:text-2xl font-medium text-accent">poder transformador</span> de la <span className="text-2xl md:text-3xl font-semibold text-[hsl(var(--ring))]">experiencia inteligente</span>, forjamos <span className="text-xl md:text-2xl font-medium text-primary">puentes sólidos</span> entre los ámbitos <span className="text-xl md:text-2xl font-medium text-accent">público</span> y <span className="text-xl md:text-2xl font-medium text-[hsl(var(--ring))]">privado</span>, así como con las <span className="text-2xl md:text-3xl font-semibold text-primary">comunidades que servimos</span>. Aprovechamos la <span className="text-xl md:text-2xl font-medium text-accent">sabiduría colectiva</span> para abordar los <span className="text-2xl md:text-3xl font-semibold text-primary">desafíos globales</span> con una <span className="text-xl md:text-2xl font-medium text-[hsl(var(--ring))]">estrategia refinada</span> y una <span className="text-xl md:text-2xl font-medium text-accent">visión de sostenibilidad</span> a largo plazo.
+          </p>
         </section>
 
         <section className="text-center mt-16 animate-fade-in-up" style={{ animationDelay: '0.8s', animationFillMode: 'forwards' }}>

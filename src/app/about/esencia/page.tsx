@@ -15,7 +15,7 @@ const pageDetails = {
   title: "Nuestra Esencia",
   subtitle: "Comprendiendo quienes somos.",
   mainIcon: <Brain className="h-12 w-12 md:h-16 md:h-16" />,
-  mainParagraph: "Con una visión global y un enfoque multidisciplinario, nuestro equipo converge talentos y conocimientos diversos para la consecución de objetivos trascendentes. En PLES, valoramos la riqueza de cada perspectiva, cultivando un espacio donde las ideas disruptivas e innovadoras florecen, permitiendo intervenciones estratégicas y perspicaces en cualquier escenario.",
+  // mainParagraph will be JSX now
   ctaLink: "/forms?subject=Consulta%20Nuestra%20Esencia",
   ctaText: "Conozca Más Sobre Nosotros"
 };
@@ -53,12 +53,10 @@ export default function EsenciaPage() {
           </div>
         </section>
 
-        <section className="max-w-3xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
-          <div className="bg-card p-8 md:p-10 rounded-lg shadow-xl border border-border/30 hover:shadow-2xl transition-shadow duration-300">
-            <p className="text-lg md:text-xl text-foreground leading-relaxed">
-              {pageDetails.mainParagraph}
-            </p>
-          </div>
+        <section className="max-w-4xl mx-auto py-12 px-6 animate-fade-in-up text-center" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
+          <p className="text-lg md:text-xl text-foreground leading-relaxed">
+            Con una <span className="text-2xl md:text-3xl font-semibold text-primary">visión global</span> y un <span className="text-2xl md:text-3xl font-semibold text-accent">enfoque multidisciplinario</span>, nuestro equipo converge <span className="text-xl md:text-2xl font-medium text-[hsl(var(--ring))]">talentos</span> y <span className="text-xl md:text-2xl font-medium text-primary">conocimientos diversos</span> para la consecución de <span className="text-xl md:text-2xl font-medium text-accent">objetivos trascendentes</span>. En <span className="text-2xl md:text-3xl font-bold text-primary">PLES</span>, valoramos la <span className="text-xl md:text-2xl font-medium text-[hsl(var(--ring))]">riqueza de cada perspectiva</span>, cultivando un espacio donde las <span className="text-2xl md:text-3xl font-semibold text-primary">ideas disruptivas</span> e <span className="text-2xl md:text-3xl font-semibold text-accent">innovadoras</span> florecen, permitiendo <span className="text-xl md:text-2xl font-medium text-[hsl(var(--ring))]">intervenciones estratégicas</span> y <span className="text-xl md:text-2xl font-medium text-primary">perspicaces</span> en cualquier escenario.
+          </p>
         </section>
 
         <section className="text-center mt-16 animate-fade-in-up" style={{ animationDelay: '0.8s', animationFillMode: 'forwards' }}>

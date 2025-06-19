@@ -15,7 +15,7 @@ const pageDetails = {
   title: "Nuestra Misión",
   subtitle: "Guiando nuestras acciones.",
   mainIcon: <Rocket className="h-12 w-12 md:h-16 md:h-16" />,
-  mainParagraph: "Consolidar lazos estratégicos entre sectores y comunidades, aplicando nuestra experiencia con discernimiento para afrontar los retos globales de manera sostenible y con visión de futuro.",
+  // mainParagraph will be JSX now
   ctaLink: "/forms?subject=Consulta%20Nuestra%20Mision",
   ctaText: "Explore Nuestras Estrategias"
 };
@@ -53,12 +53,10 @@ export default function MisionPage() {
           </div>
         </section>
 
-        <section className="max-w-3xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
-          <div className="bg-card p-8 md:p-10 rounded-lg shadow-xl border border-border/30 hover:shadow-2xl transition-shadow duration-300">
-            <p className="text-lg md:text-xl text-foreground leading-relaxed">
-              {pageDetails.mainParagraph}
-            </p>
-          </div>
+        <section className="max-w-4xl mx-auto py-12 px-6 animate-fade-in-up text-center" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
+          <p className="text-lg md:text-xl text-foreground leading-relaxed">
+            Consolidar <span className="text-2xl md:text-3xl font-semibold text-primary">lazos estratégicos</span> entre <span className="text-xl md:text-2xl font-medium text-accent">sectores</span> y <span className="text-xl md:text-2xl font-medium text-[hsl(var(--ring))]">comunidades</span>, aplicando nuestra <span className="text-2xl md:text-3xl font-semibold text-primary">experiencia con discernimiento</span> para afrontar los <span className="text-xl md:text-2xl font-medium text-accent">retos globales</span> de manera <span className="text-2xl md:text-3xl font-semibold text-primary">sostenible</span> y con <span className="text-2xl md:text-3xl font-semibold text-accent">visión de futuro</span>.
+          </p>
         </section>
 
         <section className="text-center mt-16 animate-fade-in-up" style={{ animationDelay: '0.8s', animationFillMode: 'forwards' }}>
