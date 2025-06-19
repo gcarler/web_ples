@@ -5,7 +5,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import DynamicSection from '@/components/DynamicSection';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'; // CardDescription importada
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { ArrowRight, Gem, HeartPulse, Target, Globe, Rocket, Eye, Info, Shield, Lightbulb, Users as UsersIcon, Cpu } from 'lucide-react';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
@@ -34,7 +34,7 @@ const coreValues = [
 ];
 
 export default function AboutPage() {
-  const [selectedValue, setSelectedValue] = useState('innovacion'); // Default to 'innovacion' based on image
+  const [selectedValue, setSelectedValue] = useState('colaboracion'); // Default to 'colaboracion' to match image
   const selectedContent = coreValues.find(v => v.id === selectedValue);
 
   const sections = [
@@ -148,11 +148,12 @@ export default function AboutPage() {
             {coreValues.map((value, index) => {
               let bgColor = '';
               if (selectedValue === value.id) {
-                bgColor = 'bg-accent text-accent-foreground shadow-inner-lg';
+                bgColor = 'bg-accent text-accent-foreground shadow-inner-lg'; // Active tab
               } else {
+                // Specific background for inactive tabs based on their ID to match the image
                 if (value.id === 'colaboracion') bgColor = 'bg-primary/80 text-primary-foreground';
-                else if (value.id === 'innovacion') bgColor = 'bg-primary/70 text-primary-foreground';
-                else if (value.id === 'integridad') bgColor = 'bg-primary/60 text-primary-foreground';
+                else if (value.id === 'innovacion') bgColor = 'bg-primary/70 text-primary-foreground'; // Slightly darker than Colaboracion inactive
+                else if (value.id === 'integridad') bgColor = 'bg-primary/60 text-primary-foreground'; // Darkest of the inactive tabs
                 bgColor += ' hover:bg-opacity-90';
               }
 
@@ -162,10 +163,10 @@ export default function AboutPage() {
                   onClick={() => setSelectedValue(value.id)}
                   className={cn(
                     "w-full md:h-1/3 p-3 md:p-0 flex items-center justify-center text-center uppercase tracking-wider font-semibold text-xs sm:text-sm md:text-base transition-all duration-300 ease-in-out",
-                    "md:[writing-mode:vertical-rl] md:[text-orientation:upright]", 
+                    "md:[writing-mode:vertical-rl] md:[text-orientation:upright]", // Correct vertical text orientation
                     bgColor,
-                    index < coreValues.length - 1 && "md:border-b border-primary/20", 
-                    index < coreValues.length -1 && index >=0 && "border-r md:border-r-0 border-primary/20"
+                    index < coreValues.length - 1 && "md:border-b border-primary/20", // Horizontal border between vertical tabs
+                    index < coreValues.length -1 && index >=0 && "border-r md:border-r-0 border-primary/20" // Vertical border for mobile view
                   )}
                 >
                   {value.name}
@@ -180,9 +181,9 @@ export default function AboutPage() {
               NUESTROS VALORES
             </h2>
             {selectedContent && (
-              <div key={selectedContent.id} className="animate-fade-in-up space-y-6"> {/* Adjusted space-y from 4 to 6 */}
-                <selectedContent.icon className="h-16 w-16 sm:h-20 sm:w-20 text-accent mx-auto mb-4" />
-                <h3 className="text-2xl sm:text-3xl font-semibold text-accent">
+              <div key={selectedContent.id} className="animate-fade-in-up space-y-6"> {/* Increased space-y */}
+                <selectedContent.icon className="h-16 w-16 sm:h-20 sm:w-20 text-accent mx-auto mb-4" /> {/* Icon uses accent color */}
+                <h3 className="text-2xl sm:text-3xl font-semibold text-accent"> {/* Title of value uses accent color */}
                   {selectedContent.name}
                 </h3>
                 <p className="text-base sm:text-lg leading-relaxed max-w-md mx-auto text-primary-foreground/90">
