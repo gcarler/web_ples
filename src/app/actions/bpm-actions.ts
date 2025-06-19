@@ -40,6 +40,7 @@ export async function getProcessInstances(): Promise<ProcessInstanceFirestore[]>
                 return {
                     id: doc.id,
                     processDefinitionId: 'unknown',
+                    processDefinitionName: 'Unknown Process', // Added missing required field
                     status: 'Failed', // Indicate issue
                     lastUpdatedAt: Timestamp.now(), // Use current time as fallback
                 } as ProcessInstanceFirestore;
@@ -100,3 +101,4 @@ export async function resumeProcessInstance(processInstanceId: string): Promise<
         return { message: 'An error occurred while resuming the process.', success: false };
     }
 }
+

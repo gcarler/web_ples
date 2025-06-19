@@ -19,7 +19,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
 import { addProduct } from "@/app/actions/erp-actions"; 
 import { useFormState, useFormStatus } from "react-dom";
-import { useEffect }_tmp_ref_src_app_about_page_tsx from "react";
+import { useEffect } from "react"; // Corrected import
 import { ProductInputSchema } from "@/lib/models/erp"; // Import the base Zod schema
 
 // Define the Zod schema specifically for the form, omitting server-set fields
