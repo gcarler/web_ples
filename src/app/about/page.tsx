@@ -32,7 +32,7 @@ const coreValues = [
 ];
 
 export default function AboutPage() {
-  const [selectedValue, setSelectedValue] = useState('colaboracion'); // Default to 'colaboracion'
+  const [selectedValue, setSelectedValue] = useState('innovacion'); // Default to 'innovacion' based on image
   const selectedContent = coreValues.find(v => v.id === selectedValue);
 
   const sections = [
@@ -137,15 +137,15 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* New Interactive "Nuestros Valores Fundamentales" Section */}
+      {/* New Interactive "Nuestros Valores Fundamentales" Section - Full Width */}
       <section className="w-full py-16 md:py-24">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row min-h-[450px] md:min-h-[500px] bg-card shadow-2xl rounded-xl overflow-hidden border border-border/20">
+        <div className="flex flex-col md:flex-row min-h-[450px] md:min-h-[500px] bg-card shadow-2xl rounded-xl overflow-hidden border border-border/20">
           {/* Vertical Tabs - Left Side */}
           <div className="flex md:flex-col w-full md:w-20 lg:w-24 border-b md:border-b-0 md:border-r border-border/20">
             {coreValues.map((value, index) => {
-              let bgColor = 'bg-primary/60'; // Lightest blue for first/top
-              if (index === 1) bgColor = 'bg-primary/70'; // Middle blue
-              if (index === 2) bgColor = 'bg-primary/80'; // Darkest blue for last/bottom
+              let bgColor = 'bg-primary/80'; // Default for Colaboracion (index 0)
+              if (value.id === 'innovacion' && selectedValue !== 'innovacion') bgColor = 'bg-primary/70'; // Middle blue for Innovacion if not active
+              if (value.id === 'integridad') bgColor = 'bg-primary/60'; // Darkest blue for Integridad
 
               return (
                 <button
@@ -154,9 +154,9 @@ export default function AboutPage() {
                   className={cn(
                     "w-full md:h-1/3 p-3 md:p-0 flex items-center justify-center text-center text-primary-foreground uppercase tracking-wider font-semibold text-xs sm:text-sm md:text-base transition-all duration-300 ease-in-out hover:opacity-90",
                     "md:writing-mode-vertical-rl md:transform md:rotate-180",
-                    selectedValue === value.id ? 'bg-accent text-accent-foreground shadow-inner-lg' : `${bgColor} hover:${bgColor}/90`,
-                    index < coreValues.length - 1 && "md:border-b border-primary/20", // Horizontal border for vertical tabs
-                    index < coreValues.length - 1 && index > 0 && "border-r md:border-r-0 border-primary/20" // Vertical border for horizontal tabs
+                    selectedValue === value.id ? 'bg-accent text-accent-foreground shadow-inner-lg' : `${bgColor} hover:bg-opacity-90`,
+                    index < coreValues.length - 1 && "md:border-b border-primary/20", 
+                    index < coreValues.length -1 && index >= 0 && "border-r md:border-r-0 border-primary/20"
                   )}
                 >
                   {value.name}
@@ -183,7 +183,7 @@ export default function AboutPage() {
             )}
           </div>
         </div>
-        <p className="mt-12 text-center text-md text-muted-foreground italic max-w-3xl mx-auto">
+        <p className="mt-12 text-center text-md text-muted-foreground italic max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           Estos valores se manifiestan en nuestro compromiso inquebrantable con la resiliencia ambiental y la equidad de género, buscando generar un legado significativo y duradero en cada comunidad que abrazamos.
         </p>
       </section>
@@ -191,4 +191,3 @@ export default function AboutPage() {
     </div>
   );
 }
-
