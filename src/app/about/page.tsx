@@ -1,14 +1,15 @@
 
-'use client'; 
+'use client';
 
-import { useState } from 'react'; 
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import DynamicSection from '@/components/DynamicSection';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, Gem, HeartPulse, Target, Globe, Rocket, Eye, Info, Shield, Lightbulb, Users as UsersIcon } from 'lucide-react'; 
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'; // CardDescription importada
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'; // Import Accordion components
+import { ArrowRight, Gem, HeartPulse, Target, Globe, Rocket, Eye, Info, Shield, Lightbulb, Users as UsersIcon } from 'lucide-react';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
-import { cn } from '@/lib/utils'; 
+import { cn } from '@/lib/utils';
 
 const coreValues = [
   {
@@ -32,7 +33,8 @@ const coreValues = [
 ];
 
 export default function AboutPage() {
-  const [selectedValue, setSelectedValue] = useState(coreValues[0]);
+  // selectedValue is not needed for Accordion, but keeping structure for now if other parts use it.
+  // For Accordion, typically default item can be set in Accordion props or first item is default.
 
   const sections = [
     {
@@ -67,15 +69,8 @@ export default function AboutPage() {
     },
   ];
 
-  // Tab background colors - to match the image's visual progression
-  const tabBackgrounds = [
-    'bg-primary/60 hover:bg-primary/50', // Colaboración (darkest of the three)
-    'bg-primary/75 hover:bg-primary/65', // Innovación (middle)
-    'bg-primary/90 hover:bg-primary/80'  // Integridad (lightest)
-  ];
-
   return (
-    <div className="py-10 space-y-16"> 
+    <div className="py-10 space-y-16">
 
       <section className="relative bg-background overflow-hidden">
         <div className="w-full px-4 sm:px-6 lg:px-8 min-h-[calc(70vh)] lg:min-h-0 py-16 sm:py-20 md:py-24 lg:py-32 flex items-center">
@@ -89,7 +84,7 @@ export default function AboutPage() {
                   <div
                     className="bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--ring))] bg-[length:200%_200%] animate-gradient rounded-full w-full h-full shadow-xl flex justify-center items-center"
                   >
-                    <Info className="h-3/5 w-3/5 text-accent" /> 
+                    <Info className="h-3/5 w-3/5 text-accent" />
                   </div>
                 </div>
               </div>
@@ -143,63 +138,33 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* New Interactive "Nuestros Valores Fundamentales" Section based on image */}
+      {/* New Interactive "Nuestros Valores Fundamentales" Section as Accordion */}
       <section className="w-full py-16 md:py-24">
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row min-h-[400px] md:min-h-[450px] shadow-2xl rounded-lg overflow-hidden border border-border bg-card">
-          {/* Vertical Tabs Column */}
-          <div className="flex md:flex-col md:w-20 lg:w-24">
-            {coreValues.map((value, index) => (
-              <button
-                key={value.id}
-                onClick={() => setSelectedValue(value)}
-                className={cn(
-                  "flex-1 md:flex-none md:h-1/3 w-full p-2 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-inset",
-                  selectedValue.id === value.id 
-                    ? 'bg-accent text-accent-foreground focus:ring-accent' 
-                    : `${tabBackgrounds[index % tabBackgrounds.length]} text-primary-foreground focus:ring-primary/50`
-                )}
-                title={value.name}
-              >
-                <span
-                  className="block h-full w-full"
-                  style={{ 
-                    writingMode: 'vertical-rl', 
-                    transform: 'rotate(180deg)', 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    justifyContent: 'center', 
-                    textTransform: 'uppercase', 
-                    fontSize: '0.8rem', // Adjusted for better fit
-                    fontWeight: 600, 
-                    letterSpacing: '0.075em', // Adjusted for better fit
-                    lineHeight: '1.2' 
-                  }}
-                >
-                  {value.name}
-                </span>
-              </button>
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">
+            NUESTROS VALORES FUNDAMENTALES
+          </h2>
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {coreValues.map((value) => (
+              <AccordionItem key={value.id} value={value.id} className="border border-border rounded-lg shadow-md hover:shadow-xl transition-shadow bg-card data-[state=open]:border-primary data-[state=open]:bg-primary/5">
+                <AccordionTrigger className="flex w-full items-center justify-between p-4 sm:p-6 text-lg sm:text-xl font-semibold text-foreground hover:no-underline hover:text-primary data-[state=open]:text-primary data-[state=open]:border-b data-[state=open]:border-primary/20">
+                  <span className="flex items-center">
+                    <value.icon className="mr-3 h-6 w-6 sm:h-7 sm:w-7 text-primary data-[state=open]:text-accent" />
+                    {value.name}
+                  </span>
+                </AccordionTrigger>
+                <AccordionContent className="p-4 sm:p-6 pt-0">
+                  <p className="text-base text-muted-foreground leading-relaxed">
+                    {value.explanation}
+                  </p>
+                </AccordionContent>
+              </AccordionItem>
             ))}
-          </div>
-
-          {/* Content Display Area */}
-          <div className="flex-1 p-6 sm:p-8 md:p-12 bg-primary text-primary-foreground relative">
-            <h3 className="text-2xl sm:text-3xl font-bold mb-6 md:mb-8 text-center md:text-left text-primary-foreground/90">
-              NUESTROS VALORES
-            </h3>
-            {selectedValue && (
-              <div key={selectedValue.id} className="animate-fade-in-up duration-500 flex flex-col items-center md:items-start text-center md:text-left">
-                <selectedValue.icon className="h-14 w-14 md:h-16 md:w-16 text-accent mb-4 md:mb-5" />
-                <h4 className="text-2xl md:text-3xl font-bold text-primary-foreground mb-3">{selectedValue.name}</h4>
-                <p className="text-sm md:text-base text-primary-foreground/80 leading-relaxed max-w-lg">
-                  {selectedValue.explanation}
-                </p>
-              </div>
-            )}
-          </div>
+          </Accordion>
+          <p className="mt-12 text-center text-md text-muted-foreground italic max-w-3xl mx-auto">
+            Estos valores se manifiestan en nuestro compromiso inquebrantable con la resiliencia ambiental y la equidad de género, buscando generar un legado significativo y duradero en cada comunidad que abrazamos.
+          </p>
         </div>
-        <p className="mt-12 text-center text-md text-muted-foreground italic max-w-3xl mx-auto px-4">
-          Estos valores se manifiestan en nuestro compromiso inquebrantable con la resiliencia ambiental y la equidad de género, buscando generar un legado significativo y duradero en cada comunidad que abrazamos.
-        </p>
       </section>
 
     </div>
