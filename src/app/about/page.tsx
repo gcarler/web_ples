@@ -1,28 +1,21 @@
 
-'use client'; // Add 'use client' for useState hook
+'use client'; 
 
-import { useState }
-from 'react'; // Import useState
+import { useState } from 'react'; 
 import { Button } from '@/components/ui/button';
 import DynamicSection from '@/components/DynamicSection';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, Gem, HeartPulse, Target, Globe, Rocket, Eye, Info, Shield, Lightbulb, Users as UsersIcon } from 'lucide-react'; // Added Shield, Lightbulb, UsersIcon
+import { ArrowRight, Gem, HeartPulse, Target, Globe, Rocket, Eye, Info, Shield, Lightbulb, Users as UsersIcon } from 'lucide-react'; 
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
-import { cn } from '@/lib/utils'; // Import cn
-
-// metadata cannot be used in client components, move to a parent server component or layout if needed globally.
-// export const metadata = {
-//   title: 'Sobre Nosotros - PLES',
-//   description: 'Conoce más sobre PLES, nuestra misión, visión y valores.',
-// };
+import { cn } from '@/lib/utils'; 
 
 const coreValues = [
   {
-    id: 'integridad',
-    name: 'Integridad',
-    icon: Shield,
-    explanation: "Actuamos con honestidad, transparencia y ética profesional en todas nuestras interacciones. La integridad es el pilar que sustenta la confianza con nuestros clientes, colaboradores y la sociedad, guiando cada decisión y proyecto que emprendemos.",
+    id: 'colaboracion',
+    name: 'Colaboración',
+    icon: UsersIcon,
+    explanation: "La colaboración es la esencia de nuestro accionar. Fomentamos un espíritu de trabajo en equipo sinérgico, tanto internamente como con nuestros clientes y aliados estratégicos. Creemos firmemente que la convergencia de diversas perspectivas y talentos enriquece los resultados, amplía los horizontes y es fundamental para el éxito compartido.",
   },
   {
     id: 'innovacion',
@@ -31,10 +24,10 @@ const coreValues = [
     explanation: "Como motor de nuestro progreso, la innovación nos impulsa a buscar constantemente nuevas ideas, enfoques disruptivos y tecnologías de vanguardia. Abrazamos la creatividad para generar soluciones eficientes y transformadoras que aporten un valor diferencial y superen los desafíos complejos.",
   },
   {
-    id: 'colaboracion',
-    name: 'Colaboración',
-    icon: UsersIcon,
-    explanation: "La colaboración es la esencia de nuestro accionar. Fomentamos un espíritu de trabajo en equipo sinérgico, tanto internamente como con nuestros clientes y aliados estratégicos. Creemos firmemente que la convergencia de diversas perspectivas y talentos enriquece los resultados, amplía los horizontes y es fundamental para el éxito compartido.",
+    id: 'integridad',
+    name: 'Integridad',
+    icon: Shield,
+    explanation: "Actuamos con honestidad, transparencia y ética profesional en todas nuestras interacciones. La integridad es el pilar que sustenta la confianza con nuestros clientes, colaboradores y la sociedad, guiando cada decisión y proyecto que emprendemos.",
   },
 ];
 
@@ -74,13 +67,19 @@ export default function AboutPage() {
     },
   ];
 
+  // Tab background colors - to match the image's visual progression
+  const tabBackgrounds = [
+    'bg-primary/60 hover:bg-primary/50', // Colaboración (darkest of the three)
+    'bg-primary/75 hover:bg-primary/65', // Innovación (middle)
+    'bg-primary/90 hover:bg-primary/80'  // Integridad (lightest)
+  ];
+
   return (
-    <div className="py-10 space-y-16"> {/* Main container for full-width sections */}
-      {/* New Hero Section */}
+    <div className="py-10 space-y-16"> 
+
       <section className="relative bg-background overflow-hidden">
         <div className="w-full px-4 sm:px-6 lg:px-8 min-h-[calc(70vh)] lg:min-h-0 py-16 sm:py-20 md:py-24 lg:py-32 flex items-center">
           <div className="flex flex-col lg:flex-row items-center w-full gap-12 lg:gap-8">
-            {/* Left Visual Part */}
             <div className="w-full lg:w-5/12 flex justify-center items-center relative order-1 lg:order-none">
               <div className="relative w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] md:w-[420px] md:h-[420px] xl:w-[480px] xl:h-[480px]">
                 <div
@@ -90,13 +89,12 @@ export default function AboutPage() {
                   <div
                     className="bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--ring))] bg-[length:200%_200%] animate-gradient rounded-full w-full h-full shadow-xl flex justify-center items-center"
                   >
-                    <Info className="h-3/5 w-3/5 text-accent" /> {/* Icon for About Us */}
+                    <Info className="h-3/5 w-3/5 text-accent" /> 
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Right Text Part */}
             <div className="w-full lg:w-7/12 text-center lg:text-left relative z-20 order-2 lg:order-none">
               <h1 className="text-4xl sm:text-5xl xl:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-6">
                 Sobre PLES
@@ -121,7 +119,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Existing Content - Section with "Nuestra Identidad" and Dynamic Sections */}
       <section className="w-full px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div className="space-y-6">
@@ -129,7 +126,6 @@ export default function AboutPage() {
             <p className="text-lg mb-4">
               Con una visión global y un enfoque multidisciplinario, nuestro equipo converge talentos y conocimientos diversos para la consecución de objetivos trascendentes. En PLES, valoramos la riqueza de cada perspectiva, cultivando un espacio donde las ideas disruptivas e innovadoras florecen, permitiendo intervenciones estratégicas y perspicaces en cualquier escenario.
             </p>
-            {/* This old "Valores Esenciales" div will be replaced by the new section below */}
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -147,53 +143,63 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* New Interactive "Nuestros Valores Fundamentales" Section */}
-      <section className="w-full px-4 sm:px-6 lg:px-8 py-16 bg-muted/30 rounded-lg shadow-inner">
-        <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">
-          Nuestros Valores Fundamentales
-        </h2>
-        <div className="max-w-5xl mx-auto md:flex md:space-x-12">
-          {/* Left Column: Vertical Value "Tabs" */}
-          <div className="flex md:flex-col justify-around md:justify-start md:space-y-4 mb-8 md:mb-0 md:w-1/4">
-            {coreValues.map((value) => (
+      {/* New Interactive "Nuestros Valores Fundamentales" Section based on image */}
+      <section className="w-full py-16 md:py-24">
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row min-h-[400px] md:min-h-[450px] shadow-2xl rounded-lg overflow-hidden border border-border bg-card">
+          {/* Vertical Tabs Column */}
+          <div className="flex md:flex-col md:w-20 lg:w-24">
+            {coreValues.map((value, index) => (
               <button
                 key={value.id}
                 onClick={() => setSelectedValue(value)}
                 className={cn(
-                  "text-xl md:text-2xl font-semibold p-3 rounded-lg transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary/50",
-                  "text-center md:text-left w-full",
-                  selectedValue.id === value.id
-                    ? "bg-gradient-to-r from-primary to-accent text-primary-foreground shadow-lg scale-105"
-                    : "text-foreground/70 hover:text-primary hover:bg-primary/5"
+                  "flex-1 md:flex-none md:h-1/3 w-full p-2 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-inset",
+                  selectedValue.id === value.id 
+                    ? 'bg-accent text-accent-foreground focus:ring-accent' 
+                    : `${tabBackgrounds[index % tabBackgrounds.length]} text-primary-foreground focus:ring-primary/50`
                 )}
+                title={value.name}
               >
-                {value.name}
+                <span
+                  className="block h-full w-full"
+                  style={{ 
+                    writingMode: 'vertical-rl', 
+                    transform: 'rotate(180deg)', 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center', 
+                    textTransform: 'uppercase', 
+                    fontSize: '0.8rem', // Adjusted for better fit
+                    fontWeight: 600, 
+                    letterSpacing: '0.075em', // Adjusted for better fit
+                    lineHeight: '1.2' 
+                  }}
+                >
+                  {value.name}
+                </span>
               </button>
             ))}
           </div>
 
-          {/* Right Column: Content Display */}
-          <div className="md:w-3/4">
-            <Card className="p-6 md:p-8 shadow-xl border-border min-h-[280px] flex flex-col justify-center bg-card">
-              {selectedValue && (
-                <div key={selectedValue.id} className="animate-fade-in-up duration-500">
-                  <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left mb-4">
-                    <selectedValue.icon className="h-12 w-12 md:h-14 md:w-14 text-primary mb-3 sm:mb-0 sm:mr-5 shrink-0" />
-                    <div>
-                      <h3 className="text-2xl md:text-3xl font-bold text-primary mb-1">{selectedValue.name}</h3>
-                      <p className="text-md md:text-lg text-foreground/80 leading-relaxed">
-                        {selectedValue.explanation}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </Card>
-            <p className="mt-8 text-center text-md text-muted-foreground italic max-w-3xl mx-auto">
-              Estos valores se manifiestan en nuestro compromiso inquebrantable con la resiliencia ambiental y la equidad de género, buscando generar un legado significativo y duradero en cada comunidad que abrazamos.
-            </p>
+          {/* Content Display Area */}
+          <div className="flex-1 p-6 sm:p-8 md:p-12 bg-primary text-primary-foreground relative">
+            <h3 className="text-2xl sm:text-3xl font-bold mb-6 md:mb-8 text-center md:text-left text-primary-foreground/90">
+              NUESTROS VALORES
+            </h3>
+            {selectedValue && (
+              <div key={selectedValue.id} className="animate-fade-in-up duration-500 flex flex-col items-center md:items-start text-center md:text-left">
+                <selectedValue.icon className="h-14 w-14 md:h-16 md:w-16 text-accent mb-4 md:mb-5" />
+                <h4 className="text-2xl md:text-3xl font-bold text-primary-foreground mb-3">{selectedValue.name}</h4>
+                <p className="text-sm md:text-base text-primary-foreground/80 leading-relaxed max-w-lg">
+                  {selectedValue.explanation}
+                </p>
+              </div>
+            )}
           </div>
         </div>
+        <p className="mt-12 text-center text-md text-muted-foreground italic max-w-3xl mx-auto px-4">
+          Estos valores se manifiestan en nuestro compromiso inquebrantable con la resiliencia ambiental y la equidad de género, buscando generar un legado significativo y duradero en cada comunidad que abrazamos.
+        </p>
       </section>
 
     </div>
