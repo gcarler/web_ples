@@ -133,7 +133,7 @@ export default function LevantamientoPredialPage() {
             <h2 className="text-3xl font-semibold text-foreground mb-10 text-center">
               {serviceDetails.benefitsHeading}
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
               {serviceDetails.benefits.map((item) => (
                  <Card key={item.title} className="p-6 group transition-all duration-300 ease-in-out hover:shadow-2xl hover:scale-[1.03] hover:border-primary/50 hover:bg-primary/5 dark:hover:bg-accent/5 text-center">
                   <div className="flex flex-col items-center">

@@ -162,7 +162,7 @@ export default function AiAutomationPage() {
             <h2 className="text-3xl font-semibold text-foreground mb-10 text-center">
               {serviceDetails.keyServicesHeading}
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
               {serviceDetails.keyServices.map((service) => (
                 <Card key={service.title} className="p-6 group transition-all duration-300 ease-in-out hover:shadow-2xl hover:scale-[1.03] hover:border-primary/50 hover:bg-primary/5 dark:hover:bg-accent/5">
                   <div className="flex flex-col items-center text-center md:items-start md:text-left">
