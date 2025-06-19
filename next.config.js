@@ -41,9 +41,17 @@ const nextConfig = {
 
     // For client-side bundles, prevent Node.js modules from being included.
     if (!isServer) {
-      // Updated regex to ignore 'firebase-admin' and its sub-paths
+      // Ignore firebase-admin and its sub-paths. This is critical.
       config.plugins.push(new webpack.IgnorePlugin({ resourceRegExp: /^firebase-admin(\/.*)?$/ }));
+
+      // Provide 'process/browser' polyfill globally for 'process'
+      config.plugins.push(
+        new webpack.ProvidePlugin({
+          process: 'process/browser',
+        })
+      );
       
+      // Fallback for Node.js core modules
       config.resolve.fallback = {
         ...(config.resolve.fallback || {}),
         crypto: false,
@@ -56,8 +64,10 @@ const nextConfig = {
         async_hooks: false,
         http2: false,
         vm: false,
-        process: 'process/browser',
-        "node:process": 'process/browser',
+        // 'process' is handled by ProvidePlugin, 
+        // but 'node:process' needs an explicit fallback to the resolved polyfill.
+        // This assumes 'process' package is installed (npm i process or yarn add process)
+        "node:process": require.resolve('process/browser'), 
       };
     } else {
       // For server-side, explicitly mark 'crypto' as an external module.
@@ -69,4 +79,3 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
-
