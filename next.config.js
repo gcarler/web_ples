@@ -65,9 +65,9 @@ const nextConfig = {
         http2: false,
         vm: false,
         // 'process' is handled by ProvidePlugin, 
-        // but 'node:process' needs an explicit fallback to the resolved polyfill.
-        // This assumes 'process' package is installed (npm i process or yarn add process)
-        "node:process": require.resolve('process/browser'), 
+        // but 'node:process' needs an explicit fallback.
+        // Change from require.resolve('process/browser') to false as a diagnostic step.
+        "node:process": false, 
       };
     } else {
       // For server-side, explicitly mark 'crypto' as an external module.
