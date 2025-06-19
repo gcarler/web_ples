@@ -14,19 +14,19 @@ import { cn } from '@/lib/utils';
 const coreValues = [
   {
     id: 'colaboracion',
-    name: 'Colaboración',
+    name: 'COLABORACIÓN',
     icon: UsersIcon,
     explanation: "La colaboración es la esencia de nuestro accionar. Fomentamos un espíritu de trabajo en equipo sinérgico, tanto internamente como con nuestros clientes y aliados estratégicos. Creemos firmemente que la convergencia de diversas perspectivas y talentos enriquece los resultados, amplía los horizontes y es fundamental para el éxito compartido.",
   },
   {
     id: 'innovacion',
-    name: 'Innovación',
+    name: 'INNOVACIÓN',
     icon: Lightbulb,
     explanation: "Como motor de nuestro progreso, la innovación nos impulsa a buscar constantemente nuevas ideas, enfoques disruptivos y tecnologías de vanguardia. Abrazamos la creatividad para generar soluciones eficientes y transformadoras que aporten un valor diferencial y superen los desafíos complejos.",
   },
   {
     id: 'integridad',
-    name: 'Integridad',
+    name: 'INTEGRIDAD',
     icon: Shield,
     explanation: "Actuamos con honestidad, transparencia y ética profesional en todas nuestras interacciones. La integridad es el pilar que sustenta la confianza con nuestros clientes, colaboradores y la sociedad, guiando cada decisión y proyecto que emprendemos.",
   },
@@ -140,8 +140,8 @@ export default function AboutPage() {
 
       {/* New Interactive "Nuestros Valores Fundamentales" Section - Full Width */}
       <section className="w-full py-16 md:py-24">
-        {/* Main block for tabs and content - spans full width, has rounded corners and shadow */}
-        <div className="flex flex-col md:flex-row min-h-[450px] md:min-h-[500px] shadow-2xl rounded-xl overflow-hidden border border-border/20">
+        {/* Main block for tabs and content - spans full width, NO rounded corners, has shadow */}
+        <div className="flex flex-col md:flex-row min-h-[450px] md:min-h-[500px] shadow-2xl overflow-hidden border border-border/20">
           {/* Vertical Tabs - Left Side */}
           <div className="flex md:flex-col w-full md:w-20 lg:w-24 border-b md:border-b-0 md:border-r border-border/20">
             {coreValues.map((value, index) => {
@@ -161,7 +161,7 @@ export default function AboutPage() {
                   onClick={() => setSelectedValue(value.id)}
                   className={cn(
                     "w-full md:h-1/3 p-3 md:p-0 flex items-center justify-center text-center uppercase tracking-wider font-semibold text-xs sm:text-sm md:text-base transition-all duration-300 ease-in-out",
-                    "md:[writing-mode:vertical-rl] md:[text-orientation:upright]", // Corrected orientation
+                    "md:[writing-mode:vertical-rl] md:[text-orientation:upright]", 
                     bgColor,
                     index < coreValues.length - 1 && "md:border-b border-primary/20", 
                     index < coreValues.length -1 && index >=0 && "border-r md:border-r-0 border-primary/20"
@@ -199,3 +199,4 @@ export default function AboutPage() {
     </div>
   );
 }
+
