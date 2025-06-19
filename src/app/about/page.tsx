@@ -5,12 +5,12 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import DynamicSection from '@/components/DynamicSection';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'; // CardDescription importada
-import { ArrowRight, Gem, HeartPulse, Target, Globe, Rocket, Eye, Info, Shield, Lightbulb, Users as UsersIcon } from 'lucide-react';
+import { ArrowRight, Gem, HeartPulse, Target, Globe, Rocket, Eye, Info, Shield, Lightbulb, Users as UsersIcon, Cpu } from 'lucide-react';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 
-// Reorder to match visual (top to bottom): Colaboración, Innovación, Integridad
+// Order to match visual (top to bottom): Colaboración, Innovación, Integridad
 const coreValues = [
   {
     id: 'colaboracion',
@@ -146,15 +146,11 @@ export default function AboutPage() {
           <div className="flex md:flex-col w-full md:w-20 lg:w-24 border-b md:border-b-0 md:border-r border-border/20">
             {coreValues.map((value, index) => {
               let bgColor = '';
-              // Assign background colors based on the image and active state
-              // Colaboracion (index 0): primary/80 (darker blue)
-              // Innovacion (index 1): accent (active, light blue) or primary/70 (inactive, mid blue)
-              // Integridad (index 2): primary/60 (darkest blue of the three non-active)
               if (selectedValue === value.id) {
                 bgColor = 'bg-accent text-accent-foreground shadow-inner-lg';
               } else {
                 if (value.id === 'colaboracion') bgColor = 'bg-primary/80 text-primary-foreground';
-                else if (value.id === 'innovacion') bgColor = 'bg-primary/70 text-primary-foreground'; // Mid-blue when Innovacion is not active
+                else if (value.id === 'innovacion') bgColor = 'bg-primary/70 text-primary-foreground';
                 else if (value.id === 'integridad') bgColor = 'bg-primary/60 text-primary-foreground';
                 bgColor += ' hover:bg-opacity-90';
               }
@@ -165,7 +161,7 @@ export default function AboutPage() {
                   onClick={() => setSelectedValue(value.id)}
                   className={cn(
                     "w-full md:h-1/3 p-3 md:p-0 flex items-center justify-center text-center uppercase tracking-wider font-semibold text-xs sm:text-sm md:text-base transition-all duration-300 ease-in-out",
-                    "md:writing-mode-vertical-rl md:transform md:rotate-180", // For vertical text
+                    "md:[writing-mode:vertical-rl] md:[text-orientation:upright]", // Corrected orientation
                     bgColor,
                     index < coreValues.length - 1 && "md:border-b border-primary/20", 
                     index < coreValues.length -1 && index >=0 && "border-r md:border-r-0 border-primary/20"
@@ -203,4 +199,3 @@ export default function AboutPage() {
     </div>
   );
 }
-
