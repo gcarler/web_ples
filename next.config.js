@@ -54,7 +54,7 @@ const nextConfig = {
       // Alias 'node:process' to 'process/browser' to handle the scheme directly
       config.resolve.alias = {
         ...(config.resolve.alias || {}),
-        'node:process': 'process/browser',
+        'node:process': 'process/browser', // Alias for node: scheme
       };
 
       // Fallback for Node.js core modules
@@ -70,9 +70,8 @@ const nextConfig = {
         async_hooks: false,
         http2: false,
         vm: false,
-        // 'process' fallback handles direct imports of 'process'
-        process: 'process/browser', 
-        // 'node:process' is now handled by the alias above
+        process: 'process/browser', // Fallback for direct 'process' imports
+        'node:process': 'process/browser', // Explicit fallback for 'node:process' as well
       };
     } else {
       // For server-side, explicitly mark 'crypto' as an external module.
