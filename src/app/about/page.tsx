@@ -11,32 +11,33 @@ import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 
 // Reordenado y con colores de fondo para pestañas inactivas según la imagen
+// El orden aquí define el orden visual de las pestañas de arriba a abajo.
 const coreValues = [
   {
     id: 'colaboracion',
     name: 'COLABORACIÓN',
     icon: UsersIcon,
     explanation: "La colaboración es la esencia de nuestro accionar. Fomentamos un espíritu de trabajo en equipo sinérgico, tanto internamente como con nuestros clientes y aliados estratégicos. Creemos firmemente que la convergencia de diversas perspectivas y talentos enriquece los resultados, amplía los horizontes y es fundamental para el éxito compartido.",
-    inactiveBg: 'md:bg-primary/80',
+    inactiveBg: 'md:bg-primary/80', // Azul más oscuro para la primera pestaña inactiva
   },
   {
     id: 'innovacion',
     name: 'INNOVACIÓN',
     icon: Lightbulb,
     explanation: "Como motor de nuestro progreso, la innovación nos impulsa a buscar constantemente nuevas ideas, enfoques disruptivos y tecnologías de vanguardia. Abrazamos la creatividad para generar soluciones eficientes y transformadoras que aporten un valor diferencial y superen los desafíos complejos.",
-    inactiveBg: 'md:bg-primary/70',
+    inactiveBg: 'md:bg-primary/70', // Azul intermedio para la segunda pestaña inactiva
   },
   {
     id: 'integridad',
     name: 'INTEGRIDAD',
     icon: Shield,
     explanation: "Actuamos con honestidad, transparencia y ética profesional en todas nuestras interacciones. La integridad es el pilar que sustenta la confianza con nuestros clientes, colaboradores y la sociedad, guiando cada decisión y proyecto que emprendemos.",
-    inactiveBg: 'md:bg-primary/60',
+    inactiveBg: 'md:bg-primary/60', // Este color se usaría si Integridad estuviera inactiva
   },
 ];
 
 export default function AboutPage() {
-  const [selectedValue, setSelectedValue] = useState(coreValues[0].id); // Colaboración activa por defecto
+  const [selectedValue, setSelectedValue] = useState(coreValues[2].id); // Integridad activa por defecto para coincidir con la imagen
   const selectedContent = coreValues.find(v => v.id === selectedValue);
 
   const sections = [
@@ -142,9 +143,9 @@ export default function AboutPage() {
       </section>
 
       {/* Interactive Section for "Nuestros Valores Fundamentales" */}
-      <section className="w-full overflow-hidden">
-        <div className="flex flex-col md:flex-row shadow-2xl border border-border/20">
-          {/* Left Column: Horizontal Tabs/Buttons */}
+      <section className="w-full overflow-hidden"> {/* Section takes full width, no padding here */}
+        <div className="flex flex-col md:flex-row shadow-2xl border-y border-border/20"> {/* Outer container for the blue block, removed rounded-xl */}
+          {/* Left Column: Horizontal Tabs/Buttons, now making buttons flex-1 to fill height */}
           <div className="flex md:flex-col md:w-1/3 lg:w-1/4 bg-card md:border-r md:border-border/20">
             {coreValues.map((value, index) => (
               <button
@@ -152,10 +153,11 @@ export default function AboutPage() {
                 onClick={() => setSelectedValue(value.id)}
                 className={cn(
                   "w-full p-4 md:p-6 text-center font-semibold uppercase tracking-wider transition-all duration-300 ease-in-out focus:outline-none",
-                  "border-b md:border-b-0 border-border/20", // Bottom border on mobile, still useful between horizontal buttons
-                  index < coreValues.length - 1 ? "md:border-b" : "", // Bottom border between buttons on desktop
+                  "border-b border-border/20", // Always have bottom border on mobile
+                  index < coreValues.length - 1 ? "md:border-b" : "md:border-b-0", // On desktop, all but last have bottom border
+                  "md:flex-1 md:flex md:items-center md:justify-center", // Make buttons take equal vertical space and center text
                   selectedValue === value.id
-                    ? 'bg-accent text-accent-foreground'
+                    ? 'bg-accent text-accent-foreground' // Active tab color
                     : `${value.inactiveBg || 'bg-primary/70'} text-primary-foreground hover:brightness-110`
                 )}
               >
@@ -166,11 +168,11 @@ export default function AboutPage() {
 
           {/* Right Column: Content Display */}
           {selectedContent && (
-            <div className="flex-1 bg-primary text-primary-foreground p-8 md:p-12 lg:p-16 flex flex-col justify-center items-center text-center min-h-[400px] md:min-h-0">
-              <div key={selectedContent.id} className="animate-fade-in-up w-full max-w-2xl space-y-6"> {/* Added space-y-6 */}
-                <h2 className="text-2xl font-semibold text-primary-foreground mb-0 uppercase tracking-wider">NUESTROS VALORES</h2> {/* Reduced mb */}
-                <selectedContent.icon className="h-20 w-20 sm:h-24 sm:w-24 text-accent mx-auto" /> {/* Removed mb */}
-                <h3 className="text-3xl sm:text-4xl font-semibold text-accent"> {/* Removed mb */}
+            <div className="flex-1 bg-primary text-primary-foreground p-8 md:p-12 lg:p-16 flex flex-col justify-center items-center text-center min-h-[450px] md:min-h-0"> {/* Ensure content panel can define height */}
+              <div key={selectedContent.id} className="animate-fade-in-up w-full max-w-2xl space-y-6 md:space-y-8"> {/* Increased spacing */}
+                <h2 className="text-xl md:text-2xl font-semibold text-primary-foreground/80 mb-0 uppercase tracking-wider">NUESTROS VALORES</h2>
+                <selectedContent.icon className="h-20 w-20 sm:h-24 sm:w-24 text-accent mx-auto" />
+                <h3 className="text-3xl sm:text-4xl font-bold text-accent"> {/* Made font-bold */}
                   {selectedContent.name}
                 </h3>
                 <p className="text-base sm:text-lg leading-relaxed text-primary-foreground/90 max-w-xl mx-auto">
