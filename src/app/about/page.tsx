@@ -13,25 +13,25 @@ import { cn } from '@/lib/utils';
 // Reordenado y con colores de fondo para pestañas inactivas según la imagen
 const coreValues = [
   {
-    id: 'colaboracion', // Será la superior
+    id: 'colaboracion',
     name: 'COLABORACIÓN',
     icon: UsersIcon,
     explanation: "La colaboración es la esencia de nuestro accionar. Fomentamos un espíritu de trabajo en equipo sinérgico, tanto internamente como con nuestros clientes y aliados estratégicos. Creemos firmemente que la convergencia de diversas perspectivas y talentos enriquece los resultados, amplía los horizontes y es fundamental para el éxito compartido.",
-    inactiveBg: 'md:bg-primary/80', // Un azul un poco más claro para la primera inactiva si no es la activa
+    inactiveBg: 'md:bg-primary/80',
   },
   {
-    id: 'innovacion', // Será la del medio
+    id: 'innovacion',
     name: 'INNOVACIÓN',
     icon: Lightbulb,
     explanation: "Como motor de nuestro progreso, la innovación nos impulsa a buscar constantemente nuevas ideas, enfoques disruptivos y tecnologías de vanguardia. Abrazamos la creatividad para generar soluciones eficientes y transformadoras que aporten un valor diferencial y superen los desafíos complejos.",
-    inactiveBg: 'md:bg-primary/70', // Azul intermedio
+    inactiveBg: 'md:bg-primary/70',
   },
   {
-    id: 'integridad', // Será la inferior
+    id: 'integridad',
     name: 'INTEGRIDAD',
     icon: Shield,
     explanation: "Actuamos con honestidad, transparencia y ética profesional en todas nuestras interacciones. La integridad es el pilar que sustenta la confianza con nuestros clientes, colaboradores y la sociedad, guiando cada decisión y proyecto que emprendemos.",
-    inactiveBg: 'md:bg-primary/60', // Azul más oscuro para la última inactiva
+    inactiveBg: 'md:bg-primary/60',
   },
 ];
 
@@ -141,27 +141,25 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Interactive Section for "Nuestros Valores Fundamentales" - Reverted to Image-based Design */}
-      <section className="w-full overflow-hidden"> {/* Full width, overflow hidden for children */}
-        <div className="flex flex-col md:flex-row shadow-2xl border border-border/20"> {/* No rounded-xl here */}
-          {/* Left Column: Vertical Tabs */}
-          <div className="flex md:flex-col md:w-24 lg:w-28 bg-card md:border-r md:border-border/20">
+      {/* Interactive Section for "Nuestros Valores Fundamentales" */}
+      <section className="w-full overflow-hidden">
+        <div className="flex flex-col md:flex-row shadow-2xl border border-border/20">
+          {/* Left Column: Horizontal Tabs/Buttons */}
+          <div className="flex md:flex-col md:w-1/3 lg:w-1/4 bg-card md:border-r md:border-border/20">
             {coreValues.map((value, index) => (
               <button
                 key={value.id}
                 onClick={() => setSelectedValue(value.id)}
                 className={cn(
-                  "w-full md:w-auto md:h-1/3 flex-1 md:flex-none p-3 md:p-4 text-center font-semibold uppercase tracking-wider transition-all duration-300 ease-in-out focus:outline-none",
-                  "md:[writing-mode:vertical-rl] md:[text-orientation:upright]", // Text vertical, letters upright for md+
-                  "border-b md:border-b-0 md:border-r border-border/20", // Bottom border on mobile, right border on desktop between tabs and content (applied to parent div)
-                  index < coreValues.length -1 ? "md:border-b" : "", // Bottom border between tabs on desktop
+                  "w-full p-4 md:p-6 text-center font-semibold uppercase tracking-wider transition-all duration-300 ease-in-out focus:outline-none",
+                  "border-b md:border-b-0 border-border/20", // Bottom border on mobile, still useful between horizontal buttons
+                  index < coreValues.length - 1 ? "md:border-b" : "", // Bottom border between buttons on desktop
                   selectedValue === value.id
-                    ? 'bg-accent text-accent-foreground' // Active tab color
-                    : `${value.inactiveBg || 'bg-primary/70'} text-primary-foreground hover:brightness-110` // Inactive tab colors
+                    ? 'bg-accent text-accent-foreground'
+                    : `${value.inactiveBg || 'bg-primary/70'} text-primary-foreground hover:brightness-110`
                 )}
               >
-                {/* For mobile, text is horizontal. For desktop, it's handled by writing-mode. */}
-                <span className="md:text-lg lg:text-xl">{value.name}</span>
+                <span className="text-lg">{value.name}</span>
               </button>
             ))}
           </div>
@@ -169,10 +167,10 @@ export default function AboutPage() {
           {/* Right Column: Content Display */}
           {selectedContent && (
             <div className="flex-1 bg-primary text-primary-foreground p-8 md:p-12 lg:p-16 flex flex-col justify-center items-center text-center min-h-[400px] md:min-h-0">
-              <div key={selectedContent.id} className="animate-fade-in-up w-full max-w-2xl">
-                <h2 className="text-2xl font-semibold text-primary-foreground mb-8 uppercase tracking-wider">NUESTROS VALORES</h2>
-                <selectedContent.icon className="h-20 w-20 sm:h-24 sm:w-24 text-accent mb-6 mx-auto" />
-                <h3 className="text-3xl sm:text-4xl font-semibold text-accent mb-4">
+              <div key={selectedContent.id} className="animate-fade-in-up w-full max-w-2xl space-y-6"> {/* Added space-y-6 */}
+                <h2 className="text-2xl font-semibold text-primary-foreground mb-0 uppercase tracking-wider">NUESTROS VALORES</h2> {/* Reduced mb */}
+                <selectedContent.icon className="h-20 w-20 sm:h-24 sm:w-24 text-accent mx-auto" /> {/* Removed mb */}
+                <h3 className="text-3xl sm:text-4xl font-semibold text-accent"> {/* Removed mb */}
                   {selectedContent.name}
                 </h3>
                 <p className="text-base sm:text-lg leading-relaxed text-primary-foreground/90 max-w-xl mx-auto">
