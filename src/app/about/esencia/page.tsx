@@ -1,9 +1,10 @@
 // src/app/about/esencia/page.tsx
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, HeartPulse } from 'lucide-react';
+import { ArrowLeft, ArrowRight, HeartPulse, Globe, Library, Users, Target, MessagesSquare, Lightbulb, Focus } from 'lucide-react';
 import React from 'react';
-import Image from 'next/image'; // Importar Image
+import Image from 'next/image';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export const metadata = {
   title: 'Nuestra Esencia - Sobre Nosotros - PLES',
@@ -19,6 +20,44 @@ const pageDetails = {
   ctaLink: "/forms?subject=Consulta%20Nuestra%20Esencia",
   ctaText: "Conozca Más Sobre Nosotros"
 };
+
+const esenciaPoints = [
+  {
+    icon: <Globe className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    title: "Visión Global",
+    text: "Entendemos los desafíos y oportunidades en un contexto interconectado. Nuestras soluciones consideran tendencias mundiales y su impacto local, buscando relevancia y aplicabilidad más allá de las fronteras inmediatas."
+  },
+  {
+    icon: <Library className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    title: "Enfoque Multidisciplinario",
+    text: "Integramos conocimientos de diversas áreas (tecnología, ciencias sociales, ingeniería, diseño) para abordar problemas complejos desde múltiples ángulos, generando soluciones holísticas e innovadoras."
+  },
+  {
+    icon: <Users className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    title: "Convergencia de Talentos",
+    text: "Nuestro equipo amalgama habilidades y experiencias variadas. Fomentamos la colaboración activa para que esta diversidad de pensamiento enriquezca la creatividad y la calidad de nuestros resultados."
+  },
+  {
+    icon: <Target className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    title: "Objetivos Trascendentes",
+    text: "Aspiramos a generar un impacto positivo y duradero que va más allá de lo técnico o comercial. Nos enfocamos en proyectos con significado y un alcance que contribuya al desarrollo sostenible."
+  },
+  {
+    icon: <MessagesSquare className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    title: "Riqueza de Perspectivas",
+    text: "Valoramos cada punto de vista como una fuente de enriquecimiento. Creamos un entorno inclusivo donde todas las voces son escuchadas, llevando a análisis más profundos y soluciones robustas."
+  },
+  {
+    icon: <Lightbulb className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    title: "Ideas Disruptivas e Innovadoras",
+    text: "Promovemos un espacio para la experimentación y el cuestionamiento constructivo. Buscamos constantemente nuevas formas de hacer las cosas para que las ideas que rompen moldes florezcan."
+  },
+  {
+    icon: <Focus className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    title: "Intervenciones Estratégicas",
+    text: "Nuestras soluciones se basan en un entendimiento profundo del contexto. Son intervenciones perspicaces, diseñadas para ser efectivas y eficientes en cualquier escenario que se presente."
+  }
+];
 
 export default function EsenciaPage() {
   return (
@@ -83,10 +122,30 @@ export default function EsenciaPage() {
         </div>
       </section> {/* End of full-width image/text section */}
 
-
-      {/* Centered container for bottom content (CTA) */}
+      {/* Centered container for new detailed section and bottom content (CTA) */}
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-        <section className="text-center mt-16 animate-fade-in-up" style={{ animationDelay: '0.8s', animationFillMode: 'forwards' }}>
+        <section className="py-16 animate-fade-in-up" style={{ animationDelay: '0.7s', animationFillMode: 'forwards' }}>
+          <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">
+            Desglosando Nuestra Esencia:
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {esenciaPoints.map((point, index) => (
+              <Card key={index} className="group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary/5 hover:to-accent/5 hover:border-primary/30 transition-all duration-300 ease-in-out transform hover:scale-[1.03] border">
+                <CardHeader className="items-center text-center md:items-start md:text-left">
+                  {point.icon}
+                  <CardTitle className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">{point.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground group-hover:text-foreground/90 transition-colors text-sm md:text-left text-center">
+                    {point.text}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        <section className="text-center mt-0 mb-16 animate-fade-in-up" style={{ animationDelay: '0.8s', animationFillMode: 'forwards' }}>
           <Button size="lg" asChild className="text-lg px-8 py-4 shadow-lg hover:shadow-xl hover:scale-105 transition-transform">
             <Link href={pageDetails.ctaLink}>
               <span className="flex items-center">
