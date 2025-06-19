@@ -1,4 +1,3 @@
-
 // src/components/layout/header.tsx
 'use client';
 import Link from 'next/link';
@@ -31,7 +30,7 @@ export function Header() {
   const { toast } = useToast();
   const router = useRouter();
   const pathname = usePathname();
-  const [desktopNavVisible, setDesktopNavVisible] = React.useState(true); // State for desktop nav visibility
+  // const [desktopNavVisible, setDesktopNavVisible] = React.useState(true); // No longer needed for desktop
 
   const handleLogout = async () => {
     try {
@@ -63,92 +62,77 @@ export function Header() {
   ];
 
   return (
-    // Make header sticky, add z-index and a subtle shadow
     <header className="bg-card text-card-foreground sticky top-0 z-50 shadow-sm">
       <nav className="w-full px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
-        {/* Logo - Commented out */}
-        {/*
-        <Link href="/" className="flex-shrink-0">
-          <PlesGroupLogo className="h-7" />
-        </Link>
-        */}
-
-        {/* Desktop Navigation & Controls */}
-        <div className="hidden md:flex items-center space-x-2 flex-grow justify-end"> {/* Added flex-grow and justify-end */}
-          {desktopNavVisible && (
-            <ul className="flex items-center space-x-4 lg:space-x-6">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className={cn(
-                      "text-sm font-medium hover:text-primary transition-colors",
-                      pathname === link.href ? "text-primary font-semibold" : "text-foreground/70"
-                    )}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          )}
+        <div className="flex items-center gap-4"> {/* Container for logo and nav links */}
+          <Link href="/" className="flex-shrink-0">
+            <PlesGroupLogo className="h-7" />
+          </Link>
           
-          {/* Group for toggle, theme, and login/admin buttons */}
-          <div className="flex items-center space-x-2">
-            <Button
-              variant="ghost"
-              size="icon" // Using "icon" size for a compact toggle
-              onClick={() => setDesktopNavVisible(!desktopNavVisible)}
-              aria-label={desktopNavVisible ? "Ocultar navegación" : "Mostrar navegación"}
-              className="rounded-md h-9 w-9" // Ensure consistent button size with ThemeToggle
-            >
-              <Menu className="h-5 w-5" />
-            </Button>
-            <ThemeToggle />
-            {!loading && (
-              user ? (
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="sm" className="rounded-md">Admin</Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="w-56">
-                    <DropdownMenuLabel>Admin Panel</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem asChild>
-                      <Link href="/admin/dashboard">
-                        <span className="flex items-center">
-                          <LayoutDashboard className="mr-2 h-4 w-4" /> Dashboard
-                        </span>
-                      </Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem onClick={handleLogout} className="text-destructive focus:text-destructive focus:bg-destructive/10 cursor-pointer">
-                       <span className="flex items-center">
-                        <LogOut className="mr-2 h-4 w-4" /> Logout
-                       </span>
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              ) : (
-                <Button variant="outline" size="sm" asChild className="rounded-md">
-                  <Link href="/login">
-                    <span className="flex items-center">
-                      <LogIn className="mr-2 h-4 w-4" />
-                      Iniciar sesión
-                    </span>
-                  </Link>
-                </Button>
-              )
-            )}
-          </div>
+          {/* Desktop Navigation Links - Always visible */}
+          <ul className="hidden md:flex items-center space-x-4 lg:space-x-6">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className={cn(
+                    "text-sm font-medium hover:text-primary transition-colors",
+                    pathname === link.href ? "text-primary font-semibold" : "text-foreground/70"
+                  )}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        
+        {/* Desktop Controls (Theme, Auth) - Pushed to the right */}
+        <div className="hidden md:flex items-center space-x-2">
+          <ThemeToggle />
+          {!loading && (
+            user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm" className="rounded-md">Admin</Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  <DropdownMenuLabel>Admin Panel</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link href="/admin/dashboard">
+                      <span className="flex items-center">
+                        <LayoutDashboard className="mr-2 h-4 w-4" /> Dashboard
+                      </span>
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={handleLogout} className="text-destructive focus:text-destructive focus:bg-destructive/10 cursor-pointer">
+                     <span className="flex items-center">
+                      <LogOut className="mr-2 h-4 w-4" /> Logout
+                     </span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Button variant="outline" size="sm" asChild className="rounded-md">
+                <Link href="/login">
+                  <span className="flex items-center">
+                    <LogIn className="mr-2 h-4 w-4" />
+                    Iniciar sesión
+                  </span>
+                </Link>
+              </Button>
+            )
+          )}
         </div>
 
         {/* Mobile Navigation Trigger & Controls */}
-        <div className="md:hidden flex items-center w-full justify-end"> {/* Ensured this also justifies to the end if logo is removed */}
-          {/* Sheet component for mobile menu */}
+        <div className="md:hidden flex items-center">
+          <ThemeToggle /> {/* Theme toggle can be outside sheet for quick access on mobile */}
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
+              <Button variant="ghost" size="icon" className="ml-2"> {/* Added ml-2 for spacing */}
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">Abrir menú</span>
               </Button>
@@ -156,13 +140,9 @@ export function Header() {
             <SheetContent side="right" className="w-[280px] p-0 flex flex-col bg-card">
               <div className="p-4 flex justify-between items-center border-b border-border">
                 <SheetClose asChild>
-                   {/*
                    <Link href="/" className="flex-shrink-0">
                      <PlesGroupLogo className="h-6" />
                    </Link>
-                   */}
-                   {/* If no logo, maybe a text title or just keep it clean */}
-                   <span className="font-semibold text-lg">PLES</span>
                 </SheetClose>
               </div>
               
@@ -189,10 +169,11 @@ export function Header() {
               <Separator />
               
               <div className="p-4 space-y-4 mt-auto border-t border-border">
-                <div className="flex justify-between items-center">
+                {/* Theme toggle already outside, or can be duplicated here if preferred */}
+                {/* <div className="flex justify-between items-center">
                   <span className="text-sm text-muted-foreground">Tema</span>
                   <ThemeToggle />
-                </div>
+                </div> */}
                 <div className="pt-2">
                   {!loading && (
                     user ? (
