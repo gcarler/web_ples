@@ -15,7 +15,6 @@ const pageDetails = {
   title: "Nuestro Propósito",
   subtitle: "Explorando nuestro motor.",
   mainIcon: <Lightbulb className="h-12 w-12 md:h-16 md:h-16" />,
-  // mainParagraph will be JSX now
   ctaLink: "/forms?subject=Consulta%20Nuestro%20Proposito",
   ctaText: "Descubra Cómo Podemos Ayudar"
 };
@@ -55,7 +54,7 @@ export default function PropositoPage() {
 
         <section className="max-w-4xl mx-auto py-12 px-6 animate-fade-in-up text-center" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
           <p className="text-lg md:text-xl text-foreground leading-relaxed">
-            Impulsados por la <span className="text-2xl md:text-3xl font-semibold text-primary">convicción</span> en el <span className="text-xl md:text-2xl font-medium text-accent">poder transformador</span> de la <span className="text-2xl md:text-3xl font-semibold text-[hsl(var(--ring))]">experiencia inteligente</span>, forjamos <span className="text-xl md:text-2xl font-medium text-primary">puentes sólidos</span> entre los ámbitos <span className="text-xl md:text-2xl font-medium text-accent">público</span> y <span className="text-xl md:text-2xl font-medium text-[hsl(var(--ring))]">privado</span>, así como con las <span className="text-2xl md:text-3xl font-semibold text-primary">comunidades que servimos</span>. Aprovechamos la <span className="text-xl md:text-2xl font-medium text-accent">sabiduría colectiva</span> para abordar los <span className="text-2xl md:text-3xl font-semibold text-primary">desafíos globales</span> con una <span className="text-xl md:text-2xl font-medium text-[hsl(var(--ring))]">estrategia refinada</span> y una <span className="text-xl md:text-2xl font-medium text-accent">visión de sostenibilidad</span> a largo plazo.
+            Impulsados por la <span className="text-3xl md:text-4xl font-bold text-primary">convicción</span> en el <span className="text-xl md:text-2xl font-medium text-accent">poder transformador</span> de la <span className="text-3xl md:text-4xl font-bold text-[hsl(var(--ring))]">experiencia inteligente</span>, forjamos <span className="text-2xl md:text-3xl font-semibold text-primary">puentes sólidos</span> entre los ámbitos <span className="text-xl md:text-2xl font-medium text-accent">público</span> y <span className="text-xl md:text-2xl font-medium text-[hsl(var(--ring))]">privado</span>, así como con las <span className="text-2xl md:text-3xl font-semibold text-primary">comunidades que servimos</span>. Aprovechamos la <span className="text-xl md:text-2xl font-medium text-accent">sabiduría colectiva</span> para abordar los <span className="text-3xl md:text-4xl font-bold text-primary">desafíos globales</span> con una <span className="text-xl md:text-2xl font-medium text-[hsl(var(--ring))]">estrategia refinada</span> y una <span className="text-2xl md:text-3xl font-semibold text-accent">visión de sostenibilidad</span> a largo plazo.
           </p>
         </section>
 

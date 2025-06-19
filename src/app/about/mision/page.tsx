@@ -15,7 +15,6 @@ const pageDetails = {
   title: "Nuestra Misión",
   subtitle: "Guiando nuestras acciones.",
   mainIcon: <Rocket className="h-12 w-12 md:h-16 md:h-16" />,
-  // mainParagraph will be JSX now
   ctaLink: "/forms?subject=Consulta%20Nuestra%20Mision",
   ctaText: "Explore Nuestras Estrategias"
 };
@@ -55,7 +54,7 @@ export default function MisionPage() {
 
         <section className="max-w-4xl mx-auto py-12 px-6 animate-fade-in-up text-center" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
           <p className="text-lg md:text-xl text-foreground leading-relaxed">
-            Consolidar <span className="text-2xl md:text-3xl font-semibold text-primary">lazos estratégicos</span> entre <span className="text-xl md:text-2xl font-medium text-accent">sectores</span> y <span className="text-xl md:text-2xl font-medium text-[hsl(var(--ring))]">comunidades</span>, aplicando nuestra <span className="text-2xl md:text-3xl font-semibold text-primary">experiencia con discernimiento</span> para afrontar los <span className="text-xl md:text-2xl font-medium text-accent">retos globales</span> de manera <span className="text-2xl md:text-3xl font-semibold text-primary">sostenible</span> y con <span className="text-2xl md:text-3xl font-semibold text-accent">visión de futuro</span>.
+            Consolidar <span className="text-3xl md:text-4xl font-bold text-primary">lazos estratégicos</span> entre <span className="text-2xl md:text-3xl font-semibold text-accent">sectores</span> y <span className="text-2xl md:text-3xl font-semibold text-[hsl(var(--ring))]">comunidades</span>, aplicando nuestra <span className="text-3xl md:text-4xl font-bold text-primary">experiencia con discernimiento</span> para afrontar los <span className="text-2xl md:text-3xl font-semibold text-accent">retos globales</span> de manera <span className="text-3xl md:text-4xl font-bold text-primary">sostenible</span> y con <span className="text-3xl md:text-4xl font-bold text-accent">visión de futuro</span>.
           </p>
         </section>
 
