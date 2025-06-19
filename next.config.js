@@ -56,6 +56,7 @@ const nextConfig = {
         http2: false,
         vm: false,
         process: require.resolve('process/browser'), // This line requires 'process' package
+        "node:process": require.resolve('process/browser'), // Added to handle "node:process" imports
       };
     } else {
       // For server-side, explicitly mark 'crypto' as an external module.
