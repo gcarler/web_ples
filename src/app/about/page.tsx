@@ -10,30 +10,34 @@ import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 
+// Reordenado y con colores de fondo para pestañas inactivas según la imagen
 const coreValues = [
   {
-    id: 'colaboracion',
+    id: 'colaboracion', // Será la superior
     name: 'COLABORACIÓN',
     icon: UsersIcon,
     explanation: "La colaboración es la esencia de nuestro accionar. Fomentamos un espíritu de trabajo en equipo sinérgico, tanto internamente como con nuestros clientes y aliados estratégicos. Creemos firmemente que la convergencia de diversas perspectivas y talentos enriquece los resultados, amplía los horizontes y es fundamental para el éxito compartido.",
+    inactiveBg: 'md:bg-primary/80', // Un azul un poco más claro para la primera inactiva si no es la activa
   },
   {
-    id: 'innovacion',
+    id: 'innovacion', // Será la del medio
     name: 'INNOVACIÓN',
     icon: Lightbulb,
     explanation: "Como motor de nuestro progreso, la innovación nos impulsa a buscar constantemente nuevas ideas, enfoques disruptivos y tecnologías de vanguardia. Abrazamos la creatividad para generar soluciones eficientes y transformadoras que aporten un valor diferencial y superen los desafíos complejos.",
+    inactiveBg: 'md:bg-primary/70', // Azul intermedio
   },
   {
-    id: 'integridad',
+    id: 'integridad', // Será la inferior
     name: 'INTEGRIDAD',
     icon: Shield,
     explanation: "Actuamos con honestidad, transparencia y ética profesional en todas nuestras interacciones. La integridad es el pilar que sustenta la confianza con nuestros clientes, colaboradores y la sociedad, guiando cada decisión y proyecto que emprendemos.",
+    inactiveBg: 'md:bg-primary/60', // Azul más oscuro para la última inactiva
   },
 ];
 
 export default function AboutPage() {
-  const [activeValueId, setActiveValueId] = useState(coreValues[0].id); // Default to the first value
-  const selectedContent = coreValues.find(v => v.id === activeValueId);
+  const [selectedValue, setSelectedValue] = useState(coreValues[0].id); // Colaboración activa por defecto
+  const selectedContent = coreValues.find(v => v.id === selectedValue);
 
   const sections = [
     {
@@ -137,47 +141,51 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Horizontal Accordion-like Section for "Nuestros Valores Fundamentales" */}
-      <section className="w-full py-16 md:py-24 px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl sm:text-4xl font-bold mb-12 tracking-tight uppercase text-center text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">
-          NUESTROS VALORES FUNDAMENTALES
-        </h2>
+      {/* Interactive Section for "Nuestros Valores Fundamentales" - Reverted to Image-based Design */}
+      <section className="w-full overflow-hidden"> {/* Full width, overflow hidden for children */}
+        <div className="flex flex-col md:flex-row shadow-2xl border border-border/20"> {/* No rounded-xl here */}
+          {/* Left Column: Vertical Tabs */}
+          <div className="flex md:flex-col md:w-24 lg:w-28 bg-card md:border-r md:border-border/20">
+            {coreValues.map((value, index) => (
+              <button
+                key={value.id}
+                onClick={() => setSelectedValue(value.id)}
+                className={cn(
+                  "w-full md:w-auto md:h-1/3 flex-1 md:flex-none p-3 md:p-4 text-center font-semibold uppercase tracking-wider transition-all duration-300 ease-in-out focus:outline-none",
+                  "md:[writing-mode:vertical-rl] md:[text-orientation:upright]", // Text vertical, letters upright for md+
+                  "border-b md:border-b-0 md:border-r border-border/20", // Bottom border on mobile, right border on desktop between tabs and content (applied to parent div)
+                  index < coreValues.length -1 ? "md:border-b" : "", // Bottom border between tabs on desktop
+                  selectedValue === value.id
+                    ? 'bg-accent text-accent-foreground' // Active tab color
+                    : `${value.inactiveBg || 'bg-primary/70'} text-primary-foreground hover:brightness-110` // Inactive tab colors
+                )}
+              >
+                {/* For mobile, text is horizontal. For desktop, it's handled by writing-mode. */}
+                <span className="md:text-lg lg:text-xl">{value.name}</span>
+              </button>
+            ))}
+          </div>
 
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-2 mb-8">
-          {coreValues.map((value) => (
-            <Button
-              key={value.id}
-              variant={activeValueId === value.id ? 'default' : 'outline'}
-              size="lg"
-              onClick={() => setActiveValueId(value.id)}
-              className={cn(
-                "w-full sm:w-auto text-sm sm:text-base px-6 py-3 transition-all duration-300 ease-in-out",
-                activeValueId === value.id 
-                  ? 'shadow-lg scale-105' 
-                  : 'hover:bg-primary/10'
-              )}
-            >
-              {value.name}
-            </Button>
-          ))}
-        </div>
-
-        {selectedContent && (
-          <Card className="max-w-3xl mx-auto shadow-xl border border-border/30 bg-card group hover:bg-gradient-to-br hover:from-primary/5 hover:to-accent/5 transition-all duration-300 ease-in-out">
-            <CardContent className="p-8 md:p-10 text-center">
-              <div key={selectedContent.id} className="animate-fade-in-up space-y-6">
-                <selectedContent.icon className="h-16 w-16 sm:h-20 sm:w-20 text-primary group-hover:text-accent transition-colors duration-300 mx-auto mb-4" />
-                <h3 className="text-2xl sm:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
+          {/* Right Column: Content Display */}
+          {selectedContent && (
+            <div className="flex-1 bg-primary text-primary-foreground p-8 md:p-12 lg:p-16 flex flex-col justify-center items-center text-center min-h-[400px] md:min-h-0">
+              <div key={selectedContent.id} className="animate-fade-in-up w-full max-w-2xl">
+                <h2 className="text-2xl font-semibold text-primary-foreground mb-8 uppercase tracking-wider">NUESTROS VALORES</h2>
+                <selectedContent.icon className="h-20 w-20 sm:h-24 sm:w-24 text-accent mb-6 mx-auto" />
+                <h3 className="text-3xl sm:text-4xl font-semibold text-accent mb-4">
                   {selectedContent.name}
                 </h3>
-                <p className="text-base sm:text-lg leading-relaxed text-muted-foreground group-hover:text-foreground/90 transition-colors duration-300">
+                <p className="text-base sm:text-lg leading-relaxed text-primary-foreground/90 max-w-xl mx-auto">
                   {selectedContent.explanation}
                 </p>
               </div>
-            </CardContent>
-          </Card>
-        )}
+            </div>
+          )}
+        </div>
+      </section>
+      {/* End of Interactive Section */}
 
+      <section className="w-full px-4 sm:px-6 lg:px-8">
         <p className="mt-12 text-center text-md text-muted-foreground italic max-w-3xl mx-auto">
           Estos valores se manifiestan en nuestro compromiso inquebrantable con la resiliencia ambiental y la equidad de género, buscando generar un legado significativo y duradero en cada comunidad que abrazamos.
         </p>
