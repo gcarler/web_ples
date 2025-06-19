@@ -10,34 +10,30 @@ import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 
-// Reordenado y con colores de fondo para pestañas inactivas según la imagen
-// El orden aquí define el orden visual de las pestañas de arriba a abajo.
+// Los valores fundamentales con la nueva lógica de color y fuente
 const coreValues = [
   {
     id: 'colaboracion',
     name: 'COLABORACIÓN',
     icon: UsersIcon,
     explanation: "La colaboración es la esencia de nuestro accionar. Fomentamos un espíritu de trabajo en equipo sinérgico, tanto internamente como con nuestros clientes y aliados estratégicos. Creemos firmemente que la convergencia de diversas perspectivas y talentos enriquece los resultados, amplía los horizontes y es fundamental para el éxito compartido.",
-    inactiveBg: 'md:bg-primary/80', // Más oscuro para la primera pestaña inactiva (arriba)
   },
   {
     id: 'innovacion',
     name: 'INNOVACIÓN',
     icon: Lightbulb,
     explanation: "Como motor de nuestro progreso, la innovación nos impulsa a buscar constantemente nuevas ideas, enfoques disruptivos y tecnologías de vanguardia. Abrazamos la creatividad para generar soluciones eficientes y transformadoras que aporten un valor diferencial y superen los desafíos complejos.",
-    inactiveBg: 'md:bg-primary/70', // Tono intermedio para la segunda pestaña inactiva (medio)
   },
   {
     id: 'integridad',
     name: 'INTEGRIDAD',
     icon: Shield,
     explanation: "Actuamos con honestidad, transparencia y ética profesional en todas nuestras interacciones. La integridad es el pilar que sustenta la confianza con nuestros clientes, colaboradores y la sociedad, guiando cada decisión y proyecto que emprendemos.",
-    inactiveBg: 'md:bg-primary/60', // Tono más claro para la tercera pestaña inactiva (abajo, si no está activa)
   },
 ];
 
 export default function AboutPage() {
-  const [selectedValue, setSelectedValue] = useState(coreValues[2].id); // Integridad activa por defecto (último elemento)
+  const [selectedValue, setSelectedValue] = useState(coreValues[2].id); // Integridad activa por defecto
   const selectedContent = coreValues.find(v => v.id === selectedValue);
 
   const sections = [
@@ -143,8 +139,8 @@ export default function AboutPage() {
       </section>
 
       {/* Interactive Section for "Nuestros Valores Fundamentales" */}
-      <section className="w-full overflow-hidden"> {/* Section takes full width */}
-        <div className="flex flex-col md:flex-row shadow-2xl border-y border-border/20"> {/* Outer container for the block */}
+      <section className="w-full overflow-hidden">
+        <div className="flex flex-col md:flex-row shadow-2xl border-y border-border/20 min-h-[450px] md:min-h-0">
           {/* Left Column: Vertical Tabs/Buttons */}
           <div className="flex md:flex-col md:w-1/3 lg:w-1/4 bg-card md:border-r md:border-border/20">
             {coreValues.map((value, index) => (
@@ -155,20 +151,20 @@ export default function AboutPage() {
                   "w-full p-4 md:p-6 text-center font-semibold uppercase tracking-wider transition-all duration-300 ease-in-out focus:outline-none",
                   "border-b border-border/20", 
                   index < coreValues.length - 1 ? "md:border-b" : "md:border-b-0", 
-                  "md:flex-1 md:flex md:items-center md:justify-center", // Ensure buttons fill height on desktop and center text
+                  "md:flex-1 md:flex md:items-center md:justify-center",
                   selectedValue === value.id
                     ? 'bg-accent text-accent-foreground' // Active tab color
-                    : `${value.inactiveBg} text-primary-foreground hover:brightness-110` // Use inactiveBg from coreValues array
+                    : 'bg-primary text-primary-foreground hover:bg-primary/80' // Inactive tabs now use bg-primary
                 )}
               >
-                <span className="text-lg">{value.name}</span>
+                <span className="text-xl md:text-2xl">{value.name}</span> {/* Font size increased */}
               </button>
             ))}
           </div>
 
           {/* Right Column: Content Display */}
           {selectedContent && (
-            <div className="flex-1 bg-primary text-primary-foreground p-8 md:p-12 lg:p-16 flex flex-col justify-center items-center text-center min-h-[450px] md:min-h-0">
+            <div className="flex-1 bg-primary text-primary-foreground p-8 md:p-12 lg:p-16 flex flex-col justify-center items-center text-center">
               <div key={selectedContent.id} className="animate-fade-in-up w-full max-w-2xl space-y-6 md:space-y-8">
                 <h2 className="text-xl md:text-2xl font-semibold text-primary-foreground/80 mb-0 uppercase tracking-wider">NUESTROS VALORES</h2>
                 <selectedContent.icon className="h-20 w-20 sm:h-24 sm:w-24 text-accent mx-auto" />
@@ -193,4 +189,3 @@ export default function AboutPage() {
     </div>
   );
 }
-
