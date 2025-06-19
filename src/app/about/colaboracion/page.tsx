@@ -1,25 +1,32 @@
 // src/app/about/colaboracion/page.tsx
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ArrowRight, UsersRound } from 'lucide-react'; // Usaremos UsersRound para Colaboración
 
 export const metadata = {
   title: 'Colaboración Global - Sobre Nosotros - PLES',
   description: 'Conoce cómo nuestra dinámica de colaboración trasciende fronteras.',
 };
 
-const parentLink = "/about";
-const parentName = "Sobre Nosotros";
+const pageDetails = {
+  parentLink: "/about",
+  parentName: "Sobre Nosotros",
+  title: "Colaboración Global",
+  subtitle: "Conoce cómo trabajamos.",
+  mainParagraph: "Nuestra dinámica de colaboración trasciende fronteras y culturas, enriqueciendo cada plan, política, estrategia y proyecto con una paleta de visiones, disciplinas y enfoques que amplían los horizontes de la solución.",
+  ctaLink: "/forms?subject=Consulta%20Colaboracion%20Global",
+  ctaText: "Únase a Nuestra Red"
+};
 
 export default function ColaboracionPage() {
   return (
-    <div className="w-full py-10 px-4 sm:px-6 lg:px-8">
-      <div className="flex items-center space-x-2 mb-8">
+    <div className="py-10 w-full px-4 sm:px-6 lg:px-8">
+      <div className="max-w-screen-xl mx-auto">
+        <div className="flex items-center space-x-2 mb-12">
           <Button variant="outline" size="sm" asChild className="group hover:bg-primary hover:text-primary-foreground transition-colors">
-            <Link href={parentLink}>
+            <Link href={pageDetails.parentLink}>
               <ArrowLeft className="mr-2 h-4 w-4 group-hover:text-primary-foreground" />
-              Volver a {parentName}
+              Volver a {pageDetails.parentName}
             </Link>
           </Button>
           <span className="text-muted-foreground">|</span>
@@ -29,17 +36,40 @@ export default function ColaboracionPage() {
             </Link>
           </Button>
         </div>
-      <Card className="shadow-lg border group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out">
-        <CardHeader>
-          <CardTitle className="text-3xl font-bold text-primary group-hover:text-primary-foreground">Colaboración Global</CardTitle>
-          <CardDescription className="group-hover:text-primary-foreground/90">Conoce cómo trabajamos.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p className="text-lg group-hover:text-primary-foreground/90">
-            Nuestra dinámica de colaboración trasciende fronteras y culturas, enriqueciendo cada plan, política, estrategia y proyecto con una paleta de visiones, disciplinas y enfoques que amplían los horizontes de la solución.
-          </p>
-        </CardContent>
-      </Card>
+
+        <section className="relative mb-16 py-12 md:py-20 bg-gradient-to-br from-primary/5 via-background to-accent/5 rounded-xl shadow-lg overflow-hidden border border-border/20">
+          <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/connected.png')] animate-pulse"></div>
+          <div className="relative text-center px-4 z-10">
+            <div className="inline-block p-5 bg-gradient-to-r from-primary to-accent text-primary-foreground rounded-full mb-8 shadow-md animate-expand-in" style={{ animationFillMode: 'forwards' }}>
+              <UsersRound className="h-12 w-12 md:h-16 md:h-16" />
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-4 animate-fade-in-up" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
+              {pageDetails.title}
+            </h1>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}>
+              {pageDetails.subtitle}
+            </p>
+          </div>
+        </section>
+
+        <section className="max-w-3xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
+          <div className="bg-card p-8 md:p-10 rounded-lg shadow-xl border border-border/30 hover:shadow-2xl transition-shadow duration-300">
+            <p className="text-lg md:text-xl text-foreground leading-relaxed">
+              {pageDetails.mainParagraph}
+            </p>
+          </div>
+        </section>
+
+        <section className="text-center mt-16 animate-fade-in-up" style={{ animationDelay: '0.8s', animationFillMode: 'forwards' }}>
+          <Button size="lg" asChild className="text-lg px-8 py-4 shadow-lg hover:shadow-xl hover:scale-105 transition-transform">
+            <Link href={pageDetails.ctaLink}>
+              <span className="flex items-center">
+                {pageDetails.ctaText} <ArrowRight className="ml-2 h-5 w-5" />
+              </span>
+            </Link>
+          </Button>
+        </section>
+      </div>
     </div>
   );
 }
