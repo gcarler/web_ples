@@ -1,3 +1,4 @@
+
 // src/app/admin/dashboard/page.tsx
 import { getContacts } from '@/app/actions/crm-actions';
 import { getOpportunities } from '@/app/actions/crm-actions';
@@ -10,7 +11,8 @@ import { ContactsBySourceChart } from '@/components/dashboard/contacts-by-source
 import { OpportunitiesByStageChart } from '@/components/dashboard/opportunities-by-stage-chart';
 import { OrdersByStatusChart } from '@/components/dashboard/orders-by-status-chart';
 import { ProcessesByStatusChart } from '@/components/dashboard/processes-by-status-chart';
-import { AlertCircle, CheckCircle, ShoppingCart, Users, Workflow, Package } from 'lucide-react'; // Import icons
+import { AlertCircle, CheckCircle, ShoppingCart, Users, Workflow, Package, ExternalLink } from 'lucide-react'; // Import icons
+import Link from 'next/link'; // Import Link
 
 export const metadata = {
   title: 'Admin Dashboard - PLES',
@@ -27,8 +29,31 @@ function countByKey<T>(items: T[], key: keyof T): { name: string; count: number 
   return Object.entries(counts).map(([name, count]) => ({ name, count }));
 }
 
+interface MetricCardProps {
+  title: string;
+  value: string | number;
+  description: string;
+  icon: React.ElementType;
+  href: string;
+  iconColor?: string;
+}
+
+const MetricCard: React.FC<MetricCardProps> = ({ title, value, description, icon: Icon, href, iconColor }) => (
+  <Link href={href} passHref>
+    <Card className="hover:shadow-lg hover:border-primary transition-all cursor-pointer">
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <CardTitle className="text-sm font-medium">{title}</CardTitle>
+        <Icon className={`h-4 w-4 ${iconColor || 'text-muted-foreground'}`} />
+      </CardHeader>
+      <CardContent>
+        <div className="text-2xl font-bold">{value}</div>
+        <p className="text-xs text-muted-foreground">{description}</p>
+      </CardContent>
+    </Card>
+  </Link>
+);
+
 export default async function DashboardPage() {
-  // Fetch data in parallel
   const [
     contacts,
     opportunities,
@@ -43,13 +68,11 @@ export default async function DashboardPage() {
     getProducts()
   ]);
 
-  // Process data for charts
   const contactsBySource = countByKey(contacts, 'leadSource');
   const opportunitiesByStage = countByKey(opportunities, 'stage');
   const ordersByStatus = countByKey(orders, 'status');
   const processesByStatus = countByKey(processes, 'status');
 
-  // Calculate Key Metrics
   const totalContacts = contacts.length;
   const totalOpportunities = opportunities.length;
   const openOpportunities = opportunities.filter(o => o.stage !== 'Closed Won' && o.stage !== 'Closed Lost').length;
@@ -60,76 +83,18 @@ export default async function DashboardPage() {
   const totalProducts = products.length;
 
   return (
-    // Removed horizontal padding (px-4 sm:px-6 lg:px-8) to rely on AdminLayout's SidebarInset padding
     <div className="py-10 space-y-6">
       <h1 className="text-3xl font-bold tracking-tight">Admin Dashboard</h1>
 
-      {/* Key Metrics Section */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Contacts</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{totalContacts}</div>
-            <p className="text-xs text-muted-foreground">Total registered contacts</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Open Opportunities</CardTitle>
-            <CheckCircle className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{openOpportunities}</div>
-            <p className="text-xs text-muted-foreground">Out of {totalOpportunities} total</p>
-          </CardContent>
-        </Card>
-         <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Products</CardTitle>
-            <Package className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{totalProducts}</div>
-             <p className="text-xs text-muted-foreground">Products in catalog</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Pending Orders</CardTitle>
-            <ShoppingCart className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{pendingOrders}</div>
-            <p className="text-xs text-muted-foreground">Out of {totalOrders} total</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Running Processes</CardTitle>
-            <Workflow className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{runningProcesses}</div>
-             <p className="text-xs text-muted-foreground">Active BPM instances</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Failed Processes</CardTitle>
-            <AlertCircle className="h-4 w-4 text-destructive" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-destructive">{failedProcesses}</div>
-            <p className="text-xs text-muted-foreground">Requires attention</p>
-          </CardContent>
-        </Card>
-
+        <MetricCard title="Total Contacts" value={totalContacts} description="Total registered contacts" icon={Users} href="/admin/crm" />
+        <MetricCard title="Open Opportunities" value={openOpportunities} description={`Out of ${totalOpportunities} total`} icon={CheckCircle} href="/admin/crm/opportunities" />
+        <MetricCard title="Total Products" value={totalProducts} description="Products in catalog" icon={Package} href="/admin/erp/products" />
+        <MetricCard title="Pending Orders" value={pendingOrders} description={`Out of ${totalOrders} total`} icon={ShoppingCart} href="/admin/erp/orders" />
+        <MetricCard title="Running Processes" value={runningProcesses} description="Active BPM instances" icon={Workflow} href="/admin/bpm/processes" />
+        <MetricCard title="Failed Processes" value={failedProcesses} description="Requires attention" icon={AlertCircle} href="/admin/bpm/processes" iconColor="text-destructive" />
       </div>
 
-      {/* Charts Section */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
         <Card className="shadow-lg border col-span-1">
           <CardHeader>

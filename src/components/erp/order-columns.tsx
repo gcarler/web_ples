@@ -1,3 +1,4 @@
+
 // src/components/erp/order-columns.tsx
 "use client"
 
@@ -6,31 +7,29 @@ import { OrderFirestore, OrderStatus, OrderStatusSchema } from "@/lib/models/erp
 import { DataTableColumnHeader } from "@/components/ui/data-table-column-header"
 import { Badge } from "@/components/ui/badge"
 import { format } from 'date-fns'
-import { Calendar, CheckCircle, CircleDollarSign, Clock, Package, RefreshCcw, RotateCcw, Truck, User, XCircle } from "lucide-react" // Example icons
+import { Calendar, CheckCircle, CircleDollarSign, Clock, ExternalLink, Package, RefreshCcw, RotateCcw, Truck, User, XCircle } from "lucide-react" // Added ExternalLink
 import Link from "next/link"
 
-// Helper to format currency
 const formatCurrency = (amount: number | null | undefined) => {
   if (amount == null) return '-';
-  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount); // Adjust currency as needed
+  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount);
 };
 
-// Component for Order Status Pill
 const OrderStatusPill = ({ status }: { status: OrderStatus }) => {
   let variant: "default" | "secondary" | "destructive" | "outline" = "secondary";
   let Icon = Clock;
-  let className = ''; // Added for specific styling like completed green
+  let className = '';
 
   switch (status) {
     case 'Pending': variant = 'secondary'; Icon = Clock; break;
     case 'Processing': variant = 'outline'; Icon = RefreshCcw; break;
     case 'Awaiting Payment': variant = 'outline'; Icon = CircleDollarSign; break;
-    case 'Awaiting Shipment': variant = 'default'; Icon = Package; break; // Primary color for actionable state
+    case 'Awaiting Shipment': variant = 'default'; Icon = Package; break;
     case 'Shipped': variant = 'default'; Icon = Truck; break;
-    case 'Delivered': variant = 'default'; Icon = CheckCircle; break; // Use primary/success color
+    case 'Delivered': variant = 'default'; Icon = CheckCircle; break;
     case 'Completed': variant = 'default'; Icon = CheckCircle; className = "bg-green-100 text-green-800 border-green-200 dark:bg-green-900/30 dark:text-green-300 dark:border-green-700/50"; break;
     case 'Cancelled': variant = 'destructive'; Icon = XCircle; break;
-    case 'Refunded': variant = 'destructive'; Icon = RotateCcw; break; // Using destructive for refunded too
+    case 'Refunded': variant = 'destructive'; Icon = RotateCcw; break;
     default: variant = 'secondary'; Icon = Clock;
   }
 
@@ -50,30 +49,31 @@ export const orderColumns: ColumnDef<OrderFirestore>[] = [
       <DataTableColumnHeader column={column} title="Order #" />
     ),
     cell: ({ row }) => (
-         // Optional: Link to order detail page
-        // <Link href={`/admin/erp/orders/${row.original.id}`} className="hover:underline">
-             <div className="w-[120px] truncate font-mono text-sm">{row.getValue("orderNumber")}</div>
-        // </Link>
+        <Link href={`#`} passHref> {/* Placeholder link, replace with actual detail page if exists */}
+             <span className="w-[120px] truncate font-mono text-sm hover:underline hover:text-primary flex items-center gap-1">
+                <ExternalLink className="h-3.5 w-3.5 text-muted-foreground"/>
+                {row.getValue("orderNumber")}
+             </span>
+        </Link>
     ),
     enableSorting: true,
     enableHiding: true,
   },
    {
-    accessorKey: "contactId", // Display related contact info (needs enhancement)
+    accessorKey: "contactId",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Customer" />
     ),
     cell: ({ row }) => {
-        // TODO: Fetch contact name based on contactId
         const contactId = row.getValue("contactId") as string;
          return (
-             <Link href={`/admin/crm/contacts/${contactId}`} className="flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline truncate w-[120px]">
+             <Link href={`/admin/crm?contactId=${contactId}`} className="flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline truncate w-[150px]">
                  <User className="h-3.5 w-3.5"/>
-                 {contactId} {/* Replace with actual name when fetched */}
+                 {contactId}
              </Link>
          );
     },
-    enableSorting: false,
+    enableSorting: true, // Sorting by contactId can be useful
     enableHiding: true,
   },
   {
@@ -126,7 +126,7 @@ export const orderColumns: ColumnDef<OrderFirestore>[] = [
      cell: ({ row }) => {
         const status = row.getValue("paymentStatus") as string;
          let variant: "default" | "secondary" | "destructive" | "outline" = "secondary";
-         let className = ''; // Added for specific styling
+         let className = '';
          if (status === 'Paid') { variant = 'default'; className = 'bg-green-100 text-green-800 border-green-200 dark:bg-green-900/30 dark:text-green-300 dark:border-green-700/50'; }
          if (status === 'Failed' || status === 'Refunded') variant = 'destructive';
 
@@ -138,21 +138,15 @@ export const orderColumns: ColumnDef<OrderFirestore>[] = [
     enableSorting: true,
     enableHiding: true,
   },
-  // Add row actions if needed
-  // {
-  //   id: "actions",
-  //   cell: ({ row }) => <OrderRowActions row={row} />, // Create this component
-  // },
 ]
 
-// Define options for faceted filter for status
 export const orderStatusFilterOptions = OrderStatusSchema.options.map(status => ({
     label: status,
     value: status,
-    // Add icons if desired, similar to OrderStatusPill
 }));
 
 export const paymentStatusFilterOptions = ['Pending', 'Paid', 'Failed', 'Refunded'].map(status => ({
     label: status,
     value: status,
 }));
+

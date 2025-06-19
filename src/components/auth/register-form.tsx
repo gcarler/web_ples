@@ -1,3 +1,4 @@
+
 // src/components/auth/register-form.tsx
 "use client"
 
@@ -17,29 +18,25 @@ import {
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useToast } from "@/hooks/use-toast"
-import { addUser } from "@/app/actions/user-actions"; // Import the server action
+import { addUser } from "@/app/actions/user-actions";
 import { useFormStatus } from "react-dom";
 import { useEffect, useActionState } from "react";
-import { UserRoleSchema, UserRole } from "@/lib/models/user" // Import Role types
+import { UserRoleSchema, UserRole } from "@/lib/models/user"
+import { useRouter } from "next/navigation"; // Import useRouter
 
-// Define the Zod schema for form validation (client-side)
-// Matches the schema in user-actions addUser function
 const formSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
   password: z.string().min(6, { message: "Password must be at least 6 characters." }),
   confirmPassword: z.string().min(6, { message: "Password must be at least 6 characters." }),
   displayName: z.string().optional(),
-  role: UserRoleSchema.default('read_only'), // Default role for self-registration
+  role: UserRoleSchema.default('read_only'),
 }).refine((data) => data.password === data.confirmPassword, {
     message: "Passwords don't match",
-    path: ["confirmPassword"], // Set the error path to the confirmPassword field
+    path: ["confirmPassword"],
 });
 
-
-// Define the type based on the Zod schema
 type RegisterFormData = z.infer<typeof formSchema>;
 
-// Separate SubmitButton to use useFormStatus
 function SubmitButton() {
     const { pending } = useFormStatus();
     return (
@@ -51,8 +48,8 @@ function SubmitButton() {
 
 export function RegisterForm() {
   const { toast } = useToast();
+  const router = useRouter(); // Initialize router
   const initialState = { message: null, success: false };
-  // Use the addUser server action
   const [state, formAction] = useActionState(addUser, initialState);
 
   const form = useForm<RegisterFormData>({
@@ -62,7 +59,7 @@ export function RegisterForm() {
       password: "",
       confirmPassword: "",
       displayName: "",
-      role: "read_only", // Default role for self-registration
+      role: "read_only",
     },
   });
 
@@ -74,23 +71,17 @@ export function RegisterForm() {
         variant: state.success ? "default" : "destructive",
       });
       if (state.success) {
-        form.reset(); // Reset form on successful submission
-        // Optionally redirect to login or dashboard after a delay
-        // setTimeout(() => router.push('/login'), 2000);
+        form.reset();
+        // Redirect to login page after a short delay
+        setTimeout(() => router.push('/login'), 2000);
       }
     }
-  }, [state, toast, form]);
+  }, [state, toast, form, router]);
 
 
   return (
     <Form {...form}>
-       {/*
-         Important: We pass the formAction (which wraps the addUser server action)
-         to the <form> element's action prop. This triggers the server action on submit.
-         We don't need a separate onSubmit handler on the form itself when using useFormState like this.
-        */}
        <form action={formAction} className="space-y-6 relative">
-
             <FormField
             control={form.control}
             name="email"
@@ -152,10 +143,8 @@ export function RegisterForm() {
                 )}
             />
 
-            {/* Role is hidden for self-registration, defaults to read_only */}
              <input type="hidden" {...form.register("role")} value="read_only" />
 
-         {/* Display server-side validation errors (if any) */}
          {state.message && !state.success && (
              <p className="text-sm font-medium text-destructive">{state.message}</p>
          )}

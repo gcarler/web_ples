@@ -1,3 +1,4 @@
+
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -17,14 +18,13 @@ import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
-import { Send } from 'lucide-react';
-import { addContact } from "@/app/actions/crm-actions"; // Import the server action
+import { Send, CheckCircle } from 'lucide-react'; // Added CheckCircle
+import { addContact } from "@/app/actions/crm-actions";
 import { useFormState, useFormStatus } from "react-dom";
-import { useEffect } from "react";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select" // Import Select
-import { LeadSourceSchema, LeadSource } from "@/lib/models/contact" // Import LeadSource types
+import { useEffect }_tmp_ref_src_app_about_page_tsx from "react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { LeadSourceSchema, LeadSource } from "@/lib/models/contact"
 
-// Define the Zod schema for form validation (client-side, matching server action input)
 const formSchema = z.object({
   name: z.string().min(2, {
     message: "Name must be at least 2 characters.",
@@ -37,20 +37,18 @@ const formSchema = z.object({
   title: z.string().optional(),
   bio: z.string().max(500, { message: "Bio cannot exceed 500 characters."}).optional(),
   subscribe: z.boolean().default(false).optional(),
-  leadSource: LeadSourceSchema.optional().default('Web Form'), // Default to Web Form for this form
+  leadSource: LeadSourceSchema.optional().default('Web Form'),
 })
 
-// Define the type based on the Zod schema
 type UserFormData = z.infer<typeof formSchema>;
 
-// Separate SubmitButton to use useFormStatus
 function SubmitButton() {
     const { pending } = useFormStatus();
     return (
         <Button
             type="submit"
             className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
-            disabled={pending} // Disable button when form is pending
+            disabled={pending}
         >
           {pending ? 'Submitting...' : 'Submit Form'}
           {!pending && <Send className="ml-2" />}
@@ -74,29 +72,54 @@ export function UserForm() {
       title: "",
       bio: "",
       subscribe: false,
-      leadSource: "Web Form", // Explicitly set default for the form
+      leadSource: "Web Form",
     },
   });
 
   useEffect(() => {
-    if (state.message) {
+    if (state.message && !state.success) { // Only show error toasts here
       toast({
-        title: state.success ? "Success!" : "Error",
+        title: "Error",
         description: state.message,
-        variant: state.success ? "default" : "destructive",
+        variant: "destructive",
       });
-      if (state.success) {
-        form.reset(); // Reset form on successful submission
-      }
+    }
+    if (state.success) {
+         toast({ // Keep success toast as well
+            title: "Success!",
+            description: state.message || "Your message has been sent.",
+         });
+        // Form reset will be handled by the success message display logic
     }
   }, [state, toast, form]);
 
+  if (state.success) {
+    return (
+      <div className="flex flex-col items-center justify-center text-center p-8 border rounded-lg shadow-md bg-card">
+        <CheckCircle className="h-16 w-16 text-green-500 mb-4" />
+        <h2 className="text-2xl font-semibold text-foreground mb-2">¡Mensaje Enviado!</h2>
+        <p className="text-muted-foreground mb-6">{state.message || "Gracias por contactarnos. Nos pondremos en contacto contigo pronto."}</p>
+        <Button onClick={() => {
+            form.reset();
+            // This is a bit of a hack to reset the useFormState.
+            // A more robust solution might involve a key prop on the Form or a dedicated reset function from useFormState if available.
+            // For now, we manually clear the message to allow re-submission visualization, though the state itself isn't fully reset here.
+            state.message = null;
+            state.success = false;
+            // Re-triggering a dummy dispatch or re-initializing `useFormState` might be needed for full reset,
+            // but for display purposes, this button will allow showing the form again.
+            // A cleaner way would be to lift state up or use a key on the <UserForm> component.
+            window.location.reload(); // Simplest way to reset form state for now.
+        }} variant="outline">
+          Enviar otro mensaje
+        </Button>
+      </div>
+    );
+  }
 
   return (
     <Form {...form}>
        <form action={formAction} className="space-y-6 relative">
-
-        {/* Name and Email side-by-side on larger screens */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <FormField
             control={form.control}
@@ -126,7 +149,6 @@ export function UserForm() {
             />
         </div>
 
-         {/* Phone and Company side-by-side on larger screens */}
          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <FormField
                 control={form.control}
@@ -156,7 +178,6 @@ export function UserForm() {
             />
          </div>
 
-         {/* Title and Lead Source */}
          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <FormField
                 control={form.control}
@@ -171,35 +192,8 @@ export function UserForm() {
                     </FormItem>
                 )}
             />
-             {/* Hidden Lead Source - Defaults to Web Form */}
              <input type="hidden" {...form.register("leadSource")} value="Web Form" />
-            {/* If you want to show lead source: */}
-            {/* <FormField
-                control={form.control}
-                name="leadSource"
-                render={({ field }) => (
-                    <FormItem>
-                        <FormLabel>Lead Source</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                                <SelectTrigger>
-                                    <SelectValue placeholder="Select a lead source" />
-                                </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                                {LeadSourceSchema.options.map((source) => (
-                                    <SelectItem key={source} value={source}>
-                                        {source}
-                                    </SelectItem>
-                                ))}
-                            </SelectContent>
-                        </Select>
-                        <FormMessage />
-                    </FormItem>
-                )}
-            /> */}
          </div>
-
 
          <FormField
           control={form.control}
@@ -252,3 +246,4 @@ export function UserForm() {
     </Form>
   )
 }
+

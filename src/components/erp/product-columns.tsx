@@ -1,3 +1,4 @@
+
 // src/components/erp/product-columns.tsx
 "use client"
 
@@ -6,12 +7,12 @@ import { ProductFirestore } from "@/lib/models/erp"
 import { DataTableColumnHeader } from "@/components/ui/data-table-column-header"
 import { Badge } from "@/components/ui/badge"
 import { format } from 'date-fns'
-import { Package, CircleDollarSign, Hash, Shapes } from "lucide-react" // Example icons
+import { Package, CircleDollarSign, Hash, Shapes } from "lucide-react"
+import { ProductRowActions } from "./product-row-actions"; // Import row actions
 
-// Helper to format currency
 const formatCurrency = (amount: number | null | undefined) => {
   if (amount == null) return '-';
-  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount); // Adjust currency as needed
+  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount);
 };
 
 export const productColumns: ColumnDef<ProductFirestore>[] = [
@@ -79,7 +80,7 @@ export const productColumns: ColumnDef<ProductFirestore>[] = [
     ),
     cell: ({ row }) => {
         const stock = row.getValue("stockLevel") as number;
-        const badgeColor = stock > 10 ? 'bg-green-100 text-green-800' : stock > 0 ? 'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800';
+        const badgeColor = stock > 10 ? 'bg-green-100 text-green-800 dark:bg-green-700/30 dark:text-green-300' : stock > 0 ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-700/30 dark:text-yellow-300' : 'bg-red-100 text-red-800 dark:bg-red-700/30 dark:text-red-300';
         return (
             <Badge variant="secondary" className={`w-[60px] justify-center font-mono ${badgeColor}`}>
                 <Hash className="mr-1 h-3 w-3" />
@@ -106,17 +107,10 @@ export const productColumns: ColumnDef<ProductFirestore>[] = [
     enableSorting: true,
     enableHiding: true,
   },
-  // Add row actions if needed (e.g., Edit, Delete)
-  // {
-  //   id: "actions",
-  //   cell: ({ row }) => <ProductRowActions row={row} />, // Create this component
-  // },
+  {
+    id: "actions",
+    cell: ({ row }) => <ProductRowActions row={row} />,
+    enableSorting: false,
+    enableHiding: false,
+  },
 ]
-
-// Define options for faceted filter for category (if needed)
-// Example - Assuming you have a predefined list of categories
-// export const categoryFilterOptions = [
-//   { label: "Services", value: "Services", icon: Briefcase },
-//   { label: "Data", value: "Data", icon: Database },
-//   // Add more categories and icons
-// ];

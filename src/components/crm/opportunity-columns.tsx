@@ -1,3 +1,4 @@
+
 // src/components/crm/opportunity-columns.tsx
 "use client"
 
@@ -6,14 +7,13 @@ import { OpportunityFirestore, OpportunityStage, OpportunityStageSchema } from "
 import { DataTableColumnHeader } from "@/components/ui/data-table-column-header"
 import { Badge } from "@/components/ui/badge"
 import { format } from 'date-fns'
-import { ArrowDown, ArrowRight, ArrowUp, CheckCircle, CircleDollarSign, Clock, ListFilter, XCircle } from "lucide-react" // Example icons
-import { OpportunityStagePill } from "./opportunity-stage-pill" // Import the stage pill component
+import { ArrowDown, ArrowRight, ArrowUp, CheckCircle, CircleDollarSign, Clock, ListFilter, User, XCircle } from "lucide-react" // Added User
+import { OpportunityStagePill } from "./opportunity-stage-pill"
 import Link from "next/link"
 
-// Helper to format currency
 const formatCurrency = (amount: number | null | undefined) => {
   if (amount == null) return '-';
-  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount); // Adjust currency as needed
+  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount);
 };
 
 export const opportunityColumns: ColumnDef<OpportunityFirestore>[] = [
@@ -23,25 +23,28 @@ export const opportunityColumns: ColumnDef<OpportunityFirestore>[] = [
       <DataTableColumnHeader column={column} title="Opportunity Name" />
     ),
     cell: ({ row }) => (
-        // Optional: Link to opportunity detail page if you build one
-        // <Link href={`/admin/crm/opportunities/${row.original.id}`} className="hover:underline">
              <div className="w-[200px] truncate font-medium">{row.getValue("name")}</div>
-        // </Link>
     ),
     enableSorting: true,
     enableHiding: true,
   },
    {
-    accessorKey: "contactId", // Display related contact info (needs enhancement in action)
+    accessorKey: "contactId",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Contact" />
     ),
     cell: ({ row }) => {
-        // TODO: Fetch contact name based on contactId in the getOpportunities action
         const contactId = row.getValue("contactId") as string;
-        return <Link href={`/admin/crm/contacts/${contactId}`} className="text-muted-foreground hover:text-primary hover:underline truncate w-[120px] block">{contactId}</Link>; // Placeholder
+        // For now, link to the main CRM contacts page.
+        // A better solution would involve fetching contact name and linking to a specific contact detail page if it exists.
+        return (
+            <Link href={`/admin/crm?contactId=${contactId}`} className="flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline truncate w-[150px]">
+                <User className="h-3.5 w-3.5"/>
+                {contactId} {/* Ideally, this would be contact name */}
+            </Link>
+        );
     },
-    enableSorting: false, // Usually sort by name/company if joined
+    enableSorting: true, // Sorting by contactId might be useful
     enableHiding: true,
   },
   {
@@ -51,7 +54,7 @@ export const opportunityColumns: ColumnDef<OpportunityFirestore>[] = [
     ),
     cell: ({ row }) => {
         const stage = row.getValue("stage") as OpportunityStage;
-        return <OpportunityStagePill stage={stage} />; // Use the custom pill component
+        return <OpportunityStagePill stage={stage} />;
     },
     filterFn: (row, id, value) => {
       return value.includes(row.getValue(id))
@@ -77,7 +80,7 @@ export const opportunityColumns: ColumnDef<OpportunityFirestore>[] = [
       const timestamp = row.getValue("closeDate");
       if (timestamp && typeof timestamp === 'object' && 'toDate' in timestamp) {
         const date = (timestamp as any).toDate();
-        return <div className="w-[100px]">{format(date, 'PP')}</div>; // Format like 'Sep 17, 2023'
+        return <div className="w-[100px]">{format(date, 'PP')}</div>;
       }
       return <div className="w-[100px] text-muted-foreground">-</div>;
     },
@@ -100,19 +103,13 @@ export const opportunityColumns: ColumnDef<OpportunityFirestore>[] = [
     enableSorting: true,
     enableHiding: true,
   },
-  // Add row actions if needed
-  // {
-  //   id: "actions",
-  //   cell: ({ row }) => <OpportunityRowActions row={row} />, // Create this component
-  // },
 ]
 
-// Define options for faceted filter for stage
 export const stageFilterOptions = OpportunityStageSchema.options.map(stage => {
     let Icon;
     switch (stage) {
         case 'Prospecting': Icon = ListFilter; break;
-        case 'Qualification': Icon = ListFilter; break; // Adjust icons as needed
+        case 'Qualification': Icon = ListFilter; break;
         case 'Needs Analysis': Icon = ListFilter; break;
         case 'Value Proposition': Icon = CircleDollarSign; break;
         case 'Proposal/Price Quote': Icon = CircleDollarSign; break;
@@ -123,3 +120,4 @@ export const stageFilterOptions = OpportunityStageSchema.options.map(stage => {
     }
     return { label: stage, value: stage, icon: Icon };
 });
+

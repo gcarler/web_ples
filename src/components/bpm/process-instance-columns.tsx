@@ -1,3 +1,4 @@
+
 // src/components/bpm/process-instance-columns.tsx
 "use client"
 
@@ -6,7 +7,7 @@ import { ProcessInstanceFirestore, ProcessStatus, ProcessStatusSchema } from "@/
 import { DataTableColumnHeader } from "@/components/ui/data-table-column-header"
 import { Badge } from "@/components/ui/badge"
 import { format } from 'date-fns'
-import { CheckCircle, Clock, Cog, ExternalLink, PlayCircle, Siren, Workflow, XCircle } from "lucide-react" // Example icons
+import { CheckCircle, Clock, Cog, ExternalLink, PlayCircle, Siren, Workflow, XCircle, PackageIcon, UsersIcon } from "lucide-react" // Added PackageIcon, UsersIcon
 import Link from "next/link"
 import { Button } from "../ui/button"
 import { resumeProcessInstance } from "@/app/actions/bpm-actions"
@@ -14,19 +15,18 @@ import { useToast } from "@/hooks/use-toast"
 import React from "react"
 import { cn } from "@/lib/utils"
 
-// Component for Process Status Pill
 const ProcessStatusPill = ({ status }: { status: ProcessStatus }) => {
   let variant: "default" | "secondary" | "destructive" | "outline" = "secondary";
   let Icon = Clock;
-  let className = ''; // For additional styling
+  let className = '';
 
   switch (status) {
     case 'Not Started': variant = 'secondary'; Icon = PlayCircle; break;
-    case 'Running': variant = 'default'; Icon = Cog; className = "bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-700/50 animate-pulse"; break; // Primary/Blue + pulse for running
-    case 'Suspended': variant = 'outline'; Icon = Clock; className = "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-900/30 dark:text-yellow-300 dark:border-yellow-700/50"; break; // Yellow/Outline for suspended
-    case 'Completed': variant = 'default'; Icon = CheckCircle; className = "bg-green-100 text-green-800 border-green-200 dark:bg-green-900/30 dark:text-green-300 dark:border-green-700/50"; break; // Green/Success
-    case 'Failed': variant = 'destructive'; Icon = Siren; break; // Destructive/Red for failed
-    case 'Cancelled': variant = 'destructive'; Icon = XCircle; className = "opacity-70"; break; // Destructive + faded
+    case 'Running': variant = 'default'; Icon = Cog; className = "bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-700/50 animate-pulse"; break;
+    case 'Suspended': variant = 'outline'; Icon = Clock; className = "bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-900/30 dark:text-yellow-300 dark:border-yellow-700/50"; break;
+    case 'Completed': variant = 'default'; Icon = CheckCircle; className = "bg-green-100 text-green-800 border-green-200 dark:bg-green-900/30 dark:text-green-300 dark:border-green-700/50"; break;
+    case 'Failed': variant = 'destructive'; Icon = Siren; break;
+    case 'Cancelled': variant = 'destructive'; Icon = XCircle; className = "opacity-70"; break;
     default: variant = 'secondary'; Icon = Clock;
   }
 
@@ -38,8 +38,7 @@ const ProcessStatusPill = ({ status }: { status: ProcessStatus }) => {
   );
 };
 
-// Row Actions Component (Specific for Process Instances)
-const ProcessInstanceRowActions = ({ row }: { row: any /* Row<ProcessInstanceFirestore> */ }) => {
+const ProcessInstanceRowActions = ({ row }: { row: any }) => {
     const instance = row.original as ProcessInstanceFirestore;
     const { toast } = useToast();
     const [isResuming, setIsResuming] = React.useState(false);
@@ -57,10 +56,6 @@ const ProcessInstanceRowActions = ({ row }: { row: any /* Row<ProcessInstanceFir
 
     return (
         <div className="flex items-center space-x-2">
-            {/* Add link to view details if a detail page exists */}
-            {/* <Button variant="ghost" size="sm" asChild>
-                <Link href={`/admin/bpm/processes/${instance.id}`}>View</Link>
-            </Button> */}
             {(instance.status === 'Suspended' || instance.status === 'Failed') && (
                 <Button
                     variant="outline"
@@ -105,7 +100,7 @@ export const processInstanceColumns: ColumnDef<ProcessInstanceFirestore>[] = [
     enableHiding: true,
   },
   {
-    accessorKey: "correlationId", // Link to related entity (Opportunity/Order)
+    accessorKey: "correlationId",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Related To" />
     ),
@@ -113,27 +108,29 @@ export const processInstanceColumns: ColumnDef<ProcessInstanceFirestore>[] = [
       const correlationId = row.getValue("correlationId") as string | undefined;
       const definitionId = row.original.processDefinitionId;
       let linkPath = '';
+      let linkText = correlationId || '-';
+      let Icon = ExternalLink;
+
       if (correlationId) {
-          if (definitionId?.includes('opportunity')) {
-              // Assuming opportunity IDs might be fetched and need a link
-              // linkPath = `/admin/crm/opportunities/${correlationId}`;
-              // For now, just display the ID if no link structure is confirmed
-               return <span className="text-muted-foreground w-[150px] truncate">{correlationId} (Opportunity)</span>;
-          } else if (definitionId?.includes('shipping') || definitionId?.includes('order')) {
-              // Assuming order IDs might be fetched and need a link
-              // linkPath = `/admin/erp/orders/${correlationId}`;
-               return <span className="text-muted-foreground w-[150px] truncate">{correlationId} (Order)</span>;
+          if (definitionId?.toLowerCase().includes('opportunity')) {
+              linkPath = `/admin/crm/opportunities`; // General link for now
+              linkText = `Opp: ${correlationId.substring(0, 8)}...`;
+              Icon = UsersIcon; // Or some opportunity icon
+          } else if (definitionId?.toLowerCase().includes('shipping') || definitionId?.toLowerCase().includes('order')) {
+              linkPath = `/admin/erp/orders`; // General link for now
+              linkText = `Order: ${correlationId.substring(0, 8)}...`;
+              Icon = PackageIcon;
           }
       }
 
       return correlationId ? (
           linkPath ? (
-             <Link href={linkPath} className="flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline truncate w-[150px]">
-                <ExternalLink className="h-3.5 w-3.5"/>
-                {correlationId}
+             <Link href={`${linkPath}?id=${correlationId}`} className="flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline truncate w-[150px]">
+                <Icon className="h-3.5 w-3.5"/>
+                {linkText}
              </Link>
           ) : (
-             <span className="text-muted-foreground w-[150px] truncate">{correlationId}</span>
+             <span className="text-muted-foreground w-[150px] truncate flex items-center gap-1"><Icon className="h-3.5 w-3.5"/>{linkText}</span>
           )
       ) : (
         <span className="text-muted-foreground">-</span>
@@ -161,7 +158,7 @@ export const processInstanceColumns: ColumnDef<ProcessInstanceFirestore>[] = [
       const timestamp = row.getValue("lastUpdatedAt");
       if (timestamp && typeof timestamp === 'object' && 'toDate' in timestamp) {
         const date = (timestamp as any).toDate();
-        return <div className="w-[100px] text-muted-foreground">{format(date, 'PP pp')}</div>; // Include time
+        return <div className="w-[100px] text-muted-foreground">{format(date, 'PP pp')}</div>;
       }
       return <div className="w-[100px] text-muted-foreground">Invalid Date</div>;
     },
@@ -189,16 +186,13 @@ export const processInstanceColumns: ColumnDef<ProcessInstanceFirestore>[] = [
   },
 ]
 
-// Define options for faceted filter for status
 export const processStatusFilterOptions = ProcessStatusSchema.options.map(status => ({
     label: status,
     value: status,
-    // Add icons if desired, similar to ProcessStatusPill
 }));
 
-// Options for process definition (replace with dynamic fetch if needed)
 export const processDefinitionFilterOptions = [
     { label: 'Opportunity to Cash', value: 'opportunity-to-cash-v1' },
     { label: 'Shipping Process', value: 'shipping-process-v1' },
-    // Add others
 ];
+
