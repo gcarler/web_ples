@@ -1,5 +1,4 @@
 
-
 'use client';
 
 import { useState } from 'react';
@@ -11,7 +10,6 @@ import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 
-// Order to match visual (top to bottom on tabs): Colaboración, Innovación, Integridad
 const coreValues = [
   {
     id: 'colaboracion',
@@ -34,8 +32,8 @@ const coreValues = [
 ];
 
 export default function AboutPage() {
-  const [selectedValue, setSelectedValue] = useState('colaboracion'); // Default to 'colaboracion' to match image
-  const selectedContent = coreValues.find(v => v.id === selectedValue);
+  const [activeValueId, setActiveValueId] = useState(coreValues[0].id); // Default to the first value
+  const selectedContent = coreValues.find(v => v.id === activeValueId);
 
   const sections = [
     {
@@ -139,66 +137,51 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Interactive "Nuestros Valores Fundamentales" Section - Full Width */}
-      <section className="w-full py-16 md:py-24">
-        {/* Main block for tabs and content - spans full width, NO rounded corners, has shadow */}
-        <div className="flex flex-col md:flex-row min-h-[450px] md:min-h-[500px] shadow-2xl overflow-hidden border border-border/20">
-          {/* Vertical Tabs - Left Side */}
-          <div className="flex md:flex-col w-full md:w-20 lg:w-24 border-b md:border-b-0 md:border-r border-border/20">
-            {coreValues.map((value, index) => {
-              let bgColor = '';
-              if (selectedValue === value.id) {
-                bgColor = 'bg-accent text-accent-foreground shadow-inner-lg'; // Active tab
-              } else {
-                // Specific background for inactive tabs based on their ID to match the image
-                if (value.id === 'colaboracion') bgColor = 'bg-primary/80 text-primary-foreground';
-                else if (value.id === 'innovacion') bgColor = 'bg-primary/70 text-primary-foreground'; // Slightly darker than Colaboracion inactive
-                else if (value.id === 'integridad') bgColor = 'bg-primary/60 text-primary-foreground'; // Darkest of the inactive tabs
-                bgColor += ' hover:bg-opacity-90';
-              }
+      {/* Horizontal Accordion-like Section for "Nuestros Valores Fundamentales" */}
+      <section className="w-full py-16 md:py-24 px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl sm:text-4xl font-bold mb-12 tracking-tight uppercase text-center text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">
+          NUESTROS VALORES FUNDAMENTALES
+        </h2>
 
-              return (
-                <button
-                  key={value.id}
-                  onClick={() => setSelectedValue(value.id)}
-                  className={cn(
-                    "w-full md:h-1/3 p-3 md:p-0 flex items-center justify-center text-center uppercase tracking-wider font-semibold text-xs sm:text-sm md:text-base transition-all duration-300 ease-in-out",
-                    "md:[writing-mode:vertical-rl] md:[text-orientation:upright]", // Correct vertical text orientation
-                    bgColor,
-                    index < coreValues.length - 1 && "md:border-b border-primary/20", // Horizontal border between vertical tabs
-                    index < coreValues.length -1 && index >=0 && "border-r md:border-r-0 border-primary/20" // Vertical border for mobile view
-                  )}
-                >
-                  {value.name}
-                </button>
-              );
-            })}
-          </div>
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-2 mb-8">
+          {coreValues.map((value) => (
+            <Button
+              key={value.id}
+              variant={activeValueId === value.id ? 'default' : 'outline'}
+              size="lg"
+              onClick={() => setActiveValueId(value.id)}
+              className={cn(
+                "w-full sm:w-auto text-sm sm:text-base px-6 py-3 transition-all duration-300 ease-in-out",
+                activeValueId === value.id 
+                  ? 'shadow-lg scale-105' 
+                  : 'hover:bg-primary/10'
+              )}
+            >
+              {value.name}
+            </Button>
+          ))}
+        </div>
 
-          {/* Content Display - Right Side */}
-          <div className="flex-1 bg-primary text-primary-foreground p-8 md:p-12 flex flex-col justify-center items-center text-center">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-8 tracking-tight uppercase">
-              NUESTROS VALORES
-            </h2>
-            {selectedContent && (
-              <div key={selectedContent.id} className="animate-fade-in-up space-y-6"> {/* Increased space-y */}
-                <selectedContent.icon className="h-16 w-16 sm:h-20 sm:w-20 text-accent mx-auto mb-4" /> {/* Icon uses accent color */}
-                <h3 className="text-2xl sm:text-3xl font-semibold text-accent"> {/* Title of value uses accent color */}
+        {selectedContent && (
+          <Card className="max-w-3xl mx-auto shadow-xl border border-border/30 bg-card group hover:bg-gradient-to-br hover:from-primary/5 hover:to-accent/5 transition-all duration-300 ease-in-out">
+            <CardContent className="p-8 md:p-10 text-center">
+              <div key={selectedContent.id} className="animate-fade-in-up space-y-6">
+                <selectedContent.icon className="h-16 w-16 sm:h-20 sm:w-20 text-primary group-hover:text-accent transition-colors duration-300 mx-auto mb-4" />
+                <h3 className="text-2xl sm:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
                   {selectedContent.name}
                 </h3>
-                <p className="text-base sm:text-lg leading-relaxed max-w-md mx-auto text-primary-foreground/90">
+                <p className="text-base sm:text-lg leading-relaxed text-muted-foreground group-hover:text-foreground/90 transition-colors duration-300">
                   {selectedContent.explanation}
                 </p>
               </div>
-            )}
-          </div>
-        </div>
-        <p className="mt-12 text-center text-md text-muted-foreground italic max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            </CardContent>
+          </Card>
+        )}
+
+        <p className="mt-12 text-center text-md text-muted-foreground italic max-w-3xl mx-auto">
           Estos valores se manifiestan en nuestro compromiso inquebrantable con la resiliencia ambiental y la equidad de género, buscando generar un legado significativo y duradero en cada comunidad que abrazamos.
         </p>
       </section>
-
     </div>
   );
 }
-
