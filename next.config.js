@@ -41,7 +41,8 @@ const nextConfig = {
 
     // For client-side bundles, prevent Node.js modules from being included.
     if (!isServer) {
-      config.plugins.push(new webpack.IgnorePlugin({ resourceRegExp: /^firebase-admin$/ }));
+      // Updated regex to ignore 'firebase-admin' and its sub-paths
+      config.plugins.push(new webpack.IgnorePlugin({ resourceRegExp: /^firebase-admin(\/.*)?$/ }));
       
       config.resolve.fallback = {
         ...(config.resolve.fallback || {}),
@@ -55,8 +56,8 @@ const nextConfig = {
         async_hooks: false,
         http2: false,
         vm: false,
-        process: 'process/browser', // Changed from require.resolve
-        "node:process": 'process/browser', // Changed from require.resolve
+        process: 'process/browser',
+        "node:process": 'process/browser',
       };
     } else {
       // For server-side, explicitly mark 'crypto' as an external module.
@@ -68,3 +69,4 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
+
