@@ -74,13 +74,13 @@ export function Footer() {
           <div className="space-y-4 z-10">
             <h3 className="text-lg font-semibold text-foreground">Contacto</h3>
             <p className="text-sm">
-              123 Calle Ficticia, Ciudad Ejemplo, CP 12345
+              Cra. 9a #33-19, La Matuna, Cartagena de Indias, Bolívar
             </p>
             <p className="text-sm">
-              Email: <a href="mailto:info@ples.com" className="hover:text-primary transition-colors">info@ples.com</a>
+              Email: <a href="mailto:contacto@ples.com.co" className="hover:text-primary transition-colors">contacto@ples.com.co</a>
             </p>
             <p className="text-sm">
-              Teléfono: <a href="tel:+1234567890" className="hover:text-primary transition-colors">+1 234 567 890</a>
+              Teléfono: <a href="tel:+573225137924" className="hover:text-primary transition-colors">(+57) 322 513 7924</a>
             </p>
             <div className="flex space-x-4 mt-4">
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-muted-foreground hover:text-primary transition-colors">
