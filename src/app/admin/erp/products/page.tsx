@@ -1,7 +1,7 @@
 // src/app/admin/erp/products/page.tsx
 import { getProducts } from '@/app/actions/erp-actions';
-import { ProductDataTable } from '@/components/erp/product-data-table'; // Create this
-import { productColumns } from '@/components/erp/product-columns'; // Create this
+import { ProductDataTable } from '@/components/erp/product-data-table'; 
+import { productColumns } from '@/components/erp/product-columns'; 
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -25,12 +25,13 @@ export default async function ErpProductsPage() {
                  Manage your product catalog and inventory levels.
              </p>
          </div>
-        {/* Optional: Add Button to create new product */}
-        {/* <Button asChild>
+        <Button asChild>
             <Link href="/admin/erp/products/new">
-                <PlusCircle className="mr-2 h-4 w-4" /> Add Product
+                <span className="flex items-center">
+                    <PlusCircle className="mr-2 h-4 w-4" /> Add Product
+                </span>
             </Link>
-        </Button> */}
+        </Button>
       </div>
 
       <Card className="shadow-lg border">
@@ -40,10 +41,11 @@ export default async function ErpProductsPage() {
           ) : (
             <div className="text-center py-10">
                 <p className="text-muted-foreground">No products found.</p>
-                 {/* Optional: Link to add product */}
-                 {/* <Button variant="outline" size="sm" className="mt-4" asChild>
-                    <Link href="/admin/erp/products/new">Add Product</Link>
-                 </Button> */}
+                 <Button variant="outline" size="sm" className="mt-4" asChild>
+                    <Link href="/admin/erp/products/new">
+                        <span className="flex items-center">Add Product</span>
+                    </Link>
+                 </Button>
             </div>
           )}
         </CardContent>
