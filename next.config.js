@@ -55,8 +55,8 @@ const nextConfig = {
         async_hooks: false,
         http2: false,
         vm: false,
-        process: require.resolve('process/browser'), // This line requires 'process' package
-        "node:process": require.resolve('process/browser'), // Added to handle "node:process" imports
+        process: 'process/browser', // Changed from require.resolve
+        "node:process": 'process/browser', // Changed from require.resolve
       };
     } else {
       // For server-side, explicitly mark 'crypto' as an external module.
