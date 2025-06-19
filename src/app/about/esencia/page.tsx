@@ -22,8 +22,10 @@ const pageDetails = {
 
 export default function EsenciaPage() {
   return (
-    <div className="py-10 w-full px-4 sm:px-6 lg:px-8">
-      <div className="max-w-screen-xl mx-auto">
+    <div className="py-10 w-full"> {/* Outer container, only vertical padding */}
+
+      {/* Centered container for top content (breadcrumbs, hero) */}
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center space-x-2 mb-12">
           <Button variant="outline" size="sm" asChild className="group hover:bg-primary hover:text-primary-foreground transition-colors">
             <Link href={pageDetails.parentLink}>
@@ -52,30 +54,38 @@ export default function EsenciaPage() {
             </p>
           </div>
         </section>
+      </div> {/* End of centered container for top content */}
 
-        <section className="max-w-screen-xl mx-auto py-12 px-6 animate-fade-in-up" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
-          <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* Columna de la Imagen */}
-            <div className="relative h-[400px] md:h-[500px] lg:h-[600px] rounded-lg overflow-hidden shadow-xl group">
-              <Image
-                src="https://placehold.co/800x1000.png"
-                alt="Visualización de la esencia de PLES"
-                layout="fill"
-                objectFit="cover"
-                data-ai-hint="equipo innovacion"
-                className="rounded-lg transform transition-transform duration-500 ease-in-out group-hover:scale-105"
-              />
-               <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            </div>
-            {/* Columna del Texto */}
-            <div className="text-left">
-              <p className="text-lg md:text-xl text-foreground leading-relaxed">
-                Con una <span className="text-3xl md:text-4xl font-bold text-primary">visión global</span> y un <span className="text-3xl md:text-4xl font-bold text-accent">enfoque multidisciplinario</span>, nuestro equipo converge <span className="text-xl md:text-2xl font-medium text-[hsl(var(--ring))]">talentos</span> y <span className="text-xl md:text-2xl font-medium text-primary">conocimientos diversos</span> para la consecución de <span className="text-2xl md:text-3xl font-semibold text-accent">objetivos trascendentes</span>. En <span className="text-3xl md:text-4xl font-extrabold text-primary">PLES</span>, valoramos la <span className="text-xl md:text-2xl font-medium text-[hsl(var(--ring))]">riqueza de cada perspectiva</span>, cultivando un espacio donde las <span className="text-2xl md:text-3xl font-semibold text-primary">ideas disruptivas</span> e <span className="text-2xl md:text-3xl font-semibold text-accent">innovadoras</span> florecen, permitiendo <span className="text-xl md:text-2xl font-medium text-[hsl(var(--ring))]">intervenciones estratégicas</span> y <span className="text-xl md:text-2xl font-medium text-primary">perspicaces</span> en cualquier escenario.
-              </p>
-            </div>
+
+      {/* Full-width section for image and text */}
+      <section className="animate-fade-in-up" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
+        <div className="grid md:grid-cols-2 items-center"> {/* No gap, image meets text container */}
+          {/* Columna de la Imagen (takes full available width on its side) */}
+          <div className="relative h-[500px] md:h-[600px] lg:h-[700px] group"> {/* Increased height for more impact */}
+            <Image
+              src="https://placehold.co/800x1000.png"
+              alt="Visualización de la esencia de PLES"
+              layout="fill"
+              objectFit="cover"
+              data-ai-hint="equipo innovacion"
+              className="transform transition-transform duration-500 ease-in-out group-hover:scale-105"
+            />
+            {/* Subtle gradient overlay on image, from left to transparent, more pronounced on hover */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/10 to-transparent opacity-30 group-hover:opacity-60 transition-opacity duration-500"></div>
           </div>
-        </section>
 
+          {/* Columna del Texto (content inside is padded to align with other centered content) */}
+          <div className="text-left py-12 px-6 md:px-12 lg:px-16"> {/* Generous padding for text */}
+            <p className="text-lg md:text-xl text-foreground leading-relaxed">
+              Con una <span className="text-3xl md:text-4xl font-bold text-primary">visión global</span> y un <span className="text-3xl md:text-4xl font-bold text-accent">enfoque multidisciplinario</span>, nuestro equipo converge <span className="text-xl md:text-2xl font-medium text-[hsl(var(--ring))]">talentos</span> y <span className="text-xl md:text-2xl font-medium text-primary">conocimientos diversos</span> para la consecución de <span className="text-2xl md:text-3xl font-semibold text-accent">objetivos trascendentes</span>. En <span className="text-3xl md:text-4xl font-extrabold text-primary">PLES</span>, valoramos la <span className="text-xl md:text-2xl font-medium text-[hsl(var(--ring))]">riqueza de cada perspectiva</span>, cultivando un espacio donde las <span className="text-2xl md:text-3xl font-semibold text-primary">ideas disruptivas</span> e <span className="text-2xl md:text-3xl font-semibold text-accent">innovadoras</span> florecen, permitiendo <span className="text-xl md:text-2xl font-medium text-[hsl(var(--ring))]">intervenciones estratégicas</span> y <span className="text-xl md:text-2xl font-medium text-primary">perspicaces</span> en cualquier escenario.
+            </p>
+          </div>
+        </div>
+      </section> {/* End of full-width image/text section */}
+
+
+      {/* Centered container for bottom content (CTA) */}
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <section className="text-center mt-16 animate-fade-in-up" style={{ animationDelay: '0.8s', animationFillMode: 'forwards' }}>
           <Button size="lg" asChild className="text-lg px-8 py-4 shadow-lg hover:shadow-xl hover:scale-105 transition-transform">
             <Link href={pageDetails.ctaLink}>
@@ -85,7 +95,8 @@ export default function EsenciaPage() {
             </Link>
           </Button>
         </section>
-      </div>
+      </div> {/* End of centered container for bottom content */}
+
     </div>
   );
 }
