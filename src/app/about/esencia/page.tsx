@@ -2,6 +2,7 @@
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, Brain } from 'lucide-react'; // Usaremos Brain para Esencia
+import React from 'react';
 
 export const metadata = {
   title: 'Nuestra Esencia - Sobre Nosotros - PLES',
@@ -13,7 +14,7 @@ const pageDetails = {
   parentName: "Sobre Nosotros",
   title: "Nuestra Esencia",
   subtitle: "Comprendiendo quienes somos.",
-  // IconComponent: Brain, // No se puede pasar componentes directamente así en TSX para metadata o props fácilmente
+  mainIcon: <Brain className="h-12 w-12 md:h-16 md:h-16" />,
   mainParagraph: "Con una visión global y un enfoque multidisciplinario, nuestro equipo converge talentos y conocimientos diversos para la consecución de objetivos trascendentes. En PLES, valoramos la riqueza de cada perspectiva, cultivando un espacio donde las ideas disruptivas e innovadoras florecen, permitiendo intervenciones estratégicas y perspicaces en cualquier escenario.",
   ctaLink: "/forms?subject=Consulta%20Nuestra%20Esencia",
   ctaText: "Conozca Más Sobre Nosotros"
@@ -38,11 +39,10 @@ export default function EsenciaPage() {
           </Button>
         </div>
 
-        <section className="relative mb-16 py-12 md:py-20 bg-gradient-to-br from-primary/5 via-background to-accent/5 rounded-xl shadow-lg overflow-hidden border border-border/20">
-          <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] animate-pulse"></div>
-          <div className="relative text-center px-4 z-10">
+        <section className="mb-16 py-12 md:py-20 text-center">
+          <div className="relative px-4 z-10">
             <div className="inline-block p-5 bg-gradient-to-r from-primary to-accent text-primary-foreground rounded-full mb-8 shadow-md animate-expand-in" style={{ animationFillMode: 'forwards' }}>
-              <Brain className="h-12 w-12 md:h-16 md:h-16" />
+              {pageDetails.mainIcon}
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-4 animate-fade-in-up" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
               {pageDetails.title}

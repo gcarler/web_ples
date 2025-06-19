@@ -2,6 +2,7 @@
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, UsersRound } from 'lucide-react'; // Usaremos UsersRound para Colaboración
+import React from 'react';
 
 export const metadata = {
   title: 'Colaboración Global - Sobre Nosotros - PLES',
@@ -13,6 +14,7 @@ const pageDetails = {
   parentName: "Sobre Nosotros",
   title: "Colaboración Global",
   subtitle: "Conoce cómo trabajamos.",
+  mainIcon: <UsersRound className="h-12 w-12 md:h-16 md:h-16" />,
   mainParagraph: "Nuestra dinámica de colaboración trasciende fronteras y culturas, enriqueciendo cada plan, política, estrategia y proyecto con una paleta de visiones, disciplinas y enfoques que amplían los horizontes de la solución.",
   ctaLink: "/forms?subject=Consulta%20Colaboracion%20Global",
   ctaText: "Únase a Nuestra Red"
@@ -37,11 +39,10 @@ export default function ColaboracionPage() {
           </Button>
         </div>
 
-        <section className="relative mb-16 py-12 md:py-20 bg-gradient-to-br from-primary/5 via-background to-accent/5 rounded-xl shadow-lg overflow-hidden border border-border/20">
-          <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/connected.png')] animate-pulse"></div>
-          <div className="relative text-center px-4 z-10">
+        <section className="mb-16 py-12 md:py-20 text-center">
+          <div className="relative px-4 z-10">
             <div className="inline-block p-5 bg-gradient-to-r from-primary to-accent text-primary-foreground rounded-full mb-8 shadow-md animate-expand-in" style={{ animationFillMode: 'forwards' }}>
-              <UsersRound className="h-12 w-12 md:h-16 md:h-16" />
+              {pageDetails.mainIcon}
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-4 animate-fade-in-up" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
               {pageDetails.title}
