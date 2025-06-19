@@ -1,7 +1,7 @@
 // src/app/about/esencia/page.tsx
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, Brain } from 'lucide-react'; // Usaremos Brain para Esencia
+import { ArrowLeft, ArrowRight, HeartPulse } from 'lucide-react'; // Changed Brain to HeartPulse
 import React from 'react';
 
 export const metadata = {
@@ -14,7 +14,7 @@ const pageDetails = {
   parentName: "Sobre Nosotros",
   title: "Nuestra Esencia",
   subtitle: "Comprendiendo quienes somos.",
-  mainIcon: <Brain className="h-12 w-12 md:h-16 md:h-16" />,
+  mainIcon: <HeartPulse className="h-12 w-12 md:h-16 md:h-16" />, // Changed Brain to HeartPulse
   ctaLink: "/forms?subject=Consulta%20Nuestra%20Esencia",
   ctaText: "Conozca Más Sobre Nosotros"
 };
