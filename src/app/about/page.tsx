@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { useState } from 'react';
@@ -10,7 +11,7 @@ import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 
-// Order to match visual (top to bottom): Colaboración, Innovación, Integridad
+// Order to match visual (top to bottom on tabs): Colaboración, Innovación, Integridad
 const coreValues = [
   {
     id: 'colaboracion',
@@ -138,7 +139,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* New Interactive "Nuestros Valores Fundamentales" Section - Full Width */}
+      {/* Interactive "Nuestros Valores Fundamentales" Section - Full Width */}
       <section className="w-full py-16 md:py-24">
         {/* Main block for tabs and content - spans full width, NO rounded corners, has shadow */}
         <div className="flex flex-col md:flex-row min-h-[450px] md:min-h-[500px] shadow-2xl overflow-hidden border border-border/20">
@@ -179,7 +180,7 @@ export default function AboutPage() {
               NUESTROS VALORES
             </h2>
             {selectedContent && (
-              <div key={selectedContent.id} className="animate-fade-in-up space-y-4">
+              <div key={selectedContent.id} className="animate-fade-in-up space-y-6"> {/* Adjusted space-y from 4 to 6 */}
                 <selectedContent.icon className="h-16 w-16 sm:h-20 sm:w-20 text-accent mx-auto mb-4" />
                 <h3 className="text-2xl sm:text-3xl font-semibold text-accent">
                   {selectedContent.name}
