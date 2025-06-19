@@ -10,6 +10,7 @@ import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 
+// Reorder to match visual (top to bottom): Colaboración, Innovación, Integridad
 const coreValues = [
   {
     id: 'colaboracion',
@@ -139,24 +140,35 @@ export default function AboutPage() {
 
       {/* New Interactive "Nuestros Valores Fundamentales" Section - Full Width */}
       <section className="w-full py-16 md:py-24">
-        <div className="flex flex-col md:flex-row min-h-[450px] md:min-h-[500px] bg-card shadow-2xl rounded-xl overflow-hidden border border-border/20">
+        {/* Main block for tabs and content - spans full width, has rounded corners and shadow */}
+        <div className="flex flex-col md:flex-row min-h-[450px] md:min-h-[500px] shadow-2xl rounded-xl overflow-hidden border border-border/20">
           {/* Vertical Tabs - Left Side */}
           <div className="flex md:flex-col w-full md:w-20 lg:w-24 border-b md:border-b-0 md:border-r border-border/20">
             {coreValues.map((value, index) => {
-              let bgColor = 'bg-primary/80'; // Default for Colaboracion (index 0)
-              if (value.id === 'innovacion' && selectedValue !== 'innovacion') bgColor = 'bg-primary/70'; // Middle blue for Innovacion if not active
-              if (value.id === 'integridad') bgColor = 'bg-primary/60'; // Darkest blue for Integridad
+              let bgColor = '';
+              // Assign background colors based on the image and active state
+              // Colaboracion (index 0): primary/80 (darker blue)
+              // Innovacion (index 1): accent (active, light blue) or primary/70 (inactive, mid blue)
+              // Integridad (index 2): primary/60 (darkest blue of the three non-active)
+              if (selectedValue === value.id) {
+                bgColor = 'bg-accent text-accent-foreground shadow-inner-lg';
+              } else {
+                if (value.id === 'colaboracion') bgColor = 'bg-primary/80 text-primary-foreground';
+                else if (value.id === 'innovacion') bgColor = 'bg-primary/70 text-primary-foreground'; // Mid-blue when Innovacion is not active
+                else if (value.id === 'integridad') bgColor = 'bg-primary/60 text-primary-foreground';
+                bgColor += ' hover:bg-opacity-90';
+              }
 
               return (
                 <button
                   key={value.id}
                   onClick={() => setSelectedValue(value.id)}
                   className={cn(
-                    "w-full md:h-1/3 p-3 md:p-0 flex items-center justify-center text-center text-primary-foreground uppercase tracking-wider font-semibold text-xs sm:text-sm md:text-base transition-all duration-300 ease-in-out hover:opacity-90",
-                    "md:writing-mode-vertical-rl md:transform md:rotate-180",
-                    selectedValue === value.id ? 'bg-accent text-accent-foreground shadow-inner-lg' : `${bgColor} hover:bg-opacity-90`,
+                    "w-full md:h-1/3 p-3 md:p-0 flex items-center justify-center text-center uppercase tracking-wider font-semibold text-xs sm:text-sm md:text-base transition-all duration-300 ease-in-out",
+                    "md:writing-mode-vertical-rl md:transform md:rotate-180", // For vertical text
+                    bgColor,
                     index < coreValues.length - 1 && "md:border-b border-primary/20", 
-                    index < coreValues.length -1 && index >= 0 && "border-r md:border-r-0 border-primary/20"
+                    index < coreValues.length -1 && index >=0 && "border-r md:border-r-0 border-primary/20"
                   )}
                 >
                   {value.name}
@@ -191,3 +203,4 @@ export default function AboutPage() {
     </div>
   );
 }
+
