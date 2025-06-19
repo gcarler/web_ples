@@ -5,7 +5,6 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import DynamicSection from '@/components/DynamicSection';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'; // CardDescription importada
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'; // Import Accordion components
 import { ArrowRight, Gem, HeartPulse, Target, Globe, Rocket, Eye, Info, Shield, Lightbulb, Users as UsersIcon } from 'lucide-react';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
@@ -33,8 +32,8 @@ const coreValues = [
 ];
 
 export default function AboutPage() {
-  // selectedValue is not needed for Accordion, but keeping structure for now if other parts use it.
-  // For Accordion, typically default item can be set in Accordion props or first item is default.
+  const [selectedValue, setSelectedValue] = useState('colaboracion'); // Default to 'colaboracion'
+  const selectedContent = coreValues.find(v => v.id === selectedValue);
 
   const sections = [
     {
@@ -138,35 +137,58 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* New Interactive "Nuestros Valores Fundamentales" Section as Accordion */}
+      {/* New Interactive "Nuestros Valores Fundamentales" Section */}
       <section className="w-full py-16 md:py-24">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">
-            NUESTROS VALORES FUNDAMENTALES
-          </h2>
-          <Accordion type="single" collapsible className="w-full space-y-4">
-            {coreValues.map((value) => (
-              <AccordionItem key={value.id} value={value.id} className="border border-border rounded-lg shadow-md hover:shadow-xl transition-shadow bg-card data-[state=open]:border-primary data-[state=open]:bg-primary/5">
-                <AccordionTrigger className="flex w-full items-center justify-between p-4 sm:p-6 text-lg sm:text-xl font-semibold text-foreground hover:no-underline hover:text-primary data-[state=open]:text-primary data-[state=open]:border-b data-[state=open]:border-primary/20">
-                  <span className="flex items-center">
-                    <value.icon className="mr-3 h-6 w-6 sm:h-7 sm:w-7 text-primary data-[state=open]:text-accent" />
-                    {value.name}
-                  </span>
-                </AccordionTrigger>
-                <AccordionContent className="p-4 sm:p-6 pt-0">
-                  <p className="text-base text-muted-foreground leading-relaxed">
-                    {value.explanation}
-                  </p>
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-          <p className="mt-12 text-center text-md text-muted-foreground italic max-w-3xl mx-auto">
-            Estos valores se manifiestan en nuestro compromiso inquebrantable con la resiliencia ambiental y la equidad de género, buscando generar un legado significativo y duradero en cada comunidad que abrazamos.
-          </p>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row min-h-[450px] md:min-h-[500px] bg-card shadow-2xl rounded-xl overflow-hidden border border-border/20">
+          {/* Vertical Tabs - Left Side */}
+          <div className="flex md:flex-col w-full md:w-20 lg:w-24 border-b md:border-b-0 md:border-r border-border/20">
+            {coreValues.map((value, index) => {
+              let bgColor = 'bg-primary/60'; // Lightest blue for first/top
+              if (index === 1) bgColor = 'bg-primary/70'; // Middle blue
+              if (index === 2) bgColor = 'bg-primary/80'; // Darkest blue for last/bottom
+
+              return (
+                <button
+                  key={value.id}
+                  onClick={() => setSelectedValue(value.id)}
+                  className={cn(
+                    "w-full md:h-1/3 p-3 md:p-0 flex items-center justify-center text-center text-primary-foreground uppercase tracking-wider font-semibold text-xs sm:text-sm md:text-base transition-all duration-300 ease-in-out hover:opacity-90",
+                    "md:writing-mode-vertical-rl md:transform md:rotate-180",
+                    selectedValue === value.id ? 'bg-accent text-accent-foreground shadow-inner-lg' : `${bgColor} hover:${bgColor}/90`,
+                    index < coreValues.length - 1 && "md:border-b border-primary/20", // Horizontal border for vertical tabs
+                    index < coreValues.length - 1 && index > 0 && "border-r md:border-r-0 border-primary/20" // Vertical border for horizontal tabs
+                  )}
+                >
+                  {value.name}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Content Display - Right Side */}
+          <div className="flex-1 bg-primary text-primary-foreground p-8 md:p-12 flex flex-col justify-center items-center text-center">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-8 tracking-tight uppercase">
+              NUESTROS VALORES
+            </h2>
+            {selectedContent && (
+              <div key={selectedContent.id} className="animate-fade-in-up space-y-4">
+                <selectedContent.icon className="h-16 w-16 sm:h-20 sm:w-20 text-accent mx-auto mb-4" />
+                <h3 className="text-2xl sm:text-3xl font-semibold text-accent">
+                  {selectedContent.name}
+                </h3>
+                <p className="text-base sm:text-lg leading-relaxed max-w-md mx-auto text-primary-foreground/90">
+                  {selectedContent.explanation}
+                </p>
+              </div>
+            )}
+          </div>
         </div>
+        <p className="mt-12 text-center text-md text-muted-foreground italic max-w-3xl mx-auto">
+          Estos valores se manifiestan en nuestro compromiso inquebrantable con la resiliencia ambiental y la equidad de género, buscando generar un legado significativo y duradero en cada comunidad que abrazamos.
+        </p>
       </section>
 
     </div>
   );
 }
+
