@@ -4,22 +4,22 @@ import * as React from 'react';
 export function PlesGroupLogo({ className, style }: { className?: string, style?: React.CSSProperties }) {
   return (
     <svg
-      width="100%"
-      height="100%"
-      viewBox="0 0 340 160" // Adjusted viewBox for "PLES"
+      viewBox="0 0 340 160" // Define the coordinate system and aspect ratio
+      // Removed width="100%" and height="100%"
       xmlns="http://www.w3.org/2000/svg"
-      className={className}
-      style={style} // Pass style prop for CSS variables
-      aria-label="PLES Logo" // Updated aria-label
+      className={className} // This will receive "h-7" from the header
+      style={style}
+      aria-label="PLES Logo"
       role="img"
+      fill="currentColor" // Set default fill for paths
     >
       <style>{`
-        .letter { fill: currentColor; }
+        /* .letter class is no longer strictly needed if fill is currentColor on svg */
         .p-accent { fill: var(--logo-accent-color, hsl(var(--primary))); }
       `}</style>
 
-      {/* Letter P */}
-      <path className="letter" fillRule="evenodd" d="
+      {/* Letter P - removed className="letter" */}
+      <path fillRule="evenodd" d="
         M 20,70
         Q 20,30 50,30
         L 80,30
@@ -36,8 +36,8 @@ export function PlesGroupLogo({ className, style }: { className?: string, style?
       "/>
       <circle className="p-accent" cx="50" cy="60" r="15" />
 
-      {/* Letter L */}
-      <path className="letter" d="
+      {/* Letter L - removed className="letter" */}
+      <path d="
         M 100,20
         A 15,15 0 0 0 100,50
         L 100,125
@@ -50,8 +50,8 @@ export function PlesGroupLogo({ className, style }: { className?: string, style?
         Z
       "/>
 
-      {/* Letter E (Shifted left by 10px from original PLESIA E position) */}
-      <path className="letter" d="
+      {/* Letter E - removed className="letter" */}
+      <path d="
         M 230,60
         L 190,60
         A 30,30 0 1 1 190,120
@@ -68,8 +68,8 @@ export function PlesGroupLogo({ className, style }: { className?: string, style?
         Z
       "/>
 
-      {/* Letter S (Original position, fits after shifted E) */}
-      <path className="letter" d="
+      {/* Letter S - removed className="letter" */}
+      <path d="
         M 270,55
         C 270,30 310,30 310,55
         C 310,80 285,80 285,95
