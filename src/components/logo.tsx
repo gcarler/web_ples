@@ -1,88 +1,54 @@
 // src/components/logo.tsx
 import * as React from 'react';
+import { cn } from '@/lib/utils';
 
 export function PlesGroupLogo({ className, style }: { className?: string, style?: React.CSSProperties }) {
+  // The `className` prop (e.g., "h-7 text-xl") will control the overall size and font-size.
+  // The internal font-size uses '1em' so it scales with the container, and 'em' units for the dot scale with this.
   return (
-    <svg
-      viewBox="0 0 340 160" // Define the coordinate system and aspect ratio
-      // Removed width="100%" and height="100%"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className} // This will receive "h-7" from the header
-      style={style}
-      aria-label="PLES Logo"
-      role="img"
-      fill="currentColor" // Set default fill for paths
-    >
-      <style>{`
-        /* .letter class is no longer strictly needed if fill is currentColor on svg */
-        .p-accent { fill: var(--logo-accent-color, hsl(var(--primary))); }
+    <>
+      <div
+        className={cn(
+          "logo-container font-comfortaa font-bold", // Base classes for font
+          className // Apply className from props for sizing (e.g., h-7, text-xl)
+        )}
+        style={style}
+        aria-label="PLES Logo"
+        role="img"
+      >
+        <span className="letra-p-con-punto">p</span>
+        <span>les</span>
+      </div>
+      <style jsx>{`
+        .logo-container {
+          display: inline-flex; /* Allows it to sit inline and be sized by parent/className */
+          align-items: baseline; /* Good for text alignment */
+          line-height: 1; /* Adjust line height to fit content snugly */
+          color: currentColor; /* Text color will be inherited or set by className */
+          /* font-size is determined by the className prop (e.g., text-xl) */
+        }
+
+        .letra-p-con-punto {
+          position: relative;
+          display: inline-block; /* Crucial for ::before positioning relative to this span */
+        }
+
+        .letra-p-con-punto::before {
+          content: '';
+          position: absolute;
+          z-index: -1; /* Places the dot behind the letter 'p' text if needed, though with current positioning it might not overlap text */
+          background-color: hsl(var(--primary)); /* Use primary theme color for the dot */
+          border-radius: 100%; /* Makes it a circle */
+          
+          /* Sizing and positioning relative to the font-size of .letra-p-con-punto */
+          width: 0.31em;  /* Diameter of the dot */
+          height: 0.31em; /* Diameter of the dot */
+          
+          /* Positioning to center the dot within the 'p' */
+          top: 0.45em;   /* Adjust based on Comfortaa font's 'p' shape */
+          left: 0.21em;  /* Adjust based on Comfortaa font's 'p' shape */
+        }
       `}</style>
-
-      {/* Letter P - removed className="letter" */}
-      <path fillRule="evenodd" d="
-        M 20,70
-        Q 20,30 50,30
-        L 80,30
-        A 30,30 0 0 1 80,90
-        L 80,125
-        A 15,15 0 0 1 65,140
-        L 35,140
-        A 15,15 0 0 1 20,125
-        L 20,70 Z
-
-        M 50,77.5
-        A 17.5,17.5 0 1 0 50,42.5
-        A 17.5,17.5 0 1 0 50,77.5 Z
-      "/>
-      <circle className="p-accent" cx="50" cy="60" r="15" />
-
-      {/* Letter L - removed className="letter" */}
-      <path d="
-        M 100,20
-        A 15,15 0 0 0 100,50
-        L 100,125
-        A 15,15 0 0 0 115,140
-        L 145,140
-        A 15,15 0 0 0 160,125
-        L 160,50
-        A 15,15 0 0 0 145,20
-        L 115,20
-        Z
-      "/>
-
-      {/* Letter E - removed className="letter" */}
-      <path d="
-        M 230,60
-        L 190,60
-        A 30,30 0 1 1 190,120
-        L 220,120
-        A 10,10 0 0 1 230,110
-        L 230,95
-        L 180,95
-        A 15,15 0 0 0 180,50
-        L 230,50
-        L 230,40
-        A 10,10 0 0 1 220,30
-        L 190,30
-        A 30,30 0 1 1 190,60
-        Z
-      "/>
-
-      {/* Letter S - removed className="letter" */}
-      <path d="
-        M 270,55
-        C 270,30 310,30 310,55
-        C 310,80 285,80 285,95
-        C 285,110 320,110 320,125
-        A 10,10 0 0 1 310,135
-        L 290,135
-        C 290,110 250,110 250,85
-        C 250,60 275,60 275,45
-        C 275,30 260,35 260,45
-        A 10,10 0 0 1 270,55
-        Z
-      "/>
-
-    </svg>
+    </>
   );
 }
