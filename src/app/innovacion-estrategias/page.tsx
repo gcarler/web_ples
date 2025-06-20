@@ -116,13 +116,13 @@ export default function InnovacionEstrategiasPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {keyAspects.map((aspect, index) => (
-              <Card key={index} className="group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary/5 hover:to-accent/5 hover:border-primary/30 transition-all duration-300 ease-in-out transform hover:scale-[1.03] border hover:animate-gradient hover:bg-[length:200%_200%]">
+              <Card key={index} className="group border transition-all duration-300 ease-in-out transform hover:scale-[1.03] hover:shadow-xl hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:text-primary-foreground hover:border-transparent hover:animate-gradient hover:bg-[length:200%_200%]">
                 <CardHeader className="items-center text-center md:items-start md:text-left">
                   {aspect.icon}
-                  <CardTitle className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">{aspect.title}</CardTitle>
+                  <CardTitle className="text-xl font-semibold text-foreground group-hover:text-primary-foreground transition-colors">{aspect.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-muted-foreground group-hover:text-foreground/90 transition-colors text-sm md:text-left text-center">
+                  <p className="text-muted-foreground group-hover:text-primary-foreground/90 transition-colors text-sm md:text-left text-center">
                     {aspect.text}
                   </p>
                 </CardContent>
