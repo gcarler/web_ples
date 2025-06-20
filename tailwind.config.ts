@@ -105,7 +105,7 @@ export default {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out',
         'gradient': 'gradient-shift 15s ease infinite',
-        'button-gradient': 'gradient-shift 45s linear infinite', // Increased duration to 45s
+        'button-gradient': 'gradient-shift 60s linear infinite', // Increased duration to 60s
         'expand-in': 'expand-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
         'fade-in-up': 'fade-in-up 0.6s ease-out forwards',
   		}
@@ -113,3 +113,4 @@ export default {
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
+
