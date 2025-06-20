@@ -20,7 +20,7 @@ const heroStatements: HeroStatement[] = [
     title: "Innovación que Impacta, Estrategias que Perduran",
     description: "Creamos soluciones a medida que impulsan el progreso y construyen un legado sostenible para su organización.",
     ctaText: "Conoce cómo",
-    ctaLink: "/about",
+    ctaLink: "/innovacion-estrategias", // Updated Link
     ctaIconName: "BookOpen",
   },
   {
@@ -147,7 +147,7 @@ export default function Home() {
                 { title: 'Ples Catastro', description: 'Catastro y gestión territorial.', icon: HomeIcon, href: "/ples-catastro" },
                 { title: 'Ples Consulting', description: 'Consultoría estratégica.', icon: Lightbulb, href: "/ples-consulting" },
             ].map((marca) => (
-                <Card key={marca.title} className="text-center group hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out">
+                <Card key={marca.title} className="text-center group hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out hover:animate-gradient hover:bg-[length:200%_200%]">
                 <CardHeader>
                     <div className="mx-auto bg-primary/10 text-primary rounded-full p-3 w-fit mb-4 group-hover:bg-primary-foreground/20 group-hover:text-primary-foreground">
                     <marca.icon className="h-8 w-8" />
