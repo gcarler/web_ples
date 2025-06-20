@@ -1,3 +1,4 @@
+
 // src/components/layout/header.tsx
 'use client';
 import Link from 'next/link';
@@ -47,8 +48,8 @@ export function Header() {
     left: 0,
     width: 0,
     opacity: 0,
-    top: 0, // Added top for line positioning
-    height: 2, // Default height for the line (2px)
+    top: 0, 
+    height: 2, 
   });
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const activeIndex = navLinks.findIndex(link => pathname.startsWith(link.href) && (link.href === "/" ? pathname === "/" : true));
@@ -56,13 +57,12 @@ export function Header() {
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      // Clear the authentication cookie
       document.cookie = 'firebaseIdToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
       toast({
         title: 'Logged Out',
         description: `Successfully logged out ${userProfile?.email || ''}.`,
       });
-      router.push('/login'); // Redirect to login page
+      router.push('/login'); 
     } catch (error) {
       console.error('Logout Error:', error);
       toast({
@@ -73,36 +73,38 @@ export function Header() {
     }
   };
 
-  const updateIndicator = (element: HTMLElement | null, isHover: boolean = false) => {
+  const updateIndicator = React.useCallback((element: HTMLElement | null, isHover: boolean = false) => {
     if (element && navContainerRef.current) {
       const navRect = navContainerRef.current.getBoundingClientRect();
       const linkRect = element.getBoundingClientRect();
-      const indicatorHeight = 2; // Height of the line in px
+      const indicatorHeight = 2; 
 
       setIndicatorStyle({
         left: linkRect.left - navRect.left,
         width: linkRect.width,
         opacity: 1,
-        top: navRect.height - indicatorHeight, // Position at the bottom of the nav container
+        top: navRect.height - indicatorHeight, 
         height: indicatorHeight,
       });
     } else if (!isHover) {
-      setIndicatorStyle(prev => ({ ...prev, opacity: 0, width: 0 })); // Also reset width on hide
+      setIndicatorStyle(prev => ({ ...prev, opacity: 0, width: 0 })); 
     }
-  };
+  }, []); // Add navContainerRef.current to dependencies if it changes, but it's a ref.
 
   useEffect(() => {
     const allRefsReady = linkRefs.current.every(ref => ref !== null);
     if (allRefsReady && activeIndex !== -1 && linkRefs.current[activeIndex]) {
-      setTimeout(() => {
-        updateIndicator(linkRefs.current[activeIndex]);
-      }, 50);
+       requestAnimationFrame(() => {
+         if (linkRefs.current[activeIndex]) {
+            updateIndicator(linkRefs.current[activeIndex]);
+         }
+       });
     } else {
-      setTimeout(() => {
-        setIndicatorStyle(prev => ({ ...prev, opacity: 0, width: 0 }));
-      }, 50);
+       requestAnimationFrame(() => {
+         setIndicatorStyle(prev => ({ ...prev, opacity: 0, width: 0 }));
+       });
     }
-  }, [pathname, activeIndex]);
+  }, [pathname, activeIndex, updateIndicator]);
 
   const handleMouseEnter = (index: number) => {
     setHoveredIndex(index);
@@ -144,7 +146,8 @@ export function Header() {
                       ref={el => (linkRefs.current[index] = el)}
                       onMouseEnter={() => handleMouseEnter(index)}
                       className={cn(
-                        "relative px-3 py-2 text-sm font-medium transition-colors duration-200 flex items-center h-8", // removed rounded-md, line is the visual cue
+                        "relative px-3 py-2 text-sm font-medium flex items-center h-8",
+                        "transition-colors duration-300 ease-in-out", // Matched duration and easing
                         isVisuallyActive ? "text-primary" : "text-foreground/70 hover:text-primary"
                       )}
                       style={{ zIndex: 1 }} 
@@ -156,7 +159,7 @@ export function Header() {
               })}
             </ul>
             <span
-              className="absolute bg-primary transition-all duration-300 ease-out pointer-events-none" // Line styles
+              className="absolute bg-primary pointer-events-none transition-[left,width,opacity] duration-300 ease-in-out" // Refined transition
               style={{
                 left: `${indicatorStyle.left}px`,
                 width: `${indicatorStyle.width}px`,
