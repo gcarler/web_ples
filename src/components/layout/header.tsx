@@ -22,7 +22,7 @@ import { cn } from '@/lib/utils';
 import { ThemeToggle } from "@/components/theme-toggle";
 import { PlesGroupLogo } from '@/components/logo';
 import { Separator } from '@/components/ui/separator';
-import React from 'react'; // Import React for useState
+import React, { useState, useEffect, useRef } from 'react';
 
 export function Header() {
   const { user, loading } = useAuth();
@@ -30,26 +30,6 @@ export function Header() {
   const { toast } = useToast();
   const router = useRouter();
   const pathname = usePathname();
-  // const [desktopNavVisible, setDesktopNavVisible] = React.useState(true); // No longer needed for desktop
-
-  const handleLogout = async () => {
-    try {
-      await signOut(auth);
-      document.cookie = 'firebaseIdToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
-      toast({
-        title: 'Logged Out',
-        description: 'You have been successfully logged out.',
-      });
-      router.push('/');
-    } catch (error) {
-      console.error('Logout Error:', error);
-      toast({
-        title: 'Logout Failed',
-        description: 'An error occurred during logout. Please try again.',
-        variant: 'destructive',
-      });
-    }
-  };
 
   const navLinks = [
     { href: "/", label: "Inicio" },
@@ -61,33 +41,122 @@ export function Header() {
     { href: "/forms", label: "Contáctenos" },
   ];
 
+  const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  const navContainerRef = useRef<HTMLDivElement>(null); // Ref for the direct parent of ul and indicator
+  const [indicatorStyle, setIndicatorStyle] = useState({
+    left: 0,
+    width: 0,
+    opacity: 0,
+  });
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const activeIndex = navLinks.findIndex(link => pathname.startsWith(link.href) && (link.href === "/" ? pathname === "/" : true));
+
+
+  const updateIndicator = (element: HTMLElement | null, isHover: boolean = false) => {
+    if (element && navContainerRef.current) {
+      const navRect = navContainerRef.current.getBoundingClientRect();
+      const linkRect = element.getBoundingClientRect();
+
+      // The indicator should be vertically centered within the nav container.
+      // Assuming the nav container (and the ul within it) has a consistent height.
+      // The links have py-2, text-sm. An h-8 (32px) pill is standard.
+      const indicatorHeight = 32; // Corresponds to h-8
+      
+      setIndicatorStyle({
+        left: linkRect.left - navRect.left,
+        width: linkRect.width,
+        opacity: 1,
+      });
+    } else if (!isHover) { // Only hide if not due to hover (i.e., no active link found)
+      setIndicatorStyle(prev => ({ ...prev, opacity: 0 }));
+    }
+  };
+
+  // Effect for initial load and pathname changes (sets to active link)
+  useEffect(() => {
+    // Ensure refs are populated
+    const allRefsReady = linkRefs.current.every(ref => ref !== null);
+    if (allRefsReady && activeIndex !== -1 && linkRefs.current[activeIndex]) {
+      // Timeout to allow layout to settle, especially after navigation
+      setTimeout(() => {
+        updateIndicator(linkRefs.current[activeIndex]);
+      }, 50);
+    } else {
+       setTimeout(() => {
+        setIndicatorStyle(prev => ({ ...prev, opacity: 0 }));
+      }, 50);
+    }
+  }, [pathname, activeIndex]); // Removed linkRefs.current from deps for stability
+
+  const handleMouseEnter = (index: number) => {
+    setHoveredIndex(index);
+    if (linkRefs.current[index]) {
+      updateIndicator(linkRefs.current[index], true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredIndex(null);
+    // Revert to active link or hide if no active link
+    if (activeIndex !== -1 && linkRefs.current[activeIndex]) {
+      updateIndicator(linkRefs.current[activeIndex]);
+    } else {
+      setIndicatorStyle(prev => ({ ...prev, opacity: 0 }));
+    }
+  };
+
   return (
     <header className="bg-card text-card-foreground sticky top-0 z-50 shadow-sm">
       <nav className="w-full px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
-        <div className="flex items-center gap-4"> {/* Container for logo and nav links */}
+        <div className="flex items-center gap-4">
           <Link href="/" className="flex-shrink-0">
             <PlesGroupLogo className="h-7" />
           </Link>
           
-          {/* Desktop Navigation Links - Always visible */}
-          <ul className="hidden md:flex items-center space-x-4 lg:space-x-6">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className={cn(
-                    "text-sm font-medium hover:text-primary transition-colors",
-                    pathname === link.href ? "text-primary font-semibold" : "text-foreground/70"
-                  )}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          {/* Desktop Navigation Links */}
+          <div ref={navContainerRef} className="relative hidden md:flex items-center h-10"> {/* Added h-10 for consistent height */}
+            <ul
+              className="flex items-center space-x-1 h-full" // Links will be centered by items-center
+              onMouseLeave={handleMouseLeave}
+            >
+              {navLinks.map((link, index) => {
+                const isCurrentlyActive = activeIndex === index;
+                const isHovered = hoveredIndex === index;
+                const isPillUnderThisLink = (isCurrentlyActive && hoveredIndex === null) || isHovered;
+
+                return (
+                  <li key={link.href} className="h-full flex items-center">
+                    <Link
+                      href={link.href}
+                      ref={el => (linkRefs.current[index] = el)}
+                      onMouseEnter={() => handleMouseEnter(index)}
+                      className={cn(
+                        "relative px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 flex items-center h-8", // ensure links are h-8 for pill
+                        isPillUnderThisLink ? "text-primary" : "text-foreground/70 hover:text-foreground"
+                      )}
+                      style={{ zIndex: 1 }} 
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+            {/* The moving indicator pill */}
+            <span
+              className="absolute h-8 bg-muted rounded-full transition-all duration-300 ease-out pointer-events-none"
+              style={{
+                left: `${indicatorStyle.left}px`,
+                width: `${indicatorStyle.width}px`,
+                opacity: indicatorStyle.opacity,
+                top: `calc(50% - 16px)`, // Center an h-8 (32px) pill; 32/2 = 16
+                zIndex: 0, 
+              }}
+            />
+          </div>
         </div>
         
-        {/* Desktop Controls (Theme, Auth) - Pushed to the right */}
+        {/* Desktop Controls (Theme, Auth) */}
         <div className="hidden md:flex items-center space-x-2">
           <ThemeToggle />
           {!loading && (
@@ -129,10 +198,10 @@ export function Header() {
 
         {/* Mobile Navigation Trigger & Controls */}
         <div className="md:hidden flex items-center">
-          <ThemeToggle /> {/* Theme toggle can be outside sheet for quick access on mobile */}
+          <ThemeToggle />
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="ml-2"> {/* Added ml-2 for spacing */}
+              <Button variant="ghost" size="icon" className="ml-2">
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">Abrir menú</span>
               </Button>
@@ -155,7 +224,7 @@ export function Header() {
                           href={link.href}
                           className={cn(
                             "block py-2.5 px-3 rounded-md text-base hover:bg-accent hover:text-accent-foreground transition-colors",
-                            pathname === link.href && "bg-accent text-accent-foreground font-semibold"
+                            pathname.startsWith(link.href) && (link.href === "/" ? pathname === "/" : true) && "bg-accent text-accent-foreground font-semibold"
                           )}
                         >
                           {link.label}
@@ -169,11 +238,6 @@ export function Header() {
               <Separator />
               
               <div className="p-4 space-y-4 mt-auto border-t border-border">
-                {/* Theme toggle already outside, or can be duplicated here if preferred */}
-                {/* <div className="flex justify-between items-center">
-                  <span className="text-sm text-muted-foreground">Tema</span>
-                  <ThemeToggle />
-                </div> */}
                 <div className="pt-2">
                   {!loading && (
                     user ? (
