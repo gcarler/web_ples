@@ -9,9 +9,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
-import { LogIn, User, Lock } from 'lucide-react'; // Import icons
+import { LogIn, User, Lock, Briefcase } from 'lucide-react'; // Import icons, added Briefcase as example
 import Link from 'next/link'; // Import Link
-import Image from 'next/image'; // Import Image
 
 export default function LoginPage() {
   const [email, setEmail] = useState(''); // Use email for username field
@@ -71,19 +70,17 @@ export default function LoginPage() {
   return (
     // Two-column layout for the login page
     <div className="flex min-h-screen bg-background">
-      {/* Left Column: Image */}
-      <div className="relative hidden lg:block lg:w-1/2">
-        <Image
-          src="https://placehold.co/1200x1600.png" 
-          alt="Coding desk with laptop and monitor" 
-          layout="fill"
-          objectFit="cover"
-          data-ai-hint="coding desk developer setup" 
-        />
-        {/* Text Overlay - Adjust styling as needed */}
-        <div className="absolute bottom-10 left-10 z-10">
-           {/* Removed the text overlay as it's not present in the new image */}
-        </div>
+      {/* Left Column: Animated Gradient Background */}
+      <div className="relative hidden lg:flex lg:w-1/2 flex-col items-center justify-center
+                      bg-gradient-to-br from-primary via-accent to-ring
+                      bg-[length:200%_200%] animate-gradient text-primary-foreground p-12 text-center">
+        <Briefcase className="w-24 h-24 mb-8 opacity-80" />
+        <h1 className="text-4xl font-bold mb-4 leading-tight">
+          Bienvenido a PLES
+        </h1>
+        <p className="text-lg max-w-md opacity-90">
+          Accede a un mundo de soluciones innovadoras y gestión inteligente. Tu experiencia PLES comienza aquí.
+        </p>
       </div>
 
       {/* Right Column: Login Form */}

@@ -87,7 +87,7 @@ export default {
   					height: '0'
   				}
   			},
-        'gradient-shift': {
+        'gradient-shift': { // Renamed to 'gradient' for consistency with animation name
           '0%, 100%': { backgroundPosition: '0% 50%' },
           '50%': { backgroundPosition: '100% 50%' },
         },
@@ -103,7 +103,7 @@ export default {
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out',
-        'gradient': 'gradient-shift 8s ease infinite',
+        'gradient': 'gradient-shift 15s ease infinite', // Consistent animation name and longer duration
         'expand-in': 'expand-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
         'fade-in-up': 'fade-in-up 0.6s ease-out forwards',
   		}
