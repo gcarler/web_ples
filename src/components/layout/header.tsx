@@ -123,7 +123,7 @@ export function Header() {
   };
 
   return (
-    <header className="bg-card text-card-foreground sticky top-0 z-50 shadow-sm">
+    <header className="bg-card text-card-foreground sticky top-0 z-50 relative">
       <nav className="w-full px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
         <div className="flex items-center gap-4">
           <Link href="/" className="flex-shrink-0">
@@ -298,6 +298,7 @@ export function Header() {
           </Sheet>
         </div>
       </nav>
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-px w-0 bg-border animate-header-line-pulse"></div>
     </header>
   );
 }
