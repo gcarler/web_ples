@@ -6,16 +6,16 @@ export function PlesGroupLogo({ className, style }: { className?: string, style?
     <svg
       width="100%"
       height="100%"
-      viewBox="0 0 440 160" // Updated viewBox to accommodate "IA"
+      viewBox="0 0 340 160" // Adjusted viewBox for "PLES"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       style={style} // Pass style prop for CSS variables
-      aria-label="PLESIA Logo" // Updated aria-label
+      aria-label="PLES Logo" // Updated aria-label
       role="img"
     >
       <style>{`
-        .letter { fill: currentColor; } /* Changed to currentColor */
-        .p-accent { fill: var(--logo-accent-color, hsl(var(--primary))); }   /* Default to theme primary */
+        .letter { fill: currentColor; }
+        .p-accent { fill: var(--logo-accent-color, hsl(var(--primary))); }
       `}</style>
 
       {/* Letter P */}
@@ -50,25 +50,25 @@ export function PlesGroupLogo({ className, style }: { className?: string, style?
         Z
       "/>
 
-      {/* Letter E */}
+      {/* Letter E (Shifted left by 10px from original PLESIA E position) */}
       <path className="letter" d="
-        M 240,60
-        L 200,60
-        A 30,30 0 1 1 200,120
-        L 230,120
-        A 10,10 0 0 1 240,110
-        L 240,95
-        L 190,95
-        A 15,15 0 0 0 190,50
-        L 240,50
-        L 240,40
-        A 10,10 0 0 1 230,30
-        L 200,30
-        A 30,30 0 1 1 200,60
+        M 230,60
+        L 190,60
+        A 30,30 0 1 1 190,120
+        L 220,120
+        A 10,10 0 0 1 230,110
+        L 230,95
+        L 180,95
+        A 15,15 0 0 0 180,50
+        L 230,50
+        L 230,40
+        A 10,10 0 0 1 220,30
+        L 190,30
+        A 30,30 0 1 1 190,60
         Z
       "/>
 
-      {/* Letter S */}
+      {/* Letter S (Original position, fits after shifted E) */}
       <path className="letter" d="
         M 270,55
         C 270,30 310,30 310,55
@@ -82,12 +82,6 @@ export function PlesGroupLogo({ className, style }: { className?: string, style?
         A 10,10 0 0 1 270,55
         Z
       "/>
-
-      {/* Letter I */}
-      <path className="letter" d="M 340,30 L 340,140 L 355,140 L 355,30 Z" />
-
-      {/* Letter A */}
-      <path className="letter" fillRule="evenodd" d="M 395,30 L 375,140 L 415,140 Z M 395,70 L 385,110 L 405,110 Z" />
 
     </svg>
   );
