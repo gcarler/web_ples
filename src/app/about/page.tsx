@@ -127,7 +127,7 @@ export default function AboutPage() {
             {sections.map((section, index) => (
               <Card
                 key={index}
-                className="group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out"
+                className="group hover:shadow-xl hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out hover:animate-gradient hover:bg-[length:200%_200%]"
               >
                 <CardContent className="p-0">
                   <DynamicSection {...section} />
@@ -153,8 +153,8 @@ export default function AboutPage() {
                   index < coreValues.length - 1 ? "md:border-b" : "md:border-b-0", 
                   "md:flex-1 md:flex md:items-center md:justify-center",
                   selectedValue === value.id
-                    ? 'bg-accent text-accent-foreground' // Active tab color
-                    : 'bg-primary text-primary-foreground hover:bg-primary/80' // Inactive tabs now use bg-primary
+                    ? 'bg-accent text-accent-foreground animate-gradient bg-[length:200%_200%]' // Active tab with animation
+                    : 'bg-primary text-primary-foreground hover:bg-primary/80' // Inactive tabs
                 )}
               >
                 <span className="text-xl md:text-2xl">{value.name}</span> {/* Font size increased */}

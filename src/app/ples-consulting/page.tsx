@@ -123,7 +123,7 @@ export default function PlesConsultingPage() {
             {expertiseAreas.map((area) => (
                 <Card
                 key={area.title}
-                className="group bg-card hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-[1.02] border-2 border-transparent hover:border-primary/50 overflow-hidden hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground"
+                className="group bg-card hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-[1.02] border-2 border-transparent hover:border-primary/50 overflow-hidden hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:text-primary-foreground hover:animate-gradient hover:bg-[length:200%_200%]"
                 >
                 <CardHeader className="flex flex-row items-start gap-4">
                     {area.icon}
@@ -153,7 +153,7 @@ export default function PlesConsultingPage() {
           <h2 className="text-3xl font-bold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestro Valor Diferencial</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {differentiators.map((item) => (
-              <Card key={item.title} className="bg-card group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out">
+              <Card key={item.title} className="bg-card group hover:shadow-xl hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out hover:animate-gradient hover:bg-[length:200%_200%]">
                 <CardHeader className="flex flex-row items-center gap-4">
                   {item.icon}
                   <CardTitle className="text-xl group-hover:text-primary-foreground">{item.title}</CardTitle>
@@ -175,7 +175,7 @@ export default function PlesConsultingPage() {
             </p>
             <div className="grid md:grid-cols-3 gap-8">
                 {processSteps.map((step) => (
-                    <Card key={step.title} className="group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out text-center transform flex flex-col">
+                    <Card key={step.title} className="group hover:shadow-xl hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out text-center transform flex flex-col hover:animate-gradient hover:bg-[length:200%_200%]">
                         <CardHeader className="items-center">
                             {step.icon}
                             <CardTitle className="mt-2 text-lg group-hover:text-primary-foreground">{step.title}</CardTitle>
@@ -203,7 +203,7 @@ export default function PlesConsultingPage() {
         </div>
       </section>
 
-      <section className="text-center py-20 bg-primary text-primary-foreground">
+      <section className="text-center py-20 bg-primary text-primary-foreground animate-gradient bg-[length:200%_200%]">
         <div className="w-full px-4 sm:px-6 lg:px-8">
             <MessageSquare className="h-16 w-16 mx-auto mb-6 opacity-80" />
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Impulsemos Juntos la Próxima Etapa de su Organización</h2>

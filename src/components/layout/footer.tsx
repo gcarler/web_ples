@@ -14,15 +14,15 @@ export function Footer() {
             <div className="pt-4 pb-10">
               <p className="text-lg text-muted-foreground">
                 Somos{' '}
-                <span className="font-semibold transition-all duration-300 ease-in-out inline-block hover:scale-110 hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:bg-clip-text hover:text-transparent">
+                <span className="font-semibold transition-all duration-300 ease-in-out inline-block hover:scale-110 hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:bg-clip-text hover:text-transparent hover:animate-gradient hover:bg-[length:200%_200%]">
                   Ciencia
                 </span>
                 ,{' '}
-                <span className="font-semibold transition-all duration-300 ease-in-out inline-block hover:scale-110 hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:bg-clip-text hover:text-transparent">
+                <span className="font-semibold transition-all duration-300 ease-in-out inline-block hover:scale-110 hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:bg-clip-text hover:text-transparent hover:animate-gradient hover:bg-[length:200%_200%]">
                   Tecnología
                 </span>{' '}
                 e{' '}
-                <span className="font-semibold transition-all duration-300 ease-in-out inline-block hover:scale-110 hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:bg-clip-text hover:text-transparent">
+                <span className="font-semibold transition-all duration-300 ease-in-out inline-block hover:scale-110 hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:bg-clip-text hover:text-transparent hover:animate-gradient hover:bg-[length:200%_200%]">
                   Innovación
                 </span>
                 .

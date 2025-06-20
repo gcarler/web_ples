@@ -10,17 +10,17 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-gradient-to-r from-primary to-accent text-primary-foreground hover:bg-gradient-to-br hover:shadow-lg hover:scale-[1.02]",
+        default: "bg-gradient-to-r from-primary to-accent text-primary-foreground hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:animate-gradient hover:bg-[length:200%_200%] hover:shadow-lg hover:scale-[1.02]",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90 hover:scale-[1.02]",
         outline:
-          "border border-input bg-background hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:border-transparent hover:shadow-md hover:scale-[1.02]",
+          "border border-input bg-background hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:text-primary-foreground hover:animate-gradient hover:bg-[length:200%_200%] hover:border-transparent hover:shadow-md hover:scale-[1.02]",
         secondary: 
-          "bg-gradient-to-r from-primary to-accent text-primary-foreground hover:bg-gradient-to-br hover:shadow-lg hover:scale-[1.02]",
-        ghost: "hover:bg-gradient-to-b hover:from-primary/10 hover:to-accent/10 hover:text-accent-foreground hover:scale-[1.02]",
+          "bg-gradient-to-r from-primary to-accent text-primary-foreground hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:animate-gradient hover:bg-[length:200%_200%] hover:shadow-lg hover:scale-[1.02]",
+        ghost: "hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:text-primary-foreground hover:animate-gradient hover:bg-[length:200%_200%] hover:scale-[1.02]",
         link: "text-primary underline-offset-4 hover:underline hover:text-primary/80",
         accent: 
-          "bg-gradient-to-r from-primary to-accent text-primary-foreground hover:bg-gradient-to-br hover:shadow-lg hover:scale-[1.02]",
+          "bg-gradient-to-r from-primary to-accent text-primary-foreground hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:animate-gradient hover:bg-[length:200%_200%] hover:shadow-lg hover:scale-[1.02]",
       },
       size: {
         default: "h-10 px-4 py-2",

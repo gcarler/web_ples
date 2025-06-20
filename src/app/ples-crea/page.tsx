@@ -119,7 +119,7 @@ export default function PlesCreaPage() {
             </p>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {services.map((service) => (
-                <Card key={service.title} className="text-center group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out transform flex flex-col">
+                <Card key={service.title} className="text-center group hover:shadow-xl hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out transform flex flex-col hover:animate-gradient hover:bg-[length:200%_200%]">
                 <CardHeader className="items-center">
                     {service.icon}
                     <CardTitle className="mt-2 text-xl group-hover:text-primary-foreground">{service.title}</CardTitle>
@@ -138,7 +138,7 @@ export default function PlesCreaPage() {
           <h2 className="text-3xl font-bold mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Beneficios de Trabajar con PLES CREA</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {benefits.map((benefit) => (
-              <Card key={benefit.title} className="p-6 group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out text-center">
+              <Card key={benefit.title} className="p-6 group hover:shadow-xl hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out text-center hover:animate-gradient hover:bg-[length:200%_200%]">
                 <div className="flex justify-center mb-4">{benefit.icon}</div>
                 <CardTitle className="text-lg group-hover:text-primary-foreground mb-2">{benefit.title}</CardTitle>
                 <p className="text-sm text-muted-foreground group-hover:text-primary-foreground/90">{benefit.text}</p>
@@ -153,7 +153,7 @@ export default function PlesCreaPage() {
             <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Proyectos que Inspiran: Casos de Estudio</h2>
             <div className="grid md:grid-cols-2 gap-8">
             {caseStudies.map((study) => (
-                <Card key={study.title} className="overflow-hidden group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col">
+                <Card key={study.title} className="overflow-hidden group hover:shadow-xl hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col hover:animate-gradient hover:bg-[length:200%_200%]">
                 <div className="relative h-56 w-full">
                     <Image src={study.image} alt={study.title} layout="fill" objectFit="cover" data-ai-hint={study.imageHint} />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
@@ -235,7 +235,7 @@ export default function PlesCreaPage() {
         </div>
       </section>
 
-      <section className="text-center py-20 bg-primary text-primary-foreground">
+      <section className="text-center py-20 bg-primary text-primary-foreground animate-gradient bg-[length:200%_200%]">
         <div className="w-full px-4 sm:px-6 lg:px-8">
             <HelpCircle className="h-16 w-16 mx-auto mb-6 opacity-80" />
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Descubra el Poder de la Cartografía Inteligente</h2>

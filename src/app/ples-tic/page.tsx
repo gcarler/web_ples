@@ -170,7 +170,7 @@ export default function PlesTicPage() {
             </p>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {valuePropositions.map((vp) => (
-                <Card key={vp.title} className="text-center group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col">
+                <Card key={vp.title} className="text-center group hover:shadow-xl hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col hover:animate-gradient hover:bg-[length:200%_200%]">
                 <CardHeader className="items-center">
                     {vp.icon}
                     <CardTitle className="mt-2 text-xl group-hover:text-primary-foreground">{vp.title}</CardTitle>
@@ -191,7 +191,7 @@ export default function PlesTicPage() {
             {coreServices.map((service) => (
               <Link key={service.title} href={service.ctaLink || '#'} passHref legacyBehavior>
                 <a className="block group hover:scale-105 transition-all duration-300 ease-in-out">
-                  <Card className="h-full group-hover:shadow-xl group-hover:bg-gradient-to-b group-hover:from-primary group-hover:to-accent group-hover:text-primary-foreground bg-card">
+                  <Card className="h-full group-hover:shadow-xl group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-accent group-hover:text-primary-foreground bg-card group-hover:animate-gradient group-hover:bg-[length:200%_200%]">
                     <CardHeader className="flex flex-row items-start gap-4">
                         {service.icon}
                         <div>
@@ -232,7 +232,7 @@ export default function PlesTicPage() {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
             {ourApproachSteps.map((step) => (
-                <Card key={step.title} className="text-center p-6 group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col items-center bg-card">
+                <Card key={step.title} className="text-center p-6 group hover:shadow-xl hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col items-center bg-card hover:animate-gradient hover:bg-[length:200%_200%]">
                 {step.icon}
                 <CardTitle className="text-lg mt-2 mb-1 group-hover:text-primary-foreground">{step.title}</CardTitle>
                 <p className="text-xs text-muted-foreground group-hover:text-primary-foreground/90 flex-grow">{step.description}</p>
@@ -250,9 +250,7 @@ export default function PlesTicPage() {
           </p>
           <div className="flex flex-wrap justify-center items-center gap-3">
             {technologies.map((tech) => (
-              <Badge key={tech} variant="outline" className="text-md md:text-base px-4 py-2 border-primary text-primary shadow-sm hover:bg-primary/10 transition-colors">
-                {tech}
-              </Badge>
+              <Badge key={tech} variant="outline" className="text-md md:text-base px-4 py-2 border-primary text-primary shadow-sm hover:bg-primary/10 transition-colors">{tech}</Badge>
             ))}
           </div>
         </div>
@@ -263,7 +261,7 @@ export default function PlesTicPage() {
           <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Proyectos Destacados</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {caseStudies.map((study) => (
-              <Card key={study.title} className="overflow-hidden group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col bg-card">
+              <Card key={study.title} className="overflow-hidden group hover:shadow-xl hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col bg-card hover:animate-gradient hover:bg-[length:200%_200%]">
                 <div className="relative h-56 w-full">
                   <Image src={study.image} alt={study.title} layout="fill" objectFit="cover" data-ai-hint={study.imageHint} />
                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
@@ -299,7 +297,7 @@ export default function PlesTicPage() {
         </div>
       </section>
 
-      <section className="text-center py-20 bg-primary text-primary-foreground">
+      <section className="text-center py-20 bg-primary text-primary-foreground animate-gradient bg-[length:200%_200%]">
         <div className="w-full px-4 sm:px-6 lg:px-8">
             <Rocket className="h-16 w-16 mx-auto mb-6 opacity-80" />
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Impulse su Negocio con la Tecnología del Mañana</h2>
