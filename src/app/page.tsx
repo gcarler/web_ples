@@ -20,7 +20,7 @@ const heroStatements: HeroStatement[] = [
     title: "Innovación que Impacta, Estrategias que Perduran",
     description: "Creamos soluciones a medida que impulsan el progreso y construyen un legado sostenible para su organización.",
     ctaText: "Conoce cómo",
-    ctaLink: "/innovacion-estrategias", // Updated Link
+    ctaLink: "/innovacion-estrategias",
     ctaIconName: "BookOpen",
   },
   {
@@ -92,7 +92,7 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <Button asChild size="lg" variant="default">
+          <Button asChild size="lg" variant="default" className="animate-button-gradient bg-[length:200%_200%]">
             <Link href="/about">
               <span className="flex items-center">
                 Saber Más <ArrowRight className="ml-2 h-5 w-5" />
@@ -102,36 +102,37 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section background can be full-width */}
-      <section className="relative py-16 bg-card shadow-lg overflow-hidden">
-        {/* Content within section is now w-full, with padding controlling edges */}
+      {/* "Nuestra Misión" Section - Redesigned */}
+      <section className="relative py-20 md:py-28 bg-card shadow-lg overflow-hidden">
         <div className="w-full px-4 sm:px-6 lg:px-8">
-           <div className="grid md:grid-cols-2 gap-8 items-center pt-8">
-             <div>
-              <h2 className="text-3xl font-semibold mb-4 text-primary">Nuestra Misión</h2>
-              <p className="text-lg text-foreground mb-4">
-                Somos una empresa dedicada a ofrecer soluciones innovadoras y eficientes que impulsan el crecimiento y la transformación digital de nuestros clientes. Creemos en el poder de la tecnología para simplificar procesos y crear valor.
-              </p>
-               <Button asChild className="mt-6">
-                 <Link href="/about">
+           <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+             {/* Image on the left for medium screens and up */}
+             <div className="relative h-96 md:h-[500px] lg:h-[600px] rounded-lg overflow-hidden shadow-xl order-last md:order-first group">
+               <Image
+                 src="https://placehold.co/600x800.png"
+                 alt="Equipo de PLES trabajando en su misión"
+                 layout="fill"
+                 objectFit="cover"
+                 className="rounded-lg transform group-hover:scale-105 transition-transform duration-500"
+                 data-ai-hint="team mission collaboration"
+               />
+               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+             </div>
+             {/* Text on the right */}
+             <div className="order-first md:order-last">
+               <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-primary">Nuestra Misión</h2>
+               <p className="text-lg lg:text-xl text-foreground mb-8 leading-relaxed">
+                 Somos una empresa dedicada a ofrecer soluciones innovadoras y eficientes que impulsan el crecimiento y la transformación digital de nuestros clientes. Creemos en el poder de la tecnología para simplificar procesos y crear valor.
+               </p>
+               <Button asChild size="lg" className="mt-4 animate-button-gradient bg-[length:200%_200%]">
+                 <Link href="/about/mision">
                    <span className="flex items-center">
-                     Saber Más <ArrowRight className="ml-2" />
+                     Explorar la Misión <ArrowRight className="ml-2" />
                    </span>
                  </Link>
-              </Button>
-            </div>
-            <div className="relative h-64 md:h-80 rounded-lg overflow-hidden shadow-inner">
-              <Image
-                src="https://placehold.co/600x400.png"
-                alt="Equipo trabajando"
-                layout="fill"
-                objectFit="cover"
-                className="rounded-lg"
-                data-ai-hint="team working collaboration"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-            </div>
-          </div>
+               </Button>
+             </div>
+           </div>
         </div>
       </section>
 
@@ -227,7 +228,7 @@ export default function Home() {
           <p className="text-lg text-foreground mb-8 max-w-2xl mx-auto">
             Contáctenos hoy mismo para descubrir cómo nuestras soluciones pueden ayudarle a alcanzar sus objetivos.
           </p>
-          <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90" asChild>
+          <Button size="lg" className="animate-button-gradient bg-[length:200%_200%]" asChild>
              <Link href="/forms">
                <span className="flex items-center">
                  Contactar Ahora <ArrowRight className="ml-2" />
