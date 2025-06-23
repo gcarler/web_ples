@@ -3,16 +3,16 @@
 
 import React, { createContext, useContext, useState, useEffect, type ReactNode, type PropsWithChildren } from 'react';
 import { getAuth, onAuthStateChanged, User as FirebaseAuthUser } from 'firebase/auth';
-import { doc, getDoc, Timestamp, onSnapshot } from 'firebase/firestore'; // Import Firestore functions
-import { app, db } from '@/lib/firebase/firebase-config'; // Import Firebase app instance and Firestore db
-import { UserProfile, UserProfileSchema, UserRole } from '@/lib/models/user'; // Import UserProfile types
-import { Skeleton } from '@/components/ui/skeleton'; // For loading state
+import { doc, getDoc, onSnapshot } from 'firebase/firestore';
+import { app, db } from '@/lib/firebase/firebase-config';
+import { UserProfile, UserProfileSchema, UserRole } from '@/lib/models/user';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface AuthContextType {
   user: FirebaseAuthUser | null;
   userProfile: UserProfile | null;
   loading: boolean;
-  userRole: UserRole | null; // Add userRole to context
+  userRole: UserRole | null;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -27,49 +27,46 @@ export const AuthProvider: React.FC<PropsWithChildren> = ({ children }) => {
     const unsubscribeAuth = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
       if (currentUser) {
-        // User is logged in, fetch profile from Firestore using onSnapshot for real-time updates
         const userDocRef = doc(db, 'users', currentUser.uid);
         const unsubscribeProfile = onSnapshot(userDocRef, (docSnap) => {
           if (docSnap.exists()) {
             const data = docSnap.data();
-            // UserProfileSchema expects Firestore Timestamps.
-            // The client SDK's onSnapshot should provide these directly.
-            const profileToValidate = { ...data, uid: currentUser.uid };
+            const profileToValidate = {
+                ...data,
+                uid: currentUser.uid,
+                createdAt: data.createdAt?.toDate(),
+                updatedAt: data.updatedAt?.toDate(),
+            };
+
             const parsedProfile = UserProfileSchema.safeParse(profileToValidate);
 
             if (parsedProfile.success) {
                  setUserProfile(parsedProfile.data);
             } else {
-                console.error("Firestore User Profile validation error:", parsedProfile.error);
-                // Consider how to handle profile data that doesn't match the schema.
-                // For now, setting to null, which might restrict access if role is derived from it.
+                console.error("Firestore User Profile validation error on client:", parsedProfile.error);
                 setUserProfile(null);
             }
           } else {
-            // Handle case where user exists in Auth but not in Firestore 'users' collection
             console.warn(`User profile not found in Firestore for uid: ${currentUser.uid}`);
             setUserProfile(null);
           }
-          setLoading(false); // Set loading to false after profile fetched/checked
+          setLoading(false);
         }, (error) => {
             console.error("Error fetching user profile:", error);
             setUserProfile(null);
             setLoading(false);
         });
-         return () => unsubscribeProfile(); // Cleanup profile listener on auth state change or unmount
+         return () => unsubscribeProfile();
 
       } else {
-        // User is logged out
         setUserProfile(null);
         setLoading(false);
       }
     });
 
-    // Cleanup auth subscription on unmount
     return () => unsubscribeAuth();
   }, [auth]);
 
-  // Show a loading state while authentication status and profile are being determined
   if (loading) {
      return (
         <div className="flex items-center justify-center min-h-screen">

@@ -1,4 +1,3 @@
-
 // src/components/erp/order-columns.tsx
 "use client"
 
@@ -73,7 +72,7 @@ export const orderColumns: ColumnDef<OrderFirestore>[] = [
              </Link>
          );
     },
-    enableSorting: true, // Sorting by contactId can be useful
+    enableSorting: true,
     enableHiding: true,
   },
   {
@@ -82,9 +81,8 @@ export const orderColumns: ColumnDef<OrderFirestore>[] = [
       <DataTableColumnHeader column={column} title="Order Date" />
     ),
     cell: ({ row }) => {
-      const timestamp = row.getValue("orderDate");
-      if (timestamp && typeof timestamp === 'object' && 'toDate' in timestamp) {
-        const date = (timestamp as any).toDate();
+      const date = row.getValue("orderDate") as Date | undefined;
+      if (date) {
         return (
             <div className="w-[100px] flex items-center gap-1 text-muted-foreground">
                 <Calendar className="h-3.5 w-3.5"/>
@@ -149,4 +147,3 @@ export const paymentStatusFilterOptions = ['Pending', 'Paid', 'Failed', 'Refunde
     label: status,
     value: status,
 }));
-

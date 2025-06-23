@@ -1,4 +1,3 @@
-
 // src/components/bpm/process-instance-columns.tsx
 "use client"
 
@@ -155,9 +154,8 @@ export const processInstanceColumns: ColumnDef<ProcessInstanceFirestore>[] = [
       <DataTableColumnHeader column={column} title="Last Update" />
     ),
     cell: ({ row }) => {
-      const timestamp = row.getValue("lastUpdatedAt");
-      if (timestamp && typeof timestamp === 'object' && 'toDate' in timestamp) {
-        const date = (timestamp as any).toDate();
+      const date = row.getValue("lastUpdatedAt") as Date | undefined;
+      if (date) {
         return <div className="w-[100px] text-muted-foreground">{format(date, 'PP pp')}</div>;
       }
       return <div className="w-[100px] text-muted-foreground">Invalid Date</div>;
@@ -195,4 +193,3 @@ export const processDefinitionFilterOptions = [
     { label: 'Opportunity to Cash', value: 'opportunity-to-cash-v1' },
     { label: 'Shipping Process', value: 'shipping-process-v1' },
 ];
-

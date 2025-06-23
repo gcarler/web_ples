@@ -1,6 +1,6 @@
 // src/lib/models/user.ts
 import { z } from 'zod';
-import { Timestamp } from 'firebase/firestore';
+import { Timestamp } from 'firebase-admin/firestore'; // Using admin timestamp for server-side logic
 
 // Define available roles
 export const UserRoleSchema = z.enum(['admin', 'crm_user', 'erp_user', 'bpm_viewer', 'read_only']);
@@ -26,15 +26,15 @@ export const ROLES = {
     },
 } as const; // Use 'as const' for stricter typing
 
-// Schema for User Profile data stored in Firestore
+// Schema for User Profile data stored in Firestore, using z.date()
 export const UserProfileSchema = z.object({
   uid: z.string(), // Corresponds to Firebase Auth UID
   email: z.string().email(), // User's email
   displayName: z.string().optional(), // User's display name
   role: UserRoleSchema.default('read_only'), // User's role, defaults to read_only
   tenantId: z.string().optional(), // Optional: For multi-tenancy support
-  createdAt: z.instanceof(Timestamp),
-  updatedAt: z.instanceof(Timestamp),
+  createdAt: z.date(),
+  updatedAt: z.date(),
 });
 
 export type UserProfile = z.infer<typeof UserProfileSchema>;

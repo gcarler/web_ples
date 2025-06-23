@@ -1,4 +1,3 @@
-
 // src/components/erp/product-columns.tsx
 "use client"
 
@@ -97,9 +96,8 @@ export const productColumns: ColumnDef<ProductFirestore>[] = [
       <DataTableColumnHeader column={column} title="Last Updated" />
     ),
     cell: ({ row }) => {
-      const timestamp = row.getValue("updatedAt");
-      if (timestamp && typeof timestamp === 'object' && 'toDate' in timestamp) {
-        const date = (timestamp as any).toDate();
+      const date = row.getValue("updatedAt") as Date | undefined;
+      if (date) {
         return <div className="w-[100px] text-muted-foreground">{format(date, 'PP')}</div>;
       }
       return <div className="w-[100px] text-muted-foreground">Invalid Date</div>;

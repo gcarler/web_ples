@@ -4,7 +4,7 @@
 import { z } from 'zod';
 import { adminAuth, adminDb } from '@/lib/firebase/firebase-admin-config';
 import { UserProfile, UserProfileSchema, UserRoleSchema } from '@/lib/models/user';
-import { collection, getDocs, doc, setDoc, updateDoc, serverTimestamp, Timestamp, deleteDoc } from 'firebase-admin/firestore';
+import { collection, getDocs, doc, setDoc, updateDoc, serverTimestamp, deleteDoc } from 'firebase-admin/firestore';
 import { revalidatePath } from 'next/cache';
 import { CreateUserRequest } from 'firebase-admin/auth';
 
@@ -53,7 +53,7 @@ export async function addUser(
 
     // 2. Create user profile document in Firestore
     // Use the validated 'role' from input (which might be default 'read_only' for registration)
-    const userProfile: Omit<UserProfile, 'createdAt' | 'updatedAt'> = {
+    const userProfileData = {
       uid: userRecord.uid,
       email: email,
       displayName: displayName,
@@ -61,10 +61,10 @@ export async function addUser(
       // tenantId: // Assign tenant ID if using multi-tenancy
     };
 
-    console.log('Data being sent to setDoc:', userProfile);
-      const userDocRef = doc(adminDb, 'users', userRecord.uid);
+    console.log('Data being sent to setDoc:', userProfileData);
+    const userDocRef = doc(adminDb, 'users', userRecord.uid);
     await setDoc(userDocRef, {
-      ...userProfile,
+      ...userProfileData,
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp(),
     });
@@ -100,16 +100,15 @@ export async function getUsers(): Promise<UserProfile[]> {
 
     const users: UserProfile[] = userSnapshot.docs.map(doc => {
       const data = doc.data();
-       // Ensure Timestamps are correctly handled
-      if (data.createdAt && !(data.createdAt instanceof Timestamp)) {
-          data.createdAt = Timestamp.fromMillis(data.createdAt.seconds * 1000)
-      }
-      if (data.updatedAt && !(data.updatedAt instanceof Timestamp)) {
-          data.updatedAt = Timestamp.fromMillis(data.updatedAt.seconds * 1000)
-      }
+       // Convert Firestore Timestamps to JS Dates before validation
+      const dataWithDates = {
+          ...data,
+          createdAt: data.createdAt?.toDate(),
+          updatedAt: data.updatedAt?.toDate(),
+      };
 
-        // Validate using UserProfileSchema
-       const parsedData = UserProfileSchema.safeParse({ uid: doc.id, ...data });
+      // Validate using UserProfileSchema
+      const parsedData = UserProfileSchema.safeParse({ uid: doc.id, ...dataWithDates });
 
       if (!parsedData.success) {
         console.warn(`Invalid user profile data found in Firestore document ${doc.id}:`, parsedData.error);
@@ -118,12 +117,12 @@ export async function getUsers(): Promise<UserProfile[]> {
           uid: doc.id,
           email: 'Invalid Data',
           role: 'read_only', // Default role
-          createdAt: Timestamp.now(),
-          updatedAt: Timestamp.now(),
+          createdAt: new Date(),
+          updatedAt: new Date(),
         } as UserProfile;
       }
 
-      return parsedData.data; // No need for 'id' as uid is the id
+      return parsedData.data; // parsedData.data already includes uid
     });
 
     return users;

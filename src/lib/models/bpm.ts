@@ -1,6 +1,5 @@
 // src/lib/models/bpm.ts
 import { z } from 'zod';
-import { Timestamp } from 'firebase/firestore';
 
 // Define possible process statuses
 export const ProcessStatusSchema = z.enum([
@@ -13,7 +12,7 @@ export const ProcessStatusSchema = z.enum([
 ]);
 export type ProcessStatus = z.infer<typeof ProcessStatusSchema>;
 
-// Schema for Process Instance Input (creating/updating)
+// Schema for Process Instance Input (creating/updating), using z.date()
 export const ProcessInstanceInputSchema = z.object({
   processDefinitionId: z.string().min(1, "Process definition ID is required."), // Unique identifier for the process definition (e.g., "opportunity-to-cash")
   processDefinitionName: z.string().min(1, "Process definition name is required."), // Name of the process definition (e.g., "Opportunity to Cash")
@@ -22,10 +21,10 @@ export const ProcessInstanceInputSchema = z.object({
   variables: z.record(z.any()).optional(), // Dynamic key-value pairs for process variables (e.g., customerId, orderAmount)
   currentTaskId: z.string().optional(), // Unique identifier of the currently active task within the process (if applicable)
   currentTaskName: z.string().optional(), // Name or label of the currently active task
-  startedAt: z.instanceof(Timestamp).optional(), // Timestamp when the process instance was started
-  completedAt: z.instanceof(Timestamp).optional(), // Timestamp when the process instance was completed
-  failedAt: z.instanceof(Timestamp).optional(), // Timestamp when the process instance failed
-  lastUpdatedAt: z.instanceof(Timestamp).optional(), // Timestamp of the last update to the process instance
+  startedAt: z.date().optional(), // Date when the process instance was started
+  completedAt: z.date().optional(), // Date when the process instance was completed
+  failedAt: z.date().optional(), // Date when the process instance failed
+  lastUpdatedAt: z.date().optional(), // Date of the last update to the process instance
   errorDetails: z.string().optional(), // Detailed information about errors that occurred during the process execution (if applicable)
 });
 
@@ -34,34 +33,20 @@ export type ProcessInstanceInput = z.infer<typeof ProcessInstanceInputSchema> & 
 
 // Schema for Process Instance Output (retrieved from Firestore)
 export const ProcessInstanceOutputSchema = ProcessInstanceInputSchema.extend({
-  startedAt: z.instanceof(Timestamp).optional(), // Timestamp when the process instance was started
-  completedAt: z.instanceof(Timestamp).optional(), // Timestamp when the process instance was completed
-  failedAt: z.instanceof(Timestamp).optional(), // Timestamp when the process instance failed
-  lastUpdatedAt: z.instanceof(Timestamp), // Timestamp of the last update to the process instance, this should always be set on update
+  startedAt: z.date().optional(),
+  completedAt: z.date().optional(),
+  failedAt: z.date().optional(),
+  lastUpdatedAt: z.date(), // Date of the last update is mandatory when retrieved
 });
 
 // TypeScript type for Process Instance Output
-export type ProcessInstanceOutput = z.infer<typeof ProcessInstanceOutputSchema> & { id: string };
+export type ProcessInstanceOutput = z.infer<typeof ProcessInstanceOutputSchema>;
 
-// Schema for data retrieved from Firestore
-export const ProcessInstanceFirestoreSchema = ProcessInstanceOutputSchema.extend({
-  id: z.string()
-});
+// This is the main type for data retrieved from Firestore, combining Output and ID
+export type ProcessInstanceFirestore = ProcessInstanceOutput & { id: string };
 
-export type ProcessInstanceFirestore = z.infer<typeof ProcessInstanceFirestoreSchema>;
-export type ProcessInstance = {
-  id?: string;
-  processDefinitionId: string;
-  processDefinitionName: string;
-  status: ProcessStatus;
-  correlationId?: string;
-  variables?: Record<string, any>;
-  currentTaskId?: string;
-  currentTaskName?: string;
-  startedAt?: Timestamp;
-  completedAt?: Timestamp;
-  failedAt?: Timestamp;
-  lastUpdatedAt?: Timestamp;
-  errorDetails?: string;
-};
+// Base ProcessInstance type for general use
+export type ProcessInstance = ProcessInstanceInput | ProcessInstanceFirestore;
 
+// Use ProcessInstanceOutputSchema for Firestore data structure validation (ID is handled separately)
+export const ProcessInstanceFirestoreSchema = ProcessInstanceOutputSchema;

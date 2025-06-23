@@ -1,6 +1,5 @@
 // src/lib/models/opportunity.ts
 import { z } from 'zod';
-import { Timestamp } from 'firebase/firestore';
 
 // Define opportunity stages
 export const OpportunityStageSchema = z.enum([
@@ -15,7 +14,7 @@ export const OpportunityStageSchema = z.enum([
 ]);
 export type OpportunityStage = z.infer<typeof OpportunityStageSchema>;
 
-// Schema for Opportunity Input (creating/updating)
+// Schema for Opportunity Input (creating/updating), using z.date()
 export const OpportunityInputSchema = z.object({
   name: z.string().min(1, "Opportunity name cannot be empty.").max(200), // Name of the opportunity
   contactId: z.string().min(1, "Associated Contact ID is required."), // Unique identifier of the associated contact
@@ -25,8 +24,8 @@ export const OpportunityInputSchema = z.object({
   closeDate: z.date().optional(), // Expected closing date of the opportunity
   description: z.string().max(1000).optional(), // Description of the opportunity
   probability: z.number().min(0).max(100).optional(), // Probability to win the opportunity
-  createdAt: z.instanceof(Timestamp).optional(), // Creation timestamp (optional on input, set by server)
-  updatedAt: z.instanceof(Timestamp).optional(), // Last update timestamp (optional on input, set by server)
+  createdAt: z.date().optional(), // Creation date (optional on input, set by server)
+  updatedAt: z.date().optional(), // Last update date (optional on input, set by server)
 });
 
 // TypeScript type for Opportunity Input
@@ -34,9 +33,9 @@ export type OpportunityInput = z.infer<typeof OpportunityInputSchema> & { id?: s
 
 // Schema for Opportunity Output (retrieved from Firestore)
 export const OpportunityOutputSchema = OpportunityInputSchema.extend({
-  closeDate: z.instanceof(Timestamp).optional(), // Expected closing date of the opportunity, must be a Timestamp when retrieved from Firestore
-  createdAt: z.instanceof(Timestamp), // Creation timestamp (mandatory when retrieved from Firestore)
-  updatedAt: z.instanceof(Timestamp), // Last update timestamp (mandatory when retrieved from Firestore)
+  closeDate: z.date().optional(), // Expected closing date of the opportunity
+  createdAt: z.date(), // Creation date (mandatory when retrieved from Firestore)
+  updatedAt: z.date(), // Last update date (mandatory when retrieved from Firestore)
 });
 
 // TypeScript type for Opportunity Output
@@ -46,5 +45,4 @@ export type OpportunityOutput = z.infer<typeof OpportunityOutputSchema> & { id: 
 export const OpportunityFirestoreSchema = OpportunityOutputSchema;
 
 // TypeScript type for Opportunity Firestore data
-export type OpportunityFirestore = z.infer<typeof OpportunityFirestoreSchema>;
-
+export type OpportunityFirestore = z.infer<typeof OpportunityFirestoreSchema> & { id: string };

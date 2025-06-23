@@ -3,9 +3,8 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { getAuth, Auth } from 'firebase-admin/auth';
 import admin from 'firebase-admin';
-import { UserProfile, UserProfileSchema, UserRole, ROLES, hasPermission } from '@/lib/models/user'; // Import user models and permissions
-import { adminDb } from '@/lib/firebase/firebase-admin-config'; // Use existing admin init
-import { Timestamp as ClientTimestamp } from 'firebase/firestore'; // Alias for client SDK Timestamp
+import { UserProfile, UserProfileSchema, UserRole, ROLES, hasPermission } from '@/lib/models/user';
+import { adminDb } from '@/lib/firebase/firebase-admin-config';
 
 // Helper function to get user profile from Firestore
 async function getUserProfile(uid: string): Promise<UserProfile | null> {
@@ -20,25 +19,13 @@ async function getUserProfile(uid: string): Promise<UserProfile | null> {
                 return null;
             }
 
-            // UserProfileSchema uses Timestamp from 'firebase/firestore' (ClientTimestamp)
-            // Data from adminDb.get() has Timestamps from 'firebase-admin/firestore'
-            // Convert admin Timestamps to client Timestamps for Zod validation.
+            // Convert Firestore Timestamps to JS Dates before validation
             const profileToValidate = {
                 ...data,
                 uid: uid,
-                createdAt: data.createdAt && typeof data.createdAt.toDate === 'function'
-                    ? ClientTimestamp.fromDate(data.createdAt.toDate())
-                    : undefined,
-                updatedAt: data.updatedAt && typeof data.updatedAt.toDate === 'function'
-                    ? ClientTimestamp.fromDate(data.updatedAt.toDate())
-                    : undefined,
+                createdAt: data.createdAt?.toDate(),
+                updatedAt: data.updatedAt?.toDate(),
             };
-
-            // Ensure required timestamps are present and are actual Timestamp instances after conversion
-            if (!(profileToValidate.createdAt instanceof ClientTimestamp) || !(profileToValidate.updatedAt instanceof ClientTimestamp)) {
-                console.error(`Middleware: User profile ${uid} is missing valid createdAt or updatedAt timestamps after conversion. createdAt type: ${typeof profileToValidate.createdAt}, updatedAt type: ${typeof profileToValidate.updatedAt}`);
-                return null;
-            }
 
             const parsedProfile = UserProfileSchema.safeParse(profileToValidate);
 
@@ -46,7 +33,6 @@ async function getUserProfile(uid: string): Promise<UserProfile | null> {
                 return parsedProfile.data;
             } else {
                 console.error(`Middleware: User profile data from Firestore for UID ${uid} failed Zod validation:`, parsedProfile.error.flatten());
-                // console.log("Problematic data for Zod:", profileToValidate); // For deep debugging
                 return null;
             }
         }

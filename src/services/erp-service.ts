@@ -19,18 +19,10 @@ export async function getProductDetails(productId: string): Promise<ProductFires
 
     if (productSnap.exists()) {
         const data = productSnap.data();
-        // Ensure Timestamps are correctly handled if they are plain objects
-        if (data.createdAt && !(data.createdAt instanceof Timestamp)) {
-            data.createdAt = Timestamp.fromMillis(data.createdAt.seconds * 1000);
-        }
-        if (data.updatedAt && !(data.updatedAt instanceof Timestamp)) {
-            data.updatedAt = Timestamp.fromMillis(data.updatedAt.seconds * 1000);
-        }
-
-        // Use ProductOutputSchema for validation as it represents Firestore data structure
-        const parsed = ProductOutputSchema.safeParse(data);
+        const dataWithDates = { ...data, createdAt: data.createdAt?.toDate(), updatedAt: data.updatedAt?.toDate() };
+        const parsed = ProductOutputSchema.safeParse(dataWithDates);
         if (parsed.success) {
-            return { id: productSnap.id, ...parsed.data } as ProductFirestore; // Cast to include ID
+            return { id: productSnap.id, ...parsed.data };
         } else {
             console.error(`Invalid product data in Firestore for ID ${productId}:`, parsed.error);
             return null;
@@ -75,23 +67,20 @@ export async function checkProductStock(productId: string): Promise<{ stockLevel
 export async function createErpOrder(orderData: Omit<Order, 'id' | 'createdAt' | 'updatedAt'>): Promise<string | null> {
   console.log(`ERP Service: Creating order for contact ${orderData.contactId} in Firestore`);
   const batch = writeBatch(adminDb);
-  const ordersCol = collection(adminDb, 'orders');
-  const newOrderRef = doc(ordersCol); // Generate a ref for the new order
+  const newOrderRef = doc(collection(adminDb, 'orders'));
 
   try {
-    // 1. Prepare order data with timestamps
+    const { orderDate, ...restOfData } = orderData;
     const orderWithTimestamps = {
-      ...orderData,
-      // Ensure Timestamps are correct - Firestore expects Timestamps, not JS Dates sometimes
-      orderDate: orderData.orderDate instanceof Date ? Timestamp.fromDate(orderData.orderDate) : orderData.orderDate,
-      createdAt: serverTimestamp(), // Use server timestamp for creation
-      updatedAt: serverTimestamp(), // Use server timestamp for initial update
+      ...restOfData,
+      orderDate: orderDate ? Timestamp.fromDate(orderDate) : Timestamp.now(),
+      createdAt: serverTimestamp(),
+      updatedAt: serverTimestamp(),
     };
 
-    // 2. Decrement stock for each item in the order within the batch
     for (const item of orderData.items) {
       const productRef = doc(adminDb, 'products', item.productId);
-      const productSnap = await getDoc(productRef); // Get current stock first (important for validation before batch commit)
+      const productSnap = await getDoc(productRef);
 
       if (!productSnap.exists()) {
         throw new Error(`Product with ID ${item.productId} not found.`);
@@ -105,21 +94,15 @@ export async function createErpOrder(orderData: Omit<Order, 'id' | 'createdAt' |
       batch.update(productRef, { stockLevel: newStock, updatedAt: serverTimestamp() });
     }
 
-    // 3. Add the order creation to the batch
     batch.set(newOrderRef, orderWithTimestamps);
-
-    // 4. Commit the batch
     await batch.commit();
     console.log('ERP Order created with ID:', newOrderRef.id);
 
-    // 5. Trigger BPM Shipping Process (after successful order creation and stock update)
     await startShippingProcess(newOrderRef.id);
 
     return newOrderRef.id;
-
   } catch (error) {
     console.error('ERP Service Error: Failed to create order or update stock:', error);
-    // Note: Batch commit failure automatically rolls back all operations in the batch.
     return null;
   }
 }
@@ -140,7 +123,7 @@ export async function updateErpOrderStatus(orderId: string, status: OrderStatus)
         const orderRef = doc(adminDb, 'orders', orderId);
         await updateDoc(orderRef, {
             status: status,
-            updatedAt: serverTimestamp(), // Use server timestamp for updates
+            updatedAt: serverTimestamp(),
         });
         console.log(`ERP Order ${orderId} status updated to ${status}`);
         return true;
@@ -167,18 +150,14 @@ export async function getErpOrderDetails(orderId: string): Promise<OrderFirestor
 
         if (orderSnap.exists()) {
             const data = orderSnap.data();
-             // Ensure Timestamps are correctly handled
-             if (data.orderDate && !(data.orderDate instanceof Timestamp)) {
-                 data.orderDate = Timestamp.fromMillis(data.orderDate.seconds * 1000);
-             }
-            if (data.createdAt && !(data.createdAt instanceof Timestamp)) {
-                 data.createdAt = Timestamp.fromMillis(data.createdAt.seconds * 1000);
-            }
-            if (data.updatedAt && !(data.updatedAt instanceof Timestamp)) {
-                 data.updatedAt = Timestamp.fromMillis(data.updatedAt.seconds * 1000);
-            }
+            const dataWithDates = {
+                ...data,
+                orderDate: data.orderDate?.toDate(),
+                createdAt: data.createdAt?.toDate(),
+                updatedAt: data.updatedAt?.toDate(),
+            };
 
-            const parsed = OrderFirestoreSchema.safeParse(data);
+            const parsed = OrderFirestoreSchema.safeParse(dataWithDates);
             if (parsed.success) {
                 return { id: orderSnap.id, ...parsed.data };
             } else {

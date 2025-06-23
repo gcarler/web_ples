@@ -1,11 +1,9 @@
-
 // src/components/crm/opportunity-columns.tsx
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
 import { OpportunityFirestore, OpportunityStage, OpportunityStageSchema } from "@/lib/models/opportunity"
 import { DataTableColumnHeader } from "@/components/ui/data-table-column-header"
-import { Badge } from "@/components/ui/badge"
 import { format } from 'date-fns'
 import { ArrowDown, ArrowRight, ArrowUp, CheckCircle, CircleDollarSign, Clock, ListFilter, User, XCircle } from "lucide-react" // Added User
 import { OpportunityStagePill } from "./opportunity-stage-pill"
@@ -35,16 +33,14 @@ export const opportunityColumns: ColumnDef<OpportunityFirestore>[] = [
     ),
     cell: ({ row }) => {
         const contactId = row.getValue("contactId") as string;
-        // For now, link to the main CRM contacts page.
-        // A better solution would involve fetching contact name and linking to a specific contact detail page if it exists.
         return (
             <Link href={`/admin/crm?contactId=${contactId}`} className="flex items-center gap-1 text-muted-foreground hover:text-primary hover:underline truncate w-[150px]">
                 <User className="h-3.5 w-3.5"/>
-                {contactId} {/* Ideally, this would be contact name */}
+                {contactId}
             </Link>
         );
     },
-    enableSorting: true, // Sorting by contactId might be useful
+    enableSorting: true,
     enableHiding: true,
   },
   {
@@ -77,9 +73,8 @@ export const opportunityColumns: ColumnDef<OpportunityFirestore>[] = [
       <DataTableColumnHeader column={column} title="Close Date" />
     ),
     cell: ({ row }) => {
-      const timestamp = row.getValue("closeDate");
-      if (timestamp && typeof timestamp === 'object' && 'toDate' in timestamp) {
-        const date = (timestamp as any).toDate();
+      const date = row.getValue("closeDate") as Date | undefined;
+      if (date) {
         return <div className="w-[100px]">{format(date, 'PP')}</div>;
       }
       return <div className="w-[100px] text-muted-foreground">-</div>;
@@ -93,9 +88,8 @@ export const opportunityColumns: ColumnDef<OpportunityFirestore>[] = [
        <DataTableColumnHeader column={column} title="Created At" />
      ),
     cell: ({ row }) => {
-        const timestamp = row.getValue("createdAt");
-        if (timestamp && typeof timestamp === 'object' && 'toDate' in timestamp) {
-             const date = (timestamp as any).toDate();
+        const date = row.getValue("createdAt") as Date | undefined;
+        if (date) {
             return <div className="w-[100px] text-muted-foreground">{format(date, 'PP')}</div>;
         }
         return <div className="w-[100px] text-muted-foreground">Invalid Date</div>;
@@ -120,4 +114,3 @@ export const stageFilterOptions = OpportunityStageSchema.options.map(stage => {
     }
     return { label: stage, value: stage, icon: Icon };
 });
-

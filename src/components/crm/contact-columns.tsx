@@ -3,7 +3,6 @@
 
 import { ColumnDef } from "@tanstack/react-table"
 import { ContactFirestore, LeadSourceSchema } from "@/lib/models/contact" // Import LeadSourceSchema
-import { Checkbox } from "@/components/ui/checkbox"
 import { DataTableColumnHeader } from "@/components/ui/data-table-column-header";
 import { DataTableRowActions } from "@/components/crm/contact-row-actions"; // Assuming actions exist
 import { Badge } from "@/components/ui/badge";
@@ -11,8 +10,6 @@ import { format } from 'date-fns';
 import { CheckCircle, Phone, Building, Briefcase, Users } from "lucide-react"; // Add icons
 
 export const contactColumns: ColumnDef<ContactFirestore>[] = [
-  // Optional: Selection column
-  // ... (selection column code remains the same)
   {
     accessorKey: "name",
      header: ({ column }) => (
@@ -65,7 +62,6 @@ export const contactColumns: ColumnDef<ContactFirestore>[] = [
     ),
     cell: ({ row }) => {
         const leadSource = row.getValue("leadSource");
-        // Basic badge, could be enhanced with icons or colors
         return <Badge variant="outline" className="capitalize">{leadSource || "N/A"}</Badge>;
     },
     filterFn: (row, id, value) => {
@@ -98,7 +94,7 @@ export const contactColumns: ColumnDef<ContactFirestore>[] = [
         </Badge>
     ),
     filterFn: (row, id, value) => {
-       return value.includes(String(row.getValue(id))); // Ensure value is string for filter
+       return value.includes(String(row.getValue(id)));
     },
     enableSorting: true,
     enableHiding: true,
@@ -109,9 +105,8 @@ export const contactColumns: ColumnDef<ContactFirestore>[] = [
        <DataTableColumnHeader column={column} title="Created At" />
      ),
     cell: ({ row }) => {
-        const timestamp = row.getValue("createdAt");
-        if (timestamp && typeof timestamp === 'object' && 'toDate' in timestamp) {
-             const date = (timestamp as any).toDate();
+        const date = row.getValue("createdAt") as Date | undefined;
+        if (date) {
             return <div className="w-[100px] text-muted-foreground">{format(date, 'PP')}</div>;
         }
         return <div className="w-[100px] text-muted-foreground">Invalid Date</div>;
@@ -119,7 +114,6 @@ export const contactColumns: ColumnDef<ContactFirestore>[] = [
     enableSorting: true,
     enableHiding: true,
   },
-   // Optional: Row Actions Column
   {
     id: "actions",
     cell: ({ row }) => <DataTableRowActions row={row} />,
@@ -128,15 +122,12 @@ export const contactColumns: ColumnDef<ContactFirestore>[] = [
   },
 ]
 
-// Define options for faceted filters
 export const subscribedFilterOptions = [
     { label: "Yes", value: "true", icon: CheckCircle },
-    { label: "No", value: "false", icon: CheckCircle /* Placeholder, consider XCircle */ },
+    { label: "No", value: "false", icon: CheckCircle },
 ]
 
 export const leadSourceFilterOptions = LeadSourceSchema.options.map(source => ({
     label: source,
     value: source,
-    // Add icons based on source if desired
-    // icon: source === 'Web Form' ? Globe : source === 'Referral' ? Users : MailQuestion
 }));

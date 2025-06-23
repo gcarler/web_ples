@@ -1,6 +1,5 @@
 // src/lib/models/erp.ts
 import { z } from 'zod';
-import { Timestamp } from 'firebase/firestore';
 
 // --- Product Model ---
 
@@ -12,16 +11,16 @@ export const ProductInputSchema = z.object({
   stockLevel: z.number().int().nonnegative("Stock level cannot be negative.").default(0), // Current stock level of the product
   category: z.string().optional(), // Category of the product
   imageUrl: z.string().optional(), // URL to the product image
-  createdAt: z.instanceof(Timestamp).optional(), // Creation timestamp (optional on input, set by server)
-  updatedAt: z.instanceof(Timestamp).optional(), // Last update timestamp (optional on input, set by server)
+  createdAt: z.date().optional(), // Creation date (optional on input, set by server)
+  updatedAt: z.date().optional(), // Last update date (optional on input, set by server)
 });
 
 export type ProductInput = z.infer<typeof ProductInputSchema> & { id?: string };
 
 // Schema representing data structure in Firestore
 export const ProductOutputSchema = ProductInputSchema.extend({
-  createdAt: z.instanceof(Timestamp), // Creation timestamp (mandatory when retrieved from Firestore)
-  updatedAt: z.instanceof(Timestamp), // Last update timestamp (mandatory when retrieved from Firestore)
+  createdAt: z.date(), // Creation date (mandatory when retrieved from Firestore)
+  updatedAt: z.date(), // Last update date (mandatory when retrieved from Firestore)
 });
 
 // Type for data retrieved from Firestore, including the ID
@@ -58,15 +57,15 @@ export const OrderFirestoreSchema = z.object({
   orderNumber: z.string().min(1, "Order number is required."), // Unique identifier for the order (can be auto-generated)
   contactId: z.string().min(1, "Contact ID is required."), // Unique identifier of the contact associated with this order
   opportunityId: z.string().optional(), // Link to CRM Opportunity if applicable
-  orderDate: z.instanceof(Timestamp), // Date the order was placed
+  orderDate: z.date(), // Date the order was placed
   items: z.array(OrderItemSchema).min(1, "Order must contain at least one item."), // List of items in the order
   subtotal: z.number().nonnegative(), // Subtotal before taxes, shipping, discounts
   totalAmount: z.number().nonnegative(), // Final total amount
   discountAmount: z.number().nonnegative().default(0).optional(), // Discount amount for the order
   status: OrderStatusSchema.default('Pending'), // Current status of the order
   paymentStatus: z.enum(['Pending', 'Paid', 'Failed', 'Refunded']).default('Pending'), // Status of the payment
-  createdAt: z.instanceof(Timestamp), // Creation timestamp
-  updatedAt: z.instanceof(Timestamp), // Last update timestamp
+  createdAt: z.date(), // Creation date
+  updatedAt: z.date(), // Last update date
   // Optional fields that might be added later in the process
   shippingAddress: z.object({
     street: z.string(), city: z.string(), state: z.string(), postalCode: z.string(), country: z.string()
@@ -85,9 +84,9 @@ export const OrderFirestoreSchema = z.object({
 export type OrderFirestore = z.infer<typeof OrderFirestoreSchema> & { id: string };
 
 
-// Schema for input when creating an order (might differ slightly from Firestore structure, e.g., timestamps)
+// Schema for input when creating an order (might differ slightly from Firestore structure, e.g., dates)
 export const OrderInputSchema = OrderFirestoreSchema.omit({ createdAt: true, updatedAt: true }).extend({
-  orderDate: z.instanceof(Timestamp).optional(), // Allow omitting on input, will default to now() or serverTimestamp()
+  orderDate: z.date().optional(), // Allow omitting on input, will default to now() or serverTimestamp()
   // Make other fields optional if they are set later in the process
 }).partial({
     // Make fields optional if they aren't required at the initial creation step

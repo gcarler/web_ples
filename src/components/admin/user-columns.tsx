@@ -68,25 +68,14 @@ export const userColumns: ColumnDef<UserProfile>[] = [
     enableSorting: true,
     enableHiding: true,
   },
-  // Optional: Add Tenant ID if using multi-tenancy
-  // {
-  //   accessorKey: "tenantId",
-  //   header: ({ column }) => (
-  //     <DataTableColumnHeader column={column} title="Tenant ID" />
-  //   ),
-  //   cell: ({ row }) => <div className="w-[150px] truncate text-muted-foreground">{row.getValue("tenantId") || "-"}</div>,
-  //   enableSorting: true,
-  //   enableHiding: true,
-  // },
   {
     accessorKey: "createdAt",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Created At" />
     ),
     cell: ({ row }) => {
-      const timestamp = row.getValue("createdAt");
-      if (timestamp && typeof timestamp === 'object' && 'toDate' in timestamp) {
-        const date = (timestamp as any).toDate();
+      const date = row.getValue("createdAt") as Date | undefined;
+      if (date) {
         return (
           <div className="w-[100px] flex items-center gap-1 text-muted-foreground">
             <Calendar className="h-3.5 w-3.5" />
