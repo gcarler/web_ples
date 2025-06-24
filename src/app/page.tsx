@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { ArrowRight, Building, Users, Handshake, Quote, CheckCircle, Database, UsersRound, Globe, Server, HomeIcon, Lightbulb, Layers, Cpu, BookOpen, Send, MapPin, BarChart3, ShieldCheck, Settings } from 'lucide-react';
 import { RotatingHeroText, type HeroStatement } from '@/components/layout/rotating-hero-text';
+import { cn } from '@/lib/utils';
 
 
 const heroStatements: HeroStatement[] = [
@@ -35,6 +36,21 @@ const heroStatements: HeroStatement[] = [
 const missionIcons = [
     Lightbulb, Cpu, Database, Server, Globe, MapPin, 
     BarChart3, Users, ShieldCheck, Layers, Settings, Handshake
+];
+
+const iconStyles = [
+  { top: '10%', left: '15%', size: 'h-16 w-16', duration: '22s', delay: '0s' },
+  { top: '25%', left: '70%', size: 'h-20 w-20', duration: '28s', delay: '-5s' },
+  { top: '70%', left: '80%', size: 'h-12 w-12', duration: '19s', delay: '-10s' },
+  { top: '80%', left: '20%', size: 'h-24 w-24', duration: '32s', delay: '-2s' },
+  { top: '50%', left: '50%', size: 'h-10 w-10', duration: '18s', delay: '-15s' },
+  { top: '5%', left: '40%', size: 'h-14 w-14', duration: '25s', delay: '-8s' },
+  { top: '40%', left: '5%', size: 'h-16 w-16', duration: '30s', delay: '-3s' },
+  { top: '60%', left: '60%', size: 'h-20 w-20', duration: '24s', delay: '-12s' },
+  { top: '90%', left: '50%', size: 'h-12 w-12', duration: '20s', delay: '-1s' },
+  { top: '30%', left: '30%', size: 'h-16 w-16', duration: '26s', delay: '-7s' },
+  { top: '75%', left: '5%', size: 'h-20 w-20', duration: '21s', delay: '-14s' },
+  { top: '15%', left: '90%', size: 'h-8 w-8', duration: '35s', delay: '-4s' },
 ];
 
 
@@ -125,16 +141,28 @@ export default function Home() {
                  </Link>
                </Button>
              </div>
-              {/* Icon grid on the right for medium screens and up */}
-              <div className="relative grid h-96 grid-cols-3 grid-rows-4 items-center justify-items-center gap-6 overflow-hidden rounded-lg md:h-[600px] order-last">
-                  {missionIcons.map((Icon, index) => (
-                      <Icon 
-                          key={index}
-                          className="h-16 w-16 animate-fade-in-out text-white opacity-20 md:h-20 md:w-20"
-                          style={{ animationDelay: `${index * 400}ms` }}
-                          strokeWidth={1.5}
-                      />
-                  ))}
+              {/* Icon container on the right */}
+              <div className="relative h-96 w-full overflow-hidden rounded-lg md:h-[600px] order-last">
+                  {missionIcons.map((Icon, index) => {
+                    const style = iconStyles[index % iconStyles.length]; // Use modulo for safety
+                    return (
+                        <div
+                            key={index}
+                            className="absolute animate-move-and-scale"
+                            style={{
+                                top: style.top,
+                                left: style.left,
+                                animationDuration: style.duration,
+                                animationDelay: style.delay,
+                            }}
+                        >
+                            <Icon 
+                                className={cn("text-white", style.size)}
+                                strokeWidth={1.5}
+                            />
+                        </div>
+                    );
+                  })}
               </div>
            </div>
         </div>
