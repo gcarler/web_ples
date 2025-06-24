@@ -12,9 +12,7 @@ export const metadata = {
 
 export default function AddUserPage() {
   return (
-    // Removed horizontal padding (px-4 sm:px-6 lg:px-8) to rely on AdminLayout's SidebarInset padding
-    // max-w-2xl mx-auto remains to constrain the form card itself
-    <div className="py-10 space-y-6 max-w-2xl mx-auto">
+    <div className="space-y-6 max-w-2xl mx-auto">
         <Button variant="outline" size="sm" asChild className="mb-4">
             <Link href="/admin/users">
                 <span className="flex items-center">

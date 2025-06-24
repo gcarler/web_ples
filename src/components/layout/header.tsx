@@ -89,7 +89,7 @@ export function Header() {
     } else if (!isHover) {
       setIndicatorStyle(prev => ({ ...prev, opacity: 0, width: 0 })); 
     }
-  }, []); // Add navContainerRef.current to dependencies if it changes, but it's a ref.
+  }, []);
 
   useEffect(() => {
     const allRefsReady = linkRefs.current.every(ref => ref !== null);
@@ -123,7 +123,7 @@ export function Header() {
   };
 
   return (
-    <header className="bg-card text-card-foreground sticky top-0 z-50 relative">
+    <header className="bg-card text-card-foreground sticky top-0 z-50 border-b">
       <nav className="w-full px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
         <div className="flex items-center gap-4">
           <Link href="/" className="flex-shrink-0">
@@ -147,7 +147,7 @@ export function Header() {
                       onMouseEnter={() => handleMouseEnter(index)}
                       className={cn(
                         "relative px-3 py-2 text-sm font-medium flex items-center h-8",
-                        "transition-colors duration-300 ease-in-out", // Matched duration and easing
+                        "transition-colors duration-300 ease-in-out",
                         isVisuallyActive ? "text-primary" : "text-foreground/70 hover:text-primary"
                       )}
                       style={{ zIndex: 1 }} 
@@ -159,7 +159,7 @@ export function Header() {
               })}
             </ul>
             <span
-              className="absolute bg-primary pointer-events-none transition-[left,width,opacity] duration-300 ease-in-out" // Refined transition
+              className="absolute bg-primary pointer-events-none transition-[left,width,opacity] duration-300 ease-in-out rounded-full"
               style={{
                 left: `${indicatorStyle.left}px`,
                 width: `${indicatorStyle.width}px`,
@@ -298,7 +298,6 @@ export function Header() {
           </Sheet>
         </div>
       </nav>
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-px w-0 bg-border animate-header-line-pulse"></div>
     </header>
   );
 }

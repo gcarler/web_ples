@@ -16,8 +16,7 @@ export default async function OpportunitiesAdminPage() {
   const opportunities = await getOpportunities();
 
   return (
-    // Removed horizontal padding (px-4 sm:px-6 lg:px-8) to rely on AdminLayout's SidebarInset padding
-    <div className="py-10 space-y-6">
+    <div className="space-y-6">
       <div className="flex justify-between items-center">
          <div>
              <h1 className="text-3xl font-bold tracking-tight">CRM Opportunities</h1>

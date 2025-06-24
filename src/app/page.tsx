@@ -56,15 +56,10 @@ const iconStyles = [
 
 export default function Home() {
   return (
-    // This root div does not restrict width.
     <div className="space-y-0">
-      {/* New Hero Section with Rotating Text */}
-      {/* Section background can be full-width */}
       <section className="relative bg-background overflow-hidden">
-        {/* Content within section is now w-full, with padding controlling edges */}
         <div className="w-full px-4 sm:px-6 lg:px-8 min-h-[calc(80vh)] lg:min-h-0 py-16 sm:py-20 md:py-24 lg:py-32 flex items-center">
           <div className="flex flex-col lg:flex-row items-center w-full gap-8">
-            {/* Left Visual Part */}
             <div className="w-full lg:w-5/12 flex justify-center items-center relative order-1 lg:order-none">
               <div className="relative w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] md:w-[420px] md:h-[420px] xl:w-[480px] xl:h-[480px]">
                 <div
@@ -80,7 +75,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right Text Part with RotatingHeroText */}
             <div className="w-full lg:w-7/12 text-center lg:text-left relative z-20 order-2 lg:order-none">
               <RotatingHeroText
                 statements={heroStatements}
@@ -93,10 +87,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* "EL USO INTELIGENTE DE LA EXPERIENCIA" Section */}
-      {/* Section background can be full-width */}
       <section className="py-20 md:py-28 bg-background">
-        {/* Content within section is now w-full, with padding controlling edges */}
         <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-16">
             EL USO INTELIGENTE DE LA EXPERIENCIA
@@ -113,7 +104,7 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <Button asChild size="lg" variant="default" className="animate-button-gradient bg-[length:200%_200%]">
+          <Button asChild size="lg" variant="accent">
             <Link href="/about">
               <span className="flex items-center">
                 Saber Más <ArrowRight className="ml-2 h-5 w-5" />
@@ -123,11 +114,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* "Nuestra Misión" Section - Redesigned */}
       <section className="relative py-20 md:py-28 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary to-accent text-primary-foreground animate-gradient bg-[length:300%_300%] overflow-hidden">
         <div className="w-full px-4 sm:px-6 lg:px-8">
            <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
-             {/* Text on the left */}
              <div className="order-first">
                <h2 className="text-3xl lg:text-4xl font-bold mb-4">Nuestra Misión</h2>
                <p className="text-lg lg:text-xl opacity-90 mb-8 leading-relaxed">
@@ -141,7 +130,6 @@ export default function Home() {
                  </Link>
                </Button>
              </div>
-              {/* Icon container on the right */}
               <div className="relative h-96 w-full overflow-hidden rounded-lg md:h-[600px] order-last">
                   {missionIcons.map((Icon, index) => {
                     const style = iconStyles[index % iconStyles.length]; // Use modulo for safety
@@ -168,9 +156,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section background can be full-width */}
       <section className="py-16 bg-background" id="nuestras-marcas">
-        {/* Content within section is now w-full, with padding controlling edges */}
         <div className="w-full px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-center mb-10">Nuestras Marcas</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -180,7 +166,7 @@ export default function Home() {
                 { title: 'Ples Catastro', description: 'Catastro y gestión territorial.', icon: HomeIcon, href: "/ples-catastro" },
                 { title: 'Ples Consulting', description: 'Consultoría estratégica.', icon: Lightbulb, href: "/ples-consulting" },
             ].map((marca) => (
-                <Card key={marca.title} className="text-center group hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out hover:animate-gradient hover:bg-[length:200%_200%]">
+                <Card key={marca.title} className="text-center group hover:bg-primary hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out hover:shadow-xl">
                 <CardHeader>
                     <div className="mx-auto bg-primary/10 text-primary rounded-full p-3 w-fit mb-4 group-hover:bg-primary-foreground/20 group-hover:text-primary-foreground">
                     <marca.icon className="h-8 w-8" />
@@ -203,9 +189,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section background can be full-width */}
       <section className="py-16 bg-secondary">
-        {/* Content within section is now w-full, with padding controlling edges */}
          <div className="w-full px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-center mb-10">Nuestro Público Objetivo</h2>
             <div className="grid md:grid-cols-3 gap-8">
@@ -252,15 +236,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section background can be full-width */}
       <section className="relative py-24 overflow-hidden bg-background">
-        {/* Content within section is now w-full, with padding controlling edges */}
         <div className="w-full px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h2 className="text-3xl font-bold mb-4 text-primary">¿Listo para Transformar su Organización?</h2>
           <p className="text-lg text-foreground mb-8 max-w-2xl mx-auto">
             Contáctenos hoy mismo para descubrir cómo nuestras soluciones pueden ayudarle a alcanzar sus objetivos.
           </p>
-          <Button size="lg" className="animate-button-gradient bg-[length:200%_200%]" asChild>
+          <Button size="lg" variant="accent" asChild>
              <Link href="/forms">
                <span className="flex items-center">
                  Contactar Ahora <ArrowRight className="ml-2" />
@@ -270,9 +252,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section background can be full-width */}
       <section className="py-16 bg-background">
-        {/* Content within section is now w-full, with padding controlling edges */}
          <div className="w-full px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-center mb-10">Testimonios</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
