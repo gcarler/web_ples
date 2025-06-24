@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { ArrowRight, Building, Users, Handshake, Quote, CheckCircle, Database, UsersRound, Globe, Server, HomeIcon, Lightbulb, Layers, Cpu, BookOpen, Send } from 'lucide-react';
+import { ArrowRight, Building, Users, Handshake, Quote, CheckCircle, Database, UsersRound, Globe, Server, HomeIcon, Lightbulb, Layers, Cpu, BookOpen, Send, MapPin, BarChart3, ShieldCheck, Settings } from 'lucide-react';
 import { RotatingHeroText, type HeroStatement } from '@/components/layout/rotating-hero-text';
 
 
@@ -30,6 +30,11 @@ const heroStatements: HeroStatement[] = [
     ctaLink: "/#nuestras-marcas",
     ctaIconName: "Layers",
   },
+];
+
+const missionIcons = [
+    Lightbulb, Cpu, Database, Server, Globe, MapPin, 
+    BarChart3, Users, ShieldCheck, Layers, Settings, Handshake
 ];
 
 
@@ -120,18 +125,17 @@ export default function Home() {
                  </Link>
                </Button>
              </div>
-             {/* Image on the right for medium screens and up */}
-             <div className="relative h-96 md:h-[600px] lg:h-[600px] rounded-lg overflow-hidden shadow-xl order-last group">
-               <Image
-                 src="https://placehold.co/600x800.png"
-                 alt="Equipo de PLES trabajando en su misión"
-                 layout="fill"
-                 objectFit="cover"
-                 className="rounded-lg transform group-hover:scale-105 transition-transform duration-500"
-                 data-ai-hint="team mission collaboration"
-               />
-               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-             </div>
+              {/* Icon grid on the right for medium screens and up */}
+              <div className="relative grid h-96 grid-cols-3 grid-rows-4 items-center justify-items-center gap-6 overflow-hidden rounded-lg md:h-[600px] order-last">
+                  {missionIcons.map((Icon, index) => (
+                      <Icon 
+                          key={index}
+                          className="h-16 w-16 animate-fade-in-out text-white opacity-20 md:h-20 md:w-20"
+                          style={{ animationDelay: `${index * 400}ms` }}
+                          strokeWidth={1.5}
+                      />
+                  ))}
+              </div>
            </div>
         </div>
       </section>
