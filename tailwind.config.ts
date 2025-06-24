@@ -89,8 +89,10 @@ export default {
   				}
   			},
         'gradient-shift': {
-          '0%, 100%': { backgroundPosition: '0% 50%' },
-          '50%': { backgroundPosition: '100% 50%' },
+          '0%, 100%': { 'background-position': 'left' },
+          '25%': { 'background-position': 'top' },
+          '50%': { 'background-position': 'right' },
+          '75%': { 'background-position': 'bottom' },
         },
         'expand-in': {
           'from': { transform: 'scale(0)', opacity: '0' },
@@ -104,20 +106,23 @@ export default {
           '0%, 100%': { width: '0%' },
           '50%': { width: '100%' },
         },
-        'fade-in-out': {
-          '0%, 100%': { opacity: '0.2' },
-          '50%': { opacity: '0.6' },
+        'move-and-scale': {
+          '0%': { transform: 'translate(0, 0) scale(1)', opacity: 0.5 },
+          '25%': { transform: 'translate(15%, -20%) scale(1.2)', opacity: 1 },
+          '50%': { transform: 'translate(-10%, 15%) scale(0.9)', opacity: 0.7 },
+          '75%': { transform: 'translate(5%, 25%) scale(1.1)', opacity: 1 },
+          '100%': { transform: 'translate(0, 0) scale(1)', opacity: 0.5 },
         },
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out',
         'gradient': 'gradient-shift 15s ease infinite',
-        'button-gradient': 'gradient-shift 45s linear infinite',
+        'button-gradient': 'gradient-shift 45s ease infinite',
         'expand-in': 'expand-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
         'fade-in-up': 'fade-in-up 0.6s ease-out forwards',
         'header-line-pulse': 'line-pulse 4s ease-in-out infinite',
-        'fade-in-out': 'fade-in-out 8s ease-in-out infinite',
+        'move-and-scale': 'move-and-scale 25s ease-in-out infinite',
   		}
   	}
   },

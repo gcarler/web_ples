@@ -107,11 +107,11 @@ export default {
           '50%': { width: '100%' },
         },
         'move-and-scale': {
-          '0%, 100%': { transform: 'translate(0, 0) scale(1)', opacity: 0.3 },
-          '25%': { transform: 'translate(20px, -30px) scale(1.2)', opacity: 0.8 },
-          '50%': { transform: 'translate(-15px, 10px) scale(0.9)', opacity: 1 },
-          '75%': { transform: 'translate(10px, 40px) scale(1.1)', opacity: 0.6 },
-          '100%': { transform: 'translate(0, 0) scale(1)', opacity: 0.3 },
+          '0%': { transform: 'translate(0, 0) scale(1)', opacity: 0.5 },
+          '25%': { transform: 'translate(15%, -20%) scale(1.2)', opacity: 1 },
+          '50%': { transform: 'translate(-10%, 15%) scale(0.9)', opacity: 0.7 },
+          '75%': { transform: 'translate(5%, 25%) scale(1.1)', opacity: 1 },
+          '100%': { transform: 'translate(0, 0) scale(1)', opacity: 0.5 },
         },
   		},
   		animation: {
