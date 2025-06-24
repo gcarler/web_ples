@@ -103,16 +103,16 @@ export default function Home() {
       </section>
 
       {/* "Nuestra Misión" Section - Redesigned */}
-      <section className="relative py-20 md:py-28 bg-card shadow-lg overflow-hidden">
+      <section className="relative py-20 md:py-28 bg-gradient-to-r from-primary to-accent text-primary-foreground animate-gradient bg-[length:200%_200%] overflow-hidden">
         <div className="w-full px-4 sm:px-6 lg:px-8">
            <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
              {/* Text on the left */}
              <div className="order-first">
-               <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-primary">Nuestra Misión</h2>
-               <p className="text-lg lg:text-xl text-foreground mb-8 leading-relaxed">
+               <h2 className="text-3xl lg:text-4xl font-bold mb-4">Nuestra Misión</h2>
+               <p className="text-lg lg:text-xl opacity-90 mb-8 leading-relaxed">
                  Somos una empresa dedicada a ofrecer soluciones innovadoras y eficientes que impulsan el crecimiento y la transformación digital de nuestros clientes. Creemos en el poder de la tecnología para simplificar procesos y crear valor.
                </p>
-               <Button asChild size="lg" className="mt-4 animate-button-gradient bg-[length:200%_200%]">
+               <Button asChild size="lg" variant="secondary">
                  <Link href="/about/mision">
                    <span className="flex items-center">
                      Explorar la Misión <ArrowRight className="ml-2" />
