@@ -26,7 +26,7 @@ body {
     --muted: 0 0% 90%; /* Slightly darker grey for muted */
     --muted-foreground: 0 0% 45.1%;
     --accent: 191 98% 48%; /* Bright Cyan #05C7F2 */
-    --accent-foreground: 0 0% 5%; /* Dark text on Accent */
+    --accent-foreground: 0 0% 98%; /* Light text on Accent */
     --destructive: 0 84.2% 60.2%; /* Default destructive */
     --destructive-foreground: 0 0% 98%;
     --border: 0 0% 89.8%;
@@ -62,7 +62,7 @@ body {
     --muted: 0 0% 10%; /* Slightly lighter dark grey for muted */
     --muted-foreground: 0 0% 63.9%;
     --accent: 191 98% 48%; /* Bright Cyan #05C7F2 */
-    --accent-foreground: 0 0% 5%; /* Dark text on Accent */
+    --accent-foreground: 0 0% 98%; /* Light text on Accent */
     --destructive: 0 62.8% 30.6%; /* Default dark destructive */
     --destructive-foreground: 0 0% 98%;
     --border: 0 0% 15%; /* Slightly lighter dark border */
