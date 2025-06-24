@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import DynamicSection from '@/components/DynamicSection';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { ArrowRight, Gem, HeartPulse, Target, Globe, Rocket, Eye, Info, Shield, Lightbulb, Users as UsersIcon, Cpu, Layers, Zap, FlaskConical, Brain, Search, Settings, Handshake, Puzzle, Link as LinkIcon, Workflow, MessageSquare, GitMerge, Share2 } from 'lucide-react';
+import { ArrowRight, Gem, HeartPulse, Target, Globe, Rocket, Eye, Info, Shield, Lightbulb, Users as UsersIcon, Cpu, Layers, Zap, FlaskConical, Brain, Search, Settings, Handshake, Puzzle, Link as LinkIcon, Workflow, MessageSquare, GitMerge, Share2, ShieldCheck, Scale, Lock, Verified, FileCheck, Award } from 'lucide-react';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
@@ -52,6 +52,17 @@ const collaborationIcons = [
     { icon: MessageSquare, size: "h-16 w-16", style: { top: '10%', left: '40%', animationDuration: '28s', animationDelay: '-6s' }, color: 'text-accent/50' },
     { icon: GitMerge, size: "h-12 w-12", style: { top: '45%', left: '5%', animationDuration: '32s', animationDelay: '-2s' }, color: 'text-primary-foreground/30' },
     { icon: Share2, size: "h-14 w-14", style: { top: '80%', left: '55%', animationDuration: '26s', animationDelay: '-10s' }, color: 'text-accent/50' },
+];
+
+const integrityIcons = [
+    { icon: ShieldCheck, size: "h-16 w-16", style: { top: '15%', left: '10%', animationDuration: '25s', animationDelay: '0s' }, color: 'text-primary-foreground/30' },
+    { icon: Scale, size: "h-20 w-20", style: { top: '30%', left: '75%', animationDuration: '30s', animationDelay: '-4s' }, color: 'text-accent/50' },
+    { icon: Gem, size: "h-12 w-12", style: { top: '75%', left: '85%', animationDuration: '20s', animationDelay: '-8s' }, color: 'text-primary-foreground/30' },
+    { icon: Lock, size: "h-24 w-24", style: { top: '85%', left: '15%', animationDuration: '35s', animationDelay: '-1s' }, color: 'text-accent/50' },
+    { icon: Verified, size: "h-14 w-14", style: { top: '55%', left: '45%', animationDuration: '22s', animationDelay: '-12s' }, color: 'text-primary-foreground/30' },
+    { icon: FileCheck, size: "h-16 w-16", style: { top: '10%', left: '40%', animationDuration: '28s', animationDelay: '-6s' }, color: 'text-accent/50' },
+    { icon: Award, size: "h-12 w-12", style: { top: '45%', left: '5%', animationDuration: '32s', animationDelay: '-2s' }, color: 'text-primary-foreground/30' },
+    { icon: Handshake, size: "h-14 w-14", style: { top: '80%', left: '55%', animationDuration: '26s', animationDelay: '-10s' }, color: 'text-accent/50' },
 ];
 
 
@@ -190,7 +201,7 @@ export default function AboutPage() {
              <div
                 className={cn(
                 "flex-1 p-8 md:p-12 lg:p-16 flex flex-col justify-center items-center text-center",
-                (selectedValue === 'innovacion' || selectedValue === 'colaboracion') && "relative overflow-hidden",
+                (selectedValue === 'innovacion' || selectedValue === 'colaboracion' || selectedValue === 'integridad') && "relative overflow-hidden",
                 selectedValue === 'innovacion'
                     ? "bg-accent text-accent-foreground"
                     : "bg-primary text-primary-foreground"
@@ -215,6 +226,22 @@ export default function AboutPage() {
                 {selectedValue === 'colaboracion' && (
                     <div className="absolute inset-0 z-0">
                     {collaborationIcons.map((item, index) => {
+                        const Icon = item.icon;
+                        return (
+                        <div
+                            key={index}
+                            className="absolute animate-move-and-scale"
+                            style={item.style as React.CSSProperties}
+                        >
+                            <Icon className={cn(item.size, item.color)} strokeWidth={1.5} />
+                        </div>
+                        );
+                    })}
+                    </div>
+                )}
+                 {selectedValue === 'integridad' && (
+                    <div className="absolute inset-0 z-0">
+                    {integrityIcons.map((item, index) => {
                         const Icon = item.icon;
                         return (
                         <div
