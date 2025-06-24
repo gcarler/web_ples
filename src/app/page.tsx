@@ -106,20 +106,8 @@ export default function Home() {
       <section className="relative py-20 md:py-28 bg-card shadow-lg overflow-hidden">
         <div className="w-full px-4 sm:px-6 lg:px-8">
            <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
-             {/* Image on the left for medium screens and up */}
-             <div className="relative h-96 md:h-[500px] lg:h-[600px] rounded-lg overflow-hidden shadow-xl order-last md:order-first group">
-               <Image
-                 src="https://placehold.co/600x800.png"
-                 alt="Equipo de PLES trabajando en su misión"
-                 layout="fill"
-                 objectFit="cover"
-                 className="rounded-lg transform group-hover:scale-105 transition-transform duration-500"
-                 data-ai-hint="team mission collaboration"
-               />
-               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-             </div>
-             {/* Text on the right */}
-             <div className="order-first md:order-last">
+             {/* Text on the left */}
+             <div className="order-first">
                <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-primary">Nuestra Misión</h2>
                <p className="text-lg lg:text-xl text-foreground mb-8 leading-relaxed">
                  Somos una empresa dedicada a ofrecer soluciones innovadoras y eficientes que impulsan el crecimiento y la transformación digital de nuestros clientes. Creemos en el poder de la tecnología para simplificar procesos y crear valor.
@@ -131,6 +119,18 @@ export default function Home() {
                    </span>
                  </Link>
                </Button>
+             </div>
+             {/* Image on the right for medium screens and up */}
+             <div className="relative h-96 md:h-[600px] lg:h-[600px] rounded-lg overflow-hidden shadow-xl order-last group">
+               <Image
+                 src="https://placehold.co/600x800.png"
+                 alt="Equipo de PLES trabajando en su misión"
+                 layout="fill"
+                 objectFit="cover"
+                 className="rounded-lg transform group-hover:scale-105 transition-transform duration-500"
+                 data-ai-hint="team mission collaboration"
+               />
+               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
              </div>
            </div>
         </div>
