@@ -108,7 +108,7 @@ export default function Home() {
       </section>
 
       {/* "Nuestra Misión" Section - Redesigned */}
-      <section className="relative py-20 md:py-28 bg-gradient-to-r from-primary to-accent text-primary-foreground animate-gradient bg-[length:200%_200%] overflow-hidden">
+      <section className="relative py-20 md:py-28 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary to-accent text-primary-foreground animate-gradient bg-[length:300%_300%] overflow-hidden">
         <div className="w-full px-4 sm:px-6 lg:px-8">
            <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
              {/* Text on the left */}
@@ -152,7 +152,7 @@ export default function Home() {
                 { title: 'Ples Catastro', description: 'Catastro y gestión territorial.', icon: HomeIcon, href: "/ples-catastro" },
                 { title: 'Ples Consulting', description: 'Consultoría estratégica.', icon: Lightbulb, href: "/ples-consulting" },
             ].map((marca) => (
-                <Card key={marca.title} className="text-center group hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out hover:animate-gradient hover:bg-[length:200%_200%]">
+                <Card key={marca.title} className="text-center group hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out hover:animate-gradient hover:bg-[length:200%_200%]">
                 <CardHeader>
                     <div className="mx-auto bg-primary/10 text-primary rounded-full p-3 w-fit mb-4 group-hover:bg-primary-foreground/20 group-hover:text-primary-foreground">
                     <marca.icon className="h-8 w-8" />

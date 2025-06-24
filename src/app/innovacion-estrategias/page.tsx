@@ -23,32 +23,32 @@ const pageDetails = {
 
 const keyAspects = [
   {
-    icon: <Lightbulb className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: <Lightbulb className="h-10 w-10 text-primary group-hover:text-primary-foreground transition-colors" />,
     title: "Innovación Centrada en el Propósito",
     text: "Cada innovación busca generar un valor tangible, alineado con sus objetivos estratégicos y las necesidades de sus stakeholders."
   },
   {
-    icon: <Search className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: <Search className="h-10 w-10 text-primary group-hover:text-primary-foreground transition-colors" />,
     title: "Investigación y Análisis Profundo",
     text: "Basamos nuestras estrategias en una comprensión exhaustiva del contexto, las tendencias emergentes y los datos relevantes."
   },
   {
-    icon: <UsersRound className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: <UsersRound className="h-10 w-10 text-primary group-hover:text-primary-foreground transition-colors" />,
     title: "Co-creación y Colaboración",
     text: "Trabajamos en estrecha colaboración con su equipo para diseñar e implementar soluciones que se apropien y se integren orgánicamente."
   },
   {
-    icon: <Layers className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: <Layers className="h-10 w-10 text-primary group-hover:text-primary-foreground transition-colors" />,
     title: "Soluciones Integrales y Escalables",
     text: "Desarrollamos estrategias y soluciones que son robustas, adaptables y capaces de evolucionar con su organización."
   },
   {
-    icon: <TrendingUp className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: <TrendingUp className="h-10 w-10 text-primary group-hover:text-primary-foreground transition-colors" />,
     title: "Medición de Impacto y Sostenibilidad",
     text: "Nos enfocamos en resultados medibles y en construir capacidades para que el impacto positivo perdure en el tiempo."
   },
   {
-    icon: <ShieldCheck className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: <ShieldCheck className="h-10 w-10 text-primary group-hover:text-primary-foreground transition-colors" />,
     title: "Gestión de Riesgos y Resiliencia",
     text: "Incorporamos la previsión y mitigación de riesgos para asegurar la viabilidad y perdurabilidad de las estrategias implementadas."
   }
@@ -116,9 +116,9 @@ export default function InnovacionEstrategiasPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {keyAspects.map((aspect, index) => (
-              <Card key={index} className="group border transition-all duration-300 ease-in-out transform hover:scale-[1.03] hover:shadow-xl hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:text-primary-foreground hover:border-transparent hover:animate-gradient hover:bg-[length:200%_200%]">
+              <Card key={index} className="group border transition-all duration-300 ease-in-out transform hover:scale-[1.03] hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:border-transparent hover:animate-gradient hover:bg-[length:200%_200%]">
                 <CardHeader className="items-center text-center md:items-start md:text-left">
-                  {aspect.icon}
+                  {React.cloneElement(aspect.icon, { className: "h-10 w-10 text-primary group-hover:text-primary-foreground transition-colors" })}
                   <CardTitle className="text-xl font-semibold text-foreground group-hover:text-primary-foreground transition-colors">{aspect.title}</CardTitle>
                 </CardHeader>
                 <CardContent>

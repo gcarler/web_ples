@@ -127,7 +127,7 @@ export default function AboutPage() {
             {sections.map((section, index) => (
               <Card
                 key={index}
-                className="group hover:shadow-xl hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out hover:animate-gradient hover:bg-[length:200%_200%]"
+                className="group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out hover:animate-gradient hover:bg-[length:200%_200%]"
               >
                 <CardContent className="p-0">
                   <DynamicSection {...section} />

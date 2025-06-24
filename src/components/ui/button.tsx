@@ -10,17 +10,17 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-gradient-to-r from-primary to-accent text-primary-foreground animate-button-gradient bg-[length:200%_200%] hover:shadow-lg hover:scale-[1.02]",
+        default: "bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary to-accent text-primary-foreground animate-button-gradient bg-[length:200%_200%] hover:shadow-lg hover:scale-[1.02]",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90 hover:scale-[1.02]",
         outline:
-          "border border-input bg-background hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:text-primary-foreground hover:animate-gradient hover:bg-[length:200%_200%] hover:border-transparent hover:shadow-md hover:scale-[1.02]",
+          "border border-input bg-background hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:animate-gradient hover:bg-[length:200%_200%] hover:border-transparent hover:shadow-md hover:scale-[1.02]",
         secondary: 
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:text-primary-foreground hover:animate-gradient hover:bg-[length:200%_200%] hover:scale-[1.02]",
+        ghost: "hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:animate-gradient hover:bg-[length:200%_200%] hover:scale-[1.02]",
         link: "text-primary underline-offset-4 hover:underline hover:text-primary/80",
         accent: 
-          "bg-gradient-to-r from-primary to-accent text-primary-foreground animate-button-gradient bg-[length:200%_200%] hover:shadow-lg hover:scale-[1.02]",
+          "bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary to-accent text-primary-foreground animate-button-gradient bg-[length:200%_200%] hover:shadow-lg hover:scale-[1.02]",
       },
       size: {
         default: "h-10 px-4 py-2",
@@ -57,4 +57,3 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 Button.displayName = "Button"
 
 export { Button, buttonVariants }
-

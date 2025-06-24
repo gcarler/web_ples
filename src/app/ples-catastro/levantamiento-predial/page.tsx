@@ -95,7 +95,7 @@ export default function LevantamientoPredialPage() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
               {serviceDetails.keyServices.map((service) => (
-                <Card key={service.title} className="p-6 group transition-all duration-300 ease-in-out hover:shadow-2xl hover:scale-[1.03] hover:border-primary/50 hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:animate-gradient hover:bg-[length:200%_200%]">
+                <Card key={service.title} className="p-6 group transition-all duration-300 ease-in-out hover:shadow-2xl hover:scale-[1.03] hover:border-primary/50 hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:animate-gradient hover:bg-[length:200%_200%]">
                   <div className="flex flex-col items-center text-center md:items-start md:text-left">
                     {React.cloneElement(service.icon, { className: "h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" })}
                     <CardTitle className="text-xl font-semibold mb-2 text-foreground group-hover:text-primary-foreground transition-colors">{service.title}</CardTitle>
@@ -114,7 +114,7 @@ export default function LevantamientoPredialPage() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
               {serviceDetails.methodology.map((item) => (
-                <Card key={item.title} className="p-6 group transition-all duration-300 ease-in-out hover:shadow-2xl hover:scale-[1.03] hover:border-primary/50 hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:animate-gradient hover:bg-[length:200%_200%]">
+                <Card key={item.title} className="p-6 group transition-all duration-300 ease-in-out hover:shadow-2xl hover:scale-[1.03] hover:border-primary/50 hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:animate-gradient hover:bg-[length:200%_200%]">
                   <div className="flex items-start gap-4">
                     {React.cloneElement(item.icon, {className: "h-8 w-8 text-primary group-hover:text-accent transition-colors mt-1 shrink-0"})}
                     <div>
@@ -135,7 +135,7 @@ export default function LevantamientoPredialPage() {
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
               {serviceDetails.benefits.map((item) => (
-                 <Card key={item.title} className="p-6 group transition-all duration-300 ease-in-out hover:shadow-2xl hover:scale-[1.03] hover:border-primary/50 hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:animate-gradient hover:bg-[length:200%_200%] text-center">
+                 <Card key={item.title} className="p-6 group transition-all duration-300 ease-in-out hover:shadow-2xl hover:scale-[1.03] hover:border-primary/50 hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:animate-gradient hover:bg-[length:200%_200%] text-center">
                   <div className="flex flex-col items-center">
                     {React.cloneElement(item.icon, {className:"h-8 w-8 text-primary group-hover:text-accent transition-colors mb-3"})}
                     <CardTitle className="text-lg font-semibold mb-1 text-foreground group-hover:text-primary-foreground transition-colors">{item.title}</CardTitle>

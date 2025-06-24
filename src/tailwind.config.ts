@@ -89,12 +89,10 @@ export default {
   				}
   			},
         'gradient-shift': {
-          '0%, 100%': {
-            backgroundPosition: '0% 50%',
-          },
-          '50%': {
-            backgroundPosition: '100% 50%',
-          },
+          '0%, 100%': { 'background-position': 'left' },
+          '25%': { 'background-position': 'top' },
+          '50%': { 'background-position': 'right' },
+          '75%': { 'background-position': 'bottom' },
         },
         'expand-in': {
           'from': { transform: 'scale(0)', opacity: '0' },
