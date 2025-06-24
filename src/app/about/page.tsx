@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import DynamicSection from '@/components/DynamicSection';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { ArrowRight, Gem, HeartPulse, Target, Globe, Rocket, Eye, Info, Shield, Lightbulb, Users as UsersIcon, Cpu } from 'lucide-react';
+import { ArrowRight, Gem, HeartPulse, Target, Globe, Rocket, Eye, Info, Shield, Lightbulb, Users as UsersIcon, Cpu, Layers, Zap, FlaskConical, Brain, Search, Settings } from 'lucide-react';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
@@ -31,6 +31,18 @@ const coreValues = [
     explanation: "Actuamos con honestidad, transparencia y ética profesional en todas nuestras interacciones. La integridad es el pilar que sustenta la confianza con nuestros clientes, colaboradores y la sociedad, guiando cada decisión y proyecto que emprendemos.",
   },
 ];
+
+const innovationIcons = [
+    { icon: Cpu, size: "h-16 w-16", style: { top: '10%', left: '15%', animationDuration: '22s', animationDelay: '0s' }, color: 'text-primary-foreground/30' },
+    { icon: Layers, size: "h-20 w-20", style: { top: '25%', left: '70%', animationDuration: '28s', animationDelay: '-5s' }, color: 'text-primary-foreground/30' },
+    { icon: Zap, size: "h-12 w-12", style: { top: '70%', left: '80%', animationDuration: '19s', animationDelay: '-10s' }, color: 'text-primary/50' },
+    { icon: FlaskConical, size: "h-24 w-24", style: { top: '80%', left: '20%', animationDuration: '32s', animationDelay: '-2s' }, color: 'text-primary-foreground/30' },
+    { icon: Settings, size: "h-10 w-10", style: { top: '50%', left: '50%', animationDuration: '18s', animationDelay: '-15s' }, color: 'text-primary/50' },
+    { icon: Brain, size: "h-14 w-14", style: { top: '5%', left: '40%', animationDuration: '25s', animationDelay: '-8s' }, color: 'text-primary-foreground/30' },
+    { icon: Search, size: "h-16 w-16", style: { top: '40%', left: '5%', animationDuration: '30s', animationDelay: '-3s' }, color: 'text-primary/50' },
+    { icon: Lightbulb, size: "h-12 w-12", style: { top: '85%', left: '60%', animationDuration: '24s', animationDelay: '-12s' }, color: 'text-primary/50' },
+];
+
 
 export default function AboutPage() {
   const [selectedValue, setSelectedValue] = useState(coreValues[2].id); // Integridad activa por defecto
@@ -164,11 +176,40 @@ export default function AboutPage() {
 
           {/* Right Column: Content Display */}
           {selectedContent && (
-            <div className="flex-1 bg-primary text-primary-foreground p-8 md:p-12 lg:p-16 flex flex-col justify-center items-center text-center">
-              <div key={selectedContent.id} className="animate-fade-in-up w-full max-w-2xl space-y-6 md:space-y-8">
+             <div
+                className={cn(
+                "flex-1 p-8 md:p-12 lg:p-16 flex flex-col justify-center items-center text-center",
+                selectedValue === 'innovacion'
+                    ? "bg-accent text-accent-foreground relative overflow-hidden"
+                    : "bg-primary text-primary-foreground"
+                )}
+            >
+                {selectedValue === 'innovacion' && (
+                    <div className="absolute inset-0 z-0">
+                    {innovationIcons.map((item, index) => {
+                        const Icon = item.icon;
+                        return (
+                        <div
+                            key={index}
+                            className="absolute animate-move-and-scale"
+                            style={item.style as React.CSSProperties}
+                        >
+                            <Icon className={cn(item.size, item.color)} strokeWidth={1.5} />
+                        </div>
+                        );
+                    })}
+                    </div>
+                )}
+              <div key={selectedContent.id} className="animate-fade-in-up w-full max-w-2xl space-y-6 md:space-y-8 relative z-10">
                 <h2 className="text-xl md:text-2xl font-semibold text-primary-foreground/80 mb-0 uppercase tracking-wider">NUESTROS VALORES</h2>
-                <selectedContent.icon className="h-20 w-20 sm:h-24 sm:w-24 text-accent mx-auto" />
-                <h3 className="text-3xl sm:text-4xl font-bold text-accent">
+                <selectedContent.icon className={cn(
+                    "h-20 w-20 sm:h-24 sm:w-24 mx-auto",
+                    selectedValue === 'innovacion' ? 'text-primary-foreground/90' : 'text-accent'
+                )} />
+                <h3 className={cn(
+                    "text-3xl sm:text-4xl font-bold",
+                     selectedValue === 'innovacion' ? 'text-primary-foreground' : 'text-accent'
+                )}>
                   {selectedContent.name}
                 </h3>
                 <p className="text-base sm:text-lg leading-relaxed text-primary-foreground/90 max-w-xl mx-auto">
