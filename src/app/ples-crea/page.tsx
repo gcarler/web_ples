@@ -58,7 +58,7 @@ export default function PlesCreaPage() {
       challenge: 'Una ONG requería una herramienta para seguir la deforestación y los esfuerzos de restauración en una reserva clave.',
       solution: 'Implementamos una plataforma con imágenes satelitales actualizadas y análisis de cambio de cobertura, mejorando la gestión de la reserva.',
       image: 'https://placehold.co/600x400.png',
-      imageHint: 'drone terrain',
+      imageHint: 'drone survey',
       tags: ['Teledetección', 'Conservación', 'Monitoreo Ambiental']
     },
   ];
@@ -156,7 +156,16 @@ export default function PlesCreaPage() {
                 <Card key={study.title} className="overflow-hidden group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col hover:animate-gradient hover:bg-[length:200%_200%]">
                 <div className="relative h-56 w-full">
                     <Image src={study.image} alt={study.title} layout="fill" objectFit="cover" data-ai-hint={study.imageHint} />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-center justify-center">
+                        {study.imageHint === 'drone survey' && (
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-70 drop-shadow-lg">
+                                <path d="M12 18.5A2.5 2.5 0 0 1 9.5 21a2.5 2.5 0 0 1-2.4-3.5"/><path d="M12 18.5A2.5 2.5 0 0 0 14.5 21a2.5 2.5 0 0 0 2.4-3.5"/>
+                                <path d="M12 3.5A2.5 2.5 0 0 1 14.5 1a2.5 2.5 0 0 1 2.4 3.5"/><path d="M12 3.5A2.5 2.5 0 0 0 9.5 1a2.5 2.5 0 0 0-2.4 3.5"/>
+                                <path d="M12 12v-5"/><path d="M12 12v5"/><path d="M12 12H7"/><path d="M12 12h5"/>
+                                <circle cx="12" cy="12" r="2.5"/>
+                            </svg>
+                        )}
+                    </div>
                 </div>
                 <CardHeader>
                     <CardTitle className="text-xl group-hover:text-primary-foreground">{study.title}</CardTitle>
