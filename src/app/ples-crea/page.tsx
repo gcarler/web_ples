@@ -46,7 +46,7 @@ export default function PlesCreaPage() {
 
   const caseStudies = [
     {
-      title: 'Atlas de Riesgo Climático Urbano',
+      title: 'Mapa de Riesgo Climático',
       challenge: 'Una municipalidad necesitaba comprender las zonas más vulnerables al cambio climático para priorizar inversiones.',
       solution: 'Desarrollamos un atlas interactivo con mapas de amenaza, exposición y vulnerabilidad, facilitando la planificación urbana resiliente.',
       imageHint: 'city risk map',
@@ -199,7 +199,7 @@ const treeStyles = [
             {caseStudies.map((study) => (
                 <Card key={study.title} className="overflow-hidden group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col hover:animate-gradient hover:bg-[length:200%_200%]">
                  <div className="relative h-56 w-full">
-                    {study.title === 'Atlas de Riesgo Climático Urbano' ? (
+                    {study.title === 'Mapa de Riesgo Climático' ? (
                       <div className="relative h-full w-full overflow-hidden bg-muted/20 p-4">
                         {/* Street Grid */}
                         <div className="absolute inset-0">
