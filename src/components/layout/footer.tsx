@@ -12,7 +12,7 @@ export function Footer() {
           {/* Column 1: Logo and Slogan */}
           <div className="lg:col-span-4 flex flex-col items-start text-left">
             <Link href="/" className="mb-6">
-              <PlesGroupLogo className="h-8" />
+              <PlesGroupLogo className="text-9xl" />
             </Link>
             <p className="text-lg text-foreground/80 leading-relaxed">
               Somos{' '}
