@@ -134,6 +134,14 @@ export default {
           '60%': { opacity: '1', transform: 'translateY(0) scale(0.9)' },
           '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
         },
+        'zoom-in-rotate': {
+          'from': { opacity: '0', transform: 'scale(0.5) rotate(-30deg)' },
+          'to': { opacity: '1', transform: 'scale(1) rotate(0deg)' },
+        },
+        'drop-in': {
+          'from': { opacity: '0', transform: 'translateY(-50px) scale(0.8)' },
+          'to': { opacity: '1', transform: 'translateY(0) scale(1)' },
+        },
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
@@ -148,6 +156,8 @@ export default {
         'tree-sway': 'tree-sway 5s ease-in-out infinite',
         'pulse-fade-in': 'pulse-fade-in 4s ease-in-out infinite',
         'fly-in-word': 'fly-in-word 0.4s ease-out',
+        'zoom-in-rotate': 'zoom-in-rotate 0.5s ease-out',
+        'drop-in': 'drop-in 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
   		}
   	}
   },

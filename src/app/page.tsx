@@ -44,6 +44,13 @@ const missionIcons = [
     BarChart3, Users, ShieldCheck, Layers, Settings, Handshake
 ];
 
+const iconAnimations = [
+  'animate-fly-in-word',
+  'animate-zoom-in-rotate',
+  'animate-drop-in',
+  'animate-expand-in',
+];
+
 const iconStyles = [
   { top: '10%', left: '15%', size: 'h-16 w-16', duration: '22s', delay: '0s' },
   { top: '25%', left: '70%', size: 'h-20 w-20', duration: '28s', delay: '-5s' },
@@ -74,6 +81,7 @@ export default function Home() {
   }, []);
 
   const CurrentIcon = missionIcons[currentIconIndex];
+  const currentAnimationClass = iconAnimations[currentIconIndex % iconAnimations.length];
   
   return (
     <div className="space-y-0">
@@ -91,7 +99,7 @@ export default function Home() {
                   >
                     <CurrentIcon
                       key={currentIconIndex}
-                      className="h-3/5 w-3/5 text-accent animate-fly-in-word"
+                      className={cn("h-3/5 w-3/5 text-accent", currentAnimationClass)}
                       strokeWidth={1}
                     />
                   </div>
