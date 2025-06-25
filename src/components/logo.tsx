@@ -60,8 +60,8 @@ export function PlesGroupLogo({ className, style }: { className?: string, style?
           width: 0.31em;
           height: 0.31em;
           
-          top: 0.38em;
-          left: 0.22em;
+          top: 0.40em;
+          left: 0.20em;
           transition: background-color 0.2s ease-out;
           transition-delay: 0s; /* Dot changes with the 'p' */
         }
