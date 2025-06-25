@@ -26,8 +26,7 @@ export function Footer() {
               e{' '}
               <span className="font-bold text-primary transition-colors hover:text-accent">
                 Innovación
-              </span>
-              , fusionadas en estrategias para un impacto trascendente y sostenible.
+              </span>.
             </p>
           </div>
 
