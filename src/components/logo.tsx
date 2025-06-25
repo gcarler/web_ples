@@ -1,3 +1,4 @@
+
 'use client'; // This directive marks the component as a Client Component
 
 import * as React from 'react';
@@ -31,11 +32,12 @@ export function PlesGroupLogo({ className, style }: { className?: string, style?
         }
         
         .letter {
-          transition: color 0.2s ease-out;
+          transition: color 0.2s ease-out, transform 0.2s ease-out;
         }
 
         .logo-container:hover .letter {
             color: hsl(var(--primary)); /* Change text color to primary on hover */
+            transform: scale(1.1);
         }
 
         /* Stagger the transition for each letter */
