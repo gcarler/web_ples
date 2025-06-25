@@ -71,7 +71,6 @@ export function PlesGroupLogo({ className, style, hoverVariant }: { className?: 
         .letra-p-con-punto::before {
           content: '';
           position: absolute;
-          z-index: -1;
           background-color: hsl(var(--primary)); 
           border-radius: 100%;
           transition: background-color 0.3s ease;
