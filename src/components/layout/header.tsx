@@ -114,7 +114,7 @@ export function Header() {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <Button variant="outline" size="sm" asChild className="rounded-md">
+              <Button variant="accent" size="sm" asChild className="rounded-md">
                 <Link href="/login">
                   <span className="flex items-center">
                     <LogIn className="mr-2 h-4 w-4" />
