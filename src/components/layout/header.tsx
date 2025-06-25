@@ -7,7 +7,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { getAuth, signOut } from 'firebase/auth';
 import { app } from '@/lib/firebase/firebase-config';
 import { useToast } from '@/hooks/use-toast';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,12 +19,14 @@ import {
 import { ThemeToggle } from "@/components/theme-toggle";
 import { PlesGroupLogo } from '@/components/logo';
 import React from 'react';
+import { cn } from '@/lib/utils';
 
 export function Header() {
   const { user, loading, userProfile } = useAuth(); // Added userProfile for logout message
   const auth = getAuth(app);
   const { toast } = useToast();
   const router = useRouter();
+  const pathname = usePathname();
 
   const handleLogout = async () => {
     try {
@@ -63,16 +65,29 @@ export function Header() {
           </Link>
         </div>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-2">
-            {navLinks.map((link) => (
-                <Button key={link.href} variant="ghost" asChild>
-                    <Link href={link.href}>{link.label}</Link>
-                </Button>
-            ))}
-        </div>
-        
         <div className="flex items-center space-x-2">
+          {/* Desktop Navigation */}
+           <div className="hidden md:flex items-center gap-2">
+               {navLinks.map((link) => {
+                   const isActive = pathname === link.href;
+                   return (
+                       <Link
+                           key={link.href}
+                           href={link.href}
+                           className={cn(
+                               "px-3 py-2 rounded-md text-sm font-medium transition-colors",
+                               isActive
+                                 ? "bg-primary text-primary-foreground"
+                                 : "text-foreground hover:text-primary"
+                           )}
+                           aria-current={isActive ? "page" : undefined}
+                       >
+                           {link.label}
+                       </Link>
+                   );
+               })}
+           </div>
+          
           <ThemeToggle />
           {!loading && (
             user ? (
