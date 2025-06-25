@@ -109,8 +109,9 @@ export default {
           '100%': { transform: 'translate(0, 0) scale(1)', opacity: 0.5 },
         },
         'drone-path': {
-          '0%, 100%': { transform: 'translateX(-10%)' },
-          '50%': { transform: 'translateX(10%)' },
+          '0%': { transform: 'translate(-120%, 0px) rotate(-5deg)' },
+          '50%': { transform: 'translate(120%, -20px) rotate(5deg)' },
+          '100%': { transform: 'translate(-120%, 0px) rotate(-5deg)' },
         },
         'scan-beam': {
           '0%, 100%': { transform: 'translateY(-20%)', opacity: '0' },

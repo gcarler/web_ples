@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { ArrowRight, CheckCircle, Map, Brain, Lightbulb, Users, Target, ShieldCheck, BarChart3, Settings, Search, HelpCircle } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
+import { cn } from '@/lib/utils';
 
 export const metadata = {
   title: 'PLES CREA - Cartografía Inteligente para un Futuro Sostenible y Equitativo',
@@ -62,23 +63,38 @@ export default function PlesCreaPage() {
     },
   ];
   
-  const treeStyles = [
-      { top: '60%', left: '10%', size: 30, delay: '0.2s', duration: '5.2s' },
-      { top: '75%', left: '25%', size: 25, delay: '1.1s', duration: '4.8s' },
-      { top: '50%', left: '30%', size: 35, delay: '0.5s', duration: '5.5s' },
-      { top: '65%', left: '50%', size: 28, delay: '2.0s', duration: '4.5s' },
-      { top: '80%', left: '65%', size: 22, delay: '0.8s', duration: '5.8s' },
-      { top: '55%', left: '80%', size: 32, delay: '1.5s', duration: '5.0s' },
-      { top: '70%', left: '90%', size: 26, delay: '2.2s', duration: '4.7s' },
-      { top: '45%', left: '5%', size: 28, delay: '0.1s', duration: '5.9s' },
-      { top: '58%', left: '70%', size: 33, delay: '1.8s', duration: '5.3s' },
-      { top: '85%', left: '15%', size: 24, delay: '2.5s', duration: '4.6s' },
-      { top: '52%', left: '45%', size: 29, delay: '0.7s', duration: '5.1s' },
-      { top: '78%', left: '5%', size: 27, delay: '1.3s', duration: '4.9s' },
-      { top: '63%', left: '95%', size: 31, delay: '2.8s', duration: '5.4s' },
-      { top: '48%', left: '60%', size: 23, delay: '0.4s', duration: '5.6s' },
-      { top: '90%', left: '40%', size: 26, delay: '3.0s', duration: '4.4s' },
-    ];
+const treeStyles = [
+    { top: '60%', left: '10%', size: 30, delay: '0.2s', duration: '5.2s' },
+    { top: '75%', left: '25%', size: 25, delay: '1.1s', duration: '4.8s' },
+    { top: '50%', left: '30%', size: 35, delay: '0.5s', duration: '5.5s' },
+    { top: '65%', left: '50%', size: 28, delay: '2.0s', duration: '4.5s' },
+    { top: '80%', left: '65%', size: 22, delay: '0.8s', duration: '5.8s' },
+    { top: '55%', left: '80%', size: 32, delay: '1.5s', duration: '5.0s' },
+    { top: '70%', left: '90%', size: 26, delay: '2.2s', duration: '4.7s' },
+    { top: '45%', left: '5%', size: 28, delay: '0.1s', duration: '5.9s' },
+    { top: '58%', left: '70%', size: 33, delay: '1.8s', duration: '5.3s' },
+    { top: '85%', left: '15%', size: 24, delay: '2.5s', duration: '4.6s' },
+    { top: '52%', left: '45%', size: 29, delay: '0.7s', duration: '5.1s' },
+    { top: '78%', left: '5%', size: 27, delay: '1.3s', duration: '4.9s' },
+    { top: '63%', left: '95%', size: 31, delay: '2.8s', duration: '5.4s' },
+    { top: '48%', left: '60%', size: 23, delay: '0.4s', duration: '5.6s' },
+    { top: '90%', left: '40%', size: 26, delay: '3.0s', duration: '4.4s' },
+    { top: '88%', left: '85%', size: 29, delay: '3.5s', duration: '5.7s' },
+    { top: '47%', left: '92%', size: 24, delay: '4.0s', duration: '4.3s' },
+    { top: '72%', left: '2%', size: 31, delay: '3.8s', duration: '5.9s' },
+    { top: '66%', left: '38%', size: 27, delay: '4.2s', duration: '4.6s' },
+    { top: '95%', left: '75%', size: 25, delay: '3.2s', duration: '5.5s' },
+    { top: '53%', left: '18%', size: 34, delay: '4.5s', duration: '5.1s' },
+    { top: '82%', left: '55%', size: 23, delay: '3.1s', duration: '4.8s' },
+    { top: '69%', left: '78%', size: 30, delay: '4.8s', duration: '5.3s' },
+    { top: '92%', left: '8%', size: 26, delay: '3.6s', duration: '4.9s' },
+    { top: '61%', left: '65%', size: 32, delay: '4.1s', duration: '5.6s' },
+    { top: '77%', left: '48%', size: 22, delay: '3.3s', duration: '4.4s' },
+    { top: '50%', left: '88%', size: 28, delay: '4.7s', duration: '5.0s' },
+    { top: '85%', left: '30%', size: 33, delay: '3.9s', duration: '5.2s' },
+    { top: '59%', left: '22%', size: 24, delay: '4.4s', duration: '4.7s' },
+    { top: '93%', left: '60%', size: 29, delay: '3.7s', duration: '5.8s' },
+  ];
 
 
   const technologies = ['SIG (QGIS, ArcGIS Pro, Google Earth Engine)', 'Teledetección (Sentinel, Landsat, Planet)', 'Python (GeoPandas, Rasterio, Scikit-learn)', 'Bases de Datos Espaciales (PostGIS)', 'Plataformas Web GIS (Leaflet, Mapbox GL JS)', 'Inteligencia Artificial Geoespacial', 'Estándares OGC (WMS, WFS, WCS)'];
@@ -178,7 +194,7 @@ export default function PlesCreaPage() {
                             {/* Background Forest */}
                             <div className="absolute inset-0">
                                 {treeStyles.map((style, i) => (
-                                    <svg key={i} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="absolute text-green-300/30 animate-tree-sway" style={{
+                                    <svg key={i} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" className="absolute text-green-300/30 animate-tree-sway" style={{
                                         width: `${style.size}px`,
                                         height: `${style.size}px`,
                                         top: style.top,
@@ -186,13 +202,13 @@ export default function PlesCreaPage() {
                                         animationDelay: style.delay,
                                         animationDuration: style.duration
                                     }}>
-                                        <path d="M17 14h-2V7.82C15 7.42 14.54 7 14 7h-4c-.54 0-1 .42-1 .82V14H7c-.55 0-1 .45-1 1s.45 1 1 1h10c.55 0 1-.45 1-1s-.45-1-1-1zM12 2L4 8h3v3h1c0-1.1.9-2 2-2s2 .9 2 2h1V8h3l-8-6z" />
+                                      <path d="M464 480H48c-8.84-1.2-16-7.16-16-16s7.16-14.8 16-16h416c8.84 1.2 16 7.16 16 16s-7.16 14.8-16 16zM256 16L112 320h96v128h96V320h96L256 16z"/>
                                     </svg>
                                 ))}
                             </div>
 
                             {/* Drone */}
-                            <div className="absolute top-[10%] left-1/2 w-2/3 -translate-x-1/2 animate-drone-path">
+                            <div className="absolute top-[10%] left-1/2 -translate-x-1/2 animate-drone-path" style={{ animationDuration: '12s' }}>
                                 {/* Drone SVG Icon */}
                                 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="mx-auto opacity-90 drop-shadow-lg">
                                     <path d="M12 18.5A2.5 2.5 0 0 1 9.5 21a2.5 2.5 0 0 1-2.4-3.5"/><path d="M12 18.5A2.5 2.5 0 0 0 14.5 21a2.5 2.5 0 0 0 2.4-3.5"/>
