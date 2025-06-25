@@ -61,7 +61,7 @@ export function Header() {
       <nav className="w-full px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
         <div className="flex items-center gap-4">
           <Link href="/" className="flex-shrink-0">
-            <PlesGroupLogo className="h-9" />
+            <PlesGroupLogo className="text-5xl" />
           </Link>
         </div>
 
