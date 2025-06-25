@@ -143,7 +143,7 @@ const treeStyles = [
                 <Badge variant="default" className="text-md px-4 py-2 shadow-md">#SostenibilidadAmbiental</Badge>
                 <Badge variant="default" className="text-md px-4 py-2 shadow-md">#EquidadTerritorial</Badge>
               </div>
-              <Button size="lg" className="text-lg px-8 py-3" asChild>
+              <Button size="lg" variant="accent" className="text-lg px-8 py-3" asChild>
                 <Link href="/forms?service=ples-crea&subject=Consulta%20PLES%20CREA">
                   <span className="flex items-center">
                     Descubra Nuestras Soluciones <ArrowRight className="ml-2 h-5 w-5" />
@@ -373,7 +373,7 @@ const treeStyles = [
             <p className="text-lg md:text-xl mb-10 max-w-3xl mx-auto opacity-90">
               Permítanos ayudarle a visualizar sus desafíos y oportunidades para tomar decisiones más informadas y construir un futuro más resiliente y equitativo.
             </p>
-            <Button size="xl" variant="secondary" className="text-lg px-10 py-4 shadow-lg hover:scale-105 transition-transform" asChild>
+            <Button size="xl" variant="accent" className="text-lg px-10 py-4" asChild>
             <Link href="/forms?service=ples-crea&subject=Consulta%20Cartografia%20Inteligente">
                 <span className="flex items-center">
                     Hablemos de su Proyecto <ArrowRight className="ml-3 h-5 w-5" />

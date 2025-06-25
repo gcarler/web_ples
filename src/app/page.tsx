@@ -122,7 +122,7 @@ export default function Home() {
                <p className="text-lg lg:text-xl opacity-90 mb-8 leading-relaxed">
                  Somos una empresa dedicada a ofrecer soluciones innovadoras y eficientes que impulsan el crecimiento y la transformación digital de nuestros clientes. Creemos en el poder de la tecnología para simplificar procesos y crear valor.
                </p>
-               <Button asChild size="lg" variant="ghost" className="border border-primary-foreground/50 hover:bg-primary-foreground/10">
+               <Button asChild size="lg" variant="accent">
                  <Link href="/about/mision">
                    <span className="flex items-center">
                      Explorar la Misión <ArrowRight className="ml-2 h-5 w-5" />

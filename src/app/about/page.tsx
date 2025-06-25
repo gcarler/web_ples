@@ -136,7 +136,7 @@ export default function AboutPage() {
                 <Badge variant="default" className="text-md px-4 py-2 shadow-md">#Innovación</Badge>
                 <Badge variant="default" className="text-md px-4 py-2 shadow-md">#Sostenibilidad</Badge>
               </div>
-              <Button size="lg" className="text-lg px-8 py-3" asChild>
+              <Button size="lg" variant="accent" className="text-lg px-8 py-3" asChild>
                 <Link href="/about/esencia">
                   <span className="flex items-center">
                     Nuestra Historia <ArrowRight className="ml-2 h-5 w-5" />
@@ -285,4 +285,3 @@ export default function AboutPage() {
     </div>
   );
 }
-

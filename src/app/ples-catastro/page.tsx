@@ -129,7 +129,7 @@ export default function PlesCatastroPage() {
                 <Badge variant="default" className="text-md px-4 py-2 shadow-md">#OrdenamientoTerritorial</Badge>
                 <Badge variant="default" className="text-md px-4 py-2 shadow-md">#AdministracionDeTierras</Badge>
               </div>
-              <Button size="lg" className="text-lg px-8 py-3" asChild>
+              <Button size="lg" variant="accent" className="text-lg px-8 py-3" asChild>
                 <Link href="/forms?service=ples-catastro&subject=Consulta%20PLES%20Catastro">
                   <span className="flex items-center">
                     Descubra Nuestras Soluciones <ArrowRight className="ml-2 h-5 w-5" />
@@ -370,7 +370,7 @@ export default function PlesCatastroPage() {
             <p className="text-lg md:text-xl mb-10 max-w-3xl mx-auto opacity-90">
             Contáctenos para una evaluación personalizada y descubra cómo nuestras soluciones pueden ayudar a su organización a alcanzar sus objetivos de desarrollo y gestión territorial de manera eficiente y sostenible, aprovechando nuestra experiencia para optimizar sus recursos.
             </p>
-            <Button size="xl" variant="secondary" className="text-lg px-10 py-4 shadow-lg hover:scale-105 transition-transform" asChild>
+            <Button size="xl" variant="accent" className="text-lg px-10 py-4" asChild>
             <Link href="/forms?service=ples-catastro&subject=Consulta%20Modernizacion%20Catastral">
                 <span className="flex items-center">
                     Solicitar Asesoría Especializada <ArrowRight className="ml-3 h-5 w-5" />

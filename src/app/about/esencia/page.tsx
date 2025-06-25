@@ -146,7 +146,7 @@ export default function EsenciaPage() {
         </section>
 
         <section className="text-center mt-0 mb-16 animate-fade-in-up" style={{ animationDelay: '0.8s', animationFillMode: 'forwards' }}>
-          <Button size="lg" asChild className="text-lg px-8 py-4 shadow-lg hover:shadow-xl hover:scale-105 transition-transform">
+          <Button size="lg" variant="accent" asChild className="text-lg px-8 py-4">
             <Link href={pageDetails.ctaLink}>
               <span className="flex items-center">
                 {pageDetails.ctaText} <ArrowRight className="ml-2 h-5 w-5" />

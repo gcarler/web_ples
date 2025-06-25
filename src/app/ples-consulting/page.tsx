@@ -101,7 +101,7 @@ export default function PlesConsultingPage() {
                 <Badge variant="default" className="text-md px-4 py-2 shadow-md">#InnovacionConProposito</Badge>
                 <Badge variant="default" className="text-md px-4 py-2 shadow-md">#DesarrolloSostenible</Badge>
               </div>
-              <Button size="lg" className="text-lg px-8 py-3" asChild>
+              <Button size="lg" variant="accent" className="text-lg px-8 py-3" asChild>
                 <Link href="/forms?service=ples-consulting&subject=Consulta%20PLES%20Consulting">
                   <span className="flex items-center">
                     Conversemos Sobre sus Desafíos <ArrowRight className="ml-2 h-5 w-5" />
@@ -123,8 +123,7 @@ export default function PlesConsultingPage() {
             {expertiseAreas.map((area) => (
                 <Card
                 key={area.title}
-                className="group bg-card hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-[1.02] border-2 border-transparent hover:border-primary/50 overflow-hidden hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:animate-gradient hover:bg-[length:200%_200%]"
-                >
+                className="group bg-card hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-[1.02] border-2 border-transparent hover:border-primary/50 overflow-hidden hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:animate-gradient hover:bg-[length:200%_200%]">
                 <CardHeader className="flex flex-row items-start gap-4">
                     {area.icon}
                     <div>
@@ -210,7 +209,7 @@ export default function PlesConsultingPage() {
             <p className="text-lg md:text-xl mb-10 max-w-3xl mx-auto opacity-90">
              Si busca un aliado estratégico para navegar la complejidad, innovar con propósito y alcanzar resultados extraordinarios, PLES Consulting es su socio ideal.
             </p>
-            <Button size="xl" variant="ghost" className="text-lg px-10 py-4" asChild>
+            <Button size="xl" variant="accent" className="text-lg px-10 py-4" asChild>
             <Link href="/forms?service=ples-consulting&subject=Solicitud%20Asesoria%20Estrategica">
                 <span className="flex items-center">
                     Contacte con Nuestros Expertos <ArrowRight className="ml-3 h-5 w-5" />

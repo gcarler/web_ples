@@ -150,7 +150,7 @@ export default function PlesTicPage() {
                 <Badge variant="default" className="text-md px-4 py-2 shadow-md">#AutomatizacionIA</Badge>
                 <Badge variant="default" className="text-md px-4 py-2 shadow-md">#TransformacionDigital</Badge>
               </div>
-              <Button size="lg" className="text-lg px-8 py-3" asChild>
+              <Button size="lg" variant="accent" className="text-lg px-8 py-3" asChild>
                 <Link href="/forms?service=ples-tic&subject=Consulta%20Soluciones%20PLES%20TIC">
                   <span className="flex items-center">
                     Descubra Nuestras Soluciones <ArrowRight className="ml-2 h-5 w-5" />
@@ -304,7 +304,7 @@ export default function PlesTicPage() {
             <p className="text-lg md:text-xl mb-10 max-w-3xl mx-auto opacity-90">
              Descubra cómo las soluciones personalizadas de PLES TIC pueden transformar su organización, optimizar sus operaciones y abrir nuevas oportunidades de crecimiento.
             </p>
-            <Button size="xl" variant="secondary" className="text-lg px-10 py-4 shadow-lg hover:scale-105 transition-transform" asChild>
+            <Button size="xl" variant="accent" className="text-lg px-10 py-4" asChild>
             <Link href="/forms?service=ples-tic&subject=Solicitud%20Asesoria%20Tecnologica">
                 <span className="flex items-center">
                     Solicitar Asesoría Tecnológica <ArrowRight className="ml-3 h-5 w-5" />
