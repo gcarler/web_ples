@@ -44,6 +44,15 @@ export function Header() {
       });
     }
   };
+  
+    const navLinks = [
+      { href: "/about", label: "Sobre Nosotros" },
+      { href: "/ples-crea", label: "PLES CREA" },
+      { href: "/ples-tic", label: "PLES TIC" },
+      { href: "/ples-catastro", label: "PLES Catastro" },
+      { href: "/ples-consulting", label: "PLES Consulting" },
+  ];
+
 
   return (
     <header className="bg-card text-card-foreground sticky top-0 z-50 border-b">
@@ -52,6 +61,15 @@ export function Header() {
           <Link href="/" className="flex-shrink-0">
             <PlesGroupLogo className="h-7" />
           </Link>
+        </div>
+
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center gap-2">
+            {navLinks.map((link) => (
+                <Button key={link.href} variant="ghost" asChild>
+                    <Link href={link.href}>{link.label}</Link>
+                </Button>
+            ))}
         </div>
         
         <div className="flex items-center space-x-2">
@@ -91,6 +109,7 @@ export function Header() {
               </Button>
             )
           )}
+            {/* Add a mobile menu trigger here later if needed */}
         </div>
       </nav>
     </header>
