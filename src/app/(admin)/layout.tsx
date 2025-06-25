@@ -81,8 +81,10 @@ export default function AdminLayout({ children }: PropsWithChildren) {
         <Sidebar>
              <SidebarHeader>
                 <div className="flex items-center gap-2">
-                    <PlesGroupLogo className="h-6 w-6" />
-                    <span className="font-semibold">PLES Admin</span>
+                    <Link href="/" className="flex items-center gap-2 text-foreground hover:text-primary transition-colors">
+                        <PlesGroupLogo className="h-6 w-6" />
+                        <span className="font-semibold">PLES Admin</span>
+                    </Link>
                     <SidebarTrigger className="ml-auto" />
                 </div>
             </SidebarHeader>

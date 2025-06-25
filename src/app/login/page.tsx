@@ -76,7 +76,9 @@ export default function LoginPage() {
         <div className="relative w-full h-full flex flex-col items-center justify-center
                       bg-[radial-gradient(ellipse_at_center,_hsl(var(--accent)),_hsl(var(--primary)),_hsl(var(--ring)))]
                       bg-[length:300%_300%] animate-gradient text-primary-foreground text-center shadow-2xl">
-          <PlesGroupLogo className="text-9xl mb-12" />
+          <Link href="/">
+            <PlesGroupLogo className="text-9xl mb-12" />
+          </Link>
           <div>
             <h1 className="text-4xl font-bold mb-4 leading-tight">
               Bienvenidos
