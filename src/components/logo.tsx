@@ -36,7 +36,7 @@ export function PlesGroupLogo({ className, style }: { className?: string, style?
 
         .group:hover .letter {
             color: hsl(var(--primary));
-            transform: scale(1.1);
+            transform: scale(1.2);
         }
 
         .letra-p-con-punto {
@@ -56,7 +56,7 @@ export function PlesGroupLogo({ className, style }: { className?: string, style?
           height: 0.31em;
           
           top: 0.40em;
-          left: 0.20em;
+          left: 0.22em;
         }
         
         .group:hover .letra-p-con-punto::before {
