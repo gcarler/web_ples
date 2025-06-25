@@ -129,6 +129,11 @@ export default {
           '50%': { opacity: '0.7', transform: 'scale(1.05)' },
           '100%': { opacity: '0', transform: 'scale(0.95)' },
         },
+        'fly-in-word': {
+          '0%': { opacity: '0', transform: 'translateY(1em) scale(1.5)' },
+          '60%': { opacity: '1', transform: 'translateY(0) scale(0.9)' },
+          '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
+        },
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
@@ -142,6 +147,7 @@ export default {
         'scan-beam': 'scan-beam 4s ease-in-out infinite',
         'tree-sway': 'tree-sway 5s ease-in-out infinite',
         'pulse-fade-in': 'pulse-fade-in 4s ease-in-out infinite',
+        'fly-in-word': 'fly-in-word 0.4s ease-out',
   		}
   	}
   },

@@ -4,6 +4,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { PlesGroupLogo } from '@/components/logo'; // Example icon
 
 export default function FormsPage() {
+  const formsText = "Estamos aquí para ayudarte a transformar tus ideas en realidad. Contáctanos y descubre cómo PLES puede impulsar tu próximo proyecto.";
+  const words = formsText.split(' ');
+
   return (
     // Two-column layout similar to login page
     <div className="flex min-h-screen bg-background">
@@ -16,8 +19,16 @@ export default function FormsPage() {
           <h1 className="text-4xl font-bold mb-4 leading-tight">
             Conéctate con PLES
           </h1>
-          <p className="text-lg max-w-md opacity-90">
-            Estamos aquí para ayudarte a transformar tus ideas en realidad. Contáctanos y descubre cómo PLES puede impulsar tu próximo proyecto.
+          <p className="text-lg max-w-md opacity-90 flex flex-wrap justify-center">
+            {words.map((word, index) => (
+              <span
+                key={index}
+                className="inline-block animate-fly-in-word opacity-0"
+                style={{ animationDelay: `${index * 0.1}s`, animationFillMode: 'forwards' }}
+              >
+                {word}&nbsp;
+              </span>
+            ))}
           </p>
         </div>
       </div>
