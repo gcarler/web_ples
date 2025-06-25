@@ -5,7 +5,6 @@ import { PlesGroupLogo } from '@/components/logo'; // Example icon
 
 export default function FormsPage() {
   const formsText = "Estamos aquí para ayudarte a transformar tus ideas en realidad. Contáctanos y descubre cómo PLES puede impulsar tu próximo proyecto.";
-  const words = formsText.split(' ');
 
   return (
     // Two-column layout similar to login page
@@ -15,20 +14,12 @@ export default function FormsPage() {
         <div className="relative w-full h-full flex flex-col items-center justify-center
                       bg-[radial-gradient(ellipse_at_center,_hsl(var(--accent)),_hsl(var(--primary)),_hsl(var(--ring)))]
                       bg-[length:300%_300%] animate-gradient text-primary-foreground text-center shadow-2xl">
-          <PlesGroupLogo className="text-9xl mb-8" />
+          <PlesGroupLogo className="text-[12rem] mb-12" />
           <h1 className="text-4xl font-bold mb-4 leading-tight">
             Conéctate con PLES
           </h1>
-          <p className="text-lg max-w-md opacity-90 flex flex-wrap justify-center">
-            {words.map((word, index) => (
-              <span
-                key={index}
-                className="inline-block animate-fly-in-word"
-                style={{ animationDelay: `${index * 0.1}s`, animationFillMode: 'both' }}
-              >
-                {word}&nbsp;
-              </span>
-            ))}
+          <p className="text-lg max-w-md opacity-90">
+            {formsText}
           </p>
         </div>
       </div>

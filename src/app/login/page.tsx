@@ -68,9 +68,8 @@ export default function LoginPage() {
     }
   };
 
-  const loginText = "Accede a un mundo de soluciones innovadoras y gestión inteligente. Tu experiencia PLES comienza aquí.";
-  const words = loginText.split(' ');
-
+  const loginText = "Accede a un mundo de soluciones innovadoras y gestión inteligente.";
+  
   return (
     // Two-column layout for the login page
     <div className="flex min-h-screen bg-background">
@@ -79,20 +78,12 @@ export default function LoginPage() {
         <div className="relative w-full h-full flex flex-col items-center justify-center
                       bg-[radial-gradient(ellipse_at_center,_hsl(var(--accent)),_hsl(var(--primary)),_hsl(var(--ring)))]
                       bg-[length:300%_300%] animate-gradient text-primary-foreground text-center shadow-2xl">
-          <PlesGroupLogo className="text-9xl mb-8" />
+          <PlesGroupLogo className="text-[12rem] mb-12" />
           <h1 className="text-4xl font-bold mb-4 leading-tight">
             Bienvenidos
           </h1>
-          <p className="text-lg max-w-md opacity-90 flex flex-wrap justify-center">
-            {words.map((word, index) => (
-              <span
-                key={index}
-                className="inline-block animate-fly-in-word"
-                style={{ animationDelay: `${index * 0.1}s`, animationFillMode: 'both' }}
-              >
-                {word}&nbsp;
-              </span>
-            ))}
+          <p className="text-lg max-w-md opacity-90">
+            {loginText}
           </p>
         </div>
       </div>
