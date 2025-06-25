@@ -76,11 +76,11 @@ export function PlesGroupLogo({ className, style, hoverVariant }: { className?: 
           border-radius: 100%;
           transition: background-color 0.3s ease;
           
-          width: 0.22em;
-          height: 0.22em;
+          width: 0.20em;
+          height: 0.21em;
           
-          top: 0.38em;
-          left: 0.42em;
+          top: 0.4em;
+          left: 0.4em;
           z-index: -1;
 
           transform-origin: center;
