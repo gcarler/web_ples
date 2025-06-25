@@ -1,4 +1,5 @@
-// src/components/logo.tsx
+'use client'; // This directive marks the component as a Client Component
+
 import * as React from 'react';
 import { cn } from '@/lib/utils';
 
