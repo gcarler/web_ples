@@ -75,11 +75,11 @@ export default function LoginPage() {
     // Two-column layout for the login page
     <div className="flex min-h-screen bg-background">
       {/* Left Column: Depth Illusion Container */}
-      <div className="hidden lg:flex lg:w-1/2 items-center justify-center p-12">
-        <div className="relative w-full h-full flex flex-col items-center justify-center rounded-2xl
+      <div className="hidden lg:flex lg:w-1/2 items-center justify-center p-0">
+        <div className="relative w-full h-full flex flex-col items-center justify-center
                       bg-[radial-gradient(ellipse_at_center,_hsl(var(--accent)),_hsl(var(--primary)),_hsl(var(--ring)))]
                       bg-[length:300%_300%] animate-gradient text-primary-foreground text-center shadow-2xl">
-          <PlesGroupLogo className="text-9xl mb-8 opacity-80" />
+          <PlesGroupLogo className="text-9xl mb-8" />
           <h1 className="text-4xl font-bold mb-4 leading-tight">
             Bienvenidos
           </h1>
@@ -87,8 +87,8 @@ export default function LoginPage() {
             {words.map((word, index) => (
               <span
                 key={index}
-                className="inline-block animate-fly-in-word opacity-0"
-                style={{ animationDelay: `${index * 0.1}s`, animationFillMode: 'forwards' }}
+                className="inline-block animate-fly-in-word"
+                style={{ animationDelay: `${index * 0.1}s`, animationFillMode: 'both' }}
               >
                 {word}&nbsp;
               </span>
