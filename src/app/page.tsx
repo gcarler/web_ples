@@ -16,6 +16,7 @@ const heroStatements: HeroStatement[] = [
     ctaText: "Empieza hoy",
     ctaLink: "/forms",
     ctaIconName: "Send",
+    ctaVariant: 'accent',
   },
   {
     title: "Innovación que Impacta, Estrategias que Perduran",
@@ -23,6 +24,7 @@ const heroStatements: HeroStatement[] = [
     ctaText: "Conoce cómo",
     ctaLink: "/innovacion-estrategias",
     ctaIconName: "BookOpen",
+    ctaVariant: 'accent',
   },
   {
     title: "Soluciones Integrales para Desafíos Complejos",
@@ -30,6 +32,7 @@ const heroStatements: HeroStatement[] = [
     ctaText: "Explora Servicios",
     ctaLink: "/#nuestras-marcas",
     ctaIconName: "Layers",
+    ctaVariant: 'accent',
   },
 ];
 
@@ -122,7 +125,7 @@ export default function Home() {
                <p className="text-lg lg:text-xl opacity-90 mb-8 leading-relaxed">
                  Somos una empresa dedicada a ofrecer soluciones innovadoras y eficientes que impulsan el crecimiento y la transformación digital de nuestros clientes. Creemos en el poder de la tecnología para simplificar procesos y crear valor.
                </p>
-               <Button asChild size="lg" variant="accent">
+               <Button asChild size="lg" variant="accent" className="bg-white/20 hover:bg-white/30 border border-white/50 backdrop-blur-sm">
                  <Link href="/about/mision">
                    <span className="flex items-center">
                      Explorar la Misión <ArrowRight className="ml-2 h-5 w-5" />
