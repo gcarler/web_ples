@@ -50,7 +50,7 @@ export default function PlesCreaPage() {
       challenge: 'Una municipalidad necesitaba comprender las zonas más vulnerables al cambio climático para priorizar inversiones.',
       solution: 'Desarrollamos un atlas interactivo con mapas de amenaza, exposición y vulnerabilidad, facilitando la planificación urbana resiliente.',
       image: 'https://placehold.co/600x400.png',
-      imageHint: 'urban risk map',
+      imageHint: 'city risk map',
       tags: ['Análisis de Riesgo', 'SIG Urbano', 'Adaptación Climática']
     },
     {
@@ -64,7 +64,6 @@ export default function PlesCreaPage() {
   ];
   
 const treeStyles = [
-    // Far back trees (smaller, lower opacity)
   { top: '45%', left: '10%', size: 15, delay: '1s', duration: '5.2s', opacity: 0.4 },
   { top: '42%', left: '30%', size: 18, delay: '2s', duration: '4.8s', opacity: 0.45 },
   { top: '48%', left: '50%', size: 16, delay: '0.5s', duration: '5.5s', opacity: 0.4 },
@@ -73,7 +72,6 @@ const treeStyles = [
   { top: '43%', left: '80%', size: 16, delay: '3s', duration: '5.1s', opacity: 0.4 },
   { top: '47%', left: '20%', size: 17, delay: '3.5s', duration: '4.9s', opacity: 0.45 },
   
-  // Mid-ground trees (medium size, medium opacity)
   { top: '55%', left: '5%', size: 22, delay: '0.2s', duration: '5.9s', opacity: 0.6 },
   { top: '58%', left: '20%', size: 25, delay: '1.2s', duration: '5.3s', opacity: 0.65 },
   { top: '52%', left: '40%', size: 24, delay: '2.2s', duration: '4.7s', opacity: 0.6 },
@@ -89,7 +87,6 @@ const treeStyles = [
   { top: '66%', left: '45%', size: 23, delay: '3.6s', duration: '4.5s', opacity: 0.6 },
   { top: '68%', left: '65%', size: 24, delay: '4s', duration: '5.3s', opacity: 0.6 },
 
-  // Fore-ground trees (larger, higher opacity)
   { top: '70%', left: '10%', size: 32, delay: '0.1s', duration: '5.5s', opacity: 0.8 },
   { top: '75%', left: '28%', size: 35, delay: '1.1s', duration: '4.6s', opacity: 0.85 },
   { top: '72%', left: '48%', size: 33, delay: '2.1s', duration: '5.9s', opacity: 0.8 },
@@ -204,39 +201,45 @@ const treeStyles = [
                 <Card key={study.title} className="overflow-hidden group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col hover:animate-gradient hover:bg-[length:200%_200%]">
                  <div className="relative h-56 w-full">
                     {study.title === 'Atlas de Riesgo Climático Urbano' ? (
-                      <div className="relative h-full w-full overflow-hidden bg-muted/30 p-4">
-                        {/* Base Map SVG */}
-                        <svg className="absolute inset-0 h-full w-full stroke-current text-muted-foreground/30" strokeWidth="0.5">
-                          {/* Grid lines */}
-                          <line x1="0" y1="20%" x2="100%" y2="20%"></line>
-                          <line x1="0" y1="40%" x2="100%" y2="40%"></line>
-                          <line x1="0" y1="60%" x2="100%" y2="60%"></line>
-                          <line x1="0" y1="80%" x2="100%" y2="80%"></line>
-                          <line x1="20%" y1="0" x2="20%" y2="100%"></line>
-                          <line x1="40%" y1="0" x2="40%" y2="100%"></line>
-                          <line x1="60%" y1="0" x2="60%" y2="100%"></line>
-                          <line x1="80%" y1="0" x2="80%" y2="100%"></line>
-                        </svg>
+                      <div className="relative h-full w-full overflow-hidden bg-muted/20 p-4">
+                        {/* Street Grid */}
+                        <div className="absolute inset-0">
+                          <div className="absolute left-0 top-1/4 h-px w-full bg-muted-foreground/20"></div>
+                          <div className="absolute left-0 top-1/2 h-px w-full bg-muted-foreground/20"></div>
+                          <div className="absolute left-0 top-3/4 h-px w-full bg-muted-foreground/20"></div>
+                          <div className="absolute left-1/4 top-0 h-full w-px bg-muted-foreground/20"></div>
+                          <div className="absolute left-1/2 top-0 h-full w-px bg-muted-foreground/20"></div>
+                          <div className="absolute left-3/4 top-0 h-full w-px bg-muted-foreground/20"></div>
+                          {/* Diagonal street */}
+                          <div className="absolute -left-1/4 top-0 h-full w-px origin-top-left -rotate-[30deg] bg-muted-foreground/20 scale-y-150"></div>
+                        </div>
+                        
                         {/* City Blocks */}
-                        <div className="absolute top-[22%] left-[22%] h-[16%] w-[16%] bg-muted-foreground/20"></div>
-                        <div className="absolute top-[42%] left-[42%] h-[16%] w-[36%] bg-muted-foreground/20"></div>
-                        <div className="absolute top-[62%] left-[2%] h-[16%] w-[36%] bg-muted-foreground/20"></div>
+                        <div className="absolute inset-0">
+                          <div className="absolute left-[5%] top-[5%] h-[15%] w-[15%] bg-muted-foreground/30 rounded-sm"></div>
+                          <div className="absolute left-[25%] top-[8%] h-[30%] w-[20%] bg-muted-foreground/30 rounded-sm"></div>
+                          <div className="absolute left-[50%] top-[15%] h-[25%] w-[45%] bg-muted-foreground/30 rounded-sm"></div>
+                          <div className="absolute left-[8%] top-[45%] h-[40%] w-[35%] bg-muted-foreground/30 rounded-sm"></div>
+                          <div className="absolute left-[48%] top-[50%] h-[15%] w-[25%] bg-muted-foreground/30 rounded-sm"></div>
+                          <div className="absolute left-[55%] top-[70%] h-[20%] w-[30%] bg-muted-foreground/30 rounded-sm"></div>
+                        </div>
+
                         {/* Pulsing Risk Zones */}
                         <div 
-                          className="absolute top-[10%] left-[15%] h-1/4 w-1/4 rounded-full bg-red-500/50 animate-pulse-fade-in" 
+                          className="absolute top-[8%] left-[25%] h-[30%] w-[20%] rounded-sm bg-yellow-500/50 animate-pulse-fade-in"
+                          style={{ animationDelay: '0.5s' }}
+                        ></div>
+                        <div 
+                          className="absolute top-[45%] left-[8%] h-[20%] w-[15%] rounded-sm bg-red-500/50 animate-pulse-fade-in"
                           style={{ animationDelay: '0s' }}
                         ></div>
-                        <div 
-                          className="absolute top-[50%] left-[60%] h-1/3 w-1/3 rounded-lg bg-yellow-500/50 animate-pulse-fade-in" 
-                          style={{ animationDelay: '1s' }}
-                        ></div>
-                        <div 
-                          className="absolute bottom-[5%] left-[30%] h-1/5 w-2/5 rounded-xl bg-blue-500/50 animate-pulse-fade-in"
-                          style={{ animationDelay: '2s' }}
-                        ></div>
-                        <div 
-                          className="absolute top-[25%] right-[10%] h-1/2 w-1/5 rounded-md bg-red-500/50 animate-pulse-fade-in"
+                          <div 
+                          className="absolute top-[15%] left-[50%] h-[25%] w-[25%] rounded-sm bg-red-500/60 animate-pulse-fade-in"
                           style={{ animationDelay: '1.5s' }}
+                        ></div>
+                        <div 
+                          className="absolute top-[70%] left-[55%] h-[20%] w-[30%] rounded-sm bg-yellow-500/40 animate-pulse-fade-in"
+                          style={{ animationDelay: '1s' }}
                         ></div>
                       </div>
                     ) : study.imageHint === 'drone survey' ? (
@@ -249,7 +252,7 @@ const treeStyles = [
                             {/* Forest */}
                             <div className="absolute inset-0 z-[4]">
                                 {treeStyles.map((style, i) => (
-                                    <svg key={i} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor" className="absolute text-green-300/40 animate-tree-sway" style={{
+                                    <svg key={i} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" className="absolute text-green-300/40 animate-tree-sway" style={{
                                         width: `${style.size}px`,
                                         height: `${style.size}px`,
                                         top: style.top,
@@ -258,7 +261,7 @@ const treeStyles = [
                                         animationDuration: style.duration,
                                         opacity: style.opacity
                                     }}>
-                                      <path d="M16 3l-13 13h6v13h14V16h6z"/>
+                                      <path d="M495.9 416.1L271.9 48.1C268.1 40.1 262.1 32 255.9 32S243.8 40.1 239.1 48.1L16.1 416.1C11.9 424.1 16.1 432 24.1 432H208V480H304V432H487.9C495.9 432 500.1 424.1 495.9 416.1z"/>
                                     </svg>
                                 ))}
                             </div>
