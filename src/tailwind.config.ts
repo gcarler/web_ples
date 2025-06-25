@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 const defaultTheme = require('tailwindcss/defaultTheme'); // Required for default font stack
 
@@ -109,6 +108,19 @@ export default {
           '75%': { transform: 'translate(5%, 25%) scale(1.1)', opacity: 1 },
           '100%': { transform: 'translate(0, 0) scale(1)', opacity: 0.5 },
         },
+        'drone-path': {
+          '0%, 100%': { transform: 'translateX(-10%)' },
+          '50%': { transform: 'translateX(10%)' },
+        },
+        'scan-beam': {
+          '0%, 100%': { transform: 'translateY(-20%)', opacity: '0' },
+          '10%, 90%': { opacity: '1' },
+          '50%': { transform: 'translateY(100%)' },
+        },
+        'tree-sway': {
+          '0%, 100%': { transform: 'rotate(-1deg)' },
+          '50%': { transform: 'rotate(1deg)' },
+        },
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
@@ -118,6 +130,9 @@ export default {
         'expand-in': 'expand-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
         'fade-in-up': 'fade-in-up 0.6s ease-out forwards',
         'move-and-scale': 'move-and-scale 25s ease-in-out infinite',
+        'drone-path': 'drone-path 8s ease-in-out infinite',
+        'scan-beam': 'scan-beam 4s ease-in-out infinite',
+        'tree-sway': 'tree-sway 5s ease-in-out infinite',
   		}
   	}
   },

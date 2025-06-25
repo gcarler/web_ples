@@ -1,4 +1,3 @@
-
 // src/app/ples-crea/page.tsx
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -57,11 +56,30 @@ export default function PlesCreaPage() {
       title: 'Monitoreo de Cobertura Forestal con Teledetección',
       challenge: 'Una ONG requería una herramienta para seguir la deforestación y los esfuerzos de restauración en una reserva clave.',
       solution: 'Implementamos una plataforma con imágenes satelitales actualizadas y análisis de cambio de cobertura, mejorando la gestión de la reserva.',
-      image: 'https://placehold.co/600x400.png',
+      image: '', // No longer used, replaced by animation component
       imageHint: 'drone survey',
       tags: ['Teledetección', 'Conservación', 'Monitoreo Ambiental']
     },
   ];
+  
+  const treeStyles = [
+      { top: '60%', left: '10%', size: 30, delay: '0.2s', duration: '5.2s' },
+      { top: '75%', left: '25%', size: 25, delay: '1.1s', duration: '4.8s' },
+      { top: '50%', left: '30%', size: 35, delay: '0.5s', duration: '5.5s' },
+      { top: '65%', left: '50%', size: 28, delay: '2.0s', duration: '4.5s' },
+      { top: '80%', left: '65%', size: 22, delay: '0.8s', duration: '5.8s' },
+      { top: '55%', left: '80%', size: 32, delay: '1.5s', duration: '5.0s' },
+      { top: '70%', left: '90%', size: 26, delay: '2.2s', duration: '4.7s' },
+      { top: '45%', left: '5%', size: 28, delay: '0.1s', duration: '5.9s' },
+      { top: '58%', left: '70%', size: 33, delay: '1.8s', duration: '5.3s' },
+      { top: '85%', left: '15%', size: 24, delay: '2.5s', duration: '4.6s' },
+      { top: '52%', left: '45%', size: 29, delay: '0.7s', duration: '5.1s' },
+      { top: '78%', left: '5%', size: 27, delay: '1.3s', duration: '4.9s' },
+      { top: '63%', left: '95%', size: 31, delay: '2.8s', duration: '5.4s' },
+      { top: '48%', left: '60%', size: 23, delay: '0.4s', duration: '5.6s' },
+      { top: '90%', left: '40%', size: 26, delay: '3.0s', duration: '4.4s' },
+    ];
+
 
   const technologies = ['SIG (QGIS, ArcGIS Pro, Google Earth Engine)', 'Teledetección (Sentinel, Landsat, Planet)', 'Python (GeoPandas, Rasterio, Scikit-learn)', 'Bases de Datos Espaciales (PostGIS)', 'Plataformas Web GIS (Leaflet, Mapbox GL JS)', 'Inteligencia Artificial Geoespacial', 'Estándares OGC (WMS, WFS, WCS)'];
 
@@ -154,19 +172,49 @@ export default function PlesCreaPage() {
             <div className="grid md:grid-cols-2 gap-8">
             {caseStudies.map((study) => (
                 <Card key={study.title} className="overflow-hidden group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col hover:animate-gradient hover:bg-[length:200%_200%]">
-                <div className="relative h-56 w-full">
-                    <Image src={study.image} alt={study.title} layout="fill" objectFit="cover" data-ai-hint={study.imageHint} />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-center justify-center">
-                        {study.imageHint === 'drone survey' && (
-                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-70 drop-shadow-lg">
-                                <path d="M12 18.5A2.5 2.5 0 0 1 9.5 21a2.5 2.5 0 0 1-2.4-3.5"/><path d="M12 18.5A2.5 2.5 0 0 0 14.5 21a2.5 2.5 0 0 0 2.4-3.5"/>
-                                <path d="M12 3.5A2.5 2.5 0 0 1 14.5 1a2.5 2.5 0 0 1 2.4 3.5"/><path d="M12 3.5A2.5 2.5 0 0 0 9.5 1a2.5 2.5 0 0 0-2.4 3.5"/>
-                                <path d="M12 12v-5"/><path d="M12 12v5"/><path d="M12 12H7"/><path d="M12 12h5"/>
-                                <circle cx="12" cy="12" r="2.5"/>
-                            </svg>
-                        )}
-                    </div>
+                 <div className="relative h-56 w-full">
+                    {study.imageHint === 'drone survey' ? (
+                        <div className="relative h-full w-full overflow-hidden bg-green-900/40 p-4">
+                            {/* Background Forest */}
+                            <div className="absolute inset-0">
+                                {treeStyles.map((style, i) => (
+                                    <svg key={i} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="absolute text-green-300/30 animate-tree-sway" style={{
+                                        width: `${style.size}px`,
+                                        height: `${style.size}px`,
+                                        top: style.top,
+                                        left: style.left,
+                                        animationDelay: style.delay,
+                                        animationDuration: style.duration
+                                    }}>
+                                        <path d="M12,2L5,12h3v10h8V12h3L12,2z" />
+                                    </svg>
+                                ))}
+                            </div>
+
+                            {/* Drone */}
+                            <div className="absolute top-[10%] left-1/2 w-2/3 -translate-x-1/2 animate-drone-path">
+                                {/* Drone SVG Icon */}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="mx-auto opacity-90 drop-shadow-lg">
+                                    <path d="M12 18.5A2.5 2.5 0 0 1 9.5 21a2.5 2.5 0 0 1-2.4-3.5"/><path d="M12 18.5A2.5 2.5 0 0 0 14.5 21a2.5 2.5 0 0 0 2.4-3.5"/>
+                                    <path d="M12 3.5A2.5 2.5 0 0 1 14.5 1a2.5 2.5 0 0 1 2.4 3.5"/><path d="M12 3.5A2.5 2.5 0 0 0 9.5 1a2.5 2.5 0 0 0-2.4 3.5"/>
+                                    <path d="M12 12v-5"/><path d="M12 12v5"/><path d="M12 12H7"/><path d="M12 12h5"/>
+                                    <circle cx="12" cy="12" r="2.5"/>
+                                </svg>
+
+                                {/* Scanning Beam */}
+                                <div className="absolute top-full left-1/2 h-24 w-1/2 -translate-x-1/2 -translate-y-1/2 [transform-origin:top_center] animate-scan-beam" style={{ animationDelay: '0.5s' }}>
+                                    <div className="h-full w-full bg-gradient-to-b from-cyan-300/50 to-transparent" style={{ clipPath: 'polygon(20% 0, 80% 0, 100% 100%, 0% 100%)' }}></div>
+                                </div>
+                            </div>
+                        </div>
+                    ) : (
+                        <>
+                            <Image src={study.image} alt={study.title} layout="fill" objectFit="cover" data-ai-hint={study.imageHint} />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        </>
+                    )}
                 </div>
+
                 <CardHeader>
                     <CardTitle className="text-xl group-hover:text-primary-foreground">{study.title}</CardTitle>
                     <div className="mt-2">
