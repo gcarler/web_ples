@@ -29,7 +29,7 @@ export function PlesGroupLogo({ className, style, hoverVariant }: { className?: 
             transform: scale(1);
           }
           50% {
-            transform: scale(1.35);
+            transform: scale(0.7); /* Animation now scales down */
           }
           100% {
             transform: scale(1);
@@ -75,11 +75,12 @@ export function PlesGroupLogo({ className, style, hoverVariant }: { className?: 
           border-radius: 100%;
           transition: background-color 0.3s ease;
           
-          width: 0.31em;
-          height: 0.31em;
+          width: 0.22em;  /* Made smaller */
+          height: 0.22em; /* Made smaller */
           
-          top: 0.40em;
-          left: 0.22em;
+          top: 0.42em;    /* Repositioned */
+          left: 0.38em;   /* Repositioned */
+          z-index: -1;
 
           transform-origin: center;
           animation: heartbeat 1.5s ease-in-out infinite;
