@@ -90,6 +90,10 @@ export function PlesGroupLogo({ className, style, hoverVariant }: { className?: 
             background-color: hsl(var(--accent));
             transition-delay: 50ms;
         }
+
+        .group[data-hover-variant="black-gradient"]:hover .letra-p-con-punto::before {
+            background-color: hsl(var(--primary));
+        }
         
       `}</style>
     </>
