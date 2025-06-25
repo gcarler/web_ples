@@ -57,7 +57,7 @@ export default function PlesCreaPage() {
       title: 'Monitoreo de Cobertura Forestal con Teledetección',
       challenge: 'Una ONG requería una herramienta para seguir la deforestación y los esfuerzos de restauración en una reserva clave.',
       solution: 'Implementamos una plataforma con imágenes satelitales actualizadas y análisis de cambio de cobertura, mejorando la gestión de la reserva.',
-      image: '', // Replaced by animation
+      image: '', 
       imageHint: 'drone survey',
       tags: ['Teledetección', 'Conservación', 'Monitoreo Ambiental']
     },
@@ -203,7 +203,43 @@ const treeStyles = [
             {caseStudies.map((study) => (
                 <Card key={study.title} className="overflow-hidden group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col hover:animate-gradient hover:bg-[length:200%_200%]">
                  <div className="relative h-56 w-full">
-                    {study.imageHint === 'drone survey' ? (
+                    {study.title === 'Atlas de Riesgo Climático Urbano' ? (
+                      <div className="relative h-full w-full overflow-hidden bg-muted/30 p-4">
+                        {/* Base Map SVG */}
+                        <svg className="absolute inset-0 h-full w-full stroke-current text-muted-foreground/30" strokeWidth="0.5">
+                          {/* Grid lines */}
+                          <line x1="0" y1="20%" x2="100%" y2="20%"></line>
+                          <line x1="0" y1="40%" x2="100%" y2="40%"></line>
+                          <line x1="0" y1="60%" x2="100%" y2="60%"></line>
+                          <line x1="0" y1="80%" x2="100%" y2="80%"></line>
+                          <line x1="20%" y1="0" x2="20%" y2="100%"></line>
+                          <line x1="40%" y1="0" x2="40%" y2="100%"></line>
+                          <line x1="60%" y1="0" x2="60%" y2="100%"></line>
+                          <line x1="80%" y1="0" x2="80%" y2="100%"></line>
+                        </svg>
+                        {/* City Blocks */}
+                        <div className="absolute top-[22%] left-[22%] h-[16%] w-[16%] bg-muted-foreground/20"></div>
+                        <div className="absolute top-[42%] left-[42%] h-[16%] w-[36%] bg-muted-foreground/20"></div>
+                        <div className="absolute top-[62%] left-[2%] h-[16%] w-[36%] bg-muted-foreground/20"></div>
+                        {/* Pulsing Risk Zones */}
+                        <div 
+                          className="absolute top-[10%] left-[15%] h-1/4 w-1/4 rounded-full bg-red-500/50 animate-pulse-fade-in" 
+                          style={{ animationDelay: '0s' }}
+                        ></div>
+                        <div 
+                          className="absolute top-[50%] left-[60%] h-1/3 w-1/3 rounded-lg bg-yellow-500/50 animate-pulse-fade-in" 
+                          style={{ animationDelay: '1s' }}
+                        ></div>
+                        <div 
+                          className="absolute bottom-[5%] left-[30%] h-1/5 w-2/5 rounded-xl bg-blue-500/50 animate-pulse-fade-in"
+                          style={{ animationDelay: '2s' }}
+                        ></div>
+                        <div 
+                          className="absolute top-[25%] right-[10%] h-1/2 w-1/5 rounded-md bg-red-500/50 animate-pulse-fade-in"
+                          style={{ animationDelay: '1.5s' }}
+                        ></div>
+                      </div>
+                    ) : study.imageHint === 'drone survey' ? (
                         <div className="relative h-full w-full overflow-hidden bg-gradient-to-b from-green-800/10 via-green-900/30 to-green-900/50 p-4">
                             {/* Landscape layers */}
                             <div className="absolute bottom-0 left-[-10%] w-[120%] h-[40%] bg-green-900/20 rounded-t-[100%] z-[1]" />
@@ -213,7 +249,7 @@ const treeStyles = [
                             {/* Forest */}
                             <div className="absolute inset-0 z-[4]">
                                 {treeStyles.map((style, i) => (
-                                    <svg key={i} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" className="absolute text-green-300/40 animate-tree-sway" style={{
+                                    <svg key={i} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor" className="absolute text-green-300/40 animate-tree-sway" style={{
                                         width: `${style.size}px`,
                                         height: `${style.size}px`,
                                         top: style.top,
@@ -222,7 +258,7 @@ const treeStyles = [
                                         animationDuration: style.duration,
                                         opacity: style.opacity
                                     }}>
-                                      <path d="m256 32-144 288h80v128h128V320h80L256 32z"/>
+                                      <path d="M16 3l-13 13h6v13h14V16h6z"/>
                                     </svg>
                                 ))}
                             </div>
