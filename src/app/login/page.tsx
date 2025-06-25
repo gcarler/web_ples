@@ -76,13 +76,15 @@ export default function LoginPage() {
         <div className="relative w-full h-full flex flex-col items-center justify-center
                       bg-[radial-gradient(ellipse_at_center,_hsl(var(--accent)),_hsl(var(--primary)),_hsl(var(--ring)))]
                       bg-[length:300%_300%] animate-gradient text-primary-foreground text-center shadow-2xl">
-          <PlesGroupLogo className="text-[18rem] mb-12" />
-          <h1 className="text-4xl font-bold mb-4 leading-tight">
-            Bienvenidos
-          </h1>
-          <p className="text-lg max-w-md opacity-90 leading-relaxed">
-            Accede a un mundo de soluciones innovadoras y gestión inteligente.
-          </p>
+          <PlesGroupLogo className="text-9xl mb-12" />
+          <div className="group">
+            <h1 className="text-4xl font-bold mb-4 leading-tight transition-transform duration-300 ease-in-out group-hover:scale-110">
+              Bienvenidos
+            </h1>
+            <p className="text-lg max-w-md opacity-90 leading-relaxed transition-transform duration-300 ease-in-out group-hover:scale-110">
+              Accede a un mundo de soluciones innovadoras y gestión inteligente.
+            </p>
+          </div>
         </div>
       </div>
 
