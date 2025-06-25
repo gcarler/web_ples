@@ -56,7 +56,7 @@ export default function PlesCreaPage() {
       title: 'Monitoreo de Cobertura Forestal con Teledetección',
       challenge: 'Una ONG requería una herramienta para seguir la deforestación y los esfuerzos de restauración en una reserva clave.',
       solution: 'Implementamos una plataforma con imágenes satelitales actualizadas y análisis de cambio de cobertura, mejorando la gestión de la reserva.',
-      image: '', // No longer used, replaced by animation component
+      image: '', // Replaced by animation
       imageHint: 'drone survey',
       tags: ['Teledetección', 'Conservación', 'Monitoreo Ambiental']
     },
@@ -186,7 +186,7 @@ export default function PlesCreaPage() {
                                         animationDelay: style.delay,
                                         animationDuration: style.duration
                                     }}>
-                                        <path d="M12,2L5,12h3v10h8V12h3L12,2z" />
+                                        <path d="M17 14h-2V7.82C15 7.42 14.54 7 14 7h-4c-.54 0-1 .42-1 .82V14H7c-.55 0-1 .45-1 1s.45 1 1 1h10c.55 0 1-.45 1-1s-.45-1-1-1zM12 2L4 8h3v3h1c0-1.1.9-2 2-2s2 .9 2 2h1V8h3l-8-6z" />
                                     </svg>
                                 ))}
                             </div>
