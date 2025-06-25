@@ -210,7 +210,7 @@ export default function PlesConsultingPage() {
             <p className="text-lg md:text-xl mb-10 max-w-3xl mx-auto opacity-90">
              Si busca un aliado estratégico para navegar la complejidad, innovar con propósito y alcanzar resultados extraordinarios, PLES Consulting es su socio ideal.
             </p>
-            <Button size="xl" variant="secondary" className="text-lg px-10 py-4 shadow-lg hover:scale-105 transition-transform" asChild>
+            <Button size="xl" variant="ghost" className="text-lg px-10 py-4" asChild>
             <Link href="/forms?service=ples-consulting&subject=Solicitud%20Asesoria%20Estrategica">
                 <span className="flex items-center">
                     Contacte con Nuestros Expertos <ArrowRight className="ml-3 h-5 w-5" />
