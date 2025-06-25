@@ -1,3 +1,4 @@
+
 'use client';
 
 import './globals.css';
@@ -13,9 +14,10 @@ export default function RootLayout({
   children,
 }: PropsWithChildren) {
   const pathname = usePathname();
-  // Hide footer on full-screen pages like login, register, etc. for a cleaner UI.
-  const noFooterRoutes = ['/login', '/register', '/forgot-password', '/forms'];
-  const showFooter = !noFooterRoutes.includes(pathname);
+  // Hide header and footer on full-screen pages like login, register, etc. for a cleaner UI.
+  const noLayoutRoutes = ['/login', '/register', '/forgot-password', '/forms'];
+  const showHeader = !noLayoutRoutes.includes(pathname);
+  const showFooter = !noLayoutRoutes.includes(pathname);
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -27,7 +29,7 @@ export default function RootLayout({
             disableTransitionOnChange
         >
           <AuthProvider>
-            <Header />
+            {showHeader && <Header />}
             <main className="flex-grow w-full">{children}</main>
             {showFooter && <Footer />}
             <Toaster />
