@@ -49,7 +49,6 @@ export default function PlesCreaPage() {
       title: 'Atlas de Riesgo Climático Urbano',
       challenge: 'Una municipalidad necesitaba comprender las zonas más vulnerables al cambio climático para priorizar inversiones.',
       solution: 'Desarrollamos un atlas interactivo con mapas de amenaza, exposición y vulnerabilidad, facilitando la planificación urbana resiliente.',
-      image: 'https://placehold.co/600x400.png',
       imageHint: 'city risk map',
       tags: ['Análisis de Riesgo', 'SIG Urbano', 'Adaptación Climática']
     },
@@ -284,7 +283,7 @@ const treeStyles = [
                         </div>
                     ) : (
                         <>
-                            <Image src={study.image} alt={study.title} layout="fill" objectFit="cover" data-ai-hint={study.imageHint} />
+                            {study.image && <Image src={study.image} alt={study.title} layout="fill" objectFit="cover" data-ai-hint={study.imageHint} />}
                             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                         </>
                     )}
