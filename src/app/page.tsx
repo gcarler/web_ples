@@ -70,9 +70,28 @@ export default function Home() {
                 ></div>
                 <div className="absolute inset-0 flex justify-center items-center z-10 p-4">
                   <div
-                    className="bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--ring))] bg-[length:200%_200%] animate-gradient rounded-full w-full h-full shadow-xl flex justify-center items-center"
+                    className="relative bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--ring))] bg-[length:200%_200%] animate-gradient rounded-full w-full h-full shadow-xl overflow-hidden"
                   >
-                    <Cpu className="h-3/5 w-3/5 text-accent" />
+                    {missionIcons.map((Icon, index) => {
+                      const style = iconStyles[index % iconStyles.length]; // Use modulo for safety
+                      return (
+                          <div
+                              key={index}
+                              className="absolute animate-move-and-scale"
+                              style={{
+                                  top: style.top,
+                                  left: style.left,
+                                  animationDuration: style.duration,
+                                  animationDelay: style.delay,
+                              }}
+                          >
+                              <Icon
+                                  className={cn("text-accent", style.size)}
+                                  strokeWidth={1}
+                              />
+                          </div>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
