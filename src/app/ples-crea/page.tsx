@@ -58,7 +58,7 @@ export default function PlesCreaPage() {
       challenge: 'Una ONG requería una herramienta para seguir la deforestación y los esfuerzos de restauración en una reserva clave.',
       solution: 'Implementamos una plataforma con imágenes satelitales actualizadas y análisis de cambio de cobertura, mejorando la gestión de la reserva.',
       image: 'https://placehold.co/600x400.png',
-      imageHint: 'forest monitoring satellite',
+      imageHint: 'drone terrain',
       tags: ['Teledetección', 'Conservación', 'Monitoreo Ambiental']
     },
   ];
