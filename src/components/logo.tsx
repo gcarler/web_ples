@@ -1,4 +1,3 @@
-
 'use client'; // This directive marks the component as a Client Component
 
 import * as React from 'react';
@@ -61,8 +60,8 @@ export function PlesGroupLogo({ className, style }: { className?: string, style?
           width: 0.31em;
           height: 0.31em;
           
-          top: 0.45em;
-          left: 0.21em;
+          top: 0.38em;
+          left: 0.24em;
           transition: background-color 0.2s ease-out;
           transition-delay: 0s; /* Dot changes with the 'p' */
         }
