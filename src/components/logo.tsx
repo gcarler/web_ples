@@ -22,6 +22,18 @@ export function PlesGroupLogo({ className, style }: { className?: string, style?
         <span className="letter" style={{ transitionDelay: '150ms' }}>s</span>
       </div>
       <style jsx>{`
+        @keyframes heartbeat {
+          0% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.15);
+          }
+          100% {
+            transform: scale(1);
+          }
+        }
+
         .logo-container {
           display: inline-flex; 
           align-items: baseline; 
@@ -57,6 +69,9 @@ export function PlesGroupLogo({ className, style }: { className?: string, style?
           
           top: 0.40em;
           left: 0.22em;
+
+          transform-origin: center;
+          animation: heartbeat 1.5s ease-in-out infinite;
         }
         
         .group:hover .letra-p-con-punto::before {
