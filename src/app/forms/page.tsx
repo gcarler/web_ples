@@ -7,17 +7,21 @@ export default function FormsPage() {
   return (
     // Two-column layout similar to login page
     <div className="flex min-h-screen bg-background">
-       {/* Left Column: Animated Gradient Background */}
-      <div className="relative hidden lg:flex lg:w-1/2 flex-col items-center justify-center
+       {/* Left Column: 3D Perspective Container */}
+       <div className="hidden lg:flex lg:w-1/2 items-center justify-center p-12 [perspective:1000px]">
+        <div className="relative w-full h-full flex flex-col items-center justify-center rounded-2xl
                       bg-gradient-to-br from-primary via-accent to-[hsl(var(--ring))]
-                      bg-[length:300%_300%] animate-gradient text-primary-foreground p-12 text-center">
-        <Building2 className="w-24 h-24 mb-8 opacity-80" />
-        <h1 className="text-4xl font-bold mb-4 leading-tight">
-          Conéctate con PLES
-        </h1>
-        <p className="text-lg max-w-md opacity-90">
-          Estamos aquí para ayudarte a transformar tus ideas en realidad. Contáctanos y descubre cómo PLES puede impulsar tu próximo proyecto.
-        </p>
+                      bg-[length:300%_300%] animate-gradient text-primary-foreground p-12 text-center shadow-2xl
+                      transition-transform duration-500 ease-out
+                      [transform-style:preserve-3d] [transform:rotateY(-15deg)_rotateX(5deg)] hover:[transform:rotateY(0)_rotateX(0)]">
+          <Building2 className="w-24 h-24 mb-8 opacity-80" />
+          <h1 className="text-4xl font-bold mb-4 leading-tight">
+            Conéctate con PLES
+          </h1>
+          <p className="text-lg max-w-md opacity-90">
+            Estamos aquí para ayudarte a transformar tus ideas en realidad. Contáctanos y descubre cómo PLES puede impulsar tu próximo proyecto.
+          </p>
+        </div>
       </div>
 
       {/* Right Column: Contact Form */}
