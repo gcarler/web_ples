@@ -62,20 +62,14 @@ const iconStyles = [
 
 export default function Home() {
   const [currentIconIndex, setCurrentIconIndex] = useState(0);
-  const [isFading, setIsFading] = useState(false);
 
   useEffect(() => {
     if (missionIcons.length <= 1) return;
 
-    const changeIcon = () => {
-      setIsFading(true);
-      setTimeout(() => {
-        setCurrentIconIndex((prevIndex) => (prevIndex + 1) % missionIcons.length);
-        setIsFading(false);
-      }, 500); // This should match the fade-out duration
-    };
-
-    const timer = setInterval(changeIcon, 2500); // Change icon every 2.5 seconds
+    const timer = setInterval(() => {
+      setCurrentIconIndex((prevIndex) => (prevIndex + 1) % missionIcons.length);
+    }, 2500); // Change icon every 2.5 seconds
+    
     return () => clearInterval(timer);
   }, []);
 
@@ -97,10 +91,7 @@ export default function Home() {
                   >
                     <CurrentIcon
                       key={currentIconIndex}
-                      className={cn(
-                        "h-3/5 w-3/5 text-accent transition-opacity duration-500",
-                        isFading ? 'opacity-0' : 'opacity-100'
-                      )}
+                      className="h-3/5 w-3/5 text-accent animate-fly-in-word"
                       strokeWidth={1}
                     />
                   </div>
