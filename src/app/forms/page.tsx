@@ -7,13 +7,11 @@ export default function FormsPage() {
   return (
     // Two-column layout similar to login page
     <div className="flex min-h-screen bg-background">
-       {/* Left Column: 3D Perspective Container */}
-       <div className="hidden lg:flex lg:w-1/2 items-center justify-center p-12 [perspective:1000px]">
+       {/* Left Column: Depth Illusion Container */}
+       <div className="hidden lg:flex lg:w-1/2 items-center justify-center p-12">
         <div className="relative w-full h-full flex flex-col items-center justify-center rounded-2xl
-                      bg-gradient-to-br from-primary via-accent to-[hsl(var(--ring))]
-                      bg-[length:300%_300%] animate-gradient text-primary-foreground p-12 text-center shadow-2xl
-                      transition-transform duration-500 ease-out
-                      [transform-style:preserve-3d] [transform:rotateY(-15deg)_rotateX(5deg)] hover:[transform:rotateY(0)_rotateX(0)]">
+                      bg-[radial-gradient(ellipse_at_center,_hsl(var(--accent)),_hsl(var(--primary)))]
+                      bg-[length:300%_300%] animate-gradient text-primary-foreground p-12 text-center shadow-2xl">
           <Building2 className="w-24 h-24 mb-8 opacity-80" />
           <h1 className="text-4xl font-bold mb-4 leading-tight">
             Conéctate con PLES
