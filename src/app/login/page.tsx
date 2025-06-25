@@ -73,13 +73,13 @@ export default function LoginPage() {
     // Two-column layout for the login page
     <div className="flex min-h-screen bg-background">
       {/* Left Column: Depth Illusion Container */}
-      <div className="hidden lg:flex lg:w-1/2 items-center justify-center p-12">
-        <div className="relative w-full h-full flex flex-col items-center justify-center rounded-2xl
+      <div className="hidden lg:flex lg:w-1/2 items-center justify-center">
+        <div className="relative w-full h-full flex flex-col items-center justify-center
                       bg-[radial-gradient(ellipse_at_center,_hsl(var(--accent)),_hsl(var(--primary)),_hsl(var(--ring)))]
                       bg-[length:300%_300%] animate-gradient text-primary-foreground text-center shadow-2xl">
           <PlesGroupLogo className="text-9xl mb-8 opacity-80" />
           <h1 className="text-4xl font-bold mb-4 leading-tight">
-            Bienvenido a PLES
+            Bienvenidos
           </h1>
           <p className="text-lg max-w-md opacity-90">
             Accede a un mundo de soluciones innovadoras y gestión inteligente. Tu experiencia PLES comienza aquí.
