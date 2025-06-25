@@ -1,18 +1,18 @@
 
 import { UserForm } from '@/components/forms/user-form';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Building2 } from 'lucide-react'; // Example icon
+import { PlesGroupLogo } from '@/components/logo'; // Example icon
 
 export default function FormsPage() {
   return (
     // Two-column layout similar to login page
     <div className="flex min-h-screen bg-background">
        {/* Left Column: Depth Illusion Container */}
-       <div className="hidden lg:flex lg:w-1/2 items-center justify-center">
+       <div className="hidden lg:flex lg:w-1/2 items-center justify-center p-12">
         <div className="relative w-full h-full flex flex-col items-center justify-center rounded-2xl
-                      bg-[radial-gradient(ellipse_at_center,_hsl(var(--accent)),_hsl(var(--primary)))]
-                      bg-[length:300%_300%] animate-gradient text-primary-foreground p-12 text-center shadow-2xl">
-          <Building2 className="w-24 h-24 mb-8 opacity-80" />
+                      bg-[radial-gradient(ellipse_at_center,_hsl(var(--accent)),_hsl(var(--primary)),_hsl(var(--ring)))]
+                      bg-[length:300%_300%] animate-gradient text-primary-foreground text-center shadow-2xl">
+          <PlesGroupLogo className="text-9xl mb-8 opacity-80" />
           <h1 className="text-4xl font-bold mb-4 leading-tight">
             Conéctate con PLES
           </h1>

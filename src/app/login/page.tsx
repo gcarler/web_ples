@@ -10,8 +10,9 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
-import { LogIn, User, Lock, Briefcase } from 'lucide-react'; // Import icons, added Briefcase as example
+import { LogIn, User, Lock } from 'lucide-react'; // Import icons, removed Briefcase
 import Link from 'next/link'; // Import Link
+import { PlesGroupLogo } from '@/components/logo';
 
 export default function LoginPage() {
   const [email, setEmail] = useState(''); // Use email for username field
@@ -72,11 +73,11 @@ export default function LoginPage() {
     // Two-column layout for the login page
     <div className="flex min-h-screen bg-background">
       {/* Left Column: Depth Illusion Container */}
-      <div className="hidden lg:flex lg:w-1/2 items-center justify-center">
+      <div className="hidden lg:flex lg:w-1/2 items-center justify-center p-12">
         <div className="relative w-full h-full flex flex-col items-center justify-center rounded-2xl
-                      bg-[radial-gradient(ellipse_at_center,_hsl(var(--accent)),_hsl(var(--primary)))]
-                      bg-[length:300%_300%] animate-gradient text-primary-foreground p-12 text-center shadow-2xl">
-          <Briefcase className="w-24 h-24 mb-8 opacity-80" />
+                      bg-[radial-gradient(ellipse_at_center,_hsl(var(--accent)),_hsl(var(--primary)),_hsl(var(--ring)))]
+                      bg-[length:300%_300%] animate-gradient text-primary-foreground text-center shadow-2xl">
+          <PlesGroupLogo className="text-9xl mb-8 opacity-80" />
           <h1 className="text-4xl font-bold mb-4 leading-tight">
             Bienvenido a PLES
           </h1>
