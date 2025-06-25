@@ -16,14 +16,8 @@ export default function FormsPage() {
           <h1 className="text-4xl font-bold mb-4 leading-tight">
             Conéctate con PLES
           </h1>
-          <p className="text-lg max-w-md opacity-90 leading-relaxed text-left px-4">
-            <span className="text-3xl font-bold text-accent">Accede</span>
-            <span className="text-xl"> a un mundo de </span>
-            <span className="text-4xl font-extrabold text-primary-foreground">soluciones</span>
-            <span className="text-3xl font-bold text-accent"> innovadoras</span>
-            <span className="text-xl"> y </span>
-            <span className="text-4xl font-extrabold text-primary-foreground">gestión</span>
-            <span className="text-3xl font-bold text-accent"> inteligente.</span>
+          <p className="text-lg max-w-md opacity-90 leading-relaxed">
+            Accede a un mundo de soluciones innovadoras y gestión inteligente.
           </p>
         </div>
       </div>
