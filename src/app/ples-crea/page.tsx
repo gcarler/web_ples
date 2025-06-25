@@ -64,37 +64,51 @@ export default function PlesCreaPage() {
   ];
   
 const treeStyles = [
-    { top: '60%', left: '10%', size: 30, delay: '0.2s', duration: '5.2s' },
-    { top: '75%', left: '25%', size: 25, delay: '1.1s', duration: '4.8s' },
-    { top: '50%', left: '30%', size: 35, delay: '0.5s', duration: '5.5s' },
-    { top: '65%', left: '50%', size: 28, delay: '2.0s', duration: '4.5s' },
-    { top: '80%', left: '65%', size: 22, delay: '0.8s', duration: '5.8s' },
-    { top: '55%', left: '80%', size: 32, delay: '1.5s', duration: '5.0s' },
-    { top: '70%', left: '90%', size: 26, delay: '2.2s', duration: '4.7s' },
-    { top: '45%', left: '5%', size: 28, delay: '0.1s', duration: '5.9s' },
-    { top: '58%', left: '70%', size: 33, delay: '1.8s', duration: '5.3s' },
-    { top: '85%', left: '15%', size: 24, delay: '2.5s', duration: '4.6s' },
-    { top: '52%', left: '45%', size: 29, delay: '0.7s', duration: '5.1s' },
-    { top: '78%', left: '5%', size: 27, delay: '1.3s', duration: '4.9s' },
-    { top: '63%', left: '95%', size: 31, delay: '2.8s', duration: '5.4s' },
-    { top: '48%', left: '60%', size: 23, delay: '0.4s', duration: '5.6s' },
-    { top: '90%', left: '40%', size: 26, delay: '3.0s', duration: '4.4s' },
-    { top: '88%', left: '85%', size: 29, delay: '3.5s', duration: '5.7s' },
-    { top: '47%', left: '92%', size: 24, delay: '4.0s', duration: '4.3s' },
-    { top: '72%', left: '2%', size: 31, delay: '3.8s', duration: '5.9s' },
-    { top: '66%', left: '38%', size: 27, delay: '4.2s', duration: '4.6s' },
-    { top: '95%', left: '75%', size: 25, delay: '3.2s', duration: '5.5s' },
-    { top: '53%', left: '18%', size: 34, delay: '4.5s', duration: '5.1s' },
-    { top: '82%', left: '55%', size: 23, delay: '3.1s', duration: '4.8s' },
-    { top: '69%', left: '78%', size: 30, delay: '4.8s', duration: '5.3s' },
-    { top: '92%', left: '8%', size: 26, delay: '3.6s', duration: '4.9s' },
-    { top: '61%', left: '65%', size: 32, delay: '4.1s', duration: '5.6s' },
-    { top: '77%', left: '48%', size: 22, delay: '3.3s', duration: '4.4s' },
-    { top: '50%', left: '88%', size: 28, delay: '4.7s', duration: '5.0s' },
-    { top: '85%', left: '30%', size: 33, delay: '3.9s', duration: '5.2s' },
-    { top: '59%', left: '22%', size: 24, delay: '4.4s', duration: '4.7s' },
-    { top: '93%', left: '60%', size: 29, delay: '3.7s', duration: '5.8s' },
-  ];
+    // Far back trees (smaller, lower opacity)
+  { top: '45%', left: '10%', size: 15, delay: '1s', duration: '5.2s', opacity: 0.4 },
+  { top: '42%', left: '30%', size: 18, delay: '2s', duration: '4.8s', opacity: 0.45 },
+  { top: '48%', left: '50%', size: 16, delay: '0.5s', duration: '5.5s', opacity: 0.4 },
+  { top: '44%', left: '70%', size: 17, delay: '1.5s', duration: '5.0s', opacity: 0.45 },
+  { top: '46%', left: '90%', size: 15, delay: '2.5s', duration: '4.6s', opacity: 0.4 },
+  { top: '43%', left: '80%', size: 16, delay: '3s', duration: '5.1s', opacity: 0.4 },
+  { top: '47%', left: '20%', size: 17, delay: '3.5s', duration: '4.9s', opacity: 0.45 },
+  
+  // Mid-ground trees (medium size, medium opacity)
+  { top: '55%', left: '5%', size: 22, delay: '0.2s', duration: '5.9s', opacity: 0.6 },
+  { top: '58%', left: '20%', size: 25, delay: '1.2s', duration: '5.3s', opacity: 0.65 },
+  { top: '52%', left: '40%', size: 24, delay: '2.2s', duration: '4.7s', opacity: 0.6 },
+  { top: '59%', left: '60%', size: 26, delay: '0.8s', duration: '5.8s', opacity: 0.65 },
+  { top: '54%', left: '80%', size: 23, delay: '1.8s', duration: '5.1s', opacity: 0.6 },
+  { top: '57%', left: '95%', size: 22, delay: '2.8s', duration: '5.4s', opacity: 0.6 },
+  { top: '62%', left: '15%', size: 24, delay: '0.4s', duration: '5.6s', opacity: 0.6 },
+  { top: '60%', left: '35%', size: 27, delay: '1.4s', duration: '4.9s', opacity: 0.65 },
+  { top: '63%', left: '55%', size: 25, delay: '2.4s', duration: '5.7s', opacity: 0.6 },
+  { top: '61%', left: '75%', size: 26, delay: '0.9s', duration: '5.2s', opacity: 0.65 },
+  { top: '65%', left: '88%', size: 24, delay: '1.9s', duration: '4.8s', opacity: 0.6 },
+  { top: '64%', left: '25%', size: 25, delay: '3.1s', duration: '5.0s', opacity: 0.65 },
+  { top: '66%', left: '45%', size: 23, delay: '3.6s', duration: '4.5s', opacity: 0.6 },
+  { top: '68%', left: '65%', size: 24, delay: '4s', duration: '5.3s', opacity: 0.6 },
+
+  // Fore-ground trees (larger, higher opacity)
+  { top: '70%', left: '10%', size: 32, delay: '0.1s', duration: '5.5s', opacity: 0.8 },
+  { top: '75%', left: '28%', size: 35, delay: '1.1s', duration: '4.6s', opacity: 0.85 },
+  { top: '72%', left: '48%', size: 33, delay: '2.1s', duration: '5.9s', opacity: 0.8 },
+  { top: '78%', left: '68%', size: 36, delay: '0.6s', duration: '5.0s', opacity: 0.85 },
+  { top: '73%', left: '85%', size: 31, delay: '1.6s', duration: '5.3s', opacity: 0.8 },
+  { top: '80%', left: '2%', size: 34, delay: '2.6s', duration: '4.5s', opacity: 0.8 },
+  { top: '85%', left: '20%', size: 38, delay: '0.3s', duration: '5.8s', opacity: 0.9 },
+  { top: '82%', left: '40%', size: 35, delay: '1.3s', duration: '5.1s', opacity: 0.85 },
+  { top: '88%', left: '60%', size: 39, delay: '2.3s', duration: '4.9s', opacity: 0.9 },
+  { top: '84%', left: '80%', size: 36, delay: '0.7s', duration: '5.6s', opacity: 0.85 },
+  { top: '90%', left: '95%', size: 34, delay: '1.7s', duration: '5.2s', opacity: 0.8 },
+  { top: '92%', left: '12%', size: 37, delay: '2.7s', duration: '4.7s', opacity: 0.85 },
+  { top: '95%', left: '35%', size: 40, delay: '0.9s', duration: '5.4s', opacity: 0.9 },
+  { top: '93%', left: '75%', size: 38, delay: '1.9s', duration: '5.0s', opacity: 0.9 },
+  { top: '87%', left: '50%', size: 37, delay: '3.2s', duration: '5.5s', opacity: 0.9 },
+  { top: '94%', left: '5%', size: 36, delay: '3.7s', duration: '4.8s', opacity: 0.85 },
+  { top: '96%', left: '55%', size: 39, delay: '4.1s', duration: '5.2s', opacity: 0.9 },
+  { top: '91%', left: '88%', size: 35, delay: '4.3s', duration: '4.6s', opacity: 0.8 },
+];
 
 
   const technologies = ['SIG (QGIS, ArcGIS Pro, Google Earth Engine)', 'Teledetección (Sentinel, Landsat, Planet)', 'Python (GeoPandas, Rasterio, Scikit-learn)', 'Bases de Datos Espaciales (PostGIS)', 'Plataformas Web GIS (Leaflet, Mapbox GL JS)', 'Inteligencia Artificial Geoespacial', 'Estándares OGC (WMS, WFS, WCS)'];
@@ -190,25 +204,31 @@ const treeStyles = [
                 <Card key={study.title} className="overflow-hidden group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col hover:animate-gradient hover:bg-[length:200%_200%]">
                  <div className="relative h-56 w-full">
                     {study.imageHint === 'drone survey' ? (
-                        <div className="relative h-full w-full overflow-hidden bg-green-900/40 p-4">
-                            {/* Background Forest */}
-                            <div className="absolute inset-0">
+                        <div className="relative h-full w-full overflow-hidden bg-gradient-to-b from-green-800/10 via-green-900/30 to-green-900/50 p-4">
+                            {/* Landscape layers */}
+                            <div className="absolute bottom-0 left-[-10%] w-[120%] h-[40%] bg-green-900/20 rounded-t-[100%] z-[1]" />
+                            <div className="absolute bottom-0 left-[5%] w-[90%] h-[30%] bg-green-900/30 rounded-t-[100%] z-[2]" />
+                            <div className="absolute bottom-0 left-[-5%] w-[110%] h-[20%] bg-green-900/40 rounded-t-[100%] z-[3]" />
+
+                            {/* Forest */}
+                            <div className="absolute inset-0 z-[4]">
                                 {treeStyles.map((style, i) => (
-                                    <svg key={i} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" className="absolute text-green-300/30 animate-tree-sway" style={{
+                                    <svg key={i} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" className="absolute text-green-300/40 animate-tree-sway" style={{
                                         width: `${style.size}px`,
                                         height: `${style.size}px`,
                                         top: style.top,
                                         left: style.left,
                                         animationDelay: style.delay,
-                                        animationDuration: style.duration
+                                        animationDuration: style.duration,
+                                        opacity: style.opacity
                                     }}>
-                                      <path d="M464 480H48c-8.84-1.2-16-7.16-16-16s7.16-14.8 16-16h416c8.84 1.2 16 7.16 16 16s-7.16 14.8-16 16zM256 16L112 320h96v128h96V320h96L256 16z"/>
+                                      <path d="m256 32-144 288h80v128h128V320h80L256 32z"/>
                                     </svg>
                                 ))}
                             </div>
 
                             {/* Drone */}
-                            <div className="absolute top-[10%] left-1/2 -translate-x-1/2 animate-drone-path" style={{ animationDuration: '12s' }}>
+                            <div className="absolute top-[10%] left-0 w-full animate-drone-path z-[5]" style={{ animationDuration: '12s' }}>
                                 {/* Drone SVG Icon */}
                                 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="mx-auto opacity-90 drop-shadow-lg">
                                     <path d="M12 18.5A2.5 2.5 0 0 1 9.5 21a2.5 2.5 0 0 1-2.4-3.5"/><path d="M12 18.5A2.5 2.5 0 0 0 14.5 21a2.5 2.5 0 0 0 2.4-3.5"/>
