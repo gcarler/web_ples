@@ -26,7 +26,11 @@ export function PlesGroupLogo({ className, style }: { className?: string, style?
           align-items: baseline; /* Good for text alignment */
           line-height: 1; /* Adjust line height to fit content snugly */
           color: currentColor; /* Text color will be inherited or set by className */
-          /* font-size is determined by the className prop (e.g., text-xl) */
+          transition: color 0.3s ease-in-out;
+        }
+
+        .logo-container:hover {
+            color: hsl(var(--primary)); /* Change text color to primary on hover */
         }
 
         .letra-p-con-punto {
@@ -48,6 +52,12 @@ export function PlesGroupLogo({ className, style }: { className?: string, style?
           /* Positioning to center the dot within the 'p' */
           top: 0.45em;   /* Adjust based on Comfortaa font's 'p' shape */
           left: 0.21em;  /* Adjust based on Comfortaa font's 'p' shape */
+          transition: background-color 0.3s ease-in-out; /* Add transition for smooth color change */
+        }
+
+        /* Hover effect */
+        .logo-container:hover .letra-p-con-punto::before {
+          background-color: hsl(var(--accent)); /* Change dot to accent color on hover */
         }
       `}</style>
     </>
