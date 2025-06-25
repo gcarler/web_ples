@@ -27,7 +27,7 @@ export function PlesGroupLogo({ className, style }: { className?: string, style?
             transform: scale(1);
           }
           50% {
-            transform: scale(1.15);
+            transform: scale(1.35);
           }
           100% {
             transform: scale(1);
