@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { cn } from '@/lib/utils';
 
-export function PlesGroupLogo({ className, style }: { className?: string, style?: React.CSSProperties }) {
+export function PlesGroupLogo({ className, style, hoverVariant }: { className?: string, style?: React.CSSProperties, hoverVariant?: string }) {
   
   return (
     <>
@@ -13,6 +13,7 @@ export function PlesGroupLogo({ className, style }: { className?: string, style?
           className 
         )}
         style={style}
+        data-hover-variant={hoverVariant}
         aria-label="PLES Logo"
         role="img"
       >
@@ -51,6 +52,16 @@ export function PlesGroupLogo({ className, style }: { className?: string, style?
             transform: scale(1.2);
         }
 
+        .group[data-hover-variant="black-gradient"]:hover .letter {
+            background: linear-gradient(hsl(0 0% 5%), hsl(0 0% 45%));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-fill-color: transparent;
+            color: transparent;
+            transform: scale(1.2);
+        }
+
         .letra-p-con-punto {
           position: relative;
           display: inline-block; 
@@ -77,6 +88,10 @@ export function PlesGroupLogo({ className, style }: { className?: string, style?
         .group:hover .letra-p-con-punto::before {
             background-color: hsl(var(--accent));
             transition-delay: 50ms;
+        }
+        
+        .group[data-hover-variant="black-gradient"]:hover .letra-p-con-punto::before {
+            background-color: hsl(var(--foreground));
         }
       `}</style>
     </>
