@@ -75,7 +75,7 @@ export default function Home() {
 
     const timer = setInterval(() => {
       setCurrentIconIndex((prevIndex) => (prevIndex + 1) % missionIcons.length);
-    }, 2500); // Change icon every 2.5 seconds
+    }, 7000); // Change icon every 7 seconds
     
     return () => clearInterval(timer);
   }, []);
