@@ -92,9 +92,9 @@ export default function PropositoPage() {
 
       {/* Full-width section for image and text */}
       <section className="animate-fade-in-up" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
-        <div className="grid md:grid-cols-2 items-center"> {/* No gap, image meets text container */}
+        <div className="grid md:grid-cols-2 items-stretch">
           {/* Columna de la Imagen (takes full available width on its side) */}
-          <div className="relative h-[500px] md:h-[600px] lg:h-[700px] group"> {/* Increased height for more impact */}
+          <div className="relative w-full group min-h-[400px] md:min-h-full">
             <Image
               src="https://placehold.co/800x1000.png"
               alt="Visualización del propósito de PLES"
@@ -108,7 +108,7 @@ export default function PropositoPage() {
           </div>
 
           {/* Columna del Texto (content inside is padded to align with other centered content) */}
-          <div className="text-left py-12 px-6 md:px-12 lg:px-16"> {/* Generous padding for text */}
+          <div className="text-left py-12 px-6 md:px-12 lg:px-16 flex items-center">
             <p className="text-lg md:text-xl text-foreground leading-relaxed">
               Impulsados por la <span className="text-3xl md:text-4xl font-bold text-primary">convicción</span> en el <span className="text-xl md:text-2xl font-medium text-accent">poder transformador</span> de la <span className="text-3xl md:text-4xl font-bold text-[hsl(var(--ring))]">experiencia inteligente</span>, forjamos <span className="text-2xl md:text-3xl font-semibold text-primary">puentes sólidos</span> entre los ámbitos <span className="text-xl md:text-2xl font-medium text-accent">público</span> y <span className="text-xl md:text-2xl font-medium text-[hsl(var(--ring))]">privado</span>, así como con las <span className="text-2xl md:text-3xl font-semibold text-primary">comunidades que servimos</span>. Aprovechamos la <span className="text-xl md:text-2xl font-medium text-accent">sabiduría colectiva</span> para abordar los <span className="text-3xl md:text-4xl font-bold text-primary">desafíos globales</span> con una <span className="text-xl md:text-2xl font-medium text-[hsl(var(--ring))]">estrategia refinada</span> y una <span className="text-2xl md:text-3xl font-semibold text-accent">visión de sostenibilidad</span> a largo plazo.
             </p>

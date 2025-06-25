@@ -89,8 +89,8 @@ export default function InnovacionEstrategiasPage() {
       </div>
 
       <section className="animate-fade-in-up" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
-        <div className="grid md:grid-cols-2 items-center">
-          <div className="relative h-[500px] md:h-[600px] lg:h-[700px] group">
+        <div className="grid md:grid-cols-2 items-stretch">
+          <div className="relative w-full group min-h-[400px] md:min-h-full">
             <Image
               src="https://placehold.co/800x1000.png"
               alt="Innovación y Estrategia en PLES"
@@ -101,7 +101,7 @@ export default function InnovacionEstrategiasPage() {
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/10 to-transparent opacity-30 group-hover:opacity-60 transition-opacity duration-500"></div>
           </div>
-          <div className="text-left py-12 px-6 md:px-12 lg:px-16">
+          <div className="text-left py-12 px-6 md:px-12 lg:px-16 flex items-center">
             <p className="text-lg md:text-xl text-foreground leading-relaxed">
               En PLES, creemos que la verdadera transformación surge de la sinergia entre la <span className="text-3xl md:text-4xl font-bold text-primary">innovación audaz</span> y las <span className="text-3xl md:text-4xl font-bold text-accent">estrategias con visión de futuro</span>. No nos conformamos con soluciones convencionales; <span className="text-xl md:text-2xl font-medium text-[hsl(var(--ring))]">investigamos, cocreamos y aplicamos</span> enfoques disruptivos que abordan los desafíos de raíz. Nuestro compromiso es desarrollar <span className="text-primary font-semibold">soluciones a medida</span> que no solo resuelven problemas inmediatos, sino que también <span className="text-accent font-semibold">empoderan a su organización</span> para un crecimiento sostenible y la construcción de un <span className="text-[hsl(var(--ring))] font-semibold">legado perdurable</span>.
             </p>

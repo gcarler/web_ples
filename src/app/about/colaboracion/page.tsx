@@ -87,8 +87,8 @@ export default function ColaboracionPage() {
 
       {/* Full-width section for image and text */}
       <section className="animate-fade-in-up" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
-        <div className="grid md:grid-cols-2 items-center">
-          <div className="relative h-[500px] md:h-[600px] lg:h-[700px] group">
+        <div className="grid md:grid-cols-2 items-stretch">
+          <div className="relative w-full group min-h-[400px] md:min-h-full">
             <Image
               src="https://placehold.co/800x1000.png"
               alt="Equipo global colaborando en PLES"
@@ -99,7 +99,7 @@ export default function ColaboracionPage() {
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/10 to-transparent opacity-30 group-hover:opacity-60 transition-opacity duration-500"></div>
           </div>
-          <div className="text-left py-12 px-6 md:px-12 lg:px-16">
+          <div className="text-left py-12 px-6 md:px-12 lg:px-16 flex items-center">
             <p className="text-lg md:text-xl text-foreground leading-relaxed">
               Nuestra <span className="text-3xl md:text-4xl font-bold text-primary">dinámica de colaboración</span> trasciende <span className="text-2xl md:text-3xl font-semibold text-accent">fronteras y culturas</span>, enriqueciendo cada <span className="text-xl md:text-2xl font-medium text-[hsl(var(--ring))]">plan</span>, <span className="text-xl md:text-2xl font-medium text-primary">política</span>, <span className="text-xl md:text-2xl font-medium text-accent">estrategia</span> y <span className="text-xl md:text-2xl font-medium text-[hsl(var(--ring))]">proyecto</span> con una paleta de <span className="text-3xl md:text-4xl font-bold text-primary">visiones</span>, <span className="text-3xl md:text-4xl font-bold text-accent">disciplinas</span> y <span className="text-3xl md:text-4xl font-bold text-primary">enfoques</span> que amplían los <span className="text-2xl md:text-3xl font-semibold text-accent">horizontes de la solución</span>.
             </p>

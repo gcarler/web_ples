@@ -95,9 +95,9 @@ export default function VisionPage() {
 
       {/* Full-width section for image and text */}
       <section className="animate-fade-in-up" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
-        <div className="grid md:grid-cols-2 items-center"> {/* No gap, image meets text container */}
+        <div className="grid md:grid-cols-2 items-stretch">
           {/* Columna de la Imagen (takes full available width on its side) */}
-          <div className="relative h-[500px] md:h-[600px] lg:h-[700px] group"> {/* Increased height for more impact */}
+          <div className="relative w-full group min-h-[400px] md:min-h-full">
             <Image
               src="https://placehold.co/800x1000.png"
               alt="Visualización de la visión de PLES"
@@ -111,7 +111,7 @@ export default function VisionPage() {
           </div>
 
           {/* Columna del Texto (content inside is padded to align with other centered content) */}
-          <div className="text-left py-12 px-6 md:px-12 lg:px-16"> {/* Generous padding for text */}
+          <div className="text-left py-12 px-6 md:px-12 lg:px-16 flex items-center">
             <p className="text-lg md:text-xl text-foreground leading-relaxed">
               Anhelamos <span className="text-3xl md:text-4xl font-bold text-primary">inspirar un porvenir</span> donde la <span className="text-2xl md:text-3xl font-semibold text-accent">sostenibilidad</span> y la <span className="text-2xl md:text-3xl font-semibold text-[hsl(var(--ring))]">equidad</span> sean pilares, catalizadas por la <span className="text-3xl md:text-4xl font-bold text-primary">innovación</span> en la respuesta a <span className="text-xl md:text-2xl font-medium text-accent">desafíos críticos</span> como el <span className="text-xl md:text-2xl font-medium text-[hsl(var(--ring))]">cambio climático</span> y la <span className="text-xl md:text-2xl font-medium text-primary">gestión responsable de los recursos</span>. Nos concebimos como <span className="text-2xl md:text-3xl font-semibold text-accent">referentes</span> en la creación de un <span className="text-xl md:text-2xl font-medium text-primary">impacto positivo y perdurable</span>, transformando <span className="text-xl md:text-2xl font-medium text-[hsl(var(--ring))]">comunidades</span> hacia un <span className="text-3xl md:text-4xl font-bold text-accent">mundo más resiliente y justo</span> para las <span className="text-2xl md:text-3xl font-semibold text-primary">generaciones venideras</span>.
             </p>

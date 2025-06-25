@@ -87,9 +87,9 @@ export default function MisionPage() {
 
       {/* Full-width section for image and text */}
       <section className="animate-fade-in-up" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
-        <div className="grid md:grid-cols-2 items-center"> {/* No gap, image meets text container */}
+        <div className="grid md:grid-cols-2 items-stretch">
           {/* Columna de la Imagen (takes full available width on its side) */}
-          <div className="relative h-[500px] md:h-[600px] lg:h-[700px] group"> {/* Increased height for more impact */}
+          <div className="relative w-full group min-h-[400px] md:min-h-full">
             <Image
               src="https://placehold.co/800x1000.png"
               alt="Visualización de la misión de PLES"
@@ -103,7 +103,7 @@ export default function MisionPage() {
           </div>
 
           {/* Columna del Texto (content inside is padded to align with other centered content) */}
-          <div className="text-left py-12 px-6 md:px-12 lg:px-16"> {/* Generous padding for text */}
+          <div className="text-left py-12 px-6 md:px-12 lg:px-16 flex items-center">
             <p className="text-lg md:text-xl text-foreground leading-relaxed">
               Consolidar <span className="text-3xl md:text-4xl font-bold text-primary">lazos estratégicos</span> entre <span className="text-2xl md:text-3xl font-semibold text-accent">sectores</span> y <span className="text-2xl md:text-3xl font-semibold text-[hsl(var(--ring))]">comunidades</span>, aplicando nuestra <span className="text-3xl md:text-4xl font-bold text-primary">experiencia con discernimiento</span> para afrontar los <span className="text-2xl md:text-3xl font-semibold text-accent">retos globales</span> de manera <span className="text-3xl md:text-4xl font-bold text-primary">sostenible</span> y con <span className="text-3xl md:text-4xl font-bold text-accent">visión de futuro</span>.
             </p>

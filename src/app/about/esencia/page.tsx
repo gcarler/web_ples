@@ -98,9 +98,9 @@ export default function EsenciaPage() {
 
       {/* Full-width section for image and text */}
       <section className="animate-fade-in-up" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
-        <div className="grid md:grid-cols-2 items-center"> {/* No gap, image meets text container */}
+        <div className="grid md:grid-cols-2 items-stretch">
           {/* Columna de la Imagen (takes full available width on its side) */}
-          <div className="relative h-[500px] md:h-[600px] lg:h-[700px] group"> {/* Increased height for more impact */}
+          <div className="relative w-full group min-h-[400px] md:min-h-full">
             <Image
               src="https://placehold.co/800x1000.png"
               alt="Visualización de la esencia de PLES"
@@ -114,7 +114,7 @@ export default function EsenciaPage() {
           </div>
 
           {/* Columna del Texto (content inside is padded to align with other centered content) */}
-          <div className="text-left py-12 px-6 md:px-12 lg:px-16"> {/* Generous padding for text */}
+          <div className="text-left py-12 px-6 md:px-12 lg:px-16 flex items-center">
             <p className="text-lg md:text-xl text-foreground leading-relaxed">
               Con una <span className="text-3xl md:text-4xl font-bold text-primary">visión global</span> y un <span className="text-3xl md:text-4xl font-bold text-accent">enfoque multidisciplinario</span>, nuestro equipo converge <span className="text-xl md:text-2xl font-medium text-[hsl(var(--ring))]">talentos</span> y <span className="text-xl md:text-2xl font-medium text-primary">conocimientos diversos</span> para la consecución de <span className="text-2xl md:text-3xl font-semibold text-accent">objetivos trascendentes</span>. En <span className="text-3xl md:text-4xl font-extrabold text-primary">PLES</span>, valoramos la <span className="text-xl md:text-2xl font-medium text-[hsl(var(--ring))]">riqueza de cada perspectiva</span>, cultivando un espacio donde las <span className="text-2xl md:text-3xl font-semibold text-primary">ideas disruptivas</span> e <span className="text-2xl md:text-3xl font-semibold text-accent">innovadoras</span> florecen, permitiendo <span className="text-xl md:text-2xl font-medium text-[hsl(var(--ring))]">intervenciones estratégicas</span> y <span className="text-xl md:text-2xl font-medium text-primary">perspicaces</span> en cualquier escenario.
             </p>
