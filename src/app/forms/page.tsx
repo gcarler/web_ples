@@ -23,8 +23,8 @@ export default function FormsPage() {
             {words.map((word, index) => (
               <span
                 key={index}
-                className="inline-block animate-fly-in-word"
-                style={{ animationDelay: `${index * 0.1}s`, animationFillMode: 'forwards', opacity: 0 }}
+                className="inline-block animate-fly-in-word opacity-0"
+                style={{ animationDelay: `${index * 0.1}s`, animationFillMode: 'forwards' }}
               >
                 {word}&nbsp;
               </span>
