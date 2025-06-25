@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 const defaultTheme = require('tailwindcss/defaultTheme'); // Required for default font stack
 
@@ -88,10 +89,11 @@ export default {
   				}
   			},
         'gradient-shift': {
-          '0%, 100%': { 'background-position': 'left' },
-          '25%': { 'background-position': 'top' },
-          '50%': { 'background-position': 'right' },
-          '75%': { 'background-position': 'bottom' },
+          '0%, 100%': { backgroundPosition: '0% 50%' },
+          '20%': { backgroundPosition: '80% 0%' },
+          '40%': { backgroundPosition: '20% 100%' },
+          '60%': { backgroundPosition: '100% 80%' },
+          '80%': { backgroundPosition: '10% 20%' },
         },
         'expand-in': {
           'from': { transform: 'scale(0)', opacity: '0' },

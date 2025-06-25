@@ -1,3 +1,4 @@
+
 import { UserForm } from '@/components/forms/user-form';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Building2 } from 'lucide-react'; // Example icon
@@ -8,8 +9,8 @@ export default function FormsPage() {
     <div className="flex min-h-screen bg-background">
        {/* Left Column: Animated Gradient Background */}
       <div className="relative hidden lg:flex lg:w-1/2 flex-col items-center justify-center
-                      bg-gradient-to-br from-primary to-accent
-                      bg-[length:200%_200%] animate-gradient text-primary-foreground p-12 text-center">
+                      bg-gradient-to-br from-primary via-accent to-[hsl(var(--ring))]
+                      bg-[length:300%_300%] animate-gradient text-primary-foreground p-12 text-center">
         <Building2 className="w-24 h-24 mb-8 opacity-80" />
         <h1 className="text-4xl font-bold mb-4 leading-tight">
           Conéctate con PLES
