@@ -72,7 +72,7 @@ export default function LoginPage() {
     // Two-column layout for the login page
     <div className="flex min-h-screen bg-background">
       {/* Left Column: Depth Illusion Container */}
-      <div className="hidden lg:flex lg:w-1/2 items-center justify-center p-12">
+      <div className="hidden lg:flex lg:w-1/2 items-center justify-center">
         <div className="relative w-full h-full flex flex-col items-center justify-center rounded-2xl
                       bg-[radial-gradient(ellipse_at_center,_hsl(var(--accent)),_hsl(var(--primary)))]
                       bg-[length:300%_300%] animate-gradient text-primary-foreground p-12 text-center shadow-2xl">
