@@ -228,7 +228,7 @@ const treeStyles = [
                             </div>
 
                             {/* Drone */}
-                            <div className="absolute top-[10%] left-0 w-full animate-drone-path z-[5]" style={{ animationDuration: '12s' }}>
+                            <div className="absolute top-[10%] left-0 w-full animate-drone-path z-[5]" style={{ animationDuration: '20s' }}>
                                 {/* Drone SVG Icon */}
                                 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="mx-auto opacity-90 drop-shadow-lg">
                                     <path d="M12 18.5A2.5 2.5 0 0 1 9.5 21a2.5 2.5 0 0 1-2.4-3.5"/><path d="M12 18.5A2.5 2.5 0 0 0 14.5 21a2.5 2.5 0 0 0 2.4-3.5"/>
