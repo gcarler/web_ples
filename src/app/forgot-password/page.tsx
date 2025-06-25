@@ -12,16 +12,16 @@ export default function ForgotPasswordPage() {
       {/* Card inherits rounded-lg from theme */}
       <Card className="w-full max-w-md shadow-lg border rounded-lg">
         <CardHeader className="space-y-1 text-center">
-          <CardTitle className="text-2xl">Reset Password</CardTitle>
+          <CardTitle className="text-2xl">Restablecer Contraseña</CardTitle>
           <CardDescription>
-            Enter your email address to receive password reset instructions.
+            Ingresa tu dirección de correo electrónico para recibir las instrucciones.
           </CardDescription>
         </CardHeader>
         <CardContent>
             <ForgotPasswordForm /> {/* Use the actual form */}
              <div className="mt-4 text-center text-sm">
                <Link href="/login" className="text-primary hover:underline">
-                 Back to Login
+                 Volver a Iniciar Sesión
                </Link>
              </div>
         </CardContent>

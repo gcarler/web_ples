@@ -15,7 +15,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Mail } from 'lucide-react';
 
 const formSchema = z.object({
-  email: z.string().email({ message: "Please enter a valid email address." }),
+  email: z.string().email({ message: "Por favor, ingresa una dirección de correo electrónico válida." }),
 });
 
 type ForgotPasswordFormData = z.infer<typeof formSchema>;
@@ -39,19 +39,19 @@ export function ForgotPasswordForm() {
 
     try {
       await sendPasswordResetEmail(auth, data.email);
-      setMessage({ type: 'success', text: 'Password reset email sent! Check your inbox.' });
+      setMessage({ type: 'success', text: '¡Correo de restablecimiento enviado! Revisa tu bandeja de entrada.' });
       toast({
-        title: 'Email Sent',
-        description: 'Password reset instructions have been sent to your email.',
+        title: 'Correo Enviado',
+        description: 'Las instrucciones para restablecer tu contraseña han sido enviadas a tu correo.',
       });
       form.reset(); // Reset form on success
     } catch (error: any) {
       console.error('Password Reset Error:', error);
-      let errorMessage = 'Failed to send password reset email. Please try again.';
+      let errorMessage = 'No se pudo enviar el correo de restablecimiento. Por favor, inténtalo de nuevo.';
       if (error.code === 'auth/user-not-found') {
-        errorMessage = 'No user found with this email address.';
+        errorMessage = 'No se encontró ningún usuario con esta dirección de correo electrónico.';
       } else if (error.code === 'auth/invalid-email') {
-          errorMessage = 'Please enter a valid email address.';
+          errorMessage = 'Por favor, ingresa una dirección de correo electrónico válida.';
       }
       setMessage({ type: 'error', text: errorMessage });
       toast({
@@ -72,11 +72,11 @@ export function ForgotPasswordForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email Address</FormLabel>
+              <FormLabel>Dirección de Correo Electrónico</FormLabel>
               <FormControl>
                 <div className="relative">
                    <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                   <Input type="email" placeholder="you@example.com" {...field} className="pl-10" disabled={isLoading} />
+                   <Input type="email" placeholder="tu@ejemplo.com" {...field} className="pl-10" disabled={isLoading} />
                 </div>
               </FormControl>
               <FormMessage />
@@ -91,7 +91,7 @@ export function ForgotPasswordForm() {
         )}
 
         <Button type="submit" className="w-full" disabled={isLoading}>
-          {isLoading ? 'Sending...' : 'Send Reset Link'}
+          {isLoading ? 'Enviando...' : 'Enviar Enlace de Restablecimiento'}
         </Button>
       </form>
     </Form>
