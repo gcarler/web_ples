@@ -1,24 +1,24 @@
-import type { Metadata } from 'next';
+'use client';
+
 import './globals.css';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { Toaster } from '@/components/ui/toaster';
-import Link from 'next/link';
-import { Separator } from '@/components/ui/separator'; // Import Separator
-import { AuthProvider } from '@/contexts/AuthContext'; // Import AuthProvider
-import { ThemeProvider } from "next-themes"; // Import ThemeProvider
+import { AuthProvider } from '@/contexts/AuthContext';
+import { ThemeProvider } from "next-themes";
 import type { PropsWithChildren } from 'react';
-
-export const metadata: Metadata = {
-  title: 'PLES',
-  description: 'Web page demonstrating Angular-like features with Next.js.',
-};
+import { usePathname } from 'next/navigation';
 
 export default function RootLayout({
   children,
 }: PropsWithChildren) {
+  const pathname = usePathname();
+  // Hide footer on full-screen pages like login, register, etc. for a cleaner UI.
+  const noFooterRoutes = ['/login', '/register', '/forgot-password', '/forms'];
+  const showFooter = !noFooterRoutes.includes(pathname);
+
   return (
-    <html lang="en" suppressHydrationWarning> {/* Add suppressHydrationWarning for next-themes */}
+    <html lang="en" suppressHydrationWarning>
       <body className="min-h-screen flex flex-col antialiased bg-background text-foreground">
         <ThemeProvider
             attribute="class"
@@ -26,11 +26,10 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
         >
-          <AuthProvider> {/* Wrap content with AuthProvider */}
+          <AuthProvider>
             <Header />
-            {/* main tag should allow children to dictate their own width and padding strategy */}
             <main className="flex-grow w-full">{children}</main>
-            <Footer />
+            {showFooter && <Footer />}
             <Toaster />
           </AuthProvider>
         </ThemeProvider>
