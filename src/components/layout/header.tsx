@@ -61,13 +61,13 @@ export function Header() {
       <nav className="w-full px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
         <div className="flex items-center gap-4">
           <Link href="/" className="flex-shrink-0">
-            <PlesGroupLogo className="h-7" />
+            <PlesGroupLogo className="h-9" />
           </Link>
         </div>
 
-        <div className="flex items-center space-x-2">
-          {/* Desktop Navigation */}
-           <div className="hidden md:flex items-center gap-2">
+        <div className="hidden md:flex items-center space-x-2">
+           {/* Desktop Navigation */}
+           <div className="flex items-center gap-2">
                {navLinks.map((link) => {
                    const isActive = pathname === link.href;
                    return (
@@ -124,7 +124,7 @@ export function Header() {
               </Button>
             )
           )}
-            {/* Add a mobile menu trigger here later if needed */}
+            {/* Add a mobile menu trigger here if needed */}
         </div>
       </nav>
     </header>
