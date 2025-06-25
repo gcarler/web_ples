@@ -1,69 +1,67 @@
-'use client'; // This directive is now required for event handlers
+'use client'; 
 
 import * as React from 'react';
 import { cn } from '@/lib/utils';
 
 export function PlesGroupLogo({ className, style }: { className?: string, style?: React.CSSProperties }) {
   
-  const handleMouseEnter = () => {
-    document.body.classList.add('logo-hover-active');
-  };
-
-  const handleMouseLeave = () => {
-    document.body.classList.remove('logo-hover-active');
-  };
-  
-  // The `className` prop (e.g., "h-7 text-xl") will control the overall size and font-size.
-  // The internal font-size uses '1em' so it scales with the container, and 'em' units for the dot scale with this.
   return (
     <>
       <div
         className={cn(
-          "logo-container font-comfortaa font-bold", // Base classes for font
-          className // Apply className from props for sizing (e.g., h-7, text-xl)
+          "logo-container font-comfortaa font-bold group",
+          className 
         )}
         style={style}
         aria-label="PLES Logo"
         role="img"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
       >
         <span className="letra-p-con-punto letter">p</span>
-        <span className="letter">l</span>
-        <span className="letter">e</span>
-        <span className="letter">s</span>
+        <span className="letter" style={{ transitionDelay: '50ms' }}>l</span>
+        <span className="letter" style={{ transitionDelay: '100ms' }}>e</span>
+        <span className="letter" style={{ transitionDelay: '150ms' }}>s</span>
       </div>
       <style jsx>{`
         .logo-container {
-          display: inline-flex; /* Allows it to sit inline and be sized by parent/className */
-          align-items: baseline; /* Good for text alignment */
-          line-height: 1; /* Adjust line height to fit content snugly */
-          color: currentColor; /* Text color will be inherited or set by className */
-          cursor: pointer; /* Indicate it's interactive */
-          transition: transform 0.2s ease-out;
-        }
-
-        .logo-container:hover {
-            transform: scale(1.05); /* Slight zoom on hover */
+          display: inline-flex; 
+          align-items: baseline; 
+          line-height: 1; 
+          color: currentColor; 
+          cursor: pointer;
         }
         
+        .letter {
+            transition: transform 0.2s ease, color 0.3s ease;
+        }
+
+        .group:hover .letter {
+            color: hsl(var(--primary));
+            transform: scale(1.1);
+        }
+
         .letra-p-con-punto {
           position: relative;
-          display: inline-block; /* Crucial for ::before positioning relative to this span */
+          display: inline-block; 
         }
 
         .letra-p-con-punto::before {
           content: '';
           position: absolute;
           z-index: -1;
-          background-color: hsl(var(--primary)); /* Use primary theme color for the dot */
+          background-color: hsl(var(--primary)); 
           border-radius: 100%;
+          transition: background-color 0.3s ease;
           
           width: 0.31em;
           height: 0.31em;
           
           top: 0.40em;
           left: 0.20em;
+        }
+        
+        .group:hover .letra-p-con-punto::before {
+            background-color: hsl(var(--accent));
+            transition-delay: 50ms;
         }
       `}</style>
     </>

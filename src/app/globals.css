@@ -92,13 +92,6 @@ body {
   body {
     @apply bg-background text-foreground;
     font-family: 'Comfortaa', sans-serif; /* Apply Comfortaa font to body */
-    /* Add transition for the background color change */
-    transition: background-color 0.5s ease-in-out;
-  }
-
-  /* Define the hover state that changes the body background */
-  body.logo-hover-active {
-    background-color: hsl(var(--primary));
   }
 
   /* Ensure h1 elements specifically use Comfortaa */
