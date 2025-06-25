@@ -1,3 +1,4 @@
+
 'use client'; 
 
 import * as React from 'react';
@@ -90,9 +91,6 @@ export function PlesGroupLogo({ className, style, hoverVariant }: { className?: 
             transition-delay: 50ms;
         }
         
-        .group[data-hover-variant="black-gradient"]:hover .letra-p-con-punto::before {
-            background-color: hsl(var(--foreground));
-        }
       `}</style>
     </>
   );
