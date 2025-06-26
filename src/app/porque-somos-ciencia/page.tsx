@@ -113,15 +113,15 @@ export default function PorqueSomosCienciaPage() {
                         from="0 200 200"
                         to="360 200 200"
                         dur="60s"
-                        begin="10s"
+                        begin="1s"
                         repeatCount="indefinite"
                         additive="sum"
                         />
                     <animateMotion
                         dur="45s"
-                        begin="10s"
+                        begin="1s"
                         repeatCount="indefinite"
-                        path="M0,0 C20, -30, -20, 30, 0, 0 Z"
+                        path="M0,0 C10,-15 -10,15 0,0 Z"
                         />
 
                     <circle id="node0" cx="200" cy="200" r="15" fill="hsl(var(--accent))" filter="url(#glow)">
@@ -130,59 +130,59 @@ export default function PorqueSomosCienciaPage() {
                     </circle>
 
                     <circle id="node1" cx="100" cy="100" r="10" fill="hsl(var(--primary))" opacity="0">
-                        <animate attributeName="opacity" from="0" to="1" dur="1s" begin="1s" fill="freeze" />
+                        <animate attributeName="opacity" from="0" to="1" dur="1s" begin="0.5s" fill="freeze" />
                     </circle>
                     <circle id="node2" cx="300" cy="100" r="10" fill="hsl(var(--primary))" opacity="0">
-                        <animate attributeName="opacity" from="0" to="1" dur="1s" begin="1.5s" fill="freeze" />
+                        <animate attributeName="opacity" from="0" to="1" dur="1s" begin="0.8s" fill="freeze" />
                     </circle>
                     <circle id="node3" cx="100" cy="300" r="10" fill="hsl(var(--primary))" opacity="0">
-                        <animate attributeName="opacity" from="0" to="1" dur="1s" begin="2s" fill="freeze" />
+                        <animate attributeName="opacity" from="0" to="1" dur="1s" begin="1.1s" fill="freeze" />
                     </circle>
                     <circle id="node4" cx="300" cy="300" r="10" fill="hsl(var(--primary))" opacity="0">
-                        <animate attributeName="opacity" from="0" to="1" dur="1s" begin="2.5s" fill="freeze" />
+                        <animate attributeName="opacity" from="0" to="1" dur="1s" begin="1.4s" fill="freeze" />
                     </circle>
                     <circle id="node5" cx="200" cy="50" r="8" fill="hsl(var(--accent))" opacity="0">
-                        <animate attributeName="opacity" from="0" to="1" dur="1s" begin="3s" fill="freeze" />
+                        <animate attributeName="opacity" from="0" to="1" dur="1s" begin="1.7s" fill="freeze" />
                     </circle>
                     <circle id="node6" cx="200" cy="350" r="8" fill="hsl(var(--accent))" opacity="0">
-                        <animate attributeName="opacity" from="0" to="1" dur="1s" begin="3.5s" fill="freeze" />
+                        <animate attributeName="opacity" from="0" to="1" dur="1s" begin="2s" fill="freeze" />
                     </circle>
                     <circle id="node7" cx="50" cy="200" r="8" fill="hsl(var(--accent))" opacity="0">
-                        <animate attributeName="opacity" from="0" to="1" dur="1s" begin="4s" fill="freeze" />
+                        <animate attributeName="opacity" from="0" to="1" dur="1s" begin="2.3s" fill="freeze" />
                     </circle>
                     <circle id="node8" cx="350" cy="200" r="8" fill="hsl(var(--accent))" opacity="0">
-                        <animate attributeName="opacity" from="0" to="1" dur="1s" begin="4.5s" fill="freeze" />
+                        <animate attributeName="opacity" from="0" to="1" dur="1s" begin="2.6s" fill="freeze" />
                     </circle>
 
                     <line x1="200" y1="200" x2="100" y2="100" stroke="url(#line-gradient)" stroke-width="2" stroke-dasharray="142" stroke-dashoffset="142">
-                        <animate attributeName="stroke-dashoffset" from="142" to="0" dur="1s" begin="5s" fill="freeze" />
+                        <animate attributeName="stroke-dashoffset" from="142" to="0" dur="1s" begin="3s" fill="freeze" />
                     </line>
                     <line x1="200" y1="200" x2="300" y2="100" stroke="url(#line-gradient)" stroke-width="2" stroke-dasharray="142" stroke-dashoffset="142">
-                        <animate attributeName="stroke-dashoffset" from="142" to="0" dur="1s" begin="5.5s" fill="freeze" />
+                        <animate attributeName="stroke-dashoffset" from="142" to="0" dur="1s" begin="3.2s" fill="freeze" />
                     </line>
                     <line x1="200" y1="200" x2="100" y2="300" stroke="url(#line-gradient)" stroke-width="2" stroke-dasharray="142" stroke-dashoffset="142">
-                        <animate attributeName="stroke-dashoffset" from="142" to="0" dur="1s" begin="6s" fill="freeze" />
+                        <animate attributeName="stroke-dashoffset" from="142" to="0" dur="1s" begin="3.4s" fill="freeze" />
                     </line>
                     <line x1="200" y1="200" x2="300" y2="300" stroke="url(#line-gradient)" stroke-width="2" stroke-dasharray="142" stroke-dashoffset="142">
-                        <animate attributeName="stroke-dashoffset" from="142" to="0" dur="1s" begin="6.5s" fill="freeze" />
+                        <animate attributeName="stroke-dashoffset" from="142" to="0" dur="1s" begin="3.6s" fill="freeze" />
                     </line>
                     <line x1="100" y1="100" x2="200" y2="50" stroke="hsl(var(--muted-foreground))" stroke-width="1.5" stroke-dasharray="112" stroke-dashoffset="112">
-                        <animate attributeName="stroke-dashoffset" from="112" to="0" dur="1s" begin="7s" fill="freeze" />
+                        <animate attributeName="stroke-dashoffset" from="112" to="0" dur="1s" begin="3.8s" fill="freeze" />
                     </line>
                     <line x1="300" y1="100" x2="200" y2="50" stroke="hsl(var(--muted-foreground))" stroke-width="1.5" stroke-dasharray="112" stroke-dashoffset="112">
-                        <animate attributeName="stroke-dashoffset" from="112" to="0" dur="1s" begin="7.5s" fill="freeze" />
+                        <animate attributeName="stroke-dashoffset" from="112" to="0" dur="1s" begin="4s" fill="freeze" />
                     </line>
                     <line x1="100" y1="100" x2="50" y2="200" stroke="hsl(var(--muted-foreground))" stroke-width="1.5" stroke-dasharray="112" stroke-dashoffset="112">
-                        <animate attributeName="stroke-dashoffset" from="112" to="0" dur="1s" begin="8s" fill="freeze" />
+                        <animate attributeName="stroke-dashoffset" from="112" to="0" dur="1s" begin="4.2s" fill="freeze" />
                     </line>
                      <line x1="300" y1="100" x2="350" y2="200" stroke="hsl(var(--muted-foreground))" stroke-width="1.5" stroke-dasharray="112" stroke-dashoffset="112">
-                        <animate attributeName="stroke-dashoffset" from="112" to="0" dur="1s" begin="8.5s" fill="freeze" />
+                        <animate attributeName="stroke-dashoffset" from="112" to="0" dur="1s" begin="4.4s" fill="freeze" />
                     </line>
                      <line x1="100" y1="300" x2="200" y2="350" stroke="hsl(var(--muted-foreground))" stroke-width="1.5" stroke-dasharray="112" stroke-dashoffset="112">
-                        <animate attributeName="stroke-dashoffset" from="112" to="0" dur="1s" begin="9s" fill="freeze" />
+                        <animate attributeName="stroke-dashoffset" from="112" to="0" dur="1s" begin="4.6s" fill="freeze" />
                     </line>
                      <line x1="300" y1="300" x2="200" y2="350" stroke="hsl(var(--muted-foreground))" stroke-width="1.5" stroke-dasharray="112" stroke-dashoffset="112">
-                        <animate attributeName="stroke-dashoffset" from="112" to="0" dur="1s" begin="9.5s" fill="freeze" />
+                        <animate attributeName="stroke-dashoffset" from="112" to="0" dur="1s" begin="4.8s" fill="freeze" />
                     </line>
                 </g>
             </svg>
