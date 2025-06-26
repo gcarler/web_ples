@@ -1,3 +1,4 @@
+
 'use client';
 // src/components/porque-somos-ciencia-client.tsx
 import { Button } from '@/components/ui/button';
@@ -151,9 +152,16 @@ export default function CienciaClientPage() {
                 height: 250px;
                 position: relative;
                 transform-style: preserve-3d;
-                animation: rotate 25s infinite linear;
             }
             
+            .cube {
+              width: 100%;
+              height: 100%;
+              position: relative;
+              transform-style: preserve-3d;
+              animation: rotate 25s infinite linear;
+            }
+
             @media (min-width: 768px) {
                 .cube-container {
                     width: 300px;
@@ -162,24 +170,24 @@ export default function CienciaClientPage() {
             }
             
             @keyframes float {
-                0% { transform: translate3d(-15vw, 10vh, -50px) rotateX(-10deg) rotateY(10deg); }
-                50% { transform: translate3d(15vw, -10vh, 50px) rotateX(10deg) rotateY(-10deg); }
-                100% { transform: translate3d(-15vw, 10vh, -50px) rotateX(-10deg) rotateY(10deg); }
+                0% { transform: translate3d(-15vw, 10vh, -50px); }
+                50% { transform: translate3d(15vw, -10vh, 50px); }
+                100% { transform: translate3d(-15vw, 10vh, -50px); }
             }
 
             @keyframes rotate {
-                from { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
-                to { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+                from { transform: rotateX(0deg) rotateY(0deg); }
+                to { transform: rotateX(360deg) rotateY(360deg); }
             }
             
             @keyframes pulse-glow {
                 from {
-                    box-shadow: 0 0 20px -5px currentColor, inset 0 0 20px -5px currentColor;
+                    box-shadow: 0 0 20px -5px currentColor, inset 0 0 10px -5px currentColor;
                     opacity: 0.7;
                 }
                 to {
-                    box-shadow: 0 0 35px 0px currentColor, inset 0 0 35px 0px currentColor;
-                    opacity: 0.9;
+                    box-shadow: 0 0 35px 0px currentColor, inset 0 0 20px 0px currentColor;
+                    opacity: 1;
                 }
             }
 
@@ -187,47 +195,30 @@ export default function CienciaClientPage() {
                 position: absolute;
                 width: 100%;
                 height: 100%;
-                border-width: 2px;
-                border-style: solid;
-                backdrop-filter: blur(2px);
-                animation: pulse-glow 3s infinite alternate ease-in-out;
+                border: 2px solid hsl(var(--accent));
+                background: hsl(var(--primary) / 0.05);
+                backdrop-filter: blur(1px);
+                color: hsl(var(--accent)); /* For glow */
+                animation: pulse-glow 2.5s infinite alternate ease-in-out;
             }
             
             .face.front  { 
                 transform: rotateY(  0deg) translateZ(125px);
-                border-color: hsl(var(--chart-1));
-                background: hsl(var(--chart-1) / 0.1);
-                animation-delay: 0s;
             }
             .face.back   { 
                 transform: rotateY(180deg) translateZ(125px); 
-                border-color: hsl(var(--chart-2));
-                background: hsl(var(--chart-2) / 0.1);
-                animation-delay: -0.5s;
             }
             .face.right  { 
                 transform: rotateY( 90deg) translateZ(125px); 
-                border-color: hsl(var(--chart-3));
-                background: hsl(var(--chart-3) / 0.1);
-                animation-delay: -1s;
             }
             .face.left   { 
                 transform: rotateY(-90deg) translateZ(125px); 
-                border-color: hsl(var(--chart-4));
-                background: hsl(var(--chart-4) / 0.1);
-                animation-delay: -1.5s;
             }
             .face.top    { 
                 transform: rotateX( 90deg) translateZ(125px); 
-                border-color: hsl(var(--chart-5));
-                background: hsl(var(--chart-5) / 0.1);
-                animation-delay: -2s;
             }
             .face.bottom { 
                 transform: rotateX(-90deg) translateZ(125px); 
-                border-color: hsl(var(--destructive));
-                background: hsl(var(--destructive) / 0.1);
-                animation-delay: -2.5s;
             }
 
             @media (min-width: 768px) {
