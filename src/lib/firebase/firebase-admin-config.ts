@@ -19,17 +19,8 @@ if (!admin.apps.length) {
             throw new Error(`Missing Firebase Admin SDK config env vars: ${missingVars}. See setup instructions in this file.`);
         }
 
-        // Process the private key: replace literal '\\n' with actual newline characters ('\n') and remove quotes.
-        const privateKey = privateKeyEnv.replace(/\\n/g, '\n').replace(/"/g, '');
-
-        if (!privateKey.startsWith('-----BEGIN PRIVATE KEY-----') || !privateKey.endsWith('-----END PRIVATE KEY-----')) {
-            console.error(
-                 '\nFirebase Admin SDK Error: CRITICAL - PROCESSED FIREBASE_PRIVATE_KEY is INVALID.\n' +
-                'This usually means the key value in `.env.local` is malformed.\n' +
-                '>>> RE-READ AND FOLLOW THE `.env.local` FORMATTING INSTRUCTIONS BELOW VERY CAREFULLY. <<<'
-            );
-            throw new Error( 'Invalid Firebase Private Key format. Ensure it is correctly formatted in .env.local with double quotes and \\n for newlines.' );
-        }
+        // Process the private key: replace literal '\\n' with actual newline characters ('\n').
+        const privateKey = privateKeyEnv.replace(/\\n/g, '\n');
 
         const serviceAccount = {
             projectId: projectId,
