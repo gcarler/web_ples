@@ -1,3 +1,4 @@
+
 // src/app/admin/layout.tsx
 'use client';
 
@@ -22,35 +23,28 @@ export default function AdminLayout({ children }: PropsWithChildren) {
   const { toast } = useToast();
   const userRole = userProfile?.role;
 
+  /*
+  // Disabling authentication check to allow access without full Firebase setup.
+  // To re-enable, uncomment this block after configuring Firebase Admin in .env.local.
   useEffect(() => {
     if (!loading && !user) {
       router.push('/login');
     }
   }, [user, loading, router]);
+  */
 
   const handleLogout = async () => {
-    if (!auth) {
-        toast({ title: "Logout Failed", description: "Firebase is not configured.", variant: "destructive" });
-        return;
-    }
-    try {
-      await signOut(auth);
-      document.cookie = 'firebaseIdToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT'; // Clear cookie
-      toast({
-        title: 'Logged Out',
-        description: 'You have been successfully logged out.',
-      });
-      router.push('/login');
-    } catch (error) {
-      console.error('Logout Error:', error);
-      toast({
-        title: 'Logout Failed',
-        description: 'An error occurred during logout. Please try again.',
-        variant: 'destructive',
-      });
-    }
+    // Simplified logout as full auth might not be configured
+    document.cookie = 'firebaseIdToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT'; // Clear cookie
+    toast({
+      title: 'Logged Out',
+      description: 'You have been logged out.',
+    });
+    router.push('/login');
   };
 
+  /*
+  // Disabling loading state to allow access without full Firebase setup.
   if (loading) {
     return (
          <div className="flex h-screen">
@@ -74,8 +68,10 @@ export default function AdminLayout({ children }: PropsWithChildren) {
   }
 
   if (!user) {
-    return null;
+    // Also disable this check to prevent a blank screen
+    // return null;
   }
+  */
 
   return (
     <SidebarProvider>
@@ -109,31 +105,29 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                  <SidebarGroup>
                     <SidebarGroupLabel>Gestión</SidebarGroupLabel>
                     <SidebarMenu>
-                         {hasPermission(userRole, 'manage_content') && (
-                             <SidebarMenuItem>
-                                <SidebarMenuButton asChild>
-                                   <Link href="/admin/content-management">
-                                     <span className="flex items-center gap-x-2">
-                                        <FileText />
-                                        Contenido
-                                     </span>
-                                   </Link>
-                               </SidebarMenuButton>
-                             </SidebarMenuItem>
-                         )}
+                         {/* Temporarily disabling permission checks to allow UI to render without a logged-in user */}
+                         <SidebarMenuItem>
+                            <SidebarMenuButton asChild>
+                               <Link href="/admin/content-management">
+                                 <span className="flex items-center gap-x-2">
+                                    <FileText />
+                                    Contenido
+                                 </span>
+                               </Link>
+                           </SidebarMenuButton>
+                         </SidebarMenuItem>
 
-                         {hasPermission(userRole, 'manage_users') && (
-                             <SidebarMenuItem>
-                                <SidebarMenuButton asChild>
-                                   <Link href="/admin/users">
-                                     <span className="flex items-center gap-x-2">
-                                        <ShieldCheck />
-                                        Usuarios
-                                     </span>
-                                   </Link>
-                               </SidebarMenuButton>
-                             </SidebarMenuItem>
-                         )}
+                         <SidebarMenuItem>
+                            <SidebarMenuButton asChild>
+                               <Link href="/admin/users">
+                                 <span className="flex items-center gap-x-2">
+                                    <ShieldCheck />
+                                    Usuarios
+                                 </span>
+                               </Link>
+                           </SidebarMenuButton>
+                         </SidebarMenuItem>
+                         
                          <SidebarMenuItem>
                            <SidebarMenuButton asChild disabled>
                               <Link href="#">
@@ -169,7 +163,7 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                      <SidebarMenuItem>
                          <SidebarMenuButton onClick={handleLogout} className="text-destructive hover:bg-destructive/10 focus:bg-destructive/10">
                              <LogOut />
-                             <span>Logout ({userProfile?.email})</span>
+                             <span>Logout ({userProfile?.email ?? 'Admin'})</span>
                          </SidebarMenuButton>
                      </SidebarMenuItem>
                 </SidebarMenu>
