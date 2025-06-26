@@ -96,7 +96,7 @@ export default function PorqueSomosCienciaPage() {
               alt="Científicos analizando datos en PLES"
               layout="fill"
               objectFit="cover"
-              data-ai-hint="data scientists collaboration"
+              data-ai-hint="abstract science"
               className="transform transition-transform duration-500 ease-in-out group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/10 to-transparent opacity-30 group-hover:opacity-60 transition-opacity duration-500"></div>
