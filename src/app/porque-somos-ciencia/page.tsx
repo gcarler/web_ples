@@ -90,16 +90,52 @@ export default function PorqueSomosCienciaPage() {
 
       <section className="animate-fade-in-up" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
         <div className="grid md:grid-cols-2 items-stretch">
-          <div className="relative w-full group min-h-[400px] md:min-h-full">
-            <Image
-              src="https://placehold.co/800x1000.png"
-              alt="Científicos analizando datos en PLES"
-              layout="fill"
-              objectFit="cover"
-              data-ai-hint="abstract science"
-              className="transform transition-transform duration-500 ease-in-out group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/10 to-transparent opacity-30 group-hover:opacity-60 transition-opacity duration-500"></div>
+          <div className="relative w-full group min-h-[400px] md:min-h-full bg-muted/20 flex items-center justify-center p-4 overflow-hidden">
+            <svg width="80%" height="80%" viewBox="0 0 400 400" className="opacity-90 group-hover:opacity-100 transition-opacity duration-500">
+              <defs>
+                <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style={{stopColor: 'hsl(var(--primary))'}} />
+                  <stop offset="100%" style={{stopColor: 'hsl(var(--accent))'}} />
+                </linearGradient>
+                <filter id="glow">
+                  <feGaussianBlur stdDeviation="2.5" result="coloredBlur" />
+                  <feMerge>
+                    <feMergeNode in="coloredBlur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+
+              {/* Lines connecting nodes */}
+              <g filter="url(#glow)" opacity="0.5">
+                <line x1="50" y1="50" x2="150" y2="150" stroke="url(#line-gradient)" strokeWidth="2" />
+                <line x1="150" y1="150" x2="100" y2="300" stroke="url(#line-gradient)" strokeWidth="2" />
+                <line x1="100" y1="300" x2="300" y2="350" stroke="url(#line-gradient)" strokeWidth="2" />
+                <line x1="300" y1="350" x2="350" y2="100" stroke="url(#line-gradient)" strokeWidth="2" />
+                <line x1="350" y1="100" x2="150" y2="150" stroke="url(#line-gradient)" strokeWidth="2" />
+                <line x1="50" y1="50" x2="350" y2="100" stroke="hsl(var(--muted-foreground))" strokeWidth="1" strokeDasharray="4" />
+                <line x1="100" y1="300" x2="50" y2="50" stroke="hsl(var(--muted-foreground))" strokeWidth="1" strokeDasharray="4" />
+                <line x1="300" y1="350" x2="200" y2="50" stroke="url(#line-gradient)" strokeWidth="2" />
+                <line x1="200" y1="50" x2="50" y2="50" stroke="url(#line-gradient)" strokeWidth="2" />
+                <line x1="200" y1="50" x2="150" y2="150" stroke="hsl(var(--muted-foreground))" strokeWidth="1" strokeDasharray="4" />
+              </g>
+
+              {/* Nodes */}
+              <circle cx="50" cy="50" r="10" fill="hsl(var(--primary))">
+                <animate attributeName="r" values="10;12;10" dur="4s" repeatCount="indefinite" begin="0s"/>
+                <animate attributeName="opacity" values="1;0.8;1" dur="4s" repeatCount="indefinite" begin="0s"/>
+              </circle>
+              <circle cx="150" cy="150" r="15" fill="hsl(var(--accent))" filter="url(#glow)"/>
+              <circle cx="100" cy="300" r="8" fill="hsl(var(--primary))" />
+              <circle cx="300" cy="350" r="12" fill="hsl(var(--accent))">
+                <animate attributeName="r" values="12;14;12" dur="3s" repeatCount="indefinite" begin="1s" />
+                 <animate attributeName="opacity" values="1;0.8;1" dur="3s" repeatCount="indefinite" begin="1s"/>
+              </circle>
+              <circle cx="350" cy="100" r="10" fill="hsl(var(--primary))" />
+              <circle cx="200" cy="50" r="7" fill="hsl(var(--accent))">
+                 <animate attributeName="r" values="7;9;7" dur="5s" repeatCount="indefinite" begin="2s" />
+              </circle>
+            </svg>
           </div>
           <div className="text-left py-12 px-6 md:px-12 lg:px-16 flex items-center">
             <p className="text-lg md:text-xl text-foreground leading-relaxed">
