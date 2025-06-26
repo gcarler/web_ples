@@ -79,8 +79,8 @@ export function PlesGroupLogo({ className, style, hoverVariant }: { className?: 
           width: 0.20em;
           height: 0.21em;
           
-          top: 0.35em;
-          left: 0.3em;
+          top: 0.37em;
+          left: 0.26em;
           z-index: -1;
 
           transform-origin: center;
