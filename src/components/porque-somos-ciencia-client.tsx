@@ -12,7 +12,7 @@ const pageDetails = {
   parentName: "Sobre Nosotros",
   title: "Por Qué Somos Ciencia",
   subtitle: "El rigor metodológico como pilar de la confianza y la efectividad.",
-  mainIcon: <FlaskConical className="h-12 w-12 md:h-16 md:w-16" />,
+  mainIcon: <FlaskConical className="h-12 w-12 md:h-16 md:h-16" />,
   ctaLink: "/forms?subject=Consulta%20Proyectos%20Cientificos",
   ctaText: "Explore Nuestros Proyectos"
 };
@@ -182,11 +182,9 @@ export default function CienciaClientPage() {
             
             @keyframes pulse-glow {
                 from {
-                    box-shadow: 0 0 20px -5px currentColor, inset 0 0 10px -5px currentColor;
-                    opacity: 0.7;
+                    opacity: 0.6;
                 }
                 to {
-                    box-shadow: 0 0 35px 0px currentColor, inset 0 0 20px 0px currentColor;
                     opacity: 1;
                 }
             }
@@ -200,6 +198,7 @@ export default function CienciaClientPage() {
                 backdrop-filter: blur(1px);
                 color: hsl(var(--accent)); /* For glow */
                 animation: pulse-glow 2.5s infinite alternate ease-in-out;
+                box-shadow: 0 0 25px -5px hsl(var(--accent)); /* Static glow */
             }
             
             .face.front  { 
