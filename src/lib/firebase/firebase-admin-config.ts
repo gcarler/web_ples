@@ -6,7 +6,7 @@ if (!admin.apps.length) {
     try {
         const projectId = process.env.FIREBASE_PROJECT_ID;
         const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
-        const privateKeyEnv = process.env.FIREBASE_PRIVATE_KEY; 
+        let privateKeyEnv = process.env.FIREBASE_PRIVATE_KEY; 
 
         if (!projectId || !clientEmail || !privateKeyEnv) {
             const missingVars = [
@@ -17,6 +17,14 @@ if (!admin.apps.length) {
             
             console.error(`Firebase Admin SDK Error: Missing required environment variables: ${missingVars}. Please check your .env.local file.`);
             throw new Error(`Missing Firebase Admin SDK config env vars: ${missingVars}. See setup instructions in this file.`);
+        }
+
+        // Trim whitespace from the key
+        privateKeyEnv = privateKeyEnv.trim();
+        
+        // Defensive step: remove quotes if they were accidentally included in the env var value
+        if ((privateKeyEnv.startsWith('"') && privateKeyEnv.endsWith('"')) || (privateKeyEnv.startsWith("'") && privateKeyEnv.endsWith("'"))) {
+            privateKeyEnv = privateKeyEnv.slice(1, -1);
         }
 
         // Process the private key: replace literal '\\n' with actual newline characters ('\n').
@@ -46,8 +54,8 @@ if (!admin.apps.length) {
                  'Hint: This strongly indicates the FIREBASE_PRIVATE_KEY in your .env.local file is INCORRECTLY FORMATTED.\n' +
                  'Please **VERY CAREFULLY** check the following in your `.env.local` file:\n' +
                  '1. The **ENTIRE** key value MUST be enclosed in **DOUBLE QUOTES** (e.g., FIREBASE_PRIVATE_KEY="...").\n' +
-                 '2. **ALL** newline characters within the key block MUST be replaced with the **LITERAL STRING `\\\\n`** (backslash then n).\n' +
-                 '3. The **FINAL `\\\\n`** MUST be present immediately AFTER `-----END PRIVATE KEY-----` and INSIDE the closing double quote (`"`).\n' +
+                 '2. **ALL** newline characters within the key block MUST be replaced with the **LITERAL STRING `\\n`** (backslash then n).\n' +
+                 '3. The **FINAL `\\n`** MUST be present immediately AFTER `-----END PRIVATE KEY-----` and INSIDE the closing double quote (`"`).\n' +
                  '4. You MUST **RESTART** your Next.js server (`npm run dev`) after saving the `.env.local` file.\n' +
                  '*************************************************************\n';
         }
