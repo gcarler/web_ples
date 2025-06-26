@@ -7,7 +7,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 import { Sidebar, SidebarProvider, SidebarInset, SidebarHeader, SidebarTrigger, SidebarContent, SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarFooter } from '@/components/ui/sidebar';
 import { PlesGroupLogo } from '@/components/logo';
-import { LayoutDashboard, LogOut, ShieldCheck, FileText } from 'lucide-react';
+import { LayoutDashboard, LogOut, ShieldCheck, FileText, Home, Settings } from 'lucide-react';
 import { getAuth, signOut } from 'firebase/auth';
 import { app } from '@/lib/firebase/firebase-config';
 import { useToast } from '@/hooks/use-toast';
@@ -59,6 +59,7 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                 <Skeleton className="h-8 w-full" />
                 <Skeleton className="h-8 w-full" />
                 <Skeleton className="h-8 w-full" />
+                <Skeleton className="h-8 w-full" />
             </div>
             <div className="flex-1 p-6 space-y-4">
                 <Skeleton className="h-12 w-1/4" />
@@ -90,6 +91,7 @@ export default function AdminLayout({ children }: PropsWithChildren) {
             </SidebarHeader>
             <SidebarContent>
                 <SidebarGroup>
+                    <SidebarGroupLabel>Principal</SidebarGroupLabel>
                     <SidebarMenu>
                          <SidebarMenuItem>
                              <SidebarMenuButton asChild>
@@ -101,14 +103,19 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                                 </Link>
                             </SidebarMenuButton>
                          </SidebarMenuItem>
-                         
+                    </SidebarMenu>
+                 </SidebarGroup>
+                 
+                 <SidebarGroup>
+                    <SidebarGroupLabel>Gestión</SidebarGroupLabel>
+                    <SidebarMenu>
                          {hasPermission(userRole, 'manage_content') && (
                              <SidebarMenuItem>
                                 <SidebarMenuButton asChild>
                                    <Link href="/admin/content-management">
                                      <span className="flex items-center gap-x-2">
                                         <FileText />
-                                        Manage Content
+                                        Contenido
                                      </span>
                                    </Link>
                                </SidebarMenuButton>
@@ -121,14 +128,41 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                                    <Link href="/admin/users">
                                      <span className="flex items-center gap-x-2">
                                         <ShieldCheck />
-                                        Manage Users
+                                        Usuarios
                                      </span>
                                    </Link>
                                </SidebarMenuButton>
                              </SidebarMenuItem>
                          )}
+                         <SidebarMenuItem>
+                           <SidebarMenuButton asChild disabled>
+                              <Link href="#">
+                                <span className="flex items-center gap-x-2 text-muted-foreground/70">
+                                   <Settings />
+                                   Configuración
+                                </span>
+                              </Link>
+                           </SidebarMenuButton>
+                         </SidebarMenuItem>
                     </SidebarMenu>
                  </SidebarGroup>
+
+                 <SidebarGroup>
+                    <SidebarGroupLabel>Enlaces</SidebarGroupLabel>
+                    <SidebarMenu>
+                         <SidebarMenuItem>
+                             <SidebarMenuButton asChild>
+                                <Link href="/" target="_blank">
+                                  <span className="flex items-center gap-x-2">
+                                     <Home />
+                                     Ver Sitio Público
+                                  </span>
+                                </Link>
+                            </SidebarMenuButton>
+                         </SidebarMenuItem>
+                    </SidebarMenu>
+                 </SidebarGroup>
+
             </SidebarContent>
              <SidebarFooter>
                 <SidebarMenu>
