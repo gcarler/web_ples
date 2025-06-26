@@ -57,6 +57,7 @@ export function Header() {
   
     const navLinks = [
       { href: "/about", label: "Sobre Nosotros" },
+      { href: "/modules", label: "Módulos" },
       { href: "/ples-crea", label: "PLES CREA" },
       { href: "/ples-tic", label: "PLES TIC" },
       { href: "/ples-catastro", label: "PLES Catastro" },
