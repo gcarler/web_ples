@@ -67,52 +67,131 @@ export default function CienciaClientPage() {
               </Link>
             </Button>
           </div>
+        </div>
 
-          <section className="mb-16 py-12 md:py-20 text-center">
-            <div className="relative px-4 z-10">
-              <div className="inline-block p-5 bg-gradient-to-r from-primary to-accent text-primary-foreground rounded-full mb-8 shadow-md animate-expand-in" style={{ animationFillMode: 'forwards' }}>
-                {pageDetails.mainIcon}
+        {/* Hero Section with Cube */}
+        <section className="relative w-full h-[450px] md:h-[500px] flex items-center justify-center text-center mb-16 overflow-hidden bg-card/20">
+            <div className="absolute inset-0 perspective-container">
+              <div className="cube-container">
+                <div className="cube">
+                  <div className="face front"></div>
+                  <div className="face back"></div>
+                  <div className="face right"></div>
+                  <div className="face left"></div>
+                  <div className="face top"></div>
+                  <div className="face bottom"></div>
+                </div>
               </div>
-              <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-4 animate-fade-in-up" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
-                {pageDetails.title}
-              </h1>
-              <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}>
-                {pageDetails.subtitle}
-              </p>
             </div>
-          </section>
 
-          <section className="py-16 animate-fade-in-up" style={{ animationDelay: '0.7s', animationFillMode: 'forwards' }}>
+            <div className="relative px-4 z-10 bg-background/50 backdrop-blur-sm p-8 rounded-lg">
+                <div className="inline-block p-5 bg-gradient-to-r from-primary to-accent text-primary-foreground rounded-full mb-8 shadow-md animate-expand-in">
+                {pageDetails.mainIcon}
+                </div>
+                <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-4 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+                {pageDetails.title}
+                </h1>
+                <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+                {pageDetails.subtitle}
+                </p>
+            </div>
+        </section>
+
+        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+            <section className="py-16 animate-fade-in-up" style={{ animationDelay: '0.7s', animationFillMode: 'forwards' }}>
             <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">
-              Nuestros Principios Científicos
+                Nuestros Principios Científicos
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {cienciaPoints.map((point, index) => (
+                {cienciaPoints.map((point, index) => (
                 <Card key={index} className="group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary/5 hover:to-accent/5 hover:border-primary/30 transition-all duration-300 ease-in-out transform hover:scale-[1.03] border">
-                  <CardHeader className="items-center text-center md:items-start md:text-left">
+                    <CardHeader className="items-center text-center md:items-start md:text-left">
                     {point.icon}
                     <CardTitle className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">{point.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
+                    </CardHeader>
+                    <CardContent>
                     <p className="text-muted-foreground group-hover:text-foreground/90 transition-colors text-sm md:text-left text-center">
-                      {point.text}
+                        {point.text}
                     </p>
-                  </CardContent>
+                    </CardContent>
                 </Card>
-              ))}
+                ))}
             </div>
-          </section>
+            </section>
 
-          <section className="text-center mt-0 mb-16 animate-fade-in-up" style={{ animationDelay: '0.8s', animationFillMode: 'forwards' }}>
+            <section className="text-center mt-0 mb-16 animate-fade-in-up" style={{ animationDelay: '0.8s', animationFillMode: 'forwards' }}>
             <Button size="lg" variant="accent" asChild className="text-lg px-8 py-4">
-              <Link href={pageDetails.ctaLink}>
+                <Link href={pageDetails.ctaLink}>
                 <span className="flex items-center">
-                  {pageDetails.ctaText} <ArrowRight className="ml-2 h-5 w-5" />
+                    {pageDetails.ctaText} <ArrowRight className="ml-2 h-5 w-5" />
                 </span>
-              </Link>
+                </Link>
             </Button>
-          </section>
+            </section>
         </div>
+
+        <style jsx>{`
+            .perspective-container {
+                perspective: 1200px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .cube-container {
+                width: 250px;
+                height: 250px;
+                position: relative;
+                transform-style: preserve-3d;
+                animation: rotateCube 30s infinite linear;
+            }
+            
+            @media (min-width: 768px) {
+                .cube-container {
+                    width: 300px;
+                    height: 300px;
+                }
+            }
+
+            @keyframes rotateCube {
+                from { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+                to { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+            }
+
+            .cube {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                transform-style: preserve-3d;
+            }
+
+            .face {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                border: 2px solid hsl(var(--primary) / 0.5);
+                background: hsl(var(--primary) / 0.1);
+                box-shadow: 0 0 30px hsl(var(--accent) / 0.3), inset 0 0 30px hsl(var(--accent) / 0.2);
+                backdrop-filter: blur(2px);
+                opacity: 0.8;
+            }
+            
+            .face.front  { transform: rotateY(  0deg) translateZ(125px); }
+            .face.back   { transform: rotateY(180deg) translateZ(125px); }
+            .face.right  { transform: rotateY( 90deg) translateZ(125px); }
+            .face.left   { transform: rotateY(-90deg) translateZ(125px); }
+            .face.top    { transform: rotateX( 90deg) translateZ(125px); }
+            .face.bottom { transform: rotateX(-90deg) translateZ(125px); }
+
+            @media (min-width: 768px) {
+                .face.front  { transform: rotateY(  0deg) translateZ(150px); }
+                .face.back   { transform: rotateY(180deg) translateZ(150px); }
+                .face.right  { transform: rotateY( 90deg) translateZ(150px); }
+                .face.left   { transform: rotateY(-90deg) translateZ(150px); }
+                .face.top    { transform: rotateX( 90deg) translateZ(150px); }
+                .face.bottom { transform: rotateX(-90deg) translateZ(150px); }
+            }
+        `}</style>
       </div>
   );
 }
