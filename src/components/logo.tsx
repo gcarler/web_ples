@@ -75,11 +75,11 @@ export function PlesGroupLogo({ className, style, hoverVariant }: { className?: 
           border-radius: 100%;
           transition: background-color 0.3s ease;
           
-          width: 0.35em;
-          height: 0.35em;
+          width: 0.40em;
+          height: 0.40em;
           
-          top: 0.355em;
-          left: 0.195em;
+          top: 0.33em;
+          left: 0.17em;
           z-index: -1;
 
           transform-origin: center;
@@ -90,10 +90,10 @@ export function PlesGroupLogo({ className, style, hoverVariant }: { className?: 
         .letra-p-con-punto::after {
           content: '';
           position: absolute;
-          width: 0.35em;
-          height: 0.35em;
-          top: 0.355em;
-          left: 0.195em;
+          width: 0.40em;
+          height: 0.40em;
+          top: 0.33em;
+          left: 0.17em;
           z-index: -2; /* Behind the main dot */
           background-color: hsl(var(--primary));
           border-radius: 100%;
