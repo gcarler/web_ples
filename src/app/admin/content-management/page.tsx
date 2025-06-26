@@ -1,14 +1,16 @@
 // src/app/admin/content-management/page.tsx
+import { getHeroStatements } from '@/app/actions/content-actions';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Lightbulb } from 'lucide-react';
+import { EditHeroStatementForm } from '@/components/content/edit-hero-statement-form';
 
 export const metadata = {
   title: 'Content Management - PLES Admin',
   description: 'Manage website content like text, images, and sections.',
 };
 
-export default function ContentManagementPage() {
+export default async function ContentManagementPage() {
+  const heroStatements = await getHeroStatements();
+
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
@@ -22,66 +24,16 @@ export default function ContentManagementPage() {
 
       <Card className="shadow-lg border">
         <CardHeader>
-          <CardTitle>Website Content Editor</CardTitle>
+          <CardTitle>Homepage Hero Statements</CardTitle>
           <CardDescription>
-            This section will provide tools to manage the textual and visual content of your main website pages.
+            Edit the rotating statements on the homepage hero section. Changes will be reflected live.
           </CardDescription>
         </CardHeader>
-        <CardContent>
-          <Alert>
-            <Lightbulb className="h-4 w-4" />
-            <AlertTitle>Under Development</AlertTitle>
-            <AlertDescription>
-              The content management tools are currently under development.
-              Future capabilities will include editing hero text, service descriptions, testimonials, and more.
-            </AlertDescription>
-          </Alert>
-          <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-xl">Hero Section</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Edit the rotating statements, descriptions, and call-to-action buttons on the homepage hero.
-                </p>
-                {/* Placeholder for future form/controls */}
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-xl">About Us Page</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Update the main text, mission, vision, and values on the "About Us" page.
-                </p>
-                {/* Placeholder for future form/controls */}
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-xl">Service Pages</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Manage descriptions, features, and case studies for Ples CREA, TIC, Catastro, and Consulting.
-                </p>
-                {/* Placeholder for future form/controls */}
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-xl">Testimonials</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
-                  Add, edit, or remove customer testimonials displayed on the homepage.
-                </p>
-                {/* Placeholder for future form/controls */}
-              </CardContent>
-            </Card>
-          </div>
+        <CardContent className="space-y-6">
+          {heroStatements.map((statement) => (
+            statement.id ? <EditHeroStatementForm key={statement.id} statement={statement} /> : null
+          ))}
+          {/* A button to add new statements can be added here in the future */}
         </CardContent>
       </Card>
     </div>

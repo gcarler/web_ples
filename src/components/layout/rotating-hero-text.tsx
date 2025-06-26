@@ -7,16 +7,8 @@ import Link from 'next/link';
 import { Button, type ButtonProps } from '@/components/ui/button';
 import { ArrowRight, Send, BookOpen, Layers, Cpu } from 'lucide-react'; // Import all icons here
 import { cn } from '@/lib/utils';
+import { type HeroStatement } from '@/lib/models/content';
 
-// Define the structure for a single slide
-export interface HeroStatement {
-  title: string;
-  description: string;
-  ctaText: string;
-  ctaLink: string;
-  ctaIconName?: string; // Changed from ctaIcon to ctaIconName (string)
-  ctaVariant?: ButtonProps['variant'];
-}
 
 interface RotatingHeroTextProps {
   statements: HeroStatement[];
