@@ -9,11 +9,15 @@ if (!admin.apps.length) {
     const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
     const privateKeyEnv = process.env.FIREBASE_PRIVATE_KEY;
 
-    // First, check if all required environment variables are present.
-    if (!projectId || !clientEmail || !privateKeyEnv) {
-        console.error('--- Firebase Admin SDK Initialization FAILED ---');
+    // Check for missing environment variables first and provide a specific, actionable error.
+    const missingVars = [];
+    if (!projectId) missingVars.push('FIREBASE_PROJECT_ID');
+    if (!clientEmail) missingVars.push('FIREBASE_CLIENT_EMAIL');
+    if (!privateKeyEnv) missingVars.push('FIREBASE_PRIVATE_KEY');
+
+    if (missingVars.length > 0) {
         const errorLines = [
-            'Firebase Admin SDK Error: One or more required environment variables are missing.',
+            `Firebase Admin SDK Error: The following required environment variable(s) are missing: ${missingVars.join(', ')}.`,
             'This is a configuration issue, not a code bug. Your app cannot connect to Firebase without these keys.',
             '\n--- HOW TO FIX ---',
             '1.  Find or create a file named `.env.local` in the ROOT directory of this project (the same folder as `package.json`).',
@@ -21,7 +25,7 @@ if (!admin.apps.length) {
             '3.  Navigate to Project Settings (click the gear icon) > Service Accounts.',
             '4.  Click "Generate new private key". A .json file will be downloaded.',
             '5.  Open the downloaded JSON file and copy the values for `project_id`, `client_email`, and `private_key`.',
-            '6.  Add these values to your `.env.local` file. It should look like this:',
+            '6.  Add the missing variables to your `.env.local` file. It should look like this:',
             '\n    FIREBASE_PROJECT_ID="your-project-id-from-the-file"',
             '    FIREBASE_CLIENT_EMAIL="your-client-email-from-the-file"',
             '    FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\\n...your...private...key...\\n-----END PRIVATE KEY-----\\n"',
@@ -47,17 +51,21 @@ if (!admin.apps.length) {
 
     } catch (error: any) {
         // This catch block will now primarily handle PEM parsing errors.
-        console.error('--- Firebase Admin SDK Initialization FAILED ---');
         const pemHint = 
-            '\n\n******************** PEM PARSING HINT ********************\n' +
-            'This error suggests the FIREBASE_PRIVATE_KEY in your .env.local file is incorrectly formatted, even though it was found.\n' +
-            'Please CAREFULLY review the formatting instructions in the main `.env` file or the error message above.\n' +
-            'Common mistakes include missing quotes or incorrect newline (`\\n`) characters.\n' +
-            'Remember to RESTART your server after making changes.\n' +
-            '************************************************************\n';
+            `Original Error: ${error.message}\n\n` +
+            '******************** PEM PARSING ERROR ********************\n' +
+            'Hint: This error means your FIREBASE_PRIVATE_KEY in the .env.local file is not formatted correctly.\n' +
+            '\n--- HOW TO FIX ---\n' +
+            '1. Open your `.env.local` file.\n' +
+            '2. Find the line starting with `FIREBASE_PRIVATE_KEY=`.\n' +
+            '3. It MUST look EXACTLY like this (including the quotes and `\\n`):\n' +
+            '\n   FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\\nYOUR_KEY_LINE_1\\nYOUR_KEY_LINE_2\\n...and so on...\\n-----END PRIVATE KEY-----\\n"\n' +
+            '\n4. **VERY IMPORTANT**: Every line break from the original key file must be replaced by the two characters: `\\` and `n`.\n' +
+            '5. **RESTART** your development server after saving the file.\n' +
+            '*************************************************************\n';
 
-        throw new Error(`Original Error: ${error.message}${pemHint}`);
-    }
+        throw new Error(`Firebase Admin SDK failed to initialize: Failed to parse private key. ${pemHint}`);
+    }    
 }
 
 const adminDb = admin.firestore();

@@ -12,11 +12,17 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-// Basic validation to ensure config values are present (helps catch missing .env variables)
-if (!firebaseConfig.apiKey || !firebaseConfig.projectId) {
+// Individually check for each required environment variable
+const missingVars: string[] = [];
+if (!firebaseConfig.apiKey) missingVars.push('NEXT_PUBLIC_FIREBASE_API_KEY');
+if (!firebaseConfig.authDomain) missingVars.push('NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN');
+if (!firebaseConfig.projectId) missingVars.push('NEXT_PUBLIC_FIREBASE_PROJECT_ID');
+// Add other checks as necessary, e.g., for storageBucket, etc.
+
+if (typeof window !== 'undefined' && missingVars.length > 0) {
     const errorLines = [
         '\n\n--- Firebase Web SDK Configuration Error ---',
-        'One or more required NEXT_PUBLIC_ environment variables are missing.',
+        `The following required NEXT_PUBLIC_ environment variable(s) are missing: ${missingVars.join(', ')}.`,
         'The login page may show an "Invalid API key" error. This is a configuration issue, not a code bug.',
         '\n--- HOW TO FIX ---',
         '1.  Find or create a file named `.env.local` in the ROOT directory of your project.',
@@ -31,8 +37,8 @@ if (!firebaseConfig.apiKey || !firebaseConfig.projectId) {
         '    ...',
         '\n8.  **RESTART** your development server (e.g., stop `npm run dev` and run it again) for the changes to apply.\n\n'
     ];
+    // Log a clear error to the developer console
     console.error(errorLines.join('\n'));
-    // We don't throw an error here to prevent server crashing, but the app will not function correctly.
 }
 
 
@@ -43,8 +49,9 @@ if (!getApps().length) {
         app = initializeApp(firebaseConfig);
     } catch (error) {
         console.error("Firebase initialization error:", error);
-        // If firebaseConfig is invalid due to missing env vars, this might throw.
-        throw new Error("Failed to initialize Firebase. Check configuration and environment variables based on the console error above.");
+        // This will now only be thrown if the config object itself is fundamentally broken,
+        // as the missing var check above provides a clearer error in the console.
+        throw new Error("Failed to initialize Firebase. Check browser console for detailed instructions.");
     }
 } else {
     app = getApp();
