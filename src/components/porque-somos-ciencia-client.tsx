@@ -87,8 +87,8 @@ export default function CienciaClientPage() {
               </div>
             </div>
 
-            {/* The text content is layered on top, without a separate background box */}
-            <div className="relative z-10">
+            {/* The text content is layered on top */}
+            <div className="relative z-10 px-4">
                 <div className="inline-block p-5 bg-gradient-to-r from-primary to-accent text-primary-foreground rounded-full mb-8 shadow-md animate-expand-in">
                   {pageDetails.mainIcon}
                 </div>
@@ -162,24 +162,23 @@ export default function CienciaClientPage() {
             }
             
             @keyframes float {
-                0% {
-                    transform: translate3d(-15vw, 10vh, -50px);
-                }
-                50% {
-                    transform: translate3d(15vw, -10vh, 50px);
-                }
-                100% {
-                    transform: translate3d(-15vw, 10vh, -50px);
-                }
+                0% { transform: translate3d(-15vw, 10vh, -50px) rotateX(-10deg) rotateY(10deg); }
+                50% { transform: translate3d(15vw, -10vh, 50px) rotateX(10deg) rotateY(-10deg); }
+                100% { transform: translate3d(-15vw, 10vh, -50px) rotateX(-10deg) rotateY(10deg); }
             }
 
             @keyframes rotate {
-                from {
-                    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
-                }
-                to {
-                    transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
-                }
+                from { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+                to { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+            }
+
+            @keyframes color-cycle {
+                0%   { border-color: hsl(var(--primary)); background: hsl(var(--primary) / 0.1); }
+                20%  { border-color: hsl(var(--accent)); background: hsl(var(--accent) / 0.1); }
+                40%  { border-color: hsl(var(--ring)); background: hsl(var(--ring) / 0.1); }
+                60%  { border-color: hsl(var(--chart-4)); background: hsl(var(--chart-4) / 0.1); }
+                80%  { border-color: hsl(var(--chart-5)); background: hsl(var(--chart-5) / 0.1); }
+                100% { border-color: hsl(var(--primary)); background: hsl(var(--primary) / 0.1); }
             }
 
             .cube {
@@ -193,19 +192,20 @@ export default function CienciaClientPage() {
                 position: absolute;
                 width: 100%;
                 height: 100%;
-                border: 2px solid hsl(var(--primary) / 0.5);
-                background: hsl(var(--primary) / 0.1);
-                box-shadow: 0 0 30px hsl(var(--accent) / 0.3), inset 0 0 30px hsl(var(--accent) / 0.2);
+                border-width: 2px;
+                border-style: solid;
+                box-shadow: 0 0 30px currentColor, inset 0 0 30px currentColor;
                 backdrop-filter: blur(2px);
                 opacity: 0.8;
+                animation: color-cycle 20s infinite linear;
             }
             
-            .face.front  { transform: rotateY(  0deg) translateZ(125px); }
-            .face.back   { transform: rotateY(180deg) translateZ(125px); }
-            .face.right  { transform: rotateY( 90deg) translateZ(125px); }
-            .face.left   { transform: rotateY(-90deg) translateZ(125px); }
-            .face.top    { transform: rotateX( 90deg) translateZ(125px); }
-            .face.bottom { transform: rotateX(-90deg) translateZ(125px); }
+            .face.front  { transform: rotateY(  0deg) translateZ(125px); animation-delay: 0s; }
+            .face.back   { transform: rotateY(180deg) translateZ(125px); animation-delay: -3.3s; }
+            .face.right  { transform: rotateY( 90deg) translateZ(125px); animation-delay: -6.6s; }
+            .face.left   { transform: rotateY(-90deg) translateZ(125px); animation-delay: -9.9s; }
+            .face.top    { transform: rotateX( 90deg) translateZ(125px); animation-delay: -13.2s; }
+            .face.bottom { transform: rotateX(-90deg) translateZ(125px); animation-delay: -16.5s; }
 
             @media (min-width: 768px) {
                 .face.front  { transform: rotateY(  0deg) translateZ(150px); }
