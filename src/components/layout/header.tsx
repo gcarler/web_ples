@@ -2,7 +2,7 @@
 'use client';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { LogIn, LogOut, LayoutDashboard } from 'lucide-react';
+import { LogIn, LogOut, LayoutDashboard, ChevronDown } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { getAuth, signOut } from 'firebase/auth';
 import { app } from '@/lib/firebase/firebase-config';
@@ -55,6 +55,12 @@ export function Header() {
       { href: "/ples-consulting", label: "PLES Consulting" },
   ];
 
+  const pilarLinks = [
+      { href: "/porque-somos-ciencia", label: "Ciencia" },
+      { href: "/porque-somos-tecnologia", label: "Tecnología" },
+      { href: "/porque-somos-innovacion", label: "Innovación" },
+  ];
+
 
   return (
     <header className="bg-card text-card-foreground sticky top-0 z-50 border-b">
@@ -69,7 +75,7 @@ export function Header() {
            {/* Desktop Navigation */}
            <div className="flex items-center gap-2">
                {navLinks.map((link) => {
-                   const isActive = pathname === link.href;
+                   const isActive = pathname.startsWith(link.href);
                    return (
                        <Link
                            key={link.href}
@@ -86,6 +92,21 @@ export function Header() {
                        </Link>
                    );
                })}
+               
+                 <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" className="px-3 py-2 rounded-md text-sm font-medium transition-colors text-foreground hover:text-primary data-[state=open]:bg-muted">
+                        Pilares <ChevronDown className="ml-1 h-4 w-4" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    {pilarLinks.map((link) => (
+                        <DropdownMenuItem key={link.href} asChild>
+                            <Link href={link.href}>{link.label}</Link>
+                        </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
            </div>
           
           <ThemeToggle />
