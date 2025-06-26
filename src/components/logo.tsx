@@ -78,8 +78,8 @@ export function PlesGroupLogo({ className, style, hoverVariant }: { className?: 
           width: 0.3em;
           height: 0.3em;
           
-          top: 0.38em;
-          left: 0.22em;
+          top: 0.395em;
+          left: 0.215em;
           z-index: -1;
 
           transform-origin: center;
@@ -92,12 +92,12 @@ export function PlesGroupLogo({ className, style, hoverVariant }: { className?: 
           position: absolute;
           width: 0.3em;
           height: 0.3em;
-          top: 0.38em;
-          left: 0.22em;
+          top: 0.395em;
+          left: 0.215em;
           z-index: -2; /* Behind the main dot */
           background-color: hsl(var(--primary));
           border-radius: 100%;
-          animation: sonar 1.5s infinite;
+          animation: sonar 2.5s infinite;
           transition: background-color 0.3s ease;
         }
         

@@ -12,7 +12,6 @@ const pageDetails = {
   parentName: "Sobre Nosotros",
   title: "Por Qué Somos Ciencia",
   subtitle: "El rigor metodológico como pilar de la confianza y la efectividad.",
-  mainIcon: <FlaskConical className="h-12 w-12 md:h-16 md:h-16" />,
   ctaLink: "/forms?subject=Consulta%20Proyectos%20Cientificos",
   ctaText: "Explore Nuestros Proyectos"
 };
@@ -90,9 +89,6 @@ export default function CienciaClientPage() {
 
             {/* The text content is layered on top */}
             <div className="relative z-10 px-4">
-                <div className="inline-block p-5 bg-gradient-to-r from-primary to-accent text-primary-foreground rounded-full mb-8 shadow-md animate-expand-in">
-                  {pageDetails.mainIcon}
-                </div>
                 <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-4 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
                   {pageDetails.title}
                 </h1>
@@ -180,9 +176,9 @@ export default function CienciaClientPage() {
                 to { transform: rotateX(360deg) rotateY(360deg); }
             }
             
-            @keyframes pulse-glow {
+             @keyframes pulse-glow {
                 from {
-                    opacity: 0.6;
+                    opacity: 0.7;
                 }
                 to {
                     opacity: 1;
@@ -196,9 +192,7 @@ export default function CienciaClientPage() {
                 border: 2px solid hsl(var(--accent));
                 background: hsl(var(--primary) / 0.05);
                 backdrop-filter: blur(1px);
-                color: hsl(var(--accent)); /* For glow */
                 animation: pulse-glow 2.5s infinite alternate ease-in-out;
-                box-shadow: 0 0 25px -5px hsl(var(--accent)); /* Static glow */
             }
             
             .face.front  { 
