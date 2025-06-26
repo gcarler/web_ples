@@ -105,80 +105,90 @@ export default function PorqueSomosCienciaPage() {
                   </feMerge>
                 </filter>
               </defs>
+              <g style={{ transformOrigin: 'center' }}>
+                 <animateTransform
+                    attributeName="transform"
+                    attributeType="XML"
+                    type="rotate"
+                    from="0 200 200"
+                    to="360 200 200"
+                    dur="45s"
+                    repeatCount="indefinite"
+                  />
+                {/* Lines */}
+                <g opacity="0.7">
+                  {/* Static Lines */}
+                  <line x1="50" y1="50" x2="150" y2="150" stroke="hsl(var(--muted-foreground))" strokeWidth="1" />
+                  <line x1="150" y1="150" x2="100" y2="300" stroke="hsl(var(--muted-foreground))" strokeWidth="1" />
+                  <line x1="100" y1="300" x2="300" y2="350" stroke="hsl(var(--muted-foreground))" strokeWidth="1" />
+                  <line x1="300" y1="350" x2="350" y2="100" stroke="hsl(var(--muted-foreground))" strokeWidth="1" />
+                  <line x1="350" y1="100" x2="150" y2="150" stroke="hsl(var(--muted-foreground))" strokeWidth="1" />
+                  <line x1="200" y1="50" x2="50" y2="50" stroke="hsl(var(--muted-foreground))" strokeWidth="1" />
+                  <line x1="50" y1="200" x2="150" y2="150" stroke="hsl(var(--muted-foreground))" strokeWidth="1" />
+                  <line x1="250" y1="250" x2="100" y2="300" stroke="hsl(var(--muted-foreground))" strokeWidth="1" />
+                  <line x1="300" y1="50" x2="350" y2="100" stroke="hsl(var(--muted-foreground))" strokeWidth="1" />
+                  <line x1="200" y1="300" x2="300" y2="350" stroke="hsl(var(--muted-foreground))" strokeWidth="1" />
+                  <line x1="50" y1="50" x2="300" y2="50" stroke="hsl(var(--muted-foreground))" strokeWidth="1" />
+                  <line x1="250" y1="250" x2="200" y2="50" stroke="hsl(var(--muted-foreground))" strokeWidth="1" />
 
-              {/* Lines */}
-              <g opacity="0.7">
-                {/* Static Lines */}
-                <line x1="50" y1="50" x2="150" y2="150" stroke="hsl(var(--muted-foreground))" strokeWidth="1" />
-                <line x1="150" y1="150" x2="100" y2="300" stroke="hsl(var(--muted-foreground))" strokeWidth="1" />
-                <line x1="100" y1="300" x2="300" y2="350" stroke="hsl(var(--muted-foreground))" strokeWidth="1" />
-                <line x1="300" y1="350" x2="350" y2="100" stroke="hsl(var(--muted-foreground))" strokeWidth="1" />
-                <line x1="350" y1="100" x2="150" y2="150" stroke="hsl(var(--muted-foreground))" strokeWidth="1" />
-                <line x1="200" y1="50" x2="50" y2="50" stroke="hsl(var(--muted-foreground))" strokeWidth="1" />
-                <line x1="50" y1="200" x2="150" y2="150" stroke="hsl(var(--muted-foreground))" strokeWidth="1" />
-                <line x1="250" y1="250" x2="100" y2="300" stroke="hsl(var(--muted-foreground))" strokeWidth="1" />
-                <line x1="300" y1="50" x2="350" y2="100" stroke="hsl(var(--muted-foreground))" strokeWidth="1" />
-                <line x1="200" y1="300" x2="300" y2="350" stroke="hsl(var(--muted-foreground))" strokeWidth="1" />
-                <line x1="50" y1="50" x2="300" y2="50" stroke="hsl(var(--muted-foreground))" strokeWidth="1" />
-                <line x1="250" y1="250" x2="200" y2="50" stroke="hsl(var(--muted-foreground))" strokeWidth="1" />
+                  {/* Animated "drawing" line */}
+                  <line x1="50" y1="200" x2="300" y2="50" stroke="url(#line-gradient)" strokeWidth="2" filter="url(#glow)" strokeDasharray="320" strokeDashoffset="320">
+                    <animate attributeName="stroke-dashoffset" values="320;0;320" dur="8s" repeatCount="indefinite" begin="1s"/>
+                  </line>
+                  
+                  {/* Another animated "drawing" line */}
+                  <line x1="200" y1="300" x2="50" y2="50" stroke="url(#line-gradient)" strokeWidth="2" filter="url(#glow)" strokeDasharray="350" strokeDashoffset="350">
+                    <animate attributeName="stroke-dashoffset" values="350;0;350" dur="10s" repeatCount="indefinite" begin="3s"/>
+                  </line>
 
-                {/* Animated "drawing" line */}
-                <line x1="50" y1="200" x2="300" y2="50" stroke="url(#line-gradient)" strokeWidth="2" filter="url(#glow)" strokeDasharray="320" strokeDashoffset="320">
-                  <animate attributeName="stroke-dashoffset" values="320;0;320" dur="8s" repeatCount="indefinite" begin="1s"/>
-                </line>
-                
-                {/* Another animated "drawing" line */}
-                <line x1="200" y1="300" x2="50" y2="50" stroke="url(#line-gradient)" strokeWidth="2" filter="url(#glow)" strokeDasharray="350" strokeDashoffset="350">
-                  <animate attributeName="stroke-dashoffset" values="350;0;350" dur="10s" repeatCount="indefinite" begin="3s"/>
-                </line>
+                  {/* Fading line */}
+                  <line x1="250" y1="250" x2="350" y2="100" stroke="url(#line-gradient)" strokeWidth="1.5" filter="url(#glow)">
+                      <animate attributeName="opacity" values="0;1;0" dur="6s" repeatCount="indefinite" begin="2s"/>
+                  </line>
+                </g>
 
-                {/* Fading line */}
-                <line x1="250" y1="250" x2="350" y2="100" stroke="url(#line-gradient)" strokeWidth="1.5" filter="url(#glow)">
-                    <animate attributeName="opacity" values="0;1;0" dur="6s" repeatCount="indefinite" begin="2s"/>
-                </line>
-              </g>
-
-              {/* Nodes */}
-              <g>
-                <circle cx="50" cy="50" r="10" fill="hsl(var(--primary))">
-                  <animate attributeName="r" values="10;12;10" dur="4s" repeatCount="indefinite" />
-                  <animate attributeName="opacity" values="1;0.7;1" dur="4s" repeatCount="indefinite" />
-                  <animate attributeName="cx" values="50;55;50" dur="7s" repeatCount="indefinite" />
-                </circle>
-                <circle cx="150" cy="150" r="15" fill="hsl(var(--accent))" filter="url(#glow)">
-                  <animate attributeName="r" values="15;18;15" dur="5s" repeatCount="indefinite" begin="0.5s"/>
-                  <animate attributeName="cy" values="150;145;150" dur="8s" repeatCount="indefinite" />
-                </circle>
-                <circle cx="100" cy="300" r="8" fill="hsl(var(--primary))">
-                  <animate attributeName="r" values="8;10;8" dur="3s" repeatCount="indefinite" begin="1s"/>
-                  <animateMotion path="M0,0 C10,0 5,-10 0,0" dur="7s" repeatCount="indefinite" />
-                </circle>
-                <circle cx="300" cy="350" r="12" fill="hsl(var(--accent))">
-                  <animate attributeName="r" values="12;14;12" dur="3s" repeatCount="indefinite" begin="1.5s" />
-                  <animate attributeName="opacity" values="1;0.8;1" dur="3s" repeatCount="indefinite" begin="1.5s"/>
-                </circle>
-                <circle cx="350" cy="100" r="10" fill="hsl(var(--primary))" filter="url(#glow)">
-                  <animate attributeName="r" values="10;13;10" dur="6s" repeatCount="indefinite" begin="2s"/>
-                  <animateMotion path="M0,0 C0,10 -10,0 0,0" dur="12s" repeatCount="indefinite" />
-                </circle>
-                <circle cx="200" cy="50" r="7" fill="hsl(var(--accent))">
-                  <animate attributeName="r" values="7;9;7" dur="5s" repeatCount="indefinite" begin="2.5s" />
-                  <animate attributeName="cx" values="200;190;210;200" dur="9s" repeatCount="indefinite" />
-                </circle>
-                <circle cx="250" cy="250" r="9" fill="hsl(var(--primary))">
-                  <animate attributeName="r" values="9;11;9" dur="4.5s" repeatCount="indefinite" begin="0.8s"/>
-                  <animateMotion path="M0,0 C-8,8 8,-8 0,0" dur="11s" repeatCount="indefinite" />
-                </circle>
-                <circle cx="300" cy="50" r="6" fill="hsl(var(--accent))" filter="url(#glow)">
-                    <animate attributeName="opacity" values="1;0.5;1" dur="5s" repeatCount="indefinite" begin="1.2s"/>
-                    <animate attributeName="cy" values="50;60;50" dur="6s" repeatCount="indefinite" />
-                </circle>
-                <circle cx="50" cy="200" r="11" fill="hsl(var(--primary))" filter="url(#glow)">
-                    <animate attributeName="r" values="11;14;11" dur="5.5s" repeatCount="indefinite" begin="1.8s"/>
-                </circle>
-                <circle cx="200" cy="300" r="7" fill="hsl(var(--accent))">
-                    <animateMotion path="M0,0 C15,0 0,15 0,0" dur="9s" repeatCount="indefinite" begin="2.2s" />
-                </circle>
+                {/* Nodes */}
+                <g>
+                  <circle cx="50" cy="50" r="10" fill="hsl(var(--primary))">
+                    <animate attributeName="r" values="10;12;10" dur="4s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="1;0.7;1" dur="4s" repeatCount="indefinite" />
+                    <animateMotion path="M0,0 C10,-5 -5,10 0,0" dur="7s" repeatCount="indefinite" />
+                  </circle>
+                  <circle cx="150" cy="150" r="15" fill="hsl(var(--accent))" filter="url(#glow)">
+                    <animate attributeName="r" values="15;18;15" dur="5s" repeatCount="indefinite" begin="0.5s"/>
+                    <animateMotion path="M0,0 C-10,5 5,10 0,0" dur="8s" repeatCount="indefinite" />
+                  </circle>
+                  <circle cx="100" cy="300" r="8" fill="hsl(var(--primary))">
+                    <animate attributeName="r" values="8;10;8" dur="3s" repeatCount="indefinite" begin="1s"/>
+                    <animateMotion path="M0,0 C10,0 5,-10 0,0" dur="7s" repeatCount="indefinite" />
+                  </circle>
+                  <circle cx="300" cy="350" r="12" fill="hsl(var(--accent))">
+                    <animate attributeName="r" values="12;14;12" dur="3s" repeatCount="indefinite" begin="1.5s" />
+                    <animate attributeName="opacity" values="1;0.8;1" dur="3s" repeatCount="indefinite" begin="1.5s"/>
+                  </circle>
+                  <circle cx="350" cy="100" r="10" fill="hsl(var(--primary))" filter="url(#glow)">
+                    <animate attributeName="r" values="10;13;10" dur="6s" repeatCount="indefinite" begin="2s"/>
+                    <animateMotion path="M0,0 C0,10 -10,0 0,0" dur="12s" repeatCount="indefinite" />
+                  </circle>
+                  <circle cx="200" cy="50" r="7" fill="hsl(var(--accent))">
+                    <animate attributeName="r" values="7;9;7" dur="5s" repeatCount="indefinite" begin="2.5s" />
+                    <animateMotion path="M0,0 C-10,10 10,-10 0,0" dur="9s" repeatCount="indefinite" />
+                  </circle>
+                  <circle cx="250" cy="250" r="9" fill="hsl(var(--primary))">
+                    <animate attributeName="r" values="9;11;9" dur="4.5s" repeatCount="indefinite" begin="0.8s"/>
+                    <animateMotion path="M0,0 C-8,8 8,-8 0,0" dur="11s" repeatCount="indefinite" />
+                  </circle>
+                  <circle cx="300" cy="50" r="6" fill="hsl(var(--accent))" filter="url(#glow)">
+                      <animate attributeName="opacity" values="1;0.5;1" dur="5s" repeatCount="indefinite" begin="1.2s"/>
+                      <animateMotion path="M0,0 C0,5 5,0 0,0" dur="6s" repeatCount="indefinite" />
+                  </circle>
+                  <circle cx="50" cy="200" r="11" fill="hsl(var(--primary))" filter="url(#glow)">
+                      <animate attributeName="r" values="11;14;11" dur="5.5s" repeatCount="indefinite" begin="1.8s"/>
+                  </circle>
+                  <circle cx="200" cy="300" r="7" fill="hsl(var(--accent))">
+                      <animateMotion path="M0,0 C15,0 0,15 0,0" dur="9s" repeatCount="indefinite" begin="2.2s" />
+                  </circle>
+                </g>
               </g>
             </svg>
           </div>
