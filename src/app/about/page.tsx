@@ -103,6 +103,27 @@ export default function AboutPage() {
     },
   ];
 
+  const pilares = [
+    {
+      title: 'Ciencia',
+      description: 'El rigor metodológico como pilar de la confianza y la efectividad.',
+      link: '/porque-somos-ciencia',
+      icon: FlaskConical,
+    },
+    {
+      title: 'Tecnología',
+      description: 'Herramientas de vanguardia como catalizadores de la eficiencia y la escala.',
+      link: '/porque-somos-tecnologia',
+      icon: Cpu,
+    },
+    {
+      title: 'Innovación',
+      description: 'La creatividad y el pensamiento disruptivo para generar valor sostenible.',
+      link: '/porque-somos-innovacion',
+      icon: Lightbulb,
+    },
+  ];
+
   return (
     <div className="py-10 space-y-16">
 
@@ -276,6 +297,39 @@ export default function AboutPage() {
         </div>
       </section>
       {/* End of Interactive Section */}
+      
+      {/* NEW SECTION FOR PILARES */}
+      <section className="w-full px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl font-bold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">
+          Nuestros Pilares Fundamentales
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {pilares.map((pilar) => (
+            <Card
+              key={pilar.title}
+              className="text-center group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out transform flex flex-col hover:animate-gradient hover:bg-[length:200%_200%]"
+            >
+              <CardHeader className="items-center">
+                <pilar.icon className="h-12 w-12 text-primary group-hover:text-primary-foreground transition-colors" />
+                <CardTitle className="mt-4 text-2xl group-hover:text-primary-foreground">{pilar.title}</CardTitle>
+              </CardHeader>
+              <CardContent className="flex-grow">
+                <p className="text-muted-foreground group-hover:text-primary-foreground/90">{pilar.description}</p>
+              </CardContent>
+              <div className="p-6 pt-0">
+                <Button variant="link" asChild className="text-primary group-hover:text-primary-foreground">
+                  <Link href={pilar.link}>
+                    <span className="flex items-center">
+                      Saber Más <ArrowRight className="ml-1 h-4 w-4" />
+                    </span>
+                  </Link>
+                </Button>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </section>
+
 
       <section className="w-full px-4 sm:px-6 lg:px-8">
         <p className="mt-12 text-center text-md text-muted-foreground italic max-w-3xl mx-auto">

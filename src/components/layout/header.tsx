@@ -56,13 +56,6 @@ export function Header() {
       { href: "/labs", label: "Labs" },
   ];
 
-  const pilarLinks = [
-      { href: "/porque-somos-ciencia", label: "Ciencia" },
-      { href: "/porque-somos-tecnologia", label: "Tecnología" },
-      { href: "/porque-somos-innovacion", label: "Innovación" },
-  ];
-
-
   return (
     <header className="bg-card text-card-foreground sticky top-0 z-50 border-b">
       <nav className="w-full px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
@@ -93,21 +86,6 @@ export function Header() {
                        </Link>
                    );
                })}
-               
-                 <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="px-3 py-2 rounded-md text-sm font-medium transition-colors text-foreground hover:text-primary data-[state=open]:bg-muted">
-                        Pilares <ChevronDown className="ml-1 h-4 w-4" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent>
-                    {pilarLinks.map((link) => (
-                        <DropdownMenuItem key={link.href} asChild>
-                            <Link href={link.href}>{link.label}</Link>
-                        </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
            </div>
           
           <ThemeToggle />
