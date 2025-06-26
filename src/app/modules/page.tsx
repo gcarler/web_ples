@@ -2,37 +2,16 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { ArrowRight, Users, Package, Workflow, FileText, ShieldCheck, Layers } from 'lucide-react';
+import { ArrowRight, FileText, ShieldCheck, Layers } from 'lucide-react';
 import React from 'react';
 import { Badge } from '@/components/ui/badge';
 
 export const metadata = {
   title: 'Módulos de la Plataforma - PLES',
-  description: 'Descubra los módulos integrados que componen nuestra plataforma: CRM, ERP, BPM, CMS y más, diseñados para una gestión integral y eficiente.',
+  description: 'Descubra los módulos integrados que componen nuestra plataforma, diseñados para una gestión integral y eficiente.',
 };
 
 const modules = [
-  {
-    icon: <Users className="h-10 w-10 text-primary group-hover:text-primary-foreground" />,
-    title: 'CRM - Gestión de Relaciones con Clientes',
-    description: 'Centralice la información de sus contactos y gestione el ciclo de vida de sus oportunidades de negocio, desde el prospecto hasta el cierre.',
-    features: ['Gestión de Contactos', 'Seguimiento de Oportunidades', 'Integración con Formularios Web', 'Historial de Interacciones'],
-    link: '/admin/crm'
-  },
-  {
-    icon: <Package className="h-10 w-10 text-primary group-hover:text-primary-foreground" />,
-    title: 'ERP - Planificación de Recursos Empresariales',
-    description: 'Administre su catálogo de productos, controle el inventario y gestione los pedidos de manera eficiente para optimizar su cadena de suministro.',
-    features: ['Gestión de Productos', 'Control de Inventario', 'Procesamiento de Órdenes', 'Integración con Oportunidades'],
-    link: '/admin/erp/products'
-  },
-  {
-    icon: <Workflow className="h-10 w-10 text-primary group-hover:text-primary-foreground" />,
-    title: 'BPM - Gestión de Procesos de Negocio',
-    description: 'Modele, automatice y monitoree sus flujos de trabajo clave. Obtenga visibilidad en tiempo real del estado de sus procesos para una mejora continua.',
-    features: ['Monitoreo de Instancias', 'Automatización de Tareas', 'Gestión de Estados (Suspendido, Fallido)', 'Integración entre Módulos'],
-    link: '/admin/bpm/processes'
-  },
   {
     icon: <FileText className="h-10 w-10 text-primary group-hover:text-primary-foreground" />,
     title: 'CMS - Sistema de Gestión de Contenidos',
@@ -63,7 +42,7 @@ export default function ModulesPage() {
                     Nuestros Módulos Integrados
                 </h1>
                 <p className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-                    Una plataforma unificada para una gestión 360°. Descubra cómo nuestros módulos de CRM, ERP, BPM y más, trabajan en conjunto para potenciar su organización.
+                    Una plataforma unificada para una gestión 360°. Descubra cómo nuestros módulos trabajan en conjunto para potenciar su organización.
                 </p>
                 <div className="flex flex-wrap justify-center gap-2 mb-10">
                     <Badge variant="default" className="text-md px-4 py-2 shadow-md">#GestiónIntegral</Badge>

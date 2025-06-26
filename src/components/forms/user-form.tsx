@@ -18,12 +18,10 @@ import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
-import { Send, CheckCircle } from 'lucide-react'; // Added CheckCircle
-import { addContact } from "@/app/actions/crm-actions";
-import { useFormState, useFormStatus } from "react-dom";
-import { useEffect } from "react";
+import { Send } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { LeadSourceSchema, LeadSource } from "@/lib/models/contact"
+
+const LeadSourceSchema = z.enum(['Web Form', 'Referral', 'Cold Call', 'Event', 'Other']);
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -42,25 +40,8 @@ const formSchema = z.object({
 
 type UserFormData = z.infer<typeof formSchema>;
 
-function SubmitButton() {
-    const { pending } = useFormStatus();
-    return (
-        <Button
-            type="submit"
-            className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
-            disabled={pending}
-        >
-          {pending ? 'Submitting...' : 'Submit Form'}
-          {!pending && <Send className="ml-2" />}
-        </Button>
-    );
-}
-
-
 export function UserForm() {
   const { toast } = useToast();
-  const initialState = { message: null, success: false };
-  const [state, formAction] = useFormState(addContact, initialState);
 
   const form = useForm<UserFormData>({
     resolver: zodResolver(formSchema),
@@ -76,50 +57,17 @@ export function UserForm() {
     },
   });
 
-  useEffect(() => {
-    if (state.message && !state.success) { // Only show error toasts here
-      toast({
-        title: "Error",
-        description: state.message,
-        variant: "destructive",
-      });
-    }
-    if (state.success) {
-         toast({ // Keep success toast as well
-            title: "Success!",
-            description: state.message || "Your message has been sent.",
-         });
-        // Form reset will be handled by the success message display logic
-    }
-  }, [state, toast, form]);
-
-  if (state.success) {
-    return (
-      <div className="flex flex-col items-center justify-center text-center p-8 border rounded-lg shadow-md bg-card">
-        <CheckCircle className="h-16 w-16 text-green-500 mb-4" />
-        <h2 className="text-2xl font-semibold text-foreground mb-2">¡Mensaje Enviado!</h2>
-        <p className="text-muted-foreground mb-6">{state.message || "Gracias por contactarnos. Nos pondremos en contacto contigo pronto."}</p>
-        <Button onClick={() => {
-            form.reset();
-            // This is a bit of a hack to reset the useFormState.
-            // A more robust solution might involve a key prop on the Form or a dedicated reset function from useFormState if available.
-            // For now, we manually clear the message to allow re-submission visualization, though the state itself isn't fully reset here.
-            state.message = null;
-            state.success = false;
-            // Re-triggering a dummy dispatch or re-initializing `useFormState` might be needed for full reset,
-            // but for display purposes, this button will allow showing the form again.
-            // A cleaner way would be to lift state up or use a key on the <UserForm> component.
-            window.location.reload(); // Simplest way to reset form state for now.
-        }} variant="outline">
-          Enviar otro mensaje
-        </Button>
-      </div>
-    );
+  function onSubmit(data: UserFormData) {
+    toast({
+        title: "Submissions Temporarily Disabled",
+        description: "This form is currently not connected to a backend service.",
+        variant: "destructive"
+    });
   }
 
   return (
     <Form {...form}>
-       <form action={formAction} className="space-y-6 relative">
+       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 relative">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <FormField
             control={form.control}
@@ -237,13 +185,14 @@ export function UserForm() {
                 </FormItem>
             )}
          />
-
-         {state.message && !state.success && (
-             <p className="text-sm font-medium text-destructive">{state.message}</p>
-         )}
-         <SubmitButton />
+        <Button
+            type="submit"
+            className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
+        >
+          Submit Form
+          <Send className="ml-2" />
+        </Button>
       </form>
     </Form>
   )
 }
-

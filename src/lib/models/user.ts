@@ -3,23 +3,14 @@ import { z } from 'zod';
 import { Timestamp } from 'firebase-admin/firestore'; // Using admin timestamp for server-side logic
 
 // Define available roles
-export const UserRoleSchema = z.enum(['admin', 'crm_user', 'erp_user', 'bpm_viewer', 'read_only']);
+export const UserRoleSchema = z.enum(['admin', 'read_only']);
 export type UserRole = z.infer<typeof UserRoleSchema>;
 
 // Define the roles and their permissions (example structure)
 // In a real application, this might be more complex and stored elsewhere
 export const ROLES = {
     admin: {
-        permissions: ['manage_users', 'manage_crm', 'manage_erp', 'manage_bpm', 'view_dashboard', 'manage_content'], // Added manage_content
-    },
-    crm_user: {
-        permissions: ['manage_crm', 'view_dashboard'], // Can manage CRM data
-    },
-    erp_user: {
-        permissions: ['manage_erp', 'view_dashboard'], // Can manage ERP data
-    },
-    bpm_viewer: {
-        permissions: ['view_bpm', 'view_dashboard'], // Can only view BPM processes
+        permissions: ['manage_users', 'view_dashboard', 'manage_content'],
     },
     read_only: {
         permissions: ['view_dashboard'], // Can only view the dashboard

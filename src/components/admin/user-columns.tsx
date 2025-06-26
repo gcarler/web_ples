@@ -12,13 +12,10 @@ import { UserRowActions } from "./user-row-actions" // Create this component
 // Component for Role Badge
 const RoleBadge = ({ role }: { role: UserRole }) => {
   let variant: "default" | "secondary" | "destructive" | "outline" = "secondary";
-  let className = ''; // For specific styling like admin
+  let className = '';
 
   switch (role) {
-    case 'admin': variant = 'destructive'; break; // Destructive for admin emphasis
-    case 'crm_user': variant = 'default'; className='bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300'; break;
-    case 'erp_user': variant = 'default'; className='bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300'; break;
-    case 'bpm_viewer': variant = 'outline'; className='border-yellow-400 text-yellow-600 dark:border-yellow-600 dark:text-yellow-400'; break;
+    case 'admin': variant = 'destructive'; break;
     case 'read_only': variant = 'secondary'; break;
     default: variant = 'secondary';
   }

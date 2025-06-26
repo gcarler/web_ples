@@ -7,7 +7,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 import { Sidebar, SidebarProvider, SidebarInset, SidebarHeader, SidebarTrigger, SidebarContent, SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarFooter } from '@/components/ui/sidebar';
 import { PlesGroupLogo } from '@/components/logo';
-import { LayoutDashboard, Users, Package, ShoppingCart, Workflow, LogOut, ShieldCheck, FileText } from 'lucide-react'; // Added FileText
+import { LayoutDashboard, LogOut, ShieldCheck, FileText } from 'lucide-react';
 import { getAuth, signOut } from 'firebase/auth';
 import { app } from '@/lib/firebase/firebase-config';
 import { useToast } from '@/hooks/use-toast';
@@ -59,10 +59,6 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                 <Skeleton className="h-8 w-full" />
                 <Skeleton className="h-8 w-full" />
                 <Skeleton className="h-8 w-full" />
-                <Skeleton className="h-8 w-full" />
-                 <Skeleton className="h-8 w-full" />
-                 <Skeleton className="h-8 w-full" />
-                 <Skeleton className="h-8 w-full" /> {/* Added for content management */}
             </div>
             <div className="flex-1 p-6 space-y-4">
                 <Skeleton className="h-12 w-1/4" />
@@ -105,69 +101,6 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                                 </Link>
                             </SidebarMenuButton>
                          </SidebarMenuItem>
-
-                          {hasPermission(userRole, 'manage_crm') && (
-                            <>
-                              <SidebarMenuItem>
-                                 <SidebarMenuButton asChild>
-                                    <Link href="/admin/crm">
-                                      <span className="flex items-center gap-x-2">
-                                         <Users />
-                                         CRM Contacts
-                                      </span>
-                                    </Link>
-                                </SidebarMenuButton>
-                              </SidebarMenuItem>
-                              <SidebarMenuItem>
-                                 <SidebarMenuButton asChild>
-                                    <Link href="/admin/crm/opportunities">
-                                      <span className="flex items-center gap-x-2">
-                                         <Users />
-                                         CRM Opportunities
-                                      </span>
-                                    </Link>
-                                </SidebarMenuButton>
-                              </SidebarMenuItem>
-                            </>
-                          )}
-
-                         {hasPermission(userRole, 'manage_erp') && (
-                           <>
-                             <SidebarMenuItem>
-                                 <SidebarMenuButton asChild>
-                                    <Link href="/admin/erp/products">
-                                      <span className="flex items-center gap-x-2">
-                                         <Package />
-                                         ERP Products
-                                      </span>
-                                    </Link>
-                                </SidebarMenuButton>
-                             </SidebarMenuItem>
-                             <SidebarMenuItem>
-                                 <SidebarMenuButton asChild>
-                                    <Link href="/admin/erp/orders">
-                                      <span className="flex items-center gap-x-2">
-                                         <ShoppingCart />
-                                         ERP Orders
-                                      </span>
-                                    </Link>
-                                </SidebarMenuButton>
-                             </SidebarMenuItem>
-                           </>
-                         )}
-
-                          {(hasPermission(userRole, 'manage_bpm') || hasPermission(userRole, 'view_bpm')) && (
-                              <SidebarMenuItem>
-                                 <SidebarMenuButton asChild>
-                                    <Link href="/admin/bpm/processes">
-                                      <span className="flex items-center gap-x-2">
-                                         <Workflow />
-                                         BPM Processes
-                                      </span>
-                                    </Link>
-                                </SidebarMenuButton>
-                             </SidebarMenuItem>
-                          )}
                          
                          {hasPermission(userRole, 'manage_content') && (
                              <SidebarMenuItem>
