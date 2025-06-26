@@ -51,7 +51,6 @@ const cienciaPoints = [
 
 export default function CienciaClientPage() {
   return (
-    <>
       <div className="py-10 w-full">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center space-x-2 mb-12">
@@ -82,34 +81,6 @@ export default function CienciaClientPage() {
               </p>
             </div>
           </section>
-        </div>
-
-        <section className="w-full bg-muted/40 py-16 md:py-24 animate-fade-in-up" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
-            <div className="relative w-full min-h-[50vh] flex items-center justify-center p-4 overflow-hidden">
-                <div className="scene">
-                    <div className="cube-wrapper">
-                    <div className="cube">
-                        <div className="cube-faces">
-                        <div className="cube-face shadow"></div>
-                        <div className="cube-face bottom"></div>
-                        <div className="cube-face top"></div>
-                        <div className="cube-face left"></div>
-                        <div className="cube-face right"></div>
-                        <div className="cube-face back"></div>
-                        <div className="cube-face front"></div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-            <section className="py-16 animate-fade-in-up" style={{ animationDelay: '0.7s', animationFillMode: 'forwards' }}>
-                <p className="text-lg md:text-xl text-foreground leading-relaxed max-w-4xl mx-auto text-center">
-                    En PLES, la <span className="text-3xl md:text-4xl font-bold text-primary">ciencia</span> no es un concepto abstracto, es nuestra <span className="text-2xl md:text-3xl font-semibold text-accent">hoja de ruta</span>. Aplicamos el <span className="text-xl md:text-2xl font-medium text-[hsl(var(--ring))]">método científico</span> en cada proyecto, desde la <span className="font-semibold text-primary">investigación</span> profunda hasta la <span className="font-semibold text-accent">validación rigurosa</span> de resultados. Esto nos permite construir soluciones <span className="text-2xl md:text-3xl font-semibold text-primary">confiables, medibles y transparentes</span>, minimizando riesgos y maximizando el impacto positivo y sostenible de nuestras intervenciones.
-                </p>
-            </section>
 
           <section className="py-16 animate-fade-in-up" style={{ animationDelay: '0.7s', animationFillMode: 'forwards' }}>
             <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">
@@ -143,65 +114,5 @@ export default function CienciaClientPage() {
           </section>
         </div>
       </div>
-      <style jsx global>{`
-        .scene {
-            width: 300px;
-            height: 300px;
-            perspective: 1200px;
-        }
-
-        .cube-wrapper {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .cube {
-            width: 300px;
-            height: 300px;
-            position: relative;
-            transform-style: preserve-3d;
-            animation: rotate-cube 20s infinite linear;
-        }
-
-        @keyframes rotate-cube {
-            from { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
-            to { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
-        }
-
-        .cube-faces {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            transform-style: preserve-3d;
-            transform: translateZ(-150px);
-        }
-
-        .cube-face {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            border: 2px solid hsl(var(--primary));
-            background-color: hsla(var(--primary), 0.1);
-            box-shadow: 0 0 10px hsl(var(--accent));
-        }
-
-        .front  { transform: rotateY(0deg) translateZ(150px); }
-        .back   { transform: rotateY(180deg) translateZ(150px); }
-        .right  { transform: rotateY(90deg) translateZ(150px); }
-        .left   { transform: rotateY(-90deg) translateZ(150px); }
-        .top    { transform: rotateX(90deg) translateZ(150px); }
-        .bottom { transform: rotateX(-90deg) translateZ(150px); }
-        
-        .shadow {
-            transform: rotateX(90deg) translateZ(150px) translateY(150px);
-            box-shadow: 0 0 50px 50px hsla(var(--accent), 0.2);
-            background: transparent;
-            border: none;
-        }
-    `}</style>
-    </>
   );
 }
