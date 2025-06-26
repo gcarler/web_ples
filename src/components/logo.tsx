@@ -24,15 +24,14 @@ export function PlesGroupLogo({ className, style, hoverVariant }: { className?: 
         <span className="letter" style={{ transitionDelay: '150ms' }}>s</span>
       </div>
       <style jsx>{`
-        @keyframes heartbeat {
+        @keyframes sonar {
           0% {
             transform: scale(1);
-          }
-          50% {
-            transform: scale(0.7);
+            opacity: 0.6;
           }
           100% {
-            transform: scale(1);
+            transform: scale(2.5);
+            opacity: 0;
           }
         }
 
@@ -79,20 +78,37 @@ export function PlesGroupLogo({ className, style, hoverVariant }: { className?: 
           width: 0.20em;
           height: 0.21em;
           
-          top: 0.34em;
+          top: 0.42em;
           left: 0.26em;
           z-index: -1;
 
           transform-origin: center;
-          animation: heartbeat 1.5s ease-in-out infinite;
+          /* No animation, this is the static dot */
+        }
+
+        /* New animated element */
+        .letra-p-con-punto::after {
+          content: '';
+          position: absolute;
+          width: 0.20em;
+          height: 0.21em;
+          top: 0.42em;
+          left: 0.26em;
+          z-index: -2; /* Behind the main dot */
+          background-color: hsl(var(--primary));
+          border-radius: 100%;
+          animation: sonar 1.5s infinite;
+          transition: background-color 0.3s ease;
         }
         
-        .group:hover .letra-p-con-punto::before {
+        .group:hover .letra-p-con-punto::before,
+        .group:hover .letra-p-con-punto::after {
             background-color: hsl(var(--accent));
             transition-delay: 50ms;
         }
 
-        .group[data-hover-variant="black-gradient"]:hover .letra-p-con-punto::before {
+        .group[data-hover-variant="black-gradient"]:hover .letra-p-con-punto::before,
+        .group[data-hover-variant="black-gradient"]:hover .letra-p-con-punto::after {
             background-color: hsl(var(--primary));
         }
         
