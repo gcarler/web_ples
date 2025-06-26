@@ -80,7 +80,7 @@ export function PlesGroupLogo({ className, style, hoverVariant }: { className?: 
           height: 0.21em;
           
           top: 0.4em;
-          left: 0.2em;
+          left: 0.25em;
           z-index: -1;
 
           transform-origin: center;
