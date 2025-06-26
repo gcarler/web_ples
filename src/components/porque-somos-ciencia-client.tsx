@@ -171,21 +171,16 @@ export default function CienciaClientPage() {
                 from { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
                 to { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
             }
-
-            @keyframes color-cycle {
-                0%   { border-color: hsl(var(--primary)); background: hsl(var(--primary) / 0.1); }
-                20%  { border-color: hsl(var(--accent)); background: hsl(var(--accent) / 0.1); }
-                40%  { border-color: hsl(var(--ring)); background: hsl(var(--ring) / 0.1); }
-                60%  { border-color: hsl(var(--chart-4)); background: hsl(var(--chart-4) / 0.1); }
-                80%  { border-color: hsl(var(--chart-5)); background: hsl(var(--chart-5) / 0.1); }
-                100% { border-color: hsl(var(--primary)); background: hsl(var(--primary) / 0.1); }
-            }
-
-            .cube {
-                width: 100%;
-                height: 100%;
-                position: absolute;
-                transform-style: preserve-3d;
+            
+            @keyframes pulse-glow {
+                from {
+                    box-shadow: 0 0 20px -5px currentColor, inset 0 0 20px -5px currentColor;
+                    opacity: 0.7;
+                }
+                to {
+                    box-shadow: 0 0 35px 0px currentColor, inset 0 0 35px 0px currentColor;
+                    opacity: 0.9;
+                }
             }
 
             .face {
@@ -194,18 +189,46 @@ export default function CienciaClientPage() {
                 height: 100%;
                 border-width: 2px;
                 border-style: solid;
-                box-shadow: 0 0 30px currentColor, inset 0 0 30px currentColor;
                 backdrop-filter: blur(2px);
-                opacity: 0.8;
-                animation: color-cycle 20s infinite linear;
+                animation: pulse-glow 3s infinite alternate ease-in-out;
             }
             
-            .face.front  { transform: rotateY(  0deg) translateZ(125px); animation-delay: 0s; }
-            .face.back   { transform: rotateY(180deg) translateZ(125px); animation-delay: -3.3s; }
-            .face.right  { transform: rotateY( 90deg) translateZ(125px); animation-delay: -6.6s; }
-            .face.left   { transform: rotateY(-90deg) translateZ(125px); animation-delay: -9.9s; }
-            .face.top    { transform: rotateX( 90deg) translateZ(125px); animation-delay: -13.2s; }
-            .face.bottom { transform: rotateX(-90deg) translateZ(125px); animation-delay: -16.5s; }
+            .face.front  { 
+                transform: rotateY(  0deg) translateZ(125px);
+                border-color: hsl(var(--chart-1));
+                background: hsl(var(--chart-1) / 0.1);
+                animation-delay: 0s;
+            }
+            .face.back   { 
+                transform: rotateY(180deg) translateZ(125px); 
+                border-color: hsl(var(--chart-2));
+                background: hsl(var(--chart-2) / 0.1);
+                animation-delay: -0.5s;
+            }
+            .face.right  { 
+                transform: rotateY( 90deg) translateZ(125px); 
+                border-color: hsl(var(--chart-3));
+                background: hsl(var(--chart-3) / 0.1);
+                animation-delay: -1s;
+            }
+            .face.left   { 
+                transform: rotateY(-90deg) translateZ(125px); 
+                border-color: hsl(var(--chart-4));
+                background: hsl(var(--chart-4) / 0.1);
+                animation-delay: -1.5s;
+            }
+            .face.top    { 
+                transform: rotateX( 90deg) translateZ(125px); 
+                border-color: hsl(var(--chart-5));
+                background: hsl(var(--chart-5) / 0.1);
+                animation-delay: -2s;
+            }
+            .face.bottom { 
+                transform: rotateX(-90deg) translateZ(125px); 
+                border-color: hsl(var(--destructive));
+                background: hsl(var(--destructive) / 0.1);
+                animation-delay: -2.5s;
+            }
 
             @media (min-width: 768px) {
                 .face.front  { transform: rotateY(  0deg) translateZ(150px); }
