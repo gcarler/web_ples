@@ -23,12 +23,20 @@ import { cn } from '@/lib/utils';
 
 export function Header() {
   const { user, loading, userProfile } = useAuth(); // Added userProfile for logout message
-  const auth = getAuth(app);
+  const auth = app ? getAuth(app) : null;
   const { toast } = useToast();
   const router = useRouter();
   const pathname = usePathname();
 
   const handleLogout = async () => {
+    if (!auth) {
+        toast({
+            title: "Logout Failed",
+            description: "Firebase is not configured.",
+            variant: "destructive",
+        });
+        return;
+    }
     try {
       await signOut(auth);
       document.cookie = 'firebaseIdToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
