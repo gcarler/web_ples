@@ -2,7 +2,7 @@
 'use client';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { LogIn, LogOut, LayoutDashboard, ChevronDown } from 'lucide-react';
+import { LogIn, LogOut, LayoutDashboard, ChevronDown, FlaskConical } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { getAuth, signOut } from 'firebase/auth';
 import { app } from '@/lib/firebase/firebase-config';
@@ -53,6 +53,7 @@ export function Header() {
       { href: "/ples-tic", label: "PLES TIC" },
       { href: "/ples-catastro", label: "PLES Catastro" },
       { href: "/ples-consulting", label: "PLES Consulting" },
+      { href: "/labs", label: "Labs" },
   ];
 
   const pilarLinks = [
