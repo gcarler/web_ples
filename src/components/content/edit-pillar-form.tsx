@@ -7,8 +7,8 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { updatePillar } from "@/app/actions/content-actions";
 import { type Pillar } from "@/lib/models/content";
-import { useActionState, useEffect } from "react";
-import { useFormStatus } from "react-dom";
+import { useEffect } from "react";
+import { useFormState, useFormStatus } from "react-dom";
 
 function SubmitButton() {
     const { pending } = useFormStatus();
@@ -34,7 +34,7 @@ export function EditPillarForm({ pillar }: EditPillarFormProps) {
         return await updatePillar(pillar.id!, data);
     };
 
-    const [state, dispatch] = useActionState(formAction, { success: false, message: null });
+    const [state, dispatch] = useFormState(formAction, { success: false, message: null });
 
     useEffect(() => {
         if (state.message) {

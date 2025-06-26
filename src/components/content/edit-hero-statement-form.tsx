@@ -7,8 +7,8 @@ import { Label } from "@/components/ui/label"
 import { useToast } from "@/hooks/use-toast"
 import { updateHeroStatement } from "@/app/actions/content-actions"
 import { type HeroStatement } from "@/lib/models/content"
-import { useActionState, useEffect } from "react"
-import { useFormStatus } from "react-dom"
+import { useEffect } from "react"
+import { useFormState, useFormStatus } from "react-dom"
 
 function SubmitButton() {
     const { pending } = useFormStatus();
@@ -44,7 +44,7 @@ export function EditHeroStatementForm({ statement }: EditHeroStatementFormProps)
         return await updateHeroStatement(statement.id!, data);
     };
 
-    const [state, dispatch] = useActionState(formAction, { success: false, message: null });
+    const [state, dispatch] = useFormState(formAction, { success: false, message: null });
 
     useEffect(() => {
         if (state.message) {

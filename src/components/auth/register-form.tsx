@@ -19,8 +19,8 @@ import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useToast } from "@/hooks/use-toast"
 import { addUser } from "@/app/actions/user-actions";
-import { useFormStatus } from "react-dom";
-import { useEffect, useActionState } from "react";
+import { useFormStatus, useFormState } from "react-dom";
+import { useEffect } from "react";
 import { UserRoleSchema, UserRole } from "@/lib/models/user"
 import { useRouter } from "next/navigation"; // Import useRouter
 
@@ -50,7 +50,7 @@ export function RegisterForm() {
   const { toast } = useToast();
   const router = useRouter(); // Initialize router
   const initialState = { message: null, success: false };
-  const [state, formAction] = useActionState(addUser, initialState);
+  const [state, formAction] = useFormState(addUser, initialState);
 
   const form = useForm<RegisterFormData>({
     resolver: zodResolver(formSchema),

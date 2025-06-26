@@ -7,8 +7,8 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { updateCoreValue } from "@/app/actions/content-actions";
 import { type CoreValue } from "@/lib/models/content";
-import { useActionState, useEffect } from "react";
-import { useFormStatus } from "react-dom";
+import { useEffect } from "react";
+import { useFormState, useFormStatus } from "react-dom";
 
 function SubmitButton() {
     const { pending } = useFormStatus();
@@ -34,7 +34,7 @@ export function EditCoreValueForm({ value }: EditCoreValueFormProps) {
         return await updateCoreValue(value.id!, data);
     };
 
-    const [state, dispatch] = useActionState(formAction, { success: false, message: null });
+    const [state, dispatch] = useFormState(formAction, { success: false, message: null });
 
     useEffect(() => {
         if (state.message) {
