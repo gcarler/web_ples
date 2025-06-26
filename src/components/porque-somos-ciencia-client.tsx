@@ -119,8 +119,29 @@ export default function CienciaClientPage() {
                 ))}
             </div>
             </section>
+            
+            <section className="py-16 text-center animate-fade-in-up" style={{ animationDelay: '0.8s', animationFillMode: 'forwards' }}>
+              <Card className="max-w-2xl mx-auto bg-card shadow-lg border hover:shadow-2xl transition-shadow duration-300 ease-in-out">
+                <CardHeader>
+                  <div className="flex justify-center mb-4">
+                    <FlaskConical className="h-10 w-10 text-primary" />
+                  </div>
+                  <CardTitle>Explore Nuestro Laboratorio de Innovación</CardTitle>
+                  <CardDescription>
+                    Vea cómo aplicamos estos principios científicos en experimentos y prototipos de vanguardia.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Button asChild variant="accent">
+                    <Link href="/labs">
+                      Visitar PLES Labs <ArrowRight className="ml-2 h-5 w-5" />
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            </section>
 
-            <section className="text-center mt-0 mb-16 animate-fade-in-up" style={{ animationDelay: '0.8s', animationFillMode: 'forwards' }}>
+            <section className="text-center mt-0 mb-16 animate-fade-in-up" style={{ animationDelay: '0.9s', animationFillMode: 'forwards' }}>
             <Button size="lg" variant="accent" asChild className="text-lg px-8 py-4">
                 <Link href={pageDetails.ctaLink}>
                 <span className="flex items-center">

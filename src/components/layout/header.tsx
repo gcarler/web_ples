@@ -53,7 +53,6 @@ export function Header() {
       { href: "/ples-tic", label: "PLES TIC" },
       { href: "/ples-catastro", label: "PLES Catastro" },
       { href: "/ples-consulting", label: "PLES Consulting" },
-      { href: "/labs", label: "Labs" },
   ];
 
   return (
