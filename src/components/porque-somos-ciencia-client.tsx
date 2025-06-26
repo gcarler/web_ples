@@ -70,7 +70,8 @@ export default function CienciaClientPage() {
         </div>
 
         {/* Hero Section with Cube */}
-        <section className="relative w-full h-[450px] md:h-[500px] flex items-center justify-center text-center mb-16 overflow-hidden bg-card/20">
+        <section className="relative w-full h-[450px] md:h-[500px] flex items-center justify-center text-center mb-16 overflow-hidden">
+            {/* The cube animation will be the background element, moving freely */}
             <div className="absolute inset-0 perspective-container">
               <div className="cube-container">
                 <div className="cube">
@@ -84,15 +85,16 @@ export default function CienciaClientPage() {
               </div>
             </div>
 
-            <div className="relative px-4 z-10 bg-background/50 backdrop-blur-sm p-8 rounded-lg">
+            {/* The text content is layered on top, without a separate background box */}
+            <div className="relative z-10">
                 <div className="inline-block p-5 bg-gradient-to-r from-primary to-accent text-primary-foreground rounded-full mb-8 shadow-md animate-expand-in">
-                {pageDetails.mainIcon}
+                  {pageDetails.mainIcon}
                 </div>
                 <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-4 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-                {pageDetails.title}
+                  {pageDetails.title}
                 </h1>
                 <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-                {pageDetails.subtitle}
+                  {pageDetails.subtitle}
                 </p>
             </div>
         </section>
@@ -132,7 +134,7 @@ export default function CienciaClientPage() {
 
         <style jsx>{`
             .perspective-container {
-                perspective: 1200px;
+                perspective: 1500px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -143,7 +145,7 @@ export default function CienciaClientPage() {
                 height: 250px;
                 position: relative;
                 transform-style: preserve-3d;
-                animation: rotateCube 30s infinite linear;
+                animation: floatAndRotate 40s infinite linear alternate;
             }
             
             @media (min-width: 768px) {
@@ -153,9 +155,22 @@ export default function CienciaClientPage() {
                 }
             }
 
-            @keyframes rotateCube {
-                from { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
-                to { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+            @keyframes floatAndRotate {
+                0% {
+                    transform: translate(0, 0) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+                }
+                25% {
+                    transform: translate(20%, -15%) rotateX(90deg) rotateY(45deg) rotateZ(20deg);
+                }
+                50% {
+                    transform: translate(0, 20%) rotateX(180deg) rotateY(180deg) rotateZ(90deg);
+                }
+                75% {
+                    transform: translate(-20%, -5%) rotateX(270deg) rotateY(225deg) rotateZ(180deg);
+                }
+                100% {
+                    transform: translate(0, 0) rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+                }
             }
 
             .cube {
