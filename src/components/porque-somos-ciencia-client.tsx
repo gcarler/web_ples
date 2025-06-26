@@ -84,9 +84,8 @@ export default function CienciaClientPage() {
           </section>
         </div>
 
-        <section className="animate-fade-in-up" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
-          <div className="grid md:grid-cols-2 items-stretch">
-            <div className="relative w-full group min-h-[400px] md:min-h-full bg-muted/20 flex items-center justify-center p-4 overflow-hidden">
+        <section className="w-full bg-muted/40 py-16 md:py-24 animate-fade-in-up" style={{ animationDelay: '0.6s', animationFillMode: 'forwards' }}>
+            <div className="relative w-full min-h-[50vh] flex items-center justify-center p-4 overflow-hidden">
                 <div className="scene">
                     <div className="cube-wrapper">
                     <div className="cube">
@@ -103,15 +102,15 @@ export default function CienciaClientPage() {
                     </div>
                 </div>
             </div>
-            <div className="text-left py-12 px-6 md:px-12 lg:px-16 flex items-center">
-              <p className="text-lg md:text-xl text-foreground leading-relaxed">
-                En PLES, la <span className="text-3xl md:text-4xl font-bold text-primary">ciencia</span> no es un concepto abstracto, es nuestra <span className="text-2xl md:text-3xl font-semibold text-accent">hoja de ruta</span>. Aplicamos el <span className="text-xl md:text-2xl font-medium text-[hsl(var(--ring))]">método científico</span> en cada proyecto, desde la <span className="font-semibold text-primary">investigación</span> profunda hasta la <span className="font-semibold text-accent">validación rigurosa</span> de resultados. Esto nos permite construir soluciones <span className="text-2xl md:text-3xl font-semibold text-primary">confiables, medibles y transparentes</span>, minimizando riesgos y maximizando el impacto positivo y sostenible de nuestras intervenciones.
-              </p>
-            </div>
-          </div>
         </section>
 
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+            <section className="py-16 animate-fade-in-up" style={{ animationDelay: '0.7s', animationFillMode: 'forwards' }}>
+                <p className="text-lg md:text-xl text-foreground leading-relaxed max-w-4xl mx-auto text-center">
+                    En PLES, la <span className="text-3xl md:text-4xl font-bold text-primary">ciencia</span> no es un concepto abstracto, es nuestra <span className="text-2xl md:text-3xl font-semibold text-accent">hoja de ruta</span>. Aplicamos el <span className="text-xl md:text-2xl font-medium text-[hsl(var(--ring))]">método científico</span> en cada proyecto, desde la <span className="font-semibold text-primary">investigación</span> profunda hasta la <span className="font-semibold text-accent">validación rigurosa</span> de resultados. Esto nos permite construir soluciones <span className="text-2xl md:text-3xl font-semibold text-primary">confiables, medibles y transparentes</span>, minimizando riesgos y maximizando el impacto positivo y sostenible de nuestras intervenciones.
+                </p>
+            </section>
+
           <section className="py-16 animate-fade-in-up" style={{ animationDelay: '0.7s', animationFillMode: 'forwards' }}>
             <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">
               Nuestros Principios Científicos
@@ -146,9 +145,9 @@ export default function CienciaClientPage() {
       </div>
       <style jsx global>{`
         .scene {
-            width: 200px;
-            height: 200px;
-            perspective: 800px;
+            width: 300px;
+            height: 300px;
+            perspective: 1200px;
         }
 
         .cube-wrapper {
@@ -160,8 +159,8 @@ export default function CienciaClientPage() {
         }
 
         .cube {
-            width: 200px;
-            height: 200px;
+            width: 300px;
+            height: 300px;
             position: relative;
             transform-style: preserve-3d;
             animation: rotate-cube 20s infinite linear;
@@ -177,27 +176,27 @@ export default function CienciaClientPage() {
             height: 100%;
             position: absolute;
             transform-style: preserve-3d;
-            transform: translateZ(-100px);
+            transform: translateZ(-150px);
         }
 
         .cube-face {
             position: absolute;
-            width: 200px;
-            height: 200px;
+            width: 300px;
+            height: 300px;
             border: 2px solid hsl(var(--primary));
             background-color: hsla(var(--primary), 0.1);
             box-shadow: 0 0 10px hsl(var(--accent));
         }
 
-        .front  { transform: rotateY(0deg) translateZ(100px); }
-        .back   { transform: rotateY(180deg) translateZ(100px); }
-        .right  { transform: rotateY(90deg) translateZ(100px); }
-        .left   { transform: rotateY(-90deg) translateZ(100px); }
-        .top    { transform: rotateX(90deg) translateZ(100px); }
-        .bottom { transform: rotateX(-90deg) translateZ(100px); }
+        .front  { transform: rotateY(0deg) translateZ(150px); }
+        .back   { transform: rotateY(180deg) translateZ(150px); }
+        .right  { transform: rotateY(90deg) translateZ(150px); }
+        .left   { transform: rotateY(-90deg) translateZ(150px); }
+        .top    { transform: rotateX(90deg) translateZ(150px); }
+        .bottom { transform: rotateX(-90deg) translateZ(150px); }
         
         .shadow {
-            transform: rotateX(90deg) translateZ(100px) translateY(100px);
+            transform: rotateX(90deg) translateZ(150px) translateY(150px);
             box-shadow: 0 0 50px 50px hsla(var(--accent), 0.2);
             background: transparent;
             border: none;
