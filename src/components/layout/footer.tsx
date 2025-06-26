@@ -16,17 +16,17 @@ export function Footer() {
             </Link>
             <p className="text-lg text-foreground/80 leading-relaxed">
               Somos{' '}
-              <span className="font-bold text-primary transition-colors hover:text-accent">
+              <Link href="/porque-somos-ciencia" className="font-bold text-primary transition-colors hover:text-accent hover:underline">
                 Ciencia
-              </span>
+              </Link>
               ,{' '}
-              <span className="font-bold text-primary transition-colors hover:text-accent">
+              <Link href="/porque-somos-tecnologia" className="font-bold text-primary transition-colors hover:text-accent hover:underline">
                 Tecnología
-              </span>{' '}
+              </Link>{' '}
               e{' '}
-              <span className="font-bold text-primary transition-colors hover:text-accent">
+              <Link href="/porque-somos-innovacion" className="font-bold text-primary transition-colors hover:text-accent hover:underline">
                 Innovación
-              </span>.
+              </Link>.
             </p>
           </div>
 
