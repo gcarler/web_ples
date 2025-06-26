@@ -6,7 +6,7 @@ if (!admin.apps.length) {
     try {
         const projectId = process.env.FIREBASE_PROJECT_ID;
         const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
-        let privateKeyEnv = process.env.FIREBASE_PRIVATE_KEY; 
+        const privateKeyEnv = process.env.FIREBASE_PRIVATE_KEY; 
 
         if (!projectId || !clientEmail || !privateKeyEnv) {
             const missingVars = [
@@ -15,21 +15,33 @@ if (!admin.apps.length) {
                 !privateKeyEnv && 'FIREBASE_PRIVATE_KEY',
             ].filter(Boolean).join(', ');
             
-            console.error(`Firebase Admin SDK Error: Missing required environment variables: ${missingVars}. Please check your .env.local file.`);
-            throw new Error(`Missing Firebase Admin SDK config env vars: ${missingVars}. See setup instructions in this file.`);
+            const setupInstructions = 
+                '\n\n******************** MISSING FIREBASE ADMIN CONFIG ********************\n' +
+                'Hint: One or more required Firebase Admin variables are missing in your .env.local file.\n\n' +
+                '--- HOW TO FIX ---\n' +
+                '1. Go to your Firebase project settings -> "Service accounts" tab.\n' +
+                '2. Click "Generate new private key". A JSON file will be downloaded.\n' +
+                '3. Open the downloaded JSON file to get your `project_id`, `client_email`, and `private_key`.\n' +
+                '4. Ensure your `.env.local` file has these exact lines (with your values):\n\n' +
+                '   FIREBASE_PROJECT_ID=your_project_id_from_json\n' +
+                '   FIREBASE_CLIENT_EMAIL=your_client_email_from_json\n' +
+                '   FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\\nYOUR_PRIVATE_KEY...\\n-----END PRIVATE KEY-----\\n"\n\n' +
+                '5. **RESTART** your development server after saving the file.\n' +
+                '************************************************************************\n';
+            
+            throw new Error(`Firebase Admin SDK Error: Missing required environment variables: ${missingVars}.${setupInstructions}`);
         }
-
-        // Trim whitespace from the key
-        privateKeyEnv = privateKeyEnv.trim();
         
-        // Defensive step: remove quotes if they were accidentally included in the env var value
-        if ((privateKeyEnv.startsWith('"') && privateKeyEnv.endsWith('"')) || (privateKeyEnv.startsWith("'") && privateKeyEnv.endsWith("'"))) {
-            privateKeyEnv = privateKeyEnv.slice(1, -1);
-        }
-
-        // Process the private key: replace literal '\\n' with actual newline characters ('\n').
+        // Replace the literal `\n` character sequence with actual newline characters.
         const privateKey = privateKeyEnv.replace(/\\n/g, '\n');
 
+        // NEW: Add a more specific check to guide the user.
+        if (!privateKey.startsWith('-----BEGIN PRIVATE KEY-----')) {
+            throw new Error(
+                'Invalid FIREBASE_PRIVATE_KEY format. The key must start with "-----BEGIN PRIVATE KEY-----". Please check your .env.local file to ensure the entire key, including the header and footer, is copied correctly.'
+            );
+        }
+        
         const serviceAccount = {
             projectId: projectId,
             clientEmail: clientEmail,
@@ -49,14 +61,17 @@ if (!admin.apps.length) {
 
         let finalErrorMessage = `Firebase Admin SDK failed to initialize: ${error.message}`;
         if (isPemError) {
-             finalErrorMessage +=
-                 '\n\n******************** PEM PARSING ERROR ********************\n' +
-                 'Hint: This strongly indicates the FIREBASE_PRIVATE_KEY in your .env.local file is INCORRECTLY FORMATTED.\n' +
-                 'Please **VERY CAREFULLY** check the following in your `.env.local` file:\n' +
-                 '1. The **ENTIRE** key value MUST be enclosed in **DOUBLE QUOTES** (e.g., FIREBASE_PRIVATE_KEY="...").\n' +
-                 '2. **ALL** newline characters within the key block MUST be replaced with the **LITERAL STRING `\\n`** (backslash then n).\n' +
-                 '3. The **FINAL `\\n`** MUST be present immediately AFTER `-----END PRIVATE KEY-----` and INSIDE the closing double quote (`"`).\n' +
-                 '4. You MUST **RESTART** your Next.js server (`npm run dev`) after saving the `.env.local` file.\n' +
+             finalErrorMessage =
+                 'Firebase Admin SDK failed to initialize: Failed to parse private key: Error: Invalid PEM formatted message.\n\n' +
+                 '******************** PEM PARSING ERROR ********************\n' +
+                 'Hint: This error means your FIREBASE_PRIVATE_KEY in the .env.local file is not formatted correctly.\n\n' +
+                 '--- HOW TO FIX ---\n' +
+                 '1. Open your `.env.local` file.\n' +
+                 '2. Find the line starting with `FIREBASE_PRIVATE_KEY=`.\n' +
+                 '3. It MUST look EXACTLY like this (including the quotes and `\\n`):\n\n' +
+                 '   FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\\nYOUR_KEY_LINE_1\\nYOUR_KEY_LINE_2\\n...and so on...\\n-----END PRIVATE KEY-----\\n"\n\n' +
+                 '4. **VERY IMPORTANT**: Every line break from the original key file must be replaced by the two characters: `\\` and `n`.\n' +
+                 '5. **RESTART** your development server after saving the file.\n' +
                  '*************************************************************\n';
         }
         throw new Error(finalErrorMessage);
