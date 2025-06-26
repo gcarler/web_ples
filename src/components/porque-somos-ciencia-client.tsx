@@ -140,7 +140,7 @@ export default function CienciaClientPage() {
             }
 
             .animation-wrapper {
-              animation: float 30s infinite ease-in-out alternate;
+              animation: float 45s infinite ease-in-out alternate;
             }
 
             .cube-container {
@@ -155,7 +155,7 @@ export default function CienciaClientPage() {
               height: 100%;
               position: relative;
               transform-style: preserve-3d;
-              animation: rotate 25s infinite linear;
+              animation: rotate 40s infinite linear;
             }
 
             @media (min-width: 768px) {
@@ -176,7 +176,7 @@ export default function CienciaClientPage() {
                 to { transform: rotateX(360deg) rotateY(360deg); }
             }
             
-             @keyframes pulse-glow {
+            @keyframes pulse-glow {
                 from {
                     opacity: 0.7;
                 }
