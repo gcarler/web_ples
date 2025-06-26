@@ -6,14 +6,30 @@ import { HeroStatement, HeroStatementSchema } from '@/lib/models/content';
 import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 
-const heroStatementsCollection = collection(adminDb, 'heroStatements');
+const sdkNotInitializedError = { message: "Firebase Admin SDK is not configured. Server-side features are disabled.", success: false };
 
 /**
  * Fetches hero statements from Firestore. If the collection is empty,
  * it seeds it with default statements.
  */
 export async function getHeroStatements(): Promise<HeroStatement[]> {
+  if (!adminDb) {
+    console.error(sdkNotInitializedError.message);
+    // Return a default hardcoded statement as a fallback
+    return [
+      {
+        title: "Datos, ingeniería y propósito para el desarrollo",
+        description: "De la idea a la acción: acompañamos gobiernos y empresas a generar impacto real.",
+        ctaText: "Empieza hoy",
+        ctaLink: "/forms",
+        ctaIconName: "Send",
+        ctaVariant: 'accent',
+        order: 1,
+      },
+    ];
+  }
   try {
+    const heroStatementsCollection = collection(adminDb, 'heroStatements');
     const q = query(heroStatementsCollection, orderBy('order', 'asc'));
     const snapshot = await getDocs(q);
 
@@ -92,6 +108,10 @@ export async function updateHeroStatement(
     id: string,
     data: z.infer<typeof UpdateHeroStatementInputSchema>
 ): Promise<{ success: boolean; message: string | null }> {
+    if (!adminDb) {
+      console.error(sdkNotInitializedError.message);
+      return sdkNotInitializedError;
+    }
     if (!id) {
         return { success: false, message: 'Statement ID is missing.' };
     }
@@ -102,7 +122,7 @@ export async function updateHeroStatement(
             return { success: false, message: 'Invalid data provided.' };
         }
 
-        const statementRef = doc(heroStatementsCollection, id);
+        const statementRef = doc(collection(adminDb, 'heroStatements'), id);
         await updateDoc(statementRef, {
             ...validatedData.data,
             updatedAt: serverTimestamp(),

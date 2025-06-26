@@ -9,11 +9,16 @@ import { ProductInputSchema, ProductOutputSchema, ProductFirestore, OrderFiresto
 import * as ErpService from '@/services/erp-service';
 
 const AddProductInputSchema = ProductInputSchema.omit({ id: true, createdAt: true, updatedAt: true });
+const sdkNotInitializedError = { message: "Firebase Admin SDK is not configured. Server-side features are disabled.", success: false };
 
 export async function addProduct(
     prevState: { message: string | null; success: boolean },
     formData: FormData
 ): Promise<{ message: string | null; success: boolean }> {
+    if (!adminDb) {
+      console.error(sdkNotInitializedError.message);
+      return sdkNotInitializedError;
+    }
     try {
         const rawData = Object.fromEntries(formData.entries());
         const dataToValidate = {
@@ -45,6 +50,10 @@ export async function addProduct(
 }
 
 export async function getProducts(): Promise<ProductFirestore[]> {
+    if (!adminDb) {
+        console.error(sdkNotInitializedError.message);
+        return [];
+    }
     try {
         const productsCol = collection(adminDb, 'products');
         const q = query(productsCol, orderBy('name', 'asc'));
@@ -74,6 +83,10 @@ export async function getProducts(): Promise<ProductFirestore[]> {
 }
 
 export async function updateProductStock(productId: string, changeAmount: number): Promise<{ message: string | null; success: boolean }> {
+    if (!adminDb) {
+        console.error(sdkNotInitializedError.message);
+        return sdkNotInitializedError;
+    }
     console.log(`Action: Updating stock for product ${productId} by ${changeAmount} in Firestore`);
      try {
         const productRef = doc(adminDb, 'products', productId);
@@ -97,6 +110,10 @@ export async function updateProductStock(productId: string, changeAmount: number
 }
 
 export async function getOrders(): Promise<OrderFirestore[]> {
+     if (!adminDb) {
+        console.error(sdkNotInitializedError.message);
+        return [];
+    }
      try {
         const ordersCol = collection(adminDb, 'orders');
         const q = query(ordersCol, orderBy('orderDate', 'desc'));
@@ -136,6 +153,10 @@ export async function getOrders(): Promise<OrderFirestore[]> {
  }
 
  export async function updateOrderStatus(orderId: string, newStatus: OrderStatus): Promise<{ message: string | null; success: boolean }> {
+     if (!adminDb) {
+        console.error(sdkNotInitializedError.message);
+        return sdkNotInitializedError;
+    }
      console.log(`Action: Updating status for order ${orderId} to ${newStatus}`);
     try {
         const validatedStatus = OrderStatusSchema.safeParse(newStatus);
@@ -159,6 +180,10 @@ export async function getOrders(): Promise<OrderFirestore[]> {
 }
 
  export async function getOrderDetails(orderId: string): Promise<OrderFirestore | null> {
+     if (!adminDb) {
+        console.error(sdkNotInitializedError.message);
+        return null;
+    }
      console.log(`Action: Getting details for order ${orderId}`);
     try {
         return await ErpService.getErpOrderDetails(orderId);

@@ -24,7 +24,7 @@ export function ForgotPasswordForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
   const { toast } = useToast();
-  const auth = getAuth(app);
+  const auth = app ? getAuth(app) : null;
 
   const form = useForm<ForgotPasswordFormData>({
     resolver: zodResolver(formSchema),
@@ -36,6 +36,14 @@ export function ForgotPasswordForm() {
   const onSubmit = async (data: ForgotPasswordFormData) => {
     setIsLoading(true);
     setMessage(null);
+
+    if (!auth) {
+        const configError = "Firebase no está configurado. No se puede enviar el correo de restablecimiento.";
+        setMessage({ type: 'error', text: configError });
+        toast({ title: 'Error de Configuración', description: configError, variant: 'destructive' });
+        setIsLoading(false);
+        return;
+    }
 
     try {
       await sendPasswordResetEmail(auth, data.email);

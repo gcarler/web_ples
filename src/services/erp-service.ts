@@ -12,6 +12,10 @@ import { startShippingProcess } from './bpm-service'; // Import BPM service
  * @returns Product details or null if not found or data is invalid.
  */
 export async function getProductDetails(productId: string): Promise<ProductFirestore | null> {
+  if (!adminDb) {
+    console.error("Firebase Admin SDK not initialized. Cannot get product details.");
+    return null;
+  }
   console.log(`ERP Service: Fetching details for product ${productId} from Firestore`);
   try {
     const productRef = doc(adminDb, 'products', productId);
@@ -42,6 +46,10 @@ export async function getProductDetails(productId: string): Promise<ProductFires
  * @returns Stock level information or null if product not found.
  */
 export async function checkProductStock(productId: string): Promise<{ stockLevel: number } | null> {
+  if (!adminDb) {
+    console.error("Firebase Admin SDK not initialized. Cannot check product stock.");
+    return null;
+  }
   console.log(`ERP Service: Checking stock for product ${productId} from Firestore`);
    try {
        const productRef = doc(adminDb, 'products', productId);
@@ -65,6 +73,10 @@ export async function checkProductStock(productId: string): Promise<{ stockLevel
  * @returns The ID of the created order or null on failure.
  */
 export async function createErpOrder(orderData: Omit<Order, 'id' | 'createdAt' | 'updatedAt'>): Promise<string | null> {
+  if (!adminDb) {
+    console.error("Firebase Admin SDK not initialized. Cannot create ERP order.");
+    return null;
+  }
   console.log(`ERP Service: Creating order for contact ${orderData.contactId} in Firestore`);
   const batch = writeBatch(adminDb);
   const newOrderRef = doc(collection(adminDb, 'orders'));
@@ -114,6 +126,10 @@ export async function createErpOrder(orderData: Omit<Order, 'id' | 'createdAt' |
  * @returns Boolean indicating success.
  */
 export async function updateErpOrderStatus(orderId: string, status: OrderStatus): Promise<boolean> {
+    if (!adminDb) {
+      console.error("Firebase Admin SDK not initialized. Cannot update ERP order status.");
+      return false;
+    }
     console.log(`ERP Service: Updating order ${orderId} to status ${status} in Firestore`);
     if (!orderId) {
         console.error("ERP Service Error: Invalid orderId provided for status update.");
@@ -139,6 +155,10 @@ export async function updateErpOrderStatus(orderId: string, status: OrderStatus)
  * @returns Order details or null if not found or data is invalid.
  */
 export async function getErpOrderDetails(orderId: string): Promise<OrderFirestore | null> {
+    if (!adminDb) {
+      console.error("Firebase Admin SDK not initialized. Cannot get ERP order details.");
+      return null;
+    }
     console.log(`ERP Service: Fetching details for order ${orderId} from Firestore`);
     if (!orderId) {
          console.error("ERP Service Error: Invalid orderId provided for fetching details.");

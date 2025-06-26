@@ -3,62 +3,70 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'; // Import Firebase Auth functions
-import { app } from '@/lib/firebase/firebase-config'; // Import Firebase app instance
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { app } from '@/lib/firebase/firebase-config';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
-import { LogIn, User, Lock } from 'lucide-react'; // Import icons, removed Briefcase
-import Link from 'next/link'; // Import Link
+import { LogIn, User, Lock } from 'lucide-react';
+import Link from 'next/link';
 import { PlesGroupLogo } from '@/components/logo';
 
 export default function LoginPage() {
-  const [email, setEmail] = useState(''); // Use email for username field
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
   const { toast } = useToast();
-  const auth = getAuth(app); // Initialize Firebase Auth
+  const auth = app ? getAuth(app) : null;
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setError(null);
 
+    if (!auth) {
+      const configError = "Firebase no está configurado. Por favor, revise las credenciales en su archivo .env.local y reinicie el servidor.";
+      setError(configError);
+      toast({
+        title: "Error de Configuración",
+        description: configError,
+        variant: 'destructive',
+      });
+      setIsLoading(false);
+      return;
+    }
+
     try {
       await signInWithEmailAndPassword(auth, email, password);
       toast({
-        title: 'Inicio de Sesión Exitoso', // Changed to Spanish
-        description: '¡Bienvenido de nuevo!', // Changed to Spanish
+        title: 'Inicio de Sesión Exitoso',
+        description: '¡Bienvenido de nuevo!',
       });
-      // Store token in cookie (client-side) after successful login
       const user = auth.currentUser;
       if (user) {
         const token = await user.getIdToken();
-        // Set cookie - adjust path, domain, maxAge/expires as needed
-        document.cookie = `firebaseIdToken=${token}; path=/; max-age=${60 * 60 * 24 * 7}`; // Example: 7 days
+        document.cookie = `firebaseIdToken=${token}; path=/; max-age=${60 * 60 * 24 * 7}`;
       }
-      router.push('/admin/dashboard'); // Redirect to dashboard after successful login
+      router.push('/admin/dashboard');
     } catch (err: any) {
       console.error('Login Error:', err);
-      let errorMessage = 'Fallo al iniciar sesión. Por favor revise sus credenciales.'; // Changed to Spanish
-      // Provide more specific Firebase error messages if needed
+      let errorMessage = 'Fallo al iniciar sesión. Por favor revise sus credenciales.';
       if (err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential') {
-        errorMessage = 'Email o contraseña inválidos.'; // Changed to Spanish
+        errorMessage = 'Email o contraseña inválidos.';
       } else if (err.code === 'auth/invalid-email') {
-          errorMessage = 'Por favor ingrese una dirección de email válida.'; // Changed to Spanish
+          errorMessage = 'Por favor ingrese una dirección de email válida.';
       } else if (err.code === 'auth/api-key-not-valid' || err.code === 'auth/api-key-not-valid.-please-pass-a-valid-api-key.') {
-          errorMessage = 'La clave API de Firebase es inválida. Por favor revise sus variables de entorno.'; // Changed to Spanish
+          errorMessage = 'La clave API de Firebase es inválida. Por favor revise sus variables de entorno.';
            console.error("Firebase Config Error: API Key is not valid. Ensure NEXT_PUBLIC_FIREBASE_API_KEY is set correctly in your .env.local file and the server was restarted.");
-           toast({ title: "Error de Configuración de Firebase", description: "La clave API de Firebase es inválida. Por favor contacte al administrador.", variant: "destructive"}) // Changed to Spanish
+           toast({ title: "Error de Configuración de Firebase", description: "La clave API de Firebase es inválida. Por favor contacte al administrador.", variant: "destructive"})
       }
       setError(errorMessage);
-      // Don't show generic toast if it's the API key error, already shown above.
       if (err.code !== 'auth/api-key-not-valid' && err.code !== 'auth/api-key-not-valid.-please-pass-a-valid-api-key.') {
         toast({
-          title: 'Inicio de Sesión Fallido', // Changed to Spanish
+          title: 'Inicio de Sesión Fallido',
           description: errorMessage,
           variant: 'destructive',
         });
@@ -69,9 +77,7 @@ export default function LoginPage() {
   };
 
   return (
-    // Two-column layout for the login page
     <div className="flex min-h-screen bg-background">
-      {/* Left Column: Depth Illusion Container */}
       <div className="hidden lg:flex lg:w-1/2 items-center justify-center p-0">
         <div className="relative w-full h-full flex flex-col items-center justify-center
                       bg-[radial-gradient(ellipse_at_center,_hsl(var(--accent)),_hsl(var(--primary)),_hsl(var(--ring)))]
@@ -90,7 +96,6 @@ export default function LoginPage() {
         </div>
       </div>
 
-      {/* Right Column: Login Form */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8 sm:p-12">
         <div className="w-full max-w-md space-y-6">
           <div>
@@ -99,22 +104,20 @@ export default function LoginPage() {
           </div>
 
           <form onSubmit={handleLogin} className="space-y-4">
-             {/* Username (Email) Input */}
             <div className="relative">
               <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
               <Input
                 id="email"
                 type="email"
-                placeholder="Nombre de Usuario" // Using Email for username
+                placeholder="Nombre de Usuario"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 disabled={isLoading}
-                className="pl-10 py-2 h-12 rounded-lg bg-muted/50 border-none focus:ring-primary focus:ring-2" // Updated styling
+                className="pl-10 py-2 h-12 rounded-lg bg-muted/50 border-none focus:ring-primary focus:ring-2"
               />
             </div>
 
-            {/* Password Input */}
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
               <Input
@@ -125,7 +128,7 @@ export default function LoginPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 disabled={isLoading}
-                className="pl-10 py-2 h-12 rounded-lg bg-muted/50 border-none focus:ring-primary focus:ring-2" // Updated styling
+                className="pl-10 py-2 h-12 rounded-lg bg-muted/50 border-none focus:ring-primary focus:ring-2"
               />
             </div>
 
@@ -133,10 +136,9 @@ export default function LoginPage() {
               <p className="text-sm text-destructive text-center">{error}</p>
             )}
 
-             {/* Login Button */}
             <Button
               type="submit"
-              className="w-full h-12 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 text-base" // Updated styling, using theme primary color
+              className="w-full h-12 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 text-base"
               disabled={isLoading}
             >
               {isLoading ? 'Iniciando...' : 'Iniciar Sección'}
@@ -144,14 +146,12 @@ export default function LoginPage() {
             </Button>
           </form>
 
-           {/* Forgot Password Link */}
           <div className="text-center">
             <Button variant="link" asChild className="text-primary text-sm hover:underline px-0">
               <Link href="/forgot-password">¿Olvidaste tu contraseña?</Link>
             </Button>
           </div>
 
-           {/* Register Link */}
            <div className="text-center text-sm text-muted-foreground">
              ¿No tienes cuenta?{' '}
              <Button variant="link" asChild className="text-primary hover:underline px-0">

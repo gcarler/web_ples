@@ -18,7 +18,7 @@ import { hasPermission } from '@/lib/models/user';
 export default function AdminLayout({ children }: PropsWithChildren) {
   const { user, userProfile, loading } = useAuth();
   const router = useRouter();
-  const auth = getAuth(app);
+  const auth = app ? getAuth(app) : null;
   const { toast } = useToast();
   const userRole = userProfile?.role;
 
@@ -29,6 +29,10 @@ export default function AdminLayout({ children }: PropsWithChildren) {
   }, [user, loading, router]);
 
   const handleLogout = async () => {
+    if (!auth) {
+        toast({ title: "Logout Failed", description: "Firebase is not configured.", variant: "destructive" });
+        return;
+    }
     try {
       await signOut(auth);
       document.cookie = 'firebaseIdToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT'; // Clear cookie

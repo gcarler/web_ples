@@ -7,7 +7,13 @@ import { adminDb } from '@/lib/firebase/firebase-admin-config';
 import { collection, getDocs, query, orderBy, doc, getDoc } from 'firebase/firestore';
 import { revalidatePath } from 'next/cache';
 
+const sdkNotInitializedError = { message: "Firebase Admin SDK is not configured. Server-side features are disabled.", success: false };
+
 export async function getProcessInstances(): Promise<ProcessInstanceFirestore[]> {
+    if (!adminDb) {
+      console.error(sdkNotInitializedError.message);
+      return [];
+    }
     try {
         const instancesCol = collection(adminDb, 'processInstances');
         const q = query(instancesCol, orderBy('lastUpdatedAt', 'desc'));
@@ -43,6 +49,10 @@ export async function getProcessInstances(): Promise<ProcessInstanceFirestore[]>
 }
 
 export async function resumeProcessInstance(processInstanceId: string): Promise<{ message: string | null; success: boolean }> {
+    if (!adminDb) {
+      console.error(sdkNotInitializedError.message);
+      return sdkNotInitializedError;
+    }
     console.log(`BPM Action: Attempting to resume process instance ${processInstanceId} in Firestore`);
     try {
         const instanceRef = doc(adminDb, 'processInstances', processInstanceId);

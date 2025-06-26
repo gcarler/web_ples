@@ -21,12 +21,16 @@ export const AuthProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [user, setUser] = useState<FirebaseAuthUser | null>(null);
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
-  const auth = getAuth(app);
+  const auth = app ? getAuth(app) : null;
 
   useEffect(() => {
+    if (!auth) {
+        setLoading(false);
+        return;
+    }
     const unsubscribeAuth = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
-      if (currentUser) {
+      if (currentUser && db) {
         const userDocRef = doc(db, 'users', currentUser.uid);
         const unsubscribeProfile = onSnapshot(userDocRef, (docSnap) => {
           if (docSnap.exists()) {

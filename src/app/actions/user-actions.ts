@@ -18,10 +18,16 @@ const AddUserInputSchema = z.object({
   role: UserRoleSchema.default('read_only'), // Default role can be adjusted
 });
 
+const sdkNotInitializedError = { message: "Firebase Admin SDK is not configured. Server-side features are disabled.", success: false };
+
 export async function addUser(
   prevState: { message: string | null; success: boolean },
   formData: FormData
 ): Promise<{ message: string | null; success: boolean }> {
+  if (!adminAuth || !adminDb) {
+    console.error(sdkNotInitializedError.message);
+    return sdkNotInitializedError;
+  }
   try {
     const rawData = Object.fromEntries(formData.entries());
 
@@ -94,6 +100,10 @@ export async function addUser(
 
 // --- Get Users Action ---
 export async function getUsers(): Promise<UserProfile[]> {
+  if (!adminDb) {
+    console.error(sdkNotInitializedError.message);
+    return [];
+  }
   try {
     const usersCol = collection(adminDb, 'users');
     const userSnapshot = await getDocs(usersCol);
@@ -142,6 +152,10 @@ export async function updateUserRole(
     uid: string,
     role: z.infer<typeof UserRoleSchema>
 ): Promise<{ message: string | null; success: boolean }> {
+    if (!adminDb) {
+        console.error(sdkNotInitializedError.message);
+        return sdkNotInitializedError;
+    }
     try {
         const validatedData = UpdateUserRoleInputSchema.safeParse({ uid, role });
         if (!validatedData.success) {
@@ -166,6 +180,10 @@ export async function updateUserRole(
 
 // --- Delete User Action ---
 export async function deleteUser(uid: string): Promise<{ message: string | null; success: boolean }> {
+    if (!adminAuth || !adminDb) {
+      console.error(sdkNotInitializedError.message);
+      return sdkNotInitializedError;
+    }
     if (!uid) return { message: 'Invalid User ID.', success: false };
     try {
         // 1. Delete user from Firebase Authentication

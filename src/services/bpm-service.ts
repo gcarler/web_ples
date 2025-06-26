@@ -39,9 +39,12 @@ const processInstanceConverter: FirestoreDataConverter<ProcessInstanceFirestore>
     },
 };
 
-const processInstancesCol = collection(adminDb, PROCESS_INSTANCES_COLLECTION).withConverter(processInstanceConverter);
-
 export async function startOpportunityToCashProcess(opportunityId: string, opportunityData: OpportunityFirestore): Promise<boolean> {
+    if (!adminDb) {
+      console.error("Firebase Admin SDK not initialized. Cannot start BPM process.");
+      return false;
+    }
+    const processInstancesCol = collection(adminDb, PROCESS_INSTANCES_COLLECTION);
     console.log(`BPM Service: Starting Opportunity-to-Cash process for Opportunity ID: ${opportunityId}`);    
     try {
         const processInstanceData: ProcessInstanceInput = {
@@ -58,7 +61,7 @@ export async function startOpportunityToCashProcess(opportunityId: string, oppor
             currentTaskName: 'Verify Opportunity Data',
         };
 
-        const docRef = await addDoc(collection(adminDb, PROCESS_INSTANCES_COLLECTION), {
+        const docRef = await addDoc(processInstancesCol, {
             ...processInstanceData,
             startedAt: Timestamp.fromDate(processInstanceData.startedAt as Date),
             lastUpdatedAt: serverTimestamp(),
@@ -109,6 +112,11 @@ export async function startOpportunityToCashProcess(opportunityId: string, oppor
 }
 
 export async function startShippingProcess(orderId: string): Promise<boolean> {
+    if (!adminDb) {
+      console.error("Firebase Admin SDK not initialized. Cannot start shipping process.");
+      return false;
+    }
+    const processInstancesCol = collection(adminDb, PROCESS_INSTANCES_COLLECTION);
     console.log(`BPM Service: Starting Shipping Process for Order ID: ${orderId}`);
      try {
         const existingProcess = await findProcessInstanceByCorrelationId(orderId, PROCESS_DEFINITIONS.SHIPPING_PROCESS);
@@ -127,7 +135,7 @@ export async function startShippingProcess(orderId: string): Promise<boolean> {
             currentTaskName: 'Check Inventory Availability',
         };
 
-        const docRef = await addDoc(collection(adminDb, PROCESS_INSTANCES_COLLECTION), {
+        const docRef = await addDoc(processInstancesCol, {
             ...processInstanceData,
             startedAt: Timestamp.fromDate(processInstanceData.startedAt as Date),
             lastUpdatedAt: serverTimestamp(),
@@ -176,6 +184,10 @@ export async function startShippingProcess(orderId: string): Promise<boolean> {
 }
 
 export async function updateProcessInstance(processInstanceId: string, updates: Partial<ProcessInstanceInput>): Promise<boolean> {
+    if (!adminDb) {
+      console.error("Firebase Admin SDK not initialized. Cannot update process instance.");
+      return false;
+    }
     console.log(`BPM Service: Updating Process Instance ${processInstanceId} in Firestore`);
     if (!processInstanceId) {
         console.error("BPM Service Error: Invalid processInstanceId provided for update.");
@@ -211,6 +223,11 @@ export async function updateProcessInstance(processInstanceId: string, updates: 
 }
 
 export async function findProcessInstanceByCorrelationId(correlationId: string, processDefinitionId: string): Promise<ProcessInstanceFirestore | null> {
+    if (!adminDb) {
+      console.error("Firebase Admin SDK not initialized. Cannot find process instance.");
+      return null;
+    }
+    const processInstancesCol = collection(adminDb, PROCESS_INSTANCES_COLLECTION).withConverter(processInstanceConverter);
     console.log(`BPM Service: Finding process instance by correlationId=${correlationId}, definitionId=${processDefinitionId}`);
     if (!correlationId || !processDefinitionId) return null;
 

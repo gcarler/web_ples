@@ -12,11 +12,16 @@ import { startOpportunityToCashProcess } from '@/services/bpm-service';
 import { addDays } from 'date-fns';
 
 const AddContactInputSchema = ContactInputSchema.omit({ createdAt: true, updatedAt: true });
+const sdkNotInitializedError = { message: "Firebase Admin SDK is not configured. Server-side features are disabled.", success: false };
 
 export async function addContact(
   prevState: { message: string | null; success: boolean },
   formData: FormData
 ): Promise<{ message: string | null; success: boolean }> {
+  if (!adminDb) {
+    console.error(sdkNotInitializedError.message);
+    return sdkNotInitializedError;
+  }
   try {
     const rawData = Object.fromEntries(formData.entries());
 
@@ -69,6 +74,10 @@ export async function addContact(
 }
 
 export async function getContacts(): Promise<ContactFirestore[]> {
+  if (!adminDb) {
+    console.error(sdkNotInitializedError.message);
+    return [];
+  }
   try {
     const contactsCol = collection(adminDb, 'contacts');
     const q = query(contactsCol, orderBy('createdAt', 'desc'));
@@ -104,6 +113,10 @@ const CreateOpportunityInputSchema = OpportunityInputSchema.omit({ createdAt: tr
 export async function createOpportunity(
     input: Omit<Opportunity, 'id' | 'createdAt' | 'updatedAt'>
 ): Promise<{ id: string; message: string | null; success: boolean }> {
+  if (!adminDb) {
+    console.error(sdkNotInitializedError.message);
+    return { ...sdkNotInitializedError, id: '' };
+  }
   try {
     const validatedData = CreateOpportunityInputSchema.safeParse(input);
     if (!validatedData.success) {
@@ -131,6 +144,10 @@ export async function createOpportunity(
 }
 
 export async function getOpportunities(): Promise<OpportunityFirestore[]> {
+  if (!adminDb) {
+    console.error(sdkNotInitializedError.message);
+    return [];
+  }
   try {
     const opportunitiesCol = collection(adminDb, 'opportunities');
     const q = query(opportunitiesCol, orderBy('createdAt', 'desc'));
@@ -172,6 +189,10 @@ export async function updateOpportunityStage(
     opportunityId: string,
     newStage: OpportunityStage
 ): Promise<{ message: string | null; success: boolean }> {
+  if (!adminDb) {
+    console.error(sdkNotInitializedError.message);
+    return sdkNotInitializedError;
+  }
   try {
     const validatedStage = OpportunityStageSchema.safeParse(newStage);
     if (!validatedStage.success) {

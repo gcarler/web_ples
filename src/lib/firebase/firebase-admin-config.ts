@@ -1,33 +1,52 @@
-
 // src/lib/firebase/firebase-admin-config.ts
 import admin from 'firebase-admin';
+
+let adminDb: admin.firestore.Firestore | null = null;
+let adminAuth: admin.auth.Auth | null = null;
+let initialized = false;
 
 // This is a critical configuration file.
 // Please add your Firebase Admin credentials to a `.env.local` file.
 // See the main `.env` file for detailed instructions.
+if (
+  process.env.FIREBASE_PROJECT_ID &&
+  process.env.FIREBASE_CLIENT_EMAIL &&
+  process.env.FIREBASE_PRIVATE_KEY
+) {
+  const serviceAccount = {
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+    // Replace \\n with \n to correctly parse the private key
+    privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+  };
 
-const serviceAccount = {
-  projectId: process.env.FIREBASE_PROJECT_ID,
-  clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-  privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
-};
-
-if (!admin.apps.length) {
-  try {
-    admin.initializeApp({
-      credential: admin.credential.cert(serviceAccount),
-    });
-    console.log('Firebase Admin SDK initialized successfully.');
-  } catch (error: any) {
-    let errorMessage = `Firebase Admin SDK failed to initialize: ${error.message}`;
-    if (!serviceAccount.projectId || !serviceAccount.clientEmail || !serviceAccount.privateKey) {
-        errorMessage = 'Firebase Admin SDK Error: One or more required environment variables (FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL, FIREBASE_PRIVATE_KEY) are missing. Please check your .env.local file and restart the server.';
+  if (!admin.apps.length) {
+    try {
+      admin.initializeApp({
+        credential: admin.credential.cert(serviceAccount),
+      });
+      console.log('Firebase Admin SDK initialized successfully.');
+      initialized = true;
+    } catch (error: any) {
+      console.error('Firebase Admin SDK initialization error:', error.message);
+      // We don't throw here to allow the app to run without admin features
     }
-    throw new Error(errorMessage);
+  } else {
+    // Already initialized
+    initialized = true;
   }
+} else {
+  // This is a warning, not an error, to allow the app to run
+  console.warn(
+    'Firebase Admin SDK is not configured. Server-side features requiring authentication (like the admin panel) will not work. Please provide FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL, and FIREBASE_PRIVATE_KEY in your .env.local file.'
+  );
 }
 
-const adminDb = admin.firestore();
-const adminAuth = admin.auth();
+if (initialized && admin.apps.length > 0) {
+    adminDb = admin.firestore();
+    adminAuth = admin.auth();
+}
 
+// Export adminDb, adminAuth, and the admin namespace.
+// They might be null if initialization failed.
 export { adminDb, adminAuth, admin };
