@@ -73,14 +73,16 @@ export default function CienciaClientPage() {
         <section className="relative w-full h-[450px] md:h-[500px] flex items-center justify-center text-center mb-16 overflow-hidden">
             {/* The cube animation will be the background element, moving freely */}
             <div className="absolute inset-0 perspective-container">
-              <div className="cube-container">
-                <div className="cube">
-                  <div className="face front"></div>
-                  <div className="face back"></div>
-                  <div className="face right"></div>
-                  <div className="face left"></div>
-                  <div className="face top"></div>
-                  <div className="face bottom"></div>
+              <div className="animation-wrapper">
+                <div className="cube-container">
+                  <div className="cube">
+                    <div className="face front"></div>
+                    <div className="face back"></div>
+                    <div className="face right"></div>
+                    <div className="face left"></div>
+                    <div className="face top"></div>
+                    <div className="face bottom"></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -140,12 +142,16 @@ export default function CienciaClientPage() {
                 justify-content: center;
             }
 
+            .animation-wrapper {
+              animation: float 30s infinite ease-in-out alternate;
+            }
+
             .cube-container {
                 width: 250px;
                 height: 250px;
                 position: relative;
                 transform-style: preserve-3d;
-                animation: floatAndRotate 40s infinite linear alternate;
+                animation: rotate 25s infinite linear;
             }
             
             @media (min-width: 768px) {
@@ -154,22 +160,25 @@ export default function CienciaClientPage() {
                     height: 300px;
                 }
             }
-
-            @keyframes floatAndRotate {
+            
+            @keyframes float {
                 0% {
-                    transform: translate(0, 0) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
-                }
-                25% {
-                    transform: translate(20%, -15%) rotateX(90deg) rotateY(45deg) rotateZ(20deg);
+                    transform: translate3d(-15vw, 10vh, -50px);
                 }
                 50% {
-                    transform: translate(0, 20%) rotateX(180deg) rotateY(180deg) rotateZ(90deg);
-                }
-                75% {
-                    transform: translate(-20%, -5%) rotateX(270deg) rotateY(225deg) rotateZ(180deg);
+                    transform: translate3d(15vw, -10vh, 50px);
                 }
                 100% {
-                    transform: translate(0, 0) rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+                    transform: translate3d(-15vw, 10vh, -50px);
+                }
+            }
+
+            @keyframes rotate {
+                from {
+                    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+                }
+                to {
+                    transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
                 }
             }
 
