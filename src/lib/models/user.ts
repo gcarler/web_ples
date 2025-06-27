@@ -1,6 +1,5 @@
 // src/lib/models/user.ts
 import { z } from 'zod';
-import { Timestamp } from 'firebase-admin/firestore'; // Using admin timestamp for server-side logic
 
 // Define available roles
 export const UserRoleSchema = z.enum(['admin', 'read_only']);

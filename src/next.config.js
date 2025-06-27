@@ -54,7 +54,6 @@ const nextConfig = {
 
       // Provide fallbacks for other Node.js core modules that might be imported.
       // We are explicitly setting them to 'false' as we don't need them in the browser.
-      // Note: 'process' is handled by the ProvidePlugin and alias above, so it's not needed here.
       config.resolve.fallback = {
         ...(config.resolve.fallback || {}),
         crypto: false,
@@ -67,6 +66,8 @@ const nextConfig = {
         async_hooks: false,
         http2: false,
         vm: false,
+        process: 'process/browser', // Also add fallback for 'process'
+        'node:process': 'process/browser', // And for 'node:process'
       };
     } else {
       // For server-side, explicitly mark 'crypto' as an external module.
