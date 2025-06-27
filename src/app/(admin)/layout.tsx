@@ -22,15 +22,14 @@ export default function AdminLayout({ children }: PropsWithChildren) {
   const { toast } = useToast();
   const userRole = userProfile?.role;
 
-  /*
-  // Disabling authentication check to allow access without full Firebase setup.
-  // To re-enable, uncomment this block after configuring Firebase Admin in .env.local.
+  
+  // Re-enabled authentication check.
   useEffect(() => {
     if (!loading && !user) {
       router.push('/login');
     }
   }, [user, loading, router]);
-  */
+  
 
   const handleLogout = async () => {
     // Simplified logout as full auth might not be configured
@@ -42,8 +41,8 @@ export default function AdminLayout({ children }: PropsWithChildren) {
     router.push('/login');
   };
 
-  /*
-  // Disabling loading state to allow access without full Firebase setup.
+  
+  // Re-enabled loading state.
   if (loading) {
     return (
          <div className="flex h-screen">
@@ -67,10 +66,10 @@ export default function AdminLayout({ children }: PropsWithChildren) {
   }
 
   if (!user) {
-    // Also disable this check to prevent a blank screen
-    // return null;
+    // Re-enabled check to prevent rendering without a user.
+    return null;
   }
-  */
+  
 
   return (
     <SidebarProvider>
