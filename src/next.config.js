@@ -36,23 +36,24 @@ const nextConfig = {
     config.experiments = { ...(config.experiments || {}), asyncWebAssembly: true, topLevelAwait: true };
 
     if (!isServer) {
-      // Ignore firebase-admin on the client side. This is crucial.
+      // Ignore firebase-admin on the client side.
       config.plugins.push(new webpack.IgnorePlugin({ resourceRegExp: /^firebase-admin(\/.*)?$/ }));
 
-      // Provide 'process' as a global variable in the browser.
+      // Provide a polyfill for the 'process' object. This makes 'process' available in client-side modules.
       config.plugins.push(
         new webpack.ProvidePlugin({
           process: 'process/browser',
         })
       );
       
-      // Forcefully replace any import of 'node:process' with 'process/browser'.
+      // Create an alias to handle imports of 'node:process'. This is the most direct fix for the error.
       config.resolve.alias = {
         ...(config.resolve.alias || {}),
         'node:process': 'process/browser',
       };
 
-      // Set fallbacks for other Node.js core modules to 'false' as they are not needed.
+      // Provide fallbacks for other Node.js core modules that might be imported.
+      // We are explicitly setting them to 'false' as we don't need them in the browser.
       config.resolve.fallback = {
         ...(config.resolve.fallback || {}),
         crypto: false,
@@ -65,9 +66,11 @@ const nextConfig = {
         async_hooks: false,
         http2: false,
         vm: false,
+        process: 'process/browser', // Also add fallback for 'process'
+        'node:process': 'process/browser', // And for 'node:process'
       };
     } else {
-      // For server-side, 'crypto' is a native module. Let Node.js handle it.
+      // For server-side, explicitly mark 'crypto' as an external module.
       config.externals = [...(config.externals || []), 'crypto'];
     }
 
