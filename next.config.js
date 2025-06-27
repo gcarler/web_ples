@@ -31,33 +31,29 @@ const nextConfig = {
   },
   experimental: {
     serverComponentsExternalPackages: ['firebase-admin'],
-    // 'asyncWebAssembly' and 'topLevelAwait' should not be here
-    // if they cause "Unrecognized key" errors.
-    // They are correctly placed within the webpack function's config.experiments.
   },
   webpack: (config, { isServer, webpack }) => {
-    // Correctly place WebAssembly and topLevelAwait experiments here
     config.experiments = { ...(config.experiments || {}), asyncWebAssembly: true, topLevelAwait: true };
 
-    // For client-side bundles, prevent Node.js modules from being included.
     if (!isServer) {
-      // Ignore firebase-admin and its sub-paths. This is critical.
+      // Ignore firebase-admin on the client side.
       config.plugins.push(new webpack.IgnorePlugin({ resourceRegExp: /^firebase-admin(\/.*)?$/ }));
 
-      // Provide 'process/browser' polyfill globally for 'process'
+      // Provide a polyfill for the 'process' object. This makes 'process' available in client-side modules.
       config.plugins.push(
         new webpack.ProvidePlugin({
           process: 'process/browser',
         })
       );
       
-      // Alias 'node:process' to 'process/browser' to handle the scheme directly
+      // Create an alias to handle imports of 'node:process'. This is the most direct fix for the error.
       config.resolve.alias = {
         ...(config.resolve.alias || {}),
-        'node:process': 'process/browser', // Alias for node: scheme
+        'node:process': 'process/browser',
       };
 
-      // Fallback for Node.js core modules
+      // Provide fallbacks for other Node.js core modules that might be imported.
+      // We are explicitly setting them to 'false' as we don't need them in the browser.
       config.resolve.fallback = {
         ...(config.resolve.fallback || {}),
         crypto: false,
@@ -70,8 +66,8 @@ const nextConfig = {
         async_hooks: false,
         http2: false,
         vm: false,
-        process: 'process/browser', // Fallback for direct 'process' imports
-        'node:process': 'process/browser', // Explicit fallback for 'node:process' as well
+        process: 'process/browser', // Also add fallback for 'process'
+        'node:process': 'process/browser', // And for 'node:process'
       };
     } else {
       // For server-side, explicitly mark 'crypto' as an external module.
