@@ -9,7 +9,7 @@ import { z } from 'zod';
 const sdkNotInitializedError = { message: "Firebase Admin SDK is not configured. Server-side features are disabled.", success: false };
 
 /**
- * Fetches hero statements from Firestore. If the collection is empty,
+ * Fetches hero statements from Firestore. If the collection is empty or only contains placeholders,
  * it seeds it with default statements.
  */
 export async function getHeroStatements(): Promise<HeroStatement[]> {
@@ -51,10 +51,16 @@ export async function getHeroStatements(): Promise<HeroStatement[]> {
     const heroStatementsCollection = collection(adminDb, 'heroStatements');
     const q = query(heroStatementsCollection, orderBy('order', 'asc'));
     const snapshot = await getDocs(q);
+    
+    const hasMeaningfulData = snapshot.docs.some(doc => doc.data().title);
 
-    if (snapshot.empty) {
-      console.log('No hero statements found. Seeding database...');
+    if (snapshot.empty || !hasMeaningfulData) {
+      console.log('No meaningful hero statements found. Seeding database...');
       const batch = writeBatch(adminDb);
+      
+      // Delete existing placeholder docs if they exist
+      snapshot.docs.forEach(doc => batch.delete(doc.ref));
+
       defaultStatements.forEach((stmt, index) => {
           const docRef = doc(heroStatementsCollection); // Auto-generate ID
           const dataToCreate = { ...stmt, order: index, createdAt: serverTimestamp(), updatedAt: serverTimestamp() };
@@ -126,9 +132,16 @@ export async function getCoreValues(): Promise<CoreValue[]> {
         const valuesCollection = collection(adminDb, 'coreValues');
         const q = query(valuesCollection, orderBy('order', 'asc'));
         const snapshot = await getDocs(q);
-        if (snapshot.empty) {
-            console.log('Seeding core values...');
+        
+        const hasMeaningfulData = snapshot.docs.some(doc => doc.data().name);
+
+        if (snapshot.empty || !hasMeaningfulData) {
+            console.log('No meaningful core values found. Seeding database...');
             const batch = writeBatch(adminDb);
+            
+            // Delete existing placeholder docs if they exist
+            snapshot.docs.forEach(doc => batch.delete(doc.ref));
+
             defaultValues.forEach(value => {
                 const { id, ...data } = value;
                 const docRef = doc(valuesCollection, id);
@@ -179,9 +192,16 @@ export async function getPillars(): Promise<Pillar[]> {
         const pillarsCollection = collection(adminDb, 'pillars');
         const q = query(pillarsCollection, orderBy('order', 'asc'));
         const snapshot = await getDocs(q);
-        if (snapshot.empty) {
-            console.log('Seeding pillars...');
+
+        const hasMeaningfulData = snapshot.docs.some(doc => doc.data().title);
+
+        if (snapshot.empty || !hasMeaningfulData) {
+            console.log('No meaningful pillars found. Seeding database...');
             const batch = writeBatch(adminDb);
+            
+            // Delete existing placeholder docs if they exist
+            snapshot.docs.forEach(doc => batch.delete(doc.ref));
+
             defaultPillars.forEach(pillar => {
                 const { id, ...data } = pillar;
                 const docRef = doc(pillarsCollection, id);
