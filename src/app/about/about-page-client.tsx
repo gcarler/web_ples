@@ -154,9 +154,9 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
             )}>
               {/* --- Conditional Rendering for Content --- */}
               {selectedValue === 'integridad' ? (
-                 <div key="integridad-content" className="relative h-full w-full animate-fade-in">
-                    {/* Left Column: Text (in normal flow) */}
-                    <div className="flex h-full w-3/5 flex-col justify-between p-8 text-left">
+                 <div key="integridad-content" className="relative h-full w-full flex animate-fade-in">
+                    {/* Left Column: Text */}
+                    <div className="flex w-3/5 flex-col justify-between p-8 text-left">
                       <div>
                         <h3 className="text-7xl md:text-9xl font-bold text-accent tracking-tighter lowercase">
                           {selectedContent.name}
@@ -171,7 +171,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                         </p>
                       </div>
                     </div>
-                    {/* Right Column: Icon (absolute) */}
+                    {/* Right Column: Icon */}
                     <div className="absolute right-0 top-0 h-full w-2/5">
                         <SelectedIconComponent className="h-full w-full text-black/10" strokeWidth={1} />
                     </div>
@@ -212,7 +212,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                                 <span
                                   key={index}
                                   className="inline-block animate-fade-in-up opacity-0"
-                                  style={{ animationDelay: `${index * 0.1}s` }}
+                                  style={{ animationDelay: `${index * 0.1}s`, animationFillMode: 'forwards' }}
                                 >
                                   {chunk}
                                 </span>
@@ -234,22 +234,18 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                     })}
 
                     {/* Main Content Layout */}
-                    <div className="relative z-10 flex h-full w-full items-center justify-between p-8 md:p-12 lg:p-16 gap-8">
+                    <div className="relative z-10 flex h-full w-full items-center p-8 md:p-12 lg:p-16 gap-8">
                         {/* Left: Icon */}
                         <div className="flex-shrink-0">
                             <SelectedIconComponent className="h-32 w-32 sm:h-40 sm:w-40 text-accent" />
                         </div>
                         
-                        {/* Center: Title */}
+                        {/* Center: Title and Description */}
                         <div className="flex-1 text-center">
-                            <h3 className="text-7xl md:text-8xl font-bold text-primary-foreground/20 select-none">
+                            <h3 className="text-7xl md:text-8xl font-bold text-primary-foreground/20 select-none mb-4">
                                 {selectedContent.name}
                             </h3>
-                        </div>
-
-                        {/* Right: Explanation */}
-                        <div className="w-1/3">
-                            <p className="text-right text-lg text-primary-foreground/90 leading-relaxed">
+                            <p className="text-lg text-primary-foreground/90 leading-relaxed max-w-2xl mx-auto">
                                 {collaborationPhrases.map((phrase, index) => (
                                     <span
                                         key={index}
