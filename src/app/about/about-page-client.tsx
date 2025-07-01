@@ -94,9 +94,9 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
           <div className="flex flex-col lg:flex-row items-center w-full gap-12 lg:gap-8">
             <div className="w-full lg:w-5/12 flex justify-center items-center relative order-1 lg:order-none">
               <div className="relative w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] md:w-[420px] md:h-[420px] xl:w-[480px] xl:h-[480px]">
-                <div className="absolute -left-[65%] sm:-left-[55%] md:-left-[45%] top-1/2 transform -translate-y-1/2 w-[180%] h-[180%] bg-card rounded-full shadow-2xl"></div>
+                <div className="absolute -left-[65%] sm:-left-[55%] md:-left-[45%] top-1/2 transform -translate-y-1/2 w-[180%] h-[180%] bg-card rounded-full shadow-2xl animate-slide-in-from-left"></div>
                 <div className="absolute inset-0 flex justify-center items-center z-10 p-4">
-                  <div className="bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--ring))] bg-[length:200%_200%] animate-gradient rounded-full w-full h-full shadow-xl flex justify-center items-center">
+                  <div className="bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--ring))] bg-[length:200%_200%] animate-gradient animate-zoom-in-bounce rounded-full w-full h-full shadow-xl flex justify-center items-center">
                     <Info className="h-3/5 w-3/5 text-accent" />
                   </div>
                 </div>
@@ -143,7 +143,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
       </section>
 
       {/* Interactive Core Values Section */}
-      <section className="w-full overflow-hidden">
+      <section className="w-full relative">
         <div className="flex flex-col md:flex-row shadow-2xl border-y border-border/20 md:h-[520px]">
           <div className="flex md:flex-col md:w-1/3 lg:w-1/4 bg-card md:border-r md:border-border/20">
             {initialCoreValues.map((value, index) => (
@@ -164,7 +164,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
           
           {selectedContent && (
             <div className={cn(
-                "flex-1 p-0 relative md:h-full",
+                "flex-1 p-0 relative md:h-full overflow-hidden",
                 selectedValue === 'innovacion' ? "bg-accent text-accent-foreground" :
                 "bg-primary text-primary-foreground"
             )}>
@@ -241,34 +241,26 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                     </div>
                 </div>
               ) : (
-                 <div key="colaboracion-content" className="h-full w-full relative overflow-hidden animate-fade-in flex items-center justify-center p-8 md:p-12 lg:p-16 gap-8">
-                    {/* Background Icons */}
-                    {collaborationIcons.map((item, index) => {
-                        const Icon = item.icon;
-                        return (
-                            <div key={index} className="absolute animate-move-and-scale" style={item.style as React.CSSProperties}>
-                                <Icon className={cn(item.size, item.color)} strokeWidth={1.5} />
-                            </div>
-                        );
-                    })}
-                    {/* Center: Title and Description */}
-                    <div className="flex-1 text-center z-10">
-                        <SelectedIconComponent className="h-32 w-32 sm:h-40 sm:w-40 text-accent mb-6 mx-auto" />
-                        <h3 className="text-7xl md:text-8xl font-bold text-primary-foreground/20 select-none mb-4 uppercase">
-                            {selectedContent.name}
-                        </h3>
-                        <p className="text-lg text-primary-foreground/90 leading-relaxed max-w-2xl mx-auto">
-                            {collaborationPhrases.map((phrase, index) => (
-                                <span
-                                    key={index}
-                                    className="inline-block animate-fade-in-up opacity-0 transition-all duration-300 hover:text-accent hover:scale-105 cursor-pointer"
-                                    style={{ animationDelay: `${index * 0.12}s`, animationFillMode: 'forwards' }}
-                                >
-                                    {phrase}{' '}
-                                </span>
-                            ))}
-                        </p>
-                    </div>
+                <div key="colaboracion-content" className="h-full w-full relative overflow-hidden animate-fade-in flex items-center justify-center p-8 md:p-12 lg:p-16 gap-8">
+                  <div className="w-1/4 flex justify-center">
+                    <SelectedIconComponent className="h-32 w-32 sm:h-40 sm:w-40 text-accent" />
+                  </div>
+                  <div className="w-1/2 flex flex-col items-center justify-center text-center z-10">
+                    <h3 className="text-7xl md:text-8xl font-bold text-primary-foreground/20 select-none mb-4 uppercase">
+                        {selectedContent.name}
+                    </h3>
+                    <p className="text-lg text-primary-foreground/90 leading-relaxed max-w-2xl mx-auto">
+                        {collaborationPhrases.map((phrase, index) => (
+                            <span
+                                key={index}
+                                className="inline-block animate-fade-in-up opacity-0 transition-all duration-300 hover:text-accent hover:scale-105 cursor-pointer"
+                                style={{ animationDelay: `${index * 0.12}s`, animationFillMode: 'forwards' }}
+                            >
+                                {phrase}{' '}
+                            </span>
+                        ))}
+                    </p>
+                  </div>
                 </div>
               )}
             </div>
