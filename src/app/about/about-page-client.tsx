@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import DynamicSection from '@/components/DynamicSection';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -20,17 +20,6 @@ const iconMap: { [key: string]: React.ElementType } = {
   Workflow, MessageSquare, GitMerge, Share2, ShieldCheck, Scale, Lock, Verified,
   FileCheck, Award
 };
-
-const innovationBubbles = [
-    { size: 'h-24 w-24', style: { top: '10%', left: '5%', animationDuration: '25s', animationDelay: '0s' }, color: 'bg-black/20' },
-    { size: 'h-8 w-8', style: { top: '75%', left: '15%', animationDuration: '20s', animationDelay: '2s' }, color: 'bg-black/30' },
-    { size: 'h-16 w-16', style: { top: '25%', left: '25%', animationDuration: '28s', animationDelay: '4s' }, color: 'bg-black/20' },
-    { size: 'h-32 w-32', style: { top: '50%', left: '40%', animationDuration: '30s', animationDelay: '1s' }, color: 'bg-black/30' },
-    { size: 'h-12 w-12', style: { top: '80%', left: '55%', animationDuration: '22s', animationDelay: '6s' }, color: 'bg-black/20' },
-    { size: 'h-20 w-20', style: { top: '5%', left: '70%', animationDuration: '26s', animationDelay: '3s' }, color: 'bg-black/30' },
-    { size: 'h-14 w-14', style: { top: '65%', left: '85%', animationDuration: '23s', animationDelay: '5s' }, color: 'bg-black/20' },
-    { size: 'h-28 w-28', style: { top: '30%', left: '95%', animationDuration: '29s', animationDelay: '7s' }, color: 'bg-black/30' },
-];
 
 const collaborationIcons = [
     { icon: UsersIcon, size: "h-16 w-16", style: { top: '15%', left: '10%', animationDuration: '25s', animationDelay: '0s' }, color: 'text-primary-foreground/30' },
@@ -51,6 +40,28 @@ interface AboutPageClientProps {
 export default function AboutPageClient({ initialCoreValues, initialPillars }: AboutPageClientProps) {
   const [selectedValue, setSelectedValue] = useState(initialCoreValues[2]?.id || 'integridad');
   const selectedContent = initialCoreValues.find(v => v.id === selectedValue);
+
+  const [bubbles, setBubbles] = useState<any[]>([]);
+
+  useEffect(() => {
+    const colors = ['bg-primary/20', 'bg-accent/20', 'bg-ring/20', 'bg-primary/30', 'bg-accent/30', 'bg-ring/30', 'bg-accent/40'];
+    const sizes = ['h-8 w-8', 'h-12 w-12', 'h-16 w-16', 'h-20 w-20', 'h-24 w-24', 'h-32 w-32'];
+    const generatedBubbles = Array.from({ length: 15 }).map((_, i) => ({
+      id: i,
+      style: {
+        top: `${Math.random() * 100}%`,
+        left: `${Math.random() * 100}%`,
+        animationDuration: `${Math.random() * 20 + 20}s`, // 20-40s
+        animationDelay: `-${Math.random() * 20}s`, // random start in cycle
+      },
+      className: cn(
+        sizes[Math.floor(Math.random() * sizes.length)],
+        colors[Math.floor(Math.random() * colors.length)]
+      ),
+    }));
+    setBubbles(generatedBubbles);
+  }, []); // empty dependency array, so it runs only once on client mount
+
 
   const sections = [
     { title: 'Nuestra Esencia', content: 'Comprendiendo quienes somos.', link: '/about/esencia', icon: HeartPulse },
@@ -188,17 +199,13 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                 </div>
               ) : selectedValue === 'innovacion' ? (
                 <div key="innovacion-content" className="flex h-full w-full animate-fade-in relative overflow-hidden">
-                    {/* Background Bubbles (subtle) */}
-                    {innovationBubbles.map((item, index) => (
-                    <div
-                        key={index}
-                        className={cn('absolute rounded-full animate-bubble-rise', item.size, 'bg-black/30 opacity-70')}
-                        style={{
-                            left: `${Math.random() * 100}%`,
-                            animationDuration: `${Math.random() * 10 + 10}s`,
-                            animationDelay: `${Math.random() * 5}s`,
-                         }}
-                    />
+                    {/* Background Bubbles (more prominent) */}
+                    {bubbles.map((bubble) => (
+                      <div
+                        key={bubble.id}
+                        className={cn('absolute rounded-full animate-bubble-roam opacity-80', bubble.className)}
+                        style={bubble.style as React.CSSProperties}
+                      />
                     ))}
 
                     {/* Content Container */}

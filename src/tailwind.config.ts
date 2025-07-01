@@ -110,22 +110,21 @@ export default {
           '75%': { transform: 'translate(5%, 25%) scale(1.1)', opacity: 1 },
           '100%': { transform: 'translate(0, 0) scale(1)', opacity: 0.5 },
         },
-        'bubble-rise': {
-          '0%': {
-            transform: 'translateY(0) scale(0.5)',
-            opacity: '0',
-          },
-          '50%': {
-            opacity: '0.7',
-          },
-          '100%': {
-            transform: 'translateY(-500px) scale(1.2)',
-            opacity: '0',
-          },
+        'bubble-roam': {
+          '0%': { transform: 'translate(0, 0) rotate(0deg)' },
+          '20%': { transform: 'translate(5rem, -8rem) rotate(30deg)' },
+          '40%': { transform: 'translate(-6rem, 4rem) rotate(-20deg)' },
+          '60%': { transform: 'translate(8rem, 7rem) rotate(10deg)' },
+          '80%': { transform: 'translate(-4rem, -5rem) rotate(-30deg)' },
+          '100%': { transform: 'translate(0, 0) rotate(0deg)' },
         },
-        'slide-across-anim': {
-          '0%': { left: '0%', transform: 'translateY(-50%)' },
-          '100%': { left: '100%', transform: 'translate(-100%, -50%)' },
+        'slide-across': {
+          '0%': { transform: 'translateX(-50%) translateY(-50%)' },
+          '100%': { transform: 'translateX(50%) translateY(-50%)' },
+        },
+        'slide-across-text': {
+           '0%': { transform: 'translateX(50%) translateY(-50%)' },
+           '100%': { transform: 'translateX(-50%) translateY(-50%)' },
         },
         'drone-path': {
           '0%': { transform: 'translate(-120%, 0px) rotate(-5deg)' },
@@ -168,9 +167,9 @@ export default {
         'expand-in': 'expand-in 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
         'fade-in-up': 'fade-in-up 0.6s ease-out forwards',
         'move-and-scale': 'move-and-scale 25s ease-in-out infinite',
-        'bubble-rise': 'bubble-rise linear infinite',
-        'slide-across': 'slide-across-anim 25s ease-in-out infinite alternate',
-        'slide-across-text': 'slide-across-anim 35s ease-in-out infinite alternate-reverse',
+        'bubble-roam': 'bubble-roam ease-in-out infinite',
+        'slide-across': 'slide-across 25s ease-in-out infinite alternate',
+        'slide-across-text': 'slide-across-text 35s ease-in-out infinite alternate',
         'drone-path': 'drone-path 20s ease-in-out infinite',
         'scan-beam': 'scan-beam 4s ease-in-out infinite',
         'tree-sway': 'tree-sway 5s ease-in-out infinite',
