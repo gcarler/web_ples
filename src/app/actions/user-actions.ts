@@ -1,3 +1,4 @@
+
 // src/app/actions/user-actions.ts
 'use server';
 
@@ -6,7 +7,7 @@ import { adminAuth, adminDb } from '@/lib/firebase/firebase-admin-config';
 import { UserProfile, UserProfileSchema, UserRoleSchema } from '@/lib/models/user';
 import { collection, getDocs, doc, setDoc, updateDoc, serverTimestamp, deleteDoc } from 'firebase-admin/firestore';
 import { revalidatePath } from 'next/cache';
-import { CreateUserRequest } from 'firebase-admin/auth';
+import { type CreateUserRequest } from 'firebase-admin/auth';
 
 // Schema for adding/registering a new user (used by the server action)
 // Note: confirmPassword is only for client-side validation and not sent here.
