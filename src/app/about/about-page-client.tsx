@@ -178,20 +178,24 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                     />
                     ))}
 
-                    {/* Giant Icon on the right */}
                     <Lightbulb className="absolute -right-1/4 -top-1/4 h-[150%] w-[150%] text-black/10" strokeWidth={0.75} />
 
                     {/* Content Container */}
                     <div className="relative z-10 flex h-full w-full flex-col justify-between p-8 md:p-12 lg:p-16">
-                        {/* Top Title */}
                         <h3 className="text-7xl md:text-9xl font-thin text-accent-foreground tracking-tight lowercase">
                             {selectedContent.name}
                         </h3>
-
-                        {/* Bottom Text */}
-                        <div className="flex w-full justify-center">
-                            <p className="text-lg md:text-xl leading-relaxed text-accent-foreground/90 max-w-md text-center">
-                            {selectedContent.explanation}
+                        <div className="flex w-full justify-start">
+                            <p className="text-lg md:text-xl leading-relaxed text-accent-foreground/90 max-w-md text-left">
+                              {selectedContent.explanation.split(' ').map((word, index) => (
+                                <span
+                                  key={index}
+                                  className="inline-block animate-fade-in-up opacity-0"
+                                  style={{ animationDelay: `${index * 0.05}s` }}
+                                >
+                                  {word}&nbsp;
+                                </span>
+                              ))}
                             </p>
                         </div>
                     </div>
