@@ -140,6 +140,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
           {selectedContent && (
             <div className={cn(
                 "flex-1 p-0 relative overflow-hidden text-center",
+                "md:h-[520px]", // Consistent height on desktop
                 selectedValue !== 'integridad' && "flex flex-col justify-center items-center",
                 selectedValue === 'innovacion' ? "bg-accent text-accent-foreground" :
                 selectedValue === 'integridad' ? "bg-primary text-primary-foreground" :
@@ -184,13 +185,13 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                   </div>
                 </div>
               ) : (
-                <div key={selectedContent.id} className="animate-fade-in-up w-full max-w-2xl space-y-6 md:space-y-8 relative z-10 p-8 md:p-12 lg:p-16">
+                <div key={selectedContent.id} className="animate-fade-in-up w-full max-w-3xl space-y-8 md:space-y-10 relative z-10 p-8 md:p-12 lg:p-16">
                     <h2 className="text-xl md:text-2xl font-semibold text-primary-foreground/80 mb-0 uppercase tracking-wider">NUESTROS VALORES</h2>
-                    <SelectedIconComponent className={cn("h-20 w-20 sm:h-24 sm:w-24 mx-auto", selectedValue === 'innovacion' ? 'text-primary-foreground/90' : 'text-accent')} />
-                    <h3 className={cn("text-3xl sm:text-4xl font-bold", selectedValue === 'innovacion' ? 'text-primary-foreground' : 'text-accent')}>
+                    <SelectedIconComponent className={cn("h-24 w-24 sm:h-32 sm:w-32 mx-auto", selectedValue === 'innovacion' ? 'text-primary-foreground/90' : 'text-accent')} />
+                    <h3 className={cn("text-4xl sm:text-5xl font-bold", selectedValue === 'innovacion' ? 'text-primary-foreground' : 'text-accent')}>
                         {selectedContent.name}
                     </h3>
-                    <p className="text-base sm:text-lg leading-relaxed text-primary-foreground/90 max-w-xl mx-auto">
+                    <p className="text-lg sm:text-xl leading-relaxed text-primary-foreground/90 max-w-2xl mx-auto">
                         {selectedContent.explanation}
                     </p>
                 </div>
