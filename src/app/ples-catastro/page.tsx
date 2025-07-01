@@ -120,8 +120,8 @@ export default function PlesCatastroPage() {
               <h1 className="text-4xl sm:text-5xl xl:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-6">
                 PLES Catastro
               </h1>
-              <p className="text-lg sm:text-xl text-foreground mb-8 max-w-2xl mx-auto lg:mx-0">
-                Innovación en gestión territorial para un desarrollo eficiente y sostenible. Con el uso inteligente de la experiencia y tecnología de vanguardia, ofrecemos precisión, optimizamos costos y garantizamos la más alta calidad.
+              <p className="text-lg sm:text-xl text-foreground mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                Innovación en gestión territorial para un desarrollo <strong className="text-accent">eficiente y sostenible</strong>. Con el <strong className="text-primary">uso inteligente de la experiencia</strong> y <strong className="text-accent">tecnología de vanguardia</strong>, ofrecemos <strong className="text-primary">precisión</strong>, optimizamos costos y garantizamos la más alta <strong className="text-accent">calidad</strong>.
               </p>
               <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-10">
                 <Badge variant="default" className="text-md px-4 py-2 shadow-md">#CatastroMultifinalitario</Badge>

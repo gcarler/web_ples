@@ -135,8 +135,8 @@ const treeStyles = [
               <h1 className="text-4xl sm:text-5xl xl:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-6">
                 PLES CREA
               </h1>
-              <p className="text-lg sm:text-xl text-foreground mb-8 max-w-2xl mx-auto lg:mx-0">
-                Cartografía Inteligente para un Futuro Sostenible y Equitativo. En PLES CREA, fusionamos la ciencia de datos geoespaciales con una visión estratégica para ofrecer soluciones cartográficas que impulsan la resiliencia ambiental, la equidad territorial y la toma de decisiones informada.
+              <p className="text-lg sm:text-xl text-foreground mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                <strong className="text-primary">Cartografía Inteligente</strong> para un <strong className="text-accent">Futuro Sostenible y Equitativo</strong>. En PLES CREA, fusionamos la ciencia de datos geoespaciales con una visión estratégica para ofrecer soluciones cartográficas que impulsan la <strong className="text-primary">resiliencia ambiental</strong>, la <strong className="text-accent">equidad territorial</strong> y la <strong className="text-primary">toma de decisiones informada</strong>.
               </p>
               <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-10">
                 <Badge variant="default" className="text-md px-4 py-2 shadow-md">#DatosGeoespaciales</Badge>

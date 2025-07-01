@@ -10,6 +10,7 @@ import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import { type CoreValue, type Pillar } from '@/lib/models/content';
+import React from 'react';
 
 // Icon Map to render Lucide icons from string names
 const iconMap: { [key: string]: React.ElementType } = {
@@ -186,14 +187,26 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                             {selectedContent.name}
                         </h3>
                         <div className="flex w-full justify-start">
-                            <p className="text-lg md:text-xl leading-relaxed text-accent-foreground/90 max-w-md text-left">
-                              {selectedContent.explanation.split(' ').map((word, index) => (
+                            <p className="text-lg md:text-xl leading-relaxed text-accent-foreground/80 max-w-md text-left">
+                              {[
+                                <React.Fragment key="t1">Como motor de nuestro progreso, la </React.Fragment>,
+                                <strong key="s1" className="text-accent-foreground font-bold">innovación</strong>,
+                                <React.Fragment key="t2"> nos impulsa a </React.Fragment>,
+                                <strong key="s2" className="text-accent-foreground font-bold">desafiar el status quo</strong>,
+                                <React.Fragment key="t3"> y a explorar constantemente </React.Fragment>,
+                                <strong key="s3" className="text-accent-foreground font-bold">nuevas tecnologías y metodologías</strong>,
+                                <React.Fragment key="t4">. Convertimos </React.Fragment>,
+                                <strong key="s4" className="text-accent-foreground font-bold">ideas audaces</strong>,
+                                <React.Fragment key="t5"> en soluciones prácticas que aportan un </React.Fragment>,
+                                <strong key="s5" className="text-accent-foreground font-bold">valor tangible y sostenible</strong>,
+                                <React.Fragment key="t6"> a nuestros clientes.</React.Fragment>,
+                              ].map((chunk, index) => (
                                 <span
                                   key={index}
                                   className="inline-block animate-fade-in-up opacity-0"
-                                  style={{ animationDelay: `${index * 0.05}s` }}
+                                  style={{ animationDelay: `${index * 0.1}s` }}
                                 >
-                                  {word}&nbsp;
+                                  {chunk}
                                 </span>
                               ))}
                             </p>

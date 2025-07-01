@@ -93,8 +93,8 @@ export default function PlesConsultingPage() {
               <h1 className="text-4xl sm:text-5xl xl:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-6">
                 PLES Consulting
               </h1>
-              <p className="text-lg sm:text-xl text-foreground mb-8 max-w-2xl mx-auto lg:mx-0">
-                Aliados estratégicos para la innovación y la transformación. Colaboramos con organizaciones para diseñar e implementar soluciones que generan un impacto positivo y duradero.
+              <p className="text-lg sm:text-xl text-foreground mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                Aliados estratégicos para la <strong className="text-primary">innovación y la transformación</strong>. Colaboramos con organizaciones para diseñar e implementar soluciones que generan un <strong className="text-accent">impacto positivo y duradero</strong>.
               </p>
               <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-10">
                 <Badge variant="default" className="text-md px-4 py-2 shadow-md">#EstrategiaOrganizacional</Badge>
