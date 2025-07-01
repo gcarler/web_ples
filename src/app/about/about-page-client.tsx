@@ -172,7 +172,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                   return (
                     <div
                       key={index}
-                      className={cn('absolute rounded-full animate-float-around', item.size, item.color)}
+                      className={cn('absolute rounded-full animate-move-and-scale', item.size, item.color)}
                       style={item.style as React.CSSProperties}
                     />
                   );
