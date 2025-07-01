@@ -61,6 +61,14 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
   ];
 
   const SelectedIconComponent = selectedContent ? iconMap[selectedContent.iconName] || Shield : Shield;
+  
+  const collaborationPhrases = [
+    "La colaboración", "es la esencia", "de nuestro accionar.",
+    "Fomentamos la sinergia", "entre equipos", "multidisciplinarios",
+    "y promovemos", "alianzas estratégicas", "para co-crear",
+    "soluciones integrales", "que superan", "las expectativas",
+    "y generan", "un impacto", "duradero."
+  ];
 
   return (
     <div className="py-10 space-y-16">
@@ -214,7 +222,8 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                     </div>
                 </div>
               ) : (
-                <div key="colaboracion-content" className="flex flex-col justify-center items-center text-right h-full relative">
+                <div key="colaboracion-content" className="h-full w-full relative overflow-hidden animate-fade-in">
+                    {/* Background Icons */}
                     {collaborationIcons.map((item, index) => {
                         const Icon = item.icon;
                         return (
@@ -223,15 +232,35 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                             </div>
                         );
                     })}
-                    <div key={selectedContent.id} className="animate-fade-in-up w-full max-w-3xl space-y-8 md:space-y-10 relative z-10 p-8 md:p-12 lg:p-16">
-                        <h2 className="text-xl md:text-2xl font-semibold text-primary-foreground/80 mb-0 uppercase tracking-wider">NUESTROS VALORES</h2>
-                        <SelectedIconComponent className="h-32 w-32 sm:h-48 sm:w-48 ml-auto mr-0 text-accent" />
-                        <h3 className="text-5xl sm:text-6xl font-bold text-accent">
-                            {selectedContent.name}
-                        </h3>
-                        <p className="text-xl sm:text-2xl leading-relaxed text-primary-foreground/90 max-w-2xl ml-auto mr-0">
-                            {selectedContent.explanation}
-                        </p>
+
+                    {/* Main Content Layout */}
+                    <div className="relative z-10 flex h-full w-full items-center justify-between p-8 md:p-12 lg:p-16 gap-8">
+                        {/* Left: Icon */}
+                        <div className="flex-shrink-0">
+                            <SelectedIconComponent className="h-32 w-32 sm:h-40 sm:w-40 text-accent" />
+                        </div>
+                        
+                        {/* Center: Title */}
+                        <div className="flex-1 text-center">
+                            <h3 className="text-7xl md:text-8xl font-bold text-primary-foreground/20 select-none">
+                                {selectedContent.name}
+                            </h3>
+                        </div>
+
+                        {/* Right: Explanation */}
+                        <div className="w-1/3">
+                            <p className="text-right text-lg text-primary-foreground/90 leading-relaxed">
+                                {collaborationPhrases.map((phrase, index) => (
+                                    <span
+                                        key={index}
+                                        className="inline-block animate-fade-in-up opacity-0 transition-all duration-300 hover:text-accent hover:scale-105 cursor-pointer"
+                                        style={{ animationDelay: `${index * 0.12}s`, animationFillMode: 'forwards' }}
+                                    >
+                                        {phrase}{' '}
+                                    </span>
+                                ))}
+                            </p>
+                        </div>
                     </div>
                 </div>
               )}
