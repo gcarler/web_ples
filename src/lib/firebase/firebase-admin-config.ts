@@ -5,9 +5,9 @@ let adminDb: admin.firestore.Firestore | null = null;
 let adminAuth: admin.auth.Auth | null = null;
 let initialized = false;
 
-// This is a critical configuration file.
-// Please add your Firebase Admin credentials to a `.env.local` file.
-// See the main `.env` file for detailed instructions.
+// This configuration uses environment variables to securely initialize the Firebase Admin SDK.
+// It's the recommended approach instead of including a physical serviceAccountKey.json file.
+// You can get these values from the service account JSON file you download from the Firebase Console.
 if (
   process.env.FIREBASE_PROJECT_ID &&
   process.env.FIREBASE_CLIENT_EMAIL &&
@@ -16,7 +16,7 @@ if (
   const serviceAccount = {
     projectId: process.env.FIREBASE_PROJECT_ID,
     clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-    // Replace \\n with \n to correctly parse the private key
+    // Replace \\n with \n to correctly parse the private key from environment variables
     privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
   };
 
