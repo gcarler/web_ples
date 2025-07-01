@@ -7,8 +7,9 @@ import { Table } from "@tanstack/react-table"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { DataTableViewOptions } from "@/components/ui/data-table-view-options"
-import { DataTableFacetedFilter } from "@/components/ui/data-table-faceted-filter"
-import { roleFilterOptions } from "./user-columns"; // Import filter options
+// We are removing the faceted filter to resolve a build issue.
+// import { DataTableFacetedFilter } from "@/components/ui/data-table-faceted-filter"
+// import { roleFilterOptions } from "./user-columns";
 
 interface UserTableToolbarProps<TData> {
   table: Table<TData>
@@ -31,15 +32,15 @@ export function UserTableToolbar<TData>({
           }
           className="h-8 w-[150px] lg:w-[250px]"
         />
-        {/* Faceted filter for 'role' column */}
+        {/* Faceted filter for 'role' column is temporarily disabled.
         {table.getColumn("role") && (
           <DataTableFacetedFilter
             column={table.getColumn("role")}
             title="Role"
-            options={roleFilterOptions} // Use role options
+            options={roleFilterOptions} 
           />
         )}
-        {/* Add other filters if needed (e.g., Tenant ID) */}
+        */}
 
         {/* Clear filters button */}
         {isFiltered && (
