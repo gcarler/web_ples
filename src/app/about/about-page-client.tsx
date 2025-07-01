@@ -146,9 +146,9 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
             )}>
               {/* --- Conditional Rendering for Content --- */}
               {selectedValue === 'integridad' ? (
-                 <div key="integridad-content" className="flex h-full w-full animate-fade-in">
-                    {/* Left Column: Text */}
-                    <div className="flex w-3/5 flex-col justify-between p-8 text-left">
+                 <div key="integridad-content" className="relative h-full w-full animate-fade-in">
+                    {/* Left Column: Text (in normal flow) */}
+                    <div className="flex h-full w-3/5 flex-col justify-between p-8 text-left">
                       <div>
                         <h3 className="text-7xl md:text-9xl font-bold text-accent tracking-tighter lowercase">
                           {selectedContent.name}
@@ -163,9 +163,9 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                         </p>
                       </div>
                     </div>
-                    {/* Right Column: Icon */}
-                    <div className="relative w-2/5 overflow-hidden">
-                      <SelectedIconComponent className="absolute right-0 top-1/2 h-full w-full -translate-y-1/2 text-black/10" strokeWidth={1} />
+                    {/* Right Column: Icon (absolute) */}
+                    <div className="absolute right-0 top-0 h-full w-2/5">
+                        <SelectedIconComponent className="h-full w-full text-black/10" strokeWidth={1} />
                     </div>
                  </div>
               ) : selectedValue === 'innovacion' ? (
