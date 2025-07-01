@@ -89,10 +89,10 @@ export default function CienciaClientPage() {
 
             {/* The text content is layered on top */}
             <div className="relative z-10 px-4">
-                <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-4 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+                <h1 className="text-4xl md:text-5xl font-bold text-foreground [text-shadow:0_2px_10px_hsl(var(--primary)/0.5)] py-2 mb-4 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
                   {pageDetails.title}
                 </h1>
-                <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+                <p className="text-lg md:text-xl text-foreground/80 max-w-3xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
                   {pageDetails.subtitle}
                 </p>
             </div>
