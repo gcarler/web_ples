@@ -153,25 +153,23 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
           
           {selectedContent && (
             <div className={cn(
-                "flex-1 p-0 relative overflow-hidden md:h-full",
+                "flex-1 p-0 relative md:h-full",
                 selectedValue === 'innovacion' ? "bg-accent text-accent-foreground" :
                 "bg-primary text-primary-foreground"
             )}>
               {/* --- Conditional Rendering for Content --- */}
               {selectedValue === 'integridad' ? (
-                <div key="integridad-content" className="relative h-full w-full animate-fade-in overflow-hidden">
-                  <h3 className="absolute right-0 top-1/2 -translate-y-1/2 text-[12rem] md:text-[16rem] font-bold text-primary-foreground/10 tracking-tighter lowercase select-none z-0 pointer-events-none">
-                      {selectedContent.name}
-                  </h3>
-                  <div className="absolute top-1/2 w-[420px] h-[420px] md:w-[480px] md:h-[480px] rounded-full bg-accent flex items-center justify-end text-accent-foreground shadow-2xl z-10 animate-slide-across">
-                      <div className="w-4/5 text-right pr-12 space-y-4">
+                <div key="integridad-content" className="relative h-full w-full animate-fade-in">
+                  <div className="absolute top-1/2 w-[420px] h-[420px] md:w-[480px] md:h-[480px] animate-slide-across">
+                    <div className="relative w-full h-full rounded-full bg-accent flex items-center justify-center text-accent-foreground shadow-2xl z-10">
+                      <div className="absolute inset-0 right-auto w-4/5 text-right flex items-center pr-12">
                           <p className="text-base leading-relaxed">
                               {integridadPhrases.map((phrase, index) => (
                               <span
                                   key={index}
                                   className="inline-block animate-fade-in-up opacity-0 transition-all duration-300 hover:text-white hover:scale-105 cursor-pointer"
                                   style={{
-                                  animationDelay: `${(index) * 0.1}s`,
+                                  animationDelay: `${(index + 3) * 0.1}s`,
                                   animationFillMode: 'forwards',
                                   }}
                               >
@@ -180,6 +178,10 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                               ))}
                           </p>
                       </div>
+                      <h3 className="absolute -right-1/3 top-1/2 -translate-y-1/2 text-[12rem] md:text-[16rem] font-bold text-primary-foreground/10 tracking-tighter lowercase select-none z-0 pointer-events-none">
+                          {selectedContent.name}
+                      </h3>
+                    </div>
                   </div>
                 </div>
               ) : selectedValue === 'innovacion' ? (
