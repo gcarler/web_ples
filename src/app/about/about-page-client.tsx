@@ -119,7 +119,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
 
       {/* Interactive Core Values Section */}
       <section className="w-full overflow-hidden">
-        <div className="flex flex-col md:flex-row shadow-2xl border-y border-border/20 min-h-[450px]">
+        <div className="flex flex-col md:flex-row shadow-2xl border-y border-border/20 md:h-[520px]">
           <div className="flex md:flex-col md:w-1/3 lg:w-1/4 bg-card md:border-r md:border-border/20">
             {initialCoreValues.map((value, index) => (
               <button
