@@ -214,7 +214,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                     </div>
                 </div>
               ) : (
-                <div key="colaboracion-content" className="flex flex-col justify-center items-center text-center h-full relative">
+                <div key="colaboracion-content" className="flex flex-col justify-center items-center text-right h-full relative">
                     {collaborationIcons.map((item, index) => {
                         const Icon = item.icon;
                         return (
@@ -225,11 +225,11 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                     })}
                     <div key={selectedContent.id} className="animate-fade-in-up w-full max-w-3xl space-y-8 md:space-y-10 relative z-10 p-8 md:p-12 lg:p-16">
                         <h2 className="text-xl md:text-2xl font-semibold text-primary-foreground/80 mb-0 uppercase tracking-wider">NUESTROS VALORES</h2>
-                        <SelectedIconComponent className="h-32 w-32 sm:h-48 sm:w-48 mx-auto text-accent" />
+                        <SelectedIconComponent className="h-32 w-32 sm:h-48 sm:w-48 ml-auto mr-0 text-accent" />
                         <h3 className="text-5xl sm:text-6xl font-bold text-accent">
                             {selectedContent.name}
                         </h3>
-                        <p className="text-xl sm:text-2xl leading-relaxed text-primary-foreground/90 max-w-2xl mx-auto">
+                        <p className="text-xl sm:text-2xl leading-relaxed text-primary-foreground/90 max-w-2xl ml-auto mr-0">
                             {selectedContent.explanation}
                         </p>
                     </div>
