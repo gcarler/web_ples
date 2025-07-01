@@ -24,7 +24,7 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col antialiased bg-background text-foreground">
         <ThemeProvider
             attribute="class"
-            defaultTheme="system"
+            defaultTheme="dark"
             enableSystem
             disableTransitionOnChange
         >
