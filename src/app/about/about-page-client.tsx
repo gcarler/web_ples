@@ -41,17 +41,6 @@ const collaborationIcons = [
     { icon: Share2, size: "h-14 w-14", style: { top: '80%', left: '55%', animationDuration: '26s', animationDelay: '-10s' }, color: 'text-accent/50' },
 ];
 
-const integrityIcons = [
-    { icon: ShieldCheck, size: "h-16 w-16", style: { top: '15%', left: '10%', animationDuration: '25s', animationDelay: '0s' }, color: 'text-primary-foreground/30' },
-    { icon: Scale, size: "h-20 w-20", style: { top: '30%', left: '75%', animationDuration: '30s', animationDelay: '-4s' }, color: 'text-accent/50' },
-    { icon: Gem, size: "h-12 w-12", style: { top: '75%', left: '85%', animationDuration: '20s', animationDelay: '-8s' }, color: 'text-primary-foreground/30' },
-    { icon: Lock, size: "h-24 w-24", style: { top: '85%', left: '15%', animationDuration: '35s', animationDelay: '-1s' }, color: 'text-accent/50' },
-    { icon: Verified, size: "h-14 w-14", style: { top: '55%', left: '45%', animationDuration: '22s', animationDelay: '-12s' }, color: 'text-primary-foreground/30' },
-    { icon: FileCheck, size: "h-16 w-16", style: { top: '10%', left: '40%', animationDuration: '28s', animationDelay: '-6s' }, color: 'text-accent/50' },
-    { icon: Award, size: "h-12 w-12", style: { top: '45%', left: '5%', animationDuration: '32s', animationDelay: '-2s' }, color: 'text-primary-foreground/30' },
-    { icon: Handshake, size: "h-14 w-14", style: { top: '80%', left: '55%', animationDuration: '26s', animationDelay: '-10s' }, color: 'text-accent/50' },
-];
-
 interface AboutPageClientProps {
   initialCoreValues: CoreValue[];
   initialPillars: Pillar[];
@@ -69,13 +58,6 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
     { title: 'Nuestra Visión', content: 'Definiendo nuestro horizonte.', link: '/about/vision', icon: Eye },
   ];
 
-  const backgroundIconsMap: { [key: string]: any[] } = {
-    colaboracion: collaborationIcons,
-    innovacion: innovationBubbles,
-    integridad: integrityIcons
-  };
-  const currentBackgroundIcons = selectedValue ? backgroundIconsMap[selectedValue] : [];
-  
   const SelectedIconComponent = selectedContent ? iconMap[selectedContent.iconName] || Shield : Shield;
 
   return (
@@ -159,24 +141,81 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                 "flex-1 p-8 md:p-12 lg:p-16 flex flex-col justify-center items-center text-center relative overflow-hidden",
                 selectedValue === 'innovacion' ? "bg-accent text-accent-foreground" : "bg-primary text-primary-foreground"
             )}>
-              {currentBackgroundIcons.map((item, index) => {
-                  if (item.icon) {
-                      const Icon = item.icon;
-                      return (
-                        <div key={index} className="absolute animate-move-and-scale" style={item.style as React.CSSProperties}>
-                            <Icon className={cn(item.size, item.color)} strokeWidth={1.5} />
-                        </div>
-                      );
-                  }
-                  // Assuming if no icon, it's a bubble for innovation
+              
+              {selectedValue === 'innovacion' && innovationBubbles.map((item, index) => (
+                  <div
+                    key={index}
+                    className={cn('absolute rounded-full animate-move-and-scale', item.size, item.color)}
+                    style={item.style as React.CSSProperties}
+                  />
+              ))}
+
+              {selectedValue === 'colaboracion' && collaborationIcons.map((item, index) => {
+                  const Icon = item.icon;
                   return (
-                    <div
-                      key={index}
-                      className={cn('absolute rounded-full animate-move-and-scale', item.size, item.color)}
-                      style={item.style as React.CSSProperties}
-                    />
+                    <div key={index} className="absolute animate-move-and-scale" style={item.style as React.CSSProperties}>
+                        <Icon className={cn(item.size, item.color)} strokeWidth={1.5} />
+                    </div>
                   );
               })}
+
+              {selectedValue === 'integridad' && (
+                  <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
+                      <svg viewBox="0 0 500 500" className="w-[90%] h-[90%] max-w-[400px] max-h-[400px]">
+                          <style>{`
+                              .integrity-line {
+                                  animation: integrity-stroke 10s ease-in-out infinite;
+                              }
+                              @keyframes integrity-stroke {
+                                  0% { stroke-dashoffset: 1000; }
+                                  50% { stroke-dashoffset: 0; }
+                                  100% { stroke-dashoffset: -1000; }
+                              }
+                          `}</style>
+                          <defs>
+                              <filter id="integrity-glow" x="-50%" y="-50%" width="200%" height="200%">
+                                  <feGaussianBlur stdDeviation="8" result="coloredBlur" />
+                                  <feMerge>
+                                      <feMergeNode in="coloredBlur" />
+                                      <feMergeNode in="SourceGraphic" />
+                                  </feMerge>
+                              </filter>
+                          </defs>
+                          <g stroke="hsl(var(--primary-foreground))" fill="none" strokeWidth="2">
+                              {/* Main Shield Path */}
+                              <path 
+                                  d="M250 50 L420 140 V 360 C 420 420, 250 450, 250 450 C 250 450, 80 420, 80 360 V 140 Z" 
+                                  strokeWidth="4" 
+                                  fill="hsl(var(--primary-foreground) / 0.05)"
+                              />
+                              
+                              {/* Animated inner lines */}
+                              <path 
+                                  d="M150,180 C200,220 300,220 350,180" 
+                                  className="integrity-line" 
+                                  strokeDasharray="1000"
+                                  style={{ animationDelay: '0s' }}
+                              />
+                              <path 
+                                  d="M150,230 C200,270 300,270 350,230" 
+                                  className="integrity-line" 
+                                  strokeDasharray="1000"
+                                  style={{ animationDelay: '-2s' }}
+                              />
+                              <path 
+                                  d="M150,280 C200,320 300,320 350,280" 
+                                  className="integrity-line" 
+                                  strokeDasharray="1000"
+                                  style={{ animationDelay: '-4s' }}
+                              />
+
+                              {/* Glowing Core */}
+                              <circle cx="250" cy="350" r="25" fill="hsl(var(--accent))" filter="url(#integrity-glow)" className="animate-pulse" style={{ animationDuration: '4s' }} />
+                          </g>
+                      </svg>
+                  </div>
+              )}
+
               <div key={selectedContent.id} className="animate-fade-in-up w-full max-w-2xl space-y-6 md:space-y-8 relative z-10">
                 <h2 className="text-xl md:text-2xl font-semibold text-primary-foreground/80 mb-0 uppercase tracking-wider">NUESTROS VALORES</h2>
                 <SelectedIconComponent className={cn("h-20 w-20 sm:h-24 sm:w-24 mx-auto", selectedValue === 'innovacion' ? 'text-primary-foreground/90' : 'text-accent')} />
