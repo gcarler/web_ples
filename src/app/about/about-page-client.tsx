@@ -170,7 +170,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
             )}>
               {/* --- Conditional Rendering for Content --- */}
               {selectedValue === 'integridad' ? (
-                <div key="integridad-content" className="relative h-full w-full animate-fade-in overflow-hidden">
+                <div key="integridad-content" className="relative h-full w-full animate-fade-in">
                    {/* Big text in background, animated separately */}
                   <h3 className="absolute top-1/2 text-[12rem] md:text-[16rem] font-bold text-primary-foreground/10 tracking-tighter lowercase select-none z-0 pointer-events-none animate-slide-across-text">
                       {selectedContent.name}
@@ -183,7 +183,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                               {integridadPhrases.map((phrase, index) => (
                               <span
                                   key={index}
-                                  className="inline-block animate-fade-in-up opacity-0 transition-all duration-300 hover:text-white hover:scale-105 cursor-pointer"
+                                  className="inline-block animate-fade-in-up opacity-0 transition-all duration-300 hover:font-bold hover:bg-white/20 hover:scale-110 rounded-md cursor-pointer px-2 py-1"
                                   style={{
                                   animationDelay: `${(index + 3) * 0.1}s`,
                                   animationFillMode: 'forwards',
@@ -223,10 +223,10 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                                 <React.Fragment key="t3"> y a explorar constantemente </React.Fragment>,
                                 <strong key="s4" className="text-accent-foreground font-bold">nuevas tecnologías y metodologías</strong>,
                                 <React.Fragment key="t5">. Convertimos </React.Fragment>,
-                                <strong key="s5" className="text-accent-foreground font-bold">ideas audaces</strong>,
-                                <React.Fragment key="t6"> en soluciones prácticas que aportan un </React.Fragment>,
-                                <strong key="s7" className="text-accent-foreground font-bold">valor tangible y sostenible</strong>,
-                                <React.Fragment key="t8"> a nuestros clientes.</React.Fragment>,
+                                <strong key="s6" className="text-accent-foreground font-bold">ideas audaces</strong>,
+                                <React.Fragment key="t7"> en soluciones prácticas que aportan un </React.Fragment>,
+                                <strong key="s8" className="text-accent-foreground font-bold">valor tangible y sostenible</strong>,
+                                <React.Fragment key="t9"> a nuestros clientes.</React.Fragment>,
                               ].map((chunk, index) => (
                                 <span
                                   key={index}
@@ -241,7 +241,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                     </div>
                 </div>
               ) : (
-                 <div key="colaboracion-content" className="h-full w-full relative overflow-hidden animate-fade-in flex items-center p-8 md:p-12 lg:p-16 gap-8">
+                 <div key="colaboracion-content" className="h-full w-full relative overflow-hidden animate-fade-in flex items-center justify-center p-8 md:p-12 lg:p-16 gap-8">
                     {/* Background Icons */}
                     {collaborationIcons.map((item, index) => {
                         const Icon = item.icon;
@@ -251,12 +251,9 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                             </div>
                         );
                     })}
-                    {/* Left: Icon */}
-                    <div className="flex-shrink-0 z-10">
-                        <SelectedIconComponent className="h-32 w-32 sm:h-40 sm:w-40 text-accent" />
-                    </div>
                     {/* Center: Title and Description */}
                     <div className="flex-1 text-center z-10">
+                        <SelectedIconComponent className="h-32 w-32 sm:h-40 sm:w-40 text-accent mb-6 mx-auto" />
                         <h3 className="text-7xl md:text-8xl font-bold text-primary-foreground/20 select-none mb-4 uppercase">
                             {selectedContent.name}
                         </h3>
