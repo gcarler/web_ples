@@ -87,7 +87,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
   ];
 
   return (
-    <div className="py-10 space-y-16">
+    <div className="pb-10 space-y-16">
       {/* Hero Section */}
       <section className="relative bg-background overflow-hidden">
         <div className="w-full px-4 sm:px-6 lg:px-8 min-h-[calc(70vh)] lg:min-h-0 py-16 sm:py-20 md:py-24 lg:py-32 flex items-center">
