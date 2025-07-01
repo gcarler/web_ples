@@ -22,14 +22,14 @@ const iconMap: { [key: string]: React.ElementType } = {
 };
 
 const innovationBubbles = [
-    { size: 'h-24 w-24', style: { top: '10%', left: '5%', animationDuration: '25s', animationDelay: '0s' }, color: 'bg-black/15' },
-    { size: 'h-8 w-8', style: { top: '75%', left: '15%', animationDuration: '20s', animationDelay: '2s' }, color: 'bg-black/20' },
-    { size: 'h-16 w-16', style: { top: '25%', left: '25%', animationDuration: '28s', animationDelay: '4s' }, color: 'bg-black/15' },
-    { size: 'h-32 w-32', style: { top: '50%', left: '40%', animationDuration: '30s', animationDelay: '1s' }, color: 'bg-black/20' },
-    { size: 'h-12 w-12', style: { top: '80%', left: '55%', animationDuration: '22s', animationDelay: '6s' }, color: 'bg-black/15' },
-    { size: 'h-20 w-20', style: { top: '5%', left: '70%', animationDuration: '26s', animationDelay: '3s' }, color: 'bg-black/20' },
-    { size: 'h-14 w-14', style: { top: '65%', left: '85%', animationDuration: '23s', animationDelay: '5s' }, color: 'bg-black/15' },
-    { size: 'h-28 w-28', style: { top: '30%', left: '95%', animationDuration: '29s', animationDelay: '7s' }, color: 'bg-black/20' },
+    { size: 'h-24 w-24', style: { top: '10%', left: '5%', animationDuration: '25s', animationDelay: '0s' }, color: 'bg-black/20' },
+    { size: 'h-8 w-8', style: { top: '75%', left: '15%', animationDuration: '20s', animationDelay: '2s' }, color: 'bg-black/30' },
+    { size: 'h-16 w-16', style: { top: '25%', left: '25%', animationDuration: '28s', animationDelay: '4s' }, color: 'bg-black/20' },
+    { size: 'h-32 w-32', style: { top: '50%', left: '40%', animationDuration: '30s', animationDelay: '1s' }, color: 'bg-black/30' },
+    { size: 'h-12 w-12', style: { top: '80%', left: '55%', animationDuration: '22s', animationDelay: '6s' }, color: 'bg-black/20' },
+    { size: 'h-20 w-20', style: { top: '5%', left: '70%', animationDuration: '26s', animationDelay: '3s' }, color: 'bg-black/30' },
+    { size: 'h-14 w-14', style: { top: '65%', left: '85%', animationDuration: '23s', animationDelay: '5s' }, color: 'bg-black/20' },
+    { size: 'h-28 w-28', style: { top: '30%', left: '95%', animationDuration: '29s', animationDelay: '7s' }, color: 'bg-black/30' },
 ];
 
 const collaborationIcons = [
@@ -153,37 +153,37 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
           
           {selectedContent && (
             <div className={cn(
-                "flex-1 p-0 relative overflow-hidden",
+                "flex-1 p-0 relative overflow-hidden md:h-full",
                 selectedValue === 'innovacion' ? "bg-accent text-accent-foreground" :
                 "bg-primary text-primary-foreground"
             )}>
               {/* --- Conditional Rendering for Content --- */}
               {selectedValue === 'integridad' ? (
-                <div key="integridad-content" className="relative h-full w-full flex justify-end items-center p-8 animate-fade-in">
-                    <div className="relative w-[480px] h-[480px] rounded-full bg-accent flex items-center justify-center text-accent-foreground shadow-2xl">
-                        <div className="w-full text-right p-12 space-y-4">
-                            <h3 className="text-6xl font-bold tracking-tighter lowercase">
-                                {selectedContent.name}
-                            </h3>
-                            <p className="text-xl">
-                                nuestros valores
-                            </p>
-                            <p className="text-base leading-relaxed">
-                                {integridadPhrases.map((phrase, index) => (
-                                <span
-                                    key={index}
-                                    className="inline-block animate-fade-in-up opacity-0 transition-all duration-300 hover:text-white hover:scale-105 cursor-pointer"
-                                    style={{
-                                    animationDelay: `${index * 0.1}s`,
-                                    animationFillMode: 'forwards',
-                                    }}
-                                >
-                                    {phrase}{' '}
-                                </span>
-                                ))}
-                            </p>
-                        </div>
-                    </div>
+                <div key="integridad-content" className="relative h-full w-full flex justify-end items-center p-8 animate-fade-in overflow-hidden">
+                  <h3 className="absolute right-0 top-1/2 -translate-y-1/2 text-[12rem] md:text-[16rem] font-bold text-primary-foreground/10 tracking-tighter lowercase select-none z-0 pointer-events-none">
+                      {selectedContent.name}
+                  </h3>
+                  <div className="relative w-[420px] h-[420px] md:w-[480px] md:h-[480px] rounded-full bg-accent flex items-center justify-end text-accent-foreground shadow-2xl z-10">
+                      <div className="w-4/5 text-right pr-12 space-y-4">
+                          <p className="text-3xl font-semibold">
+                              Nuestros Valores
+                          </p>
+                          <p className="text-base leading-relaxed">
+                              {integridadPhrases.map((phrase, index) => (
+                              <span
+                                  key={index}
+                                  className="inline-block animate-fade-in-up opacity-0 transition-all duration-300 hover:text-white hover:scale-105 cursor-pointer"
+                                  style={{
+                                  animationDelay: `${(index) * 0.1}s`,
+                                  animationFillMode: 'forwards',
+                                  }}
+                              >
+                                  {phrase}{' '}
+                              </span>
+                              ))}
+                          </p>
+                      </div>
+                  </div>
                 </div>
               ) : selectedValue === 'innovacion' ? (
                 <div key="innovacion-content" className="flex h-full w-full animate-fade-in relative overflow-hidden">
@@ -229,7 +229,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                     </div>
                 </div>
               ) : (
-                <div key="colaboracion-content" className="h-full w-full relative overflow-hidden animate-fade-in">
+                <div key="colaboracion-content" className="h-full w-full relative overflow-hidden animate-fade-in flex items-center p-8 md:p-12 lg:p-16 gap-8">
                     {/* Background Icons */}
                     {collaborationIcons.map((item, index) => {
                         const Icon = item.icon;
@@ -239,31 +239,26 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                             </div>
                         );
                     })}
-
-                    {/* Main Content Layout */}
-                    <div className="relative z-10 flex h-full w-full items-center p-8 md:p-12 lg:p-16 gap-8">
-                        {/* Left: Icon */}
-                        <div className="flex-shrink-0">
-                            <SelectedIconComponent className="h-32 w-32 sm:h-40 sm:w-40 text-accent" />
-                        </div>
-                        
-                        {/* Center: Title and Description */}
-                        <div className="flex-1 text-center">
-                            <h3 className="text-7xl md:text-8xl font-bold text-primary-foreground/20 select-none mb-4">
-                                {selectedContent.name}
-                            </h3>
-                            <p className="text-lg text-primary-foreground/90 leading-relaxed max-w-2xl mx-auto">
-                                {collaborationPhrases.map((phrase, index) => (
-                                    <span
-                                        key={index}
-                                        className="inline-block animate-fade-in-up opacity-0 transition-all duration-300 hover:text-accent hover:scale-105 cursor-pointer"
-                                        style={{ animationDelay: `${index * 0.12}s`, animationFillMode: 'forwards' }}
-                                    >
-                                        {phrase}{' '}
-                                    </span>
-                                ))}
-                            </p>
-                        </div>
+                    {/* Left: Icon */}
+                    <div className="flex-shrink-0 z-10">
+                        <SelectedIconComponent className="h-32 w-32 sm:h-40 sm:w-40 text-accent" />
+                    </div>
+                    {/* Center: Title and Description */}
+                    <div className="flex-1 text-center z-10">
+                        <h3 className="text-7xl md:text-8xl font-bold text-primary-foreground/20 select-none mb-4 uppercase">
+                            {selectedContent.name}
+                        </h3>
+                        <p className="text-lg text-primary-foreground/90 leading-relaxed max-w-2xl mx-auto">
+                            {collaborationPhrases.map((phrase, index) => (
+                                <span
+                                    key={index}
+                                    className="inline-block animate-fade-in-up opacity-0 transition-all duration-300 hover:text-accent hover:scale-105 cursor-pointer"
+                                    style={{ animationDelay: `${index * 0.12}s`, animationFillMode: 'forwards' }}
+                                >
+                                    {phrase}{' '}
+                                </span>
+                            ))}
+                        </p>
                     </div>
                 </div>
               )}
