@@ -165,20 +165,23 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
 
               {/* --- Conditional Rendering for Content --- */}
               {selectedValue === 'integridad' ? (
-                <div key="integridad-content" className="relative w-full h-full animate-fade-in">
-                    <div className="absolute top-8 left-8">
-                        <h3 className="text-7xl md:text-9xl font-bold text-accent tracking-tighter lowercase">
-                            {selectedContent.name}
-                        </h3>
-                        <p className="text-xl md:text-2xl text-primary-foreground/90 -mt-2 md:-mt-4 ml-1">
-                            nuestros valores
-                        </p>
+                <div key="integridad-content" className="flex flex-col h-full w-full animate-fade-in">
+                  <div className="p-8 text-left">
+                    <h3 className="text-7xl md:text-9xl font-bold text-accent tracking-tighter lowercase">
+                      {selectedContent.name}
+                    </h3>
+                    <p className="text-xl md:text-2xl text-primary-foreground/90 -mt-2 md:-mt-4 ml-1">
+                      nuestros valores
+                    </p>
+                  </div>
+                  <div className="flex-grow" />
+                  <div className="flex justify-end w-full">
+                    <div className="bg-accent p-6 md:p-8 w-full md:w-[55%]">
+                      <p className="text-base sm:text-lg leading-relaxed text-accent-foreground max-w-md text-left">
+                        {selectedContent.explanation}
+                      </p>
                     </div>
-                    <div className="absolute bottom-0 right-0 h-[45%] w-[55%] bg-accent p-6 md:p-8 flex items-center justify-center">
-                        <p className="text-base sm:text-lg leading-relaxed text-accent-foreground max-w-md text-left">
-                            {selectedContent.explanation}
-                        </p>
-                    </div>
+                  </div>
                 </div>
               ) : (
                 <div key={selectedContent.id} className="animate-fade-in-up w-full max-w-2xl space-y-6 md:space-y-8 relative z-10 p-8 md:p-12 lg:p-16">
