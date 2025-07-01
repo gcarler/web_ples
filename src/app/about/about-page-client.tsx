@@ -70,6 +70,11 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
     "y generan", "un impacto", "duradero."
   ];
 
+  const integridadPhrases = [
+    "Actuamos con honestidad,", "transparencia y ética", "profesional en cada interacción.",
+    "La integridad es el pilar", "de la confianza que construimos", "con nuestros clientes, socios", "y la comunidad, garantizando", "que nuestras acciones", "siempre estén alineadas", "con nuestros principios."
+  ];
+
   return (
     <div className="py-10 space-y-16">
       {/* Hero Section */}
@@ -154,28 +159,32 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
             )}>
               {/* --- Conditional Rendering for Content --- */}
               {selectedValue === 'integridad' ? (
-                 <div key="integridad-content" className="relative h-full w-full flex animate-fade-in">
-                    {/* Left Column: Text */}
-                    <div className="flex w-3/5 flex-col justify-between p-8 text-left">
-                      <div>
-                        <h3 className="text-7xl md:text-9xl font-bold text-accent tracking-tighter lowercase">
-                          {selectedContent.name}
-                        </h3>
-                        <p className="text-xl md:text-2xl text-primary-foreground/90 -mt-2 md:-mt-4 ml-1">
-                          nuestros valores
-                        </p>
-                      </div>
-                      <div className="bg-accent p-6 md:p-8">
-                        <p className="text-base sm:text-lg leading-relaxed text-accent-foreground max-w-md text-left">
-                          {selectedContent.explanation}
-                        </p>
-                      </div>
+                <div key="integridad-content" className="relative h-full w-full flex justify-end items-center p-8 animate-fade-in">
+                    <div className="relative w-[480px] h-[480px] rounded-full bg-accent flex items-center justify-center text-accent-foreground shadow-2xl">
+                        <div className="w-full text-right p-12 space-y-4">
+                            <h3 className="text-6xl font-bold tracking-tighter lowercase">
+                                {selectedContent.name}
+                            </h3>
+                            <p className="text-xl">
+                                nuestros valores
+                            </p>
+                            <p className="text-base leading-relaxed">
+                                {integridadPhrases.map((phrase, index) => (
+                                <span
+                                    key={index}
+                                    className="inline-block animate-fade-in-up opacity-0 transition-all duration-300 hover:text-white hover:scale-105 cursor-pointer"
+                                    style={{
+                                    animationDelay: `${index * 0.1}s`,
+                                    animationFillMode: 'forwards',
+                                    }}
+                                >
+                                    {phrase}{' '}
+                                </span>
+                                ))}
+                            </p>
+                        </div>
                     </div>
-                    {/* Right Column: Icon */}
-                    <div className="absolute right-0 top-0 h-full w-2/5">
-                        <SelectedIconComponent className="h-full w-full text-black/10" strokeWidth={1} />
-                    </div>
-                 </div>
+                </div>
               ) : selectedValue === 'innovacion' ? (
                 <div key="innovacion-content" className="flex h-full w-full animate-fade-in relative overflow-hidden">
                     {/* Background Bubbles (subtle) */}
