@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import DynamicSection from '@/components/DynamicSection';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { ArrowRight, Info, Shield, Lightbulb, Users as UsersIcon, Cpu, Layers, Zap, FlaskConical, Brain, Search, Settings, Handshake, Puzzle, Link as LinkIcon, Workflow, MessageSquare, GitMerge, Share2, ShieldCheck, Scale, Lock, Verified, FileCheck, Award, Gem, Target, Globe, Rocket, Eye } from 'lucide-react';
+import { ArrowRight, Info, Shield, Lightbulb, Users as UsersIcon, Cpu, Layers, Zap, FlaskConical, Brain, Search, Settings, Handshake, Puzzle, Link as LinkIcon, Workflow, MessageSquare, GitMerge, Share2, ShieldCheck, Scale, Lock, Verified, FileCheck, Award, Gem, Target, Globe, Rocket, Eye, HeartPulse } from 'lucide-react';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
@@ -13,7 +13,7 @@ import { type CoreValue, type Pillar } from '@/lib/models/content';
 // Icon Map to render Lucide icons from string names
 const iconMap: { [key: string]: React.ElementType } = {
   UsersIcon, Lightbulb, Shield, FlaskConical, Cpu,
-  Gem, HeartPulse: Gem, Target, Globe, Rocket, Eye, Info,
+  Gem, HeartPulse, Target, Globe, Rocket, Eye, Info,
   Layers, Zap, Brain, Search, Settings, Handshake, Puzzle, LinkIcon,
   Workflow, MessageSquare, GitMerge, Share2, ShieldCheck, Scale, Lock, Verified,
   FileCheck, Award
