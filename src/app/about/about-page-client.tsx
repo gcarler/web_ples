@@ -139,7 +139,8 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
           
           {selectedContent && (
             <div className={cn(
-                "flex-1 p-0 flex flex-col justify-center items-center text-center relative overflow-hidden",
+                "flex-1 p-0 relative overflow-hidden text-center",
+                selectedValue !== 'integridad' && "flex flex-col justify-center items-center",
                 selectedValue === 'innovacion' ? "bg-accent text-accent-foreground" :
                 selectedValue === 'integridad' ? "bg-primary text-primary-foreground" :
                 "bg-primary text-primary-foreground"
@@ -162,9 +163,9 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                   );
               })}
 
-              {/* --- New Conditional Rendering for Content --- */}
+              {/* --- Conditional Rendering for Content --- */}
               {selectedValue === 'integridad' ? (
-                <div key="integridad-content" className="relative w-full h-full min-h-[450px] md:min-h-0 animate-fade-in">
+                <div key="integridad-content" className="relative w-full h-full animate-fade-in">
                     <div className="absolute top-8 left-8">
                         <h3 className="text-7xl md:text-9xl font-bold text-accent tracking-tighter lowercase">
                             {selectedContent.name}
