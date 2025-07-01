@@ -1,6 +1,6 @@
 
 import Link from 'next/link';
-import { Facebook, Twitter, Instagram } from 'lucide-react';
+import { Facebook, X, Instagram } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { PlesGroupLogo } from '@/components/logo';
 
@@ -61,8 +61,8 @@ export function Footer() {
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="p-2 rounded-full bg-muted-foreground/10 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-all">
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X" className="p-2 rounded-full bg-muted-foreground/10 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-all">
-                <Twitter className="h-5 w-5" />
+              <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="X (formerly Twitter)" className="p-2 rounded-full bg-muted-foreground/10 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-all">
+                <X className="h-5 w-5" />
               </a>
               <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="p-2 rounded-full bg-muted-foreground/10 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-all">
                 <Instagram className="h-5 w-5" />
