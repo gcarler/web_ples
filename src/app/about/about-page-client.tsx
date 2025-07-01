@@ -139,9 +139,9 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
           
           {selectedContent && (
             <div className={cn(
-                "flex-1 p-8 md:p-12 lg:p-16 flex flex-col justify-center items-center text-center relative overflow-hidden",
+                "flex-1 p-0 flex flex-col justify-center items-center text-center relative overflow-hidden",
                 selectedValue === 'innovacion' ? "bg-accent text-accent-foreground" :
-                selectedValue === 'integridad' ? "bg-[radial-gradient(ellipse_at_center,_hsl(203_96%_30%)_0%,_hsl(203_96%_15%)_100%)] text-primary-foreground" :
+                selectedValue === 'integridad' ? "bg-primary text-primary-foreground" :
                 "bg-primary text-primary-foreground"
             )}>
               
@@ -162,95 +162,35 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                   );
               })}
 
-              {selectedValue === 'integridad' && (
-                  <div className="absolute inset-0 flex items-center justify-center opacity-25 pointer-events-none">
-                      <svg viewBox="0 0 500 500" className="w-full h-full max-w-[450px] max-h-[450px]">
-                          <style>{`
-                              .integrity-core-2 {
-                                  animation: integrity-pulse-2 4s ease-in-out infinite;
-                              }
-                              .integrity-ring-2 {
-                                  stroke-dasharray: 1000;
-                                  animation: integrity-draw-2 20s linear infinite;
-                              }
-                              .integrity-ray-2 {
-                                  transform-origin: center;
-                                  animation: integrity-spin-2 60s linear infinite;
-                              }
-
-                              @keyframes integrity-pulse-2 {
-                                  0%, 100% { r: 15; opacity: 0.7; }
-                                  50% { r: 20; opacity: 1; }
-                              }
-                              @keyframes integrity-draw-2 {
-                                  from { stroke-dashoffset: 1500; }
-                                  to { stroke-dashoffset: -500; }
-                              }
-                              @keyframes integrity-spin-2 {
-                                  from { transform: rotate(0deg); }
-                                  to { transform: rotate(360deg); }
-                              }
-                          `}</style>
-                          <defs>
-                              <filter id="integrity-glow-2" x="-50%" y="-50%" width="200%" height="200%">
-                                  <feGaussianBlur stdDeviation="8" result="coloredBlur" />
-                                  <feMerge>
-                                      <feMergeNode in="coloredBlur" />
-                                      <feMergeNode in="SourceGraphic" />
-                                  </feMerge>
-                              </filter>
-                              <mask id="integrity-mask">
-                                  <rect width="500" height="500" fill="white" />
-                                  <g transform="translate(250 250)">
-                                      <circle cx="0" cy="0" r="60" fill="black" />
-                                  </g>
-                              </mask>
-                          </defs>
-                          
-                          <g transform="translate(250 250)">
-                              {/* Rays */}
-                              <g className="integrity-ray-2" opacity="0.5">
-                                  {[...Array(12)].map((_, i) => (
-                                      <line key={'ray-${i}'} x1="0" y1="0" x2="0" y2="-220" stroke="hsl(var(--accent))" strokeWidth="1" transform={'rotate(${i * 30})'} />
-                                  ))}
-                              </g>
-                              
-                              {/* Animated Rings */}
-                              <g mask="url(#integrity-mask)">
-                                  <circle className="integrity-ring-2" cx="0" cy="0" r="80" stroke="hsl(var(--primary-foreground))" strokeWidth="1.5" fill="none" style={{ animationDelay: '-5s', animationDirection: 'reverse' }}/>
-                                  <circle className="integrity-ring-2" cx="0" cy="0" r="110" stroke="hsl(var(--accent))" strokeWidth="1" fill="none" style={{ animationDelay: '-10s' }}/>
-                                  <circle className="integrity-ring-2" cx="0" cy="0" r="140" stroke="hsl(var(--primary-foreground))" strokeWidth="0.5" fill="none" style={{ animationDelay: '-2s', animationDirection: 'reverse' }}/>
-                                  <circle className="integrity-ring-2" cx="0" cy="0" r="170" stroke="hsl(var(--accent))" strokeWidth="1" fill="none" style={{ animationDelay: '-15s' }}/>
-                                  <circle className="integrity-ring-2" cx="0" cy="0" r="200" stroke="hsl(var(--primary-foreground))" strokeWidth="0.5" fill="none" style={{ animationDelay: '-7s', animationDirection: 'reverse' }}/>
-                              </g>
-
-                              {/* Static shield shape */}
-                              <path
-                                  d="M 0 -220 L 190 -110 V 110 L 0 220 L -190 110 V -110 Z"
-                                  stroke="hsl(var(--primary-foreground))"
-                                  strokeWidth="3"
-                                  fill="hsl(var(--primary-foreground) / 0.05)"
-                                  opacity="0.7"
-                              />
-                              
-                              {/* Core */}
-                              <circle className="integrity-core-2" cx="0" cy="0" r="20" fill="hsl(var(--accent))" filter="url(#integrity-glow-2)" />
-                              <circle cx="0" cy="0" r="30" stroke="hsl(var(--accent))" strokeWidth="1" fill="none" />
-                          </g>
-                      </svg>
-                  </div>
+              {/* --- New Conditional Rendering for Content --- */}
+              {selectedValue === 'integridad' ? (
+                <div key="integridad-content" className="relative w-full h-full min-h-[450px] md:min-h-0 animate-fade-in">
+                    <div className="absolute top-8 left-8">
+                        <h3 className="text-7xl md:text-9xl font-bold text-accent tracking-tighter lowercase">
+                            {selectedContent.name}
+                        </h3>
+                        <p className="text-xl md:text-2xl text-primary-foreground/90 -mt-2 md:-mt-4 ml-1">
+                            nuestros valores
+                        </p>
+                    </div>
+                    <div className="absolute bottom-0 right-0 h-[45%] w-[55%] bg-accent p-6 md:p-8 flex items-center justify-center">
+                        <p className="text-base sm:text-lg leading-relaxed text-accent-foreground max-w-md text-left">
+                            {selectedContent.explanation}
+                        </p>
+                    </div>
+                </div>
+              ) : (
+                <div key={selectedContent.id} className="animate-fade-in-up w-full max-w-2xl space-y-6 md:space-y-8 relative z-10 p-8 md:p-12 lg:p-16">
+                    <h2 className="text-xl md:text-2xl font-semibold text-primary-foreground/80 mb-0 uppercase tracking-wider">NUESTROS VALORES</h2>
+                    <SelectedIconComponent className={cn("h-20 w-20 sm:h-24 sm:w-24 mx-auto", selectedValue === 'innovacion' ? 'text-primary-foreground/90' : 'text-accent')} />
+                    <h3 className={cn("text-3xl sm:text-4xl font-bold", selectedValue === 'innovacion' ? 'text-primary-foreground' : 'text-accent')}>
+                        {selectedContent.name}
+                    </h3>
+                    <p className="text-base sm:text-lg leading-relaxed text-primary-foreground/90 max-w-xl mx-auto">
+                        {selectedContent.explanation}
+                    </p>
+                </div>
               )}
-
-              <div key={selectedContent.id} className="animate-fade-in-up w-full max-w-2xl space-y-6 md:space-y-8 relative z-10">
-                <h2 className="text-xl md:text-2xl font-semibold text-primary-foreground/80 mb-0 uppercase tracking-wider">NUESTROS VALORES</h2>
-                <SelectedIconComponent className={cn("h-20 w-20 sm:h-24 sm:w-24 mx-auto", selectedValue === 'innovacion' ? 'text-primary-foreground/90' : 'text-accent')} />
-                <h3 className={cn("text-3xl sm:text-4xl font-bold", selectedValue === 'innovacion' ? 'text-primary-foreground' : 'text-accent')}>
-                  {selectedContent.name}
-                </h3>
-                <p className="text-base sm:text-lg leading-relaxed text-primary-foreground/90 max-w-xl mx-auto">
-                  {selectedContent.explanation}
-                </p>
-              </div>
             </div>
           )}
         </div>
