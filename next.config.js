@@ -66,6 +66,7 @@ const nextConfig = {
         async_hooks: false,
         http2: false,
         vm: false,
+        stream: false,
         process: 'process/browser', // Also add fallback for 'process'
         'node:process': 'process/browser', // And for 'node:process'
       };
