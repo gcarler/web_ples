@@ -21,14 +21,14 @@ const iconMap: { [key: string]: React.ElementType } = {
 };
 
 const innovationBubbles = [
-    { size: 'h-24 w-24', style: { top: '10%', left: '5%', animationDuration: '25s', animationDelay: '0s' }, color: 'bg-primary-foreground/20' },
-    { size: 'h-8 w-8', style: { top: '75%', left: '15%', animationDuration: '20s', animationDelay: '2s' }, color: 'bg-primary-foreground/30' },
-    { size: 'h-16 w-16', style: { top: '25%', left: '25%', animationDuration: '28s', animationDelay: '4s' }, color: 'bg-primary-foreground/25' },
-    { size: 'h-32 w-32', style: { top: '50%', left: '40%', animationDuration: '30s', animationDelay: '1s' }, color: 'bg-primary-foreground/20' },
-    { size: 'h-12 w-12', style: { top: '80%', left: '55%', animationDuration: '22s', animationDelay: '6s' }, color: 'bg-primary-foreground/35' },
-    { size: 'h-20 w-20', style: { top: '5%', left: '70%', animationDuration: '26s', animationDelay: '3s' }, color: 'bg-primary-foreground/25' },
-    { size: 'h-14 w-14', style: { top: '65%', left: '85%', animationDuration: '23s', animationDelay: '5s' }, color: 'bg-primary-foreground/30' },
-    { size: 'h-28 w-28', style: { top: '30%', left: '95%', animationDuration: '29s', animationDelay: '7s' }, color: 'bg-primary-foreground/20' },
+    { size: 'h-24 w-24', style: { top: '10%', left: '5%', animationDuration: '25s', animationDelay: '0s' }, color: 'bg-black/10' },
+    { size: 'h-8 w-8', style: { top: '75%', left: '15%', animationDuration: '20s', animationDelay: '2s' }, color: 'bg-black/10' },
+    { size: 'h-16 w-16', style: { top: '25%', left: '25%', animationDuration: '28s', animationDelay: '4s' }, color: 'bg-black/10' },
+    { size: 'h-32 w-32', style: { top: '50%', left: '40%', animationDuration: '30s', animationDelay: '1s' }, color: 'bg-black/10' },
+    { size: 'h-12 w-12', style: { top: '80%', left: '55%', animationDuration: '22s', animationDelay: '6s' }, color: 'bg-black/10' },
+    { size: 'h-20 w-20', style: { top: '5%', left: '70%', animationDuration: '26s', animationDelay: '3s' }, color: 'bg-black/10' },
+    { size: 'h-14 w-14', style: { top: '65%', left: '85%', animationDuration: '23s', animationDelay: '5s' }, color: 'bg-black/10' },
+    { size: 'h-28 w-28', style: { top: '30%', left: '95%', animationDuration: '29s', animationDelay: '7s' }, color: 'bg-black/10' },
 ];
 
 const collaborationIcons = [
@@ -140,30 +140,9 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
           {selectedContent && (
             <div className={cn(
                 "flex-1 p-0 relative overflow-hidden",
-                "md:h-full", 
-                selectedValue !== 'integridad' && "flex flex-col justify-center items-center text-center",
                 selectedValue === 'innovacion' ? "bg-accent text-accent-foreground" :
-                selectedValue === 'integridad' ? "bg-primary text-primary-foreground" :
                 "bg-primary text-primary-foreground"
             )}>
-              
-              {selectedValue === 'innovacion' && innovationBubbles.map((item, index) => (
-                  <div
-                    key={index}
-                    className={cn('absolute rounded-full animate-move-and-scale', item.size, item.color)}
-                    style={item.style as React.CSSProperties}
-                  />
-              ))}
-
-              {selectedValue === 'colaboracion' && collaborationIcons.map((item, index) => {
-                  const Icon = item.icon;
-                  return (
-                    <div key={index} className="absolute animate-move-and-scale" style={item.style as React.CSSProperties}>
-                        <Icon className={cn(item.size, item.color)} strokeWidth={1.5} />
-                    </div>
-                  );
-              })}
-
               {/* --- Conditional Rendering for Content --- */}
               {selectedValue === 'integridad' ? (
                  <div key="integridad-content" className="flex h-full w-full animate-fade-in">
@@ -188,16 +167,55 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                       <SelectedIconComponent className="absolute -right-1/4 top-1/2 h-[120%] w-[120%] -translate-y-1/2 text-black/10" strokeWidth={1} />
                     </div>
                  </div>
+              ) : selectedValue === 'innovacion' ? (
+                <div key="innovacion-content" className="flex h-full w-full animate-fade-in relative overflow-hidden">
+                    {/* Background Bubbles (subtle) */}
+                    {innovationBubbles.map((item, index) => (
+                    <div
+                        key={index}
+                        className={cn('absolute rounded-full animate-move-and-scale', item.size, item.color)}
+                        style={item.style as React.CSSProperties}
+                    />
+                    ))}
+
+                    {/* Giant Icon on the right */}
+                    <Lightbulb className="absolute -right-1/4 -top-1/4 h-[150%] w-[150%] text-black/10" strokeWidth={0.75} />
+
+                    {/* Content Container */}
+                    <div className="relative z-10 flex h-full w-full flex-col justify-between p-8 md:p-12 lg:p-16">
+                        {/* Top Title */}
+                        <h3 className="text-7xl md:text-9xl font-thin text-accent-foreground tracking-tight lowercase">
+                            {selectedContent.name}
+                        </h3>
+
+                        {/* Bottom Text */}
+                        <div className="flex w-full justify-center">
+                            <p className="text-lg md:text-xl leading-relaxed text-accent-foreground/90 max-w-md text-center">
+                            {selectedContent.explanation}
+                            </p>
+                        </div>
+                    </div>
+                </div>
               ) : (
-                <div key={selectedContent.id} className="animate-fade-in-up w-full max-w-3xl space-y-8 md:space-y-10 relative z-10 p-8 md:p-12 lg:p-16">
-                    <h2 className="text-xl md:text-2xl font-semibold text-primary-foreground/80 mb-0 uppercase tracking-wider">NUESTROS VALORES</h2>
-                    <SelectedIconComponent className={cn("h-32 w-32 sm:h-48 sm:w-48 mx-auto", selectedValue === 'innovacion' ? 'text-primary-foreground/90' : 'text-accent')} />
-                    <h3 className={cn("text-5xl sm:text-6xl font-bold", selectedValue === 'innovacion' ? 'text-primary-foreground' : 'text-accent')}>
-                        {selectedContent.name}
-                    </h3>
-                    <p className="text-xl sm:text-2xl leading-relaxed text-primary-foreground/90 max-w-2xl mx-auto">
-                        {selectedContent.explanation}
-                    </p>
+                <div key="colaboracion-content" className="flex flex-col justify-center items-center text-center h-full relative">
+                    {collaborationIcons.map((item, index) => {
+                        const Icon = item.icon;
+                        return (
+                            <div key={index} className="absolute animate-move-and-scale" style={item.style as React.CSSProperties}>
+                                <Icon className={cn(item.size, item.color)} strokeWidth={1.5} />
+                            </div>
+                        );
+                    })}
+                    <div key={selectedContent.id} className="animate-fade-in-up w-full max-w-3xl space-y-8 md:space-y-10 relative z-10 p-8 md:p-12 lg:p-16">
+                        <h2 className="text-xl md:text-2xl font-semibold text-primary-foreground/80 mb-0 uppercase tracking-wider">NUESTROS VALORES</h2>
+                        <SelectedIconComponent className="h-32 w-32 sm:h-48 sm:w-48 mx-auto text-accent" />
+                        <h3 className="text-5xl sm:text-6xl font-bold text-accent">
+                            {selectedContent.name}
+                        </h3>
+                        <p className="text-xl sm:text-2xl leading-relaxed text-primary-foreground/90 max-w-2xl mx-auto">
+                            {selectedContent.explanation}
+                        </p>
+                    </div>
                 </div>
               )}
             </div>
