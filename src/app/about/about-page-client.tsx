@@ -94,7 +94,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
           <div className="flex flex-col lg:flex-row items-center w-full gap-12 lg:gap-8">
             <div className="w-full lg:w-5/12 flex justify-center items-center relative order-1 lg:order-none">
               <div className="relative w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] md:w-[420px] md:h-[420px] xl:w-[480px] xl:h-[480px] animate-slide-in-from-left-hero">
-                <div className="absolute w-[180%] h-[180%] bg-card rounded-full shadow-2xl top-1/2 -translate-y-1/2"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180%] h-[180%] bg-card rounded-full shadow-2xl"></div>
                 <div className="absolute inset-0 flex justify-center items-center z-10 p-4">
                   <div className="bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--ring))] bg-[length:200%_200%] animate-gradient animate-zoom-in-bounce-hero rounded-full w-full h-full shadow-xl flex justify-center items-center">
                     <Info className="h-3/5 w-3/5 text-accent" />

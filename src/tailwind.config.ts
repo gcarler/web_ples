@@ -159,8 +159,8 @@ export default {
           'to': { opacity: '1', transform: 'translateY(0) scale(1)' },
         },
         'slide-in-from-left-hero': {
-            'from': { left: '-100%', opacity: '0' },
-            'to': { left: '-45%', opacity: '1' },
+            'from': { transform: 'translateX(-120%)', opacity: '0' },
+            'to': { transform: 'translateX(0)', opacity: '1' },
         },
         'zoom-in-bounce-hero': {
             '0%': { transform: 'scale(0)', opacity: '0' },
@@ -187,8 +187,8 @@ export default {
         'fly-in-word': 'fly-in-word 1.2s ease-out',
         'zoom-in-rotate': 'zoom-in-rotate 1.2s ease-out',
         'drop-in': 'drop-in 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
-        'slide-in-from-left-hero': 'slide-in-from-left-hero 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards',
-        'zoom-in-bounce-hero': 'zoom-in-bounce-hero 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s forwards',
+        'slide-in-from-left-hero': 'slide-in-from-left-hero 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards',
+        'zoom-in-bounce-hero': 'zoom-in-bounce-hero 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s forwards',
   		}
   	}
   },
