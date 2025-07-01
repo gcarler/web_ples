@@ -94,9 +94,9 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
           <div className="flex flex-col lg:flex-row items-center w-full gap-12 lg:gap-8">
             <div className="w-full lg:w-5/12 flex justify-center items-center relative order-1 lg:order-none">
               <div className="relative w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] md:w-[420px] md:h-[420px] xl:w-[480px] xl:h-[480px]">
-                <div className="absolute -left-[65%] sm:-left-[55%] md:-left-[45%] top-1/2 transform -translate-y-1/2 w-[180%] h-[180%] bg-card rounded-full shadow-2xl animate-slide-in-from-left"></div>
+                <div className="absolute w-[180%] h-[180%] bg-card rounded-full shadow-2xl top-1/2 -translate-y-1/2 animate-slide-in-from-left-hero"></div>
                 <div className="absolute inset-0 flex justify-center items-center z-10 p-4">
-                  <div className="bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--ring))] bg-[length:200%_200%] animate-gradient animate-zoom-in-bounce rounded-full w-full h-full shadow-xl flex justify-center items-center">
+                  <div className="bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--ring))] bg-[length:200%_200%] animate-gradient animate-zoom-in-bounce-hero rounded-full w-full h-full shadow-xl flex justify-center items-center">
                     <Info className="h-3/5 w-3/5 text-accent" />
                   </div>
                 </div>
@@ -144,7 +144,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
 
       {/* Interactive Core Values Section */}
       <section className="w-full relative">
-        <div className="flex flex-col md:flex-row shadow-2xl border-y border-border/20 md:h-[520px]">
+        <div className="flex flex-col md:flex-row shadow-2xl border-y border-border/20 md:h-[520px] overflow-hidden">
           <div className="flex md:flex-col md:w-1/3 lg:w-1/4 bg-card md:border-r md:border-border/20">
             {initialCoreValues.map((value, index) => (
               <button
@@ -164,13 +164,13 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
           
           {selectedContent && (
             <div className={cn(
-                "flex-1 p-0 relative md:h-full overflow-hidden",
+                "flex-1 p-0 relative md:h-full",
                 selectedValue === 'innovacion' ? "bg-accent text-accent-foreground" :
                 "bg-primary text-primary-foreground"
             )}>
               {/* --- Conditional Rendering for Content --- */}
               {selectedValue === 'integridad' ? (
-                <div key="integridad-content" className="relative h-full w-full animate-fade-in">
+                <div key="integridad-content" className="relative h-full w-full animate-fade-in overflow-hidden">
                    {/* Big text in background, animated separately */}
                   <h3 className="absolute top-1/2 text-[12rem] md:text-[16rem] font-bold text-primary-foreground/10 tracking-tighter lowercase select-none z-0 pointer-events-none animate-slide-across-text">
                       {selectedContent.name}
@@ -241,7 +241,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                     </div>
                 </div>
               ) : (
-                <div key="colaboracion-content" className="h-full w-full relative overflow-hidden animate-fade-in flex items-center justify-center p-8 md:p-12 lg:p-16 gap-8">
+                <div key="colaboracion-content" className="h-full w-full relative animate-fade-in flex items-center justify-center p-8 md:p-12 lg:p-16 gap-8">
                   <div className="w-1/4 flex justify-center">
                     <SelectedIconComponent className="h-32 w-32 sm:h-40 sm:w-40 text-accent" />
                   </div>
