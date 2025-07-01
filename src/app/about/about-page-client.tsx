@@ -20,14 +20,14 @@ const iconMap: { [key: string]: React.ElementType } = {
 };
 
 const innovationBubbles = [
-    { size: 'h-24 w-24', style: { left: '5%', animationDuration: '15s', animationDelay: '0s' }, color: 'bg-primary-foreground/10' },
-    { size: 'h-8 w-8', style: { left: '15%', animationDuration: '10s', animationDelay: '2s' }, color: 'bg-primary-foreground/20' },
-    { size: 'h-16 w-16', style: { left: '25%', animationDuration: '18s', animationDelay: '4s' }, color: 'bg-primary-foreground/15' },
-    { size: 'h-32 w-32', style: { left: '40%', animationDuration: '20s', animationDelay: '1s' }, color: 'bg-primary-foreground/10' },
-    { size: 'h-12 w-12', style: { left: '55%', animationDuration: '12s', animationDelay: '6s' }, color: 'bg-primary-foreground/25' },
-    { size: 'h-20 w-20', style: { left: '70%', animationDuration: '16s', animationDelay: '3s' }, color: 'bg-primary-foreground/15' },
-    { size: 'h-14 w-14', style: { left: '85%', animationDuration: '13s', animationDelay: '5s' }, color: 'bg-primary-foreground/20' },
-    { size: 'h-28 w-28', style: { left: '95%', animationDuration: '19s', animationDelay: '7s' }, color: 'bg-primary-foreground/10' },
+    { size: 'h-24 w-24', style: { top: '10%', left: '5%', animationDuration: '25s', animationDelay: '0s' }, color: 'bg-primary-foreground/20' },
+    { size: 'h-8 w-8', style: { top: '75%', left: '15%', animationDuration: '20s', animationDelay: '2s' }, color: 'bg-primary-foreground/30' },
+    { size: 'h-16 w-16', style: { top: '25%', left: '25%', animationDuration: '28s', animationDelay: '4s' }, color: 'bg-primary-foreground/25' },
+    { size: 'h-32 w-32', style: { top: '50%', left: '40%', animationDuration: '30s', animationDelay: '1s' }, color: 'bg-primary-foreground/20' },
+    { size: 'h-12 w-12', style: { top: '80%', left: '55%', animationDuration: '22s', animationDelay: '6s' }, color: 'bg-primary-foreground/35' },
+    { size: 'h-20 w-20', style: { top: '5%', left: '70%', animationDuration: '26s', animationDelay: '3s' }, color: 'bg-primary-foreground/25' },
+    { size: 'h-14 w-14', style: { top: '65%', left: '85%', animationDuration: '23s', animationDelay: '5s' }, color: 'bg-primary-foreground/30' },
+    { size: 'h-28 w-28', style: { top: '30%', left: '95%', animationDuration: '29s', animationDelay: '7s' }, color: 'bg-primary-foreground/20' },
 ];
 
 const collaborationIcons = [
@@ -172,7 +172,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                   return (
                     <div
                       key={index}
-                      className={cn('absolute bottom-0 rounded-full animate-bubble-rise', item.size, item.color)}
+                      className={cn('absolute rounded-full animate-float-around', item.size, item.color)}
                       style={item.style as React.CSSProperties}
                     />
                   );
