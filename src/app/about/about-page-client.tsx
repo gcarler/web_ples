@@ -165,7 +165,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                     </div>
                     {/* Right Column: Icon */}
                     <div className="relative w-2/5 overflow-hidden">
-                      <SelectedIconComponent className="absolute -right-1/4 top-1/2 h-[120%] w-[120%] -translate-y-1/2 text-black/10" strokeWidth={1} />
+                      <SelectedIconComponent className="absolute right-0 top-1/2 h-full w-full -translate-y-1/2 text-black/10" strokeWidth={1} />
                     </div>
                  </div>
               ) : selectedValue === 'innovacion' ? (
@@ -194,12 +194,12 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                                 <React.Fragment key="t2"> nos impulsa a </React.Fragment>,
                                 <strong key="s2" className="text-accent-foreground font-bold">desafiar el status quo</strong>,
                                 <React.Fragment key="t3"> y a explorar constantemente </React.Fragment>,
-                                <strong key="s3" className="text-accent-foreground font-bold">nuevas tecnologías y metodologías</strong>,
-                                <React.Fragment key="t4">. Convertimos </React.Fragment>,
-                                <strong key="s4" className="text-accent-foreground font-bold">ideas audaces</strong>,
-                                <React.Fragment key="t5"> en soluciones prácticas que aportan un </React.Fragment>,
-                                <strong key="s5" className="text-accent-foreground font-bold">valor tangible y sostenible</strong>,
-                                <React.Fragment key="t6"> a nuestros clientes.</React.Fragment>,
+                                <strong key="s4" className="text-accent-foreground font-bold">nuevas tecnologías y metodologías</strong>,
+                                <React.Fragment key="t5">. Convertimos </React.Fragment>,
+                                <strong key="s5" className="text-accent-foreground font-bold">ideas audaces</strong>,
+                                <React.Fragment key="t6"> en soluciones prácticas que aportan un </React.Fragment>,
+                                <strong key="s7" className="text-accent-foreground font-bold">valor tangible y sostenible</strong>,
+                                <React.Fragment key="t8"> a nuestros clientes.</React.Fragment>,
                               ].map((chunk, index) => (
                                 <span
                                   key={index}
