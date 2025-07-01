@@ -19,15 +19,15 @@ const iconMap: { [key: string]: React.ElementType } = {
   FileCheck, Award
 };
 
-const innovationIcons = [
-    { icon: Cpu, size: "h-16 w-16", style: { top: '10%', left: '15%', animationDuration: '22s', animationDelay: '0s' }, color: 'text-primary-foreground/30' },
-    { icon: Layers, size: "h-20 w-20", style: { top: '25%', left: '70%', animationDuration: '28s', animationDelay: '-5s' }, color: 'text-primary-foreground/30' },
-    { icon: Zap, size: "h-12 w-12", style: { top: '70%', left: '80%', animationDuration: '19s', animationDelay: '-10s' }, color: 'text-primary/50' },
-    { icon: FlaskConical, size: "h-24 w-24", style: { top: '80%', left: '20%', animationDuration: '32s', animationDelay: '-2s' }, color: 'text-primary-foreground/30' },
-    { icon: Settings, size: "h-10 w-10", style: { top: '50%', left: '50%', animationDuration: '18s', animationDelay: '-15s' }, color: 'text-primary/50' },
-    { icon: Brain, size: "h-14 w-14", style: { top: '5%', left: '40%', animationDuration: '25s', animationDelay: '-8s' }, color: 'text-primary-foreground/30' },
-    { icon: Search, size: "h-16 w-16", style: { top: '40%', left: '5%', animationDuration: '30s', animationDelay: '-3s' }, color: 'text-primary/50' },
-    { icon: Lightbulb, size: "h-12 w-12", style: { top: '85%', left: '60%', animationDuration: '24s', animationDelay: '-12s' }, color: 'text-primary/50' },
+const innovationBubbles = [
+    { size: 'h-24 w-24', style: { left: '5%', animationDuration: '15s', animationDelay: '0s' }, color: 'bg-primary-foreground/10' },
+    { size: 'h-8 w-8', style: { left: '15%', animationDuration: '10s', animationDelay: '2s' }, color: 'bg-primary-foreground/20' },
+    { size: 'h-16 w-16', style: { left: '25%', animationDuration: '18s', animationDelay: '4s' }, color: 'bg-primary-foreground/15' },
+    { size: 'h-32 w-32', style: { left: '40%', animationDuration: '20s', animationDelay: '1s' }, color: 'bg-primary-foreground/10' },
+    { size: 'h-12 w-12', style: { left: '55%', animationDuration: '12s', animationDelay: '6s' }, color: 'bg-primary-foreground/25' },
+    { size: 'h-20 w-20', style: { left: '70%', animationDuration: '16s', animationDelay: '3s' }, color: 'bg-primary-foreground/15' },
+    { size: 'h-14 w-14', style: { left: '85%', animationDuration: '13s', animationDelay: '5s' }, color: 'bg-primary-foreground/20' },
+    { size: 'h-28 w-28', style: { left: '95%', animationDuration: '19s', animationDelay: '7s' }, color: 'bg-primary-foreground/10' },
 ];
 
 const collaborationIcons = [
@@ -71,7 +71,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
 
   const backgroundIconsMap: { [key: string]: any[] } = {
     colaboracion: collaborationIcons,
-    innovacion: innovationIcons,
+    innovacion: innovationBubbles,
     integridad: integrityIcons
   };
   const currentBackgroundIcons = selectedValue ? backgroundIconsMap[selectedValue] : [];
@@ -160,8 +160,22 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                 selectedValue === 'innovacion' ? "bg-accent text-accent-foreground" : "bg-primary text-primary-foreground"
             )}>
               {currentBackgroundIcons.map((item, index) => {
-                  const Icon = item.icon;
-                  return <div key={index} className="absolute animate-move-and-scale" style={item.style as React.CSSProperties}><Icon className={cn(item.size, item.color)} strokeWidth={1.5} /></div>;
+                  if (item.icon) {
+                      const Icon = item.icon;
+                      return (
+                        <div key={index} className="absolute animate-move-and-scale" style={item.style as React.CSSProperties}>
+                            <Icon className={cn(item.size, item.color)} strokeWidth={1.5} />
+                        </div>
+                      );
+                  }
+                  // Assuming if no icon, it's a bubble for innovation
+                  return (
+                    <div
+                      key={index}
+                      className={cn('absolute bottom-0 rounded-full animate-bubble-rise', item.size, item.color)}
+                      style={item.style as React.CSSProperties}
+                    />
+                  );
               })}
               <div key={selectedContent.id} className="animate-fade-in-up w-full max-w-2xl space-y-6 md:space-y-8 relative z-10">
                 <h2 className="text-xl md:text-2xl font-semibold text-primary-foreground/80 mb-0 uppercase tracking-wider">NUESTROS VALORES</h2>
