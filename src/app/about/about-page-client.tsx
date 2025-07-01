@@ -165,9 +165,6 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                   </h3>
                   <div className="relative w-[420px] h-[420px] md:w-[480px] md:h-[480px] rounded-full bg-accent flex items-center justify-end text-accent-foreground shadow-2xl z-10">
                       <div className="w-4/5 text-right pr-12 space-y-4">
-                          <p className="text-3xl font-semibold">
-                              Nuestros Valores
-                          </p>
                           <p className="text-base leading-relaxed">
                               {integridadPhrases.map((phrase, index) => (
                               <span
@@ -191,8 +188,12 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                     {innovationBubbles.map((item, index) => (
                     <div
                         key={index}
-                        className={cn('absolute rounded-full animate-move-and-scale', item.size, item.color)}
-                        style={item.style as React.CSSProperties}
+                        className={cn('absolute rounded-full animate-bubble-rise', item.size, 'bg-black/30')}
+                        style={{
+                            left: `${Math.random() * 100}%`,
+                            animationDuration: `${Math.random() * 10 + 10}s`,
+                            animationDelay: `${Math.random() * 5}s`,
+                         }}
                     />
                     ))}
 
@@ -229,7 +230,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                     </div>
                 </div>
               ) : (
-                <div key="colaboracion-content" className="h-full w-full relative overflow-hidden animate-fade-in flex items-center p-8 md:p-12 lg:p-16 gap-8">
+                 <div key="colaboracion-content" className="h-full w-full relative overflow-hidden animate-fade-in flex items-center p-8 md:p-12 lg:p-16 gap-8">
                     {/* Background Icons */}
                     {collaborationIcons.map((item, index) => {
                         const Icon = item.icon;
