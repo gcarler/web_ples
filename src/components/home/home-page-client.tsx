@@ -10,8 +10,6 @@ import { RotatingHeroText } from '@/components/layout/rotating-hero-text';
 import { cn } from '@/lib/utils';
 import { useState, useEffect } from 'react';
 import { type HeroStatement } from '@/lib/models/content';
-import { type City } from '@/app/actions/city-actions';
-
 
 const missionIcons = [
     Lightbulb, Cpu, Database, Server, Globe, MapPin, 
@@ -42,10 +40,9 @@ const iconStyles = [
 
 interface HomePageClientProps {
   initialHeroStatements: HeroStatement[];
-  cities: City[];
 }
 
-export default function HomePageClient({ initialHeroStatements, cities }: HomePageClientProps) {
+export default function HomePageClient({ initialHeroStatements }: HomePageClientProps) {
   const [currentIconIndex, setCurrentIconIndex] = useState(0);
 
   useEffect(() => {
@@ -291,37 +288,6 @@ export default function HomePageClient({ initialHeroStatements, cities }: HomePa
             </div>
         </div>
       </section>
-
-      <section id="cities-from-firestore" className="py-16 bg-secondary">
-         <div className="w-full px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center mb-10">Ejemplo de Carga de Datos desde Firestore</h2>
-            <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-8">
-                Esta es una demostración de cómo se pueden obtener datos desde una colección de Firestore y mostrarlos en la página.
-                Asegúrate de tener una colección llamada `cities` en tu base de datos para ver los resultados aquí.
-            </p>
-            <Card className="max-w-md mx-auto shadow-lg">
-                <CardHeader>
-                    <CardTitle>Ciudades Obtenidas</CardTitle>
-                    <CardDescription>Lista de ciudades cargadas desde la colección `cities`.</CardDescription>
-                </CardHeader>
-                <CardContent>
-                    {cities && cities.length > 0 ? (
-                        <ul className="space-y-2">
-                            {cities.map((city) => (
-                                <li key={city.name} className="flex items-center justify-between p-2 border-b last:border-b-0">
-                                    <span className="font-medium">{city.name}</span>
-                                    <span className="text-sm text-muted-foreground">{city.country}</span>
-                                </li>
-                            ))}
-                        </ul>
-                    ) : (
-                        <p className="text-center text-muted-foreground py-4">No se encontraron ciudades. Verifica tu colección 'cities' en Firestore.</p>
-                    )}
-                </CardContent>
-            </Card>
-        </div>
-      </section>
-
     </div>
   );
 }
