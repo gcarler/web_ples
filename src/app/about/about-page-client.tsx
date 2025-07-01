@@ -139,9 +139,9 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
           
           {selectedContent && (
             <div className={cn(
-                "flex-1 p-0 relative overflow-hidden text-center",
-                "md:h-[520px]", // Consistent height on desktop
-                selectedValue !== 'integridad' && "flex flex-col justify-center items-center",
+                "flex-1 p-0 relative overflow-hidden",
+                "md:h-full", 
+                selectedValue !== 'integridad' && "flex flex-col justify-center items-center text-center",
                 selectedValue === 'innovacion' ? "bg-accent text-accent-foreground" :
                 selectedValue === 'integridad' ? "bg-primary text-primary-foreground" :
                 "bg-primary text-primary-foreground"
@@ -166,32 +166,36 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
 
               {/* --- Conditional Rendering for Content --- */}
               {selectedValue === 'integridad' ? (
-                <div key="integridad-content" className="flex flex-col h-full w-full animate-fade-in">
-                  <div className="p-8 text-left">
-                    <h3 className="text-7xl md:text-9xl font-bold text-accent tracking-tighter lowercase">
-                      {selectedContent.name}
-                    </h3>
-                    <p className="text-xl md:text-2xl text-primary-foreground/90 -mt-2 md:-mt-4 ml-1">
-                      nuestros valores
-                    </p>
-                  </div>
-                  <div className="flex-grow" />
-                  <div className="flex justify-end w-full">
-                    <div className="bg-accent p-6 md:p-8 w-full md:w-[55%]">
-                      <p className="text-base sm:text-lg leading-relaxed text-accent-foreground max-w-md text-left">
-                        {selectedContent.explanation}
-                      </p>
+                 <div key="integridad-content" className="flex h-full w-full animate-fade-in">
+                    {/* Left Column: Text */}
+                    <div className="flex w-3/5 flex-col justify-between p-8 text-left">
+                      <div>
+                        <h3 className="text-7xl md:text-9xl font-bold text-accent tracking-tighter lowercase">
+                          {selectedContent.name}
+                        </h3>
+                        <p className="text-xl md:text-2xl text-primary-foreground/90 -mt-2 md:-mt-4 ml-1">
+                          nuestros valores
+                        </p>
+                      </div>
+                      <div className="bg-accent p-6 md:p-8">
+                        <p className="text-base sm:text-lg leading-relaxed text-accent-foreground max-w-md text-left">
+                          {selectedContent.explanation}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                </div>
+                    {/* Right Column: Icon */}
+                    <div className="relative w-2/5 overflow-hidden">
+                      <SelectedIconComponent className="absolute -right-1/4 top-1/2 h-[120%] w-[120%] -translate-y-1/2 text-black/10" strokeWidth={1} />
+                    </div>
+                 </div>
               ) : (
                 <div key={selectedContent.id} className="animate-fade-in-up w-full max-w-3xl space-y-8 md:space-y-10 relative z-10 p-8 md:p-12 lg:p-16">
                     <h2 className="text-xl md:text-2xl font-semibold text-primary-foreground/80 mb-0 uppercase tracking-wider">NUESTROS VALORES</h2>
-                    <SelectedIconComponent className={cn("h-24 w-24 sm:h-32 sm:w-32 mx-auto", selectedValue === 'innovacion' ? 'text-primary-foreground/90' : 'text-accent')} />
-                    <h3 className={cn("text-4xl sm:text-5xl font-bold", selectedValue === 'innovacion' ? 'text-primary-foreground' : 'text-accent')}>
+                    <SelectedIconComponent className={cn("h-32 w-32 sm:h-48 sm:w-48 mx-auto", selectedValue === 'innovacion' ? 'text-primary-foreground/90' : 'text-accent')} />
+                    <h3 className={cn("text-5xl sm:text-6xl font-bold", selectedValue === 'innovacion' ? 'text-primary-foreground' : 'text-accent')}>
                         {selectedContent.name}
                     </h3>
-                    <p className="text-lg sm:text-xl leading-relaxed text-primary-foreground/90 max-w-2xl mx-auto">
+                    <p className="text-xl sm:text-2xl leading-relaxed text-primary-foreground/90 max-w-2xl mx-auto">
                         {selectedContent.explanation}
                     </p>
                 </div>
