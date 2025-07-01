@@ -141,7 +141,7 @@ export default function LoginPage() {
               className="w-full h-12 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 text-base"
               disabled={isLoading}
             >
-              {isLoading ? 'Iniciando...' : 'Iniciar Sección'}
+              {isLoading ? 'Iniciando...' : 'Iniciar Sesión'}
               {!isLoading && <LogIn className="ml-2 h-4 w-4" />}
             </Button>
           </form>

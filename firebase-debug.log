@@ -1,44 +1,28 @@
-[debug] [2025-07-01T15:59:21.414Z] ----------------------------------------------------------------------
-[debug] [2025-07-01T15:59:21.416Z] Command:       /nix/store/rbdrkcs5kkwpalxcd7c6bnm33lk2955n-nodejs-20.19.0/bin/node /nix/store/fprgfkwna33crhc86jqbf5878piivvgw-firebase-tools-14.7.0/lib/node_modules/firebase-tools/lib/bin/firebase.js login --no-localhost
-[debug] [2025-07-01T15:59:21.417Z] CLI Version:   14.7.0
-[debug] [2025-07-01T15:59:21.417Z] Platform:      linux
-[debug] [2025-07-01T15:59:21.418Z] Node Version:  v20.19.0
-[debug] [2025-07-01T15:59:21.418Z] Time:          Tue Jul 01 2025 15:59:21 GMT+0000 (Coordinated Universal Time)
-[debug] [2025-07-01T15:59:21.418Z] ----------------------------------------------------------------------
+[debug] [2025-07-01T18:39:57.041Z] ----------------------------------------------------------------------
+[debug] [2025-07-01T18:39:57.043Z] Command:       /nix/store/rbdrkcs5kkwpalxcd7c6bnm33lk2955n-nodejs-20.19.0/bin/node /nix/store/fprgfkwna33crhc86jqbf5878piivvgw-firebase-tools-14.7.0/lib/node_modules/firebase-tools/lib/bin/firebase.js init hosting
+[debug] [2025-07-01T18:39:57.044Z] CLI Version:   14.7.0
+[debug] [2025-07-01T18:39:57.044Z] Platform:      linux
+[debug] [2025-07-01T18:39:57.044Z] Node Version:  v20.19.0
+[debug] [2025-07-01T18:39:57.045Z] Time:          Tue Jul 01 2025 18:39:57 GMT+0000 (Coordinated Universal Time)
+[debug] [2025-07-01T18:39:57.045Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2025-07-01T15:59:21.421Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
-[info] i  Firebase CLI integrates with Gemini in Firebase API to provide assistant features. Learn more about using Gemini in Firebase and how we train our models: https://firebase.google.com/docs/gemini-in-firebase/set-up-gemini#required-permissions 
-[debug] [2025-07-01T15:59:21.591Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
-[debug] [2025-07-01T15:59:21.592Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2025-07-01T18:39:57.051Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-07-01T18:39:57.052Z] > authorizing via signed-in user (gscarlosernesto@gmail.com)
 [info] 
-[info] i  Firebase optionally collects CLI and Emulator Suite usage and error reporting information to help improve our products. Data is collected in accordance with Google's privacy policy (https://policies.google.com/privacy) and is not used to identify you. 
-[debug] [2025-07-01T17:29:42.750Z] ----------------------------------------------------------------------
-[debug] [2025-07-01T17:29:42.753Z] Command:       /nix/store/rbdrkcs5kkwpalxcd7c6bnm33lk2955n-nodejs-20.19.0/bin/node /nix/store/fprgfkwna33crhc86jqbf5878piivvgw-firebase-tools-14.7.0/lib/node_modules/firebase-tools/lib/bin/firebase.js login --no-localhost
-[debug] [2025-07-01T17:29:42.754Z] CLI Version:   14.7.0
-[debug] [2025-07-01T17:29:42.754Z] Platform:      linux
-[debug] [2025-07-01T17:29:42.754Z] Node Version:  v20.19.0
-[debug] [2025-07-01T17:29:42.755Z] Time:          Tue Jul 01 2025 17:29:42 GMT+0000 (Coordinated Universal Time)
-[debug] [2025-07-01T17:29:42.755Z] ----------------------------------------------------------------------
-[debug] 
-[info] i  Firebase CLI integrates with Gemini in Firebase API to provide assistant features. Learn more about using Gemini in Firebase and how we train our models: https://firebase.google.com/docs/gemini-in-firebase/set-up-gemini#required-permissions 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /home/user/studio
+
 [info] 
-[info] i  Firebase optionally collects CLI and Emulator Suite usage and error reporting information to help improve our products. Data is collected in accordance with Google's privacy policy (https://policies.google.com/privacy) and is not used to identify you. 
+=== Project Setup
 [info] 
-[info] i  To change your the preference at any time, run `firebase logout` and `firebase login` again. 
-[debug] [2025-07-01T17:34:06.859Z] >>> [apiv2][query] POST https://auth.firebase.tools/attest [none]
-[debug] [2025-07-01T17:34:06.859Z] >>> [apiv2][body] POST https://auth.firebase.tools/attest {"session_id":"fb476bfb-fa62-4cfd-8827-4d46fb4e7e91"}
-[debug] [2025-07-01T17:34:07.204Z] <<< [apiv2][status] POST https://auth.firebase.tools/attest 200
-[debug] [2025-07-01T17:34:07.204Z] <<< [apiv2][body] POST https://auth.firebase.tools/attest {"token":"eQj4ZCHl4tS9Ilr6Qh59EM-n_psHAf-0DspBBjM3l80"}
-[info] 
-[info] To sign in to the Firebase CLI:
-[info] 
-[info] 1. Take note of your session ID:
-[info] 
-[info]    FB476
-[info] 
-[info] 2. Visit the URL below on any device and follow the instructions to get your code:
-[info] 
-[info]    https://auth.firebase.tools/login?code_challenge=SbOs2UdTO6nBPDaLc9QS2fHPdLn27ESXVr2c4PyuX50&session=fb476bfb-fa62-4cfd-8827-4d46fb4e7e91&attest=eQj4ZCHl4tS9Ilr6Qh59EM-n_psHAf-0DspBBjM3l80
-[info] 
-[info] 3. Paste or enter the authorization code below once you have it:
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
 [info] 
