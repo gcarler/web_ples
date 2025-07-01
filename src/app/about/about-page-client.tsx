@@ -159,10 +159,15 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
             )}>
               {/* --- Conditional Rendering for Content --- */}
               {selectedValue === 'integridad' ? (
-                <div key="integridad-content" className="relative h-full w-full animate-fade-in">
-                  <div className="absolute top-1/2 w-[420px] h-[420px] md:w-[480px] md:h-[480px] animate-slide-across">
-                    <div className="relative w-full h-full rounded-full bg-accent flex items-center justify-center text-accent-foreground shadow-2xl z-10">
-                      <div className="absolute inset-0 right-auto w-4/5 text-right flex items-center pr-12">
+                <div key="integridad-content" className="relative h-full w-full animate-fade-in overflow-hidden">
+                   {/* Big text in background, animated separately */}
+                  <h3 className="absolute top-1/2 text-[12rem] md:text-[16rem] font-bold text-primary-foreground/10 tracking-tighter lowercase select-none z-0 pointer-events-none animate-slide-across-text">
+                      {selectedContent.name}
+                  </h3>
+                   {/* Circle with content, animated separately */}
+                  <div className="absolute top-1/2 w-[420px] h-[420px] md:w-[480px] md:h-[480px] animate-slide-across z-10">
+                    <div className="relative w-full h-full rounded-full bg-accent flex items-center text-accent-foreground shadow-2xl">
+                       <div className="w-4/5 ml-auto text-right flex items-center pr-12">
                           <p className="text-base leading-relaxed">
                               {integridadPhrases.map((phrase, index) => (
                               <span
@@ -178,9 +183,6 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                               ))}
                           </p>
                       </div>
-                      <h3 className="absolute -right-1/3 top-1/2 -translate-y-1/2 text-[12rem] md:text-[16rem] font-bold text-primary-foreground/10 tracking-tighter lowercase select-none z-0 pointer-events-none">
-                          {selectedContent.name}
-                      </h3>
                     </div>
                   </div>
                 </div>
