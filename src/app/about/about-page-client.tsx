@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -139,7 +140,9 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
           {selectedContent && (
             <div className={cn(
                 "flex-1 p-8 md:p-12 lg:p-16 flex flex-col justify-center items-center text-center relative overflow-hidden",
-                selectedValue === 'innovacion' ? "bg-accent text-accent-foreground" : "bg-primary text-primary-foreground"
+                selectedValue === 'innovacion' ? "bg-accent text-accent-foreground" :
+                selectedValue === 'integridad' ? "bg-[radial-gradient(ellipse_at_center,_hsl(203_96%_30%)_0%,_hsl(203_96%_15%)_100%)] text-primary-foreground" :
+                "bg-primary text-primary-foreground"
             )}>
               
               {selectedValue === 'innovacion' && innovationBubbles.map((item, index) => (
@@ -160,57 +163,79 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
               })}
 
               {selectedValue === 'integridad' && (
-                  <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
-                      <svg viewBox="0 0 500 500" className="w-[90%] h-[90%] max-w-[400px] max-h-[400px]">
+                  <div className="absolute inset-0 flex items-center justify-center opacity-25 pointer-events-none">
+                      <svg viewBox="0 0 500 500" className="w-full h-full max-w-[450px] max-h-[450px]">
                           <style>{`
-                              .integrity-line {
-                                  animation: integrity-stroke 10s ease-in-out infinite;
+                              .integrity-core-2 {
+                                  animation: integrity-pulse-2 4s ease-in-out infinite;
                               }
-                              @keyframes integrity-stroke {
-                                  0% { stroke-dashoffset: 1000; }
-                                  50% { stroke-dashoffset: 0; }
-                                  100% { stroke-dashoffset: -1000; }
+                              .integrity-ring-2 {
+                                  stroke-dasharray: 1000;
+                                  animation: integrity-draw-2 20s linear infinite;
+                              }
+                              .integrity-ray-2 {
+                                  transform-origin: center;
+                                  animation: integrity-spin-2 60s linear infinite;
+                              }
+
+                              @keyframes integrity-pulse-2 {
+                                  0%, 100% { r: 15; opacity: 0.7; }
+                                  50% { r: 20; opacity: 1; }
+                              }
+                              @keyframes integrity-draw-2 {
+                                  from { stroke-dashoffset: 1500; }
+                                  to { stroke-dashoffset: -500; }
+                              }
+                              @keyframes integrity-spin-2 {
+                                  from { transform: rotate(0deg); }
+                                  to { transform: rotate(360deg); }
                               }
                           `}</style>
                           <defs>
-                              <filter id="integrity-glow" x="-50%" y="-50%" width="200%" height="200%">
+                              <filter id="integrity-glow-2" x="-50%" y="-50%" width="200%" height="200%">
                                   <feGaussianBlur stdDeviation="8" result="coloredBlur" />
                                   <feMerge>
                                       <feMergeNode in="coloredBlur" />
                                       <feMergeNode in="SourceGraphic" />
                                   </feMerge>
                               </filter>
+                              <mask id="integrity-mask">
+                                  <rect width="500" height="500" fill="white" />
+                                  <g transform="translate(250 250)">
+                                      <circle cx="0" cy="0" r="60" fill="black" />
+                                  </g>
+                              </mask>
                           </defs>
-                          <g stroke="hsl(var(--primary-foreground))" fill="none" strokeWidth="2">
-                              {/* Main Shield Path */}
-                              <path 
-                                  d="M250 50 L420 140 V 360 C 420 420, 250 450, 250 450 C 250 450, 80 420, 80 360 V 140 Z" 
-                                  strokeWidth="4" 
+                          
+                          <g transform="translate(250 250)">
+                              {/* Rays */}
+                              <g className="integrity-ray-2" opacity="0.5">
+                                  {[...Array(12)].map((_, i) => (
+                                      <line key={'ray-${i}'} x1="0" y1="0" x2="0" y2="-220" stroke="hsl(var(--accent))" strokeWidth="1" transform={'rotate(${i * 30})'} />
+                                  ))}
+                              </g>
+                              
+                              {/* Animated Rings */}
+                              <g mask="url(#integrity-mask)">
+                                  <circle className="integrity-ring-2" cx="0" cy="0" r="80" stroke="hsl(var(--primary-foreground))" strokeWidth="1.5" fill="none" style={{ animationDelay: '-5s', animationDirection: 'reverse' }}/>
+                                  <circle className="integrity-ring-2" cx="0" cy="0" r="110" stroke="hsl(var(--accent))" strokeWidth="1" fill="none" style={{ animationDelay: '-10s' }}/>
+                                  <circle className="integrity-ring-2" cx="0" cy="0" r="140" stroke="hsl(var(--primary-foreground))" strokeWidth="0.5" fill="none" style={{ animationDelay: '-2s', animationDirection: 'reverse' }}/>
+                                  <circle className="integrity-ring-2" cx="0" cy="0" r="170" stroke="hsl(var(--accent))" strokeWidth="1" fill="none" style={{ animationDelay: '-15s' }}/>
+                                  <circle className="integrity-ring-2" cx="0" cy="0" r="200" stroke="hsl(var(--primary-foreground))" strokeWidth="0.5" fill="none" style={{ animationDelay: '-7s', animationDirection: 'reverse' }}/>
+                              </g>
+
+                              {/* Static shield shape */}
+                              <path
+                                  d="M 0 -220 L 190 -110 V 110 L 0 220 L -190 110 V -110 Z"
+                                  stroke="hsl(var(--primary-foreground))"
+                                  strokeWidth="3"
                                   fill="hsl(var(--primary-foreground) / 0.05)"
+                                  opacity="0.7"
                               />
                               
-                              {/* Animated inner lines */}
-                              <path 
-                                  d="M150,180 C200,220 300,220 350,180" 
-                                  className="integrity-line" 
-                                  strokeDasharray="1000"
-                                  style={{ animationDelay: '0s' }}
-                              />
-                              <path 
-                                  d="M150,230 C200,270 300,270 350,230" 
-                                  className="integrity-line" 
-                                  strokeDasharray="1000"
-                                  style={{ animationDelay: '-2s' }}
-                              />
-                              <path 
-                                  d="M150,280 C200,320 300,320 350,280" 
-                                  className="integrity-line" 
-                                  strokeDasharray="1000"
-                                  style={{ animationDelay: '-4s' }}
-                              />
-
-                              {/* Glowing Core */}
-                              <circle cx="250" cy="350" r="25" fill="hsl(var(--accent))" filter="url(#integrity-glow)" className="animate-pulse" style={{ animationDuration: '4s' }} />
+                              {/* Core */}
+                              <circle className="integrity-core-2" cx="0" cy="0" r="20" fill="hsl(var(--accent))" filter="url(#integrity-glow-2)" />
+                              <circle cx="0" cy="0" r="30" stroke="hsl(var(--accent))" strokeWidth="1" fill="none" />
                           </g>
                       </svg>
                   </div>
