@@ -123,6 +123,13 @@ export default {
             opacity: '0',
           },
         },
+        'float-gentle': {
+            '0%': { transform: 'translate(0, 0)' },
+            '25%': { transform: 'translate(5px, 10px)' },
+            '50%': { transform: 'translate(-5px, -5px)' },
+            '75%': { transform: 'translate(10px, -5px)' },
+            '100%': { transform: 'translate(0, 0)' },
+        },
         'drone-path': {
           '0%': { transform: 'translate(-120%, 0px) rotate(-5deg)' },
           '50%': { transform: 'translate(120%, -20px) rotate(5deg)' },
@@ -165,6 +172,7 @@ export default {
         'fade-in-up': 'fade-in-up 0.6s ease-out forwards',
         'move-and-scale': 'move-and-scale 25s ease-in-out infinite',
         'bubble-rise': 'bubble-rise linear infinite',
+        'float-gentle': 'float-gentle 20s ease-in-out infinite',
         'drone-path': 'drone-path 20s ease-in-out infinite',
         'scan-beam': 'scan-beam 4s ease-in-out infinite',
         'tree-sway': 'tree-sway 5s ease-in-out infinite',

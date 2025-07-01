@@ -163,7 +163,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                   <h3 className="absolute right-0 top-1/2 -translate-y-1/2 text-[12rem] md:text-[16rem] font-bold text-primary-foreground/10 tracking-tighter lowercase select-none z-0 pointer-events-none">
                       {selectedContent.name}
                   </h3>
-                  <div className="relative w-[420px] h-[420px] md:w-[480px] md:h-[480px] rounded-full bg-accent flex items-center justify-end text-accent-foreground shadow-2xl z-10">
+                  <div className="relative w-[420px] h-[420px] md:w-[480px] md:h-[480px] rounded-full bg-accent flex items-center justify-end text-accent-foreground shadow-2xl z-10 animate-float-gentle">
                       <div className="w-4/5 text-right pr-12 space-y-4">
                           <p className="text-base leading-relaxed">
                               {integridadPhrases.map((phrase, index) => (
@@ -188,7 +188,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                     {innovationBubbles.map((item, index) => (
                     <div
                         key={index}
-                        className={cn('absolute rounded-full animate-bubble-rise', item.size, 'bg-black/30')}
+                        className={cn('absolute rounded-full animate-bubble-rise', item.size, 'bg-black/30 opacity-70')}
                         style={{
                             left: `${Math.random() * 100}%`,
                             animationDuration: `${Math.random() * 10 + 10}s`,
