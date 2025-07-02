@@ -2,9 +2,10 @@
 // src/app/ples-tic/page.tsx
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, CheckCircle, Cpu, Lightbulb, ShieldCheck, TrendingUp, Code, CloudCog, Lock, BarChartBig, Network, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, Rocket, Workflow, Brain, Database, Settings, Server, Shield, Layers, ShoppingBag, ShoppingCart, Cloud, Users, BarChart3, HeartPulse, Building2, Globe, Landmark, Warehouse, Users2, Megaphone, ConciergeBell, Zap, Wrench, ChevronRight, Briefcase, Map, UtensilsCrossed, School, FileArchive, Info } from 'lucide-react';
+import {
+  ArrowRight, CheckCircle, Cpu, Lightbulb, ShieldCheck, TrendingUp, Code, CloudCog, Lock, BarChartBig, Network, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, Rocket, Workflow, Brain, Database, Settings, Server, Shield, Layers, ShoppingBag, ShoppingCart, Cloud, Users, BarChart3, HeartPulse, Building2, Globe, Landmark, Warehouse, Users2, Megaphone, ConciergeBell, Zap, Wrench, ChevronRight, Briefcase, Map, UtensilsCrossed, School, FileArchive, Info, LayoutDashboard, Target, ShieldAlert, FileSearch, ExternalLink, GitMerge, FileCheck, BookOpen, ClipboardCheck
+} from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import PlexusIllustration from '@/components/illustrations/PlexusIllustration';
@@ -139,12 +140,189 @@ export default function PlesTicPage() {
     },
   ];
 
+  const ofiPlesModules = {
+    "Sitio web": [
+      { name: "OfiPles Sitio web", description: "Creador de sitios web empresariales" },
+      { name: "OfiPles Comercio electrónico", description: "Vende tus productos en línea" },
+      { name: "OfiPles Blog", description: "Publica entradas, anuncios y noticias" },
+      { name: "OfiPles Foro", description: "Gestiona un foro para preguntas frecuentes" },
+      { name: "OfiPles eLearning", description: "Gestiona y publica tus cursos" },
+      { name: "OfiPles Chat en vivo", description: "Chatea con los visitantes de tu sitio web" }
+    ],
+    "Ventas": [
+      { name: "OfiPles CRM", description: "Gestiona tus leads y cierra oportunidades" },
+      { name: "OfiPles Ventas", description: "De cotizaciones a facturas" },
+      { name: "OfiPles Punto de venta", description: "Interfaz de punto de venta para tiendas y restaurantes" },
+      { name: "OfiPles Suscripciones", description: "Facturas recurrentes y renovaciones" },
+      { name: "OfiPles Alquiler", description: "Gestiona contratos, entregas y devoluciones" }
+    ],
+    "Finanzas": [
+      { name: "OfiPles Contabilidad", description: "Gestiona tu contabilidad financiera y analítica" },
+      { name: "OfiPles Facturación", description: "Facturas y pagos" },
+      { name: "OfiPles Gastos", description: "Gestiona los gastos de tus empleados" },
+      { name: "OfiPles Documentos", description: "Gestión de documentos" },
+      { name: "OfiPles Tablero de hojas de cálculo", description: "Documentos y hojas de cálculo" },
+      { name: "OfiPles Firma electrónica", description: "Firma documentos en línea" }
+    ],
+    "Inventario y fabricación": [
+      { name: "OfiPles Inventario", description: "Gestiona tu inventario y actividades de logística" },
+      { name: "OfiPles Manufactura", description: "Órdenes de fabricación y listas de materiales" },
+      { name: "OfiPles Gestión del ciclo de vida del producto", description: "Gestión del ciclo de vida del producto" },
+      { name: "OfiPles Compra", description: "Órdenes de compra, licitaciones y contratos" },
+      { name: "OfiPles MRP de mantenimiento", description: "Monitorea tus equipos y gestiona solicitudes" },
+      { name: "OfiPles Calidad", description: "Controla la calidad de tus productos" }
+    ],
+    "Recursos humanos": [
+      { name: "OfiPles Empleados", description: "Centraliza la información de tus empleados" },
+      { name: "OfiPles Reclutamiento", description: "Monitorea tu flujo de reclutamiento" },
+      { name: "OfiPles Tiempo personal", description: "Asigna y dale seguimiento a las solicitudes de tiempo personal" },
+      { name: "OfiPles Evaluaciones", description: "Evalúa a tus empleados" },
+      { name: "OfiPles Recomendación de empleados", description: "Comparte puestos de trabajo y refiere a tus amigos" },
+      { name: "OfiPles Flota", description: "Gestiona tu flota y monitorea el costo de tus vehículos" }
+    ],
+    "Marketing": [
+      { name: "OfiPles Automatización de marketing", description: "Elabora campañas de correo automatizadas" },
+      { name: "OfiPles Marketing por correo electrónico", description: "Diseña, envía y monitorea correos electrónicos" },
+      { name: "OfiPles Marketing por SMS", description: "Diseña, envía y monitorea SMS" },
+      { name: "OfiPles Marketing social", description: "Gestiona tus redes sociales y los visitantes de tu sitio web" },
+      { name: "OfiPles Organización de eventos", description: "Publica eventos y vende boletos" },
+      { name: "OfiPles Encuesta", description: "Envía tus encuestas o compártelas en un evento en vivo" }
+    ],
+    "Servicios": [
+      { name: "OfiPles Proyecto", description: "Organiza y planea tus proyectos" },
+      { name: "OfiPles Hojas de horas", description: "Monitorea el tiempo que los empleados invierten en tareas" },
+      { name: "OfiPles Servicio externo", description: "Programa y monitorea operaciones externas, el tiempo y el material" },
+      { name: "OfiPles Soporte al cliente", description: "Monitorea, prioritiza y soluciona los tickets de tus clientes" },
+      { name: "OfiPles Planeación", description: "Gestiona el horario de tus empleados" },
+      { name: "OfiPles Citas", description: "Permite que otras personas agenden reuniones contigo" }
+    ],
+    "Productividad": [
+      { name: "OfiPles Conversaciones", description: "Chat, pasarela de correos electrónicos y canales privados" },
+      { name: "OfiPles Aprobaciones", description: "Crea y valida solicitudes de aprobación" },
+      { name: "OfiPles Internet de las cosas", description: "Modelos básicos y asistentes para IoT" },
+      { name: "OfiPles VOIP", description: "Haz y recibe llamadas" },
+      { name: "OfiPles Información", description: "Gestiona tu biblioteca de información" }
+    ],
+    "Personalización": [
+      { name: "OfiPles Studio", description: "Crea y personaliza tus propias aplicaciones" }
+    ]
+  };
+
+  const gobPlesModules = {
+    "Dashboard Principal": {
+        icon: <LayoutDashboard className="h-6 w-6 text-primary" />,
+        description: "Ofrece una vista ejecutiva y consolidada de los indicadores más importantes de todas las dimensiones. Es la página de inicio que presenta KPIs (Indicadores Clave de Gestión), gráficos de resumen y alertas importantes."
+    },
+    "Talento Humano (TH)": {
+        icon: <Users className="h-6 w-6 text-primary" />,
+        description: "El módulo más desarrollado. Centrado en el ciclo de vida completo del servidor público, desde su atracción hasta su desarrollo y retiro.",
+        submodules: ["Dashboard GETH", "Ciclo de Vida del Servidor", "Desarrollo y Gestión", "Desempeño y Bienestar", "Cumplimiento y Estrategia"]
+    },
+    "Direccionamiento Estratégico y Planeación (DE&P)": {
+        icon: <Target className="h-6 w-6 text-primary" />,
+        description: "Define la hoja de ruta de la entidad, desde la misión y visión hasta los planes operativos.",
+        submodules: ["Dashboard Estratégico", "Objetivos Estratégicos", "Planes Institucionales", "Planes de Trabajo", "Análisis DOFA"]
+    },
+    "Gestión con Valores para Resultados (GVR)": {
+        icon: <ShieldCheck className="h-6 w-6 text-primary" />,
+        description: "Asegura que la operación diaria se realice con eficiencia, transparencia y orientada al ciudadano.",
+        submodules: ["Dashboard Gestión y Valores", "Procesos Internos", "Gestión de PQR", "Gestión de Riesgos Operacionales", "Gestión de Proveedores", "Cumplimiento Normativo"]
+    },
+    "Evaluación de Resultados (ER)": {
+        icon: <BarChart3 className="h-6 w-6 text-primary" />,
+        description: "Monitorea el desempeño de la entidad para asegurar el cumplimiento de metas y facilitar la mejora continua.",
+        submodules: ["Dashboard Evaluación", "Indicadores de Desempeño", "Autoevaluaciones", "Generación de Informes"]
+    },
+    "Información y Comunicación (I&C)": {
+        icon: <Info className="h-6 w-6 text-primary" />,
+        description: "Centraliza la gestión de la información y los canales de comunicación.",
+        submodules: ["Dashboard Info & Comms", "Gestión Documental", "Comunicación Interna"]
+    },
+    "Gestión del Conocimiento y la Innovación (GCI)": {
+        icon: <BrainCircuit className="h-6 w-6 text-primary" />,
+        description: "Fomenta una cultura de aprendizaje, mejora continua e innovación.",
+        submodules: ["Dashboard Conocimiento", "Repositorio de Conocimiento", "Iniciativas de Innovación", "Acciones de Mejora"]
+    },
+    "Control Interno (CI)": {
+        icon: <ShieldAlert className="h-6 w-6 text-primary" />,
+        description: "Asegura el cumplimiento, la gestión de riesgos y la eficacia del Sistema de Control Interno (SCI).",
+        submodules: ["Dashboard Control Interno", "Gestión de Auditorías", "Riesgos (Control Interno)", "Matriz de Cumplimiento", "Autoevaluaciones SCI"]
+    },
+    "Administración del Sistema": {
+        icon: <Settings className="h-6 w-6 text-primary" />,
+        description: "Módulo para la configuración y mantenimiento de la plataforma.",
+        submodules: ["Dashboard Admin", "Gestión de Usuarios", "Gestión de Roles"]
+    }
+  };
+
+  const cegobModules = {
+    "PEI / Inicio": {
+        icon: <BookOpen className="h-6 w-6 text-primary" />,
+        description: "Es el corazón de la plataforma, donde se define la identidad y el rumbo de la institución.",
+        submodules: ["Resumen PEI", "Objetivos Estratégicos", "Socialización"]
+    },
+    "SIE": {
+        icon: <ClipboardCheck className="h-6 w-6 text-primary" />,
+        description: "Módulo dedicado a la gestión de la evaluación de los estudiantes.",
+        submodules: ["Gestión Integral SIE", "Rejilla de Autoevaluación del SIEE"]
+    },
+    "Autoevaluación": {
+        icon: <FileSearch className="h-6 w-6 text-primary" />,
+        description: "Permite a la institución diagnosticar su estado actual en diferentes áreas.",
+        submodules: ["Dashboard de Autoevaluación", "Tabla de Indicadores", "Comparativa de Procesos"]
+    },
+    "Evaluaciones Externas": {
+        icon: <ExternalLink className="h-6 w-6 text-primary" />,
+        description: "Módulo para analizar los resultados de pruebas estandarizadas (como las Pruebas Saber).",
+        submodules: ["Carga de Resultados", "Análisis Institucional", "Análisis Comparativo"]
+    },
+    "PMI": {
+        icon: <TrendingUp className="h-6 w-6 text-primary" />,
+        description: "Herramienta para crear, gestionar y seguir los proyectos que surgen de la autoevaluación.",
+        submodules: ["Proyectos PMI", "Cronograma General", "Banco de Prácticas"]
+    },
+    "Proyectos Transversales": {
+        icon: <GitMerge className="h-6 w-6 text-primary" />,
+        description: "Gestiona los proyectos educativos que atraviesan el currículo (Ambiental, Paz, Sexualidad, etc.).",
+        submodules: ["Listado de Proyectos", "Matriz de Impacto"]
+    },
+    "Formación Docente": {
+        icon: <School className="h-6 w-6 text-primary" />,
+        description: "Organiza el desarrollo profesional del equipo docente.",
+        submodules: ["Plan y Necesidades", "Calendario de Formaciones", "Reporte de Necesidades"]
+    },
+    "Autorización Institucional": {
+        icon: <FileCheck className="h-6 w-6 text-primary" />,
+        description: "Módulo para el seguimiento de licencias y requisitos legales.",
+        submodules: ["Licencias Actuales", "Historial de Vencimientos", "Requisitos Pendientes"]
+    },
+    "Administración": {
+        icon: <Settings className="h-6 w-6 text-primary" />,
+        description: "Panel de control para la configuración del sistema.",
+        submodules: ["Gestión de Usuarios", "Configuración Institucional", "Registros del Sistema", "Configuraciones Globales"]
+    }
+  };
+
+  const getIconForOfiPlesCategory = (category: string) => {
+    switch(category.toLowerCase()) {
+        case 'sitio web': return <Globe className="h-6 w-6 text-primary" />;
+        case 'ventas': return <ShoppingCart className="h-6 w-6 text-primary" />;
+        case 'finanzas': return <Landmark className="h-6 w-6 text-primary" />;
+        case 'inventario y fabricación': return <Warehouse className="h-6 w-6 text-primary" />;
+        case 'recursos humanos': return <Users2 className="h-6 w-6 text-primary" />;
+        case 'marketing': return <Megaphone className="h-6 w-6 text-primary" />;
+        case 'servicios': return <ConciergeBell className="h-6 w-6 text-primary" />;
+        case 'productividad': return <Zap className="h-6 w-6 text-primary" />;
+        case 'personalización': return <Wrench className="h-6 w-6 text-primary" />;
+        default: return <ChevronRight className="h-6 w-6 text-primary" />;
+    }
+  }
+
   return (
     <div className="space-y-16">
       <section className="relative bg-background overflow-hidden">
         <div className="w-full px-4 sm:px-6 lg:px-8 min-h-[calc(70vh)] lg:min-h-0 py-16 sm:py-20 md:py-24 lg:py-32 flex items-center">
           <div className="flex flex-col lg:flex-row items-center w-full gap-12 lg:gap-8">
-            {/* Left Visual Part */}
             <div className="w-full lg:w-5/12 flex justify-center items-center relative order-1 lg:order-none">
               <div className="relative w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] md:w-[420px] md:h-[420px] xl:w-[480px] xl:h-[480px]">
                 <div
@@ -160,7 +338,6 @@ export default function PlesTicPage() {
               </div>
             </div>
 
-            {/* Right Text Part */}
             <div className="w-full lg:w-7/12 text-center lg:text-left relative z-20 order-2 lg:order-none">
               <h1 className="text-4xl sm:text-5xl xl:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-6">
                 PLES TIC
@@ -216,7 +393,7 @@ export default function PlesTicPage() {
             {coreServices.map((service) => (
               <Link key={service.title} href={service.ctaLink || '#'} passHref legacyBehavior>
                 <a className="block group hover:scale-105 transition-all duration-300 ease-in-out">
-                  <Card className="h-full group-hover:shadow-xl group-hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent group-hover:text-primary-foreground bg-card group-hover:animate-gradient group-hover:bg-[length:200%_200%]">
+                  <Card className="h-full group-hover:shadow-xl group-hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent group-hover:text-primary-foreground bg-card group-hover:animate-gradient hover:bg-[length:200%_200%]">
                     <CardHeader className="flex flex-row items-start gap-4">
                         {service.icon}
                         <div>
@@ -321,92 +498,128 @@ export default function PlesTicPage() {
         </div>
       </section>
         
-      <section className="py-20 bg-secondary">
+      <section className="w-full py-20 bg-secondary">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestras Suites de Software</h2>
-           <p className="text-muted-foreground max-w-3xl mx-auto mt-4 mb-12">
-            Dos líneas de productos especializadas, diseñadas para impulsar la eficiencia y la transformación digital en los sectores privado y público.
-          </p>
+            <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestras Suites de Software Empresarial</h2>
+            <p className="text-muted-foreground max-w-3xl mx-auto mt-4 mb-12">
+                Dos líneas de productos especializadas, diseñadas para impulsar la eficiencia y la transformación digital en los sectores privado y público.
+            </p>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-            {/* Suite Empresarial */}
-            <Card className="overflow-hidden shadow-lg border-primary/20 flex flex-col">
-                <CardHeader className="p-6">
-                    <div className="flex items-center gap-4">
-                        <Briefcase className="h-10 w-10 text-primary flex-shrink-0"/>
-                        <div>
-                            <CardTitle className="text-2xl text-primary">Suite Empresarial: Ofi-Ples</CardTitle>
-                            <CardDescription>Solución integral de ERP y CRM para unificar y automatizar las operaciones del sector privado.</CardDescription>
-                        </div>
+        <Tabs defaultValue="ofi-ples" className="w-full">
+            <div className="flex justify-center border-b border-border">
+                <TabsList className="h-auto">
+                    <TabsTrigger value="ofi-ples" className="px-4 py-2 text-base">Ofi-Ples</TabsTrigger>
+                    <TabsTrigger value="gob-ples" className="px-4 py-2 text-base">Gob-Ples</TabsTrigger>
+                    <TabsTrigger value="cegob" className="px-4 py-2 text-base">CEGOB</TabsTrigger>
+                </TabsList>
+            </div>
+            <div className="w-full mt-8">
+                <TabsContent value="ofi-ples">
+                    <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <Card className="mb-8 shadow-lg border">
+                           <CardHeader>
+                                <CardTitle className="text-2xl text-primary">Suite Empresarial: Ofi-Ples</CardTitle>
+                                <CardDescription>
+                                    Solución integral de Planificación de Recursos Empresariales (ERP) y Gestión de Relaciones con el Cliente (CRM) dirigida al sector privado. Su objetivo es unificar y automatizar las operaciones de negocio para mejorar la eficiencia, la productividad y la toma de decisiones.
+                                </CardDescription>
+                           </CardHeader>
+                        </Card>
+                        <Accordion type="single" collapsible className="w-full">
+                            {Object.entries(ofiPlesModules).map(([category, modules]) => (
+                                <AccordionItem value={category} key={category} className="border-x-0 rounded-none">
+                                    <AccordionTrigger className="px-4 py-3 text-lg hover:bg-muted/50">
+                                      <div className="flex items-center gap-3">
+                                        {getIconForOfiPlesCategory(category)}
+                                        <span className="capitalize">{category}</span>
+                                      </div>
+                                    </AccordionTrigger>
+                                    <AccordionContent className="bg-background">
+                                       <ul className="divide-y divide-border">
+                                          {modules.map(module => (
+                                            <li key={module.name} className="px-4 py-3">
+                                                <p className="font-semibold text-foreground">{module.name}</p>
+                                                <p className="text-sm text-muted-foreground">{module.description}</p>
+                                            </li>
+                                          ))}
+                                       </ul>
+                                    </AccordionContent>
+                                </AccordionItem>
+                            ))}
+                        </Accordion>
                     </div>
-                </CardHeader>
-                <CardContent className="p-6 flex-grow">
-                    <p className="mb-4 text-muted-foreground">
-                        Ofi-Ples está concebida como una solución integral de Planificación de Recursos Empresariales (ERP) y Gestión de Relaciones con el Cliente (CRM). Su objetivo principal es unificar y automatizar las operaciones de negocio para mejorar la eficiencia, la productividad y la toma de decisiones.
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                        <Badge variant="secondary">Ventas y Marketing</Badge>
-                        <Badge variant="secondary">Finanzas y Contabilidad</Badge>
-                        <Badge variant="secondary">Operaciones</Badge>
-                        <Badge variant="secondary">Recursos Humanos</Badge>
-                        <Badge variant="secondary">Presencia Web</Badge>
+                </TabsContent>
+                <TabsContent value="gob-ples">
+                    <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <Card className="mb-8 shadow-lg border">
+                           <CardHeader>
+                                <CardTitle className="text-2xl text-primary">Suite Gubernamental: Gob-Ples</CardTitle>
+                                <CardDescription>
+                                    La línea más diversificada y especializada de PLES-TIC, compuesta por un conjunto de plataformas diseñadas para responder a las necesidades específicas de entidades territoriales, instituciones educativas y otros organismos del sector público en Colombia.
+                                </CardDescription>
+                           </CardHeader>
+                        </Card>
+                        <Accordion type="single" collapsible className="w-full">
+                            {Object.entries(gobPlesModules).map(([category, data]) => (
+                                <AccordionItem value={category} key={category} className="border-x-0 rounded-none">
+                                    <AccordionTrigger className="px-4 py-3 text-lg hover:bg-muted/50">
+                                       <div className="flex items-center gap-3">
+                                          {data.icon}
+                                          <span>{category}</span>
+                                       </div>
+                                    </AccordionTrigger>
+                                    <AccordionContent className="bg-background px-4 py-3 space-y-3">
+                                        <p className="text-base text-muted-foreground">{data.description}</p>
+                                        {data.submodules && (
+                                            <div>
+                                                <h4 className="font-semibold mb-2">Submódulos:</h4>
+                                                <div className="flex flex-wrap gap-2">
+                                                    {data.submodules.map(sub => <Badge key={sub} variant="secondary">{sub}</Badge>)}
+                                                </div>
+                                            </div>
+                                        )}
+                                    </AccordionContent>
+                                </AccordionItem>
+                            ))}
+                        </Accordion>
                     </div>
-                </CardContent>
-            </Card>
-
-            {/* Suite Gubernamental */}
-            <Card className="overflow-hidden shadow-lg border-primary/20 flex flex-col">
-                <CardHeader className="p-6">
-                     <div className="flex items-center gap-4">
-                        <Landmark className="h-10 w-10 text-primary flex-shrink-0"/>
-                        <div>
-                            <h3 className="text-2xl font-bold text-primary">Suite Gubernamental: Gob-Ples</h3>
-                            <p className="text-muted-foreground">La línea más diversificada y especializada de PLES-TIC, diseñada para las necesidades del sector público en Colombia.</p>
-                        </div>
+                </TabsContent>
+                <TabsContent value="cegob">
+                    <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <Card className="mb-8 shadow-lg border">
+                           <CardHeader>
+                                <CardTitle className="text-2xl text-primary">Suite de Gobernanza Educativa: CEGOB</CardTitle>
+                                <CardDescription>
+                                    Plataforma integral diseñada para el Control y la Excelencia en la Gobernanza Educativa. Su objetivo principal es unificar y simplificar la gestión de las instituciones educativas, permitiendo una administración más transparente, eficiente y basada en datos.
+                                </CardDescription>
+                           </CardHeader>
+                        </Card>
+                        <Accordion type="single" collapsible className="w-full">
+                           {Object.entries(cegobModules).map(([category, data]) => (
+                                <AccordionItem value={category} key={category} className="border-x-0 rounded-none">
+                                    <AccordionTrigger className="px-4 py-3 text-lg hover:bg-muted/50">
+                                       <div className="flex items-center gap-3">
+                                          {data.icon}
+                                          <span>{category}</span>
+                                       </div>
+                                    </AccordionTrigger>
+                                    <AccordionContent className="bg-background px-4 py-3 space-y-3">
+                                        <p className="text-base text-muted-foreground">{data.description}</p>
+                                        {data.submodules && (
+                                            <div>
+                                                <h4 className="font-semibold mb-2">Submódulos:</h4>
+                                                <div className="flex flex-wrap gap-2">
+                                                    {data.submodules.map(sub => <Badge key={sub} variant="secondary">{sub}</Badge>)}
+                                                </div>
+                                            </div>
+                                        )}
+                                    </AccordionContent>
+                                </AccordionItem>
+                            ))}
+                        </Accordion>
                     </div>
-                </CardHeader>
-                <CardContent className="p-6 flex-grow">
-                  <Accordion type="single" collapsible className="w-full">
-                      <AccordionItem value="catastrogob">
-                          <AccordionTrigger>CatastroGob</AccordionTrigger>
-                          <AccordionContent>
-                              <p className="text-sm text-muted-foreground">Software integral para la gestión catastral con enfoque multipropósito (LADM_COL), incluyendo un potente módulo SIG para análisis espacial y gestión física y jurídica de predios.</p>
-                          </AccordionContent>
-                      </AccordionItem>
-                      <AccordionItem value="siatgob">
-                          <AccordionTrigger>SIATGOB</AccordionTrigger>
-                          <AccordionContent>
-                              <p className="text-sm text-muted-foreground">Sistema Integrado de Administración del Territorio a nivel municipal, integrado con la ICDE. Incluye nodos para ordenamiento territorial, administración de propiedad, fortalecimiento fiscal, planificación y gestión de riesgos.</p>
-                          </AccordionContent>
-                      </AccordionItem>
-                      <AccordionItem value="paegob">
-                          <AccordionTrigger>PAEgob</AccordionTrigger>
-                          <AccordionContent>
-                              <p className="text-sm text-muted-foreground">Solución para la gestión y supervisión del Programa de Alimentación Escolar (PAE), con módulos para administración de instituciones, gestión de beneficiarios, reportes y validación de entregas con firma digital.</p>
-                          </AccordionContent>
-                      </AccordionItem>
-                      <AccordionItem value="edugob">
-                          <AccordionTrigger>EduGOB (GEGOB)</AccordionTrigger>
-                          <AccordionContent>
-                              <p className="text-sm text-muted-foreground">Plataforma para la gestión en instituciones educativas (superior, básica y media). Incluye módulos para bienestar estudiantil, convocatorias, becas, constructor de hojas de vida y analítica de datos.</p>
-                          </AccordionContent>
-                      </AccordionItem>
-                       <AccordionItem value="gestordoc">
-                          <AccordionTrigger>GestorDoc</AccordionTrigger>
-                          <AccordionContent>
-                              <p className="text-sm text-muted-foreground">Solución de gestión documental que cumple con la Ley 594 de 2000. Incluye Tablas de Retención Documental (TRD), flujos de trabajo seguros, sistema de consultas y trazabilidad completa con identificadores FUID.</p>
-                          </AccordionContent>
-                      </AccordionItem>
-                      <AccordionItem value="infogob">
-                          <AccordionTrigger>infoGOB</AccordionTrigger>
-                          <AccordionContent>
-                              <p className="text-sm text-muted-foreground">Plataforma enfocada en la transparencia y rendición de cuentas para la gestión de proyectos, con acceso público a información sobre objetivos, financiamiento, avances y resultados, incluyendo un módulo SIG.</p>
-                          </AccordionContent>
-                      </AccordionItem>
-                  </Accordion>
-                </CardContent>
-            </Card>
-        </div>
+                </TabsContent>
+            </div>
+        </Tabs>
       </section>
 
       <section className="text-center py-20 bg-primary text-primary-foreground animate-gradient bg-[length:200%_200%]">
