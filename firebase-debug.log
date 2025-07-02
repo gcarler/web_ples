@@ -1,13 +1,13 @@
-[debug] [2025-07-01T18:39:57.041Z] ----------------------------------------------------------------------
-[debug] [2025-07-01T18:39:57.043Z] Command:       /nix/store/rbdrkcs5kkwpalxcd7c6bnm33lk2955n-nodejs-20.19.0/bin/node /nix/store/fprgfkwna33crhc86jqbf5878piivvgw-firebase-tools-14.7.0/lib/node_modules/firebase-tools/lib/bin/firebase.js init hosting
-[debug] [2025-07-01T18:39:57.044Z] CLI Version:   14.7.0
-[debug] [2025-07-01T18:39:57.044Z] Platform:      linux
-[debug] [2025-07-01T18:39:57.044Z] Node Version:  v20.19.0
-[debug] [2025-07-01T18:39:57.045Z] Time:          Tue Jul 01 2025 18:39:57 GMT+0000 (Coordinated Universal Time)
-[debug] [2025-07-01T18:39:57.045Z] ----------------------------------------------------------------------
+[debug] [2025-07-01T23:18:30.430Z] ----------------------------------------------------------------------
+[debug] [2025-07-01T23:18:30.433Z] Command:       /nix/store/rbdrkcs5kkwpalxcd7c6bnm33lk2955n-nodejs-20.19.0/bin/node /nix/store/fprgfkwna33crhc86jqbf5878piivvgw-firebase-tools-14.7.0/lib/node_modules/firebase-tools/lib/bin/firebase.js init hosting
+[debug] [2025-07-01T23:18:30.433Z] CLI Version:   14.7.0
+[debug] [2025-07-01T23:18:30.434Z] Platform:      linux
+[debug] [2025-07-01T23:18:30.434Z] Node Version:  v20.19.0
+[debug] [2025-07-01T23:18:30.434Z] Time:          Tue Jul 01 2025 23:18:30 GMT+0000 (Coordinated Universal Time)
+[debug] [2025-07-01T23:18:30.434Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2025-07-01T18:39:57.051Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2025-07-01T18:39:57.052Z] > authorizing via signed-in user (gscarlosernesto@gmail.com)
+[debug] [2025-07-01T23:18:30.441Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-07-01T23:18:30.442Z] > authorizing via signed-in user (gscarlosernesto@gmail.com)
 [info] 
      ######## #### ########  ######## ########     ###     ######  ########
      ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
