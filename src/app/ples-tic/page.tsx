@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, CheckCircle, Cpu, Lightbulb, ShieldCheck, TrendingUp, Code, CloudCog, Lock, BarChartBig, Network, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, Rocket, Workflow, Brain, Database, Settings, Server, Shield, Layers, ShoppingBag, ShoppingCart, Cloud, Users, BarChart3 } from 'lucide-react';
+import { ArrowRight, CheckCircle, Cpu, Lightbulb, ShieldCheck, TrendingUp, Code, CloudCog, Lock, BarChartBig, Network, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, Rocket, Workflow, Brain, Database, Settings, Server, Shield, Layers, ShoppingBag, ShoppingCart, Cloud, Users, BarChart3, HeartPulse } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import PlexusIllustration from '@/components/illustrations/PlexusIllustration';
@@ -122,8 +122,21 @@ export default function PlesTicPage() {
       title: 'Plataforma Segura de Gestión de Datos para Sector Salud',
       challenge: 'Silos de información médica, dificultad para el análisis de datos de pacientes y necesidad de cumplir con estrictas normativas de privacidad (HIPAA/GDPR).',
       solution: 'Implementamos una plataforma centralizada en la nube para la gestión de datos de pacientes, con dashboards de BI para análisis clínicos y robustas medidas de seguridad y cumplimiento normativo. Se logró una mejora significativa en la toma de decisiones médicas y la eficiencia operativa.',
-      image: 'https://placehold.co/600x400.png',
-      imageHint: 'healthcare data security platform',
+      illustration: (
+        <div className="relative h-full w-full overflow-hidden rounded-lg">
+          <PlexusIllustration />
+          <div className="absolute inset-0 p-4">
+            {/* Central Shield Icon - Larger */}
+            <ShieldCheck className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-12 w-12 text-accent animate-subtle-float" style={{ animationDelay: '0s' }} />
+            
+            {/* Surrounding Service Icons */}
+            <HeartPulse className="absolute top-[20%] left-[25%] h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '0.3s' }} />
+            <Cloud className="absolute top-[20%] right-[25%] h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '0.5s' }} />
+            <Database className="absolute bottom-[20%] left-[25%] h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '0.7s' }} />
+            <BarChart3 className="absolute bottom-[20%] right-[25%] h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '0.9s' }} />
+          </div>
+        </div>
+      ),
       tags: ['Inteligencia de Negocio', 'Arquitectura Cloud', 'Seguridad de Datos']
     },
   ];
