@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { ArrowRight, Building, Users, Handshake, Quote, CheckCircle, Database, UsersRound, Globe, Server, HomeIcon, Lightbulb, Layers, Cpu, BookOpen, Send, MapPin, BarChart3, ShieldCheck, Settings } from 'lucide-react';
+import { ArrowRight, Building, Users, Handshake, Quote, CheckCircle, Database, UsersRound, Globe, Server, HomeIcon, Lightbulb, Layers, Cpu, BookOpen, Send, MapPin, BarChart3, ShieldCheck, Settings, BrainCircuit } from 'lucide-react';
 import { RotatingHeroText } from '@/components/layout/rotating-hero-text';
 import { cn } from '@/lib/utils';
 import { useState, useEffect } from 'react';
@@ -39,12 +39,28 @@ const iconStyles = [
   { top: '15%', left: '90%', size: 'h-8 w-8', duration: '35s', delay: '-4s' },
 ];
 
+const metricSets = [
+  [
+    { icon: CheckCircle, text: "+15 proyectos ejecutados", dataAiHint:"projects checkmark" },
+    { icon: Database, text: "42 sistemas de información desarrollados", dataAiHint:"database systems" },
+    { icon: UsersRound, text: "8 alianzas académicas y comunitarias", dataAiHint:"community alliance" },
+  ],
+  [
+    { icon: Lightbulb, text: "+5000 horas de consultoría", dataAiHint:"consulting lightbulb" },
+    { icon: Building, text: "10+ sectores impactados", dataAiHint:"building sectors" },
+    { icon: BrainCircuit, text: "+20 soluciones de IA implementadas", dataAiHint:"ai solutions brain" },
+  ]
+];
+
+
 interface HomePageClientProps {
   initialHeroStatements: HeroStatement[];
 }
 
 export default function HomePageClient({ initialHeroStatements }: HomePageClientProps) {
   const [currentIconIndex, setCurrentIconIndex] = useState(0);
+  const [metricIndex, setMetricIndex] = useState(0);
+  const [isFadingMetrics, setIsFadingMetrics] = useState(false);
 
   useEffect(() => {
     if (missionIcons.length <= 1) return;
@@ -55,6 +71,21 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
     
     return () => clearInterval(timer);
   }, []);
+  
+  useEffect(() => {
+    if (metricSets.length <= 1) return;
+
+    const metricTimer = setInterval(() => {
+        setIsFadingMetrics(true);
+        setTimeout(() => {
+            setMetricIndex((prevIndex) => (prevIndex + 1) % metricSets.length);
+            setIsFadingMetrics(false);
+        }, 500); // fade-out duration should match transition duration
+    }, 5000); // Change metrics every 5 seconds
+
+    return () => clearInterval(metricTimer);
+  }, []);
+
 
   const CurrentIcon = missionIcons[currentIconIndex];
   const currentAnimationClass = iconAnimations[currentIconIndex % iconAnimations.length];
@@ -100,12 +131,11 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-16">
             EL USO INTELIGENTE DE LA EXPERIENCIA
           </h1>
-          <div className="grid grid-cols-1 sm:grid-cols-3 justify-center items-stretch gap-8 md:gap-12 text-lg text-foreground mb-20">
-            {[
-              { icon: CheckCircle, text: "+15 proyectos ejecutados", dataAiHint:"projects checkmark" },
-              { icon: Database, text: "42 sistemas de información desarrollados", dataAiHint:"database systems" },
-              { icon: UsersRound, text: "8 alianzas académicas y comunitarias", dataAiHint:"community alliance" },
-            ].map((metric, index) => (
+          <div className={cn(
+              "grid grid-cols-1 sm:grid-cols-3 justify-center items-stretch gap-8 md:gap-12 text-lg text-foreground mb-20 transition-opacity duration-500",
+              isFadingMetrics ? 'opacity-0' : 'opacity-100'
+          )}>
+            {metricSets[metricIndex].map((metric, index) => (
               <div key={index} className="flex flex-col items-center p-6 bg-card rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 ease-in-out">
                 <metric.icon className="h-12 w-12 text-primary mb-4" />
                 <span className="text-xl leading-tight">{metric.text}</span>
