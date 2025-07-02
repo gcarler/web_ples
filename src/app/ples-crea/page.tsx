@@ -222,9 +222,9 @@ const treeStyles = [
                         <div className="absolute w-full h-full bg-gradient-to-r from-yellow-400 via-yellow-200 to-yellow-400 bg-[size:200%_200%] animate-wave-shimmer" style={{ clipPath: 'polygon(0% 88%, 28% 81%, 30% 100%, 0% 100%)' }}></div>
                         <div className="absolute w-full h-full bg-gradient-to-r from-yellow-400 via-yellow-200 to-yellow-400 bg-[size:200%_200%] animate-wave-shimmer" style={{ clipPath: 'polygon(62% 25%, 58% 0%, 100% 0%, 100% 25%)', animationDelay: '-1.5s' }}></div>
                         
-                        {/* Layer 3: Red Blocks (Other High Risk) - with pulse alert effect */}
-                        <div className="absolute w-full h-full bg-red-500 animate-pulse-alert" style={{ clipPath: 'polygon(30% 26%, 66% 30%, 64% 60%, 32% 75%)' }}></div>
-                        <div className="absolute w-full h-full bg-red-500 animate-pulse-alert" style={{ clipPath: 'polygon(82% 82%, 100% 88%, 100% 100%, 81% 100%)', animationDelay: '-0.75s' }}></div>
+                        {/* Layer 3: Red Blocks (High Risk Radar) */}
+                        <div className="absolute w-full h-full bg-radar-destructive animate-radar-sweep" style={{ clipPath: 'polygon(30% 26%, 66% 30%, 64% 60%, 32% 75%)' }}></div>
+                        <div className="absolute w-full h-full bg-radar-destructive animate-radar-sweep" style={{ clipPath: 'polygon(82% 82%, 100% 88%, 100% 100%, 81% 100%)', animationDelay: '-1.2s' }}></div>
 
                         {/* Layer 4: Pins */}
                         <MapPin className="top-[10%] left-[70%]" style={{ animationDelay: '0.2s' }} />

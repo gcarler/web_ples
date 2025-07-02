@@ -14,6 +14,9 @@ export default {
       fontFamily: {
         sans: ['Comfortaa', ...defaultTheme.fontFamily.sans], // Add Comfortaa to the beginning of the sans-serif stack
       },
+      backgroundImage: {
+        'radar-destructive': 'radial-gradient(circle, hsl(var(--destructive) / 0.7) 0%, hsl(var(--destructive) / 0.1) 60%, transparent 70%)',
+      },
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
@@ -159,6 +162,15 @@ export default {
           'from': { opacity: '0', transform: 'translateY(-50px) scale(0.8)' },
           'to': { opacity: '1', transform: 'translateY(0) scale(1)' },
         },
+        'wave-shimmer': {
+          '0%': { backgroundPosition: '200% center' },
+          '100%': { backgroundPosition: '-200% center' },
+        },
+        'radar-sweep': {
+          '0%': { backgroundSize: '0% 0%', backgroundPosition: 'center', opacity: '1' },
+          '80%': { opacity: '1' },
+          '100%': { backgroundSize: '200% 200%', backgroundPosition: 'center', opacity: '0' },
+        },
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
@@ -177,6 +189,8 @@ export default {
         'fly-in-word': 'fly-in-word 1.2s ease-out',
         'zoom-in-rotate': 'zoom-in-rotate 1.2s ease-out',
         'drop-in': 'drop-in 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
+        'wave-shimmer': 'wave-shimmer 3s linear infinite',
+        'radar-sweep': 'radar-sweep 2.5s infinite linear',
   		}
   	}
   },

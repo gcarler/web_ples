@@ -14,6 +14,9 @@ export default {
       fontFamily: {
         sans: ['Comfortaa', ...defaultTheme.fontFamily.sans], // Add Comfortaa to the beginning of the sans-serif stack
       },
+      backgroundImage: {
+        'radar-destructive': 'radial-gradient(circle, hsl(var(--destructive) / 0.7) 0%, hsl(var(--destructive) / 0.1) 60%, transparent 70%)',
+      },
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
@@ -172,9 +175,10 @@ export default {
           '0%': { backgroundPosition: '200% center' },
           '100%': { backgroundPosition: '-200% center' },
         },
-        'pulse-alert': {
-            '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
-            '50%': { opacity: '1', transform: 'scale(1.1)' },
+        'radar-sweep': {
+          '0%': { backgroundSize: '0% 0%', backgroundPosition: 'center', opacity: '1' },
+          '80%': { opacity: '1' },
+          '100%': { backgroundSize: '200% 200%', backgroundPosition: 'center', opacity: '0' },
         },
   		},
   		animation: {
@@ -198,7 +202,7 @@ export default {
         'slide-in-from-left-hero': 'slide-in-from-left-hero 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards',
         'zoom-in-bounce-hero': 'zoom-in-bounce-hero 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s forwards',
         'wave-shimmer': 'wave-shimmer 3s linear infinite',
-        'pulse-alert': 'pulse-alert 1.2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'radar-sweep': 'radar-sweep 2.5s infinite linear',
   		}
   	}
   },
