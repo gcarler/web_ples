@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, CheckCircle, Cpu, Lightbulb, ShieldCheck, TrendingUp, Code, CloudCog, Lock, BarChartBig, Network, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, Rocket, Workflow, Brain, Database, Settings, Server, Shield, Layers } from 'lucide-react';
+import { ArrowRight, CheckCircle, Cpu, Lightbulb, ShieldCheck, TrendingUp, Code, CloudCog, Lock, BarChartBig, Network, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, Rocket, Workflow, Brain, Database, Settings, Server, Shield, Layers, Store, ShoppingCart, Cloud, Users, BarChart3 } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 
@@ -100,8 +100,34 @@ export default function PlesTicPage() {
       title: 'Transformación Digital para Empresa Retail Global',
       challenge: 'Procesos manuales obsoletos, falta de visibilidad de inventario en tiempo real y una experiencia de cliente desactualizada.',
       solution: 'Desarrollamos una plataforma e-commerce omnicanal, integramos un sistema ERP en la nube y creamos una estrategia de marketing digital personalizada. Resultados: Incremento de ventas online del 45% y mejora en la satisfacción del cliente.',
-      image: 'https://placehold.co/600x400.png',
-      imageHint: 'retail digital online store',
+      illustration: (
+        <div className="relative h-full w-full overflow-hidden p-4 bg-muted/20 group-hover:bg-muted/5">
+            {/* Base Store Icon */}
+            <Store className="absolute bottom-4 left-4 h-16 w-16 text-primary/30" />
+            
+            {/* Emerging Icons */}
+            <div className="absolute top-[15%] left-[30%] animate-pop-in" style={{ animationDelay: '0.2s' }}>
+                <ShoppingCart className="h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '0.5s' }} />
+            </div>
+            <div className="absolute top-[40%] left-[55%] animate-pop-in" style={{ animationDelay: '0.4s' }}>
+                <Cloud className="h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '0.7s' }} />
+            </div>
+            <div className="absolute bottom-[25%] left-[45%] animate-pop-in" style={{ animationDelay: '0.6s' }}>
+                <Users className="h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '0.9s' }} />
+            </div>
+            <div className="absolute top-[60%] right-[10%] animate-pop-in" style={{ animationDelay: '0.8s' }}>
+                <BarChart3 className="h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '1.1s' }} />
+            </div>
+
+            {/* Connecting Lines */}
+            <svg className="absolute inset-0 h-full w-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M 60 170 C 80 100, 90 80, 110 60" stroke="hsl(var(--primary)/0.5)" strokeWidth="2" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 200, strokeDashoffset: 200, animationDelay: '1s' }} />
+                <path d="M 60 170 C 100 180, 150 150, 170 120" stroke="hsl(var(--primary)/0.5)" strokeWidth="2" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 200, strokeDashoffset: 200, animationDelay: '1.2s' }} />
+                <path d="M 118 68 C 150 75, 180 90, 200 115" stroke="hsl(var(--primary)/0.5)" strokeWidth="2" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 200, strokeDashoffset: 200, animationDelay: '1.4s' }} />
+                <path d="M 178 128 C 200 135, 230 130, 260 110" stroke="hsl(var(--primary)/0.5)" strokeWidth="2" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 200, strokeDashoffset: 200, animationDelay: '1.6s' }} />
+            </svg>
+        </div>
+      ),
       tags: ['Desarrollo Web Full-Stack', 'Soluciones Cloud', 'Integración ERP']
     },
     {
@@ -262,9 +288,13 @@ export default function PlesTicPage() {
           <div className="grid md:grid-cols-2 gap-8">
             {caseStudies.map((study) => (
               <Card key={study.title} className="overflow-hidden group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col bg-card hover:animate-gradient hover:bg-[length:200%_200%]">
-                <div className="relative h-56 w-full">
-                  <Image src={study.image} alt={study.title} layout="fill" objectFit="cover" data-ai-hint={study.imageHint} />
-                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                <div className="relative h-56 w-full bg-card group-hover:bg-transparent transition-colors">
+                  {study.illustration ? study.illustration : (
+                    <>
+                      <Image src={study.image} alt={study.title} layout="fill" objectFit="cover" data-ai-hint={study.imageHint} />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </>
+                  )}
                 </div>
                 <CardHeader>
                   <CardTitle className="text-xl group-hover:text-primary-foreground">{study.title}</CardTitle>

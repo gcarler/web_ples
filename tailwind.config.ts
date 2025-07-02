@@ -171,6 +171,17 @@ export default {
           '80%': { opacity: '1' },
           '100%': { backgroundSize: '200% 200%', backgroundPosition: 'center', opacity: '0' },
         },
+        'pop-in': {
+          'from': { transform: 'scale(0)', opacity: '0' },
+          'to': { transform: 'scale(1)', opacity: '1' },
+        },
+        'draw-line': {
+            'to': { strokeDashoffset: 0 },
+        },
+        'subtle-float': {
+            '0%, 100%': { transform: 'translateY(0)' },
+            '50%': { transform: 'translateY(-4px)' },
+        }
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
@@ -191,6 +202,9 @@ export default {
         'drop-in': 'drop-in 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
         'wave-shimmer': 'wave-shimmer 3s linear infinite',
         'radar-sweep': 'radar-sweep 5s infinite linear',
+        'pop-in': 'pop-in 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
+        'draw-line': 'draw-line 1s ease-out forwards',
+        'subtle-float': 'subtle-float 4s ease-in-out infinite',
   		}
   	}
   },
