@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -132,7 +133,7 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
                <Button asChild size="lg" variant="accent" className="bg-white/20 hover:bg-white/30 border border-white/50 backdrop-blur-sm">
                  <Link href="/about/mision">
                    <span className="flex items-center">
-                     Explorar la Misión <ArrowRight className="ml-2 h-5 w-5" />
+                     Explora nuestra Misión <ArrowRight className="ml-2 h-5 w-5" />
                    </span>
                  </Link>
                </Button>
