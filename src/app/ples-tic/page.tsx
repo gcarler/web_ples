@@ -1,10 +1,10 @@
-
 // src/app/ples-tic/page.tsx
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {
-  ArrowRight, CheckCircle, Cpu, Lightbulb, ShieldCheck, TrendingUp, Code, CloudCog, Lock, BarChartBig, Network, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, Rocket, Workflow, Brain, Database, Settings, Server, Shield, Layers, ShoppingCart, ShoppingBag, Cloud, Users, HeartPulse, Building2, Globe, Landmark, Warehouse, Users2, Megaphone, ConciergeBell, Zap, Wrench, ChevronRight, Briefcase, Map, School, FileArchive, Info, LayoutDashboard, Target, ShieldAlert, FileSearch, ExternalLink, GitMerge, FileCheck, BookOpen, ClipboardCheck, BrainCircuit
+  ArrowRight, CheckCircle, Cpu, Lightbulb, ShieldCheck, TrendingUp, Code, CloudCog, Lock, BarChartBig, BarChart3, Network, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, Rocket, Workflow, Brain, Database, Settings, Server, Shield, Layers, ShoppingCart, Cloud, Users, HeartPulse, Building2, Globe, Landmark, Warehouse, Users2, Megaphone, ConciergeBell, Zap, Wrench, ChevronRight, Briefcase, Map, School, FileArchive, Info, LayoutDashboard, Target, ShieldAlert, FileSearch, ExternalLink, GitMerge, FileCheck, BookOpen, ClipboardCheck, BrainCircuit, ShoppingBag
 } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
@@ -140,72 +140,99 @@ export default function PlesTicPage() {
     },
   ];
 
-    const ofiPlesModules = {
-    "Sitio web": [
-      { name: "OfiPles Sitio web", description: "Creador de sitios web empresariales" },
-      { name: "OfiPles Comercio electrónico", description: "Vende tus productos en línea" },
-      { name: "OfiPles Blog", description: "Publica entradas, anuncios y noticias" },
-      { name: "OfiPles Foro", description: "Gestiona un foro para preguntas frecuentes" },
-      { name: "OfiPles eLearning", description: "Gestiona y publica tus cursos" },
-      { name: "OfiPles Chat en vivo", description: "Chatea con los visitantes de tu sitio web" }
-    ],
-    "Ventas": [
-      { name: "OfiPles CRM", description: "Gestiona tus leads y cierra oportunidades" },
-      { name: "OfiPles Ventas", description: "De cotizaciones a facturas" },
-      { name: "OfiPles Punto de venta", description: "Interfaz de punto de venta para tiendas y restaurantes" },
-      { name: "OfiPles Suscripciones", description: "Facturas recurrentes y renovaciones" },
-      { name: "OfiPles Alquiler", description: "Gestiona contratos, entregas y devoluciones" }
-    ],
-    "Finanzas": [
-      { name: "OfiPles Contabilidad", description: "Gestiona tu contabilidad financiera y analítica" },
-      { name: "OfiPles Facturación", description: "Facturas y pagos" },
-      { name: "OfiPles Gastos", description: "Gestiona los gastos de tus empleados" },
-      { name: "OfiPles Documentos", description: "Gestión de documentos" },
-      { name: "OfiPles Tablero de hojas de cálculo", description: "Documentos y hojas de cálculo" },
-      { name: "OfiPles Firma electrónica", description: "Firma documentos en línea" }
-    ],
-    "Inventario y fabricación": [
-      { name: "OfiPles Inventario", description: "Gestiona tu inventario y actividades de logística" },
-      { name: "OfiPles Manufactura", description: "Órdenes de fabricación y listas de materiales" },
-      { name: "OfiPles Gestión del ciclo de vida del producto", description: "Gestión del ciclo de vida del producto" },
-      { name: "OfiPles Compra", description: "Órdenes de compra, licitaciones y contratos" },
-      { name: "OfiPles MRP de mantenimiento", description: "Monitorea tus equipos y gestiona solicitudes" },
-      { name: "OfiPles Calidad", description: "Controla la calidad de tus productos" }
-    ],
-    "Recursos humanos": [
-      { name: "OfiPles Empleados", description: "Centraliza la información de tus empleados" },
-      { name: "OfiPles Reclutamiento", description: "Monitorea tu flujo de reclutamiento" },
-      { name: "OfiPles Tiempo personal", description: "Asigna y dale seguimiento a las solicitudes de tiempo personal" },
-      { name: "OfiPles Evaluaciones", description: "Evalúa a tus empleados" },
-      { name: "OfiPles Recomendación de empleados", description: "Comparte puestos de trabajo y refiere a tus amigos" },
-      { name: "OfiPles Flota", description: "Gestiona tu flota y monitorea el costo de tus vehículos" }
-    ],
-    "Marketing": [
-      { name: "OfiPles Automatización de marketing", description: "Elabora campañas de correo automatizadas" },
-      { name: "OfiPles Marketing por correo electrónico", description: "Diseña, envía y monitorea correos electrónicos" },
-      { name: "OfiPles Marketing por SMS", description: "Diseña, envía y monitorea SMS" },
-      { name: "OfiPles Marketing social", description: "Gestiona tus redes sociales y los visitantes de tu sitio web" },
-      { name: "OfiPles Organización de eventos", description: "Publica eventos y vende boletos" },
-      { name: "OfiPles Encuesta", description: "Envía tus encuestas o compártelas en un evento en vivo" }
-    ],
-    "Servicios": [
-      { name: "OfiPles Proyecto", description: "Organiza y planea tus proyectos" },
-      { name: "OfiPles Hojas de horas", description: "Monitorea el tiempo que los empleados invierten en tareas" },
-      { name: "OfiPles Servicio externo", description: "Programa y monitorea operaciones externas, el tiempo y el material" },
-      { name: "OfiPles Soporte al cliente", description: "Monitorea, prioritiza y soluciona los tickets de tus clientes" },
-      { name: "OfiPles Planeación", description: "Gestiona el horario de tus empleados" },
-      { name: "OfiPles Citas", description: "Permite que otras personas agenden reuniones contigo" }
-    ],
-    "Productividad": [
-      { name: "OfiPles Conversaciones", description: "Chat, pasarela de correos electrónicos y canales privados" },
-      { name: "OfiPles Aprobaciones", description: "Crea y valida solicitudes de aprobación" },
-      { name: "OfiPles Internet de las cosas", description: "Modelos básicos y asistentes para IoT" },
-      { name: "OfiPles VOIP", description: "Haz y recibe llamadas" },
-      { name: "OfiPles Información", description: "Gestiona tu biblioteca de información" }
-    ],
-    "Personalización": [
-      { name: "OfiPles Studio", description: "Crea y personaliza tus propias aplicaciones" }
-    ]
+  const ofiPlesModules = {
+    "Sitio web": {
+        icon: <Globe className="h-6 w-6 text-primary" />,
+        items: [
+          { name: "OfiPles Sitio web", description: "Creador de sitios web empresariales" },
+          { name: "OfiPles Comercio electrónico", description: "Vende tus productos en línea" },
+          { name: "OfiPles Blog", description: "Publica entradas, anuncios y noticias" },
+          { name: "OfiPles Foro", description: "Gestiona un foro para preguntas frecuentes" },
+          { name: "OfiPles eLearning", description: "Gestiona y publica tus cursos" },
+          { name: "OfiPles Chat en vivo", description: "Chatea con los visitantes de tu sitio web" }
+        ]
+    },
+    "Ventas": {
+        icon: <ShoppingCart className="h-6 w-6 text-primary" />,
+        items: [
+          { name: "OfiPles CRM", description: "Gestiona tus leads y cierra oportunidades" },
+          { name: "OfiPles Ventas", description: "De cotizaciones a facturas" },
+          { name: "OfiPles Punto de venta", description: "Interfaz de punto de venta para tiendas y restaurantes" },
+          { name: "OfiPles Suscripciones", description: "Facturas recurrentes y renovaciones" },
+          { name: "OfiPles Alquiler", description: "Gestiona contratos, entregas y devoluciones" }
+        ]
+    },
+    "Finanzas": {
+        icon: <Landmark className="h-6 w-6 text-primary" />,
+        items: [
+          { name: "OfiPles Contabilidad", description: "Gestiona tu contabilidad financiera y analítica" },
+          { name: "OfiPles Facturación", description: "Facturas y pagos" },
+          { name: "OfiPles Gastos", description: "Gestiona los gastos de tus empleados" },
+          { name: "OfiPles Documentos", description: "Gestión de documentos" },
+          { name: "OfiPles Tablero de hojas de cálculo", description: "Documentos y hojas de cálculo" },
+          { name: "OfiPles Firma electrónica", description: "Firma documentos en línea" }
+        ]
+    },
+    "Inventario y fabricación": {
+        icon: <Warehouse className="h-6 w-6 text-primary" />,
+        items: [
+          { name: "OfiPles Inventario", description: "Gestiona tu inventario y actividades de logística" },
+          { name: "OfiPles Manufactura", description: "Órdenes de fabricación y listas de materiales" },
+          { name: "OfiPles Gestión del ciclo de vida del producto", description: "Gestión del ciclo de vida del producto" },
+          { name: "OfiPles Compra", description: "Órdenes de compra, licitaciones y contratos" },
+          { name: "OfiPles MRP de mantenimiento", description: "Monitorea tus equipos y gestiona solicitudes" },
+          { name: "OfiPles Calidad", description: "Controla la calidad de tus productos" }
+        ]
+    },
+    "Recursos humanos": {
+        icon: <Users2 className="h-6 w-6 text-primary" />,
+        items: [
+          { name: "OfiPles Empleados", description: "Centraliza la información de tus empleados" },
+          { name: "OfiPles Reclutamiento", description: "Monitorea tu flujo de reclutamiento" },
+          { name: "OfiPles Tiempo personal", description: "Asigna y dale seguimiento a las solicitudes de tiempo personal" },
+          { name: "OfiPles Evaluaciones", description: "Evalúa a tus empleados" },
+          { name: "OfiPles Recomendación de empleados", description: "Comparte puestos de trabajo y refiere a tus amigos" },
+          { name: "OfiPles Flota", description: "Gestiona tu flota y monitorea el costo de tus vehículos" }
+        ]
+    },
+    "Marketing": {
+        icon: <Megaphone className="h-6 w-6 text-primary" />,
+        items: [
+          { name: "OfiPles Automatización de marketing", description: "Elabora campañas de correo automatizadas" },
+          { name: "OfiPles Marketing por correo electrónico", description: "Diseña, envía y monitorea correos electrónicos" },
+          { name: "OfiPles Marketing por SMS", description: "Diseña, envía y monitorea SMS" },
+          { name: "OfiPles Marketing social", description: "Gestiona tus redes sociales y los visitantes de tu sitio web" },
+          { name: "OfiPles Organización de eventos", description: "Publica eventos y vende boletos" },
+          { name: "OfiPles Encuesta", description: "Envía tus encuestas o compártelas en un evento en vivo" }
+        ]
+    },
+    "Servicios": {
+        icon: <ConciergeBell className="h-6 w-6 text-primary" />,
+        items: [
+          { name: "OfiPles Proyecto", description: "Organiza y planea tus proyectos" },
+          { name: "OfiPles Hojas de horas", description: "Monitorea el tiempo que los empleados invierten en tareas" },
+          { name: "OfiPles Servicio externo", description: "Programa y monitorea operaciones externas, el tiempo y el material" },
+          { name: "OfiPles Soporte al cliente", description: "Monitorea, prioritiza y soluciona los tickets de tus clientes" },
+          { name: "OfiPles Planeación", description: "Gestiona el horario de tus empleados" },
+          { name: "OfiPles Citas", description: "Permite que otras personas agenden reuniones contigo" }
+        ]
+    },
+    "Productividad": {
+        icon: <Zap className="h-6 w-6 text-primary" />,
+        items: [
+          { name: "OfiPles Conversaciones", description: "Chat, pasarela de correos electrónicos y canales privados" },
+          { name: "OfiPles Aprobaciones", description: "Crea y valida solicitudes de aprobación" },
+          { name: "OfiPles Internet de las cosas", description: "Modelos básicos y asistentes para IoT" },
+          { name: "OfiPles VOIP", description: "Haz y recibe llamadas" },
+          { name: "OfiPles Información", description: "Gestiona tu biblioteca de información" }
+        ]
+    },
+    "Personalización": {
+        icon: <Wrench className="h-6 w-6 text-primary" />,
+        items: [
+          { name: "OfiPles Studio", description: "Crea y personaliza tus propias aplicaciones" }
+        ]
+    }
   };
 
   const gobPlesModules = {
@@ -289,20 +316,6 @@ export default function PlesTicPage() {
     }
   };
 
-  const getIconForOfiPlesCategory = (category: string) => {
-    switch(category.toLowerCase()) {
-        case 'sitio web': return <Globe className="h-6 w-6 text-primary" />;
-        case 'ventas': return <ShoppingCart className="h-6 w-6 text-primary" />;
-        case 'finanzas': return <Landmark className="h-6 w-6 text-primary" />;
-        case 'inventario y fabricación': return <Warehouse className="h-6 w-6 text-primary" />;
-        case 'recursos humanos': return <Users2 className="h-6 w-6 text-primary" />;
-        case 'marketing': return <Megaphone className="h-6 w-6 text-primary" />;
-        case 'servicios': return <ConciergeBell className="h-6 w-6 text-primary" />;
-        case 'productividad': return <Zap className="h-6 w-6 text-primary" />;
-        case 'personalización': return <Wrench className="h-6 w-6 text-primary" />;
-        default: return <ChevronRight className="h-6 w-6 text-primary" />;
-    }
-  }
 
   return (
     <div className="space-y-16">
@@ -486,69 +499,66 @@ export default function PlesTicPage() {
         
       <section className="w-full py-20 bg-secondary">
         <div className="text-center mb-12 px-4">
-          <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestras Suites de Software</h2>
-          <p className="text-muted-foreground mt-4 max-w-3xl mx-auto">
-            Soluciones integrales diseñadas para los sectores privado y público, unificando operaciones para una mayor eficiencia y una toma de decisiones más inteligente.
-          </p>
+          <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestras Suites de Software Empresarial</h2>
         </div>
 
         <Tabs defaultValue="ofi-ples" className="w-full">
-          <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 max-w-2xl mx-auto h-auto">
-            <TabsTrigger value="ofi-ples" className="py-2.5 text-base">Suite Empresarial: Ofi-Ples</TabsTrigger>
-            <TabsTrigger value="gob-ples" className="py-2.5 text-base">Suite Gubernamental: Gob-Ples</TabsTrigger>
-            <TabsTrigger value="cegob" className="py-2.5 text-base">Suite Educativa: CEGOB</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 max-w-4xl mx-auto h-auto mb-8 border-b-2 border-primary/20 rounded-none bg-transparent p-0">
+            <TabsTrigger value="ofi-ples" className="py-3 text-lg data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none rounded-none">Suite Empresarial: Ofi-Ples</TabsTrigger>
+            <TabsTrigger value="gob-ples" className="py-3 text-lg data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none rounded-none">Suite Gubernamental: Gob-Ples</TabsTrigger>
+            <TabsTrigger value="cegob" className="py-3 text-lg data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none rounded-none">Suite Educativa: CEGOB</TabsTrigger>
           </TabsList>
           
-          <TabsContent value="ofi-ples" className="bg-card py-8 mt-2">
-            <div className="max-w-6xl mx-auto px-4">
-              <div className="text-center mb-8">
+          <TabsContent value="ofi-ples" className="py-8">
+            <div className="text-center mb-10 px-4">
                 <h3 className="text-2xl font-bold text-foreground">Ofi-Ples: Aplicaciones para Cada Necesidad</h3>
-                <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">Una solución integral de ERP y CRM para unificar y automatizar las operaciones de negocio, mejorando la eficiencia y la productividad.</p>
-              </div>
-              <Accordion type="single" collapsible className="w-full" defaultValue="Ventas">
-                {Object.entries(ofiPlesModules).map(([category, modules]) => (
-                  <AccordionItem value={category} key={category} className="border-x-0 rounded-none">
-                    <AccordionTrigger className="text-lg font-semibold hover:no-underline py-4 px-4 text-left data-[state=open]:text-primary capitalize">
-                      <div className="flex items-center gap-4">
-                        {getIconForOfiPlesCategory(category)}
-                        <span>{category}</span>
-                      </div>
-                    </AccordionTrigger>
-                    <AccordionContent className="pt-2 pb-4 pl-10 pr-4 bg-secondary/50">
-                      <ul className="space-y-4">
-                        {modules.map(module => (
-                          <li key={module.name}>
-                            <p className="font-semibold text-foreground">{module.name}</p>
-                            <p className="text-sm text-muted-foreground">{module.description}</p>
-                          </li>
-                        ))}
-                      </ul>
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
+                <p className="text-muted-foreground mt-2 max-w-3xl mx-auto">Una solución integral de Planificación de Recursos Empresariales (ERP) y Gestión de Relaciones con el Cliente (CRM) dirigida al sector privado. El objetivo principal de Ofi-Ples es unificar y automatizar las operaciones de negocio para mejorar la eficiencia, la productividad y la toma de decisiones.</p>
             </div>
+            <Card className="max-w-6xl mx-auto shadow-lg border">
+                <Accordion type="single" collapsible className="w-full" defaultValue="Ventas">
+                {Object.entries(ofiPlesModules).map(([category, data]) => (
+                    <AccordionItem value={category} key={category} className="border-x-0 border-t-0 last:border-b-0">
+                    <AccordionTrigger className="text-lg font-semibold hover:no-underline py-4 px-6 text-left data-[state=open]:text-primary data-[state=open]:bg-primary/5 capitalize">
+                        <div className="flex items-center gap-4">
+                        {data.icon}
+                        <span>{category}</span>
+                        </div>
+                    </AccordionTrigger>
+                    <AccordionContent className="pt-2 pb-4 px-6 bg-primary/5">
+                         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 pl-10">
+                            {data.items.map(module => (
+                            <div key={module.name}>
+                                <p className="font-semibold text-foreground">{module.name}</p>
+                                <p className="text-sm text-muted-foreground">{module.description}</p>
+                            </div>
+                            ))}
+                        </div>
+                    </AccordionContent>
+                    </AccordionItem>
+                ))}
+                </Accordion>
+            </Card>
           </TabsContent>
 
-          <TabsContent value="gob-ples" className="bg-card py-8 mt-2">
-            <div className="max-w-6xl mx-auto px-4">
-              <div className="text-center mb-8">
+          <TabsContent value="gob-ples" className="py-8">
+            <div className="text-center mb-10 px-4">
                 <h3 className="text-2xl font-bold text-foreground">Gob-Ples: Soluciones para el Sector Público</h3>
-                 <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">Plataformas especializadas para responder a las necesidades de entidades territoriales, instituciones educativas y otros organismos del sector público.</p>
-              </div>
+                <p className="text-muted-foreground mt-2 max-w-3xl mx-auto">La línea más diversificada y especializada de PLES-TIC, compuesta por un conjunto de plataformas diseñadas para responder a las necesidades específicas de entidades territoriales, instituciones educativas y otros organismos del sector público en Colombia.</p>
+            </div>
+            <Card className="max-w-6xl mx-auto shadow-lg border">
               <Accordion type="single" collapsible className="w-full">
                 {Object.entries(gobPlesModules).map(([category, data]) => (
-                  <AccordionItem value={category} key={category} className="border-x-0 rounded-none">
-                    <AccordionTrigger className="text-lg font-semibold hover:no-underline py-4 px-4 text-left data-[state=open]:text-primary">
+                  <AccordionItem value={category} key={category} className="border-x-0 border-t-0 last:border-b-0">
+                    <AccordionTrigger className="text-lg font-semibold hover:no-underline py-4 px-6 text-left data-[state=open]:text-primary data-[state=open]:bg-primary/5">
                       <div className="flex items-center gap-4">
                         {data.icon}
                         <span>{category}</span>
                       </div>
                     </AccordionTrigger>
-                    <AccordionContent className="pt-2 pb-4 pl-10 pr-4 bg-secondary/50 space-y-3">
-                      <p className="text-base text-muted-foreground">{data.description}</p>
+                    <AccordionContent className="pt-2 pb-4 px-6 bg-primary/5 space-y-3">
+                      <p className="text-base text-muted-foreground pl-10">{data.description}</p>
                       {data.submodules && data.submodules.length > 0 && (
-                        <div>
+                        <div className="pl-10">
                           <h4 className="font-semibold mb-2 text-foreground">Módulos Clave:</h4>
                           <div className="flex flex-wrap gap-2">
                             {data.submodules.map(sub => <Badge key={sub} variant="secondary">{sub}</Badge>)}
@@ -559,28 +569,28 @@ export default function PlesTicPage() {
                   </AccordionItem>
                 ))}
               </Accordion>
-            </div>
+            </Card>
           </TabsContent>
 
-          <TabsContent value="cegob" className="bg-card py-8 mt-2">
-            <div className="max-w-6xl mx-auto px-4">
-                <div className="text-center mb-8">
-                    <h3 className="text-2xl font-bold text-foreground">CEGOB: Control y Excelencia en la Gobernanza Educativa</h3>
-                    <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">Plataforma integral para unificar y simplificar la gestión de las instituciones educativas, permitiendo una administración transparente, eficiente y basada en datos.</p>
-                </div>
+          <TabsContent value="cegob" className="py-8">
+            <div className="text-center mb-10 px-4">
+                <h3 className="text-2xl font-bold text-foreground">CEGOB: Control y Excelencia en la Gobernanza Educativa</h3>
+                <p className="text-muted-foreground mt-2 max-w-3xl mx-auto">Plataforma integral para unificar y simplificar la gestión de las instituciones educativas, permitiendo una administración transparente, eficiente y basada en datos.</p>
+            </div>
+            <Card className="max-w-6xl mx-auto shadow-lg border">
               <Accordion type="single" collapsible className="w-full">
                 {Object.entries(cegobModules).map(([category, data]) => (
-                  <AccordionItem value={category} key={category} className="border-x-0 rounded-none">
-                    <AccordionTrigger className="text-lg font-semibold hover:no-underline py-4 px-4 text-left data-[state=open]:text-primary">
+                  <AccordionItem value={category} key={category} className="border-x-0 border-t-0 last:border-b-0">
+                    <AccordionTrigger className="text-lg font-semibold hover:no-underline py-4 px-6 text-left data-[state=open]:text-primary data-[state=open]:bg-primary/5">
                       <div className="flex items-center gap-4">
                         {data.icon}
                         <span>{category}</span>
                       </div>
                     </AccordionTrigger>
-                    <AccordionContent className="pt-2 pb-4 pl-10 pr-4 bg-secondary/50 space-y-3">
-                      <p className="text-base text-muted-foreground">{data.description}</p>
+                    <AccordionContent className="pt-2 pb-4 px-6 bg-primary/5 space-y-3">
+                      <p className="text-base text-muted-foreground pl-10">{data.description}</p>
                       {data.submodules && data.submodules.length > 0 && (
-                        <div>
+                        <div className="pl-10">
                           <h4 className="font-semibold mb-2 text-foreground">Funcionalidades:</h4>
                           <div className="flex flex-wrap gap-2">
                             {data.submodules.map(sub => <Badge key={sub} variant="secondary">{sub}</Badge>)}
@@ -591,7 +601,7 @@ export default function PlesTicPage() {
                   </AccordionItem>
                 ))}
               </Accordion>
-            </div>
+            </Card>
           </TabsContent>
 
         </Tabs>
@@ -616,5 +626,3 @@ export default function PlesTicPage() {
     </div>
   );
 }
-
-    
