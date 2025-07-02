@@ -176,7 +176,10 @@ export default {
           'to': { transform: 'scale(1)', opacity: '1' },
         },
         'draw-line': {
-            'to': { strokeDashoffset: 0 },
+            '0%': { strokeDashoffset: 200 },
+            '40%': { strokeDashoffset: 0 },
+            '60%': { strokeDashoffset: 0 },
+            '100%': { strokeDashoffset: 200 },
         },
         'subtle-float': {
             '0%, 100%': { transform: 'translateY(0)' },
@@ -203,7 +206,7 @@ export default {
         'wave-shimmer': 'wave-shimmer 3s linear infinite',
         'radar-sweep': 'radar-sweep 5s infinite linear',
         'pop-in': 'pop-in 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
-        'draw-line': 'draw-line 1s ease-out forwards',
+        'draw-line': 'draw-line 4s ease-in-out infinite',
         'subtle-float': 'subtle-float 4s ease-in-out infinite',
   		}
   	}
