@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {
-  ArrowRight, CheckCircle, Cpu, Lightbulb, ShieldCheck, TrendingUp, Code, CloudCog, Lock, BarChartBig, Network, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, Rocket, Workflow, Brain, Database, Settings, Server, Shield, Layers, ShoppingCart, Cloud, Users, HeartPulse, Building2, Globe, Landmark, Warehouse, Users2, Megaphone, ConciergeBell, Zap, Wrench, ChevronRight, Briefcase, Map, School, FileArchive, Info, LayoutDashboard, Target, ShieldAlert, FileSearch, ExternalLink, GitMerge, FileCheck, BookOpen, ClipboardCheck, BrainCircuit, ShoppingBag, BarChart3
+  ArrowRight, CheckCircle, Cpu, Lightbulb, ShieldCheck, TrendingUp, Code, CloudCog, Lock, BarChartBig, Network, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, Rocket, Workflow, Brain, Database, Settings, Server, Shield, Layers, ShoppingCart, Cloud, Users, HeartPulse, Building2, Globe, Landmark, Warehouse, Users2, Megaphone, ConciergeBell, Zap, Wrench, ChevronRight, Briefcase, Map, School, FileArchive, Info, LayoutDashboard, Target, ShieldAlert, FileSearch, ExternalLink, GitMerge, FileCheck, BookOpen, ClipboardCheck, BrainCircuit, ShoppingBag
 } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
@@ -241,7 +241,7 @@ const gobPlesModules = {
             { name: "Gestión Física y Jurídica", description: "Control completo de cada predio." }
         ]
     },
-    "SIATGOB": {
+    "SiatGob": {
         icon: Briefcase,
         description: "Solución avanzada para la administración del territorio a nivel municipal. Opera bajo el estándar LADM COL y se integra con la ICDE para optimizar la planificación y el control del uso del suelo.",
         items: [
@@ -252,7 +252,7 @@ const gobPlesModules = {
             { name: "Recursos Naturales y Riesgos", description: "Identificación de zonas de riesgo." }
         ]
     },
-    "OFI-GOB": {
+     "OfiGob": {
         icon: LayoutDashboard,
         description: "Suite que integra y gestiona las dimensiones del Modelo Integrado de Planeación y Gestión (MIPG) para entidades públicas, centrada en el ciclo de vida del servidor público y la hoja de ruta de la entidad.",
         items: [
@@ -264,7 +264,7 @@ const gobPlesModules = {
             { name: "Control Interno", description: "Mecanismos de control y auditoría." }
         ]
     },
-    "PAEgob": {
+    "PaeGob": {
         icon: School,
         description: "Solución tecnológica para optimizar la gestión y supervisión del Programa de Alimentación Escolar (PAE), dirigida a administradores del programa e instituciones educativas.",
         items: [
@@ -274,7 +274,7 @@ const gobPlesModules = {
             { name: "Validación de Entregas", description: "Control con firma digital." }
         ]
     },
-    "EduGOB": {
+    "EduGob": {
         icon: BookOpen,
         description: "Plataforma enfocada en la gestión escolar y académica del día a día. Su propósito es optimizar los procesos administrativos y académicos, ofreciendo una trazabilidad completa del ciclo de vida del estudiante.",
         items: [
@@ -285,7 +285,7 @@ const gobPlesModules = {
             { name: "Analítica", description: "Generación de informes de rendimiento académico y seguimiento de egresados para la toma de decisiones basada en datos." }
         ]
     },
-    "GEGOB": {
+    "GeGob": {
         icon: BrainCircuit,
         description: "Plataforma de alto nivel para la gobernanza y la mejora continua del sistema educativo, dirigida tanto a instituciones individuales como a secretarías de educación. Su enfoque es estratégico y de diagnóstico.",
         items: [
@@ -308,7 +308,7 @@ const gobPlesModules = {
             { name: "Identificadores Únicos (FUID)", description: "Trazabilidad completa del documento." }
         ]
     },
-    "infoGOB": {
+    "InfoGob": {
         icon: Info,
         description: "Plataforma enfocada en la transparencia y la rendición de cuentas para la gestión de proyectos. Permite el acceso público a información detallada de iniciativas.",
         items: [
@@ -386,7 +386,7 @@ function InteractiveSoftwareSuites() {
                 <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestras Dos Grandes Suites de Software</h2>
             </div>
             
-            <div className="w-full px-4 sm:px-6 lg:px-8">
+            <div className="w-full">
                 <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
                     <TabsList className="grid w-full grid-cols-1 sm:grid-cols-2 max-w-lg mx-auto h-auto mb-8">
                         <TabsTrigger value="ofi-ples" className="py-2 text-base">Suite Empresarial</TabsTrigger>
@@ -495,7 +495,7 @@ export default function PlesTicPage() {
             {coreServices.map((service) => (
               <Link key={service.title} href={service.ctaLink || '#'} passHref legacyBehavior>
                 <a className="block group hover:scale-105 transition-all duration-300 ease-in-out">
-                  <Card className="h-full group-hover:shadow-xl group-hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent group-hover:text-primary-foreground bg-card group-hover:animate-gradient hover:bg-[length:200%_200%]">
+                  <Card className="h-full group-hover:shadow-xl group-hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground bg-card group-hover:animate-gradient hover:bg-[length:200%_200%]">
                     <CardHeader className="flex flex-row items-start gap-4">
                         {service.icon}
                         <div>
@@ -567,7 +567,7 @@ export default function PlesTicPage() {
           <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Proyectos Destacados</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {caseStudies.map((study) => (
-              <Card key={study.title} className="overflow-hidden group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col bg-card group-hover:animate-gradient hover:bg-[length:200%_200%]">
+              <Card key={study.title} className="overflow-hidden group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col bg-card group-hover:animate-gradient group-hover:bg-[length:200%_200%]">
                 <div className="relative h-56 w-full bg-card group-hover:bg-transparent transition-colors">
                   {study.illustration}
                 </div>
