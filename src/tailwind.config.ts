@@ -173,8 +173,8 @@ export default {
           '100%': { backgroundPosition: '-200% center' },
         },
         'pulse-alert': {
-            '0%, 100%': { transform: 'scale(1)', opacity: '1' },
-            '50%': { transform: 'scale(1.05)', opacity: '0.8' },
+            '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
+            '50%': { opacity: '1', transform: 'scale(1.1)' },
         },
   		},
   		animation: {
@@ -198,7 +198,7 @@ export default {
         'slide-in-from-left-hero': 'slide-in-from-left-hero 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards',
         'zoom-in-bounce-hero': 'zoom-in-bounce-hero 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s forwards',
         'wave-shimmer': 'wave-shimmer 3s linear infinite',
-        'pulse-alert': 'pulse-alert 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'pulse-alert': 'pulse-alert 1.2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
   		}
   	}
   },
