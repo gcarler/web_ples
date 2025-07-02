@@ -142,7 +142,7 @@ export default function PlesTicPage() {
 
   const ofiPlesModules = {
     "Sitio web": {
-        icon: <Globe className="h-6 w-6 text-primary" />,
+        icon: <Globe className="h-6 w-6" />,
         items: [
           { name: "OfiPles Sitio web", description: "Creador de sitios web empresariales" },
           { name: "OfiPles Comercio electrónico", description: "Vende tus productos en línea" },
@@ -153,7 +153,7 @@ export default function PlesTicPage() {
         ]
     },
     "Ventas": {
-        icon: <ShoppingCart className="h-6 w-6 text-primary" />,
+        icon: <ShoppingCart className="h-6 w-6" />,
         items: [
           { name: "OfiPles CRM", description: "Gestiona tus leads y cierra oportunidades" },
           { name: "OfiPles Ventas", description: "De cotizaciones a facturas" },
@@ -163,7 +163,7 @@ export default function PlesTicPage() {
         ]
     },
     "Finanzas": {
-        icon: <Landmark className="h-6 w-6 text-primary" />,
+        icon: <Landmark className="h-6 w-6" />,
         items: [
           { name: "OfiPles Contabilidad", description: "Gestiona tu contabilidad financiera y analítica" },
           { name: "OfiPles Facturación", description: "Facturas y pagos" },
@@ -174,7 +174,7 @@ export default function PlesTicPage() {
         ]
     },
     "Inventario y fabricación": {
-        icon: <Warehouse className="h-6 w-6 text-primary" />,
+        icon: <Warehouse className="h-6 w-6" />,
         items: [
           { name: "OfiPles Inventario", description: "Gestiona tu inventario y actividades de logística" },
           { name: "OfiPles Manufactura", description: "Órdenes de fabricación y listas de materiales" },
@@ -185,7 +185,7 @@ export default function PlesTicPage() {
         ]
     },
     "Recursos humanos": {
-        icon: <Users2 className="h-6 w-6 text-primary" />,
+        icon: <Users2 className="h-6 w-6" />,
         items: [
           { name: "OfiPles Empleados", description: "Centraliza la información de tus empleados" },
           { name: "OfiPles Reclutamiento", description: "Monitorea tu flujo de reclutamiento" },
@@ -196,7 +196,7 @@ export default function PlesTicPage() {
         ]
     },
     "Marketing": {
-        icon: <Megaphone className="h-6 w-6 text-primary" />,
+        icon: <Megaphone className="h-6 w-6" />,
         items: [
           { name: "OfiPles Automatización de marketing", description: "Elabora campañas de correo automatizadas" },
           { name: "OfiPles Marketing por correo electrónico", description: "Diseña, envía y monitorea correos electrónicos" },
@@ -207,7 +207,7 @@ export default function PlesTicPage() {
         ]
     },
     "Servicios": {
-        icon: <ConciergeBell className="h-6 w-6 text-primary" />,
+        icon: <ConciergeBell className="h-6 w-6" />,
         items: [
           { name: "OfiPles Proyecto", description: "Organiza y planea tus proyectos" },
           { name: "OfiPles Hojas de horas", description: "Monitorea el tiempo que los empleados invierten en tareas" },
@@ -218,7 +218,7 @@ export default function PlesTicPage() {
         ]
     },
     "Productividad": {
-        icon: <Zap className="h-6 w-6 text-primary" />,
+        icon: <Zap className="h-6 w-6" />,
         items: [
           { name: "OfiPles Conversaciones", description: "Chat, pasarela de correos electrónicos y canales privados" },
           { name: "OfiPles Aprobaciones", description: "Crea y valida solicitudes de aprobación" },
@@ -228,7 +228,7 @@ export default function PlesTicPage() {
         ]
     },
     "Personalización": {
-        icon: <Wrench className="h-6 w-6 text-primary" />,
+        icon: <Wrench className="h-6 w-6" />,
         items: [
           { name: "OfiPles Studio", description: "Crea y personaliza tus propias aplicaciones" }
         ]
@@ -251,17 +251,17 @@ export default function PlesTicPage() {
         description: "Solución tecnológica para optimizar la gestión y supervisión del Programa de Alimentación Escolar (PAE), dirigida a administradores del programa e instituciones educativas.",
         submodules: ["Gestión de Instituciones y Sedes", "Gestión de Beneficiarios", "Reportes Diarios y Mensuales", "Validación de Entregas con Firma Digital"]
     },
-     "EduGOB": {
+    "EduGOB": {
         icon: <BookOpen className="h-6 w-6 text-primary" />,
         description: "Plataforma enfocada en la gestión escolar y académica del día a día para optimizar los procesos administrativos y académicos, ofreciendo una trazabilidad completa del ciclo de vida del estudiante.",
-        submodules: ["Gestión Académica y Administrativa", "Bienestar Estudiantil", "Desarrollo Profesional (Hojas de Vida)", "Analítica y Seguimiento de Egresados"]
+        submodules: ["Gestión Académica", "Gestión Administrativa", "Bienestar Estudiantil", "Desarrollo Profesional", "Analítica"]
     },
-     "GEGOB": {
+    "GEGOB": {
         icon: <BrainCircuit className="h-6 w-6 text-primary" />,
         description: "Plataforma de alto nivel para la gobernanza y la mejora continua del sistema educativo. Su enfoque es estratégico y de diagnóstico para instituciones y secretarías de educación.",
         submodules: ["Tablero Principal y PEI", "Sistema de Evaluación (SIE)", "Autoevaluación y Planes de Mejoramiento (PMI)", "Análisis de Evaluaciones Externas", "Administración del Sistema"]
     },
-     "GestorDoc": {
+    "GestorDoc": {
         icon: <FileArchive className="h-6 w-6 text-primary" />,
         description: "Solución completa de gestión documental que cumple con la Ley 594 de 2000. Permite organizar, asegurar y dar accesibilidad a los documentos de una organización.",
         submodules: ["Tablas de Retención Documental (TRD)", "Flujos de Trabajo Seguros", "Consultas Virtuales y Presenciales", "Identificadores Únicos (FUID)"]
@@ -277,54 +277,7 @@ export default function PlesTicPage() {
         submodules: ["Talento Humano", "Direccionamiento Estratégico", "Gestión con Valores", "Evaluación de Resultados", "Información y Comunicación", "Gestión del Conocimiento", "Control Interno"]
     }
   };
-
-  const cegobModules = {
-    "PEI / Inicio": {
-        icon: <BookOpen className="h-6 w-6 text-primary" />,
-        description: "Es el corazón de la plataforma, donde se define la identidad y el rumbo de la institución.",
-        submodules: ["Resumen PEI", "Objetivos Estratégicos", "Socialización"]
-    },
-    "SIE": {
-        icon: <ClipboardCheck className="h-6 w-6 text-primary" />,
-        description: "Módulo dedicado a la gestión de la evaluación de los estudiantes.",
-        submodules: ["Gestión Integral SIE", "Rejilla de Autoevaluación del SIEE"]
-    },
-    "Autoevaluación": {
-        icon: <FileSearch className="h-6 w-6 text-primary" />,
-        description: "Permite a la institución diagnosticar su estado actual en diferentes áreas.",
-        submodules: ["Dashboard de Autoevaluación", "Tabla de Indicadores", "Comparativa de Procesos"]
-    },
-    "Evaluaciones Externas": {
-        icon: <ExternalLink className="h-6 w-6 text-primary" />,
-        description: "Módulo para analizar los resultados de pruebas estandarizadas (como las Pruebas Saber).",
-        submodules: ["Carga de Resultados", "Análisis Institucional", "Análisis Comparativo"]
-    },
-    "PMI": {
-        icon: <TrendingUp className="h-6 w-6 text-primary" />,
-        description: "Herramienta para crear, gestionar y seguir los proyectos que surgen de la autoevaluación.",
-        submodules: ["Proyectos PMI", "Cronograma General", "Banco de Prácticas"]
-    },
-    "Proyectos Transversales": {
-        icon: <GitMerge className="h-6 w-6 text-primary" />,
-        description: "Gestiona los proyectos educativos que atraviesan el currículo (Ambiental, Paz, Sexualidad, etc.).",
-        submodules: ["Listado de Proyectos", "Matriz de Impacto"]
-    },
-    "Formación Docente": {
-        icon: <School className="h-6 w-6 text-primary" />,
-        description: "Organiza el desarrollo profesional del equipo docente.",
-        submodules: ["Plan y Necesidades", "Calendario de Formaciones", "Reporte de Necesidades"]
-    },
-    "Autorización Institucional": {
-        icon: <FileCheck className="h-6 w-6 text-primary" />,
-        description: "Módulo para el seguimiento de licencias y requisitos legales.",
-        submodules: ["Licencias Actuales", "Historial de Vencimientos", "Requisitos Pendientes"]
-    },
-    "Administración": {
-        icon: <Settings className="h-6 w-6 text-primary" />,
-        description: "Panel de control para la configuración del sistema.",
-        submodules: ["Gestión de Usuarios", "Configuración Institucional", "Registros del Sistema", "Configuraciones Globales"]
-    },
-  };
+  
 
   return (
     <div className="space-y-16">
@@ -512,29 +465,29 @@ export default function PlesTicPage() {
         </div>
 
         <Tabs defaultValue="ofi-ples" className="w-full">
-          <TabsList className="grid w-full grid-cols-1 sm:grid-cols-2 max-w-lg mx-auto h-auto mb-8 border-b-2 border-primary/20 rounded-none bg-transparent p-0">
-            <TabsTrigger value="ofi-ples" className="py-3 text-lg data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none rounded-none">Suite Empresarial</TabsTrigger>
-            <TabsTrigger value="gob-ples" className="py-3 text-lg data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none rounded-none">Suite Gubernamental</TabsTrigger>
-          </TabsList>
+            <TabsList className="grid w-full grid-cols-1 sm:grid-cols-2 max-w-lg mx-auto h-auto mb-8">
+                <TabsTrigger value="ofi-ples" className="py-2 text-base">Suite Empresarial</TabsTrigger>
+                <TabsTrigger value="gob-ples" className="py-2 text-base">Suite Gubernamental</TabsTrigger>
+            </TabsList>
           
           <TabsContent value="ofi-ples" className="py-8">
             <div className="text-center mb-10 px-4">
                 <h3 className="text-2xl font-bold text-foreground">Ofi-Ples: Suite Empresarial</h3>
                 <p className="text-muted-foreground mt-2 max-w-3xl mx-auto">Esta línea de productos está concebida como una solución integral de Planificación de Recursos Empresariales (ERP) y Gestión de Relaciones con el Cliente (CRM) dirigida al sector privado. El objetivo principal de Ofi-Ples es unificar y automatizar las operaciones de negocio para mejorar la eficiencia, la productividad y la toma de decisiones.</p>
             </div>
-            <div className="w-full">
-              <Card className="max-w-6xl mx-auto shadow-lg border">
-                  <Accordion type="single" collapsible className="w-full" defaultValue="Ventas">
+            <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <Card className="w-full shadow-lg border">
+                  <Accordion type="single" collapsible className="w-full" defaultValue="Finanzas">
                   {Object.entries(ofiPlesModules).map(([category, data]) => (
-                      <AccordionItem value={category} key={category} className="border-x-0 border-t-0 last:border-b-0">
-                      <AccordionTrigger className="text-lg font-semibold hover:no-underline py-4 px-6 text-left data-[state=open]:text-primary data-[state=open]:bg-primary/5 capitalize">
+                      <AccordionItem value={category} key={category} className="border-b border-border/10 last:border-b-0">
+                      <AccordionTrigger className="text-lg font-semibold hover:no-underline p-6 text-left data-[state=open]:text-primary capitalize transition-colors">
                           <div className="flex items-center gap-4">
                           {data.icon}
                           <span>{category}</span>
                           </div>
                       </AccordionTrigger>
-                      <AccordionContent className="pt-2 pb-4 px-6 bg-primary/5">
-                           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 pl-10">
+                      <AccordionContent className="bg-muted/40 dark:bg-black/20">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 p-6 pt-2">
                               {data.items.map(module => (
                               <div key={module.name}>
                                   <p className="font-semibold text-foreground">{module.name}</p>
@@ -555,33 +508,37 @@ export default function PlesTicPage() {
                 <h3 className="text-2xl font-bold text-foreground">Gob-Ples: Suite Gubernamental</h3>
                 <p className="text-muted-foreground mt-2 max-w-3xl mx-auto">Gob-Ples es la línea más diversificada y especializada de PLES-TIC, compuesta por un conjunto de plataformas diseñadas para responder a las necesidades específicas de entidades territoriales, instituciones educativas y otros organismos del sector público en Colombia.</p>
             </div>
-             <div className="w-full">
-                <Card className="max-w-6xl mx-auto shadow-lg border">
-                    <Accordion type="single" collapsible className="w-full" defaultValue="CatastroGob">
-                        {Object.entries(gobPlesModules).map(([category, data]) => (
-                          <AccordionItem value={category} key={category} className="border-x-0 border-t-0 last:border-b-0">
-                            <AccordionTrigger className="text-lg font-semibold hover:no-underline py-4 px-6 text-left data-[state=open]:text-primary data-[state=open]:bg-primary/5">
-                              <div className="flex items-center gap-4">
-                                {data.icon}
-                                <span>{category}</span>
-                              </div>
-                            </AccordionTrigger>
-                            <AccordionContent className="pt-2 pb-4 px-6 bg-primary/5 space-y-3">
-                              <p className="text-base text-muted-foreground pl-10">{data.description}</p>
-                              {data.submodules && data.submodules.length > 0 && (
-                                <div className="pl-10">
-                                  <h4 className="font-semibold mb-2 text-foreground">Módulos Clave:</h4>
-                                  <div className="flex flex-wrap gap-2">
-                                    {data.submodules.map(sub => <Badge key={sub} variant="secondary">{sub}</Badge>)}
-                                  </div>
+            <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <Card className="w-full shadow-lg border">
+                  <Accordion type="single" collapsible className="w-full" defaultValue="CatastroGob">
+                      {Object.entries(gobPlesModules).map(([category, data]) => (
+                        <AccordionItem value={category} key={category} className="border-b border-border/10 last:border-b-0">
+                          <AccordionTrigger className="text-lg font-semibold hover:no-underline p-6 text-left data-[state=open]:text-primary capitalize transition-colors">
+                            <div className="flex items-center gap-4">
+                              {data.icon}
+                              <span>{category}</span>
+                            </div>
+                          </AccordionTrigger>
+                          <AccordionContent className="bg-muted/40 dark:bg-black/20">
+                              <div className="grid grid-cols-1 gap-8 p-6 pt-2">
+                                <div>
+                                    <p className="text-base text-muted-foreground mb-4">{data.description}</p>
+                                    {data.submodules && data.submodules.length > 0 && (
+                                    <>
+                                        <h4 className="font-semibold mb-2 text-foreground">Módulos Clave:</h4>
+                                        <div className="flex flex-wrap gap-2">
+                                            {data.submodules.map(sub => <Badge key={sub} variant="secondary">{sub}</Badge>)}
+                                        </div>
+                                    </>
+                                    )}
                                 </div>
-                              )}
-                            </AccordionContent>
-                          </AccordionItem>
-                        ))}
-                    </Accordion>
-                </Card>
-             </div>
+                              </div>
+                          </AccordionContent>
+                        </AccordionItem>
+                      ))}
+                  </Accordion>
+              </Card>
+            </div>
           </TabsContent>
 
         </Tabs>
