@@ -1,3 +1,4 @@
+
 // src/app/ples-tic/page.tsx
 'use client';
 
@@ -5,13 +6,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {
-  ArrowRight, ArrowLeft, CheckCircle, Cpu, Lightbulb, ShieldCheck, TrendingUp, Code, CloudCog, Lock, BarChartBig, Network, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, Rocket, Workflow, Brain, Database, Settings, Server, Shield, Layers, ShoppingCart, Cloud, Users, HeartPulse, Building2, Globe, Landmark, Warehouse, Users2, Megaphone, ConciergeBell, Zap, Wrench, Briefcase, Map, School, FileArchive, Info, LayoutDashboard, Target, ShieldAlert, FileSearch, ExternalLink, GitMerge, FileCheck, BookOpen, ClipboardCheck, BrainCircuit, ShoppingBag, BarChart3, MousePointerClick, LayoutTemplate, MonitorSmartphone, CreditCard, Package, ListOrdered, FileText, Tags, BarChart2, Edit, MessagesSquare, HelpCircle, GraduationCap, Video, Award, MessageCircle, Bot, Clock, Filter, ClipboardList, Tablet, Printer, Barcode, Repeat, CalendarDays, KeyRound, Calendar, FileSignature, BookUser, Scale, Receipt, Camera, FolderArchive, Share2, PenSquare, Factory, Apple, LandPlot, DatabaseZap, Building, Banknote, AreaChart, HeartHandshake, Presentation, MessageSquareDiff, FileDigit, GanttChartSquare, FolderKanban, UsersRound
+  AlertTriangle, ArrowLeft, ArrowRight, Award, Banknote, BarChart2, BarChart3, BarChartBig, Barcode, Bell, BookOpen, BookUser, Bot, Brain, BrainCircuit, Briefcase, Building, Building2, Calculator, Calendar, CalendarDays, Camera, CheckCircle, ClipboardCheck, ClipboardEdit, ClipboardList, Clock, Cloud, CloudCog, Code, ConciergeBell, Cpu, CreditCard, Database, DraftingCompass, Edit, Eye, Factory, FileArchive, FileCheck, FileDigit, FileSearch, FileSignature, FileText, Filter, FlaskConical, FolderArchive, FolderKanban, GanttChartSquare, GitMerge, GitPullRequestArrow, Globe, GraduationCap, Headset, HeartPulse, HelpCircle, History, Inbox, Info, KanbanSquare, KeyRound, Landmark, Layers, LayoutDashboard, LayoutTemplate, Lightbulb, Link as LinkIcon, ListOrdered, Lock, Mail, Map, MapPin, Megaphone, MessageCircle, MessageSquare, MessageSquareDiff, MonitorSmartphone, MousePointerClick, Network, Package, PenSquare, Presentation, Printer, Receipt, Repeat, Rocket, Scale, School, Search, Send, Server, Settings, Share2, Shield, ShieldAlert, ShieldCheck, ShoppingBag, ShoppingCart, Tablet, Tags, Target, Timer, TrendingUp, Truck, UploadCloud, UserCheck, Users, Users2, UsersRound, Video, Warehouse, Workflow, Wrench, Zap
 } from 'lucide-react';
 import PlexusIllustration from '@/components/illustrations/PlexusIllustration';
 import DataPipelineIllustration from '@/components/illustrations/DataPipelineIllustration';
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 
 const valuePropositions = [
@@ -140,7 +141,7 @@ const ofiPlesModules = {
         icon: Globe,
         description: "Herramientas para construir y gestionar su presencia en línea de manera integral.",
         items: [
-          { name: "OfiPles Sitio web", description: "Creador de sitios web empresariales", details: {
+          { name: "OfiPles Sitio web", slug: "sitio-web", description: "Creador de sitios web empresariales", details: {
               mainIcon: Globe,
               title: 'OfiPles Sitio Web',
               description: 'Su plataforma todo-en-uno para crear, lanzar y gestionar sitios web empresariales de alto impacto. Sin necesidad de código, con resultados profesionales.',
@@ -161,7 +162,7 @@ const ofiPlesModules = {
               formSubject: "Consulta%20OfiPles%20Sitio%20Web"
             } 
           },
-          { name: "OfiPles Comercio electrónico", description: "Vende tus productos en línea", details: { 
+          { name: "OfiPles Comercio electrónico", slug: "comercio-electronico", description: "Vende tus productos en línea", details: { 
               mainIcon: ShoppingCart, 
               title: 'OfiPles Comercio Electrónico', 
               description: 'La solución completa para lanzar y escalar su tienda en línea. Gestione productos, procese pagos y administre pedidos desde una única plataforma integrada.', 
@@ -181,7 +182,7 @@ const ofiPlesModules = {
               ctaText: 'Comience a Vender en Línea',
               formSubject: 'Consulta%20OfiPles%20Comercio%20Electronico'
           } },
-          { name: "OfiPles Blog", description: "Publica entradas, anuncios y noticias", details: {
+          { name: "OfiPles Blog", slug: "blog", description: "Publica entradas, anuncios y noticias", details: {
               mainIcon: Edit, 
               title: 'OfiPles Blog', 
               description: 'Atraiga y fidelice a su audiencia con contenido de valor. Nuestro módulo de blog le permite crear, gestionar y optimizar sus publicaciones para llegar a más personas.', 
@@ -201,7 +202,7 @@ const ofiPlesModules = {
               ctaText: 'Empiece a Escribir su Historia',
               formSubject: 'Consulta%20OfiPles%20Blog'
           } },
-          { name: "OfiPles Foro", description: "Gestiona un foro para preguntas frecuentes", details: {
+          { name: "OfiPles Foro", slug: "foro", description: "Gestiona un foro para preguntas frecuentes", details: {
               mainIcon: MessagesSquare, 
               title: 'OfiPles Foro', 
               description: 'Cree una comunidad activa donde sus clientes y usuarios puedan interactuar, resolver dudas y compartir conocimientos. Fomente el engagement y reduzca la carga de soporte.', 
@@ -221,7 +222,7 @@ const ofiPlesModules = {
               ctaText: 'Construya su Comunidad',
               formSubject: 'Consulta%20OfiPles%20Foro'
           } },
-          { name: "OfiPles eLearning", description: "Gestiona y publica tus cursos", details: {
+          { name: "OfiPles eLearning", slug: "elearning", description: "Gestiona y publica tus cursos", details: {
               mainIcon: GraduationCap,
               title: 'OfiPles eLearning',
               description: 'Transforme su conocimiento en cursos en línea. Nuestra plataforma le permite crear, vender y gestionar experiencias de aprendizaje impactantes para su audiencia.',
@@ -241,7 +242,7 @@ const ofiPlesModules = {
               ctaText: 'Cree su Academia en Línea',
               formSubject: 'Consulta%20OfiPles%20eLearning'
           } },
-          { name: "OfiPles Chat en vivo", description: "Chatea con los visitantes de tu sitio web", details: {
+          { name: "OfiPles Chat en vivo", slug: "chat-en-vivo", description: "Chatea con los visitantes de tu sitio web", details: {
               mainIcon: MessageCircle,
               title: 'OfiPles Chat en Vivo',
               description: 'Conecte instantáneamente con los visitantes de su sitio web para resolver dudas, capturar leads y mejorar la conversión. No deje que un cliente potencial se vaya con preguntas sin responder.',
@@ -267,7 +268,7 @@ const ofiPlesModules = {
         icon: ShoppingCart,
         description: "Optimice todo su ciclo de ventas, desde la captación de clientes hasta la facturación final.",
         items: [
-          { name: "OfiPles CRM", description: "Gestiona tus leads y cierra oportunidades", details: {
+          { name: "OfiPles CRM", slug: "crm", description: "Gestiona tus leads y cierra oportunidades", details: {
               mainIcon: Users,
               title: 'OfiPles CRM',
               description: 'Centralice la gestión de sus clientes y oportunidades de venta. Obtenga una vista 360° de cada interacción y optimice su proceso comercial para cerrar más negocios, más rápido.',
@@ -287,7 +288,7 @@ const ofiPlesModules = {
               ctaText: 'Optimice su Proceso de Ventas',
               formSubject: 'Consulta%20OfiPles%20CRM'
           } },
-          { name: "OfiPles Ventas", description: "De cotizaciones a facturas", details: {
+          { name: "OfiPles Ventas", slug: "ventas", description: "De cotizaciones a facturas", details: {
               mainIcon: FileText,
               title: 'OfiPles Ventas',
               description: 'Agilice su proceso de ventas con una herramienta que le permite crear y enviar cotizaciones profesionales, gestionar pedidos y convertirlos en facturas con un solo clic.',
@@ -307,7 +308,7 @@ const ofiPlesModules = {
               ctaText: 'Agilice sus Cotizaciones',
               formSubject: 'Consulta%20OfiPles%20Ventas'
           } },
-          { name: "OfiPles Punto de venta", description: "Interfaz para tiendas y restaurantes", details: {
+          { name: "OfiPles Punto de venta", slug: "punto-de-venta", description: "Interfaz para tiendas y restaurantes", details: {
               mainIcon: Tablet,
               title: 'OfiPles Punto de Venta (POS)',
               description: 'Una interfaz de punto de venta rápida, intuitiva y potente para su tienda física o restaurante. Funciona en cualquier dispositivo y se integra perfectamente con su inventario y contabilidad.',
@@ -327,7 +328,7 @@ const ofiPlesModules = {
               ctaText: 'Modernice su Punto de Venta',
               formSubject: 'Consulta%20OfiPles%20Punto%20de%20Venta'
           } },
-          { name: "OfiPles Suscripciones", description: "Facturas recurrentes y renovaciones", details: {
+          { name: "OfiPles Suscripciones", slug: "suscripciones", description: "Facturas recurrentes y renovaciones", details: {
               mainIcon: Repeat,
               title: 'OfiPles Suscripciones',
               description: 'Gestione modelos de negocio basados en ingresos recurrentes. Automatice la facturación, gestione planes y suscripciones, y reduzca la pérdida de clientes (churn).',
@@ -347,7 +348,7 @@ const ofiPlesModules = {
               ctaText: 'Automatice sus Ingresos Recurrentes',
               formSubject: 'Consulta%20OfiPles%20Suscripciones'
           } },
-          { name: "OfiPles Alquiler", description: "Gestiona contratos y disponibilidad", details: {
+          { name: "OfiPles Alquiler", slug: "alquiler", description: "Gestiona contratos y disponibilidad", details: {
               mainIcon: KeyRound,
               title: 'OfiPles Alquiler',
               description: 'Una solución completa para gestionar su negocio de alquiler. Controle la disponibilidad de sus productos, gestione contratos y programe recogidas y devoluciones desde un solo lugar.',
@@ -373,7 +374,7 @@ const ofiPlesModules = {
         icon: Landmark,
         description: "Controle la salud financiera de su empresa con herramientas contables y de facturación robustas.",
         items: [
-          { name: "OfiPles Contabilidad", description: "Gestiona tu contabilidad financiera", details: {
+          { name: "OfiPles Contabilidad", slug: "contabilidad", description: "Gestiona tu contabilidad financiera", details: {
               mainIcon: BookUser,
               title: 'OfiPles Contabilidad',
               description: 'Un sistema contable completo y flexible que simplifica la gestión financiera de su empresa, automatiza asientos y genera informes precisos para el cumplimiento y la toma de decisiones.',
@@ -393,7 +394,7 @@ const ofiPlesModules = {
               ctaText: 'Simplifique su Contabilidad',
               formSubject: 'Consulta%20OfiPles%20Contabilidad'
           } },
-          { name: "OfiPles Facturación", description: "Facturas y pagos", details: {
+          { name: "OfiPles Facturación", slug: "facturacion", description: "Facturas y pagos", details: {
               mainIcon: Receipt,
               title: 'OfiPles Facturación',
               description: 'Cree y envíe facturas profesionales, gestione pagos y haga seguimiento de sus cuentas por cobrar de manera eficiente. Integrado con su contabilidad para una gestión impecable.',
@@ -413,7 +414,7 @@ const ofiPlesModules = {
               ctaText: 'Optimice su Facturación',
               formSubject: 'Consulta%20OfiPles%20Facturacion'
           } },
-          { name: "OfiPles Gastos", description: "Gestiona los gastos de tus empleados", details: {
+          { name: "OfiPles Gastos", slug: "gastos", description: "Gestiona los gastos de tus empleados", details: {
               mainIcon: CreditCard,
               title: 'OfiPles Gastos',
               description: 'Simplifique el proceso de reporte y aprobación de gastos de los empleados. Desde la captura del recibo hasta el reembolso y la contabilización, todo en un flujo de trabajo digital.',
@@ -433,7 +434,7 @@ const ofiPlesModules = {
               ctaText: 'Digitalice la Gestión de Gastos',
               formSubject: 'Consulta%20OfiPles%20Gastos'
           } },
-          { name: "OfiPles Documentos", description: "Gestión de documentos", details: {
+          { name: "OfiPles Documentos", slug: "documentos", description: "Gestión de documentos", details: {
               mainIcon: FolderArchive,
               title: 'OfiPles Documentos',
               description: 'Un sistema de gestión documental colaborativo y seguro. Organice, comparta y controle el acceso a todos los archivos de su empresa en un espacio de trabajo centralizado.',
@@ -453,7 +454,7 @@ const ofiPlesModules = {
               ctaText: 'Centralice sus Documentos',
               formSubject: 'Consulta%20OfiPles%20Documentos'
           } },
-          { name: "OfiPles Firma electrónica", description: "Firma documentos en línea", details: {
+          { name: "OfiPles Firma electrónica", slug: "firma-electronica", description: "Firma documentos en línea", details: {
               mainIcon: PenSquare,
               title: 'OfiPles Firma Electrónica',
               description: 'Acelere sus acuerdos y contratos. Envíe, firme y gestione documentos de forma electrónica con plena validez legal, sin necesidad de imprimir ni escanear.',
@@ -479,7 +480,7 @@ const ofiPlesModules = {
         icon: Warehouse,
         description: "Gestione eficientemente su cadena de suministro, producción y control de calidad.",
         items: [
-          { name: "OfiPles Inventario", description: "Gestiona tu inventario y logística", details: {
+          { name: "OfiPles Inventario", slug: "inventario", description: "Gestiona tu inventario y logística", details: {
               mainIcon: Warehouse,
               title: 'OfiPles Inventario',
               description: 'Optimice toda su cadena de suministro con un sistema de gestión de inventario de doble entrada. Controle cada movimiento, desde la recepción hasta la entrega al cliente.',
@@ -499,7 +500,7 @@ const ofiPlesModules = {
               ctaText: 'Controle su Inventario',
               formSubject: 'Consulta%20OfiPles%20Inventario'
           } },
-          { name: "OfiPles Manufactura", description: "Órdenes de fabricación y listas de materiales", details: {
+          { name: "OfiPles Manufactura", slug: "manufactura", description: "Órdenes de fabricación y listas de materiales", details: {
               mainIcon: Factory,
               title: 'OfiPles Manufactura (MRP)',
               description: 'Planifique, programe y controle su producción de principio a fin. Gestione listas de materiales, órdenes de fabricación y centros de trabajo para optimizar su planta.',
@@ -525,7 +526,7 @@ const ofiPlesModules = {
         icon: Users2,
         description: "Administre el ciclo de vida completo de sus empleados, desde la contratación hasta la evaluación.",
         items: [
-          { name: "OfiPles Empleados", description: "Centraliza la información de tus empleados", details: {
+          { name: "OfiPles Empleados", slug: "empleados", description: "Centraliza la información de tus empleados", details: {
               mainIcon: Users,
               title: 'OfiPles Empleados',
               description: 'Centralice toda la información de su equipo en un solo lugar. Gestione perfiles, contratos, ausencias y mucho más, de forma segura y accesible.',
@@ -545,7 +546,7 @@ const ofiPlesModules = {
               ctaText: 'Gestione su Talento',
               formSubject: 'Consulta%20OfiPles%20Empleados'
           } },
-          { name: "OfiPles Reclutamiento", description: "Monitorea tu flujo de reclutamiento", details: {
+          { name: "OfiPles Reclutamiento", slug: "reclutamiento", description: "Monitorea tu flujo de reclutamiento", details: {
               mainIcon: Briefcase,
               title: 'OfiPles Reclutamiento',
               description: 'Atraiga y contrate al mejor talento. Gestione todo su proceso de selección, desde la publicación de ofertas hasta la contratación, en una plataforma colaborativa.',
@@ -565,7 +566,7 @@ const ofiPlesModules = {
               ctaText: 'Atraiga al Mejor Talento',
               formSubject: 'Consulta%20OfiPles%20Reclutamiento'
           } },
-          { name: "OfiPles Evaluaciones", description: "Evalúa a tus empleados", details: {
+          { name: "OfiPles Evaluaciones", slug: "evaluaciones", description: "Evalúa a tus empleados", details: {
               mainIcon: ClipboardCheck,
               title: 'OfiPles Evaluaciones',
               description: 'Fomente una cultura de mejora continua con un sistema de evaluación del desempeño flexible y colaborativo. Defina objetivos, recopile feedback y cree planes de desarrollo.',
@@ -591,7 +592,7 @@ const ofiPlesModules = {
         icon: Megaphone,
         description: "Cree, automatice y mida sus campañas de marketing para llegar a su público objetivo.",
         items: [
-            { name: "OfiPles Marketing por correo electrónico", description: "Diseña, envía y monitorea correos electrónicos", details: {
+            { name: "OfiPles Marketing por correo electrónico", slug: "email-marketing", description: "Diseña, envía y monitorea correos electrónicos", details: {
                 mainIcon: Mail,
                 title: 'OfiPles Marketing por Correo Electrónico',
                 description: 'Cree y envíe campañas de email marketing impactantes. Desde newsletters hasta promociones, nuestra herramienta le ayuda a conectar con su audiencia y obtener resultados medibles.',
@@ -617,7 +618,7 @@ const ofiPlesModules = {
         icon: ConciergeBell,
         description: "Gestione proyectos, soporte y servicios de campo con herramientas diseñadas para la eficiencia.",
         items: [
-          { name: "OfiPles Proyecto", description: "Organiza y planea tus proyectos", details: {
+          { name: "OfiPles Proyecto", slug: "proyecto", description: "Organiza y planea tus proyectos", details: {
               mainIcon: Briefcase,
               title: 'OfiPles Proyecto',
               description: 'Planifique, siga y gestione sus proyectos de forma colaborativa. Obtenga una visión clara del progreso, gestione recursos y asegure entregas a tiempo y dentro del presupuesto.',
@@ -637,7 +638,7 @@ const ofiPlesModules = {
               ctaText: 'Organice sus Proyectos',
               formSubject: 'Consulta%20OfiPles%20Proyecto'
           } },
-          { name: "OfiPles Soporte al cliente", description: "Monitorea y soluciona tickets", details: {
+          { name: "OfiPles Soporte al cliente", slug: "soporte-cliente", description: "Monitorea y soluciona tickets", details: {
               mainIcon: Headset,
               title: 'OfiPles Soporte al Cliente',
               description: 'Ofrezca un servicio de atención al cliente excepcional. Gestione, priorice y resuelva todas las solicitudes de sus clientes desde una plataforma multicanal.',
@@ -666,7 +667,7 @@ const gobPlesModules = {
         icon: Map,
         description: "Software integral para la gestión catastral con enfoque multipropósito.",
         items: [
-            { name: "Administración de Trámites", description: "Formación, actualización y conservación.", details: {
+            { name: "Administración de Trámites", slug: "catastrogob-tramites", description: "Formación, actualización y conservación.", details: {
                 mainIcon: FileText,
                 title: 'Administración de Trámites Catastrales',
                 description: 'Gestione de manera integral los trámites de formación, actualización y conservación catastral, asegurando el cumplimiento del modelo LADM_COL y la eficiencia operativa.',
@@ -686,7 +687,7 @@ const gobPlesModules = {
                 ctaText: 'Optimice sus Trámites',
                 formSubject: 'Consulta%20CatastroGob%20Tramites'
             }},
-            { name: "Módulo SIG", description: "Análisis espacial y visualización.", details: {
+            { name: "Módulo SIG", slug: "catastrogob-sig", description: "Análisis espacial y visualización.", details: {
                 mainIcon: Map,
                 title: 'Módulo de Sistema de Información Geográfica (SIG)',
                 description: 'Un potente motor geoespacial para la visualización, edición y análisis de la información predial. Conecte los datos alfanuméricos con su representación en el territorio.',
@@ -706,7 +707,7 @@ const gobPlesModules = {
                 ctaText: 'Potencie su Análisis Espacial',
                 formSubject: 'Consulta%20CatastroGob%20SIG'
             }},
-            { name: "Gestión Física y Jurídica", description: "Control completo de cada predio.", details: {
+            { name: "Gestión Física y Jurídica", slug: "catastrogob-gestion", description: "Control completo de cada predio.", details: {
                 mainIcon: Building,
                 title: 'Gestión Física y Jurídica del Predio',
                 description: 'El corazón del catastro. Un repositorio centralizado que almacena y relaciona toda la información física, jurídica y económica de cada predio del territorio.',
@@ -732,7 +733,7 @@ const gobPlesModules = {
         icon: Briefcase,
         description: "Solución avanzada para la administración del territorio a nivel municipal.",
         items: [
-            { name: "Ordenamiento Territorial", description: "Gestión de licencias y seguimiento.", details: {
+            { name: "Ordenamiento Territorial", slug: "siatgob-ordenamiento", description: "Gestión de licencias y seguimiento.", details: {
                 mainIcon: Building2,
                 title: 'Ordenamiento Territorial',
                 description: 'Gestione el desarrollo y uso del suelo de su municipio de acuerdo a su Plan de Ordenamiento Territorial (POT). Controle licencias, usos permitidos y seguimiento a las normativas urbanísticas.',
@@ -754,11 +755,11 @@ const gobPlesModules = {
             }}
         ]
     },
-     "OfiGob": {
+    "OfiGob": {
         icon: LayoutDashboard,
         description: "Suite que integra y gestiona las dimensiones del Modelo Integrado de Planeación y Gestión (MIPG).",
         items: [
-            { name: "Direccionamiento Estratégico", description: "Planes y seguimiento de metas.", details: {
+            { name: "Direccionamiento Estratégico", slug: "ofigob-planeacion", description: "Planes y seguimiento de metas.", details: {
                 mainIcon: Target,
                 title: 'Direccionamiento Estratégico y Planeación',
                 description: 'Alinee la gestión de su entidad con los objetivos estratégicos. Defina planes, programas y proyectos, y realice un seguimiento en tiempo real de su ejecución y cumplimiento de metas.',
@@ -784,7 +785,7 @@ const gobPlesModules = {
         icon: School,
         description: "Solución tecnológica para optimizar la gestión y supervisión del Programa de Alimentación Escolar (PAE).",
         items: [
-            { name: "Gestión de Beneficiarios", description: "Focalización de estudiantes.", details: {
+            { name: "Gestión de Beneficiarios", slug: "paegob-beneficiarios", description: "Focalización de estudiantes.", details: {
                 mainIcon: Users2,
                 title: 'Gestión de Beneficiarios del PAE',
                 description: 'Asegure que el Programa de Alimentación Escolar llegue a quienes más lo necesitan. Gestione la focalización, inscripción y seguimiento de los estudiantes beneficiarios de forma eficiente.',
@@ -804,7 +805,7 @@ const gobPlesModules = {
                 ctaText: 'Optimice su Focalización',
                 formSubject: 'Consulta%20PaeGob%20Beneficiarios'
             }},
-            { name: "Validación de Entregas", description: "Control con firma digital.", details: {
+            { name: "Validación de Entregas", slug: "paegob-entregas", description: "Control con firma digital.", details: {
                 mainIcon: FileCheck,
                 title: 'Validación de Entregas y Reportes del PAE',
                 description: 'Controle y supervise la entrega de las raciones alimentarias en cada sede educativa. Nuestra plataforma digitaliza el proceso de validación, garantizando transparencia y trazabilidad.',
@@ -830,7 +831,7 @@ const gobPlesModules = {
         icon: BookOpen,
         description: "Plataforma enfocada en la gestión escolar y académica del día a día.",
         items: [
-            { name: "Gestión Académica", description: "Carreras, cursos, calificaciones.", details: {
+            { name: "Gestión Académica", slug: "edugob-academica", description: "Carreras, cursos, calificaciones.", details: {
                 mainIcon: GraduationCap,
                 title: 'Gestión Académica',
                 description: 'El núcleo de su institución educativa. Gestione todo el ciclo académico, desde la oferta de cursos y la matrícula, hasta el registro de calificaciones y el control de asistencia.',
@@ -856,14 +857,14 @@ const gobPlesModules = {
         icon: BrainCircuit,
         description: "Plataforma de alto nivel para la gobernanza y la mejora continua del sistema educativo.",
         items: [
-            { name: "Autoevaluación y PMI", description: "Diagnóstico y planes de mejoramiento.", details: {
+            { name: "Autoevaluación y PMI", slug: "gegob-pmi", description: "Diagnóstico y planes de mejoramiento.", details: {
                 mainIcon: Search,
                 title: 'Autoevaluación y Planes de Mejoramiento (PMI)',
                 description: 'Transforme el diagnóstico en acción. Nuestro módulo guía a las instituciones en procesos de autoevaluación estructurados y convierte los hallazgos en planes de mejoramiento concretos.',
                 keyServices: [
                   { title: 'Motor de Diagnóstico Personalizable', text: 'Cree y aplique instrumentos de autoevaluación basados en las guías del MEN o en sus propios marcos de calidad.', icon: Settings },
                   { title: 'Visualización de Resultados', text: 'Analice los resultados de la autoevaluación con gráficos de radar, barras y matrices que facilitan la identificación de fortalezas y debilidades.', icon: BarChart3 },
-                  { title: 'Conexión Directa al PMI', text: 'Convierta los indicadores con bajo desempeño en objetivos de un Plan de Mejoramiento Institucional con un solo clic.', icon: Link },
+                  { title: 'Conexión Directa al PMI', text: 'Convierta los indicadores con bajo desempeño en objetivos de un Plan de Mejoramiento Institucional con un solo clic.', icon: LinkIcon },
                   { title: 'Banco de Buenas Prácticas', text: 'Acceda a un repositorio de proyectos y estrategias exitosas para inspirar y guiar sus planes de mejoramiento.', icon: Lightbulb }
                 ],
                 benefits: [
@@ -882,7 +883,7 @@ const gobPlesModules = {
         icon: FileArchive,
         description: "Solución completa de gestión documental que cumple con la Ley 594 de 2000.",
         items: [
-            { name: "Tablas de Retención Documental", description: "Creación y gestión de TRD.", details: {
+            { name: "Tablas de Retención Documental", slug: "gestordoc-trd", description: "Creación y gestión de TRD.", details: {
                 mainIcon: FileArchive,
                 title: 'Gestión Documental y Archivo (GestorDoc)',
                 description: 'Organice, preserve y controle el acceso al patrimonio documental de su entidad. Nuestra solución asegura el cumplimiento de la Ley General de Archivos y moderniza su gestión.',
@@ -908,7 +909,7 @@ const gobPlesModules = {
         icon: Info,
         description: "Plataforma enfocada en la transparencia y la rendición de cuentas para la gestión de proyectos.",
         items: [
-            { name: "Seguimiento y Monitoreo", description: "Visualización de avances y resultados.", details: {
+            { name: "Seguimiento y Monitoreo", slug: "infogob-seguimiento", description: "Visualización de avances y resultados.", details: {
                 mainIcon: Presentation,
                 title: 'Transparencia y Seguimiento de Proyectos (InfoGob)',
                 description: 'Fortalezca la confianza ciudadana con una plataforma que permite la visualización pública y el seguimiento del avance físico y financiero de los proyectos de inversión.',
@@ -1030,8 +1031,8 @@ function InteractiveSoftwareSuites() {
     };
 
     return (
-      <section className="w-full py-16 px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
+      <section className="w-full py-16">
+        <div className="text-center mb-12 px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestras Dos Grandes Suites de Software</h2>
         </div>
         
@@ -1042,7 +1043,7 @@ function InteractiveSoftwareSuites() {
                     <TabsTrigger value="gubernamental" className="py-2 text-base">Suite Gubernamental</TabsTrigger>
                 </TabsList>
                 
-                <Card className="shadow-lg border bg-card w-full">
+                <Card className="shadow-lg border bg-card w-full max-w-screen-2xl mx-auto">
                      <div className="text-center p-6 md:p-8 border-b">
                         <h3 className="text-2xl font-bold text-foreground">{activeTab === 'empresarial' ? 'Ofi-Ples' : 'Gob-Ples'}</h3>
                         <p className="text-muted-foreground mt-2 max-w-3xl mx-auto">{currentDescription}</p>
@@ -1153,8 +1154,8 @@ export default function PlesTicPage() {
         </div>
       </section>
 
-      <section className="px-4 sm:px-6 lg:px-8">
-        <div className="w-full py-16">
+      <section>
+        <div className="w-full py-16 px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">¿Por Qué Elegir PLES TIC?</h2>
             <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
                 Nos enfocamos en resultados tangibles, construyendo alianzas tecnológicas a largo plazo para el éxito de su organización.
@@ -1175,8 +1176,8 @@ export default function PlesTicPage() {
         </div>
       </section>
 
-      <section className="py-12 bg-secondary px-4 sm:px-6 lg:px-8">
-        <div className="w-full">
+      <section className="py-12 bg-secondary">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestros Servicios Tecnológicos Clave</h2>
             <div className="grid md:grid-cols-2 gap-8">
             {coreServices.map((service) => (
@@ -1217,8 +1218,8 @@ export default function PlesTicPage() {
 
       <InteractiveSoftwareSuites />
 
-      <section className="px-4 sm:px-6 lg:px-8">
-        <div className="w-full py-16">
+      <section>
+        <div className="w-full py-16 px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestro Enfoque Colaborativo</h2>
             <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
                 Trabajamos de cerca con usted en cada etapa, desde la idea inicial hasta el soporte continuo, asegurando soluciones que realmente funcionan.
@@ -1235,8 +1236,8 @@ export default function PlesTicPage() {
         </div>
       </section>
 
-      <section className="py-12 bg-card shadow-xl px-4 sm:px-6 lg:px-8">
-        <div className="w-full text-center">
+      <section className="py-12 bg-card shadow-xl">
+        <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Tecnologías y Plataformas que Dominamos</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto mb-10">
             Utilizamos un stack tecnológico moderno y flexible para construir soluciones robustas, escalables y seguras, adaptadas a los desafíos de su industria.
@@ -1249,8 +1250,8 @@ export default function PlesTicPage() {
         </div>
       </section>
 
-      <section className="py-12 px-4 sm:px-6 lg:px-8">
-        <div className="w-full">
+      <section className="py-12">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Proyectos Destacados</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {caseStudies.map((study) => (
