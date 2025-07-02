@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {
-  ArrowRight, CheckCircle, Cpu, Lightbulb, ShieldCheck, TrendingUp, Code, CloudCog, Lock, BarChartBig, Network, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, Rocket, Workflow, Brain, Database, Settings, Server, Shield, Layers, ShoppingBag, ShoppingCart, Cloud, Users, BarChart3, HeartPulse, Building2, Globe, Landmark, Warehouse, Users2, Megaphone, ConciergeBell, Zap, Wrench, ChevronRight, Briefcase, Map, UtensilsCrossed, School, FileArchive, Info, LayoutDashboard, Target, ShieldAlert, FileSearch, ExternalLink, GitMerge, FileCheck, BookOpen, ClipboardCheck, BrainCircuit
+  ArrowRight, CheckCircle, Cpu, Lightbulb, ShieldCheck, TrendingUp, Code, CloudCog, Lock, BarChartBig, Network, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, Rocket, Workflow, Brain, Database, Settings, Server, Shield, Layers, ShoppingCart, Cloud, Users, HeartPulse, Building2, Globe, Landmark, Warehouse, Users2, Megaphone, ConciergeBell, Zap, Wrench, ChevronRight, Briefcase, Map, School, FileArchive, Info, LayoutDashboard, Target, ShieldAlert, FileSearch, ExternalLink, GitMerge, FileCheck, BookOpen, ClipboardCheck, BrainCircuit
 } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
@@ -140,7 +140,7 @@ export default function PlesTicPage() {
     },
   ];
 
-  const ofiPlesModules = {
+    const ofiPlesModules = {
     "Sitio web": [
       { name: "OfiPles Sitio web", description: "Creador de sitios web empresariales" },
       { name: "OfiPles Comercio electrónico", description: "Vende tus productos en línea" },
@@ -209,49 +209,35 @@ export default function PlesTicPage() {
   };
 
   const gobPlesModules = {
-    "Dashboard Principal": {
-        icon: <LayoutDashboard className="h-6 w-6 text-primary" />,
-        description: "Ofrece una vista ejecutiva y consolidada de los indicadores más importantes de todas las dimensiones. Es la página de inicio que presenta KPIs (Indicadores Clave de Gestión), gráficos de resumen y alertas importantes."
+    "CatastroGob": {
+        icon: <Map className="h-6 w-6 text-primary" />,
+        description: "Software integral para la gestión catastral con enfoque multipropósito, diseñado para entidades territoriales, gestores y operadores catastrales, asegurando el cumplimiento del modelo LADM_COL.",
+        submodules: ["Gestión de Trámites", "Módulo SIG", "Gestión Física y Jurídica"]
     },
-    "Talento Humano (TH)": {
-        icon: <Users className="h-6 w-6 text-primary" />,
-        description: "El módulo más desarrollado. Centrado en el ciclo de vida completo del servidor público, desde su atracción hasta su desarrollo y retiro.",
-        submodules: ["Dashboard GETH", "Ciclo de Vida del Servidor", "Desarrollo y Gestión", "Desempeño y Bienestar", "Cumplimiento y Estrategia"]
+    "SIATGOB": {
+        icon: <Briefcase className="h-6 w-6 text-primary" />,
+        description: "Solución avanzada para la administración del territorio a nivel municipal, integrada con la ICDE para optimizar la planificación y el control del uso del suelo.",
+        submodules: ["Ordenamiento Territorial", "Administración de la Propiedad", "Fortalecimiento Fiscal", "Planificación y Desarrollo", "Gestión de Recursos y Riesgos"]
     },
-    "Direccionamiento Estratégico y Planeación (DE&P)": {
-        icon: <Target className="h-6 w-6 text-primary" />,
-        description: "Define la hoja de ruta de la entidad, desde la misión y visión hasta los planes operativos.",
-        submodules: ["Dashboard Estratégico", "Objetivos Estratégicos", "Planes Institucionales", "Planes de Trabajo", "Análisis DOFA"]
+    "PAEgob": {
+        icon: <School className="h-6 w-6 text-primary" />,
+        description: "Solución para optimizar la gestión y supervisión del Programa de Alimentación Escolar (PAE), dirigida a administradores e instituciones educativas.",
+        submodules: ["Gestión de Instituciones", "Gestión de Beneficiarios", "Reportes Diarios y Mensuales", "Validación de Entregas"]
     },
-    "Gestión con Valores para Resultados (GVR)": {
-        icon: <ShieldCheck className="h-6 w-6 text-primary" />,
-        description: "Asegura que la operación diaria se realice con eficiencia, transparencia y orientada al ciudadano.",
-        submodules: ["Dashboard Gestión y Valores", "Procesos Internos", "Gestión de PQR", "Gestión de Riesgos Operacionales", "Gestión de Proveedores", "Cumplimiento Normativo"]
+    "EduGOB (GEGOB)": {
+        icon: <Users2 className="h-6 w-6 text-primary" />,
+        description: "Plataforma integral para la gestión en instituciones de educación superior, básica y media, enfocada en procesos académicos, administrativos y bienestar estudiantil.",
+        submodules: ["Gestión de Usuarios", "Bienestar Estudiantil", "Convocatorias y Becas", "Constructor de Hojas de Vida", "Módulo de Analítica"]
     },
-    "Evaluación de Resultados (ER)": {
-        icon: <BarChart3 className="h-6 w-6 text-primary" />,
-        description: "Monitorea el desempeño de la entidad para asegurar el cumplimiento de metas y facilitar la mejora continua.",
-        submodules: ["Dashboard Evaluación", "Indicadores de Desempeño", "Autoevaluaciones", "Generación de Informes"]
+    "GestorDoc": {
+        icon: <FileArchive className="h-6 w-6 text-primary" />,
+        description: "Solución completa de gestión documental que cumple con la Ley General de Archivos de Colombia (Ley 594 de 2000), garantizando organización, seguridad y trazabilidad.",
+        submodules: ["Tablas de Retención Documental (TRD)", "Flujos de Trabajo Seguros", "Consultas Virtuales y Presenciales", "Identificadores Únicos (FUID)"]
     },
-    "Información y Comunicación (I&C)": {
+    "infoGOB": {
         icon: <Info className="h-6 w-6 text-primary" />,
-        description: "Centraliza la gestión de la información y los canales de comunicación.",
-        submodules: ["Dashboard Info & Comms", "Gestión Documental", "Comunicación Interna"]
-    },
-    "Gestión del Conocimiento y la Innovación (GCI)": {
-        icon: <BrainCircuit className="h-6 w-6 text-primary" />,
-        description: "Fomenta una cultura de aprendizaje, mejora continua e innovación.",
-        submodules: ["Dashboard Conocimiento", "Repositorio de Conocimiento", "Iniciativas de Innovación", "Acciones de Mejora"]
-    },
-    "Control Interno (CI)": {
-        icon: <ShieldAlert className="h-6 w-6 text-primary" />,
-        description: "Asegura el cumplimiento, la gestión de riesgos y la eficacia del Sistema de Control Interno (SCI).",
-        submodules: ["Dashboard Control Interno", "Gestión de Auditorías", "Riesgos (Control Interno)", "Matriz de Cumplimiento", "Autoevaluaciones SCI"]
-    },
-    "Administración del Sistema": {
-        icon: <Settings className="h-6 w-6 text-primary" />,
-        description: "Módulo para la configuración y mantenimiento de la plataforma.",
-        submodules: ["Dashboard Admin", "Gestión de Usuarios", "Gestión de Roles"]
+        description: "Plataforma enfocada en la transparencia y la rendición de cuentas para la gestión de proyectos, permitiendo el acceso público a información detallada.",
+        submodules: ["Gestión de Proyectos", "Seguimiento y Monitoreo", "Participación Ciudadana", "Módulo SIG"]
     }
   };
 
@@ -499,26 +485,36 @@ export default function PlesTicPage() {
       </section>
         
       <section className="w-full py-20 bg-secondary">
-        <div className="space-y-16">
-           {/* OFI-PLES */}
-          <div>
-            <div className="text-center mb-12 px-4">
-              <h3 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Suite Empresarial: Ofi-Ples</h3>
-              <p className="text-muted-foreground mt-4 max-w-3xl mx-auto">
-                Esta línea de productos está concebida como una solución integral de Planificación de Recursos Empresariales (ERP) y Gestión de Relaciones con el Cliente (CRM) dirigida al sector privado. El objetivo principal de Ofi-Ples es unificar y automatizar las operaciones de negocio para mejorar la eficiencia, la productividad y la toma de decisiones.
-              </p>
-            </div>
-            <div className="max-w-4xl mx-auto bg-card p-4 sm:p-6 md:p-8 rounded-lg shadow-xl border">
-              <Accordion type="single" collapsible className="w-full" defaultValue="Sitio web">
+        <div className="text-center mb-12 px-4">
+          <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestras Suites de Software</h2>
+          <p className="text-muted-foreground mt-4 max-w-3xl mx-auto">
+            Soluciones integrales diseñadas para los sectores privado y público, unificando operaciones para una mayor eficiencia y una toma de decisiones más inteligente.
+          </p>
+        </div>
+
+        <Tabs defaultValue="ofi-ples" className="w-full">
+          <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 max-w-2xl mx-auto h-auto">
+            <TabsTrigger value="ofi-ples" className="py-2.5 text-base">Suite Empresarial: Ofi-Ples</TabsTrigger>
+            <TabsTrigger value="gob-ples" className="py-2.5 text-base">Suite Gubernamental: Gob-Ples</TabsTrigger>
+            <TabsTrigger value="cegob" className="py-2.5 text-base">Suite Educativa: CEGOB</TabsTrigger>
+          </TabsList>
+          
+          <TabsContent value="ofi-ples" className="bg-card py-8 mt-2">
+            <div className="max-w-6xl mx-auto px-4">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-bold text-foreground">Ofi-Ples: Aplicaciones para Cada Necesidad</h3>
+                <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">Una solución integral de ERP y CRM para unificar y automatizar las operaciones de negocio, mejorando la eficiencia y la productividad.</p>
+              </div>
+              <Accordion type="single" collapsible className="w-full" defaultValue="Ventas">
                 {Object.entries(ofiPlesModules).map(([category, modules]) => (
-                  <AccordionItem value={category} key={category} className="border-b last:border-b-0 border-border">
-                    <AccordionTrigger className="text-lg font-semibold hover:no-underline py-4 text-left data-[state=open]:text-primary capitalize">
+                  <AccordionItem value={category} key={category} className="border-x-0 rounded-none">
+                    <AccordionTrigger className="text-lg font-semibold hover:no-underline py-4 px-4 text-left data-[state=open]:text-primary capitalize">
                       <div className="flex items-center gap-4">
                         {getIconForOfiPlesCategory(category)}
                         <span>{category}</span>
                       </div>
                     </AccordionTrigger>
-                    <AccordionContent className="pt-2 pb-4 pl-12">
+                    <AccordionContent className="pt-2 pb-4 pl-10 pr-4 bg-secondary/50">
                       <ul className="space-y-4">
                         {modules.map(module => (
                           <li key={module.name}>
@@ -532,31 +528,28 @@ export default function PlesTicPage() {
                 ))}
               </Accordion>
             </div>
-          </div>
+          </TabsContent>
 
-          {/* GOB-PLES */}
-          <div>
-            <div className="text-center mb-12 px-4">
-               <h3 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Suite Gubernamental: Gob-Ples</h3>
-              <p className="text-muted-foreground mt-4 max-w-3xl mx-auto">
-              Gob-Ples es la línea más diversificada y especializada de PLES-TIC, compuesta por un conjunto de plataformas diseñadas para responder a las necesidades específicas de entidades territoriales, instituciones educativas y otros organismos del sector público en Colombia. Cada software de Gob-Ples está construido para resolver problemáticas concretas de la administración pública.
-              </p>
-            </div>
-            <div className="max-w-4xl mx-auto bg-card p-4 sm:p-6 md:p-8 rounded-lg shadow-xl border">
+          <TabsContent value="gob-ples" className="bg-card py-8 mt-2">
+            <div className="max-w-6xl mx-auto px-4">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-bold text-foreground">Gob-Ples: Soluciones para el Sector Público</h3>
+                 <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">Plataformas especializadas para responder a las necesidades de entidades territoriales, instituciones educativas y otros organismos del sector público.</p>
+              </div>
               <Accordion type="single" collapsible className="w-full">
                 {Object.entries(gobPlesModules).map(([category, data]) => (
-                  <AccordionItem value={category} key={category} className="border-b last:border-b-0 border-border">
-                    <AccordionTrigger className="text-lg font-semibold hover:no-underline py-4 text-left data-[state=open]:text-primary">
+                  <AccordionItem value={category} key={category} className="border-x-0 rounded-none">
+                    <AccordionTrigger className="text-lg font-semibold hover:no-underline py-4 px-4 text-left data-[state=open]:text-primary">
                       <div className="flex items-center gap-4">
                         {data.icon}
                         <span>{category}</span>
                       </div>
                     </AccordionTrigger>
-                    <AccordionContent className="pt-2 pb-4 pl-12 space-y-3">
+                    <AccordionContent className="pt-2 pb-4 pl-10 pr-4 bg-secondary/50 space-y-3">
                       <p className="text-base text-muted-foreground">{data.description}</p>
                       {data.submodules && data.submodules.length > 0 && (
                         <div>
-                          <h4 className="font-semibold mb-2 text-foreground">Submódulos:</h4>
+                          <h4 className="font-semibold mb-2 text-foreground">Módulos Clave:</h4>
                           <div className="flex flex-wrap gap-2">
                             {data.submodules.map(sub => <Badge key={sub} variant="secondary">{sub}</Badge>)}
                           </div>
@@ -567,31 +560,28 @@ export default function PlesTicPage() {
                 ))}
               </Accordion>
             </div>
-          </div>
+          </TabsContent>
 
-          {/* CEGOB */}
-          <div>
-            <div className="text-center mb-12 px-4">
-              <h3 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Suite de Gobernanza Educativa: CEGOB</h3>
-              <p className="text-muted-foreground mt-4 max-w-3xl mx-auto">
-              Plataforma integral diseñada para el Control y la Excelencia en la Gobernanza Educativa. Su objetivo principal es unificar y simplificar la gestión de las instituciones educativas, permitiendo una administración más transparente, eficiente y basada en datos.
-              </p>
-            </div>
-            <div className="max-w-4xl mx-auto bg-card p-4 sm:p-6 md:p-8 rounded-lg shadow-xl border">
+          <TabsContent value="cegob" className="bg-card py-8 mt-2">
+            <div className="max-w-6xl mx-auto px-4">
+                <div className="text-center mb-8">
+                    <h3 className="text-2xl font-bold text-foreground">CEGOB: Control y Excelencia en la Gobernanza Educativa</h3>
+                    <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">Plataforma integral para unificar y simplificar la gestión de las instituciones educativas, permitiendo una administración transparente, eficiente y basada en datos.</p>
+                </div>
               <Accordion type="single" collapsible className="w-full">
                 {Object.entries(cegobModules).map(([category, data]) => (
-                  <AccordionItem value={category} key={category} className="border-b last:border-b-0 border-border">
-                    <AccordionTrigger className="text-lg font-semibold hover:no-underline py-4 text-left data-[state=open]:text-primary">
+                  <AccordionItem value={category} key={category} className="border-x-0 rounded-none">
+                    <AccordionTrigger className="text-lg font-semibold hover:no-underline py-4 px-4 text-left data-[state=open]:text-primary">
                       <div className="flex items-center gap-4">
                         {data.icon}
                         <span>{category}</span>
                       </div>
                     </AccordionTrigger>
-                    <AccordionContent className="pt-2 pb-4 pl-12 space-y-3">
+                    <AccordionContent className="pt-2 pb-4 pl-10 pr-4 bg-secondary/50 space-y-3">
                       <p className="text-base text-muted-foreground">{data.description}</p>
                       {data.submodules && data.submodules.length > 0 && (
                         <div>
-                          <h4 className="font-semibold mb-2 text-foreground">Submódulos:</h4>
+                          <h4 className="font-semibold mb-2 text-foreground">Funcionalidades:</h4>
                           <div className="flex flex-wrap gap-2">
                             {data.submodules.map(sub => <Badge key={sub} variant="secondary">{sub}</Badge>)}
                           </div>
@@ -602,8 +592,9 @@ export default function PlesTicPage() {
                 ))}
               </Accordion>
             </div>
-          </div>
-        </div>
+          </TabsContent>
+
+        </Tabs>
       </section>
 
       <section className="text-center py-20 bg-primary text-primary-foreground animate-gradient bg-[length:200%_200%]">
@@ -625,3 +616,5 @@ export default function PlesTicPage() {
     </div>
   );
 }
+
+    
