@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {
-  ArrowRight, CheckCircle, Cpu, Lightbulb, ShieldCheck, TrendingUp, Code, CloudCog, Lock, BarChartBig, BarChart3, Network, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, Rocket, Workflow, Brain, Database, Settings, Server, Shield, Layers, ShoppingCart, Cloud, Users, HeartPulse, Building2, Globe, Landmark, Warehouse, Users2, Megaphone, ConciergeBell, Zap, Wrench, ChevronRight, Briefcase, Map, School, FileArchive, Info, LayoutDashboard, Target, ShieldAlert, FileSearch, ExternalLink, GitMerge, FileCheck, BookOpen, ClipboardCheck, BrainCircuit, ShoppingBag
+  ArrowRight, CheckCircle, Cpu, Lightbulb, ShieldCheck, TrendingUp, Code, CloudCog, Lock, BarChartBig, Network, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, Rocket, Workflow, Brain, Database, Settings, Server, Shield, Layers, ShoppingCart, Cloud, Users, HeartPulse, Building2, Globe, Landmark, Warehouse, Users2, Megaphone, ConciergeBell, Zap, Wrench, ChevronRight, Briefcase, Map, School, FileArchive, Info, LayoutDashboard, Target, ShieldAlert, FileSearch, ExternalLink, GitMerge, FileCheck, BookOpen, ClipboardCheck, BrainCircuit, ShoppingBag
 } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
@@ -119,7 +119,7 @@ const caseStudies = [
                 <Users className="h-8 w-8 text-primary"/>
             </div>
             <div className="absolute bottom-[25%] right-[25%] translate-x-1/2 translate-y-1/2 animate-subtle-float" style={{ animationDelay: '0.9s' }}>
-                <BarChart3 className="h-8 w-8 text-primary"/>
+                <TrendingUp className="h-8 w-8 text-primary"/>
             </div>
           </div>
         </div>
@@ -253,6 +253,18 @@ const gobPlesModules = {
             { name: "Recursos Naturales y Riesgos", description: "Identificación de zonas de riesgo." }
         ]
     },
+     "OFI-GOB": {
+        icon: LayoutDashboard,
+        description: "Suite que integra y gestiona las dimensiones del Modelo Integrado de Planeación y Gestión (MIPG) para entidades públicas, centrada en el ciclo de vida del servidor público y la hoja de ruta de la entidad.",
+        items: [
+            { name: "Talento Humano", description: "Gestión del ciclo de vida del servidor." },
+            { name: "Direccionamiento Estratégico", description: "Planes y seguimiento de metas." },
+            { name: "Gestión con Valores", description: "Transparencia y servicio al ciudadano." },
+            { name: "Evaluación de Resultados", description: "Indicadores y reportes de gestión." },
+            { name: "Gestión del Conocimiento", description: "Captura y difusión de conocimiento." },
+            { name: "Control Interno", description: "Mecanismos de control y auditoría." }
+        ]
+    },
     "PAEgob": {
         icon: School,
         description: "Solución tecnológica para optimizar la gestión y supervisión del Programa de Alimentación Escolar (PAE), dirigida a administradores del programa e instituciones educativas.",
@@ -263,6 +275,29 @@ const gobPlesModules = {
             { name: "Validación de Entregas", description: "Control con firma digital." }
         ]
     },
+     "GestorDoc": {
+        icon: FileArchive,
+        description: "Solución completa de gestión documental que cumple con la Ley 594 de 2000. Permite organizar, asegurar y dar accesibilidad a los documentos de una organización.",
+        items: [
+            { name: "Tablas de Retención Documental", description: "Creación y gestión de TRD." },
+            { name: "Flujos de Trabajo Seguros", description: "Automatización de procesos documentales." },
+            { name: "Consultas Virtuales", description: "Acceso controlado a documentos." },
+            { name: "Identificadores Únicos (FUID)", description: "Trazabilidad completa del documento." }
+        ]
+    },
+    "infoGOB": {
+        icon: Info,
+        description: "Plataforma enfocada en la transparencia y la rendición de cuentas para la gestión de proyectos. Permite el acceso público a información detallada de iniciativas.",
+        items: [
+            { name: "Gestión de Proyectos", description: "Control de objetivos y financiamiento." },
+            { name: "Seguimiento y Monitoreo", description: "Visualización de avances y resultados." },
+            { name: "Participación Ciudadana", description: "Foros y chats para la comunidad." },
+            { name: "Módulo SIG", description: "Visualización geoespacial de datos." }
+        ]
+    }
+};
+
+const cegobModules = {
     "EduGOB": {
         icon: BookOpen,
         description: "Plataforma enfocada en la gestión escolar y académica del día a día para optimizar los procesos administrativos y académicos, ofreciendo una trazabilidad completa del ciclo de vida del estudiante.",
@@ -287,55 +322,12 @@ const gobPlesModules = {
             { name: "Administración del Sistema", description: "Gestión de usuarios, roles y auditoría." }
         ]
     },
-    "OFI-GOB": {
-        icon: LayoutDashboard,
-        description: "Suite que integra y gestiona las dimensiones del Modelo Integrado de Planeación y Gestión (MIPG) para entidades públicas, centrada en el ciclo de vida del servidor público y la hoja de ruta de la entidad.",
-        items: [
-            { name: "Talento Humano", description: "Gestión del ciclo de vida del servidor." },
-            { name: "Direccionamiento Estratégico", description: "Planes y seguimiento de metas." },
-            { name: "Gestión con Valores", description: "Transparencia y servicio al ciudadano." },
-            { name: "Evaluación de Resultados", description: "Indicadores y reportes de gestión." },
-            { name: "Gestión del Conocimiento", description: "Captura y difusión de conocimiento." },
-            { name: "Control Interno", description: "Mecanismos de control y auditoría." }
-        ]
-    },
-    "GestorDoc": {
-        icon: FileArchive,
-        description: "Solución completa de gestión documental que cumple con la Ley 594 de 2000. Permite organizar, asegurar y dar accesibilidad a los documentos de una organización.",
-        items: [
-            { name: "Tablas de Retención Documental", description: "Creación y gestión de TRD." },
-            { name: "Flujos de Trabajo Seguros", description: "Automatización de procesos documentales." },
-            { name: "Consultas Virtuales", description: "Acceso controlado a documentos." },
-            { name: "Identificadores Únicos (FUID)", description: "Trazabilidad completa del documento." }
-        ]
-    },
-    "infoGOB": {
-        icon: Info,
-        description: "Plataforma enfocada en la transparencia y la rendición de cuentas para la gestión de proyectos. Permite el acceso público a información detallada de iniciativas.",
-        items: [
-            { name: "Gestión de Proyectos", description: "Control de objetivos y financiamiento." },
-            { name: "Seguimiento y Monitoreo", description: "Visualización de avances y resultados." },
-            { name: "Participación Ciudadana", description: "Foros y chats para la comunidad." },
-            { name: "Módulo SIG", description: "Visualización geoespacial de datos." }
-        ]
-    }
 };
-
-const cegobModules = {
-    "Suite Educativa: CEGOB": {
-        icon: School,
-        description: "Nuestra suite educativa está diseñada para abarcar todas las facetas de la gestión académica y de gobernanza, desde la operación diaria en la institución hasta la planificación estratégica a nivel de secretarías de educación.",
-        items: [
-            { name: "EduGOB", description: "Plataforma integral para la gestión escolar y académica del día a día." },
-            { name: "GEGOB", description: "Plataforma de alto nivel para la gobernanza y la mejora continua del sistema educativo." },
-        ]
-    }
-}
 
 function InteractiveSoftwareSuites() {
     const [activeTab, setActiveTab] = useState('ofi-ples');
     
-    const [selectedOfiModule, setSelectedOfiModule] = useState(Object.keys(ofiPlesModules)[2]); // Default to Finanzas
+    const [selectedOfiModule, setSelectedOfiModule] = useState(Object.keys(ofiPlesModules)[0]);
     const [selectedGobModule, setSelectedGobModule] = useState(Object.keys(gobPlesModules)[0]);
     const [selectedCegobModule, setSelectedCegobModule] = useState(Object.keys(cegobModules)[0]);
 
@@ -346,13 +338,13 @@ function InteractiveSoftwareSuites() {
         selectedModule: string,
         setSelectedModule: (module: string) => void
     ) => (
-        <Card className="shadow-lg border">
+        <Card className="shadow-lg border bg-card">
             <div className="text-center p-6 md:p-8 border-b">
                 <h3 className="text-2xl font-bold text-foreground">{suiteName}</h3>
                 <p className="text-muted-foreground mt-2 max-w-3xl mx-auto">{suiteDescription}</p>
             </div>
             <div className="flex flex-col md:flex-row gap-0">
-                <aside className="w-full md:w-1/4 border-b md:border-b-0 md:border-r border-border">
+                <aside className="w-full md:w-1/4 border-b md:border-b-0 md:border-r border-border bg-card">
                     <nav className="flex flex-col p-2">
                         {Object.entries(modules).map(([category, data]: [string, any]) => {
                             const Icon = data.icon;
@@ -375,10 +367,10 @@ function InteractiveSoftwareSuites() {
                     </nav>
                 </aside>
 
-                <main className="flex-1 min-h-[400px] bg-muted/20 dark:bg-black/20 p-6 md:p-8">
+                <main className="flex-1 min-h-[500px] bg-muted/40 dark:bg-black/20 p-6 md:p-8">
                     {(modules[selectedModule]) ? (
                         <div>
-                             <h4 className="text-xl font-semibold text-foreground mb-1">{(modules[selectedModule] as any).name || selectedModule}</h4>
+                             <h4 className="text-xl font-semibold text-foreground mb-1">{selectedModule}</h4>
                              <p className="text-muted-foreground mb-6 text-sm">{(modules[selectedModule] as any).description}</p>
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
                                 {(modules[selectedModule] as any).items.map((module: any) => (
@@ -398,46 +390,48 @@ function InteractiveSoftwareSuites() {
     return (
         <section className="w-full py-16 bg-background">
             <div className="text-center mb-12 px-4">
-                <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestras Suites de Software</h2>
+                <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestras Dos Grandes Suites de Software</h2>
             </div>
+            
+            <div className="px-4 sm:px-6 lg:px-8">
+                <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+                    <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 max-w-xl mx-auto h-auto mb-8">
+                        <TabsTrigger value="ofi-ples" className="py-2 text-base">Suite Empresarial</TabsTrigger>
+                        <TabsTrigger value="gob-ples" className="py-2 text-base">Suite Gubernamental</TabsTrigger>
+                        <TabsTrigger value="cegob" className="py-2 text-base">Suite Educativa</TabsTrigger>
+                    </TabsList>
+                    
+                    <TabsContent value="ofi-ples">
+                        {renderSuiteUI(
+                            "Ofi-Ples: Suite Empresarial",
+                            "Esta línea de productos está concebida como una solución integral de Planificación de Recursos Empresariales (ERP) y Gestión de Relaciones con el Cliente (CRM) dirigida al sector privado. El objetivo principal de Ofi-Ples es unificar y automatizar las operaciones de negocio para mejorar la eficiencia, la productividad y la toma de decisiones.",
+                            ofiPlesModules,
+                            selectedOfiModule,
+                            setSelectedOfiModule
+                        )}
+                    </TabsContent>
 
-            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full max-w-7xl mx-auto">
-                <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 max-w-xl mx-auto h-auto mb-8">
-                    <TabsTrigger value="ofi-ples" className="py-2 text-base">Suite Empresarial</TabsTrigger>
-                    <TabsTrigger value="gob-ples" className="py-2 text-base">Suite Gubernamental</TabsTrigger>
-                    <TabsTrigger value="cegob" className="py-2 text-base">Suite Educativa</TabsTrigger>
-                </TabsList>
-                
-                <TabsContent value="ofi-ples">
-                    {renderSuiteUI(
-                        "Ofi-Ples: Suite Empresarial",
-                        "Esta línea de productos está concebida como una solución integral de Planificación de Recursos Empresariales (ERP) y Gestión de Relaciones con el Cliente (CRM) dirigida al sector privado. El objetivo principal de Ofi-Ples es unificar y automatizar las operaciones de negocio para mejorar la eficiencia, la productividad y la toma de decisiones.",
-                        ofiPlesModules,
-                        selectedOfiModule,
-                        setSelectedOfiModule
-                    )}
-                </TabsContent>
-
-                <TabsContent value="gob-ples">
-                   {renderSuiteUI(
-                        "Gob-Ples: Suite Gubernamental",
-                        "Gob-Ples es la línea más diversificada y especializada de PLES-TIC, compuesta por un conjunto de plataformas diseñadas para responder a las necesidades específicas de entidades territoriales y otros organismos del sector público en Colombia.",
-                        gobPlesModules,
-                        selectedGobModule,
-                        setSelectedGobModule
-                    )}
-                </TabsContent>
-                
-                <TabsContent value="cegob">
-                   {renderSuiteUI(
-                        "CEGOB: Suite Educativa de Gobernanza",
-                        "Nuestra suite educativa está diseñada para abarcar todas las facetas de la gestión académica y de gobernanza, desde la operación diaria en la institución hasta la planificación estratégica a nivel de secretarías de educación.",
-                        cegobModules,
-                        selectedCegobModule,
-                        setSelectedCegobModule
-                    )}
-                </TabsContent>
-            </Tabs>
+                    <TabsContent value="gob-ples">
+                       {renderSuiteUI(
+                            "Gob-Ples: Suite Gubernamental",
+                            "Gob-Ples es la línea más diversificada y especializada de PLES-TIC, compuesta por un conjunto de plataformas diseñadas para responder a las necesidades específicas de entidades territoriales y otros organismos del sector público en Colombia.",
+                            gobPlesModules,
+                            selectedGobModule,
+                            setSelectedGobModule
+                        )}
+                    </TabsContent>
+                    
+                     <TabsContent value="cegob">
+                       {renderSuiteUI(
+                            "CEGOB: Suite Educativa de Gobernanza",
+                            "Nuestra suite educativa está diseñada para abarcar todas las facetas de la gestión académica y de gobernanza, desde la operación diaria en la institución hasta la planificación estratégica a nivel de secretarías de educación.",
+                            cegobModules,
+                            selectedCegobModule,
+                            setSelectedCegobModule
+                        )}
+                    </TabsContent>
+                </Tabs>
+            </div>
         </section>
     );
 }
@@ -520,7 +514,7 @@ export default function PlesTicPage() {
             {coreServices.map((service) => (
               <Link key={service.title} href={service.ctaLink || '#'} passHref legacyBehavior>
                 <a className="block group hover:scale-105 transition-all duration-300 ease-in-out">
-                  <Card className="h-full group-hover:shadow-xl group-hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent group-hover:text-primary-foreground bg-card group-hover:animate-gradient group-hover:bg-[length:200%_200%]">
+                  <Card className="h-full group-hover:shadow-xl group-hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent group-hover:text-primary-foreground bg-card group-hover:animate-gradient hover:bg-[length:200%_200%]">
                     <CardHeader className="flex flex-row items-start gap-4">
                         {service.icon}
                         <div>
