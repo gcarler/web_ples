@@ -104,12 +104,15 @@ export default function PlesTicPage() {
       illustration: (
         <div className="relative h-full w-full overflow-hidden rounded-lg">
             <PlexusIllustration />
-            <div className="absolute inset-0 flex items-center justify-center p-4">
-                <ShoppingBag className="absolute top-[50%] left-[10%] h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '0.3s' }} />
-                <ShoppingCart className="absolute top-[15%] left-[30%] h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '0.5s' }} />
-                <Cloud className="absolute top-[40%] left-[55%] h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '0.7s' }} />
-                <Users className="absolute bottom-[25%] left-[45%] h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '0.9s' }} />
-                <BarChart3 className="absolute top-[60%] right-[10%] h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '1.1s' }} />
+            <div className="absolute inset-0 p-4">
+                {/* Central Store Icon - Larger */}
+                <ShoppingBag className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-12 w-12 text-accent animate-subtle-float" style={{ animationDelay: '0s' }} />
+                
+                {/* Surrounding Service Icons */}
+                <ShoppingCart className="absolute top-[20%] left-[25%] h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '0.3s' }} />
+                <Cloud className="absolute top-[20%] right-[25%] h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '0.5s' }} />
+                <Users className="absolute bottom-[20%] left-[25%] h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '0.7s' }} />
+                <BarChart3 className="absolute bottom-[20%] right-[25%] h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '0.9s' }} />
             </div>
         </div>
       ),
