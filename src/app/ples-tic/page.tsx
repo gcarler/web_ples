@@ -1,3 +1,4 @@
+
 // src/app/ples-tic/page.tsx
 'use client';
 
@@ -5,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {
-  ArrowRight, CheckCircle, Cpu, Lightbulb, ShieldCheck, TrendingUp, Code, CloudCog, Lock, BarChartBig, Network, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, Rocket, Workflow, Brain, Database, Settings, Server, Shield, Layers, ShoppingCart, Cloud, Users, HeartPulse, Building2, Globe, Landmark, Warehouse, Users2, Megaphone, ConciergeBell, Zap, Wrench, ChevronRight, Briefcase, Map, School, FileArchive, Info, LayoutDashboard, Target, ShieldAlert, FileSearch, ExternalLink, GitMerge, FileCheck, BookOpen, ClipboardCheck, BrainCircuit, ShoppingBag
+  ArrowRight, CheckCircle, Cpu, Lightbulb, ShieldCheck, TrendingUp, Code, CloudCog, Lock, BarChartBig, BarChart3, Network, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, Rocket, Workflow, Brain, Database, Settings, Server, Shield, Layers, ShoppingCart, Cloud, Users, HeartPulse, Building2, Globe, Landmark, Warehouse, Users2, Megaphone, ConciergeBell, Zap, Wrench, ChevronRight, Briefcase, Map, School, FileArchive, Info, LayoutDashboard, Target, ShieldAlert, FileSearch, ExternalLink, GitMerge, FileCheck, BookOpen, ClipboardCheck, BrainCircuit, ShoppingBag
 } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
@@ -266,11 +267,11 @@ const gobPlesModules = {
         icon: BookOpen,
         description: "Plataforma enfocada en la gestión escolar y académica del día a día para optimizar los procesos administrativos y académicos, ofreciendo una trazabilidad completa del ciclo de vida del estudiante.",
         items: [
-            { name: "Gestión Académica", description: "Cursos, calificaciones y asistencias." },
-            { name: "Gestión Administrativa", description: "Convocatorias y certificados." },
+            { name: "Gestión Académica", description: "Carreras, cursos, materias, clases, calificaciones y asistencias." },
+            { name: "Gestión Administrativa", description: "Convocatorias, certificados y carnetización." },
             { name: "Bienestar Estudiantil", description: "Seguimiento físico, mental y social." },
             { name: "Desarrollo Profesional", description: "Constructor de hojas de vida." },
-            { name: "Analítica de Datos", description: "Informes de rendimiento y egresados." }
+            { name: "Analítica", description: "Informes de rendimiento y seguimiento de egresados." }
         ]
     },
     "GEGOB": {
@@ -284,6 +285,18 @@ const gobPlesModules = {
             { name: "Evaluaciones Externas", description: "Análisis de Pruebas Saber y comparativas." },
             { name: "Módulos de Apoyo", description: "Proyectos transversales y formación docente." },
             { name: "Administración del Sistema", description: "Gestión de usuarios, roles y auditoría." }
+        ]
+    },
+    "OFI-GOB": {
+        icon: LayoutDashboard,
+        description: "Suite que integra y gestiona las dimensiones del Modelo Integrado de Planeación y Gestión (MIPG) para entidades públicas, centrada en el ciclo de vida del servidor público y la hoja de ruta de la entidad.",
+        items: [
+            { name: "Talento Humano", description: "Gestión del ciclo de vida del servidor." },
+            { name: "Direccionamiento Estratégico", description: "Planes y seguimiento de metas." },
+            { name: "Gestión con Valores", description: "Transparencia y servicio al ciudadano." },
+            { name: "Evaluación de Resultados", description: "Indicadores y reportes de gestión." },
+            { name: "Gestión del Conocimiento", description: "Captura y difusión de conocimiento." },
+            { name: "Control Interno", description: "Mecanismos de control y auditoría." }
         ]
     },
     "GestorDoc": {
@@ -305,23 +318,11 @@ const gobPlesModules = {
             { name: "Participación Ciudadana", description: "Foros y chats para la comunidad." },
             { name: "Módulo SIG", description: "Visualización geoespacial de datos." }
         ]
-    },
-    "OFI-GOB": {
-        icon: LayoutDashboard,
-        description: "Suite que integra y gestiona las dimensiones del Modelo Integrado de Planeación y Gestión (MIPG) para entidades públicas, centrada en el ciclo de vida del servidor público y la hoja de ruta de la entidad.",
-        items: [
-            { name: "Talento Humano", description: "Gestión del ciclo de vida del servidor." },
-            { name: "Direccionamiento Estratégico", description: "Planes y seguimiento de metas." },
-            { name: "Gestión con Valores", description: "Transparencia y servicio al ciudadano." },
-            { name: "Evaluación de Resultados", description: "Indicadores y reportes de gestión." },
-            { name: "Gestión del Conocimiento", description: "Captura y difusión de conocimiento." },
-            { name: "Control Interno", description: "Mecanismos de control y auditoría." }
-        ]
     }
 };
 
 const cegobModules = {
-    "CEGOB: Suite Educativa": {
+    "Suite Educativa: CEGOB": {
         icon: School,
         description: "Nuestra suite educativa está diseñada para abarcar todas las facetas de la gestión académica y de gobernanza, desde la operación diaria en la institución hasta la planificación estratégica a nivel de secretarías de educación.",
         items: [
@@ -335,13 +336,8 @@ function InteractiveSoftwareSuites() {
     const [activeTab, setActiveTab] = useState('ofi-ples');
     
     const [selectedOfiModule, setSelectedOfiModule] = useState(Object.keys(ofiPlesModules)[2]); // Default to Finanzas
-    const [selectedGobModule, setSelectedGobModule] = useState(Object.keys(gobPlesModules)[0]); // Default to CatastroGob
+    const [selectedGobModule, setSelectedGobModule] = useState(Object.keys(gobPlesModules)[0]);
     const [selectedCegobModule, setSelectedCegobModule] = useState(Object.keys(cegobModules)[0]);
-
-    const selectedOfiData = ofiPlesModules[selectedOfiModule as keyof typeof ofiPlesModules];
-    const selectedGobData = gobPlesModules[selectedGobModule as keyof typeof gobPlesModules];
-    const selectedCegobData = cegobModules[selectedCegobModule as keyof typeof cegobModules];
-
 
     const renderSuiteUI = (
         suiteName: string,
@@ -350,8 +346,8 @@ function InteractiveSoftwareSuites() {
         selectedModule: string,
         setSelectedModule: (module: string) => void
     ) => (
-        <div className="bg-card text-card-foreground rounded-lg shadow-lg border">
-            <div className="text-center p-6 md:p-8">
+        <Card className="shadow-lg border">
+            <div className="text-center p-6 md:p-8 border-b">
                 <h3 className="text-2xl font-bold text-foreground">{suiteName}</h3>
                 <p className="text-muted-foreground mt-2 max-w-3xl mx-auto">{suiteDescription}</p>
             </div>
@@ -381,24 +377,28 @@ function InteractiveSoftwareSuites() {
 
                 <main className="flex-1 min-h-[400px] bg-muted/20 dark:bg-black/20 p-6 md:p-8">
                     {(modules[selectedModule]) ? (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
-                            {(modules[selectedModule] as any).items.map((module: any) => (
-                                <div key={module.name}>
-                                    <p className="font-semibold text-foreground">{module.name}</p>
-                                    <p className="text-sm text-muted-foreground">{module.description}</p>
-                                </div>
-                            ))}
+                        <div>
+                             <h4 className="text-xl font-semibold text-foreground mb-1">{(modules[selectedModule] as any).name || selectedModule}</h4>
+                             <p className="text-muted-foreground mb-6 text-sm">{(modules[selectedModule] as any).description}</p>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
+                                {(modules[selectedModule] as any).items.map((module: any) => (
+                                    <div key={module.name}>
+                                        <p className="font-semibold text-foreground">{module.name}</p>
+                                        <p className="text-sm text-muted-foreground">{module.description}</p>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     ) : <p>Seleccione un módulo.</p>}
                 </main>
             </div>
-        </div>
+        </Card>
     );
 
     return (
-        <section className="w-full py-20 bg-background">
+        <section className="w-full py-16 bg-background">
             <div className="text-center mb-12 px-4">
-                <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestras Dos Grandes Suites de Software</h2>
+                <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestras Suites de Software</h2>
             </div>
 
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full max-w-7xl mx-auto">
