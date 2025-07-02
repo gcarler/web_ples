@@ -239,32 +239,42 @@ export default function PlesTicPage() {
     "CatastroGob": {
         icon: <Map className="h-6 w-6 text-primary" />,
         description: "Software integral para la gestión catastral con enfoque multipropósito, diseñado para entidades territoriales, gestores y operadores catastrales, asegurando el cumplimiento del modelo LADM_COL.",
-        submodules: ["Gestión de Trámites", "Módulo SIG", "Gestión Física y Jurídica"]
+        submodules: ["Administración de Trámites", "Módulo SIG", "Gestión Física y Jurídica"]
     },
     "SIATGOB": {
         icon: <Briefcase className="h-6 w-6 text-primary" />,
-        description: "Solución avanzada para la administración del territorio a nivel municipal. Opera bajo el estándar LADM COL y se integra con la Infraestructura Colombiana de Datos Espaciales (ICDE). Su objetivo es optimizar la planificación, el control del uso del suelo y garantizar una gestión transparente.",
+        description: "Solución avanzada para la administración del territorio a nivel municipal. Opera bajo el estándar LADM COL y se integra con la ICDE para optimizar la planificación y el control del uso del suelo.",
         submodules: ["Ordenamiento Territorial", "Administración de la Propiedad", "Fortalecimiento Fiscal", "Planificación y Desarrollo", "Gestión de Recursos Naturales y Riesgos"]
     },
     "PAEgob": {
         icon: <School className="h-6 w-6 text-primary" />,
-        description: "Solución tecnológica diseñada para optimizar la gestión y supervisión del Programa de Alimentación Escolar (PAE) en Colombia. Está dirigida a los administradores del programa y a las instituciones educativas.",
-        submodules: ["Gestión de Instituciones", "Gestión de Beneficiarios", "Reportes Diarios y Mensuales", "Validación de Entregas"]
+        description: "Solución tecnológica para optimizar la gestión y supervisión del Programa de Alimentación Escolar (PAE), dirigida a administradores del programa e instituciones educativas.",
+        submodules: ["Gestión de Instituciones y Sedes", "Gestión de Beneficiarios", "Reportes Diarios y Mensuales", "Validación de Entregas con Firma Digital"]
     },
-     "OFI-GOB": {
-        icon: <LayoutDashboard className="h-6 w-6 text-primary" />,
-        description: "Una suite que integra y gestiona las dimensiones del Modelo Integrado de Planeación y Gestión (MIPG) para entidades públicas, centrada en el ciclo de vida completo del servidor público y la hoja de ruta de la entidad.",
-        submodules: ["Talento Humano", "Direccionamiento Estratégico", "Gestión con Valores", "Evaluación de Resultados", "Información y Comunicación", "Gestión del Conocimiento", "Control Interno"]
+     "EduGOB": {
+        icon: <BookOpen className="h-6 w-6 text-primary" />,
+        description: "Plataforma enfocada en la gestión escolar y académica del día a día para optimizar los procesos administrativos y académicos, ofreciendo una trazabilidad completa del ciclo de vida del estudiante.",
+        submodules: ["Gestión Académica y Administrativa", "Bienestar Estudiantil", "Desarrollo Profesional (Hojas de Vida)", "Analítica y Seguimiento de Egresados"]
     },
-    "GestorDoc": {
+     "GEGOB": {
+        icon: <BrainCircuit className="h-6 w-6 text-primary" />,
+        description: "Plataforma de alto nivel para la gobernanza y la mejora continua del sistema educativo. Su enfoque es estratégico y de diagnóstico para instituciones y secretarías de educación.",
+        submodules: ["Tablero Principal y PEI", "Sistema de Evaluación (SIE)", "Autoevaluación y Planes de Mejoramiento (PMI)", "Análisis de Evaluaciones Externas", "Administración del Sistema"]
+    },
+     "GestorDoc": {
         icon: <FileArchive className="h-6 w-6 text-primary" />,
-        description: "Una solución completa de gestión documental que cumple con los requisitos de la Ley 594 de 2000 (Ley General de Archivos de Colombia). Permite organizar, asegurar y dar accesibilidad a los documentos de una organización.",
+        description: "Solución completa de gestión documental que cumple con la Ley 594 de 2000. Permite organizar, asegurar y dar accesibilidad a los documentos de una organización.",
         submodules: ["Tablas de Retención Documental (TRD)", "Flujos de Trabajo Seguros", "Consultas Virtuales y Presenciales", "Identificadores Únicos (FUID)"]
     },
     "infoGOB": {
         icon: <Info className="h-6 w-6 text-primary" />,
-        description: "Una plataforma enfocada en la transparencia y la rendición de cuentas para la gestión de proyectos. Permite el acceso público a información detallada sobre objetivos, financiamiento, avances y resultados de diversas iniciativas.",
+        description: "Plataforma enfocada en la transparencia y la rendición de cuentas para la gestión de proyectos. Permite el acceso público a información detallada de iniciativas.",
         submodules: ["Gestión de Proyectos", "Seguimiento y Monitoreo", "Participación Ciudadana", "Módulo SIG"]
+    },
+    "OFI-GOB": {
+        icon: <LayoutDashboard className="h-6 w-6 text-primary" />,
+        description: "Una suite que integra y gestiona las dimensiones del Modelo Integrado de Planeación y Gestión (MIPG) para entidades públicas, centrada en el ciclo de vida del servidor público y la hoja de ruta de la entidad.",
+        submodules: ["Talento Humano", "Direccionamiento Estratégico", "Gestión con Valores", "Evaluación de Resultados", "Información y Comunicación", "Gestión del Conocimiento", "Control Interno"]
     }
   };
 
@@ -314,13 +324,7 @@ export default function PlesTicPage() {
         description: "Panel de control para la configuración del sistema.",
         submodules: ["Gestión de Usuarios", "Configuración Institucional", "Registros del Sistema", "Configuraciones Globales"]
     },
-    "EduGOB (GEGOB)": {
-        icon: <BrainCircuit className="h-6 w-6 text-primary" />,
-        description: "Plataforma integral para la gestión en instituciones de educación superior, básica y media. Su objetivo es optimizar los procesos académicos y administrativos, y monitorear el bienestar estudiantil.",
-        submodules: ["Gestión de Usuarios y Permisos", "Seguimiento al Bienestar Físico y Mental", "Administración de Convocatorias y Becas", "Constructor de Hojas de Vida", "Analítica de Datos"]
-    }
   };
-
 
   return (
     <div className="space-y-16">
@@ -467,7 +471,7 @@ export default function PlesTicPage() {
           <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Proyectos Destacados</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {caseStudies.map((study) => (
-              <Card key={study.title} className="overflow-hidden group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col bg-card hover:animate-gradient hover:bg-[length:200%_200%]">
+              <Card key={study.title} className="overflow-hidden group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col bg-card group-hover:animate-gradient hover:bg-[length:200%_200%]">
                 <div className="relative h-56 w-full bg-card group-hover:bg-transparent transition-colors">
                   {study.illustration}
                 </div>
@@ -504,7 +508,7 @@ export default function PlesTicPage() {
         
       <section className="w-full py-20 bg-secondary">
         <div className="text-center mb-12 px-4">
-          <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestras Suites de Software</h2>
+          <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestras Dos Grandes Suites de Software</h2>
         </div>
 
         <Tabs defaultValue="ofi-ples" className="w-full">
@@ -518,30 +522,32 @@ export default function PlesTicPage() {
                 <h3 className="text-2xl font-bold text-foreground">Ofi-Ples: Suite Empresarial</h3>
                 <p className="text-muted-foreground mt-2 max-w-3xl mx-auto">Esta línea de productos está concebida como una solución integral de Planificación de Recursos Empresariales (ERP) y Gestión de Relaciones con el Cliente (CRM) dirigida al sector privado. El objetivo principal de Ofi-Ples es unificar y automatizar las operaciones de negocio para mejorar la eficiencia, la productividad y la toma de decisiones.</p>
             </div>
-            <Card className="max-w-6xl mx-auto shadow-lg border">
-                <Accordion type="single" collapsible className="w-full" defaultValue="Ventas">
-                {Object.entries(ofiPlesModules).map(([category, data]) => (
-                    <AccordionItem value={category} key={category} className="border-x-0 border-t-0 last:border-b-0">
-                    <AccordionTrigger className="text-lg font-semibold hover:no-underline py-4 px-6 text-left data-[state=open]:text-primary data-[state=open]:bg-primary/5 capitalize">
-                        <div className="flex items-center gap-4">
-                        {data.icon}
-                        <span>{category}</span>
-                        </div>
-                    </AccordionTrigger>
-                    <AccordionContent className="pt-2 pb-4 px-6 bg-primary/5">
-                         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 pl-10">
-                            {data.items.map(module => (
-                            <div key={module.name}>
-                                <p className="font-semibold text-foreground">{module.name}</p>
-                                <p className="text-sm text-muted-foreground">{module.description}</p>
-                            </div>
-                            ))}
-                        </div>
-                    </AccordionContent>
-                    </AccordionItem>
-                ))}
-                </Accordion>
-            </Card>
+            <div className="w-full">
+              <Card className="max-w-6xl mx-auto shadow-lg border">
+                  <Accordion type="single" collapsible className="w-full" defaultValue="Ventas">
+                  {Object.entries(ofiPlesModules).map(([category, data]) => (
+                      <AccordionItem value={category} key={category} className="border-x-0 border-t-0 last:border-b-0">
+                      <AccordionTrigger className="text-lg font-semibold hover:no-underline py-4 px-6 text-left data-[state=open]:text-primary data-[state=open]:bg-primary/5 capitalize">
+                          <div className="flex items-center gap-4">
+                          {data.icon}
+                          <span>{category}</span>
+                          </div>
+                      </AccordionTrigger>
+                      <AccordionContent className="pt-2 pb-4 px-6 bg-primary/5">
+                           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 pl-10">
+                              {data.items.map(module => (
+                              <div key={module.name}>
+                                  <p className="font-semibold text-foreground">{module.name}</p>
+                                  <p className="text-sm text-muted-foreground">{module.description}</p>
+                              </div>
+                              ))}
+                          </div>
+                      </AccordionContent>
+                      </AccordionItem>
+                  ))}
+                  </Accordion>
+              </Card>
+            </div>
           </TabsContent>
 
           <TabsContent value="gob-ples" className="py-8">
@@ -549,32 +555,35 @@ export default function PlesTicPage() {
                 <h3 className="text-2xl font-bold text-foreground">Gob-Ples: Suite Gubernamental</h3>
                 <p className="text-muted-foreground mt-2 max-w-3xl mx-auto">Gob-Ples es la línea más diversificada y especializada de PLES-TIC, compuesta por un conjunto de plataformas diseñadas para responder a las necesidades específicas de entidades territoriales, instituciones educativas y otros organismos del sector público en Colombia.</p>
             </div>
-             <Card className="max-w-6xl mx-auto shadow-lg border">
-                <Accordion type="single" collapsible className="w-full">
-                    {Object.entries(gobPlesModules).map(([category, data]) => (
-                      <AccordionItem value={category} key={category} className="border-x-0 border-t-0 last:border-b-0">
-                        <AccordionTrigger className="text-lg font-semibold hover:no-underline py-4 px-6 text-left data-[state=open]:text-primary data-[state=open]:bg-primary/5">
-                          <div className="flex items-center gap-4">
-                            {data.icon}
-                            <span>{category}</span>
-                          </div>
-                        </AccordionTrigger>
-                        <AccordionContent className="pt-2 pb-4 px-6 bg-primary/5 space-y-3">
-                          <p className="text-base text-muted-foreground pl-10">{data.description}</p>
-                          {data.submodules && data.submodules.length > 0 && (
-                            <div className="pl-10">
-                              <h4 className="font-semibold mb-2 text-foreground">Módulos Clave:</h4>
-                              <div className="flex flex-wrap gap-2">
-                                {data.submodules.map(sub => <Badge key={sub} variant="secondary">{sub}</Badge>)}
+             <div className="w-full">
+                <Card className="max-w-6xl mx-auto shadow-lg border">
+                    <Accordion type="single" collapsible className="w-full" defaultValue="CatastroGob">
+                        {Object.entries(gobPlesModules).map(([category, data]) => (
+                          <AccordionItem value={category} key={category} className="border-x-0 border-t-0 last:border-b-0">
+                            <AccordionTrigger className="text-lg font-semibold hover:no-underline py-4 px-6 text-left data-[state=open]:text-primary data-[state=open]:bg-primary/5">
+                              <div className="flex items-center gap-4">
+                                {data.icon}
+                                <span>{category}</span>
                               </div>
-                            </div>
-                          )}
-                        </AccordionContent>
-                      </AccordionItem>
-                    ))}
-                </Accordion>
-             </Card>
+                            </AccordionTrigger>
+                            <AccordionContent className="pt-2 pb-4 px-6 bg-primary/5 space-y-3">
+                              <p className="text-base text-muted-foreground pl-10">{data.description}</p>
+                              {data.submodules && data.submodules.length > 0 && (
+                                <div className="pl-10">
+                                  <h4 className="font-semibold mb-2 text-foreground">Módulos Clave:</h4>
+                                  <div className="flex flex-wrap gap-2">
+                                    {data.submodules.map(sub => <Badge key={sub} variant="secondary">{sub}</Badge>)}
+                                  </div>
+                                </div>
+                              )}
+                            </AccordionContent>
+                          </AccordionItem>
+                        ))}
+                    </Accordion>
+                </Card>
+             </div>
           </TabsContent>
+
         </Tabs>
       </section>
 
@@ -597,4 +606,3 @@ export default function PlesTicPage() {
     </div>
   );
 }
-
