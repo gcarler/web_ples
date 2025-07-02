@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {
-  ArrowRight, CheckCircle, Cpu, Lightbulb, ShieldCheck, TrendingUp, Code, CloudCog, Lock, BarChartBig, Network, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, Rocket, Workflow, Brain, Database, Settings, Server, Shield, Layers, ShoppingBag, ShoppingCart, Cloud, Users, BarChart3, HeartPulse, Building2, Globe, Landmark, Warehouse, Users2, Megaphone, ConciergeBell, Zap, Wrench, ChevronRight, Briefcase, Map, UtensilsCrossed, School, FileArchive, Info, LayoutDashboard, Target, ShieldAlert, FileSearch, ExternalLink, GitMerge, FileCheck, BookOpen, ClipboardCheck
+  ArrowRight, CheckCircle, Cpu, Lightbulb, ShieldCheck, TrendingUp, Code, CloudCog, Lock, BarChartBig, Network, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, Rocket, Workflow, Brain, Database, Settings, Server, Shield, Layers, ShoppingBag, ShoppingCart, Cloud, Users, BarChart3, HeartPulse, Building2, Globe, Landmark, Warehouse, Users2, Megaphone, ConciergeBell, Zap, Wrench, ChevronRight, Briefcase, Map, UtensilsCrossed, School, FileArchive, Info, LayoutDashboard, Target, ShieldAlert, FileSearch, ExternalLink, GitMerge, FileCheck, BookOpen, ClipboardCheck, BrainCircuit
 } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
@@ -499,9 +499,9 @@ export default function PlesTicPage() {
       </section>
         
       <section className="w-full py-20 bg-secondary">
-        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="text-center mx-auto">
             <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestras Suites de Software Empresarial</h2>
-            <p className="text-muted-foreground max-w-3xl mx-auto mt-4 mb-12">
+            <p className="text-muted-foreground max-w-3xl mx-auto mt-4 mb-12 px-4">
                 Dos líneas de productos especializadas, diseñadas para impulsar la eficiencia y la transformación digital en los sectores privado y público.
             </p>
         </div>
@@ -520,7 +520,7 @@ export default function PlesTicPage() {
                            <CardHeader>
                                 <CardTitle className="text-2xl text-primary">Suite Empresarial: Ofi-Ples</CardTitle>
                                 <CardDescription>
-                                    Solución integral de Planificación de Recursos Empresariales (ERP) y Gestión de Relaciones con el Cliente (CRM) dirigida al sector privado. Su objetivo es unificar y automatizar las operaciones de negocio para mejorar la eficiencia, la productividad y la toma de decisiones.
+                                    Esta línea de productos está concebida como una solución integral de Planificación de Recursos Empresariales (ERP) y Gestión de Relaciones con el Cliente (CRM) dirigida al sector privado. El objetivo principal de Ofi-Ples es unificar y automatizar las operaciones de negocio para mejorar la eficiencia, la productividad y la toma de decisiones.
                                 </CardDescription>
                            </CardHeader>
                         </Card>
@@ -554,7 +554,7 @@ export default function PlesTicPage() {
                            <CardHeader>
                                 <CardTitle className="text-2xl text-primary">Suite Gubernamental: Gob-Ples</CardTitle>
                                 <CardDescription>
-                                    La línea más diversificada y especializada de PLES-TIC, compuesta por un conjunto de plataformas diseñadas para responder a las necesidades específicas de entidades territoriales, instituciones educativas y otros organismos del sector público en Colombia.
+                                    Gob-Ples es la línea más diversificada y especializada de PLES-TIC, compuesta por un conjunto de plataformas diseñadas para responder a las necesidades específicas de entidades territoriales, instituciones educativas y otros organismos del sector público en Colombia. Cada software de Gob-Ples está construido para resolver problemáticas concretas de la administración pública.
                                 </CardDescription>
                            </CardHeader>
                         </Card>
