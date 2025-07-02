@@ -190,7 +190,7 @@ export default {
         'zoom-in-rotate': 'zoom-in-rotate 1.2s ease-out',
         'drop-in': 'drop-in 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
         'wave-shimmer': 'wave-shimmer 3s linear infinite',
-        'radar-sweep': 'radar-sweep 2.5s infinite linear',
+        'radar-sweep': 'radar-sweep 5s infinite linear',
   		}
   	}
   },

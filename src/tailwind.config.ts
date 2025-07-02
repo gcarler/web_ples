@@ -202,7 +202,7 @@ export default {
         'slide-in-from-left-hero': 'slide-in-from-left-hero 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards',
         'zoom-in-bounce-hero': 'zoom-in-bounce-hero 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s forwards',
         'wave-shimmer': 'wave-shimmer 3s linear infinite',
-        'radar-sweep': 'radar-sweep 2.5s infinite linear',
+        'radar-sweep': 'radar-sweep 5s infinite linear',
   		}
   	}
   },
