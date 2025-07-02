@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, CheckCircle, Cpu, Lightbulb, ShieldCheck, TrendingUp, Code, CloudCog, Lock, BarChartBig, Network, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, Rocket, Workflow, Brain, Database, Settings, Server, Shield, Layers, Store, ShoppingCart, Cloud, Users, BarChart3 } from 'lucide-react';
+import { ArrowRight, CheckCircle, Cpu, Lightbulb, ShieldCheck, TrendingUp, Code, CloudCog, Lock, BarChartBig, Network, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, Rocket, Workflow, Brain, Database, Settings, Server, Shield, Layers, Building2, ShoppingCart, Cloud, Users, BarChart3 } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import PlexusIllustration from '@/components/illustrations/PlexusIllustration';
@@ -105,7 +105,7 @@ export default function PlesTicPage() {
         <div className="relative h-full w-full overflow-hidden rounded-lg">
             <PlexusIllustration />
             <div className="absolute inset-0 flex items-center justify-center p-4">
-                <Store className="absolute bottom-4 left-4 h-16 w-16 text-white/30" />
+                <Building2 className="absolute top-[50%] left-[10%] h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '0.3s' }} />
                 <ShoppingCart className="absolute top-[15%] left-[30%] h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '0.5s' }} />
                 <Cloud className="absolute top-[40%] left-[55%] h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '0.7s' }} />
                 <Users className="absolute bottom-[25%] left-[45%] h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '0.9s' }} />
