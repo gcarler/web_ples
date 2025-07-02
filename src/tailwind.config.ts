@@ -205,13 +205,16 @@ export default {
             '0%, 100%': { transform: 'scale(1) translateX(-50%) translateY(-50%)', opacity: 0.8 },
             '50%': { transform: 'scale(1.5) translateX(-50%) translateY(-50%)', opacity: 1 },
         },
-        'heartbeat': {
-          '0%': { transform: 'scale(1)', boxShadow: '0 0 0 0 hsl(var(--accent) / 0.5)' },
-          '5%': { transform: 'scale(1.1)', boxShadow: '0 0 0 10px hsl(var(--accent) / 0)' },
-          '15%': { transform: 'scale(1)', boxShadow: '0 0 0 0 hsl(var(--accent) / 0.5)' },
-          '20%': { transform: 'scale(1.1)', boxShadow: '0 0 0 10px hsl(var(--accent) / 0)' },
-          '30%': { transform: 'scale(1)', boxShadow: '0 0 0 0 hsl(var(--accent) / 0)' },
-          '100%': { transform: 'scale(1)', boxShadow: '0 0 0 0 hsl(var(--accent) / 0)' },
+        'heart-pulse-ring': {
+          '0%': { transform: 'scale(0.33)', opacity: '0.8' },
+          '80%, 100%': { transform: 'scale(2)', opacity: '0' }
+        },
+        'heart-pulse-icon': {
+            '0%': { transform: 'scale(1)' },
+            '10%': { transform: 'scale(1.1)' },
+            '20%': { transform: 'scale(1)' },
+            '30%': { transform: 'scale(1.15)' },
+            '40%, 100%': { transform: 'scale(1)' },
         },
   		},
   		animation: {
@@ -242,7 +245,8 @@ export default {
         'pulse-glow-shield': 'pulse-glow-shield 3s ease-in-out infinite',
         'station-pop-in': 'station-pop-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
         'flow-pulse': 'flow-pulse 2s ease-in-out infinite',
-        'heartbeat': 'heartbeat 1.4s infinite',
+        'heart-pulse-ring': 'heart-pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite',
+        'heart-pulse-icon': 'heart-pulse-icon 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite',
   		}
   	}
   },
