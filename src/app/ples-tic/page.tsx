@@ -414,75 +414,70 @@ export default function PlesTicPage() {
         </div>
       </section>
         
-      <section className="py-16 bg-background">
-        <div className="w-full px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestras Suites de Software Empresarial</h2>
-          <p className="text-muted-foreground text-center max-w-3xl mx-auto mb-12">
+      <section className="py-20 bg-secondary">
+        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestras Suites de Software Empresarial</h2>
+          <p className="text-muted-foreground max-w-3xl mx-auto mt-4 mb-12">
             Soluciones integrales y modulares diseñadas para transformar la gestión en los sectores privado, público y educativo.
           </p>
+        </div>
 
-          <Tabs defaultValue="ofi-ples" className="w-full max-w-6xl mx-auto">
-            <TabsList className="grid w-full grid-cols-1 md:grid-cols-3 mb-8 h-auto">
-              <TabsTrigger value="ofi-ples" className="py-3 text-base">OFI-PLES</TabsTrigger>
-              <TabsTrigger value="ofi-gob" className="py-3 text-base">OFI-GOB</TabsTrigger>
-              <TabsTrigger value="cegob" className="py-3 text-base">CEGOB</TabsTrigger>
-            </TabsList>
+        <div className="w-full">
+            <Tabs defaultValue="ofi-ples" className="w-full">
+            <div className="flex justify-center border-b border-border bg-background">
+                <TabsList className="grid w-full max-w-screen-md grid-cols-1 md:grid-cols-3 h-auto p-0 bg-transparent rounded-none">
+                <TabsTrigger value="ofi-ples" className="py-4 text-base rounded-none bg-transparent border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none">OFI-PLES</TabsTrigger>
+                <TabsTrigger value="ofi-gob" className="py-4 text-base rounded-none bg-transparent border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none">OFI-GOB</TabsTrigger>
+                <TabsTrigger value="cegob" className="py-4 text-base rounded-none bg-transparent border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none">CEGOB</TabsTrigger>
+                </TabsList>
+            </div>
 
-            <TabsContent value="ofi-ples">
-              <Card className="border-primary/20 shadow-lg">
-                <CardHeader>
-                  <CardTitle className="text-2xl text-primary">OFI-PLES: Aplicaciones para Cada Necesidad</CardTitle>
-                  <CardDescription>Una suite completa de aplicaciones empresariales integradas para optimizar cada aspecto de su negocio.</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Accordion type="multiple" className="w-full space-y-2">
-                    {ofiPlesCategories.map((category) => {
-                      const CategoryIcon = category.icon;
-                      return (
-                      <AccordionItem key={category.name} value={category.name} className="border-b-0">
-                        <AccordionTrigger className="bg-muted/50 hover:bg-muted rounded-md px-4 py-3 text-lg font-semibold hover:no-underline">
-                          <div className="flex items-center gap-3">
-                             <CategoryIcon className="h-6 w-6 text-primary"/>
-                             {category.name}
-                          </div>
-                        </AccordionTrigger>
-                        <AccordionContent className="pt-2">
-                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 bg-background rounded-b-md border">
-                            {category.apps.map(app => (
-                               <Card key={app.name} className="bg-card hover:shadow-md transition-shadow">
-                                <CardHeader>
-                                    <CardDescription className="font-medium text-primary">{app.type}</CardDescription>
-                                    <CardTitle className="text-lg">{app.name}</CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <p className="text-sm text-muted-foreground">{app.description}</p>
-                                </CardContent>
-                               </Card>
-                            ))}
-                          </div>
-                        </AccordionContent>
-                      </AccordionItem>
-                    )})}
-                  </Accordion>
-                </CardContent>
-              </Card>
-            </TabsContent>
-
-            <TabsContent value="ofi-gob">
-                <Card className="border-primary/20 shadow-lg">
-                    <CardHeader>
-                        <CardTitle className="text-2xl text-primary">OFI-GOB: Suite para la Gestión Pública</CardTitle>
-                        <CardDescription>Una suite integral que integra y gestiona las dimensiones del Modelo Integrado de Planeación y Gestión (MIPG).</CardDescription>
-                    </CardHeader>
-                    <CardContent>
+            <div className="py-12 bg-background">
+                <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <TabsContent value="ofi-ples">
+                        <h3 className="text-2xl font-bold text-primary mb-2">OFI-PLES: Aplicaciones para Cada Necesidad</h3>
+                        <p className="text-muted-foreground mb-6">Una suite completa de aplicaciones empresariales integradas para optimizar cada aspecto de su negocio.</p>
+                        <Accordion type="multiple" className="w-full space-y-2">
+                        {ofiPlesCategories.map((category) => {
+                            const CategoryIcon = category.icon;
+                            return (
+                            <AccordionItem key={category.name} value={category.name} className="border bg-card rounded-md">
+                                <AccordionTrigger className="hover:bg-muted/50 rounded-md px-4 py-3 text-lg font-semibold hover:no-underline">
+                                <div className="flex items-center gap-3">
+                                    <CategoryIcon className="h-6 w-6 text-primary"/>
+                                    {category.name}
+                                </div>
+                                </AccordionTrigger>
+                                <AccordionContent className="pt-2">
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 rounded-b-md">
+                                    {category.apps.map(app => (
+                                    <Card key={app.name} className="bg-background hover:shadow-md transition-shadow">
+                                        <CardHeader>
+                                            <CardDescription className="font-medium text-primary">{app.type}</CardDescription>
+                                            <CardTitle className="text-lg">{app.name}</CardTitle>
+                                        </CardHeader>
+                                        <CardContent>
+                                            <p className="text-sm text-muted-foreground">{app.description}</p>
+                                        </CardContent>
+                                    </Card>
+                                    ))}
+                                </div>
+                                </AccordionContent>
+                            </AccordionItem>
+                            )})}
+                        </Accordion>
+                    </TabsContent>
+                    <TabsContent value="ofi-gob">
+                        <h3 className="text-2xl font-bold text-primary mb-2">OFI-GOB: Suite para la Gestión Pública</h3>
+                        <p className="text-muted-foreground mb-6">Una suite integral que integra y gestiona las dimensiones del Modelo Integrado de Planeación y Gestión (MIPG).</p>
                         <Accordion type="multiple" className="w-full space-y-2">
                             {ofiGobDimensions.map(dim => (
-                                <AccordionItem key={dim.name} value={dim.name} className="border-b-0">
-                                    <AccordionTrigger className="bg-muted/50 hover:bg-muted rounded-md px-4 py-3 text-lg font-semibold hover:no-underline text-left">
+                                <AccordionItem key={dim.name} value={dim.name} className="border bg-card rounded-md">
+                                    <AccordionTrigger className="hover:bg-muted/50 rounded-md px-4 py-3 text-lg font-semibold hover:no-underline text-left">
                                         {dim.name}
                                     </AccordionTrigger>
                                     <AccordionContent className="pt-2">
-                                        <div className="p-4 bg-background rounded-b-md border space-y-3">
+                                        <div className="p-4 bg-background rounded-b-md space-y-3">
                                             <p className="text-muted-foreground"><strong className="text-foreground">Propósito:</strong> {dim.purpose}</p>
                                             <div>
                                                 <h4 className="font-semibold text-foreground mb-2">Submódulos:</h4>
@@ -500,25 +495,18 @@ export default function PlesTicPage() {
                                 </AccordionItem>
                             ))}
                         </Accordion>
-                    </CardContent>
-                </Card>
-            </TabsContent>
-            
-            <TabsContent value="cegob">
-               <Card className="border-primary/20 shadow-lg">
-                    <CardHeader>
-                        <CardTitle className="text-2xl text-primary">CEGOB: Control y Excelencia en la Gobernanza Educativa</CardTitle>
-                        <CardDescription>Una plataforma integral diseñada para unificar y simplificar la gestión de las instituciones educativas.</CardDescription>
-                    </CardHeader>
-                    <CardContent>
+                    </TabsContent>
+                    <TabsContent value="cegob">
+                        <h3 className="text-2xl font-bold text-primary mb-2">CEGOB: Control y Excelencia en la Gobernanza Educativa</h3>
+                        <p className="text-muted-foreground mb-6">Una plataforma integral diseñada para unificar y simplificar la gestión de las instituciones educativas.</p>
                         <Accordion type="multiple" className="w-full space-y-2">
                             {cegobModules.map(mod => (
-                                <AccordionItem key={mod.name} value={mod.name} className="border-b-0">
-                                    <AccordionTrigger className="bg-muted/50 hover:bg-muted rounded-md px-4 py-3 text-lg font-semibold hover:no-underline text-left">
+                                <AccordionItem key={mod.name} value={mod.name} className="border bg-card rounded-md">
+                                    <AccordionTrigger className="hover:bg-muted/50 rounded-md px-4 py-3 text-lg font-semibold hover:no-underline text-left">
                                         {mod.name}
                                     </AccordionTrigger>
                                     <AccordionContent className="pt-2">
-                                        <div className="p-4 bg-background rounded-b-md border space-y-3">
+                                        <div className="p-4 bg-background rounded-b-md space-y-3">
                                             <p className="text-muted-foreground">{mod.description}</p>
                                             <div>
                                                 <h4 className="font-semibold text-foreground mb-2">Funcionalidades:</h4>
@@ -536,10 +524,10 @@ export default function PlesTicPage() {
                                 </AccordionItem>
                             ))}
                         </Accordion>
-                    </CardContent>
-                </Card>
-            </TabsContent>
-          </Tabs>
+                    </TabsContent>
+                </div>
+            </div>
+            </Tabs>
         </div>
       </section>
 
