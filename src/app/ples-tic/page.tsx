@@ -119,7 +119,7 @@ const caseStudies = [
                 <Users className="h-8 w-8 text-primary"/>
             </div>
             <div className="absolute bottom-[25%] right-[25%] translate-x-1/2 translate-y-1/2 animate-subtle-float" style={{ animationDelay: '0.9s' }}>
-                <TrendingUp className="h-8 w-8 text-primary"/>
+                <BarChart3 className="h-8 w-8 text-primary"/>
             </div>
           </div>
         </div>
@@ -246,10 +246,10 @@ const gobPlesModules = {
         icon: Briefcase,
         description: "Solución avanzada para la administración del territorio a nivel municipal. Opera bajo el estándar LADM COL y se integra con la ICDE para optimizar la planificación y el control del uso del suelo.",
         items: [
-            { name: "Ordenamiento Territorial", description: "Licencias y seguimiento a planes." },
-            { name: "Administración de la Propiedad", description: "Inventario de predios." },
-            { name: "Fortalecimiento Fiscal", description: "Valorización y optimización del recaudo." },
-            { name: "Planificación y Desarrollo", description: "Monitoreo del crecimiento urbano/rural." },
+            { name: "Ordenamiento Territorial", description: "Gestión de licencias y seguimiento a planes." },
+            { name: "Administración de la Propiedad", description: "Inventario de predios rurales, urbanos y fiscales." },
+            { name: "Fortalecimiento Fiscal", description: "Herramientas de valorización y optimización del recaudo." },
+            { name: "Planificación y Desarrollo", description: "Monitoreo del crecimiento urbano y rural." },
             { name: "Recursos Naturales y Riesgos", description: "Identificación de zonas de riesgo." }
         ]
     },
@@ -275,6 +275,30 @@ const gobPlesModules = {
             { name: "Validación de Entregas", description: "Control con firma digital." }
         ]
     },
+    "EduGOB": {
+        icon: BookOpen,
+        description: "Plataforma enfocada en la gestión escolar y académica del día a día. Su propósito es optimizar los procesos administrativos y académicos, ofreciendo una trazabilidad completa del ciclo de vida del estudiante.",
+        items: [
+            { name: "Gestión Académica", description: "Administración de carreras, cursos, materias, clases, calificaciones y control de asistencias." },
+            { name: "Gestión Administrativa", description: "Manejo de convocatorias, expedición de certificados y carnetización." },
+            { name: "Bienestar Estudiantil", description: "Módulo dedicado al seguimiento del bienestar físico, mental y social de los estudiantes, con perfiles personalizados y catálogos de actividades." },
+            { name: "Desarrollo Profesional", description: "Herramientas para que los estudiantes construyan y gestionen sus hojas de vida, conectando sus logros con oportunidades laborales." },
+            { name: "Analítica", description: "Generación de informes de rendimiento académico y seguimiento de egresados para la toma de decisiones basada en datos." }
+        ]
+    },
+    "GEGOB": {
+        icon: BrainCircuit,
+        description: "Plataforma de alto nivel para la gobernanza y la mejora continua del sistema educativo, dirigida tanto a instituciones individuales como a secretarías de educación. Su enfoque es estratégico y de diagnóstico.",
+        items: [
+            { name: "Tablero Principal (Dashboard)", description: "KPIs, mapas de calor y alertas críticas." },
+            { name: "PEI (Proyecto Educativo Institucional)", description: "Gestión estratégica y seguimiento." },
+            { name: "SIE (Sistema de Evaluación)", description: "Gestión de calificaciones y autoevaluación." },
+            { name: "Autoevaluación y PMI", description: "Diagnóstico y planes de mejoramiento." },
+            { name: "Evaluaciones Externas", description: "Análisis de Pruebas Saber y comparativas." },
+            { name: "Módulos de Apoyo", description: "Proyectos transversales y formación docente." },
+            { name: "Administración del Sistema", description: "Gestión de usuarios, roles y auditoría." }
+        ]
+    },
      "GestorDoc": {
         icon: FileArchive,
         description: "Solución completa de gestión documental que cumple con la Ley 594 de 2000. Permite organizar, asegurar y dar accesibilidad a los documentos de una organización.",
@@ -297,39 +321,11 @@ const gobPlesModules = {
     }
 };
 
-const cegobModules = {
-    "EduGOB": {
-        icon: BookOpen,
-        description: "Plataforma enfocada en la gestión escolar y académica del día a día para optimizar los procesos administrativos y académicos, ofreciendo una trazabilidad completa del ciclo de vida del estudiante.",
-        items: [
-            { name: "Gestión Académica", description: "Carreras, cursos, materias, clases, calificaciones y asistencias." },
-            { name: "Gestión Administrativa", description: "Convocatorias, certificados y carnetización." },
-            { name: "Bienestar Estudiantil", description: "Seguimiento físico, mental y social." },
-            { name: "Desarrollo Profesional", description: "Constructor de hojas de vida." },
-            { name: "Analítica", description: "Informes de rendimiento y seguimiento de egresados." }
-        ]
-    },
-    "GEGOB": {
-        icon: BrainCircuit,
-        description: "Plataforma de alto nivel para la gobernanza y la mejora continua del sistema educativo, dirigida tanto a instituciones individuales como a secretarías de educación. Su enfoque es estratégico y de diagnóstico.",
-        items: [
-            { name: "Tablero Principal (Dashboard)", description: "KPIs, mapas de calor y alertas críticas." },
-            { name: "PEI (Proyecto Educativo Institucional)", description: "Gestión estratégica y seguimiento." },
-            { name: "SIE (Sistema de Evaluación)", description: "Gestión de calificaciones y autoevaluación." },
-            { name: "Autoevaluación y PMI", description: "Diagnóstico y planes de mejoramiento." },
-            { name: "Evaluaciones Externas", description: "Análisis de Pruebas Saber y comparativas." },
-            { name: "Módulos de Apoyo", description: "Proyectos transversales y formación docente." },
-            { name: "Administración del Sistema", description: "Gestión de usuarios, roles y auditoría." }
-        ]
-    },
-};
 
 function InteractiveSoftwareSuites() {
     const [activeTab, setActiveTab] = useState('ofi-ples');
-    
     const [selectedOfiModule, setSelectedOfiModule] = useState(Object.keys(ofiPlesModules)[0]);
     const [selectedGobModule, setSelectedGobModule] = useState(Object.keys(gobPlesModules)[0]);
-    const [selectedCegobModule, setSelectedCegobModule] = useState(Object.keys(cegobModules)[0]);
 
     const renderSuiteUI = (
         suiteName: string,
@@ -366,7 +362,6 @@ function InteractiveSoftwareSuites() {
                         })}
                     </nav>
                 </aside>
-
                 <main className="flex-1 min-h-[500px] bg-muted/40 dark:bg-black/20 p-6 md:p-8">
                     {(modules[selectedModule]) ? (
                         <div>
@@ -393,12 +388,11 @@ function InteractiveSoftwareSuites() {
                 <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestras Dos Grandes Suites de Software</h2>
             </div>
             
-            <div className="px-4 sm:px-6 lg:px-8">
+            <div className="w-full">
                 <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-                    <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 max-w-xl mx-auto h-auto mb-8">
+                    <TabsList className="grid w-full grid-cols-1 sm:grid-cols-2 max-w-lg mx-auto h-auto mb-8">
                         <TabsTrigger value="ofi-ples" className="py-2 text-base">Suite Empresarial</TabsTrigger>
                         <TabsTrigger value="gob-ples" className="py-2 text-base">Suite Gubernamental</TabsTrigger>
-                        <TabsTrigger value="cegob" className="py-2 text-base">Suite Educativa</TabsTrigger>
                     </TabsList>
                     
                     <TabsContent value="ofi-ples">
@@ -414,20 +408,10 @@ function InteractiveSoftwareSuites() {
                     <TabsContent value="gob-ples">
                        {renderSuiteUI(
                             "Gob-Ples: Suite Gubernamental",
-                            "Gob-Ples es la línea más diversificada y especializada de PLES-TIC, compuesta por un conjunto de plataformas diseñadas para responder a las necesidades específicas de entidades territoriales y otros organismos del sector público en Colombia.",
+                            "Gob-Ples es la línea más diversificada y especializada de PLES-TIC, compuesta por un conjunto de plataformas diseñadas para responder a las necesidades específicas de entidades territoriales, instituciones educativas y otros organismos del sector público en Colombia. Cada software de Gob-Ples está construido para resolver problemáticas concretas de la administración pública.",
                             gobPlesModules,
                             selectedGobModule,
                             setSelectedGobModule
-                        )}
-                    </TabsContent>
-                    
-                     <TabsContent value="cegob">
-                       {renderSuiteUI(
-                            "CEGOB: Suite Educativa de Gobernanza",
-                            "Nuestra suite educativa está diseñada para abarcar todas las facetas de la gestión académica y de gobernanza, desde la operación diaria en la institución hasta la planificación estratégica a nivel de secretarías de educación.",
-                            cegobModules,
-                            selectedCegobModule,
-                            setSelectedCegobModule
                         )}
                     </TabsContent>
                 </Tabs>
@@ -514,7 +498,7 @@ export default function PlesTicPage() {
             {coreServices.map((service) => (
               <Link key={service.title} href={service.ctaLink || '#'} passHref legacyBehavior>
                 <a className="block group hover:scale-105 transition-all duration-300 ease-in-out">
-                  <Card className="h-full group-hover:shadow-xl group-hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent group-hover:text-primary-foreground bg-card group-hover:animate-gradient hover:bg-[length:200%_200%]">
+                  <Card className="h-full group-hover:shadow-xl group-hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent group-hover:text-primary-foreground bg-card group-hover:animate-gradient group-hover:bg-[length:200%_200%]">
                     <CardHeader className="flex flex-row items-start gap-4">
                         {service.icon}
                         <div>
