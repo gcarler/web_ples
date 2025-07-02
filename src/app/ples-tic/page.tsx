@@ -102,10 +102,8 @@ export default function PlesTicPage() {
       solution: 'Desarrollamos una plataforma e-commerce omnicanal, integramos un sistema ERP en la nube y creamos una estrategia de marketing digital personalizada. Resultados: Incremento de ventas online del 45% y mejora en la satisfacción del cliente.',
       illustration: (
         <div className="relative h-full w-full overflow-hidden p-4 bg-muted/20 group-hover:bg-muted/5">
-            {/* Base Store Icon */}
+            {/* Icons with Tailwind positioning */}
             <Store className="absolute bottom-4 left-4 h-16 w-16 text-primary/30" />
-            
-            {/* Emerging Icons */}
             <div className="absolute top-[15%] left-[30%] animate-pop-in" style={{ animationDelay: '0.2s' }}>
                 <ShoppingCart className="h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '0.5s' }} />
             </div>
@@ -119,18 +117,19 @@ export default function PlesTicPage() {
                 <BarChart3 className="h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '1.1s' }} />
             </div>
 
-            {/* Connecting Lines */}
-            <svg className="absolute inset-0 h-full w-full" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 224" preserveAspectRatio="none">
-                {/* 1. Store to ShoppingCart */}
-                <path d="M 50 190 C 60 110, 80 80, 90 40" stroke="hsl(var(--primary)/0.5)" strokeWidth="1.5" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 200, strokeDashoffset: 200, animationDelay: '1s' }} />
-                {/* 2. ShoppingCart to Cloud */}
-                <path d="M 90 40 C 120 40, 130 90, 165 95" stroke="hsl(var(--primary)/0.5)" strokeWidth="1.5" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 200, strokeDashoffset: 200, animationDelay: '2s' }} />
-                {/* 3. Cloud to BarChart3 */}
-                <path d="M 165 95 C 200 100, 240 130, 270 140" stroke="hsl(var(--primary)/0.5)" strokeWidth="1.5" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 200, strokeDashoffset: 200, animationDelay: '3s' }} />
-                {/* 4. BarChart3 to Users */}
-                <path d="M 270 140 C 250 160, 160 170, 135 170" stroke="hsl(var(--primary)/0.5)" strokeWidth="1.5" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 200, strokeDashoffset: 200, animationDelay: '4s' }} />
-                {/* 5. Users to Store (to complete the loop) */}
-                <path d="M 135 170 C 100 180, 60 190, 50 190" stroke="hsl(var(--primary)/0.5)" strokeWidth="1.5" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 200, strokeDashoffset: 200, animationDelay: '5s' }} />
+            {/* SVG overlay for connecting lines */}
+            <svg className="absolute inset-0 h-full w-full opacity-70" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 224" preserveAspectRatio="none">
+                {/* Primary Connections from Store */}
+                <path d="M48 200 Q 70 120, 94 42" stroke="hsl(var(--primary))" strokeWidth="2" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 200, strokeDashoffset: 200, animationDelay: '1.2s' }} />
+                <path d="M48 200 Q 110 140, 169 98" stroke="hsl(var(--primary))" strokeWidth="2" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 180, strokeDashoffset: 180, animationDelay: '1.4s' }} />
+                <path d="M48 200 Q 90 190, 139 176" stroke="hsl(var(--primary))" strokeWidth="2" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 150, strokeDashoffset: 150, animationDelay: '1.6s' }} />
+                <path d="M48 200 Q 160 220, 266 142" stroke="hsl(var(--primary))" strokeWidth="2" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 300, strokeDashoffset: 300, animationDelay: '1.8s' }} />
+                
+                {/* Secondary, Inter-icon Connections */}
+                <path d="M102 42 Q 135 65, 165 94" stroke="hsl(var(--accent))" strokeWidth="1" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 120, strokeDashoffset: 120, animationDelay: '2.2s' }} />
+                <path d="M173 98 Q 220 115, 262 138" stroke="hsl(var(--accent))" strokeWidth="1" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 150, strokeDashoffset: 150, animationDelay: '2.4s' }} />
+                <path d="M266 142 Q 200 160, 147 172" stroke="hsl(var(--accent))" strokeWidth="1" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 180, strokeDashoffset: 180, animationDelay: '2.6s' }} />
+                <path d="M143 176 Q 115 110, 98 46" stroke="hsl(var(--accent))" strokeWidth="1" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 220, strokeDashoffset: 220, animationDelay: '2.8s' }} />
             </svg>
         </div>
       ),
