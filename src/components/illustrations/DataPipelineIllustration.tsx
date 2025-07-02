@@ -24,11 +24,15 @@ const DataPipelineIllustration = ({ className }: { className?: string }) => {
             <div className="z-10 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0 w-full max-w-4xl">
                {stations.map((station, index) => {
                    const Icon = station.icon;
+                   const isHeart = Icon === HeartPulse;
                    return (
                        <React.Fragment key={index}>
                            <div className="flex flex-col items-center text-center gap-2 animate-station-pop-in" style={{ animationDelay: `${index * 0.3}s` }}>
                                <div className="relative bg-background/80 backdrop-blur-sm border-2 border-primary/30 rounded-full p-3 md:p-4 shadow-lg shadow-primary/20">
-                                   <Icon className="h-7 w-7 md:h-8 md:w-8 text-primary" />
+                                   <Icon className={cn(
+                                       "h-7 w-7 md:h-8 md:w-8 text-primary",
+                                       isHeart && "animate-heartbeat"
+                                   )} />
                                    <div className="absolute -inset-1 border-2 border-accent/50 rounded-full animate-pulse-glow-shield" style={{ animationDuration: '4s', animationDelay: `${index * 0.5}s`}}/>
                                </div>
                                <span className="text-xs font-medium text-primary-foreground max-w-24">{station.label}</span>
