@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {
-  ArrowRight, CheckCircle, Cpu, Lightbulb, ShieldCheck, TrendingUp, Code, CloudCog, Lock, BarChartBig, Network, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, Rocket, Workflow, Brain, Database, Settings, Server, Shield, Layers, ShoppingCart, Cloud, Users, HeartPulse, Building2, Globe, Landmark, Warehouse, Users2, Megaphone, ConciergeBell, Zap, Wrench, ChevronRight, Briefcase, Map, School, FileArchive, Info, LayoutDashboard, Target, ShieldAlert, FileSearch, ExternalLink, GitMerge, FileCheck, BookOpen, ClipboardCheck, BrainCircuit, ShoppingBag
+  ArrowRight, CheckCircle, Cpu, Lightbulb, ShieldCheck, TrendingUp, Code, CloudCog, Lock, BarChartBig, Network, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, Rocket, Workflow, Brain, Database, Settings, Server, Shield, Layers, ShoppingCart, Cloud, Users, HeartPulse, Building2, Globe, Landmark, Warehouse, Users2, Megaphone, ConciergeBell, Zap, Wrench, ChevronRight, Briefcase, Map, School, FileArchive, Info, LayoutDashboard, Target, ShieldAlert, FileSearch, ExternalLink, GitMerge, FileCheck, BookOpen, ClipboardCheck, BrainCircuit, ShoppingBag, BarChart3
 } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
@@ -13,6 +13,7 @@ import PlexusIllustration from '@/components/illustrations/PlexusIllustration';
 import DataPipelineIllustration from '@/components/illustrations/DataPipelineIllustration';
 import { useState }from 'react';
 import { cn } from '@/lib/utils';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 
 const valuePropositions = [
@@ -139,6 +140,7 @@ const caseStudies = [
 const ofiPlesModules = {
     "Sitio Web": {
         icon: Globe,
+        description: "Herramientas para construir y gestionar su presencia en línea de manera integral.",
         items: [
           { name: "OfiPles Sitio web", description: "Creador de sitios web empresariales" },
           { name: "OfiPles Comercio electrónico", description: "Vende tus productos en línea" },
@@ -150,6 +152,7 @@ const ofiPlesModules = {
     },
     "Ventas": {
         icon: ShoppingCart,
+        description: "Optimice todo su ciclo de ventas, desde la captación de clientes hasta la facturación final.",
         items: [
           { name: "OfiPles CRM", description: "Gestiona tus leads y cierra oportunidades" },
           { name: "OfiPles Ventas", description: "De cotizaciones a facturas" },
@@ -160,6 +163,7 @@ const ofiPlesModules = {
     },
     "Finanzas": {
         icon: Landmark,
+        description: "Controle la salud financiera de su empresa con herramientas contables y de facturación robustas.",
         items: [
           { name: "OfiPles Contabilidad", description: "Gestiona tu contabilidad financiera y analítica" },
           { name: "OfiPles Facturación", description: "Facturas y pagos" },
@@ -171,6 +175,7 @@ const ofiPlesModules = {
     },
     "Inventario y Fabricación": {
         icon: Warehouse,
+        description: "Gestione eficientemente su cadena de suministro, producción y control de calidad.",
         items: [
           { name: "OfiPles Inventario", description: "Gestiona tu inventario y actividades de logística" },
           { name: "OfiPles Manufactura", description: "Órdenes de fabricación y listas de materiales" },
@@ -182,6 +187,7 @@ const ofiPlesModules = {
     },
     "Recursos Humanos": {
         icon: Users2,
+        description: "Administre el ciclo de vida completo de sus empleados, desde la contratación hasta la evaluación.",
         items: [
           { name: "OfiPles Empleados", description: "Centraliza la información de tus empleados" },
           { name: "OfiPles Reclutamiento", description: "Monitorea tu flujo de reclutamiento" },
@@ -193,6 +199,7 @@ const ofiPlesModules = {
     },
     "Marketing": {
         icon: Megaphone,
+        description: "Cree, automatice y mida sus campañas de marketing para llegar a su público objetivo.",
         items: [
           { name: "OfiPles Automatización de marketing", description: "Elabora campañas de correo automatizadas" },
           { name: "OfiPles Marketing por correo electrónico", description: "Diseña, envía y monitorea correos electrónicos" },
@@ -204,6 +211,7 @@ const ofiPlesModules = {
     },
     "Servicios": {
         icon: ConciergeBell,
+        description: "Gestione proyectos, soporte y servicios de campo con herramientas diseñadas para la eficiencia.",
         items: [
           { name: "OfiPles Proyecto", description: "Organiza y planea tus proyectos" },
           { name: "OfiPles Hojas de horas", description: "Monitorea el tiempo que los empleados invierten en tareas" },
@@ -215,6 +223,7 @@ const ofiPlesModules = {
     },
     "Productividad": {
         icon: Zap,
+        description: "Herramientas para mejorar la comunicación interna y la productividad del equipo.",
         items: [
           { name: "OfiPles Conversaciones", description: "Chat, pasarela de correos electrónicos y canales privados" },
           { name: "OfiPles Aprobaciones", description: "Crea y valida solicitudes de aprobación" },
@@ -225,6 +234,7 @@ const ofiPlesModules = {
     },
     "Personalización": {
         icon: Wrench,
+        description: "Adapte y extienda la plataforma para que se ajuste perfectamente a sus flujos de trabajo únicos.",
         items: [
           { name: "OfiPles Studio", description: "Crea y personaliza tus propias aplicaciones" }
         ]
@@ -321,64 +331,27 @@ const gobPlesModules = {
 };
 
 function InteractiveSoftwareSuites() {
-    const [activeTab, setActiveTab] = useState('ofi-ples');
-    const [selectedOfiModule, setSelectedOfiModule] = useState(Object.keys(ofiPlesModules)[0]);
-    const [selectedGobModule, setSelectedGobModule] = useState(Object.keys(gobPlesModules)[0]);
+    const [activeTab, setActiveTab] = useState('empresarial');
+    const [selectedModuleKey, setSelectedModuleKey] = useState(Object.keys(ofiPlesModules)[0]);
 
-    const renderSuiteUI = (
-        suiteName: string,
-        suiteDescription: string,
-        modules: any,
-        selectedModule: string,
-        setSelectedModule: (module: string) => void
-    ) => (
-        <Card className="shadow-lg border bg-card">
-            <div className="text-center p-6 md:p-8 border-b">
-                <h3 className="text-2xl font-bold text-foreground">{suiteName}</h3>
-                <p className="text-muted-foreground mt-2 max-w-3xl mx-auto">{suiteDescription}</p>
-            </div>
-            <div className="flex flex-col md:flex-row gap-0">
-                <aside className="w-full md:w-1/4 border-b md:border-b-0 md:border-r border-border bg-card">
-                    <nav className="flex flex-col p-2">
-                        {Object.entries(modules).map(([category, data]: [string, any]) => {
-                            const Icon = data.icon;
-                            return (
-                                <button
-                                    key={category}
-                                    onClick={() => setSelectedModule(category)}
-                                    className={cn(
-                                        "flex items-center gap-3 w-full text-left px-3 py-2.5 rounded-md text-sm font-medium transition-colors",
-                                        selectedModule === category
-                                            ? "text-primary bg-primary/10"
-                                            : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
-                                    )}
-                                >
-                                    <Icon className="h-5 w-5 shrink-0" />
-                                    <span className="truncate">{category}</span>
-                                </button>
-                            );
-                        })}
-                    </nav>
-                </aside>
-                <main className="flex-1 min-h-[500px] bg-muted/40 dark:bg-black/20 p-6 md:p-8">
-                    {(modules[selectedModule]) ? (
-                        <div>
-                             <h4 className="text-xl font-semibold text-foreground mb-1">{selectedModule}</h4>
-                             <p className="text-muted-foreground mb-6 text-sm">{(modules[selectedModule] as any).description}</p>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
-                                {(modules[selectedModule] as any).items.map((module: any) => (
-                                    <div key={module.name}>
-                                        <p className="font-semibold text-foreground">{module.name}</p>
-                                        <p className="text-sm text-muted-foreground">{module.description}</p>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    ) : <p>Seleccione un módulo.</p>}
-                </main>
-            </div>
-        </Card>
-    );
+    const handleModuleSelection = (key: string) => {
+        setSelectedModuleKey(key);
+    };
+    
+    // Determine the current set of modules and description based on the active tab
+    const currentModules = activeTab === 'empresarial' ? ofiPlesModules : gobPlesModules;
+    const currentDescription = activeTab === 'empresarial' 
+        ? "Esta línea de productos está concebida como una solución integral de Planificación de Recursos Empresariales (ERP) y Gestión de Relaciones con el Cliente (CRM) dirigida al sector privado. El objetivo principal de Ofi-Ples es unificar y automatizar las operaciones de negocio para mejorar la eficiencia, la productividad y la toma de decisiones."
+        : "Gob-Ples es la línea más diversificada y especializada de PLES-TIC, compuesta por un conjunto de plataformas diseñadas para responder a las necesidades específicas de entidades territoriales, instituciones educativas y otros organismos del sector público en Colombia. Cada software de Gob-Ples está construido para resolver problemáticas concretas de la administración pública.";
+
+    // Effect to reset selected module when tab changes
+    React.useEffect(() => {
+        if (activeTab === 'empresarial') {
+            setSelectedModuleKey(Object.keys(ofiPlesModules)[0]);
+        } else {
+            setSelectedModuleKey(Object.keys(gobPlesModules)[0]);
+        }
+    }, [activeTab]);
 
     return (
         <section className="w-full py-16 bg-background">
@@ -386,32 +359,59 @@ function InteractiveSoftwareSuites() {
                 <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestras Dos Grandes Suites de Software</h2>
             </div>
             
-            <div className="w-full">
-                <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+            <div className="w-full px-4 sm:px-6 lg:px-8">
+                 <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
                     <TabsList className="grid w-full grid-cols-1 sm:grid-cols-2 max-w-lg mx-auto h-auto mb-8">
-                        <TabsTrigger value="ofi-ples" className="py-2 text-base">Suite Empresarial</TabsTrigger>
-                        <TabsTrigger value="gob-ples" className="py-2 text-base">Suite Gubernamental</TabsTrigger>
+                        <TabsTrigger value="empresarial" className="py-2 text-base">Suite Empresarial</TabsTrigger>
+                        <TabsTrigger value="gubernamental" className="py-2 text-base">Suite Gubernamental</TabsTrigger>
                     </TabsList>
                     
-                    <TabsContent value="ofi-ples">
-                        {renderSuiteUI(
-                            "Ofi-Ples: Suite Empresarial",
-                            "Esta línea de productos está concebida como una solución integral de Planificación de Recursos Empresariales (ERP) y Gestión de Relaciones con el Cliente (CRM) dirigida al sector privado. El objetivo principal de Ofi-Ples es unificar y automatizar las operaciones de negocio para mejorar la eficiencia, la productividad y la toma de decisiones.",
-                            ofiPlesModules,
-                            selectedOfiModule,
-                            setSelectedOfiModule
-                        )}
-                    </TabsContent>
-
-                    <TabsContent value="gob-ples">
-                       {renderSuiteUI(
-                            "Gob-Ples: Suite Gubernamental",
-                            "Gob-Ples es la línea más diversificada y especializada de PLES-TIC, compuesta por un conjunto de plataformas diseñadas para responder a las necesidades específicas de entidades territoriales, instituciones educativas y otros organismos del sector público en Colombia. Cada software de Gob-Ples está construido para resolver problemáticas concretas de la administración pública.",
-                            gobPlesModules,
-                            selectedGobModule,
-                            setSelectedGobModule
-                        )}
-                    </TabsContent>
+                    <Card className="shadow-lg border bg-card w-full">
+                         <div className="text-center p-6 md:p-8 border-b">
+                            <h3 className="text-2xl font-bold text-foreground">{activeTab === 'empresarial' ? 'Ofi-Ples' : 'Gob-Ples'}</h3>
+                            <p className="text-muted-foreground mt-2 max-w-3xl mx-auto">{currentDescription}</p>
+                        </div>
+                        <div className="flex flex-col md:flex-row gap-0">
+                            <aside className="w-full md:w-1/3 lg:w-1/4 border-b md:border-b-0 md:border-r border-border bg-card">
+                                <nav className="flex flex-col p-2">
+                                    {Object.entries(currentModules).map(([category, data]:[string, any]) => {
+                                        const Icon = data.icon;
+                                        return (
+                                            <button
+                                                key={category}
+                                                onClick={() => handleModuleSelection(category)}
+                                                className={cn(
+                                                    "flex items-center gap-3 w-full text-left px-3 py-2.5 rounded-md text-sm font-medium transition-colors",
+                                                    selectedModuleKey === category
+                                                        ? "text-primary bg-primary/10"
+                                                        : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+                                                )}
+                                            >
+                                                <Icon className="h-5 w-5 shrink-0" />
+                                                <span className="truncate">{category}</span>
+                                            </button>
+                                        );
+                                    })}
+                                </nav>
+                            </aside>
+                            <main className="flex-1 min-h-[500px] bg-muted/40 dark:bg-black/20 p-6 md:p-8">
+                                {(currentModules[selectedModuleKey]) ? (
+                                    <div>
+                                        <h4 className="text-xl font-semibold text-foreground mb-1">{selectedModuleKey}</h4>
+                                        <p className="text-muted-foreground mb-6 text-sm">{currentModules[selectedModuleKey].description}</p>
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
+                                            {currentModules[selectedModuleKey].items.map((module: any) => (
+                                                <div key={module.name}>
+                                                    <p className="font-semibold text-foreground">{module.name}</p>
+                                                    <p className="text-sm text-muted-foreground">{module.description}</p>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                ) : <p>Seleccione un módulo para ver sus detalles.</p>}
+                            </main>
+                        </div>
+                    </Card>
                 </Tabs>
             </div>
         </section>
@@ -495,7 +495,7 @@ export default function PlesTicPage() {
             {coreServices.map((service) => (
               <Link key={service.title} href={service.ctaLink || '#'} passHref legacyBehavior>
                 <a className="block group hover:scale-105 transition-all duration-300 ease-in-out">
-                  <Card className="h-full group-hover:shadow-xl group-hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground bg-card group-hover:animate-gradient hover:bg-[length:200%_200%]">
+                  <Card className="h-full group-hover:shadow-xl group-hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground bg-card group-hover:animate-gradient group-hover:bg-[length:200%_200%]">
                     <CardHeader className="flex flex-row items-start gap-4">
                         {service.icon}
                         <div>
