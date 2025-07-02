@@ -5,10 +5,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {
-  ArrowRight, ArrowLeft, CheckCircle, Cpu, Lightbulb, ShieldCheck, TrendingUp, Code, CloudCog, Lock, BarChartBig, Network, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, Rocket, Workflow, Brain, Database, Settings, Server, Shield, Layers, ShoppingCart, Cloud, Users, HeartPulse, Building2, Globe, Landmark, Warehouse, Users2, Megaphone, ConciergeBell, Zap, Wrench, Briefcase, Map, School, FileArchive, Info, LayoutDashboard, Target, ShieldAlert, FileSearch, ExternalLink, GitMerge, FileCheck, BookOpen, ClipboardCheck, BrainCircuit, ShoppingBag, BarChart3, MousePointerClick, LayoutTemplate, MonitorSmartphone
+  ArrowRight, ArrowLeft, CheckCircle, Cpu, Lightbulb, ShieldCheck, TrendingUp, Code, CloudCog, Lock, BarChartBig, Network, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, Rocket, Workflow, Brain, Database, Settings, Server, Shield, Layers, ShoppingCart, Cloud, Users, HeartPulse, Building2, Globe, Landmark, Warehouse, Users2, Megaphone, ConciergeBell, Zap, Wrench, Briefcase, Map, School, FileArchive, Info, LayoutDashboard, Target, ShieldAlert, FileSearch, ExternalLink, GitMerge, FileCheck, BookOpen, ClipboardCheck, BrainCircuit, ShoppingBag, BarChart3, MousePointerClick, LayoutTemplate, MonitorSmartphone, CreditCard, Package, ListOrdered, FileText, Tags, BarChart2, Edit, MessagesSquare, HelpCircle, GraduationCap, Video, Award, MessageCircle, Bot, Clock, Filter, ClipboardList, Tablet, Printer, Barcode, Repeat, CalendarDays, KeyRound, Calendar, FileSignature, BookUser, Scale, Receipt, Camera, FolderArchive, Share2, PenSquare, Factory, Apple, LandPlot, DatabaseZap, Building, Banknote, AreaChart, HeartHandshake, Presentation, MessageSquareDiff, FileDigit, GanttChartSquare, FolderKanban, UsersRound
 } from 'lucide-react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Badge } from '@/components/ui/badge';
 import PlexusIllustration from '@/components/illustrations/PlexusIllustration';
 import DataPipelineIllustration from '@/components/illustrations/DataPipelineIllustration';
 import React, { useState, useEffect } from 'react';
@@ -163,100 +161,502 @@ const ofiPlesModules = {
               formSubject: "Consulta%20OfiPles%20Sitio%20Web"
             } 
           },
-          { name: "OfiPles Comercio electrónico", description: "Vende tus productos en línea", details: { mainIcon: Globe, title: 'OfiPles Comercio electrónico', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles Blog", description: "Publica entradas, anuncios y noticias", details: { mainIcon: Globe, title: 'OfiPles Blog', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles Foro", description: "Gestiona un foro para preguntas frecuentes", details: { mainIcon: Globe, title: 'OfiPles Foro', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles eLearning", description: "Gestiona y publica tus cursos", details: { mainIcon: Globe, title: 'OfiPles eLearning', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles Chat en vivo", description: "Chatea con los visitantes de tu sitio web", details: { mainIcon: Globe, title: 'OfiPles Chat en vivo', description: 'Placeholder description.', keyServices: [], benefits: []} }
+          { name: "OfiPles Comercio electrónico", description: "Vende tus productos en línea", details: { 
+              mainIcon: ShoppingCart, 
+              title: 'OfiPles Comercio Electrónico', 
+              description: 'La solución completa para lanzar y escalar su tienda en línea. Gestione productos, procese pagos y administre pedidos desde una única plataforma integrada.', 
+              keyServices: [
+                  { title: 'Catálogo de Productos Avanzado', text: 'Gestione productos ilimitados, variantes (talla, color), inventario y precios de forma centralizada.', icon: ListOrdered },
+                  { title: 'Pasarelas de Pago Seguras', text: 'Integre múltiples métodos de pago locales e internacionales para ofrecer una experiencia de compra sin fricciones.', icon: CreditCard },
+                  { title: 'Gestión de Pedidos y Envíos', text: 'Administre todo el ciclo de vida del pedido, desde la compra hasta la entrega, con seguimiento y notificaciones automáticas.', icon: Package },
+                  { title: 'Herramientas de Marketing', text: 'Cree cupones de descuento, promociones y campañas de recuperación de carritos abandonados para impulsar sus ventas.', icon: Megaphone }
+              ],
+              benefits: [
+                  'Venda sus productos 24/7 y alcance un mercado global.',
+                  'Gestión de inventario centralizada que evita sobreventas.',
+                  'Ofrezca una experiencia de compra segura y profesional.',
+                  'Aumente la conversión con herramientas de marketing integradas.',
+                  'Obtenga reportes detallados de ventas y rendimiento de productos.'
+              ],
+              ctaText: 'Comience a Vender en Línea',
+              formSubject: 'Consulta%20OfiPles%20Comercio%20Electronico'
+          } },
+          { name: "OfiPles Blog", description: "Publica entradas, anuncios y noticias", details: {
+              mainIcon: Edit, 
+              title: 'OfiPles Blog', 
+              description: 'Atraiga y fidelice a su audiencia con contenido de valor. Nuestro módulo de blog le permite crear, gestionar y optimizar sus publicaciones para llegar a más personas.', 
+              keyServices: [
+                  { title: 'Editor de Contenido Avanzado', text: 'Cree artículos atractivos con un editor intuitivo que soporta texto enriquecido, imágenes, videos y código embebido.', icon: FileText },
+                  { title: 'Gestión de Categorías y Etiquetas', text: 'Organice su contenido de manera lógica para mejorar la navegación del usuario y la estructura de su sitio.', icon: Tags },
+                  { title: 'Optimización SEO Integrada', text: 'Herramientas para personalizar URLs, metadatos y asegurar que su contenido sea amigable para los motores de búsqueda.', icon: BarChart2 },
+                  { title: 'Programación de Publicaciones', text: 'Planifique su calendario de contenidos y programe sus artículos para que se publiquen automáticamente en la fecha y hora deseadas.', icon: CalendarDays }
+              ],
+              benefits: [
+                  'Posicione su marca como un referente en su industria.',
+                  'Atraiga tráfico orgánico a su sitio web a través de contenido relevante.',
+                  'Fomente una comunidad alrededor de su marca.',
+                  'Mejore el SEO de su sitio web de forma continua.',
+                  'Genere leads y oportunidades de negocio a través de su contenido.'
+              ],
+              ctaText: 'Empiece a Escribir su Historia',
+              formSubject: 'Consulta%20OfiPles%20Blog'
+          } },
+          { name: "OfiPles Foro", description: "Gestiona un foro para preguntas frecuentes", details: {
+              mainIcon: MessagesSquare, 
+              title: 'OfiPles Foro', 
+              description: 'Cree una comunidad activa donde sus clientes y usuarios puedan interactuar, resolver dudas y compartir conocimientos. Fomente el engagement y reduzca la carga de soporte.', 
+              keyServices: [
+                  { title: 'Creación de Temas y Categorías', text: 'Estructure su foro en categorías y sub-foros para mantener las conversaciones organizadas y fáciles de encontrar.', icon: FolderKanban },
+                  { title: 'Perfiles de Usuario y Reputación', text: 'Permita que los usuarios personalicen sus perfiles y gane reputación a través de sus contribuciones, incentivando la participación.', icon: Users },
+                  { title: 'Herramientas de Moderación', text: 'Mantenga un ambiente sano y productivo con herramientas para moderar contenido, gestionar usuarios y prevenir el spam.', icon: Shield },
+                  { title: 'Notificaciones y Suscripciones', text: 'Los usuarios pueden suscribirse a temas de su interés y recibir notificaciones de nuevas respuestas, manteniendo la comunidad activa.', icon: Bell }
+              ],
+              benefits: [
+                  'Reduzca los tickets de soporte al permitir que la comunidad resuelva dudas comunes.',
+                  'Obtenga feedback valioso directamente de sus usuarios.',
+                  'Mejore el SEO con contenido generado por los propios usuarios.',
+                  'Fomente la lealtad y el sentido de pertenencia a su marca.',
+                  'Cree un centro de conocimiento colaborativo.'
+              ],
+              ctaText: 'Construya su Comunidad',
+              formSubject: 'Consulta%20OfiPles%20Foro'
+          } },
+          { name: "OfiPles eLearning", description: "Gestiona y publica tus cursos", details: {
+              mainIcon: GraduationCap,
+              title: 'OfiPles eLearning',
+              description: 'Transforme su conocimiento en cursos en línea. Nuestra plataforma le permite crear, vender y gestionar experiencias de aprendizaje impactantes para su audiencia.',
+              keyServices: [
+                  { title: 'Constructor de Cursos Intuitivo', text: 'Estructure sus cursos con lecciones, videos, documentos, y otros recursos multimedia de forma sencilla.', icon: Layers },
+                  { title: 'Evaluaciones y Cuestionarios', text: 'Cree quizzes y exámenes para evaluar el progreso de los estudiantes y reforzar el aprendizaje.', icon: ClipboardCheck },
+                  { title: 'Seguimiento del Progreso del Alumno', text: 'Monitoree el avance de cada estudiante, vea qué lecciones han completado y qué calificaciones han obtenido.', icon: BarChart3 },
+                  { title: 'Certificados Personalizables', text: 'Emita certificados de finalización automáticamente a los estudiantes que completen sus cursos, añadiendo valor a su oferta.', icon: Award }
+              ],
+              benefits: [
+                  'Monetice su conocimiento y experiencia.',
+                  'Ofrezca formación a sus clientes, empleados o a una audiencia global.',
+                  'Automatice el proceso de inscripción, pago y certificación.',
+                  'Cree una experiencia de aprendizaje profesional y atractiva.',
+                  'Escale su oferta formativa sin limitaciones geográficas.'
+              ],
+              ctaText: 'Cree su Academia en Línea',
+              formSubject: 'Consulta%20OfiPles%20eLearning'
+          } },
+          { name: "OfiPles Chat en vivo", description: "Chatea con los visitantes de tu sitio web", details: {
+              mainIcon: MessageCircle,
+              title: 'OfiPles Chat en Vivo',
+              description: 'Conecte instantáneamente con los visitantes de su sitio web para resolver dudas, capturar leads y mejorar la conversión. No deje que un cliente potencial se vaya con preguntas sin responder.',
+              keyServices: [
+                  { title: 'Comunicación en Tiempo Real', text: 'Interactúe en vivo con los visitantes, guiándolos a través de su sitio y respondiendo preguntas al instante.', icon: Zap },
+                  { title: 'Asistente IA (Opcional)', text: 'Configure un bot para que responda preguntas frecuentes 24/7 y califique leads, pasando solo las conversaciones importantes a su equipo.', icon: Bot },
+                  { title: 'Historial de Conversaciones', text: 'Guarde todas las interacciones para un seguimiento posterior, asegurando un contexto completo en futuras conversaciones.', icon: ClipboardList },
+                  { title: 'Disparadores y Mensajes Proactivos', text: 'Inicie conversaciones automáticamente basadas en el comportamiento del visitante, como el tiempo en una página o una acción específica.', icon: Target }
+              ],
+              benefits: [
+                  'Aumente la tasa de conversión resolviendo dudas en el momento de la compra.',
+                  'Mejore drásticamente la satisfacción del cliente con soporte inmediato.',
+                  'Capture más leads cualificados directamente desde su sitio web.',
+                  'Entienda mejor las necesidades y puntos de dolor de sus visitantes.',
+                  'Ofrezca un canal de comunicación moderno y preferido por muchos usuarios.'
+              ],
+              ctaText: 'Active su Chat en Vivo',
+              formSubject: 'Consulta%20OfiPles%20Chat%20en%20Vivo'
+          } }
         ]
     },
     "Ventas": {
         icon: ShoppingCart,
         description: "Optimice todo su ciclo de ventas, desde la captación de clientes hasta la facturación final.",
         items: [
-          { name: "OfiPles CRM", description: "Gestiona tus leads y cierra oportunidades", details: { mainIcon: ShoppingCart, title: 'OfiPles CRM', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles Ventas", description: "De cotizaciones a facturas", details: { mainIcon: ShoppingCart, title: 'OfiPles Ventas', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles Punto de venta", description: "Interfaz de punto de venta para tiendas y restaurantes", details: { mainIcon: ShoppingCart, title: 'OfiPles Punto de venta', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles Suscripciones", description: "Facturas recurrentes y renovaciones", details: { mainIcon: ShoppingCart, title: 'OfiPles Suscripciones', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles Alquiler", description: "Gestiona contratos, entregas y devoluciones", details: { mainIcon: ShoppingCart, title: 'OfiPles Alquiler', description: 'Placeholder description.', keyServices: [], benefits: []} }
+          { name: "OfiPles CRM", description: "Gestiona tus leads y cierra oportunidades", details: {
+              mainIcon: Users,
+              title: 'OfiPles CRM',
+              description: 'Centralice la gestión de sus clientes y oportunidades de venta. Obtenga una vista 360° de cada interacción y optimice su proceso comercial para cerrar más negocios, más rápido.',
+              keyServices: [
+                  { title: 'Gestión de Contactos y Empresas', text: 'Mantenga una base de datos centralizada y limpia de todos sus prospectos, clientes y las organizaciones a las que pertenecen.', icon: Users2 },
+                  { title: 'Pipeline de Ventas Visual', text: 'Visualice y gestione sus oportunidades de negocio a través de etapas personalizables en un tablero Kanban intuitivo.', icon: KanbanSquare },
+                  { title: 'Registro de Actividades', text: 'Registre todas las interacciones (llamadas, reuniones, correos) asociadas a un contacto u oportunidad para un seguimiento completo.', icon: ClipboardList },
+                  { title: 'Automatización y Recordatorios', text: 'Configure recordatorios automáticos para seguimientos y automatice tareas repetitivas para que su equipo se enfoque en vender.', icon: Clock }
+              ],
+              benefits: [
+                  'Nunca pierda una oportunidad de venta por falta de seguimiento.',
+                  'Mejore la colaboración y visibilidad dentro de su equipo de ventas.',
+                  'Tome decisiones basadas en datos con reportes de rendimiento precisos.',
+                  'Aumente la productividad de su equipo comercial.',
+                  'Construya relaciones más sólidas y duraderas con sus clientes.'
+              ],
+              ctaText: 'Optimice su Proceso de Ventas',
+              formSubject: 'Consulta%20OfiPles%20CRM'
+          } },
+          { name: "OfiPles Ventas", description: "De cotizaciones a facturas", details: {
+              mainIcon: FileText,
+              title: 'OfiPles Ventas',
+              description: 'Agilice su proceso de ventas con una herramienta que le permite crear y enviar cotizaciones profesionales, gestionar pedidos y convertirlos en facturas con un solo clic.',
+              keyServices: [
+                  { title: 'Creación de Cotizaciones', text: 'Genere cotizaciones personalizadas y profesionales con su marca, productos y precios en minutos.', icon: ClipboardEdit },
+                  { title: 'Gestión de Pedidos de Venta', text: 'Convierta cotizaciones aprobadas en pedidos de venta, activando los procesos de logística y facturación.', icon: Package },
+                  { title: 'Listas de Precios Múltiples', text: 'Defina diferentes listas de precios por tipo de cliente, volumen o región, y aplíquelas automáticamente.', icon: BarChart3 },
+                  { title: 'Integración con CRM e Inventario', text: 'Conectado nativamente con su CRM para obtener datos del cliente y con Inventario para verificar disponibilidad de stock.', icon: GitMerge }
+              ],
+              benefits: [
+                  'Reduzca el tiempo necesario para crear y enviar cotizaciones.',
+                  'Evite errores manuales y asegure la consistencia en sus precios.',
+                  'Mejore la comunicación entre los equipos de ventas y logística.',
+                  'Ofrezca una experiencia profesional y ágil a sus clientes.',
+                  'Tenga una visibilidad clara del flujo de pedidos y ventas pendientes.'
+              ],
+              ctaText: 'Agilice sus Cotizaciones',
+              formSubject: 'Consulta%20OfiPles%20Ventas'
+          } },
+          { name: "OfiPles Punto de venta", description: "Interfaz para tiendas y restaurantes", details: {
+              mainIcon: Tablet,
+              title: 'OfiPles Punto de Venta (POS)',
+              description: 'Una interfaz de punto de venta rápida, intuitiva y potente para su tienda física o restaurante. Funciona en cualquier dispositivo y se integra perfectamente con su inventario y contabilidad.',
+              keyServices: [
+                  { title: 'Interfaz Rápida y Táctil', text: 'Diseñado para la velocidad, con una interfaz limpia y optimizada para pantallas táctiles que minimiza los clics.', icon: MousePointerClick },
+                  { title: 'Gestión de Pagos Múltiples', text: 'Acepte efectivo, tarjetas de crédito/débito y otros métodos de pago de forma integrada y segura.', icon: CreditCard },
+                  { title: 'Integración de Hardware', text: 'Compatible con impresoras de recibos, lectores de códigos de barras y cajones de dinero para una operación fluida.', icon: Printer },
+                  { title: 'Sincronización en Tiempo Real', text: 'Las ventas actualizan automáticamente su inventario y registros contables, proporcionando datos precisos al instante.', icon: Zap }
+              ],
+              benefits: [
+                  'Acelere el proceso de cobro y reduzca las colas.',
+                  'Mantenga su inventario siempre actualizado, tanto en tienda física como online.',
+                  'Simplifique la contabilidad con la conciliación automática de ventas.',
+                  'Funciona incluso con conexiones a internet intermitentes.',
+                  'Obtenga reportes detallados de ventas por tienda, empleado o producto.'
+              ],
+              ctaText: 'Modernice su Punto de Venta',
+              formSubject: 'Consulta%20OfiPles%20Punto%20de%20Venta'
+          } },
+          { name: "OfiPles Suscripciones", description: "Facturas recurrentes y renovaciones", details: {
+              mainIcon: Repeat,
+              title: 'OfiPles Suscripciones',
+              description: 'Gestione modelos de negocio basados en ingresos recurrentes. Automatice la facturación, gestione planes y suscripciones, y reduzca la pérdida de clientes (churn).',
+              keyServices: [
+                  { title: 'Facturación Recurrente Automática', text: 'Configure planes y deje que el sistema genere y envíe facturas automáticamente según la periodicidad definida (mensual, anual, etc.).', icon: Zap },
+                  { title: 'Gestión de Planes y Actualizaciones', text: 'Cree diferentes niveles de planes y permita que los clientes mejoren (upgrade) o reduzcan (downgrade) su suscripción fácilmente.', icon: Layers },
+                  { title: 'Manejo de Pagos Fallidos (Dunning)', text: 'Automatice el proceso de reintento de cobro y notificaciones para pagos fallidos, reduciendo el churn involuntario.', icon: AlertTriangle },
+                  { title: 'Métricas Clave de Suscripción (MRR, Churn)', text: 'Obtenga un tablero con las métricas más importantes para su negocio de suscripción, como Ingreso Mensual Recurrente y tasa de abandono.', icon: BarChart3 }
+              ],
+              benefits: [
+                  'Asegure un flujo de caja predecible con ingresos recurrentes.',
+                  'Reduzca la carga administrativa asociada a la facturación manual.',
+                  'Mejore la retención de clientes con una gestión profesional.',
+                  'Facilite el crecimiento y la escalabilidad de su modelo de negocio.',
+                  'Tome decisiones estratégicas basadas en métricas de suscripción precisas.'
+              ],
+              ctaText: 'Automatice sus Ingresos Recurrentes',
+              formSubject: 'Consulta%20OfiPles%20Suscripciones'
+          } },
+          { name: "OfiPles Alquiler", description: "Gestiona contratos y disponibilidad", details: {
+              mainIcon: KeyRound,
+              title: 'OfiPles Alquiler',
+              description: 'Una solución completa para gestionar su negocio de alquiler. Controle la disponibilidad de sus productos, gestione contratos y programe recogidas y devoluciones desde un solo lugar.',
+              keyServices: [
+                  { title: 'Calendario de Disponibilidad Visual', text: 'Vea la disponibilidad de sus productos de alquiler en un calendario tipo Gantt, evitando reservas duplicadas.', icon: Calendar },
+                  { title: 'Gestión de Contratos de Alquiler', text: 'Cree, envíe y gestione contratos de alquiler, incluyendo términos, condiciones y firmas electrónicas.', icon: FileSignature },
+                  { title: 'Programación de Entregas y Recogidas', text: 'Organice la logística de sus alquileres, asignando fechas y responsables para las entregas y devoluciones.', icon: Truck },
+                  { title: 'Facturación Flexible', text: 'Genere facturas automáticamente al inicio, al final o durante el período de alquiler, según sus reglas de negocio.', icon: Receipt }
+              ],
+              benefits: [
+                  'Maximice la utilización de sus productos de alquiler.',
+                  'Simplifique la gestión administrativa y contractual.',
+                  'Ofrezca una experiencia de reserva clara y sin errores a sus clientes.',
+                  'Mejore la planificación logística y la eficiencia operativa.',
+                  'Total integración con los módulos de Ventas y Contabilidad.'
+              ],
+              ctaText: 'Optimice su Negocio de Alquiler',
+              formSubject: 'Consulta%20OfiPles%20Alquiler'
+          } }
         ]
     },
     "Finanzas": {
         icon: Landmark,
         description: "Controle la salud financiera de su empresa con herramientas contables y de facturación robustas.",
         items: [
-          { name: "OfiPles Contabilidad", description: "Gestiona tu contabilidad financiera y analítica", details: { mainIcon: Landmark, title: 'OfiPles Contabilidad', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles Facturación", description: "Facturas y pagos", details: { mainIcon: Landmark, title: 'OfiPles Facturación', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles Gastos", description: "Gestiona los gastos de tus empleados", details: { mainIcon: Landmark, title: 'OfiPles Gastos', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles Documentos", description: "Gestión de documentos", details: { mainIcon: Landmark, title: 'OfiPles Documentos', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles Tablero de hojas de cálculo", description: "Documentos y hojas de cálculo", details: { mainIcon: Landmark, title: 'OfiPles Tablero de hojas de cálculo', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles Firma electrónica", description: "Firma documentos en línea", details: { mainIcon: Landmark, title: 'OfiPles Firma electrónica', description: 'Placeholder description.', keyServices: [], benefits: []} }
+          { name: "OfiPles Contabilidad", description: "Gestiona tu contabilidad financiera", details: {
+              mainIcon: BookUser,
+              title: 'OfiPles Contabilidad',
+              description: 'Un sistema contable completo y flexible que simplifica la gestión financiera de su empresa, automatiza asientos y genera informes precisos para el cumplimiento y la toma de decisiones.',
+              keyServices: [
+                  { title: 'Plan de Cuentas Personalizable', text: 'Adapte el plan de cuentas a la estructura de su empresa y a las normativas locales.', icon: Settings },
+                  { title: 'Automatización de Asientos Contables', text: 'Los asientos se generan automáticamente a partir de facturas, pagos, gastos y movimientos de inventario.', icon: Zap },
+                  { title: 'Informes Financieros en Tiempo Real', text: 'Genere balances, estados de resultados, libros mayores y otros informes financieros con datos siempre actualizados.', icon: BarChart3 },
+                  { title: 'Conciliación Bancaria Inteligente', text: 'Importe extractos bancarios y concilie transacciones de forma rápida y sencilla con sugerencias automáticas.', icon: GitMerge }
+              ],
+              benefits: [
+                  'Asegure el cumplimiento de las normativas fiscales y contables.',
+                  'Reduzca el tiempo dedicado a tareas contables manuales.',
+                  'Obtenga una visión clara y precisa de la salud financiera de su empresa.',
+                  'Facilite las auditorías con información organizada y trazable.',
+                  'Tome decisiones estratégicas basadas en informes financieros confiables.'
+              ],
+              ctaText: 'Simplifique su Contabilidad',
+              formSubject: 'Consulta%20OfiPles%20Contabilidad'
+          } },
+          { name: "OfiPles Facturación", description: "Facturas y pagos", details: {
+              mainIcon: Receipt,
+              title: 'OfiPles Facturación',
+              description: 'Cree y envíe facturas profesionales, gestione pagos y haga seguimiento de sus cuentas por cobrar de manera eficiente. Integrado con su contabilidad para una gestión impecable.',
+              keyServices: [
+                  { title: 'Creación Rápida de Facturas', text: 'Genere facturas a partir de pedidos de venta, hojas de horas o de forma manual con plantillas personalizables.', icon: FileDigit },
+                  { title: 'Seguimiento de Pagos', text: 'Registre pagos parciales o completos, y vea fácilmente el estado de cada factura (borrador, enviada, pagada, vencida).', icon: CheckCircle },
+                  { title: 'Recordatorios de Pago Automáticos', text: 'Configure y automatice el envío de correos de recordatorio para facturas vencidas, mejorando el flujo de caja.', icon: Clock },
+                  { title: 'Facturación Electrónica (Opcional)', text: 'Cumpla con la normativa de facturación electrónica de su país mediante integraciones con proveedores autorizados.', icon: Cloud }
+              ],
+              benefits: [
+                  'Acelere su ciclo de cobro y mejore su flujo de caja.',
+                  'Proyecte una imagen profesional con facturas claras y personalizadas.',
+                  'Reduzca el tiempo administrativo dedicado al seguimiento de pagos.',
+                  'Mantenga un registro claro y organizado de todas sus transacciones.',
+                  'Evite errores con la creación de facturas a partir de datos existentes.'
+              ],
+              ctaText: 'Optimice su Facturación',
+              formSubject: 'Consulta%20OfiPles%20Facturacion'
+          } },
+          { name: "OfiPles Gastos", description: "Gestiona los gastos de tus empleados", details: {
+              mainIcon: CreditCard,
+              title: 'OfiPles Gastos',
+              description: 'Simplifique el proceso de reporte y aprobación de gastos de los empleados. Desde la captura del recibo hasta el reembolso y la contabilización, todo en un flujo de trabajo digital.',
+              keyServices: [
+                  { title: 'Reporte de Gastos Simplificado', text: 'Los empleados pueden registrar gastos fácilmente, incluso tomando una foto del recibo desde su móvil.', icon: Camera },
+                  { title: 'Flujos de Aprobación Personalizables', text: 'Defina flujos de aprobación multinivel. Los gerentes pueden aprobar o rechazar gastos desde cualquier dispositivo.', icon: Workflow },
+                  { title: 'Integración con Contabilidad', text: 'Una vez aprobados, los gastos generan automáticamente los asientos contables correspondientes, listos para su reembolso.', icon: GitMerge },
+                  { title: 'Gestión de Adelantos y Reembolsos', text: 'Controle los adelantos de efectivo y gestione los reembolsos a empleados de manera centralizada.', icon: Banknote }
+              ],
+              benefits: [
+                  'Ahorre tiempo a sus empleados y gerentes en la gestión de gastos.',
+                  'Mejore el control y la visibilidad sobre los gastos de la empresa.',
+                  'Elimine el papeleo y los procesos manuales.',
+                  'Acelere el proceso de reembolso a los empleados.',
+                  'Asegure que los gastos se registren correctamente en la contabilidad.'
+              ],
+              ctaText: 'Digitalice la Gestión de Gastos',
+              formSubject: 'Consulta%20OfiPles%20Gastos'
+          } },
+          { name: "OfiPles Documentos", description: "Gestión de documentos", details: {
+              mainIcon: FolderArchive,
+              title: 'OfiPles Documentos',
+              description: 'Un sistema de gestión documental colaborativo y seguro. Organice, comparta y controle el acceso a todos los archivos de su empresa en un espacio de trabajo centralizado.',
+              keyServices: [
+                  { title: 'Organización por Espacios de Trabajo', text: 'Cree carpetas y subcarpetas para organizar sus documentos por proyecto, departamento o cualquier otra estructura lógica.', icon: FolderKanban },
+                  { title: 'Control de Versiones', text: 'Mantenga un historial de cambios para cada documento, permitiéndole revisar y restaurar versiones anteriores fácilmente.', icon: GitMerge },
+                  { title: 'Compartir de Forma Segura', text: 'Comparta archivos y carpetas con usuarios internos o externos mediante enlaces seguros con fecha de vencimiento.', icon: Share2 },
+                  { title: 'Flujos de Trabajo de Aprobación', text: 'Defina flujos de aprobación para documentos que requieran revisión, como contratos o políticas internas.', icon: Workflow }
+              ],
+              benefits: [
+                  'Centralice todos sus documentos en una única fuente de verdad.',
+                  'Mejore la colaboración y evite la duplicación de archivos.',
+                  'Asegure que su equipo siempre trabaje con la última versión de un documento.',
+                  'Controle quién puede ver, editar y compartir información sensible.',
+                  'Acceda a sus archivos desde cualquier lugar y dispositivo.'
+              ],
+              ctaText: 'Centralice sus Documentos',
+              formSubject: 'Consulta%20OfiPles%20Documentos'
+          } },
+          { name: "OfiPles Firma electrónica", description: "Firma documentos en línea", details: {
+              mainIcon: PenSquare,
+              title: 'OfiPles Firma Electrónica',
+              description: 'Acelere sus acuerdos y contratos. Envíe, firme y gestione documentos de forma electrónica con plena validez legal, sin necesidad de imprimir ni escanear.',
+              keyServices: [
+                  { title: 'Envío Fácil para Firma', text: 'Suba un documento PDF, arrastre y suelte los campos de firma y envíelo a una o varias personas para que lo firmen.', icon: Send },
+                  { title: 'Firma desde Cualquier Dispositivo', text: 'Los firmantes pueden revisar y firmar documentos desde su computadora, tableta o smartphone de forma intuitiva.', icon: MousePointerClick },
+                  { title: 'Pista de Auditoría Completa', text: 'Cada acción (envío, visualización, firma) queda registrada con fecha, hora y dirección IP, garantizando la trazabilidad.', icon: FileCheck },
+                  { title: 'Plantillas Reutilizables', text: 'Guarde documentos de uso frecuente como plantillas para agilizar el envío de contratos o acuerdos estándar.', icon: LayoutTemplate }
+              ],
+              benefits: [
+                  'Reduzca drásticamente el tiempo para cerrar acuerdos.',
+                  'Elimine los costos asociados a la impresión, envío y almacenamiento de papel.',
+                  'Mejore la experiencia de sus clientes, socios y empleados.',
+                  'Aumente la seguridad y el control sobre sus documentos importantes.',
+                  'Contribuya a la sostenibilidad reduciendo el consumo de papel.'
+              ],
+              ctaText: 'Acelere sus Contratos',
+              formSubject: 'Consulta%20OfiPles%20Firma%20Electronica'
+          } }
         ]
     },
     "Inventario y Fabricación": {
         icon: Warehouse,
         description: "Gestione eficientemente su cadena de suministro, producción y control de calidad.",
         items: [
-          { name: "OfiPles Inventario", description: "Gestiona tu inventario y actividades de logística", details: { mainIcon: Warehouse, title: 'OfiPles Inventario', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles Manufactura", description: "Órdenes de fabricación y listas de materiales", details: { mainIcon: Warehouse, title: 'OfiPles Manufactura', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles Gestión del ciclo de vida del producto", description: "Gestión del ciclo de vida del producto", details: { mainIcon: Warehouse, title: 'OfiPles Gestión del ciclo de vida del producto', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles Compra", description: "Órdenes de compra, licitaciones y contratos", details: { mainIcon: Warehouse, title: 'OfiPles Compra', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles MRP de mantenimiento", description: "Monitorea tus equipos y gestiona solicitudes", details: { mainIcon: Warehouse, title: 'OfiPles MRP de mantenimiento', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles Calidad", description: "Controla la calidad de tus productos", details: { mainIcon: Warehouse, title: 'OfiPles Calidad', description: 'Placeholder description.', keyServices: [], benefits: []} }
+          { name: "OfiPles Inventario", description: "Gestiona tu inventario y logística", details: {
+              mainIcon: Warehouse,
+              title: 'OfiPles Inventario',
+              description: 'Optimice toda su cadena de suministro con un sistema de gestión de inventario de doble entrada. Controle cada movimiento, desde la recepción hasta la entrega al cliente.',
+              keyServices: [
+                  { title: 'Trazabilidad Completa', text: 'Rastree cada producto con números de serie o lotes, desde su origen hasta su destino final.', icon: Barcode },
+                  { title: 'Gestión Multi-Almacén', text: 'Administre el stock en múltiples almacenes y ubicaciones, y defina reglas de reabastecimiento entre ellos.', icon: Building2 },
+                  { title: 'Rutas Logísticas Avanzadas', text: 'Configure reglas para automatizar las transferencias, como el cross-docking o el dropshipping.', icon: Workflow },
+                  { title: 'Valoración de Inventario', text: 'Utilice métodos de costeo como FIFO o Costo Promedio, y obtenga informes de valoración en tiempo real.', icon: Calculator }
+              ],
+              benefits: [
+                  'Reduzca los quiebres de stock y el exceso de inventario.',
+                  'Aumente la eficiencia de sus operaciones de almacén.',
+                  'Mejore la precisión de su inventario y reduzca las pérdidas.',
+                  'Obtenga una visibilidad completa de su cadena de suministro.',
+                  'Tome decisiones de compra más inteligentes basadas en datos reales.'
+              ],
+              ctaText: 'Controle su Inventario',
+              formSubject: 'Consulta%20OfiPles%20Inventario'
+          } },
+          { name: "OfiPles Manufactura", description: "Órdenes de fabricación y listas de materiales", details: {
+              mainIcon: Factory,
+              title: 'OfiPles Manufactura (MRP)',
+              description: 'Planifique, programe y controle su producción de principio a fin. Gestione listas de materiales, órdenes de fabricación y centros de trabajo para optimizar su planta.',
+              keyServices: [
+                  { title: 'Listas de Materiales (BoM)', text: 'Cree y gestione listas de materiales de múltiples niveles y versiones para sus productos.', icon: ClipboardList },
+                  { title: 'Planificación y Órdenes de Producción', text: 'Genere órdenes de fabricación y controle el consumo de materiales y el tiempo de producción.', icon: GanttChartSquare },
+                  { title: 'Gestión de Centros de Trabajo', text: 'Organice su planta en centros de trabajo, defina sus capacidades y siga el rendimiento de cada uno.', icon: Settings },
+                  { title: 'Informes de Producción', text: 'Analice la eficiencia de su producción, los costos y los tiempos con informes detallados.', icon: BarChart3 }
+              ],
+              benefits: [
+                  'Optimice la planificación de sus necesidades de materiales (MRP).',
+                  'Mejore la eficiencia y la productividad de su planta.',
+                  'Reduzca los tiempos de ciclo y los costos de producción.',
+                  'Obtenga visibilidad en tiempo real del estado de cada orden de fabricación.',
+                  'Facilite la toma de decisiones con datos de producción precisos.'
+              ],
+              ctaText: 'Optimice su Producción',
+              formSubject: 'Consulta%20OfiPles%20Manufactura'
+          } }
         ]
     },
     "Recursos Humanos": {
         icon: Users2,
         description: "Administre el ciclo de vida completo de sus empleados, desde la contratación hasta la evaluación.",
         items: [
-          { name: "OfiPles Empleados", description: "Centraliza la información de tus empleados", details: { mainIcon: Users2, title: 'OfiPles Empleados', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles Reclutamiento", description: "Monitorea tu flujo de reclutamiento", details: { mainIcon: Users2, title: 'OfiPles Reclutamiento', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles Tiempo personal", description: "Asigna y dale seguimiento a las solicitudes de tiempo personal", details: { mainIcon: Users2, title: 'OfiPles Tiempo personal', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles Evaluaciones", description: "Evalúa a tus empleados", details: { mainIcon: Users2, title: 'OfiPles Evaluaciones', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles Recomendación de empleados", description: "Comparte puestos de trabajo y refiere a tus amigos", details: { mainIcon: Users2, title: 'OfiPles Recomendación de empleados', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles Flota", description: "Gestiona tu flota y monitorea el costo de tus vehículos", details: { mainIcon: Users2, title: 'OfiPles Flota', description: 'Placeholder description.', keyServices: [], benefits: []} }
+          { name: "OfiPles Empleados", description: "Centraliza la información de tus empleados", details: {
+              mainIcon: Users,
+              title: 'OfiPles Empleados',
+              description: 'Centralice toda la información de su equipo en un solo lugar. Gestione perfiles, contratos, ausencias y mucho más, de forma segura y accesible.',
+              keyServices: [
+                  { title: 'Directorio de Empleados', text: 'Mantenga una base de datos centralizada con toda la información relevante de cada empleado, desde datos de contacto hasta roles y departamentos.', icon: Users2 },
+                  { title: 'Gestión de Contratos', text: 'Administre los contratos de sus empleados, con alertas automáticas para fechas de vencimiento y renovaciones.', icon: FileSignature },
+                  { title: 'Control de Asistencia y Ausencias', text: 'Registre las ausencias (vacaciones, bajas médicas) y realice un seguimiento de la asistencia de forma sencilla.', icon: CalendarDays },
+                  { title: 'Portal del Empleado', text: 'Ofrezca a sus empleados un portal de autoservicio donde pueden consultar su información, solicitar ausencias y más.', icon: UserCheck }
+              ],
+              benefits: [
+                  'Tenga toda la información de RRHH organizada y accesible.',
+                  'Reduzca la carga administrativa del departamento de RRHH.',
+                  'Mejore la comunicación y la transparencia con sus empleados.',
+                  'Asegure el cumplimiento de las políticas de la empresa.',
+                  'Facilite la incorporación (onboarding) de nuevos empleados.'
+              ],
+              ctaText: 'Gestione su Talento',
+              formSubject: 'Consulta%20OfiPles%20Empleados'
+          } },
+          { name: "OfiPles Reclutamiento", description: "Monitorea tu flujo de reclutamiento", details: {
+              mainIcon: Briefcase,
+              title: 'OfiPles Reclutamiento',
+              description: 'Atraiga y contrate al mejor talento. Gestione todo su proceso de selección, desde la publicación de ofertas hasta la contratación, en una plataforma colaborativa.',
+              keyServices: [
+                  { title: 'Portal de Empleo Personalizado', text: 'Publique sus ofertas de trabajo en una página de empleo con su propia marca, integrada en su sitio web.', icon: Megaphone },
+                  { title: 'Pipeline de Candidatos Visual', text: 'Organice a los candidatos en etapas (nuevo, entrevista, oferta) en un tablero Kanban para un seguimiento claro.', icon: KanbanSquare },
+                  { title: 'Base de Datos de Talentos', text: 'Construya su propio banco de talentos con los perfiles de todos los candidatos que han aplicado.', icon: Database },
+                  { title: 'Comunicación y Programación', text: 'Envíe correos automáticos, programe entrevistas y comuníquese con los candidatos directamente desde la plataforma.', icon: Mail }
+              ],
+              benefits: [
+                  'Optimice y acelere su proceso de contratación.',
+                  'Mejore la experiencia de los candidatos.',
+                  'Fomente la colaboración entre reclutadores y gerentes contratantes.',
+                  'Tome decisiones de contratación más informadas.',
+                  'Construya una marca empleadora sólida.'
+              ],
+              ctaText: 'Atraiga al Mejor Talento',
+              formSubject: 'Consulta%20OfiPles%20Reclutamiento'
+          } },
+          { name: "OfiPles Evaluaciones", description: "Evalúa a tus empleados", details: {
+              mainIcon: ClipboardCheck,
+              title: 'OfiPles Evaluaciones',
+              description: 'Fomente una cultura de mejora continua con un sistema de evaluación del desempeño flexible y colaborativo. Defina objetivos, recopile feedback y cree planes de desarrollo.',
+              keyServices: [
+                  { title: 'Evaluaciones Periódicas', text: 'Programe y realice evaluaciones de desempeño (anuales, semestrales) con formularios y flujos de trabajo personalizables.', icon: Calendar },
+                  { title: 'Feedback 360°', text: 'Recopile retroalimentación de pares, gerentes y subordinados para obtener una visión completa del desempeño de cada empleado.', icon: UsersRound },
+                  { title: 'Definición de Objetivos (OKRs)', text: 'Establezca y dé seguimiento a los objetivos individuales y de equipo, alineándolos con la estrategia de la empresa.', icon: Target },
+                  { title: 'Planes de Desarrollo Individual', text: 'Cree planes de acción y desarrollo basados en los resultados de las evaluaciones para potenciar el crecimiento de su talento.', icon: TrendingUp }
+              ],
+              benefits: [
+                  'Alinee los objetivos individuales con los de la empresa.',
+                  'Fomente una comunicación abierta y constructiva sobre el desempeño.',
+                  'Identifique y desarrolle el talento interno.',
+                  'Tome decisiones justas y basadas en datos sobre promociones y compensación.',
+                  'Aumente la motivación y el compromiso de los empleados.'
+              ],
+              ctaText: 'Potencie el Desempeño',
+              formSubject: 'Consulta%20OfiPles%20Evaluaciones'
+          } }
         ]
     },
     "Marketing": {
         icon: Megaphone,
         description: "Cree, automatice y mida sus campañas de marketing para llegar a su público objetivo.",
         items: [
-          { name: "OfiPles Automatización de marketing", description: "Elabora campañas de correo automatizadas", details: { mainIcon: Megaphone, title: 'OfiPles Automatización de marketing', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles Marketing por correo electrónico", description: "Diseña, envía y monitorea correos electrónicos", details: { mainIcon: Megaphone, title: 'OfiPles Marketing por correo electrónico', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles Marketing por SMS", description: "Diseña, envía y monitorea SMS", details: { mainIcon: Megaphone, title: 'OfiPles Marketing por SMS', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles Marketing social", description: "Gestiona tus redes sociales y los visitantes de tu sitio web", details: { mainIcon: Megaphone, title: 'OfiPles Marketing social', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles Organización de eventos", description: "Publica eventos y vende boletos", details: { mainIcon: Megaphone, title: 'OfiPles Organización de eventos', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles Encuesta", description: "Envía tus encuestas o compártelas en un evento en vivo", details: { mainIcon: Megaphone, title: 'OfiPles Encuesta', description: 'Placeholder description.', keyServices: [], benefits: []} }
+            { name: "OfiPles Marketing por correo electrónico", description: "Diseña, envía y monitorea correos electrónicos", details: {
+                mainIcon: Mail,
+                title: 'OfiPles Marketing por Correo Electrónico',
+                description: 'Cree y envíe campañas de email marketing impactantes. Desde newsletters hasta promociones, nuestra herramienta le ayuda a conectar con su audiencia y obtener resultados medibles.',
+                keyServices: [
+                    { title: 'Editor de Arrastrar y Soltar', text: 'Diseñe correos visualmente atractivos sin necesidad de código, utilizando un editor intuitivo y plantillas profesionales.', icon: LayoutTemplate },
+                    { title: 'Segmentación de Audiencias', text: 'Envíe el mensaje correcto a la persona correcta segmentando sus listas de contactos en base a sus intereses y comportamiento.', icon: Filter },
+                    { title: 'Informes y Analíticas', text: 'Mida el éxito de sus campañas con métricas clave como tasas de apertura, clics y conversiones.', icon: BarChart3 },
+                    { title: 'Pruebas A/B', text: 'Optimice sus resultados probando diferentes asuntos, contenidos o llamadas a la acción para ver qué funciona mejor.', icon: FlaskConical }
+                ],
+                benefits: [
+                    'Mantenga a su audiencia informada y comprometida.',
+                    'Genere tráfico a su sitio web y aumente las ventas.',
+                    'Construya relaciones duraderas con sus clientes.',
+                    'Personalice la comunicación a gran escala.',
+                    'Obtenga un alto retorno de la inversión en sus esfuerzos de marketing.'
+                ],
+                ctaText: 'Cree su Próxima Campaña',
+                formSubject: 'Consulta%20OfiPles%20Marketing%20por%20Correo'
+            } }
         ]
     },
     "Servicios": {
         icon: ConciergeBell,
         description: "Gestione proyectos, soporte y servicios de campo con herramientas diseñadas para la eficiencia.",
         items: [
-          { name: "OfiPles Proyecto", description: "Organiza y planea tus proyectos", details: { mainIcon: ConciergeBell, title: 'OfiPles Proyecto', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles Hojas de horas", description: "Monitorea el tiempo que los empleados invierten en tareas", details: { mainIcon: ConciergeBell, title: 'OfiPles Hojas de horas', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles Servicio externo", description: "Programa y monitorea operaciones externas, el tiempo y el material", details: { mainIcon: ConciergeBell, title: 'OfiPles Servicio externo', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles Soporte al cliente", description: "Monitorea, prioritiza y soluciona los tickets de tus clientes", details: { mainIcon: ConciergeBell, title: 'OfiPles Soporte al cliente', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles Planeación", description: "Gestiona el horario de tus empleados", details: { mainIcon: ConciergeBell, title: 'OfiPles Planeación', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles Citas", description: "Permite que otras personas agenden reuniones contigo", details: { mainIcon: ConciergeBell, title: 'OfiPles Citas', description: 'Placeholder description.', keyServices: [], benefits: []} }
-        ]
-    },
-    "Productividad": {
-        icon: Zap,
-        description: "Herramientas para mejorar la comunicación interna y la productividad del equipo.",
-        items: [
-          { name: "OfiPles Conversaciones", description: "Chat, pasarela de correos electrónicos y canales privados", details: { mainIcon: Zap, title: 'OfiPles Conversaciones', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles Aprobaciones", description: "Crea y valida solicitudes de aprobación", details: { mainIcon: Zap, title: 'OfiPles Aprobaciones', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles Internet de las cosas", description: "Modelos básicos y asistentes para IoT", details: { mainIcon: Zap, title: 'OfiPles Internet de las cosas', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles VOIP", description: "Haz y recibe llamadas", details: { mainIcon: Zap, title: 'OfiPles VOIP', description: 'Placeholder description.', keyServices: [], benefits: []} },
-          { name: "OfiPles Información", description: "Gestiona tu biblioteca de información", details: { mainIcon: Zap, title: 'OfiPles Información', description: 'Placeholder description.', keyServices: [], benefits: []} }
-        ]
-    },
-    "Personalización": {
-        icon: Wrench,
-        description: "Adapte y extienda la plataforma para que se ajuste perfectamente a sus flujos de trabajo únicos.",
-        items: [
-          { name: "OfiPles Studio", description: "Crea y personaliza tus propias aplicaciones", details: { mainIcon: Wrench, title: 'OfiPles Studio', description: 'Placeholder description.', keyServices: [], benefits: []} }
+          { name: "OfiPles Proyecto", description: "Organiza y planea tus proyectos", details: {
+              mainIcon: Briefcase,
+              title: 'OfiPles Proyecto',
+              description: 'Planifique, siga y gestione sus proyectos de forma colaborativa. Obtenga una visión clara del progreso, gestione recursos y asegure entregas a tiempo y dentro del presupuesto.',
+              keyServices: [
+                  { title: 'Vista de Tareas (Kanban, Gantt)', text: 'Visualice sus proyectos y tareas en diferentes formatos, como tableros Kanban, diagramas de Gantt y listas.', icon: KanbanSquare },
+                  { title: 'Gestión de Hojas de Horas', text: 'Registre el tiempo dedicado a cada tarea para un seguimiento preciso de los costos y la rentabilidad del proyecto.', icon: Clock },
+                  { title: 'Análisis de Rentabilidad', text: 'Compare los costos planificados con los reales y analice la rentabilidad de cada proyecto con informes detallados.', icon: BarChart3 },
+                  { title: 'Colaboración en Tareas', text: 'Comuníquese con su equipo, comparta documentos y siga el progreso directamente en cada tarea del proyecto.', icon: MessageSquareDiff }
+              ],
+              benefits: [
+                  'Mejore la visibilidad y el control sobre todos sus proyectos.',
+                  'Asegure que los proyectos se entreguen a tiempo y dentro del presupuesto.',
+                  'Fomente la colaboración y la comunicación dentro del equipo.',
+                  'Optimice la asignación de recursos.',
+                  'Tome decisiones informadas basadas en datos de proyecto en tiempo real.'
+              ],
+              ctaText: 'Organice sus Proyectos',
+              formSubject: 'Consulta%20OfiPles%20Proyecto'
+          } },
+          { name: "OfiPles Soporte al cliente", description: "Monitorea y soluciona tickets", details: {
+              mainIcon: Headset,
+              title: 'OfiPles Soporte al Cliente',
+              description: 'Ofrezca un servicio de atención al cliente excepcional. Gestione, priorice y resuelva todas las solicitudes de sus clientes desde una plataforma multicanal.',
+              keyServices: [
+                  { title: 'Sistema de Tickets Multicanal', text: 'Centralice las solicitudes de soporte recibidas por correo electrónico, teléfono o chat en vivo en un único sistema de tickets.', icon: Inbox },
+                  { title: 'Acuerdos de Nivel de Servicio (SLA)', text: 'Defina y monitoree los tiempos de respuesta y resolución para garantizar un servicio de alta calidad y cumplir con sus promesas.', icon: Timer },
+                  { title: 'Base de Conocimiento (Helpdesk)', text: 'Cree una base de conocimiento con artículos y guías para que los clientes puedan resolver sus dudas por sí mismos.', icon: HelpCircle },
+                  { title: 'Informes de Rendimiento', text: 'Analice el rendimiento de su equipo de soporte con métricas como el tiempo de primera respuesta, satisfacción del cliente y más.', icon: BarChart3 }
+              ],
+              benefits: [
+                  'Mejore la satisfacción y la lealtad de sus clientes.',
+                  'Aumente la eficiencia de su equipo de soporte.',
+                  'No pierda nunca una solicitud de cliente.',
+                  'Reduzca el volumen de tickets recurrentes con una buena base de conocimiento.',
+                  'Obtenga información valiosa sobre las necesidades y problemas de sus clientes.'
+              ],
+              ctaText: 'Mejore su Soporte',
+              formSubject: 'Consulta%20OfiPles%20Soporte'
+          } }
         ]
     }
 };
@@ -266,89 +666,272 @@ const gobPlesModules = {
         icon: Map,
         description: "Software integral para la gestión catastral con enfoque multipropósito.",
         items: [
-            { name: "Administración de Trámites", description: "Formación, actualización y conservación.", details: { mainIcon: Map, title: 'Administración de Trámites', description: 'Placeholder description.', keyServices: [], benefits: []} },
-            { name: "Módulo SIG", description: "Análisis espacial y visualización.", details: { mainIcon: Map, title: 'Módulo SIG', description: 'Placeholder description.', keyServices: [], benefits: []} },
-            { name: "Gestión Física y Jurídica", description: "Control completo de cada predio.", details: { mainIcon: Map, title: 'Gestión Física y Jurídica', description: 'Placeholder description.', keyServices: [], benefits: []} }
+            { name: "Administración de Trámites", description: "Formación, actualización y conservación.", details: {
+                mainIcon: FileText,
+                title: 'Administración de Trámites Catastrales',
+                description: 'Gestione de manera integral los trámites de formación, actualización y conservación catastral, asegurando el cumplimiento del modelo LADM_COL y la eficiencia operativa.',
+                keyServices: [
+                  { title: 'Flujos de Trabajo Digitales', text: 'Automatice y estandarice los procesos para cada tipo de trámite, desde la solicitud hasta la resolución, reduciendo tiempos y errores.', icon: Workflow },
+                  { title: 'Gestión Documental Integrada', text: 'Asocie todos los documentos soporte (planos, escrituras) a cada trámite, creando un expediente digital completo y auditable.', icon: FolderArchive },
+                  { title: 'Notificaciones y Seguimiento', text: 'Mantenga informados a los ciudadanos y funcionarios sobre el estado de sus trámites con notificaciones automáticas.', icon: Bell },
+                  { title: 'Tablero de Control', text: 'Visualice la carga de trabajo, los tiempos de respuesta y los cuellos de botella para una gestión proactiva.', icon: LayoutDashboard }
+                ],
+                benefits: [
+                  'Reducción drástica de los tiempos de respuesta en trámites.',
+                  'Mayor transparencia para el ciudadano y los entes de control.',
+                  'Eliminación del papeleo y los archivos físicos.',
+                  'Garantía de cumplimiento normativo en cada paso del proceso.',
+                  'Mejora en la productividad del equipo catastral.'
+                ],
+                ctaText: 'Optimice sus Trámites',
+                formSubject: 'Consulta%20CatastroGob%20Tramites'
+            }},
+            { name: "Módulo SIG", description: "Análisis espacial y visualización.", details: {
+                mainIcon: Map,
+                title: 'Módulo de Sistema de Información Geográfica (SIG)',
+                description: 'Un potente motor geoespacial para la visualización, edición y análisis de la información predial. Conecte los datos alfanuméricos con su representación en el territorio.',
+                keyServices: [
+                    { title: 'Visualizador Cartográfico Web', text: 'Explore la cartografía base, capas temáticas y la información de los predios en un mapa interactivo y rápido.', icon: Globe },
+                    { title: 'Herramientas de Edición y Digitalización', text: 'Cree y modifique la geometría de los predios con herramientas de alta precisión, manteniendo la topología de la red.', icon: DraftingCompass },
+                    { title: 'Análisis Espacial', text: 'Realice consultas espaciales complejas, análisis de proximidad, superposición de capas y generación de mapas temáticos.', icon: BrainCircuit },
+                    { title: 'Integración con Servicios WMS/WFS', text: 'Conecte y consuma servicios de la Infraestructura Colombiana de Datos Espaciales (ICDE) y otras fuentes externas.', icon: GitMerge }
+                ],
+                benefits: [
+                    'Toma de decisiones basada en la ubicación y el contexto territorial.',
+                    'Facilita la identificación de inconsistencias entre datos físicos y jurídicos.',
+                    'Potente herramienta para la planificación urbana y el ordenamiento territorial.',
+                    'Acceso democrático a la información geoespacial para distintas áreas del municipio.',
+                    'Mejora la calidad y precisión de la base de datos catastral.'
+                ],
+                ctaText: 'Potencie su Análisis Espacial',
+                formSubject: 'Consulta%20CatastroGob%20SIG'
+            }},
+            { name: "Gestión Física y Jurídica", description: "Control completo de cada predio.", details: {
+                mainIcon: Building,
+                title: 'Gestión Física y Jurídica del Predio',
+                description: 'El corazón del catastro. Un repositorio centralizado que almacena y relaciona toda la información física, jurídica y económica de cada predio del territorio.',
+                keyServices: [
+                  { title: 'Ficha Predial Integral', text: 'Consulte en una única vista toda la información del predio: propietarios, áreas, construcciones, avalúos y más.', icon: FileSearch },
+                  { title: 'Historial de Mutaciones', text: 'Mantenga un registro completo de todos los cambios que ha sufrido un predio a lo largo del tiempo, garantizando la trazabilidad.', icon: History },
+                  { title: 'Gestión de Propietarios y Tenencia', text: 'Administre la información de propietarios, poseedores y ocupantes, y los diferentes tipos de tenencia de la tierra.', icon: Users },
+                  { title: 'Componente Económico', text: 'Registre y gestione los avalúos catastrales, las zonas homogéneas y los elementos que determinan el valor del predio.', icon: Banknote }
+                ],
+                benefits: [
+                  'Base de datos unificada y consistente para toda la entidad territorial.',
+                  'Garantiza la seguridad jurídica de la propiedad.',
+                  'Fundamento para una liquidación justa y equitativa del impuesto predial.',
+                  'Información confiable para la planificación y la inversión pública.',
+                  'Facilita la interoperabilidad con otras entidades como Notariado y Registro.'
+                ],
+                ctaText: 'Centralice la Información Predial',
+                formSubject: 'Consulta%20CatastroGob%20Gestion'
+            }}
         ]
     },
     "SiatGob": {
         icon: Briefcase,
         description: "Solución avanzada para la administración del territorio a nivel municipal.",
         items: [
-            { name: "Ordenamiento Territorial", description: "Gestión de licencias y seguimiento.", details: { mainIcon: Briefcase, title: 'Ordenamiento Territorial', description: 'Placeholder description.', keyServices: [], benefits: []} },
-            { name: "Administración de la Propiedad", description: "Inventario de predios rurales, urbanos y fiscales.", details: { mainIcon: Briefcase, title: 'Administración de la Propiedad', description: 'Placeholder description.', keyServices: [], benefits: []} },
-            { name: "Fortalecimiento Fiscal", description: "Herramientas de valorización.", details: { mainIcon: Briefcase, title: 'Fortalecimiento Fiscal', description: 'Placeholder description.', keyServices: [], benefits: []} },
-            { name: "Planificación y Desarrollo", description: "Monitoreo del crecimiento.", details: { mainIcon: Briefcase, title: 'Planificación y Desarrollo', description: 'Placeholder description.', keyServices: [], benefits: []} },
-            { name: "Recursos Naturales y Riesgos", description: "Identificación de zonas de riesgo.", details: { mainIcon: Briefcase, title: 'Recursos Naturales y Riesgos', description: 'Placeholder description.', keyServices: [], benefits: []} }
+            { name: "Ordenamiento Territorial", description: "Gestión de licencias y seguimiento.", details: {
+                mainIcon: Building2,
+                title: 'Ordenamiento Territorial',
+                description: 'Gestione el desarrollo y uso del suelo de su municipio de acuerdo a su Plan de Ordenamiento Territorial (POT). Controle licencias, usos permitidos y seguimiento a las normativas urbanísticas.',
+                keyServices: [
+                  { title: 'Gestión de Licencias Urbanísticas', text: 'Digitalice el trámite de licencias de construcción, parcelación y urbanismo, desde la solicitud hasta la expedición.', icon: FileSignature },
+                  { title: 'Consulta de Usos del Suelo', text: 'Permita a ciudadanos y funcionarios consultar fácilmente los usos permitidos y la normativa aplicable para cualquier predio.', icon: Search },
+                  { title: 'Seguimiento a Planes Parciales', text: 'Monitoree el avance y cumplimiento de los planes parciales y otros instrumentos de planificación y gestión del suelo.', icon: GanttChartSquare },
+                  { title: 'Inspección, Vigilancia y Control', text: 'Gestione las visitas de inspección y los procesos por infracciones urbanísticas en una plataforma centralizada.', icon: ShieldAlert }
+                ],
+                benefits: [
+                  'Asegura un crecimiento urbano ordenado y planificado.',
+                  'Ofrece transparencia y agilidad en los trámites urbanísticos.',
+                  'Facilita el control y seguimiento al cumplimiento de la normativa.',
+                  'Proporciona herramientas para la toma de decisiones en planificación.',
+                  'Mejora la comunicación entre la administración y los constructores.'
+                ],
+                ctaText: 'Planifique su Territorio',
+                formSubject: 'Consulta%20SiatGob%20Ordenamiento'
+            }}
         ]
     },
      "OfiGob": {
         icon: LayoutDashboard,
         description: "Suite que integra y gestiona las dimensiones del Modelo Integrado de Planeación y Gestión (MIPG).",
         items: [
-            { name: "Talento Humano", description: "Gestión del ciclo de vida del servidor.", details: { mainIcon: LayoutDashboard, title: 'Talento Humano', description: 'Placeholder description.', keyServices: [], benefits: []} },
-            { name: "Direccionamiento Estratégico", description: "Planes y seguimiento de metas.", details: { mainIcon: LayoutDashboard, title: 'Direccionamiento Estratégico', description: 'Placeholder description.', keyServices: [], benefits: []} },
-            { name: "Gestión con Valores", description: "Transparencia y servicio al ciudadano.", details: { mainIcon: LayoutDashboard, title: 'Gestión con Valores', description: 'Placeholder description.', keyServices: [], benefits: []} },
-            { name: "Evaluación de Resultados", description: "Indicadores y reportes de gestión.", details: { mainIcon: LayoutDashboard, title: 'Evaluación de Resultados', description: 'Placeholder description.', keyServices: [], benefits: []} },
-            { name: "Gestión del Conocimiento", description: "Captura y difusión de conocimiento.", details: { mainIcon: LayoutDashboard, title: 'Gestión del Conocimiento', description: 'Placeholder description.', keyServices: [], benefits: []} },
-            { name: "Control Interno", description: "Mecanismos de control y auditoría.", details: { mainIcon: LayoutDashboard, title: 'Control Interno', description: 'Placeholder description.', keyServices: [], benefits: []} }
+            { name: "Direccionamiento Estratégico", description: "Planes y seguimiento de metas.", details: {
+                mainIcon: Target,
+                title: 'Direccionamiento Estratégico y Planeación',
+                description: 'Alinee la gestión de su entidad con los objetivos estratégicos. Defina planes, programas y proyectos, y realice un seguimiento en tiempo real de su ejecución y cumplimiento de metas.',
+                keyServices: [
+                  { title: 'Banco de Programas y Proyectos', text: 'Centralice y gestione todos los proyectos de inversión de la entidad, alineados al Plan de Desarrollo.', icon: Briefcase },
+                  { title: 'Formulación y Seguimiento de Metas', text: 'Defina indicadores y metas para cada proyecto, y registre los avances periódicos para un seguimiento efectivo.', icon: TrendingUp },
+                  { title: 'Generación de Informes de Gestión', text: 'Produzca informes automáticos sobre la ejecución de planes y proyectos para la rendición de cuentas.', icon: Presentation },
+                  { title: 'Visor Geográfico de Proyectos', text: 'Visualice la ubicación de los proyectos de inversión en un mapa interactivo para entender su impacto territorial.', icon: Map }
+                ],
+                benefits: [
+                  'Asegura que la gestión diaria contribuya a los objetivos a largo plazo.',
+                  'Mejora la transparencia en la gestión pública y la rendición de cuentas.',
+                  'Facilita la toma de decisiones basada en el avance real de los proyectos.',
+                  'Optimiza la asignación de recursos a las iniciativas de mayor impacto.',
+                  'Fortalece la capacidad de planificación y seguimiento de la entidad.'
+                ],
+                ctaText: 'Estructure su Planificación',
+                formSubject: 'Consulta%20OfiGob%20Planeacion'
+            }}
         ]
     },
     "PaeGob": {
         icon: School,
         description: "Solución tecnológica para optimizar la gestión y supervisión del Programa de Alimentación Escolar (PAE).",
         items: [
-            { name: "Gestión de Instituciones", description: "Manejo de sedes y rectores.", details: { mainIcon: School, title: 'Gestión de Instituciones', description: 'Placeholder description.', keyServices: [], benefits: []} },
-            { name: "Gestión de Beneficiarios", description: "Focalización de estudiantes.", details: { mainIcon: School, title: 'Gestión de Beneficiarios', description: 'Placeholder description.', keyServices: [], benefits: []} },
-            { name: "Reportes y Seguimiento", description: "Informes diarios y mensuales.", details: { mainIcon: School, title: 'Reportes y Seguimiento', description: 'Placeholder description.', keyServices: [], benefits: []} },
-            { name: "Validación de Entregas", description: "Control con firma digital.", details: { mainIcon: School, title: 'Validación de Entregas', description: 'Placeholder description.', keyServices: [], benefits: []} }
+            { name: "Gestión de Beneficiarios", description: "Focalización de estudiantes.", details: {
+                mainIcon: Users2,
+                title: 'Gestión de Beneficiarios del PAE',
+                description: 'Asegure que el Programa de Alimentación Escolar llegue a quienes más lo necesitan. Gestione la focalización, inscripción y seguimiento de los estudiantes beneficiarios de forma eficiente.',
+                keyServices: [
+                  { title: 'Focalización y Caracterización', text: 'Importe y gestione la matrícula oficial (SIMAT) y aplique criterios de focalización para identificar a los beneficiarios.', icon: Filter },
+                  { title: 'Registro y Novedades', text: 'Administre el registro de estudiantes en el programa y gestione las novedades como traslados o retiros.', icon: UserCheck },
+                  { title: 'Control de Cupos por Sede', text: 'Asigne y controle el número de cupos del programa para cada institución y sede educativa.', icon: Building },
+                  { title: 'Informes de Cobertura', text: 'Genere reportes detallados sobre la cobertura del programa, el número de beneficiarios y su caracterización.', icon: BarChart3 }
+                ],
+                benefits: [
+                  'Garantiza una asignación equitativa y transparente de los cupos.',
+                  'Mantiene una base de datos de beneficiarios actualizada y confiable.',
+                  'Facilita la generación de informes para el Ministerio de Educación.',
+                  'Reduce el riesgo de errores y duplicidades en la asignación.',
+                  'Permite un seguimiento preciso de la población atendida.'
+                ],
+                ctaText: 'Optimice su Focalización',
+                formSubject: 'Consulta%20PaeGob%20Beneficiarios'
+            }},
+            { name: "Validación de Entregas", description: "Control con firma digital.", details: {
+                mainIcon: FileCheck,
+                title: 'Validación de Entregas y Reportes del PAE',
+                description: 'Controle y supervise la entrega de las raciones alimentarias en cada sede educativa. Nuestra plataforma digitaliza el proceso de validación, garantizando transparencia y trazabilidad.',
+                keyServices: [
+                  { title: 'Reporte Diario de Entrega', text: 'Los operadores registran diariamente el número de raciones entregadas en cada sede a través de una aplicación móvil.', icon: Tablet },
+                  { title: 'Validación con Firma Digital', text: 'El rector o coordinador de cada sede valida la información reportada mediante una firma digital, dando fe de la entrega.', icon: PenSquare },
+                  { title: 'Consolidación Automática', text: 'El sistema consolida automáticamente los reportes diarios para generar los informes mensuales requeridos por la auditoría.', icon: Zap },
+                  { title: 'Registro de No Conformidades', text: 'Permita que las sedes reporten cualquier incidencia o no conformidad con el servicio de forma inmediata.', icon: AlertTriangle }
+                ],
+                benefits: [
+                  'Elimina el uso de planillas físicas y reduce errores manuales.',
+                  'Proporciona evidencia digital y trazabilidad de cada entrega.',
+                  'Agiliza la consolidación de informes y el proceso de auditoría.',
+                  'Mejora el control y la supervisión del programa por parte de la entidad territorial.',
+                  'Aumenta la transparencia en la ejecución de los recursos del PAE.'
+                ],
+                ctaText: 'Digitalice su Supervisión',
+                formSubject: 'Consulta%20PaeGob%20Entregas'
+            }}
         ]
     },
     "EduGob": {
         icon: BookOpen,
         description: "Plataforma enfocada en la gestión escolar y académica del día a día.",
         items: [
-            { name: "Gestión Académica", description: "Carreras, cursos, calificaciones.", details: { mainIcon: BookOpen, title: 'Gestión Académica', description: 'Placeholder description.', keyServices: [], benefits: []} },
-            { name: "Gestión Administrativa", description: "Convocatorias, certificados, carnets.", details: { mainIcon: BookOpen, title: 'Gestión Administrativa', description: 'Placeholder description.', keyServices: [], benefits: []} },
-            { name: "Bienestar Estudiantil", description: "Seguimiento físico, mental y social.", details: { mainIcon: BookOpen, title: 'Bienestar Estudiantil', description: 'Placeholder description.', keyServices: [], benefits: []} },
-            { name: "Desarrollo Profesional", description: "Gestión de hojas de vida.", details: { mainIcon: BookOpen, title: 'Desarrollo Profesional', description: 'Placeholder description.', keyServices: [], benefits: []} },
-            { name: "Analítica", description: "Reportes de rendimiento y egresados.", details: { mainIcon: BookOpen, title: 'Analítica', description: 'Placeholder description.', keyServices: [], benefits: []} }
+            { name: "Gestión Académica", description: "Carreras, cursos, calificaciones.", details: {
+                mainIcon: GraduationCap,
+                title: 'Gestión Académica',
+                description: 'El núcleo de su institución educativa. Gestione todo el ciclo académico, desde la oferta de cursos y la matrícula, hasta el registro de calificaciones y el control de asistencia.',
+                keyServices: [
+                  { title: 'Administración de Cursos y Materias', text: 'Cree y configure la estructura académica de su institución, incluyendo programas, planes de estudio y asignaturas.', icon: Layers },
+                  { title: 'Matrícula y Gestión de Estudiantes', text: 'Administre el proceso de inscripción y matrícula de estudiantes, asignándolos a sus respectivos cursos y grupos.', icon: Users2 },
+                  { title: 'Registro de Calificaciones', text: 'Permita que los docentes registren las calificaciones de los estudiantes de forma segura y centralizada.', icon: ClipboardEdit },
+                  { title: 'Control de Asistencia', text: 'Lleve un registro detallado de la asistencia de los estudiantes a clases, generando alertas y reportes.', icon: CheckCircle }
+                ],
+                benefits: [
+                  'Centraliza y estandariza la información académica.',
+                  'Simplifica los procesos administrativos para docentes y personal.',
+                  'Proporciona a estudiantes y padres acceso a la información académica.',
+                  'Genera datos confiables para el seguimiento del rendimiento estudiantil.',
+                  'Facilita la generación de boletines, certificados y reportes.'
+                ],
+                ctaText: 'Organice su Gestión Académica',
+                formSubject: 'Consulta%20EduGob%20Academica'
+            }}
         ]
     },
     "GeGob": {
         icon: BrainCircuit,
         description: "Plataforma de alto nivel para la gobernanza y la mejora continua del sistema educativo.",
         items: [
-            { name: "Tablero Principal (Dashboard)", description: "KPIs, mapas de calor y alertas críticas.", details: { mainIcon: BrainCircuit, title: 'Tablero Principal (Dashboard)', description: 'Placeholder description.', keyServices: [], benefits: []} },
-            { name: "PEI (Proyecto Educativo Institucional)", description: "Gestión estratégica y seguimiento.", details: { mainIcon: BrainCircuit, title: 'PEI (Proyecto Educativo Institucional)', description: 'Placeholder description.', keyServices: [], benefits: []} },
-            { name: "SIE (Sistema Institucional de Evaluación)", description: "Gestión de calificaciones y autoevaluación.", details: { mainIcon: BrainCircuit, title: 'SIE (Sistema Institucional de Evaluación)', description: 'Placeholder description.', keyServices: [], benefits: []} },
-            { name: "Autoevaluación y PMI", description: "Diagnóstico y planes de mejoramiento.", details: { mainIcon: BrainCircuit, title: 'Autoevaluación y PMI', description: 'Placeholder description.', keyServices: [], benefits: []} },
-            { name: "Evaluaciones Externas", description: "Análisis de Pruebas Saber y comparativas.", details: { mainIcon: BrainCircuit, title: 'Evaluaciones Externas', description: 'Placeholder description.', keyServices: [], benefits: []} },
-            { name: "Módulos de Apoyo", description: "Proyectos transversales y formación.", details: { mainIcon: BrainCircuit, title: 'Módulos de Apoyo', description: 'Placeholder description.', keyServices: [], benefits: []} },
-            { name: "Administración del Sistema", description: "Gestión de usuarios y auditoría.", details: { mainIcon: BrainCircuit, title: 'Administración del Sistema', description: 'Placeholder description.', keyServices: [], benefits: []} }
+            { name: "Autoevaluación y PMI", description: "Diagnóstico y planes de mejoramiento.", details: {
+                mainIcon: Search,
+                title: 'Autoevaluación y Planes de Mejoramiento (PMI)',
+                description: 'Transforme el diagnóstico en acción. Nuestro módulo guía a las instituciones en procesos de autoevaluación estructurados y convierte los hallazgos en planes de mejoramiento concretos.',
+                keyServices: [
+                  { title: 'Motor de Diagnóstico Personalizable', text: 'Cree y aplique instrumentos de autoevaluación basados en las guías del MEN o en sus propios marcos de calidad.', icon: Settings },
+                  { title: 'Visualización de Resultados', text: 'Analice los resultados de la autoevaluación con gráficos de radar, barras y matrices que facilitan la identificación de fortalezas y debilidades.', icon: BarChart3 },
+                  { title: 'Conexión Directa al PMI', text: 'Convierta los indicadores con bajo desempeño en objetivos de un Plan de Mejoramiento Institucional con un solo clic.', icon: Link },
+                  { title: 'Banco de Buenas Prácticas', text: 'Acceda a un repositorio de proyectos y estrategias exitosas para inspirar y guiar sus planes de mejoramiento.', icon: Lightbulb }
+                ],
+                benefits: [
+                  'Fomenta una cultura de reflexión y mejora continua.',
+                  'Facilita la toma de decisiones basada en un diagnóstico objetivo.',
+                  'Asegura que los planes de mejoramiento respondan a necesidades reales.',
+                  'Permite un seguimiento claro del avance de los planes de acción.',
+                  'Simplifica la preparación para procesos de certificación y auditoría.'
+                ],
+                ctaText: 'Impulse la Mejora Continua',
+                formSubject: 'Consulta%20GeGob%20PMI'
+            }}
         ]
     },
      "GestorDoc": {
         icon: FileArchive,
         description: "Solución completa de gestión documental que cumple con la Ley 594 de 2000.",
         items: [
-            { name: "Tablas de Retención Documental", description: "Creación y gestión de TRD.", details: { mainIcon: FileArchive, title: 'Tablas de Retención Documental', description: 'Placeholder description.', keyServices: [], benefits: []} },
-            { name: "Flujos de Trabajo Seguros", description: "Automatización de procesos documentales.", details: { mainIcon: FileArchive, title: 'Flujos de Trabajo Seguros', description: 'Placeholder description.', keyServices: [], benefits: []} },
-            { name: "Consultas Virtuales", description: "Acceso controlado a documentos.", details: { mainIcon: FileArchive, title: 'Consultas Virtuales', description: 'Placeholder description.', keyServices: [], benefits: []} },
-            { name: "Identificadores Únicos (FUID)", description: "Trazabilidad completa del documento.", details: { mainIcon: FileArchive, title: 'Identificadores Únicos (FUID)', description: 'Placeholder description.', keyServices: [], benefits: []} }
+            { name: "Tablas de Retención Documental", description: "Creación y gestión de TRD.", details: {
+                mainIcon: FileArchive,
+                title: 'Gestión Documental y Archivo (GestorDoc)',
+                description: 'Organice, preserve y controle el acceso al patrimonio documental de su entidad. Nuestra solución asegura el cumplimiento de la Ley General de Archivos y moderniza su gestión.',
+                keyServices: [
+                  { title: 'Tablas de Retención Documental (TRD)', text: 'Cree y administre sus TRD de forma digital, asegurando la correcta clasificación y disposición final de los documentos.', icon: GanttChartSquare },
+                  { title: 'Radicación y Flujos de Trabajo', text: 'Digitalice la ventanilla de radicación y cree flujos de trabajo para la distribución y respuesta a las comunicaciones.', icon: Workflow },
+                  { title: 'Archivo Digital Seguro', text: 'Almacene sus documentos en un repositorio digital seguro, con control de versiones y políticas de acceso.', icon: Lock },
+                  { title: 'FUID y Trazabilidad', text: 'Asigne un Formulario Único de Inventario Documental (FUID) a cada expediente, garantizando una trazabilidad completa.', icon: Barcode }
+                ],
+                benefits: [
+                  'Cumplimiento garantizado de la normativa archivística colombiana.',
+                  'Reducción del riesgo de pérdida o deterioro de documentos importantes.',
+                  'Acceso rápido y seguro a la información desde cualquier lugar.',
+                  'Optimización del espacio físico destinado a archivos.',
+                  'Mejora de la eficiencia en la gestión de trámites y comunicaciones.'
+                ],
+                ctaText: 'Modernice su Gestión Documental',
+                formSubject: 'Consulta%20GestorDoc'
+            }}
         ]
     },
     "InfoGob": {
         icon: Info,
         description: "Plataforma enfocada en la transparencia y la rendición de cuentas para la gestión de proyectos.",
         items: [
-            { name: "Gestión de Proyectos", description: "Control de objetivos y financiamiento.", details: { mainIcon: Info, title: 'Gestión de Proyectos', description: 'Placeholder description.', keyServices: [], benefits: []} },
-            { name: "Seguimiento y Monitoreo", description: "Visualización de avances y resultados.", details: { mainIcon: Info, title: 'Seguimiento y Monitoreo', description: 'Placeholder description.', keyServices: [], benefits: []} },
-            { name: "Participación Ciudadana", description: "Foros y chats para la comunidad.", details: { mainIcon: Info, title: 'Participación Ciudadana', description: 'Placeholder description.', keyServices: [], benefits: []} },
-            { name: "Módulo SIG", description: "Visualización geoespacial de datos.", details: { mainIcon: Info, title: 'Módulo SIG', description: 'Placeholder description.', keyServices: [], benefits: []} }
+            { name: "Seguimiento y Monitoreo", description: "Visualización de avances y resultados.", details: {
+                mainIcon: Presentation,
+                title: 'Transparencia y Seguimiento de Proyectos (InfoGob)',
+                description: 'Fortalezca la confianza ciudadana con una plataforma que permite la visualización pública y el seguimiento del avance físico y financiero de los proyectos de inversión.',
+                keyServices: [
+                  { title: 'Visor Público de Proyectos', text: 'Ofrezca a la ciudadanía un portal interactivo para consultar información detallada de cada proyecto: objetivos, presupuesto, avances y contratistas.', icon: Eye },
+                  { title: 'Reporte de Avances por Contratistas', text: 'Facilite a los ejecutores el reporte periódico de avances físicos y financieros a través de una interfaz sencilla.', icon: UploadCloud },
+                  { title: 'Componente Geográfico (SIG)', text: 'Ubique cada proyecto en un mapa, permitiendo a los ciudadanos ver las inversiones que se están realizando en su comunidad.', icon: MapPin },
+                  { title: 'Participación Ciudadana', text: 'Habilite espacios como foros y encuestas para que la comunidad pueda opinar y hacer seguimiento a los proyectos de su interés.', icon: UsersRound }
+                ],
+                benefits: [
+                  'Aumenta la transparencia y la confianza en la gestión pública.',
+                  'Empodera a los ciudadanos con información clara y accesible.',
+                  'Facilita la rendición de cuentas por parte de la administración.',
+                  'Permite un control social más efectivo sobre la inversión pública.',
+                  'Mejora la comunicación entre el gobierno y la comunidad.'
+                ],
+                ctaText: 'Fomente la Transparencia',
+                formSubject: 'Consulta%20InfoGob'
+            }}
         ]
     }
 };
+
 
 function InteractiveSoftwareSuites() {
     const [activeTab, setActiveTab] = useState('empresarial');
@@ -369,6 +952,7 @@ function InteractiveSoftwareSuites() {
         ? "Esta línea de productos está concebida como una solución integral de Planificación de Recursos Empresariales (ERP) y Gestión de Relaciones con el Cliente (CRM) dirigida al sector privado. El objetivo principal de Ofi-Ples es unificar y automatizar las operaciones de negocio para mejorar la eficiencia, la productividad y la toma de decisiones."
         : "Gob-Ples es la línea más diversificada y especializada de PLES-TIC, compuesta por un conjunto de plataformas diseñadas para responder a las necesidades específicas de entidades territoriales, instituciones educativas y otros organismos del sector público en Colombia. Cada software de Gob-Ples está construido para resolver problemáticas concretas de la administración pública.";
 
+    // Effect to reset selected module when tab changes
     useEffect(() => {
         if (activeTab === 'empresarial') {
             setSelectedModuleKey(Object.keys(ofiPlesModules)[0]);
