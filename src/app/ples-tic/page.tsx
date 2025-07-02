@@ -104,32 +104,10 @@ export default function PlesTicPage() {
       solution: 'Desarrollamos una plataforma e-commerce omnicanal, integramos un sistema ERP en la nube y creamos una estrategia de marketing digital personalizada. Resultados: Incremento de ventas online del 45% y mejora en la satisfacción del cliente.',
       illustration: (
         <div className="relative h-full w-full overflow-hidden rounded-lg">
-          <svg width="100%" height="100%" viewBox="0 0 200 120" className="absolute inset-0">
-            <g
-              stroke="hsl(var(--primary) / 0.5)"
-              strokeWidth="0.5"
-              strokeLinecap="round"
-              className="animate-draw-line-alt"
-              style={{
-                strokeDasharray: 200,
-                strokeDashoffset: 200,
-                animationDuration: '3s',
-                animationIterationCount: 'infinite',
-              }}
-            >
-              <path d="M 100 60 L 50 30" style={{ animationDelay: '0s' }} />
-              <path d="M 50 30 L 150 30" style={{ animationDelay: '0.2s' }} />
-              <path d="M 150 30 L 150 90" style={{ animationDelay: '0.4s' }} />
-              <path d="M 150 90 L 50 90" style={{ animationDelay: '0.6s' }} />
-              <path d="M 50 90 L 50 30" style={{ animationDelay: '0.8s' }} />
-              <path d="M 50 90 L 100 60" style={{ animationDelay: '1s' }} />
-              <path d="M 150 90 L 100 60" style={{ animationDelay: '1.2s' }} />
-              <path d="M 150 30 L 100 60" style={{ animationDelay: '1.4s' }} />
-            </g>
-          </svg>
+          <PlexusIllustration />
           <div className="relative h-full w-full">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-subtle-float">
-                <ShoppingBag className="h-12 w-12 text-accent"/>
+                <ShoppingBag className="h-16 w-16 text-accent"/>
             </div>
             <div className="absolute top-[25%] left-[25%] -translate-x-1/2 -translate-y-1/2 animate-subtle-float" style={{ animationDelay: '0.3s' }}>
                 <ShoppingCart className="h-8 w-8 text-primary"/>
