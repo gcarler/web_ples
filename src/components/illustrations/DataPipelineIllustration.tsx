@@ -28,29 +28,23 @@ const DataPipelineIllustration = ({ className }: { className?: string }) => {
                    return (
                        <React.Fragment key={index}>
                            <div className="flex flex-col items-center text-center gap-2 animate-station-pop-in" style={{ animationDelay: `${index * 0.3}s` }}>
-                               <div className={cn(
-                                   "relative flex items-center justify-center bg-background/80 backdrop-blur-sm border-2 border-primary/30 rounded-full p-3 md:p-4 shadow-lg shadow-primary/20"
-                                )}>
-                                   {isHeart ? (
-                                     <>
-                                        <div className="absolute inset-0 h-full w-full">
-                                            <div className="absolute inset-0 rounded-full bg-accent/50 animate-heart-pulse-ring" />
-                                            <div className="absolute inset-0 rounded-full bg-accent/60 animate-heart-pulse-ring" style={{ animationDelay: '0.4s' }} />
+                               {isHeart ? (
+                                    <div className="relative animate-heartbeat-glow rounded-full">
+                                        <div className="relative flex items-center justify-center bg-background/80 backdrop-blur-sm border-2 border-primary/30 rounded-full p-3 md:p-4 shadow-lg shadow-primary/20 animate-heartbeat-scale">
+                                             <Icon className="h-7 w-7 md:h-8 md:w-8 text-accent" />
                                         </div>
-                                        <Icon className="relative z-10 h-7 w-7 md:h-8 md:w-8 text-primary animate-heart-pulse-icon" />
-                                     </>
-                                   ) : (
-                                     <>
-                                        <Icon className="h-7 w-7 md:h-8 md:w-8 text-primary" />
-                                        <div className="absolute -inset-1 border-2 border-accent/50 rounded-full animate-pulse-glow-shield" 
-                                             style={{ 
-                                                animationDuration: '4s', 
-                                                animationDelay: `${index * 0.5}s`
-                                             }}
-                                        />
-                                     </>
-                                   )}
-                               </div>
+                                    </div>
+                               ) : (
+                                   <div className="relative flex items-center justify-center bg-background/80 backdrop-blur-sm border-2 border-primary/30 rounded-full p-3 md:p-4 shadow-lg shadow-primary/20">
+                                       <Icon className="h-7 w-7 md:h-8 md:w-8 text-primary" />
+                                       <div className="absolute -inset-1 border-2 border-accent/50 rounded-full animate-pulse-glow-shield" 
+                                            style={{ 
+                                               animationDuration: '4s', 
+                                               animationDelay: `${index * 0.5}s`
+                                            }}
+                                       />
+                                   </div>
+                               )}
                                <span className="text-xs font-medium text-primary-foreground max-w-24">{station.label}</span>
                            </div>
                            {index < stations.length - 1 && (
