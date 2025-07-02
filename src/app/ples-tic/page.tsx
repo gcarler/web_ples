@@ -309,7 +309,7 @@ export default function PlesTicPage() {
             {coreServices.map((service) => (
               <Link key={service.title} href={service.ctaLink || '#'} passHref legacyBehavior>
                 <a className="block group hover:scale-105 transition-all duration-300 ease-in-out">
-                  <Card className="h-full group-hover:shadow-xl group-hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent group-hover:text-primary-foreground bg-card group-hover:animate-gradient group-hover:bg-[length:200%_200%]">
+                  <Card className="h-full group-hover:shadow-xl group-hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent group-hover:text-primary-foreground bg-card group-hover:animate-gradient hover:bg-[length:200%_200%]">
                     <CardHeader className="flex flex-row items-start gap-4">
                         {service.icon}
                         <div>
@@ -415,14 +415,14 @@ export default function PlesTicPage() {
       </section>
         
       <section className="py-20 bg-secondary">
-        <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestras Suites de Software Empresarial</h2>
           <p className="text-muted-foreground max-w-3xl mx-auto mt-4 mb-12">
             Soluciones integrales y modulares diseñadas para transformar la gestión en los sectores privado, público y educativo.
           </p>
         </div>
 
-        <div className="w-full">
+        <div className="w-full mt-12">
             <Tabs defaultValue="ofi-ples" className="w-full">
             <div className="flex justify-center border-b border-border bg-background">
                 <TabsList className="grid w-full max-w-screen-md grid-cols-1 md:grid-cols-3 h-auto p-0 bg-transparent rounded-none">
@@ -432,26 +432,28 @@ export default function PlesTicPage() {
                 </TabsList>
             </div>
 
-            <div className="py-12 bg-background">
-                <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="bg-background">
+                <div className="py-12">
                     <TabsContent value="ofi-ples">
-                        <h3 className="text-2xl font-bold text-primary mb-2">OFI-PLES: Aplicaciones para Cada Necesidad</h3>
-                        <p className="text-muted-foreground mb-6">Una suite completa de aplicaciones empresariales integradas para optimizar cada aspecto de su negocio.</p>
-                        <Accordion type="multiple" className="w-full space-y-2">
+                        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <h3 className="text-2xl font-bold text-primary mb-2">OFI-PLES: Aplicaciones para Cada Necesidad</h3>
+                            <p className="text-muted-foreground mb-6">Una suite completa de aplicaciones empresariales integradas para optimizar cada aspecto de su negocio.</p>
+                        </div>
+                        <Accordion type="multiple" className="w-full space-y-0">
                         {ofiPlesCategories.map((category) => {
                             const CategoryIcon = category.icon;
                             return (
-                            <AccordionItem key={category.name} value={category.name} className="border bg-card rounded-md">
-                                <AccordionTrigger className="hover:bg-muted/50 rounded-md px-4 py-3 text-lg font-semibold hover:no-underline">
+                            <AccordionItem key={category.name} value={category.name} className="border-x-0 border-t border-b bg-card rounded-none last:border-b-0">
+                                <AccordionTrigger className="hover:bg-muted/50 px-4 sm:px-6 lg:px-8 py-4 text-lg font-semibold hover:no-underline">
                                 <div className="flex items-center gap-3">
                                     <CategoryIcon className="h-6 w-6 text-primary"/>
                                     {category.name}
                                 </div>
                                 </AccordionTrigger>
-                                <AccordionContent className="pt-2">
-                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 rounded-b-md">
+                                <AccordionContent className="pt-2 bg-background/50">
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 sm:p-6 lg:p-8">
                                     {category.apps.map(app => (
-                                    <Card key={app.name} className="bg-background hover:shadow-md transition-shadow">
+                                    <Card key={app.name} className="bg-card hover:shadow-md transition-shadow">
                                         <CardHeader>
                                             <CardDescription className="font-medium text-primary">{app.type}</CardDescription>
                                             <CardTitle className="text-lg">{app.name}</CardTitle>
@@ -468,16 +470,18 @@ export default function PlesTicPage() {
                         </Accordion>
                     </TabsContent>
                     <TabsContent value="ofi-gob">
-                        <h3 className="text-2xl font-bold text-primary mb-2">OFI-GOB: Suite para la Gestión Pública</h3>
-                        <p className="text-muted-foreground mb-6">Una suite integral que integra y gestiona las dimensiones del Modelo Integrado de Planeación y Gestión (MIPG).</p>
-                        <Accordion type="multiple" className="w-full space-y-2">
+                        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <h3 className="text-2xl font-bold text-primary mb-2">OFI-GOB: Suite para la Gestión Pública</h3>
+                            <p className="text-muted-foreground mb-6">Una suite integral que integra y gestiona las dimensiones del Modelo Integrado de Planeación y Gestión (MIPG).</p>
+                        </div>
+                        <Accordion type="multiple" className="w-full space-y-0">
                             {ofiGobDimensions.map(dim => (
-                                <AccordionItem key={dim.name} value={dim.name} className="border bg-card rounded-md">
-                                    <AccordionTrigger className="hover:bg-muted/50 rounded-md px-4 py-3 text-lg font-semibold hover:no-underline text-left">
+                                <AccordionItem key={dim.name} value={dim.name} className="border-x-0 border-t border-b bg-card rounded-none last:border-b-0">
+                                    <AccordionTrigger className="hover:bg-muted/50 px-4 sm:px-6 lg:px-8 py-4 text-lg font-semibold hover:no-underline text-left">
                                         {dim.name}
                                     </AccordionTrigger>
-                                    <AccordionContent className="pt-2">
-                                        <div className="p-4 bg-background rounded-b-md space-y-3">
+                                    <AccordionContent className="pt-2 bg-background/50">
+                                        <div className="p-4 sm:p-6 lg:p-8 space-y-3">
                                             <p className="text-muted-foreground"><strong className="text-foreground">Propósito:</strong> {dim.purpose}</p>
                                             <div>
                                                 <h4 className="font-semibold text-foreground mb-2">Submódulos:</h4>
@@ -497,16 +501,18 @@ export default function PlesTicPage() {
                         </Accordion>
                     </TabsContent>
                     <TabsContent value="cegob">
-                        <h3 className="text-2xl font-bold text-primary mb-2">CEGOB: Control y Excelencia en la Gobernanza Educativa</h3>
-                        <p className="text-muted-foreground mb-6">Una plataforma integral diseñada para unificar y simplificar la gestión de las instituciones educativas.</p>
-                        <Accordion type="multiple" className="w-full space-y-2">
+                        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <h3 className="text-2xl font-bold text-primary mb-2">CEGOB: Control y Excelencia en la Gobernanza Educativa</h3>
+                            <p className="text-muted-foreground mb-6">Una plataforma integral diseñada para unificar y simplificar la gestión de las instituciones educativas.</p>
+                        </div>
+                        <Accordion type="multiple" className="w-full space-y-0">
                             {cegobModules.map(mod => (
-                                <AccordionItem key={mod.name} value={mod.name} className="border bg-card rounded-md">
-                                    <AccordionTrigger className="hover:bg-muted/50 rounded-md px-4 py-3 text-lg font-semibold hover:no-underline text-left">
+                                <AccordionItem key={mod.name} value={mod.name} className="border-x-0 border-t border-b bg-card rounded-none last:border-b-0">
+                                    <AccordionTrigger className="hover:bg-muted/50 px-4 sm:px-6 lg:px-8 py-4 text-lg font-semibold hover:no-underline text-left">
                                         {mod.name}
                                     </AccordionTrigger>
-                                    <AccordionContent className="pt-2">
-                                        <div className="p-4 bg-background rounded-b-md space-y-3">
+                                    <AccordionContent className="pt-2 bg-background/50">
+                                        <div className="p-4 sm:p-6 lg:p-8 space-y-3">
                                             <p className="text-muted-foreground">{mod.description}</p>
                                             <div>
                                                 <h4 className="font-semibold text-foreground mb-2">Funcionalidades:</h4>
