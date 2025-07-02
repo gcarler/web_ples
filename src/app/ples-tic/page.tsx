@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {
-  ArrowRight, CheckCircle, Cpu, Lightbulb, ShieldCheck, TrendingUp, Code, CloudCog, Lock, BarChartBig, BarChart3, Network, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, Rocket, Workflow, Brain, Database, Settings, Server, Shield, Layers, ShoppingCart, Cloud, Users, HeartPulse, Building2, Globe, Landmark, Warehouse, Users2, Megaphone, ConciergeBell, Zap, Wrench, ChevronRight, Briefcase, Map, School, FileArchive, Info, LayoutDashboard, Target, ShieldAlert, FileSearch, ExternalLink, GitMerge, FileCheck, BookOpen, ClipboardCheck, BrainCircuit, ShoppingBag
+  ArrowRight, ArrowLeft, CheckCircle, Cpu, Lightbulb, ShieldCheck, TrendingUp, Code, CloudCog, Lock, BarChartBig, BarChart3, Network, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, Rocket, Workflow, Brain, Database, Settings, Server, Shield, Layers, ShoppingCart, Cloud, Users, HeartPulse, Building2, Globe, Landmark, Warehouse, Users2, Megaphone, ConciergeBell, Zap, Wrench, ChevronRight, Briefcase, Map, School, FileArchive, Info, LayoutDashboard, Target, ShieldAlert, FileSearch, ExternalLink, GitMerge, FileCheck, BookOpen, ClipboardCheck, BrainCircuit, ShoppingBag
 } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
@@ -250,11 +250,6 @@ export default function PlesTicPage() {
         icon: <School className="h-6 w-6 text-primary" />,
         description: "Solución tecnológica diseñada para optimizar la gestión y supervisión del Programa de Alimentación Escolar (PAE) en Colombia. Está dirigida a los administradores del programa y a las instituciones educativas.",
         submodules: ["Gestión de Instituciones", "Gestión de Beneficiarios", "Reportes Diarios y Mensuales", "Validación de Entregas"]
-    },
-    "EduGOB (GEGOB)": {
-        icon: <Users2 className="h-6 w-6 text-primary" />,
-        description: "Plataforma integral para la gestión en instituciones de educación superior, básica y media. Su objetivo es optimizar los procesos académicos y administrativos, y monitorear el bienestar estudiantil.",
-        submodules: ["Gestión de Usuarios", "Bienestar Estudiantil", "Convocatorias y Becas", "Constructor de Hojas de Vida", "Módulo de Analítica"]
     },
     "GestorDoc": {
         icon: <FileArchive className="h-6 w-6 text-primary" />,
@@ -551,16 +546,15 @@ export default function PlesTicPage() {
         </div>
 
         <Tabs defaultValue="ofi-ples" className="w-full">
-          <TabsList className="grid w-full grid-cols-1 sm:grid-cols-4 max-w-6xl mx-auto h-auto mb-8 border-b-2 border-primary/20 rounded-none bg-transparent p-0">
+          <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 max-w-4xl mx-auto h-auto mb-8 border-b-2 border-primary/20 rounded-none bg-transparent p-0">
             <TabsTrigger value="ofi-ples" className="py-3 text-lg data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none rounded-none">Ofi-Ples</TabsTrigger>
             <TabsTrigger value="gob-ples" className="py-3 text-lg data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none rounded-none">Gob-Ples</TabsTrigger>
-            <TabsTrigger value="ofi-gob" className="py-3 text-lg data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none rounded-none">OFI-GOB</TabsTrigger>
             <TabsTrigger value="cegob" className="py-3 text-lg data-[state=active]:border-b-2 data-[state=active]:border-primary data-[state=active]:text-primary data-[state=active]:bg-transparent data-[state=active]:shadow-none rounded-none">CEGOB / GEGOB</TabsTrigger>
           </TabsList>
           
           <TabsContent value="ofi-ples" className="py-8">
             <div className="text-center mb-10 px-4">
-                <h3 className="text-2xl font-bold text-foreground">Ofi-Ples: Aplicaciones para Cada Necesidad</h3>
+                <h3 className="text-2xl font-bold text-foreground">Ofi-Ples: Suite Empresarial</h3>
                 <p className="text-muted-foreground mt-2 max-w-3xl mx-auto">Una solución integral de Planificación de Recursos Empresariales (ERP) y Gestión de Relaciones con el Cliente (CRM) dirigida al sector privado. El objetivo principal de Ofi-Ples es unificar y automatizar las operaciones de negocio para mejorar la eficiencia, la productividad y la toma de decisiones.</p>
             </div>
             <Card className="max-w-6xl mx-auto shadow-lg border">
@@ -591,66 +585,70 @@ export default function PlesTicPage() {
 
           <TabsContent value="gob-ples" className="py-8">
             <div className="text-center mb-10 px-4">
-                <h3 className="text-2xl font-bold text-foreground">Gob-Ples: Soluciones para el Sector Público</h3>
-                <p className="text-muted-foreground mt-2 max-w-3xl mx-auto">La línea más diversificada y especializada de PLES-TIC, compuesta por un conjunto de plataformas diseñadas para responder a las necesidades específicas de entidades territoriales, instituciones educativas y otros organismos del sector público en Colombia.</p>
+                <h3 className="text-2xl font-bold text-foreground">Gob-Ples: Suite Gubernamental Integrada</h3>
+                <p className="text-muted-foreground mt-2 max-w-3xl mx-auto">La línea más diversificada y especializada de PLES-TIC, diseñada para responder a las necesidades específicas de entidades del sector público en Colombia.</p>
             </div>
-            <Card className="max-w-6xl mx-auto shadow-lg border">
-              <Accordion type="single" collapsible className="w-full">
-                {Object.entries(gobPlesModules).map(([category, data]) => (
-                  <AccordionItem value={category} key={category} className="border-x-0 border-t-0 last:border-b-0">
-                    <AccordionTrigger className="text-lg font-semibold hover:no-underline py-4 px-6 text-left data-[state=open]:text-primary data-[state=open]:bg-primary/5">
-                      <div className="flex items-center gap-4">
-                        {data.icon}
-                        <span>{category}</span>
-                      </div>
-                    </AccordionTrigger>
-                    <AccordionContent className="pt-2 pb-4 px-6 bg-primary/5 space-y-3">
-                      <p className="text-base text-muted-foreground pl-10">{data.description}</p>
-                      {data.submodules && data.submodules.length > 0 && (
-                        <div className="pl-10">
-                          <h4 className="font-semibold mb-2 text-foreground">Módulos Clave:</h4>
-                          <div className="flex flex-wrap gap-2">
-                            {data.submodules.map(sub => <Badge key={sub} variant="secondary">{sub}</Badge>)}
+            
+            <div className="max-w-6xl mx-auto space-y-12">
+              <div>
+                <h4 className="text-xl font-bold text-center mb-6 text-primary">Aplicaciones Especializadas</h4>
+                <Card className="shadow-lg border">
+                  <Accordion type="single" collapsible className="w-full">
+                    {Object.entries(gobPlesModules).map(([category, data]) => (
+                      <AccordionItem value={category} key={category} className="border-x-0 border-t-0 last:border-b-0">
+                        <AccordionTrigger className="text-lg font-semibold hover:no-underline py-4 px-6 text-left data-[state=open]:text-primary data-[state=open]:bg-primary/5">
+                          <div className="flex items-center gap-4">
+                            {data.icon}
+                            <span>{category}</span>
                           </div>
-                        </div>
-                      )}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </Card>
-          </TabsContent>
+                        </AccordionTrigger>
+                        <AccordionContent className="pt-2 pb-4 px-6 bg-primary/5 space-y-3">
+                          <p className="text-base text-muted-foreground pl-10">{data.description}</p>
+                          {data.submodules && data.submodules.length > 0 && (
+                            <div className="pl-10">
+                              <h4 className="font-semibold mb-2 text-foreground">Módulos Clave:</h4>
+                              <div className="flex flex-wrap gap-2">
+                                {data.submodules.map(sub => <Badge key={sub} variant="secondary">{sub}</Badge>)}
+                              </div>
+                            </div>
+                          )}
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
+                </Card>
+              </div>
 
-          <TabsContent value="ofi-gob" className="py-8">
-            <div className="text-center mb-10 px-4">
-                <h3 className="text-2xl font-bold text-foreground">OFI-GOB: Gestión Pública Integrada</h3>
-                <p className="text-muted-foreground mt-2 max-w-3xl mx-auto">Una suite que integra y gestiona las dimensiones del Modelo Integrado de Planeación y Gestión (MIPG) para entidades públicas.</p>
-            </div>
-            <Card className="max-w-6xl mx-auto shadow-lg border">
-              <Accordion type="single" collapsible className="w-full">
-                {Object.entries(ofiGobModules).map(([category, data]) => (
-                  <AccordionItem value={category} key={category} className="border-x-0 border-t-0 last:border-b-0">
-                    <AccordionTrigger className="text-lg font-semibold hover:no-underline py-4 px-6 text-left data-[state=open]:text-primary data-[state=open]:bg-primary/5">
-                      <div className="flex items-center gap-4">
-                        {data.icon}
-                        <span>{category}</span>
-                      </div>
-                    </AccordionTrigger>
-                    <AccordionContent className="pt-2 pb-4 px-6 bg-primary/5 space-y-3">
-                      <p className="text-base text-muted-foreground pl-10">{data.description}</p>
-                      {data.submodules && data.submodules.length > 0 && (
-                        <div className="pl-10">
-                          <h4 className="font-semibold mb-2 text-foreground">Submódulos:</h4>
-                          <div className="flex flex-wrap gap-2">
-                            {data.submodules.map(sub => <Badge key={sub} variant="secondary">{sub}</Badge>)}
+              <div>
+                <h4 className="text-xl font-bold text-center mb-6 text-primary">Suite de Gestión (OFI-GOB)</h4>
+                 <p className="text-muted-foreground text-center max-w-3xl mx-auto mb-6">Una suite que integra y gestiona las dimensiones del Modelo Integrado de Planeación y Gestión (MIPG) para entidades públicas.</p>
+                <Card className="shadow-lg border">
+                  <Accordion type="single" collapsible className="w-full">
+                    {Object.entries(ofiGobModules).map(([category, data]) => (
+                      <AccordionItem value={category} key={category} className="border-x-0 border-t-0 last:border-b-0">
+                        <AccordionTrigger className="text-lg font-semibold hover:no-underline py-4 px-6 text-left data-[state=open]:text-primary data-[state=open]:bg-primary/5">
+                          <div className="flex items-center gap-4">
+                            {data.icon}
+                            <span>{category}</span>
                           </div>
-                        </div>
-                      )}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </Card>
+                        </AccordionTrigger>
+                        <AccordionContent className="pt-2 pb-4 px-6 bg-primary/5 space-y-3">
+                          <p className="text-base text-muted-foreground pl-10">{data.description}</p>
+                          {data.submodules && data.submodules.length > 0 && (
+                            <div className="pl-10">
+                              <h4 className="font-semibold mb-2 text-foreground">Submódulos:</h4>
+                              <div className="flex flex-wrap gap-2">
+                                {data.submodules.map(sub => <Badge key={sub} variant="secondary">{sub}</Badge>)}
+                              </div>
+                            </div>
+                          )}
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
+                </Card>
+              </div>
+            </div>
           </TabsContent>
 
           <TabsContent value="cegob" className="py-8">
