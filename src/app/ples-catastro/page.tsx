@@ -74,25 +74,6 @@ export default function PlesCatastroPage() {
     { figure: "150+", label: "Municipios Asesorados", icon: <Briefcase className="h-10 w-10 text-primary group-hover:text-primary-foreground"/>, dataAiHint: "government briefcase" },
   ];
 
-  const caseStudies = [
-    {
-      title: 'Modernización Catastral Integral Ciudad XYZ',
-      challenge: 'Una ciudad con información catastral desactualizada, baja recaudación y procesos manuales lentos.',
-      solution: 'Implementamos un levantamiento multifinalitario, sistema de información catastral moderno, y capacitación del personal. Se logró un aumento del 20% en la recaudación y reducción de trámites.',
-      image: 'https://placehold.co/600x400.png',
-      imageHint: 'city modernization map',
-      tags: ['Catastro Urbano', 'SIG', 'Recaudación']
-    },
-    {
-      title: 'Plan de Ordenamiento Territorial Región ABC',
-      challenge: 'Crecimiento desordenado, conflictos de uso de suelo y falta de visión a largo plazo para el desarrollo regional.',
-      solution: 'Se elaboró un POT participativo, con zonificación basada en análisis multicriterio y una plataforma de seguimiento de indicadores. Se fortaleció la gobernanza territorial.',
-      image: 'https://placehold.co/600x400.png',
-      imageHint: 'territorial planning region',
-      tags: ['Ordenamiento Territorial', 'Participación Ciudadana', 'Sostenibilidad']
-    },
-  ];
-
   const technologies = ['SIG (QGIS, ArcGIS Pro)', 'GPS y Estaciones Totales de Alta Precisión', 'Drones y Fotogrametría Aérea', 'Bases de Datos Espaciales (PostGIS)', 'Modelos de Avalúo Automatizado (AVM)', 'Plataformas Web GIS', 'Inteligencia Artificial Geoespacial'];
 
   return (
@@ -167,7 +148,7 @@ export default function PlesCatastroPage() {
             {coreServices.map((service) => (
               <Link key={service.title} href={service.link} passHref legacyBehavior>
                 <a className="block group hover:scale-105 transition-all duration-300 ease-in-out">
-                  <Card className="h-full group-hover:shadow-xl group-hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] group-hover:from-primary group-hover:to-accent group-hover:text-primary-foreground bg-card group-hover:animate-gradient group-hover:bg-[length:200%_200%]">
+                  <Card className="h-full group-hover:shadow-xl group-hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent group-hover:text-primary-foreground bg-card group-hover:animate-gradient group-hover:bg-[length:200%_200%]">
                     <CardHeader className="flex flex-row items-start gap-4">
                         {service.icon}
                         <div>
@@ -300,47 +281,6 @@ export default function PlesCatastroPage() {
                 <div className="flex justify-center mb-4">{figure.icon}</div>
                 <p className="text-4xl font-bold text-primary group-hover:text-primary-foreground mb-2">{figure.figure}</p>
                 <p className="text-muted-foreground group-hover:text-primary-foreground/90 text-lg">{figure.label}</p>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-12 bg-card shadow-xl">
-        <div className="w-full px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Casos de Estudio Aplicados</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {caseStudies.map((study) => (
-              <Card key={study.title} className="overflow-hidden group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col hover:animate-gradient hover:bg-[length:200%_200%]">
-                <div className="relative h-56 w-full">
-                  <Image src={study.image} alt={study.title} layout="fill" objectFit="cover" data-ai-hint={study.imageHint} />
-                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                </div>
-                <CardHeader>
-                  <CardTitle className="text-xl group-hover:text-primary-foreground">{study.title}</CardTitle>
-                  <div className="mt-2">
-                    {study.tags.map(tag => <Badge key={tag} variant="secondary" className="mr-2 mb-2 group-hover:bg-primary-foreground/20 group-hover:text-accent-foreground">{tag}</Badge>)}
-                  </div>
-                </CardHeader>
-                <CardContent className="flex-grow space-y-3">
-                  <div>
-                    <p className="font-semibold text-foreground group-hover:text-primary-foreground mb-1">Desafío:</p>
-                    <p className="text-sm text-muted-foreground group-hover:text-primary-foreground/90">{study.challenge}</p>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-foreground group-hover:text-primary-foreground mb-1">Solución PLES Catastro:</p>
-                    <p className="text-sm text-muted-foreground group-hover:text-primary-foreground/90">{study.solution}</p>
-                  </div>
-                </CardContent>
-                <div className="p-6 pt-0">
-                    <Button variant="link" asChild className="text-primary group-hover:text-primary-foreground">
-                        <Link href="/forms?subject=Mas%20Informacion%20Caso%20Estudio%20Catastro">
-                            <span className="flex items-center">
-                                Conocer Más <ArrowRight className="ml-1 h-4 w-4"/>
-                            </span>
-                        </Link>
-                    </Button>
-                </div>
               </Card>
             ))}
           </div>
