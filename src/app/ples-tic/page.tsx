@@ -4,10 +4,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, CheckCircle, Cpu, Lightbulb, ShieldCheck, TrendingUp, Code, CloudCog, Lock, BarChartBig, Network, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, Rocket, Workflow, Brain, Database, Settings, Server, Shield, Layers, ShoppingBag, ShoppingCart, Cloud, Users, BarChart3, HeartPulse } from 'lucide-react';
+import { ArrowRight, CheckCircle, Cpu, Lightbulb, ShieldCheck, TrendingUp, Code, CloudCog, Lock, BarChartBig, Network, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, Rocket, Workflow, Brain, Database, Settings, Server, Shield, Layers, ShoppingBag, ShoppingCart, Cloud, Users, BarChart3, HeartPulse, Building2 } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import PlexusIllustration from '@/components/illustrations/PlexusIllustration';
+import HealthDataIllustration from '@/components/illustrations/HealthDataIllustration';
 
 export const metadata = {
   title: 'PLES TIC - Soluciones Tecnológicas Innovadoras para su Negocio',
@@ -103,17 +104,46 @@ export default function PlesTicPage() {
       solution: 'Desarrollamos una plataforma e-commerce omnicanal, integramos un sistema ERP en la nube y creamos una estrategia de marketing digital personalizada. Resultados: Incremento de ventas online del 45% y mejora en la satisfacción del cliente.',
       illustration: (
         <div className="relative h-full w-full overflow-hidden rounded-lg">
-            <PlexusIllustration />
-            <div className="absolute inset-0 p-4">
-                {/* Central Store Icon - Larger */}
-                <ShoppingBag className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-12 w-12 text-accent animate-subtle-float" style={{ animationDelay: '0s' }} />
-                
-                {/* Surrounding Service Icons */}
-                <ShoppingCart className="absolute top-[20%] left-[25%] h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '0.3s' }} />
-                <Cloud className="absolute top-[20%] right-[25%] h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '0.5s' }} />
-                <Users className="absolute bottom-[20%] left-[25%] h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '0.7s' }} />
-                <BarChart3 className="absolute bottom-[20%] right-[25%] h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '0.9s' }} />
+          <svg width="100%" height="100%" viewBox="0 0 200 120" className="absolute inset-0">
+            <g
+              stroke="hsl(var(--primary) / 0.5)"
+              strokeWidth="0.5"
+              strokeLinecap="round"
+              className="animate-draw-line-alt"
+              style={{
+                strokeDasharray: 200,
+                strokeDashoffset: 200,
+                animationDuration: '3s',
+                animationIterationCount: 'infinite',
+              }}
+            >
+              <path d="M 100 60 L 50 30" style={{ animationDelay: '0s' }} />
+              <path d="M 50 30 L 150 30" style={{ animationDelay: '0.2s' }} />
+              <path d="M 150 30 L 150 90" style={{ animationDelay: '0.4s' }} />
+              <path d="M 150 90 L 50 90" style={{ animationDelay: '0.6s' }} />
+              <path d="M 50 90 L 50 30" style={{ animationDelay: '0.8s' }} />
+              <path d="M 50 90 L 100 60" style={{ animationDelay: '1s' }} />
+              <path d="M 150 90 L 100 60" style={{ animationDelay: '1.2s' }} />
+              <path d="M 150 30 L 100 60" style={{ animationDelay: '1.4s' }} />
+            </g>
+          </svg>
+          <div className="relative h-full w-full">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-subtle-float">
+                <ShoppingBag className="h-12 w-12 text-accent"/>
             </div>
+            <div className="absolute top-[25%] left-[25%] -translate-x-1/2 -translate-y-1/2 animate-subtle-float" style={{ animationDelay: '0.3s' }}>
+                <ShoppingCart className="h-8 w-8 text-primary"/>
+            </div>
+            <div className="absolute top-[25%] right-[25%] translate-x-1/2 -translate-y-1/2 animate-subtle-float" style={{ animationDelay: '0.5s' }}>
+                <Cloud className="h-8 w-8 text-primary"/>
+            </div>
+            <div className="absolute bottom-[25%] left-[25%] -translate-x-1/2 translate-y-1/2 animate-subtle-float" style={{ animationDelay: '0.7s' }}>
+                <Users className="h-8 w-8 text-primary"/>
+            </div>
+            <div className="absolute bottom-[25%] right-[25%] translate-x-1/2 translate-y-1/2 animate-subtle-float" style={{ animationDelay: '0.9s' }}>
+                <BarChart3 className="h-8 w-8 text-primary"/>
+            </div>
+          </div>
         </div>
       ),
       tags: ['Desarrollo Web Full-Stack', 'Soluciones Cloud', 'Integración ERP']
@@ -124,17 +154,7 @@ export default function PlesTicPage() {
       solution: 'Implementamos una plataforma centralizada en la nube para la gestión de datos de pacientes, con dashboards de BI para análisis clínicos y robustas medidas de seguridad y cumplimiento normativo. Se logró una mejora significativa en la toma de decisiones médicas y la eficiencia operativa.',
       illustration: (
         <div className="relative h-full w-full overflow-hidden rounded-lg">
-          <PlexusIllustration />
-          <div className="absolute inset-0 p-4">
-            {/* Central Shield Icon - Larger */}
-            <ShieldCheck className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-12 w-12 text-accent animate-subtle-float" style={{ animationDelay: '0s' }} />
-            
-            {/* Surrounding Service Icons */}
-            <HeartPulse className="absolute top-[20%] left-[25%] h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '0.3s' }} />
-            <Cloud className="absolute top-[20%] right-[25%] h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '0.5s' }} />
-            <Database className="absolute bottom-[20%] left-[25%] h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '0.7s' }} />
-            <BarChart3 className="absolute bottom-[20%] right-[25%] h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '0.9s' }} />
-          </div>
+          <HealthDataIllustration />
         </div>
       ),
       tags: ['Inteligencia de Negocio', 'Arquitectura Cloud', 'Seguridad de Datos']
@@ -290,12 +310,7 @@ export default function PlesTicPage() {
             {caseStudies.map((study) => (
               <Card key={study.title} className="overflow-hidden group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col bg-card hover:animate-gradient hover:bg-[length:200%_200%]">
                 <div className="relative h-56 w-full bg-card group-hover:bg-transparent transition-colors">
-                  {study.illustration ? study.illustration : (
-                    <>
-                      <Image src={study.image} alt={study.title} layout="fill" objectFit="cover" data-ai-hint={study.imageHint} />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                    </>
-                  )}
+                  {study.illustration}
                 </div>
                 <CardHeader>
                   <CardTitle className="text-xl group-hover:text-primary-foreground">{study.title}</CardTitle>
