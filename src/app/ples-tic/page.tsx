@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { ArrowRight, CheckCircle, Cpu, Lightbulb, ShieldCheck, TrendingUp, Code, CloudCog, Lock, BarChartBig, Network, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, Rocket, Workflow, Brain, Database, Settings, Server, Shield, Layers, Store, ShoppingCart, Cloud, Users, BarChart3 } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
+import PlexusIllustration from '@/components/illustrations/PlexusIllustration';
 
 export const metadata = {
   title: 'PLES TIC - Soluciones Tecnológicas Innovadoras para su Negocio',
@@ -101,36 +102,15 @@ export default function PlesTicPage() {
       challenge: 'Procesos manuales obsoletos, falta de visibilidad de inventario en tiempo real y una experiencia de cliente desactualizada.',
       solution: 'Desarrollamos una plataforma e-commerce omnicanal, integramos un sistema ERP en la nube y creamos una estrategia de marketing digital personalizada. Resultados: Incremento de ventas online del 45% y mejora en la satisfacción del cliente.',
       illustration: (
-        <div className="relative h-full w-full overflow-hidden p-4 bg-muted/20 group-hover:bg-muted/5">
-            {/* Icons with Tailwind positioning */}
-            <Store className="absolute bottom-4 left-4 h-16 w-16 text-primary/30" />
-            <div className="absolute top-[15%] left-[30%] animate-pop-in" style={{ animationDelay: '0.2s' }}>
-                <ShoppingCart className="h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '0.5s' }} />
+        <div className="relative h-full w-full overflow-hidden rounded-lg">
+            <PlexusIllustration />
+            <div className="absolute inset-0 flex items-center justify-center p-4">
+                <Store className="absolute bottom-4 left-4 h-16 w-16 text-white/30" />
+                <ShoppingCart className="absolute top-[15%] left-[30%] h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '0.5s' }} />
+                <Cloud className="absolute top-[40%] left-[55%] h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '0.7s' }} />
+                <Users className="absolute bottom-[25%] left-[45%] h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '0.9s' }} />
+                <BarChart3 className="absolute top-[60%] right-[10%] h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '1.1s' }} />
             </div>
-            <div className="absolute top-[40%] left-[55%] animate-pop-in" style={{ animationDelay: '0.4s' }}>
-                <Cloud className="h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '0.7s' }} />
-            </div>
-            <div className="absolute bottom-[25%] left-[45%] animate-pop-in" style={{ animationDelay: '0.6s' }}>
-                <Users className="h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '0.9s' }} />
-            </div>
-            <div className="absolute top-[60%] right-[10%] animate-pop-in" style={{ animationDelay: '0.8s' }}>
-                <BarChart3 className="h-8 w-8 text-accent animate-subtle-float" style={{ animationDelay: '1.1s' }} />
-            </div>
-
-            {/* SVG overlay for connecting lines */}
-            <svg className="absolute inset-0 h-full w-full opacity-70" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 224" preserveAspectRatio="none">
-                {/* Primary Connections from Store */}
-                <path d="M48 200 Q 70 120, 94 42" stroke="hsl(var(--primary))" strokeWidth="2" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 200, strokeDashoffset: 200, animationDelay: '0s' }} />
-                <path d="M48 200 Q 110 140, 169 98" stroke="hsl(var(--primary))" strokeWidth="2" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 180, strokeDashoffset: 180, animationDelay: '0.5s' }} />
-                <path d="M48 200 Q 90 190, 139 176" stroke="hsl(var(--primary))" strokeWidth="2" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 150, strokeDashoffset: 150, animationDelay: '1.0s' }} />
-                <path d="M48 200 Q 160 220, 266 142" stroke="hsl(var(--primary))" strokeWidth="2" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 300, strokeDashoffset: 300, animationDelay: '1.5s' }} />
-                
-                {/* Secondary, Inter-icon Connections */}
-                <path d="M102 42 Q 135 65, 165 94" stroke="hsl(var(--accent))" strokeWidth="1" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 120, strokeDashoffset: 120, animationDelay: '2.0s' }} />
-                <path d="M173 98 Q 220 115, 262 138" stroke="hsl(var(--accent))" strokeWidth="1" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 150, strokeDashoffset: 150, animationDelay: '2.5s' }} />
-                <path d="M266 142 Q 200 160, 147 172" stroke="hsl(var(--accent))" strokeWidth="1" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 180, strokeDashoffset: 180, animationDelay: '3.0s' }} />
-                <path d="M143 176 Q 115 110, 98 46" stroke="hsl(var(--accent))" strokeWidth="1" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 220, strokeDashoffset: 220, animationDelay: '3.5s' }} />
-            </svg>
         </div>
       ),
       tags: ['Desarrollo Web Full-Stack', 'Soluciones Cloud', 'Integración ERP']

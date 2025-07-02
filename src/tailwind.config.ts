@@ -184,10 +184,10 @@ export default {
           'from': { transform: 'scale(0)', opacity: '0' },
           'to': { transform: 'scale(1)', opacity: '1' },
         },
-        'draw-line': {
-            to: {
-              strokeDashoffset: 0,
-            },
+        'draw-line-alt': {
+          'to': {
+            strokeDashoffset: 0,
+          },
         },
         'subtle-float': {
             '0%, 100%': { transform: 'translateY(0)' },
@@ -217,7 +217,7 @@ export default {
         'wave-shimmer': 'wave-shimmer 3s linear infinite',
         'radar-sweep': 'radar-sweep 5s infinite linear',
         'pop-in': 'pop-in 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
-        'draw-line': 'draw-line 2s ease-in-out infinite alternate',
+        'draw-line-alt': 'draw-line-alt 4s ease-in-out infinite alternate',
         'subtle-float': 'subtle-float 4s ease-in-out infinite',
   		}
   	}
