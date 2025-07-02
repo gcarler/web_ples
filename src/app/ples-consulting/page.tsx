@@ -196,7 +196,7 @@ export default function PlesConsultingPage() {
           </p>
           <div className="flex flex-wrap justify-center items-center gap-3">
             {methodologies.map((method) => (
-              <Badge key={method} variant="outline" className="text-md md:text-lg px-4 py-2 border-primary text-primary shadow-sm hover:bg-primary/10 transition-colors">{method}</Badge>
+              <Badge key={method} variant="outline" className="text-md md:text-lg px-4 py-2 border-primary text-primary shadow-sm transition-all duration-300 hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:text-primary-foreground hover:border-transparent hover:scale-105">{method}</Badge>
             ))}
           </div>
         </div>

@@ -319,7 +319,7 @@ const treeStyles = [
           </p>
           <div className="flex flex-wrap justify-center items-center gap-3">
             {technologies.map((tech) => (
-              <Badge key={tech} variant="outline" className="text-md md:text-base px-4 py-2 border-primary text-primary shadow-sm hover:bg-primary/10 transition-colors">{tech}</Badge>
+              <Badge key={tech} variant="outline" className="text-md md:text-base px-4 py-2 border-primary text-primary shadow-sm transition-all duration-300 hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:text-primary-foreground hover:border-transparent hover:scale-105">{tech}</Badge>
             ))}
           </div>
         </div>
