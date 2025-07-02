@@ -1,4 +1,3 @@
-
 // src/app/ples-crea/page.tsx
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -109,6 +108,17 @@ const treeStyles = [
 
 
   const technologies = ['SIG (QGIS, ArcGIS Pro, Google Earth Engine)', 'Teledetección (Sentinel, Landsat, Planet)', 'Python (GeoPandas, Rasterio, Scikit-learn)', 'Bases de Datos Espaciales (PostGIS)', 'Plataformas Web GIS (Leaflet, Mapbox GL JS)', 'Inteligencia Artificial Geoespacial', 'Estándares OGC (WMS, WFS, WCS)'];
+  
+  const MapPin = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
+    <div className={cn("absolute w-10 h-auto animate-drop-in drop-shadow-lg", className)} style={style}>
+      <svg viewBox="0 0 48 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M24 0C10.7452 0 0 10.1582 0 22.6667C0 39.6667 24 60 24 60C24 60 48 39.6667 48 22.6667C48 10.1582 37.2548 0 24 0Z" fill="#F87171"/>
+        <circle cx="24" cy="22.5" r="15" fill="white"/>
+        <path d="M30 20.5L24 16L18 20.5V29H30V20.5Z" stroke="#6B7281" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    </div>
+  );
+
 
   return (
     <div className="space-y-16">
@@ -201,46 +211,26 @@ const treeStyles = [
                 <Card key={study.title} className="overflow-hidden group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col hover:animate-gradient hover:bg-[length:200%_200%]">
                  <div className="relative h-56 w-full">
                     {study.imageHint === 'city risk map' ? (
-                      <div className="relative h-full w-full overflow-hidden bg-muted/20 p-4">
-                        {/* Street Grid */}
-                        <div className="absolute inset-0">
-                          <div className="absolute left-0 top-1/4 h-px w-full bg-muted-foreground/20"></div>
-                          <div className="absolute left-0 top-1/2 h-px w-full bg-muted-foreground/20"></div>
-                          <div className="absolute left-0 top-3/4 h-px w-full bg-muted-foreground/20"></div>
-                          <div className="absolute left-1/4 top-0 h-full w-px bg-muted-foreground/20"></div>
-                          <div className="absolute left-1/2 top-0 h-full w-px bg-muted-foreground/20"></div>
-                          <div className="absolute left-3/4 top-0 h-full w-px bg-muted-foreground/20"></div>
-                          {/* Diagonal street */}
-                          <div className="absolute -left-1/4 top-0 h-full w-px origin-top-left -rotate-[30deg] bg-muted-foreground/20 scale-y-150"></div>
-                        </div>
-                        
-                        {/* City Blocks */}
-                        <div className="absolute inset-0">
-                          <div className="absolute left-[5%] top-[5%] h-[15%] w-[15%] bg-muted-foreground/30 rounded-sm"></div>
-                          <div className="absolute left-[25%] top-[8%] h-[30%] w-[20%] bg-muted-foreground/30 rounded-sm"></div>
-                          <div className="absolute left-[50%] top-[15%] h-[25%] w-[45%] bg-muted-foreground/30 rounded-sm"></div>
-                          <div className="absolute left-[8%] top-[45%] h-[40%] w-[35%] bg-muted-foreground/30 rounded-sm"></div>
-                          <div className="absolute left-[48%] top-[50%] h-[15%] w-[25%] bg-muted-foreground/30 rounded-sm"></div>
-                          <div className="absolute left-[55%] top-[70%] h-[20%] w-[30%] bg-muted-foreground/30 rounded-sm"></div>
-                        </div>
+                      <div className="relative h-full w-full overflow-hidden bg-white">
+                        {/* Layer 1: Grey Blocks (Roads are the white space between) */}
+                        <div className="absolute w-full h-full bg-gray-200" style={{ clipPath: 'polygon(0% 15%, 23% 18%, 20% 0%, 55% 0%, 60% 23%, 100% 28%, 100% 0%, 0% 0%)' }}></div>
+                        <div className="absolute w-full h-full bg-gray-200" style={{ clipPath: 'polygon(0% 20%, 28% 24%, 30% 78%, 0% 85%)' }}></div>
+                        <div className="absolute w-full h-full bg-gray-200" style={{ clipPath: 'polygon(33% 82%, 25% 100%, 78% 100%, 75% 88%)' }}></div>
+                        <div className="absolute w-full h-full bg-gray-200" style={{ clipPath: 'polygon(65% 28%, 100% 33%, 100% 85%, 80% 92%, 80% 80%, 68% 65%)' }}></div>
 
-                        {/* Pulsing Risk Zones */}
-                        <div 
-                          className="absolute top-[8%] left-[25%] h-[30%] w-[20%] rounded-sm bg-yellow-500/50 animate-pulse-fade-in"
-                          style={{ animationDelay: '0.5s' }}
-                        ></div>
-                        <div 
-                          className="absolute top-[45%] left-[8%] h-[20%] w-[15%] rounded-sm bg-red-500/50 animate-pulse-fade-in"
-                          style={{ animationDelay: '0s' }}
-                        ></div>
-                          <div 
-                          className="absolute top-[15%] left-[50%] h-[25%] w-[25%] rounded-sm bg-red-500/60 animate-pulse-fade-in"
-                          style={{ animationDelay: '1.5s' }}
-                        ></div>
-                        <div 
-                          className="absolute top-[70%] left-[55%] h-[20%] w-[30%] rounded-sm bg-yellow-500/40 animate-pulse-fade-in"
-                          style={{ animationDelay: '1s' }}
-                        ></div>
+                        {/* Layer 2: Green Blocks */}
+                        <div className="absolute w-full h-full bg-lime-400" style={{ clipPath: 'polygon(0% 88%, 28% 81%, 30% 100%, 0% 100%)' }}></div>
+                        <div className="absolute w-full h-full bg-lime-400" style={{ clipPath: 'polygon(62% 25%, 58% 0%, 100% 0%, 100% 25%)' }}></div>
+
+                        {/* Layer 3: Blue Blocks */}
+                        <div className="absolute w-full h-full bg-cyan-400" style={{ clipPath: 'polygon(30% 26%, 66% 30%, 64% 60%, 32% 75%)' }}></div>
+                        <div className="absolute w-full h-full bg-cyan-400" style={{ clipPath: 'polygon(82% 82%, 100% 88%, 100% 100%, 81% 100%)' }}></div>
+
+                        {/* Layer 4: Pins */}
+                        <MapPin className="top-[10%] left-[70%]" style={{ animationDelay: '0.2s' }} />
+                        <MapPin className="top-[45%] left-[45%]" style={{ animationDelay: '0.4s' }} />
+                        <MapPin className="top-[60%] left-[10%]" style={{ animationDelay: '0.6s' }} />
+                        <MapPin className="bottom-[15%] right-[5%]" style={{ animationDelay: '0.8s' }} />
                       </div>
                     ) : study.imageHint === 'drone survey' ? (
                         <div className="relative h-full w-full overflow-hidden bg-gradient-to-b from-green-800/10 via-green-900/30 to-green-900/50 p-4">
