@@ -8,7 +8,7 @@ import { ArrowRight, CheckCircle, Cpu, Lightbulb, ShieldCheck, TrendingUp, Code,
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import PlexusIllustration from '@/components/illustrations/PlexusIllustration';
-import HealthDataIllustration from '@/components/illustrations/HealthDataIllustration';
+import DataPipelineIllustration from '@/components/illustrations/DataPipelineIllustration';
 
 export const metadata = {
   title: 'PLES TIC - Soluciones Tecnológicas Innovadoras para su Negocio',
@@ -107,7 +107,7 @@ export default function PlesTicPage() {
           <PlexusIllustration />
           <div className="relative h-full w-full">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-subtle-float">
-                <ShoppingBag className="h-16 w-16 text-accent"/>
+                <ShoppingBag className="h-20 w-20 text-accent"/>
             </div>
             <div className="absolute top-[25%] left-[25%] -translate-x-1/2 -translate-y-1/2 animate-subtle-float" style={{ animationDelay: '0.3s' }}>
                 <ShoppingCart className="h-8 w-8 text-primary"/>
@@ -131,9 +131,7 @@ export default function PlesTicPage() {
       challenge: 'Silos de información médica, dificultad para el análisis de datos de pacientes y necesidad de cumplir con estrictas normativas de privacidad (HIPAA/GDPR).',
       solution: 'Implementamos una plataforma centralizada en la nube para la gestión de datos de pacientes, con dashboards de BI para análisis clínicos y robustas medidas de seguridad y cumplimiento normativo. Se logró una mejora significativa en la toma de decisiones médicas y la eficiencia operativa.',
       illustration: (
-        <div className="relative h-full w-full overflow-hidden rounded-lg">
-          <HealthDataIllustration />
-        </div>
+        <DataPipelineIllustration className="h-full w-full rounded-lg"/>
       ),
       tags: ['Inteligencia de Negocio', 'Arquitectura Cloud', 'Seguridad de Datos']
     },

@@ -184,14 +184,11 @@ export default {
           'from': { transform: 'scale(0)', opacity: '0' },
           'to': { transform: 'scale(1)', opacity: '1' },
         },
-        'draw-line': {
-            'to': {
-              strokeDashoffset: 0,
-            },
-        },
         'draw-line-alt': {
           'from': { strokeDashoffset: 'var(--path-length, 200)' },
           'to': { strokeDashoffset: '0' },
+          '40%, 60%': { strokeDashoffset: '0' },
+          '100%': { strokeDashoffset: 'var(--path-length, 200)' },
         },
         'subtle-float': {
             '0%, 100%': { transform: 'translateY(0)' },
@@ -201,10 +198,13 @@ export default {
           '0%, 100%': { filter: 'drop-shadow(0 0 4px hsl(var(--accent) / 0.8))' },
           '50%': { filter: 'drop-shadow(0 0 12px hsl(var(--accent)))' },
         },
-        'draw-line-health': {
-            'from': { strokeDashoffset: 52, opacity: 0 },
-            '40%': { strokeDashoffset: 0, opacity: 1 },
-            'to': { strokeDashoffset: -52, opacity: 0},
+        'station-pop-in': {
+            'from': { transform: 'scale(0.5)', opacity: '0' },
+            'to': { transform: 'scale(1)', opacity: '1' },
+        },
+        'flow-pulse': {
+            '0%, 100%': { transform: 'scale(1) translateX(-50%) translateY(-50%)', opacity: 0.8 },
+            '50%': { transform: 'scale(1.5) translateX(-50%) translateY(-50%)', opacity: 1 },
         },
   		},
   		animation: {
@@ -230,11 +230,11 @@ export default {
         'wave-shimmer': 'wave-shimmer 3s linear infinite',
         'radar-sweep': 'radar-sweep 5s infinite linear',
         'pop-in': 'pop-in 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
-        'draw-line': 'draw-line 1s ease-out forwards',
-        'draw-line-alt': 'draw-line-alt 2s ease-in-out alternate infinite',
+        'draw-line-alt': 'draw-line-alt 4.5s ease-in-out infinite',
         'subtle-float': 'subtle-float 4s ease-in-out infinite',
         'pulse-glow-shield': 'pulse-glow-shield 3s ease-in-out infinite',
-        'draw-line-health': 'draw-line-health 3s ease-in-out infinite',
+        'station-pop-in': 'station-pop-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
+        'flow-pulse': 'flow-pulse 2s ease-in-out infinite',
   		}
   	}
   },
