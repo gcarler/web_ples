@@ -121,14 +121,16 @@ export default function PlesTicPage() {
 
             {/* Connecting Lines */}
             <svg className="absolute inset-0 h-full w-full" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 224" preserveAspectRatio="none">
-                {/* Path from Store to ShoppingCart */}
-                <path d="M 40 180 C 40 100, 80 80, 90 34" stroke="hsl(var(--primary)/0.5)" strokeWidth="1" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 200, strokeDashoffset: 200, animationDelay: '1s' }} />
-                {/* Path from Store to Cloud */}
-                <path d="M 40 180 C 80 200, 150 150, 165 90" stroke="hsl(var(--primary)/0.5)" strokeWidth="1" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 200, strokeDashoffset: 200, animationDelay: '1.2s' }} />
-                {/* Path from Store to Users */}
-                <path d="M 40 180 C 80 190, 120 180, 135 168" stroke="hsl(var(--primary)/0.5)" strokeWidth="1" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 200, strokeDashoffset: 200, animationDelay: '1.4s' }} />
-                {/* Path from Store to BarChart3 */}
-                <path d="M 40 180 C 150 220, 250 180, 270 134" stroke="hsl(var(--primary)/0.5)" strokeWidth="1" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 200, strokeDashoffset: 200, animationDelay: '1.6s' }} />
+                {/* 1. Store to ShoppingCart */}
+                <path d="M 50 190 C 60 110, 80 80, 90 40" stroke="hsl(var(--primary)/0.5)" strokeWidth="1.5" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 200, strokeDashoffset: 200, animationDelay: '1s' }} />
+                {/* 2. ShoppingCart to Cloud */}
+                <path d="M 90 40 C 120 40, 130 90, 165 95" stroke="hsl(var(--primary)/0.5)" strokeWidth="1.5" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 200, strokeDashoffset: 200, animationDelay: '2s' }} />
+                {/* 3. Cloud to BarChart3 */}
+                <path d="M 165 95 C 200 100, 240 130, 270 140" stroke="hsl(var(--primary)/0.5)" strokeWidth="1.5" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 200, strokeDashoffset: 200, animationDelay: '3s' }} />
+                {/* 4. BarChart3 to Users */}
+                <path d="M 270 140 C 250 160, 160 170, 135 170" stroke="hsl(var(--primary)/0.5)" strokeWidth="1.5" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 200, strokeDashoffset: 200, animationDelay: '4s' }} />
+                {/* 5. Users to Store (to complete the loop) */}
+                <path d="M 135 170 C 100 180, 60 190, 50 190" stroke="hsl(var(--primary)/0.5)" strokeWidth="1.5" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 200, strokeDashoffset: 200, animationDelay: '5s' }} />
             </svg>
         </div>
       ),
