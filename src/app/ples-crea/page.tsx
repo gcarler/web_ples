@@ -218,13 +218,14 @@ const treeStyles = [
                         <div className="absolute w-full h-full bg-gray-200" style={{ clipPath: 'polygon(33% 82%, 25% 100%, 78% 100%, 75% 88%)' }}></div>
                         <div className="absolute w-full h-full bg-gray-200" style={{ clipPath: 'polygon(65% 28%, 100% 33%, 100% 85%, 80% 92%, 80% 80%, 68% 65%)' }}></div>
 
-                        {/* Layer 2: Green Blocks */}
-                        <div className="absolute w-full h-full bg-lime-400" style={{ clipPath: 'polygon(0% 88%, 28% 81%, 30% 100%, 0% 100%)' }}></div>
-                        <div className="absolute w-full h-full bg-lime-400" style={{ clipPath: 'polygon(62% 25%, 58% 0%, 100% 0%, 100% 25%)' }}></div>
+                        {/* Layer 2: Yellow Blocks (Medium Risk) */}
+                        <div className="absolute w-full h-full bg-yellow-400 animate-pulse-risk" style={{ clipPath: 'polygon(0% 88%, 28% 81%, 30% 100%, 0% 100%)', animationDelay: '0.2s' }}></div>
+                        <div className="absolute w-full h-full bg-yellow-400 animate-pulse-risk" style={{ clipPath: 'polygon(62% 25%, 58% 0%, 100% 0%, 100% 25%)', animationDelay: '0.5s' }}></div>
 
-                        {/* Layer 3: Blue Blocks */}
-                        <div className="absolute w-full h-full bg-cyan-400" style={{ clipPath: 'polygon(30% 26%, 66% 30%, 64% 60%, 32% 75%)' }}></div>
-                        <div className="absolute w-full h-full bg-cyan-400" style={{ clipPath: 'polygon(82% 82%, 100% 88%, 100% 100%, 81% 100%)' }}></div>
+                        {/* Layer 3: Red Blocks (High Risk) */}
+                        <div className="absolute w-full h-full bg-red-500 animate-pulse-risk" style={{ clipPath: 'polygon(30% 26%, 66% 30%, 64% 60%, 32% 75%)' }}></div>
+                        <div className="absolute w-full h-full bg-red-500 animate-pulse-risk" style={{ clipPath: 'polygon(82% 82%, 100% 88%, 100% 100%, 81% 100%)', animationDelay: '0.3s' }}></div>
+
 
                         {/* Layer 4: Pins */}
                         <MapPin className="top-[10%] left-[70%]" style={{ animationDelay: '0.2s' }} />
