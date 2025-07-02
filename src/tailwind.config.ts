@@ -206,12 +206,12 @@ export default {
             '50%': { transform: 'scale(1.5) translateX(-50%) translateY(-50%)', opacity: 1 },
         },
         'heartbeat': {
-          '0%': { transform: 'scale(1)', filter: 'drop-shadow(0 0 0 hsl(var(--accent) / 0))' },
-          '10%': { transform: 'scale(1.3)', filter: 'drop-shadow(0 0 10px hsl(var(--accent)))' },
-          '20%': { transform: 'scale(1)', filter: 'drop-shadow(0 0 0 hsl(var(--accent) / 0))' },
-          '30%': { transform: 'scale(1.3)', filter: 'drop-shadow(0 0 10px hsl(var(--accent)))' },
-          '40%': { transform: 'scale(1)', filter: 'drop-shadow(0 0 0 hsl(var(--accent) / 0))' },
-          '100%': { transform: 'scale(1)', filter: 'drop-shadow(0 0 0 hsl(var(--accent) / 0))' },
+          '0%': { transform: 'scale(1)', boxShadow: '0 0 0 0 hsl(var(--accent) / 0.5)' },
+          '5%': { transform: 'scale(1.1)', boxShadow: '0 0 0 10px hsl(var(--accent) / 0)' },
+          '15%': { transform: 'scale(1)', boxShadow: '0 0 0 0 hsl(var(--accent) / 0.5)' },
+          '20%': { transform: 'scale(1.1)', boxShadow: '0 0 0 10px hsl(var(--accent) / 0)' },
+          '30%': { transform: 'scale(1)', boxShadow: '0 0 0 0 hsl(var(--accent) / 0)' },
+          '100%': { transform: 'scale(1)', boxShadow: '0 0 0 0 hsl(var(--accent) / 0)' },
         },
   		},
   		animation: {
@@ -242,7 +242,7 @@ export default {
         'pulse-glow-shield': 'pulse-glow-shield 3s ease-in-out infinite',
         'station-pop-in': 'station-pop-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
         'flow-pulse': 'flow-pulse 2s ease-in-out infinite',
-        'heartbeat': 'heartbeat 1.5s ease-in-out infinite',
+        'heartbeat': 'heartbeat 1.4s infinite',
   		}
   	}
   },
