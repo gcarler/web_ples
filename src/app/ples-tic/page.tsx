@@ -120,11 +120,15 @@ export default function PlesTicPage() {
             </div>
 
             {/* Connecting Lines */}
-            <svg className="absolute inset-0 h-full w-full" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M 60 170 C 80 100, 90 80, 110 60" stroke="hsl(var(--primary)/0.5)" strokeWidth="2" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 200, strokeDashoffset: 200, animationDelay: '1s' }} />
-                <path d="M 60 170 C 100 180, 150 150, 170 120" stroke="hsl(var(--primary)/0.5)" strokeWidth="2" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 200, strokeDashoffset: 200, animationDelay: '1.2s' }} />
-                <path d="M 118 68 C 150 75, 180 90, 200 115" stroke="hsl(var(--primary)/0.5)" strokeWidth="2" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 200, strokeDashoffset: 200, animationDelay: '1.4s' }} />
-                <path d="M 178 128 C 200 135, 230 130, 260 110" stroke="hsl(var(--primary)/0.5)" strokeWidth="2" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 200, strokeDashoffset: 200, animationDelay: '1.6s' }} />
+            <svg className="absolute inset-0 h-full w-full" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 224" preserveAspectRatio="none">
+                {/* Path from Store to ShoppingCart */}
+                <path d="M 40 180 C 40 100, 80 80, 90 34" stroke="hsl(var(--primary)/0.5)" strokeWidth="1" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 200, strokeDashoffset: 200, animationDelay: '1s' }} />
+                {/* Path from Store to Cloud */}
+                <path d="M 40 180 C 80 200, 150 150, 165 90" stroke="hsl(var(--primary)/0.5)" strokeWidth="1" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 200, strokeDashoffset: 200, animationDelay: '1.2s' }} />
+                {/* Path from Store to Users */}
+                <path d="M 40 180 C 80 190, 120 180, 135 168" stroke="hsl(var(--primary)/0.5)" strokeWidth="1" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 200, strokeDashoffset: 200, animationDelay: '1.4s' }} />
+                {/* Path from Store to BarChart3 */}
+                <path d="M 40 180 C 150 220, 250 180, 270 134" stroke="hsl(var(--primary)/0.5)" strokeWidth="1" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 200, strokeDashoffset: 200, animationDelay: '1.6s' }} />
             </svg>
         </div>
       ),
