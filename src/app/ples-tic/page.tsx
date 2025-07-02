@@ -5,13 +5,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {
-  ArrowRight, CheckCircle, Cpu, Lightbulb, ShieldCheck, TrendingUp, Code, CloudCog, Lock, BarChartBig, Network, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, Rocket, Workflow, Brain, Database, Settings, Server, Shield, Layers, ShoppingCart, Cloud, Users, HeartPulse, Building2, Globe, Landmark, Warehouse, Users2, Megaphone, ConciergeBell, Zap, Wrench, ChevronRight, Briefcase, Map, School, FileArchive, Info, LayoutDashboard, Target, ShieldAlert, FileSearch, ExternalLink, GitMerge, FileCheck, BookOpen, ClipboardCheck, BrainCircuit, ShoppingBag
+  ArrowRight, CheckCircle, Cpu, Lightbulb, ShieldCheck, TrendingUp, Code, CloudCog, Lock, BarChartBig, Network, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, Rocket, Workflow, Brain, Database, Settings, Server, Shield, Layers, ShoppingCart, Cloud, Users, HeartPulse, Building2, Globe, Landmark, Warehouse, Users2, Megaphone, ConciergeBell, Zap, Wrench, ChevronRight, Briefcase, Map, School, FileArchive, Info, LayoutDashboard, Target, ShieldAlert, FileSearch, ExternalLink, GitMerge, FileCheck, BookOpen, ClipboardCheck, BrainCircuit, ShoppingBag, BarChart3
 } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import PlexusIllustration from '@/components/illustrations/PlexusIllustration';
 import DataPipelineIllustration from '@/components/illustrations/DataPipelineIllustration';
-import React, { useState, useEffect }from 'react';
+import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
@@ -256,7 +256,7 @@ const gobPlesModules = {
         description: "Solución avanzada para la administración del territorio a nivel municipal.",
         items: [
             { name: "Ordenamiento Territorial", description: "Gestión de licencias y seguimiento.", slug: 'gobierno/siatgob/ordenamiento' },
-            { name: "Administración de la Propiedad", description: "Inventario de predios.", slug: 'gobierno/siatgob/propiedad' },
+            { name: "Administración de la Propiedad", description: "Inventario de predios rurales, urbanos y fiscales.", slug: 'gobierno/siatgob/propiedad' },
             { name: "Fortalecimiento Fiscal", description: "Herramientas de valorización.", slug: 'gobierno/siatgob/fiscal' },
             { name: "Planificación y Desarrollo", description: "Monitoreo del crecimiento.", slug: 'gobierno/siatgob/planificacion' },
             { name: "Recursos Naturales y Riesgos", description: "Identificación de zonas de riesgo.", slug: 'gobierno/siatgob/riesgos' }
@@ -337,12 +337,13 @@ function InteractiveSoftwareSuites() {
     const handleModuleSelection = (key: string) => {
         setSelectedModuleKey(key);
     };
-    
+
     const currentModules = activeTab === 'empresarial' ? ofiPlesModules : gobPlesModules;
     const currentDescription = activeTab === 'empresarial' 
         ? "Esta línea de productos está concebida como una solución integral de Planificación de Recursos Empresariales (ERP) y Gestión de Relaciones con el Cliente (CRM) dirigida al sector privado. El objetivo principal de Ofi-Ples es unificar y automatizar las operaciones de negocio para mejorar la eficiencia, la productividad y la toma de decisiones."
         : "Gob-Ples es la línea más diversificada y especializada de PLES-TIC, compuesta por un conjunto de plataformas diseñadas para responder a las necesidades específicas de entidades territoriales, instituciones educativas y otros organismos del sector público en Colombia. Cada software de Gob-Ples está construido para resolver problemáticas concretas de la administración pública.";
 
+    // Effect to reset selected module when tab changes
     useEffect(() => {
         if (activeTab === 'empresarial') {
             setSelectedModuleKey(Object.keys(ofiPlesModules)[0]);
@@ -531,7 +532,9 @@ export default function PlesTicPage() {
         </div>
       </section>
 
-      <InteractiveSoftwareSuites />
+      <div className='px-4 sm:px-6 lg:px-8'>
+         <InteractiveSoftwareSuites />
+      </div>
 
       <section className="px-4 sm:px-6 lg:px-8">
         <div className="w-full py-16">
@@ -570,7 +573,7 @@ export default function PlesTicPage() {
           <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Proyectos Destacados</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {caseStudies.map((study) => (
-              <Card key={study.title} className="overflow-hidden group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col bg-card group-hover:animate-gradient group-hover:bg-[length:200%_200%]">
+              <Card key={study.title} className="overflow-hidden group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col bg-card group-hover:animate-gradient hover:bg-[length:200%_200%]">
                 <div className="relative h-56 w-full bg-card group-hover:bg-transparent transition-colors">
                   {study.illustration}
                 </div>
