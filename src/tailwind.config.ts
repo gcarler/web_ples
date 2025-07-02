@@ -217,8 +217,7 @@ export default {
         'wave-shimmer': 'wave-shimmer 3s linear infinite',
         'radar-sweep': 'radar-sweep 5s infinite linear',
         'pop-in': 'pop-in 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
-        'draw-line': 'draw-line 1s ease-out forwards',
-        'draw-line-loop': 'draw-line 4s ease-in-out infinite',
+        'draw-line': 'draw-line 2s ease-in-out infinite alternate',
         'subtle-float': 'subtle-float 4s ease-in-out infinite',
   		}
   	}

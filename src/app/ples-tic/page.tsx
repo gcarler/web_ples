@@ -120,16 +120,16 @@ export default function PlesTicPage() {
             {/* SVG overlay for connecting lines */}
             <svg className="absolute inset-0 h-full w-full opacity-70" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 224" preserveAspectRatio="none">
                 {/* Primary Connections from Store */}
-                <path d="M48 200 Q 70 120, 94 42" stroke="hsl(var(--primary))" strokeWidth="2" strokeLinecap="round" className="animate-draw-line-loop" style={{ strokeDasharray: 200, strokeDashoffset: 200, animationDelay: '0s' }} />
-                <path d="M48 200 Q 110 140, 169 98" stroke="hsl(var(--primary))" strokeWidth="2" strokeLinecap="round" className="animate-draw-line-loop" style={{ strokeDasharray: 180, strokeDashoffset: 180, animationDelay: '0.5s' }} />
-                <path d="M48 200 Q 90 190, 139 176" stroke="hsl(var(--primary))" strokeWidth="2" strokeLinecap="round" className="animate-draw-line-loop" style={{ strokeDasharray: 150, strokeDashoffset: 150, animationDelay: '1.0s' }} />
-                <path d="M48 200 Q 160 220, 266 142" stroke="hsl(var(--primary))" strokeWidth="2" strokeLinecap="round" className="animate-draw-line-loop" style={{ strokeDasharray: 300, strokeDashoffset: 300, animationDelay: '1.5s' }} />
+                <path d="M48 200 Q 70 120, 94 42" stroke="hsl(var(--primary))" strokeWidth="2" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 200, strokeDashoffset: 200, animationDelay: '0s' }} />
+                <path d="M48 200 Q 110 140, 169 98" stroke="hsl(var(--primary))" strokeWidth="2" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 180, strokeDashoffset: 180, animationDelay: '0.5s' }} />
+                <path d="M48 200 Q 90 190, 139 176" stroke="hsl(var(--primary))" strokeWidth="2" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 150, strokeDashoffset: 150, animationDelay: '1.0s' }} />
+                <path d="M48 200 Q 160 220, 266 142" stroke="hsl(var(--primary))" strokeWidth="2" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 300, strokeDashoffset: 300, animationDelay: '1.5s' }} />
                 
                 {/* Secondary, Inter-icon Connections */}
-                <path d="M102 42 Q 135 65, 165 94" stroke="hsl(var(--accent))" strokeWidth="1" strokeLinecap="round" className="animate-draw-line-loop" style={{ strokeDasharray: 120, strokeDashoffset: 120, animationDelay: '2.0s' }} />
-                <path d="M173 98 Q 220 115, 262 138" stroke="hsl(var(--accent))" strokeWidth="1" strokeLinecap="round" className="animate-draw-line-loop" style={{ strokeDasharray: 150, strokeDashoffset: 150, animationDelay: '2.5s' }} />
-                <path d="M266 142 Q 200 160, 147 172" stroke="hsl(var(--accent))" strokeWidth="1" strokeLinecap="round" className="animate-draw-line-loop" style={{ strokeDasharray: 180, strokeDashoffset: 180, animationDelay: '3.0s' }} />
-                <path d="M143 176 Q 115 110, 98 46" stroke="hsl(var(--accent))" strokeWidth="1" strokeLinecap="round" className="animate-draw-line-loop" style={{ strokeDasharray: 220, strokeDashoffset: 220, animationDelay: '3.5s' }} />
+                <path d="M102 42 Q 135 65, 165 94" stroke="hsl(var(--accent))" strokeWidth="1" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 120, strokeDashoffset: 120, animationDelay: '2.0s' }} />
+                <path d="M173 98 Q 220 115, 262 138" stroke="hsl(var(--accent))" strokeWidth="1" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 150, strokeDashoffset: 150, animationDelay: '2.5s' }} />
+                <path d="M266 142 Q 200 160, 147 172" stroke="hsl(var(--accent))" strokeWidth="1" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 180, strokeDashoffset: 180, animationDelay: '3.0s' }} />
+                <path d="M143 176 Q 115 110, 98 46" stroke="hsl(var(--accent))" strokeWidth="1" strokeLinecap="round" className="animate-draw-line" style={{ strokeDasharray: 220, strokeDashoffset: 220, animationDelay: '3.5s' }} />
             </svg>
         </div>
       ),
