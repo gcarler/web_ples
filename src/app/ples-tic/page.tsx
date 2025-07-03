@@ -760,25 +760,152 @@ const gobPlesModules = {
         icon: LayoutDashboard,
         description: "Suite que integra y gestiona las dimensiones del Modelo Integrado de Planeación y Gestión (MIPG).",
         items: [
-            { name: "Direccionamiento Estratégico", slug: "ofigob-planeacion", description: "Planes y seguimiento de metas.", details: {
-                mainIcon: Target,
-                title: 'Direccionamiento Estratégico y Planeación',
-                description: 'Alinee la gestión de su entidad con los objetivos estratégicos. Defina planes, programas y proyectos, y realice un seguimiento en tiempo real de su ejecución y cumplimiento de metas.',
+            { name: "Talento Humano", slug: "ofigob-th", description: "Gestión integral del ciclo de vida, desarrollo y desempeño del servidor público.", details: {
+                mainIcon: Users2,
+                title: 'Gestión del Talento Humano',
+                description: 'Plataforma para administrar el ciclo completo del servidor público, desde la vinculación hasta el retiro, fomentando el desarrollo y evaluando el desempeño para un servicio público de excelencia.',
                 keyServices: [
-                  { title: 'Banco de Programas y Proyectos', text: 'Centralice y gestione todos los proyectos de inversión de la entidad, alineados al Plan de Desarrollo.', icon: Briefcase },
-                  { title: 'Formulación y Seguimiento de Metas', text: 'Defina indicadores y metas para cada proyecto, y registre los avances periódicos para un seguimiento efectivo.', icon: TrendingUp },
-                  { title: 'Generación de Informes de Gestión', text: 'Produzca informes automáticos sobre la ejecución de planes y proyectos para la rendición de cuentas.', icon: Presentation },
-                  { title: 'Visor Geográfico de Proyectos', text: 'Visualice la ubicación de los proyectos de inversión en un mapa interactivo para entender su impacto territorial.', icon: Map }
+                  { title: 'Ciclo de Vida del Servidor', text: 'Gestione los procesos de reclutamiento, selección, vinculación, onboarding y retiro.', icon: Workflow },
+                  { title: 'Desarrollo y Gestión', text: 'Administre perfiles de cargo, catálogo de competencias y planes de capacitación.', icon: GraduationCap },
+                  { title: 'Desempeño y Bienestar', text: 'Realice evaluaciones formales, concierte objetivos, gestione planes de mejora (PIPs) y fomente el bienestar.', icon: ClipboardCheck },
+                  { title: 'Cumplimiento y Estrategia', text: 'Asegure el cumplimiento de la normatividad GETH y alinee la planeación estratégica del talento humano.', icon: Target }
                 ],
                 benefits: [
-                  'Asegura que la gestión diaria contribuya a los objetivos a largo plazo.',
-                  'Mejora la transparencia en la gestión pública y la rendición de cuentas.',
-                  'Facilita la toma de decisiones basada en el avance real de los proyectos.',
-                  'Optimiza la asignación de recursos a las iniciativas de mayor impacto.',
-                  'Fortalece la capacidad de planificación y seguimiento de la entidad.'
+                  'Optimiza procesos de reclutamiento y selección.',
+                  'Fomenta el desarrollo profesional y la retención del talento.',
+                  'Alinea el desempeño individual con los objetivos institucionales.',
+                  'Garantiza el cumplimiento normativo en la gestión de personal.',
                 ],
-                ctaText: 'Estructure su Planificación',
-                formSubject: 'Consulta%20OfiGob%20Planeacion'
+                ctaText: "Potenciar el Talento Humano",
+                formSubject: "Consulta%20OfiGob%20Talento%20Humano"
+            }},
+            { name: "Direccionamiento Estratégico y Planeación", slug: "ofigob-planeacion", description: "Definición, seguimiento y control de objetivos, planes y proyectos institucionales.", details: {
+                mainIcon: Target,
+                title: 'Direccionamiento Estratégico y Planeación',
+                description: 'Herramienta para traducir la estrategia en acción. Gestione objetivos, planes institucionales, planes de trabajo y realice análisis DOFA para una planeación coherente y efectiva.',
+                keyServices: [
+                  { title: 'Gestión de Objetivos Estratégicos', text: 'Defina y de seguimiento a los objetivos de la entidad, con asistencia de IA para su formulación.', icon: Rocket },
+                  { title: 'Formulación y Seguimiento de Planes', text: 'Gestione planes institucionales y de acción, monitoreando su avance en tiempo real.', icon: GanttChartSquare },
+                  { title: 'Administración de Planes de Trabajo', text: 'Desglose los planes en tareas concretas y asigne responsables para una ejecución efectiva.', icon: KanbanSquare },
+                  { title: 'Análisis Estratégico', text: 'Realice análisis DOFA y otras matrices estratégicas para informar la toma de decisiones.', icon: Search }
+                ],
+                benefits: [
+                  'Asegura la alineación de toda la entidad con la visión estratégica.',
+                  'Mejora la visibilidad y el seguimiento del avance de los planes.',
+                  'Facilita la toma de decisiones basada en datos de ejecución.',
+                  'Potencia la planificación con herramientas de análisis y asistencia de IA.',
+                ],
+                ctaText: "Definir la Estrategia",
+                formSubject: "Consulta%20OfiGob%20Planeacion"
+            }},
+             { name: "Gestión con Valores para Resultados", slug: "ofigob-gvr", description: "Optimización de procesos, gestión de PQR, riesgos y proveedores.", details: {
+                mainIcon: ShieldCheck,
+                title: 'Gestión con Valores para Resultados',
+                description: 'Módulo para optimizar la operación interna, mejorar el servicio al ciudadano y gestionar los riesgos. Centraliza la gestión de procesos, PQR, proveedores y cumplimiento normativo.',
+                keyServices: [
+                  { title: 'Gestión de Procesos y Procedimientos', text: 'Mapee, documente y optimice los procesos internos de la entidad.', icon: Workflow },
+                  { title: 'Sistema de PQR con IA', text: 'Gestione peticiones, quejas y reclamos con un asistente de IA para la generación de respuestas.', icon: Headset },
+                  { title: 'Gestión de Riesgos Operacionales', text: 'Identifique, evalúe y gestione los riesgos operativos a través de matrices especializadas.', icon: AlertTriangle },
+                  { title: 'Registro y Evaluación de Proveedores', text: 'Mantenga una base de datos de proveedores y evalúe su desempeño.', icon: Truck }
+                ],
+                benefits: [
+                  'Aumenta la eficiencia y estandarización de los procesos internos.',
+                  'Mejora los tiempos y la calidad de respuesta a los ciudadanos.',
+                  'Permite una gestión proactiva de los riesgos operacionales.',
+                  'Fortalece la relación y el control sobre la cadena de suministro.',
+                ],
+                ctaText: "Optimizar la Gestión Interna",
+                formSubject: "Consulta%20OfiGob%20GVR"
+            }},
+            { name: "Evaluación de Resultados", slug: "ofigob-evaluacion", description: "Medición del desempeño a través de indicadores, autoevaluaciones e informes.", details: {
+                mainIcon: BarChartHorizontalBig,
+                title: 'Evaluación de Resultados',
+                description: 'Mida el impacto de su gestión. Esta herramienta permite definir y seguir indicadores de desempeño, realizar autoevaluaciones institucionales y generar informes detallados con asistencia de IA.',
+                keyServices: [
+                  { title: 'Gestión de Indicadores de Desempeño', text: 'Defina y monitoree los KPIs de la entidad, con tableros de control visuales.', icon: BarChart3 },
+                  { title: 'Autoevaluaciones de Gestión', text: 'Realice autoevaluaciones de políticas y gestión para identificar áreas de mejora.', icon: ClipboardCheck },
+                  { title: 'Generador de Informes con IA', text: 'Utilice un asistente de IA para crear informes de gestión y resultados de forma automática.', icon: Bot }
+                ],
+                benefits: [
+                  'Permite una toma de decisiones basada en resultados medibles.',
+                  'Fomenta una cultura de mejora continua y rendición de cuentas.',
+                  'Simplifica la generación de informes complejos.',
+                  'Proporciona una visión clara del cumplimiento de los objetivos.',
+                ],
+                ctaText: "Medir y Evaluar Resultados",
+                formSubject: "Consulta%20OfiGob%20Evaluacion"
+            }},
+            { name: "Información y Comunicación", slug: "ofigob-ic", description: "Gestión documental centralizada y herramientas de comunicación interna.", details: {
+                mainIcon: MessageCircle,
+                title: 'Información y Comunicación',
+                description: 'Asegure un flujo de información eficiente y seguro dentro de su entidad. Centralice la gestión documental y optimice los canales de comunicación interna.',
+                keyServices: [
+                  { title: 'Gestión Documental', text: 'Utilice un repositorio centralizado para todos los documentos de la entidad.', icon: FolderArchive },
+                  { title: 'Asistente IA para Documentos', text: 'Encuentre y resuma información clave en grandes volúmenes de documentos con IA.', icon: FileSearch },
+                  { title: 'Comunicación Interna', text: 'Gestione boletines, noticias y comunicados internos para mantener a todo el personal informado.', icon: Megaphone }
+                ],
+                benefits: [
+                  'Centraliza y protege el patrimonio documental de la entidad.',
+                  'Agiliza la búsqueda y recuperación de información.',
+                  'Mejora la efectividad de la comunicación interna.',
+                  'Garantiza que toda la entidad esté informada y alineada.',
+                ],
+                ctaText: "Mejorar la Comunicación",
+                formSubject: "Consulta%20OfiGob%20IC"
+            }},
+            { name: "Gestión del Conocimiento y la Innovación", slug: "ofigob-gci", description: "Repositorio de conocimiento, gestión de innovación y acciones de mejora.", details: {
+                mainIcon: BrainCircuit,
+                title: 'Gestión del Conocimiento y la Innovación',
+                description: 'Capitalice el saber hacer de su entidad. Este módulo permite crear un repositorio de conocimiento, gestionar iniciativas de innovación y dar seguimiento a las acciones de mejora continua.',
+                keyServices: [
+                  { title: 'Repositorio de Conocimiento', text: 'Centralice lecciones aprendidas, buenas prácticas y conocimiento técnico.', icon: Database },
+                  { title: 'Gestión de Iniciativas de Innovación', text: 'Canalice y gestione las ideas y proyectos de innovación de su equipo.', icon: Lightbulb },
+                  { title: 'Seguimiento de Acciones de Mejora', text: 'Asegure que las oportunidades de mejora identificadas se conviertan en acciones concretas.', icon: CheckCircle }
+                ],
+                benefits: [
+                  'Evita la pérdida de conocimiento crítico.',
+                  'Fomenta una cultura de innovación y colaboración.',
+                  'Sistematiza el proceso de mejora continua.',
+                  'Convierte las lecciones aprendidas en activos institucionales.',
+                ],
+                ctaText: "Fomentar la Innovación",
+                formSubject: "Consulta%20OfiGob%20GCI"
+            }},
+            { name: "Control Interno", slug: "ofigob-ci", description: "Gestión de auditorías, riesgos de control y matrices de cumplimiento.", details: {
+                mainIcon: Shield,
+                title: 'Control Interno (MECI)',
+                description: 'Fortalezca el Sistema de Control Interno (SCI) de su entidad. Gestione auditorías, evalúe riesgos de control y asegure el cumplimiento a través de matrices especializadas.',
+                keyServices: [
+                  { title: 'Gestión de Auditorías', text: 'Planifique y ejecute el plan de auditorías y gestione los hallazgos.', icon: ClipboardList },
+                  { title: 'Gestión de Riesgos de Control', text: 'Identifique y valore los riesgos de control y corrupción.', icon: AlertTriangle },
+                  { title: 'Matriz de Cumplimiento', text: 'Asegure el seguimiento al cumplimiento normativo de la entidad.', icon: FileCheck },
+                  { title: 'Autoevaluaciones del SCI', text: 'Realice autoevaluaciones periódicas del sistema de control interno.', icon: UserCheck }
+                ],
+                benefits: [
+                  'Asegura el cumplimiento del Modelo Estándar de Control Interno (MECI).',
+                  'Fortalece la cultura de autocontrol en la entidad.',
+                  'Permite una gestión proactiva de los riesgos de control y corrupción.',
+                  'Sistematiza y facilita el proceso de auditoría interna.',
+                ],
+                ctaText: "Fortalecer el Control Interno",
+                formSubject: "Consulta%20OfiGob%20CI"
+            }},
+            { name: "Administración del Sistema", slug: "ofigob-admin", description: "Configuración central, gestión de usuarios y administración de roles y permisos.", details: {
+                mainIcon: Wrench,
+                title: 'Administración del Sistema',
+                description: 'El centro de control de OfiGob. Gestione usuarios, defina roles y permisos detallados, y configure los parámetros generales del sistema para adaptarlo a su entidad.',
+                keyServices: [
+                  { title: 'Gestión de Usuarios', text: 'Cree y administre las cuentas de usuario de la plataforma.', icon: Users },
+                  { title: 'Gestión de Roles y Permisos', text: 'Defina perfiles de acceso granulares para cada módulo y funcionalidad.', icon: Lock }
+                ],
+                benefits: [
+                  'Control total sobre la seguridad y el acceso a la información.',
+                  'Flexibilidad para adaptar la plataforma a la estructura de la entidad.',
+                  'Facilita la administración centralizada de toda la suite.',
+                  'Garantiza la trazabilidad de las acciones administrativas.',
+                ],
+                ctaText: "Configurar el Sistema",
+                formSubject: "Consulta%20OfiGob%20Admin"
             }}
         ]
     },
@@ -1010,7 +1137,7 @@ const gobPlesModules = {
                 ctaText: "Planificar Formación",
                 formSubject: "Consulta%20GeGob%20Formacion"
             }},
-            { name: "Autorización Inst.", slug: "gegob-autorizacion", description: "Gestión de licencias y autorizaciones.", details: {
+            { name: "Autorización Institucional", slug: "gegob-autorizacion", description: "Gestión de licencias y autorizaciones.", details: {
                 mainIcon: ShieldCheck,
                 title: "Autorización Institucional",
                 description: "Gestione los procesos de solicitud y renovación de licencias de funcionamiento y autorizaciones oficiales ante las secretarías de educación.",
@@ -1213,7 +1340,7 @@ function InteractiveSoftwareSuites() {
 
     return (
       <section className="w-full py-16 bg-card text-card-foreground">
-        <div className="px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
                 <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestras Dos Grandes Suites de Software</h2>
             </div>
@@ -1364,7 +1491,7 @@ export default function PlesTicPage() {
             {coreServices.map((service) => (
               <Link key={service.title} href={service.ctaLink || '#'} passHref legacyBehavior>
                 <a className="block group hover:scale-105 transition-all duration-300 ease-in-out">
-                  <Card className="h-full group-hover:shadow-xl group-hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground bg-card group-hover:animate-gradient hover:bg-[length:200%_200%]">
+                  <Card className="h-full group-hover:shadow-xl group-hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground bg-card group-hover:animate-gradient group-hover:bg-[length:200%_200%]">
                     <CardHeader className="flex flex-row items-start gap-4">
                         {service.icon}
                         <div>
@@ -1436,7 +1563,7 @@ export default function PlesTicPage() {
           <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Proyectos Destacados</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {caseStudies.map((study) => (
-              <Card key={study.title} className="overflow-hidden group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col bg-card group-hover:animate-gradient hover:bg-[length:200%_200%]">
+              <Card key={study.title} className="overflow-hidden group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col bg-card group-hover:animate-gradient group-hover:bg-[length:200%_200%]">
                 <div className="relative h-56 w-full bg-card group-hover:bg-transparent transition-colors">
                   {study.illustration}
                 </div>
@@ -1490,3 +1617,4 @@ export default function PlesTicPage() {
     </div>
   );
 }
+
