@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {
-  AlertTriangle, ArrowLeft, ArrowRight, Award, Banknote, BarChart3, BarChartHorizontalBig, Barcode, Bell, BookOpen, BookUser, Bot, Brain, BrainCircuit, Briefcase, Building, Building2, Calculator, Calendar, CalendarDays, Camera, CheckCircle, ClipboardCheck, ClipboardEdit, ClipboardList, Clock, Cloud, CloudCog, Code, ConciergeBell, Cpu, CreditCard, Database, DraftingCompass, Edit, Eye, Factory, FileArchive, FileCheck, FileDigit, FileSearch, FileSignature, FileText, Filter, FlaskConical, FolderArchive, FolderKanban, GanttChartSquare, GitMerge, GitPullRequestArrow, Globe, GraduationCap, Headset, HeartPulse, HelpCircle, History, Home, Inbox, Info, KanbanSquare, KeyRound, Landmark, Layers, LayoutDashboard, LayoutTemplate, Lightbulb, Link as LinkIcon, ListOrdered, Lock, Mail, Map, MapPin, Megaphone, MessageCircle, MessagesSquare, MessageSquareDiff, MonitorSmartphone, MousePointerClick, Network, Package, PenSquare, Presentation, Printer, Receipt, Repeat, Rocket, Scale, School, Search, Send, Server, Settings, Share2, Shield, ShieldAlert, ShieldCheck, ShoppingBag, ShoppingCart, Tablet, Tags, Target, Timer, TrendingUp, Truck, UploadCloud, UserCheck, Users, Users2, UsersRound, Video, Warehouse, Workflow, Wrench, Zap
+  AlertTriangle, ArrowLeft, ArrowRight, Award, Banknote, BarChart3, BarChartHorizontalBig, Barcode, Bell, BookOpen, BookUser, Bot, Brain, BrainCircuit, Briefcase, Building, Building2, Calculator, Calendar, CalendarDays, Camera, CheckCircle, ClipboardCheck, ClipboardEdit, ClipboardList, Clock, Cloud, CloudCog, Code, ConciergeBell, Cpu, CreditCard, Database, DraftingCompass, Edit, Eye, Factory, FileArchive, FileCheck, FileDigit, FileSearch, FileSignature, FileText, Filter, FlaskConical, FolderArchive, FolderKanban, GanttChartSquare, GitBranch, GitMerge, GitPullRequestArrow, Globe, GraduationCap, Headset, HeartPulse, HelpCircle, History, Home, Inbox, Info, KanbanSquare, KeyRound, Landmark, Layers, LayoutDashboard, LayoutTemplate, Lightbulb, Link as LinkIcon, ListOrdered, Lock, Mail, Map, MapPin, Megaphone, MessageCircle, MessagesSquare, MessageSquareDiff, MonitorSmartphone, MousePointerClick, Network, Package, PenSquare, Presentation, Printer, Receipt, Repeat, Rocket, Scale, School, Search, Send, Server, Settings, Share2, Shield, ShieldAlert, ShieldCheck, ShoppingBag, ShoppingCart, Tablet, Tags, Target, Timer, TrendingUp, Truck, UploadCloud, UserCheck, Users, Users2, UsersRound, Video, Warehouse, Workflow, Wrench, Zap
 } from 'lucide-react';
 import PlexusIllustration from '@/components/illustrations/PlexusIllustration';
 import DataPipelineIllustration from '@/components/illustrations/DataPipelineIllustration';
@@ -909,79 +909,7 @@ const gobPlesModules = {
             }}
         ]
     },
-    "PaeGob": {
-        icon: School,
-        description: "Solución tecnológica para optimizar la gestión y supervisión del Programa de Alimentación Escolar (PAE).",
-        items: [
-            { name: "Gestión de Beneficiarios", slug: "paegob-beneficiarios", description: "Focalización de estudiantes.", details: {
-                mainIcon: Users2,
-                title: 'Gestión de Beneficiarios del PAE',
-                description: 'Asegure que el Programa de Alimentación Escolar llegue a quienes más lo necesitan. Gestione la focalización, inscripción y seguimiento de los estudiantes beneficiarios de forma eficiente.',
-                keyServices: [
-                  { title: 'Focalización y Caracterización', text: 'Importe y gestione la matrícula oficial (SIMAT) y aplique criterios de focalización para identificar a los beneficiarios.', icon: Filter },
-                  { title: 'Registro y Novedades', text: 'Administre el registro de estudiantes en el programa y gestione las novedades como traslados o retiros.', icon: UserCheck },
-                  { title: 'Control de Cupos por Sede', text: 'Asigne y controle el número de cupos del programa para cada institución y sede educativa.', icon: Building },
-                  { title: 'Informes de Cobertura', text: 'Genere reportes detallados sobre la cobertura del programa, el número de beneficiarios y su caracterización.', icon: BarChart3 }
-                ],
-                benefits: [
-                  'Garantiza una asignación equitativa y transparente de los cupos.',
-                  'Mantiene una base de datos de beneficiarios actualizada y confiable.',
-                  'Facilita la generación de informes para el Ministerio de Educación.',
-                  'Reduce el riesgo de errores y duplicidades en la asignación.',
-                  'Permite un seguimiento preciso de la población atendida.'
-                ],
-                ctaText: 'Optimice su Focalización',
-                formSubject: 'Consulta%20PaeGob%20Beneficiarios'
-            }},
-            { name: "Validación de Entregas", slug: "paegob-entregas", description: "Control con firma digital.", details: {
-                mainIcon: FileCheck,
-                title: 'Validación de Entregas y Reportes del PAE',
-                description: 'Controle y supervise la entrega de las raciones alimentarias en cada sede educativa. Nuestra plataforma digitaliza el proceso de validación, garantizando transparencia y trazabilidad.',
-                keyServices: [
-                  { title: 'Reporte Diario de Entrega', text: 'Los operadores registran diariamente el número de raciones entregadas en cada sede a través de una aplicación móvil.', icon: Tablet },
-                  { title: 'Validación con Firma Digital', text: 'El rector o coordinador de cada sede valida la información reportada mediante una firma digital, dando fe de la entrega.', icon: PenSquare },
-                  { title: 'Consolidación Automática', text: 'El sistema consolida automáticamente los reportes diarios para generar los informes mensuales requeridos por la auditoría.', icon: Zap },
-                  { title: 'Registro de No Conformidades', text: 'Permita que las sedes reporten cualquier incidencia o no conformidad con el servicio de forma inmediata.', icon: AlertTriangle }
-                ],
-                benefits: [
-                  'Elimina el uso de planillas físicas y reduce errores manuales.',
-                  'Proporciona evidencia digital y trazabilidad de cada entrega.',
-                  'Agiliza la consolidación de informes y el proceso de auditoría.',
-                  'Mejora el control y la supervisión del programa por parte de la entidad territorial.',
-                  'Aumenta la transparencia en la ejecución de los recursos del PAE.'
-                ],
-                ctaText: 'Digitalice su Supervisión',
-                formSubject: 'Consulta%20PaeGob%20Entregas'
-            }}
-        ]
-    },
-    "EduGob": {
-        icon: BookOpen,
-        description: "Plataforma enfocada en la gestión escolar y académica del día a día.",
-        items: [
-            { name: "Gestión Académica", slug: "edugob-academica", description: "Carreras, cursos, calificaciones.", details: {
-                mainIcon: GraduationCap,
-                title: 'Gestión Académica',
-                description: 'El núcleo de su institución educativa. Gestione todo el ciclo académico, desde la oferta de cursos y la matrícula, hasta el registro de calificaciones y el control de asistencia.',
-                keyServices: [
-                  { title: 'Administración de Cursos y Materias', text: 'Cree y configure la estructura académica de su institución, incluyendo programas, planes de estudio y asignaturas.', icon: Layers },
-                  { title: 'Matrícula y Gestión de Estudiantes', text: 'Administre el proceso de inscripción y matrícula de estudiantes, asignándolos a sus respectivos cursos y grupos.', icon: Users2 },
-                  { title: 'Registro de Calificaciones', text: 'Permita que los docentes registren las calificaciones de los estudiantes de forma segura y centralizada.', icon: ClipboardEdit },
-                  { title: 'Control de Asistencia', text: 'Lleve un registro detallado de la asistencia de los estudiantes a clases, generando alertas y reportes.', icon: CheckCircle }
-                ],
-                benefits: [
-                  'Centraliza y estandariza la información académica.',
-                  'Simplifica los procesos administrativos para docentes y personal.',
-                  'Proporciona a estudiantes y padres acceso a la información académica.',
-                  'Genera datos confiables para el seguimiento del rendimiento estudiantil.',
-                  'Facilita la generación de boletines, certificados y reportes.'
-                ],
-                ctaText: 'Organice su Gestión Académica',
-                formSubject: 'Consulta%20EduGob%20Academica'
-            }}
-        ]
-    },
-    "GeGob": {
+     "GeGob": {
         icon: BrainCircuit,
         description: "Plataforma de alto nivel para la gobernanza y la mejora continua del sistema educativo.",
         items: [
@@ -1177,7 +1105,7 @@ const gobPlesModules = {
             }}
         ]
     },
-     "GestorDoc": {
+    "GestorDoc": {
         icon: FileArchive,
         description: "Solución completa de gestión documental que cumple con la Ley 594 de 2000.",
         items: [
@@ -1186,20 +1114,93 @@ const gobPlesModules = {
                 title: 'Gestión Documental y Archivo (GestorDoc)',
                 description: 'Organice, preserve y controle el acceso al patrimonio documental de su entidad. Nuestra solución asegura el cumplimiento de la Ley General de Archivos y moderniza su gestión.',
                 keyServices: [
-                  { title: 'Tablas de Retención Documental (TRD)', text: 'Cree y administre sus TRD de forma digital, asegurando la correcta clasificación y disposición final de los documentos.', icon: GanttChartSquare },
-                  { title: 'Radicación y Flujos de Trabajo', text: 'Digitalice la ventanilla de radicación y cree flujos de trabajo para la distribución y respuesta a las comunicaciones.', icon: Workflow },
-                  { title: 'Archivo Digital Seguro', text: 'Almacene sus documentos en un repositorio digital seguro, con control de versiones y políticas de acceso.', icon: Lock },
-                  { title: 'FUID y Trazabilidad', text: 'Asigne un Formulario Único de Inventario Documental (FUID) a cada expediente, garantizando una trazabilidad completa.', icon: Barcode }
+                  { title: 'Administración de Consultas', text: 'Gestione solicitudes de consulta de documentos de manera presencial o virtual. El módulo permite responder, mantener y devolver solicitudes, asignando un FUID para seguimiento y proveyendo acceso a la hoja de control y el historial de respuestas.', icon: HelpCircle },
+                  { title: 'Gestión de Formatos y Retención (TRD)', text: 'Organice la estructura documental con series y subseries. Cree y administre Tablas de Retención Documental (TRD), defina tipos de documento y asigne identificadores únicos (FUID) para una trazabilidad completa con su respectiva hoja de control.', icon: GanttChartSquare },
+                  { title: 'Administración y Seguridad del Sistema', text: 'Controle el acceso y la seguridad con una robusta administración de usuarios, perfiles y permisos. Gestione las dependencias organizativas y configure políticas de acceso para proteger la información.', icon: Settings },
+                  { title: 'Radicación y Flujos de Trabajo', text: 'Digitalice la ventanilla de radicación y cree flujos de trabajo para la distribución y respuesta a las comunicaciones, asegurando una trazabilidad completa.', icon: Workflow },
                 ],
                 benefits: [
                   'Cumplimiento garantizado de la normativa archivística colombiana.',
                   'Reducción del riesgo de pérdida o deterioro de documentos importantes.',
                   'Acceso rápido y seguro a la información desde cualquier lugar.',
                   'Optimización del espacio físico destinado a archivos.',
-                  'Mejora de la eficiencia en la gestión de trámites y comunicaciones.'
+                  'Mejora de la eficiencia en la gestión de trámites y comunicaciones.',
+                  'Transparencia y trazabilidad en los procesos de consulta y radicación.'
                 ],
                 ctaText: 'Modernice su Gestión Documental',
                 formSubject: 'Consulta%20GestorDoc'
+            }}
+        ]
+    },
+    "PaeGob": {
+        icon: School,
+        description: "Solución tecnológica para optimizar la gestión y supervisión del Programa de Alimentación Escolar (PAE).",
+        items: [
+            { name: "Gestión de Beneficiarios", slug: "paegob-beneficiarios", description: "Focalización de estudiantes.", details: {
+                mainIcon: Users2,
+                title: 'Gestión de Beneficiarios del PAE',
+                description: 'Asegure que el Programa de Alimentación Escolar llegue a quienes más lo necesitan. Gestione la focalización, inscripción y seguimiento de los estudiantes beneficiarios de forma eficiente.',
+                keyServices: [
+                  { title: 'Focalización y Caracterización', text: 'Importe y gestione la matrícula oficial (SIMAT) y aplique criterios de focalización para identificar a los beneficiarios.', icon: Filter },
+                  { title: 'Registro y Novedades', text: 'Administre el registro de estudiantes en el programa y gestione las novedades como traslados o retiros.', icon: UserCheck },
+                  { title: 'Control de Cupos por Sede', text: 'Asigne y controle el número de cupos del programa para cada institución y sede educativa.', icon: Building },
+                  { title: 'Informes de Cobertura', text: 'Genere reportes detallados sobre la cobertura del programa, el número de beneficiarios y su caracterización.', icon: BarChart3 }
+                ],
+                benefits: [
+                  'Garantiza una asignación equitativa y transparente de los cupos.',
+                  'Mantiene una base de datos de beneficiarios actualizada y confiable.',
+                  'Facilita la generación de informes para el Ministerio de Educación.',
+                  'Reduce el riesgo de errores y duplicidades en la asignación.',
+                  'Permite un seguimiento preciso de la población atendida.'
+                ],
+                ctaText: 'Optimice su Focalización',
+                formSubject: 'Consulta%20PaeGob%20Beneficiarios'
+            }},
+            { name: "Validación de Entregas", slug: "paegob-entregas", description: "Control con firma digital.", details: {
+                mainIcon: FileCheck,
+                title: 'Validación de Entregas y Reportes del PAE',
+                description: 'Controle y supervise la entrega de las raciones alimentarias en cada sede educativa. Nuestra plataforma digitaliza el proceso de validación, garantizando transparencia y trazabilidad.',
+                keyServices: [
+                  { title: 'Reporte Diario de Entrega', text: 'Los operadores registran diariamente el número de raciones entregadas en cada sede a través de una aplicación móvil.', icon: Tablet },
+                  { title: 'Validación con Firma Digital', text: 'El rector o coordinador de cada sede valida la información reportada mediante una firma digital, dando fe de la entrega.', icon: PenSquare },
+                  { title: 'Consolidación Automática', text: 'El sistema consolida automáticamente los reportes diarios para generar los informes mensuales requeridos por la auditoría.', icon: Zap },
+                  { title: 'Registro de No Conformidades', text: 'Permita que las sedes reporten cualquier incidencia o no conformidad con el servicio de forma inmediata.', icon: AlertTriangle }
+                ],
+                benefits: [
+                  'Elimina el uso de planillas físicas y reduce errores manuales.',
+                  'Proporciona evidencia digital y trazabilidad de cada entrega.',
+                  'Agiliza la consolidación de informes y el proceso de auditoría.',
+                  'Mejora el control y la supervisión del programa por parte de la entidad territorial.',
+                  'Aumenta la transparencia en la ejecución de los recursos del PAE.'
+                ],
+                ctaText: 'Digitalice su Supervisión',
+                formSubject: 'Consulta%20PaeGob%20Entregas'
+            }}
+        ]
+    },
+    "EduGob": {
+        icon: BookOpen,
+        description: "Plataforma enfocada en la gestión escolar y académica del día a día.",
+        items: [
+            { name: "Gestión Académica", slug: "edugob-academica", description: "Carreras, cursos, calificaciones.", details: {
+                mainIcon: GraduationCap,
+                title: 'Gestión Académica',
+                description: 'El núcleo de su institución educativa. Gestione todo el ciclo académico, desde la oferta de cursos y la matrícula, hasta el registro de calificaciones y el control de asistencia.',
+                keyServices: [
+                  { title: 'Administración de Cursos y Materias', text: 'Cree y configure la estructura académica de su institución, incluyendo programas, planes de estudio y asignaturas.', icon: Layers },
+                  { title: 'Matrícula y Gestión de Estudiantes', text: 'Administre el proceso de inscripción y matrícula de estudiantes, asignándolos a sus respectivos cursos y grupos.', icon: Users2 },
+                  { title: 'Registro de Calificaciones', text: 'Permita que los docentes registren las calificaciones de los estudiantes de forma segura y centralizada.', icon: ClipboardEdit },
+                  { title: 'Control de Asistencia', text: 'Lleve un registro detallado de la asistencia de los estudiantes a clases, generando alertas y reportes.', icon: CheckCircle }
+                ],
+                benefits: [
+                  'Centraliza y estandariza la información académica.',
+                  'Simplifica los procesos administrativos para docentes y personal.',
+                  'Proporciona a estudiantes y padres acceso a la información académica.',
+                  'Genera datos confiables para el seguimiento del rendimiento estudiantil.',
+                  'Facilita la generación de boletines, certificados y reportes.'
+                ],
+                ctaText: 'Organice su Gestión Académica',
+                formSubject: 'Consulta%20EduGob%20Academica'
             }}
         ]
     },
