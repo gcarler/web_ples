@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {
-  AlertTriangle, ArrowLeft, ArrowRight, Award, Banknote, BarChart3, BarChartBig, Barcode, Bell, BookOpen, BookUser, Bot, Brain, BrainCircuit, Briefcase, Building, Building2, Calculator, Calendar, CalendarDays, Camera, CheckCircle, ClipboardCheck, ClipboardEdit, ClipboardList, Clock, Cloud, CloudCog, Code, ConciergeBell, Cpu, CreditCard, Database, DraftingCompass, Edit, Eye, Factory, FileArchive, FileCheck, FileDigit, FileSearch, FileSignature, FileText, Filter, FlaskConical, FolderArchive, FolderKanban, GanttChartSquare, GitMerge, GitPullRequestArrow, Globe, GraduationCap, Headset, HeartPulse, HelpCircle, History, Inbox, Info, KanbanSquare, KeyRound, Landmark, Layers, LayoutDashboard, LayoutTemplate, Lightbulb, Link as LinkIcon, ListOrdered, Lock, Mail, Map, MapPin, Megaphone, MessageCircle, MessagesSquare, MessageSquareDiff, MonitorSmartphone, MousePointerClick, Network, Package, PenSquare, Presentation, Printer, Receipt, Repeat, Rocket, Scale, School, Search, Send, Server, Settings, Share2, Shield, ShieldAlert, ShieldCheck, ShoppingBag, ShoppingCart, Tablet, Tags, Target, Timer, TrendingUp, Truck, UploadCloud, UserCheck, Users, Users2, UsersRound, Video, Warehouse, Workflow, Wrench, Zap
+  AlertTriangle, ArrowLeft, ArrowRight, Award, Banknote, BarChart3, BarChartHorizontalBig, Barcode, Bell, BookOpen, BookUser, Bot, Brain, BrainCircuit, Briefcase, Building, Building2, Calculator, Calendar, CalendarDays, Camera, CheckCircle, ClipboardCheck, ClipboardEdit, ClipboardList, Clock, Cloud, CloudCog, Code, ConciergeBell, Cpu, CreditCard, Database, DraftingCompass, Edit, Eye, Factory, FileArchive, FileCheck, FileDigit, FileSearch, FileSignature, FileText, Filter, FlaskConical, FolderArchive, FolderKanban, GanttChartSquare, GitMerge, GitPullRequestArrow, Globe, GraduationCap, Headset, HeartPulse, HelpCircle, History, Home, Inbox, Info, KanbanSquare, KeyRound, Landmark, Layers, LayoutDashboard, LayoutTemplate, Lightbulb, Link as LinkIcon, ListOrdered, Lock, Mail, Map, MapPin, Megaphone, MessageCircle, MessagesSquare, MessageSquareDiff, MonitorSmartphone, MousePointerClick, Network, Package, PenSquare, Presentation, Printer, Receipt, Repeat, Rocket, Scale, School, Search, Send, Server, Settings, Share2, Shield, ShieldAlert, ShieldCheck, ShoppingBag, ShoppingCart, Tablet, Tags, Target, Timer, TrendingUp, Truck, UploadCloud, UserCheck, Users, Users2, UsersRound, Video, Warehouse, Workflow, Wrench, Zap
 } from 'lucide-react';
 import PlexusIllustration from '@/components/illustrations/PlexusIllustration';
 import DataPipelineIllustration from '@/components/illustrations/DataPipelineIllustration';
@@ -65,7 +65,7 @@ const coreServices = [
       ctaText: "Fortalezca su Seguridad",
     },
     {
-      icon: <BarChartBig className="h-8 w-8 text-primary group-hover:text-primary-foreground" />,
+      icon: <BarChart3 className="h-8 w-8 text-primary group-hover:text-primary-foreground" />,
       title: 'Análisis de Datos e Inteligencia de Negocio (BI)',
       description: 'Transformamos sus datos en información valiosa para la toma de decisiones estratégicas, mediante dashboards y reportes interactivos.',
       details: ["Modelado y Almacenamiento de Datos (Data Warehousing)", "Visualización de Datos (Tableau, Power BI, Looker)", "Análisis Predictivo y Fundamentos de Machine Learning", "Procesos ETL/ELT y Calidad de Datos"],
@@ -858,25 +858,195 @@ const gobPlesModules = {
         icon: BrainCircuit,
         description: "Plataforma de alto nivel para la gobernanza y la mejora continua del sistema educativo.",
         items: [
-            { name: "Autoevaluación y PMI", slug: "gegob-pmi", description: "Diagnóstico y planes de mejoramiento.", details: {
-                mainIcon: Search,
-                title: 'Autoevaluación y Planes de Mejoramiento (PMI)',
-                description: 'Transforme el diagnóstico en acción. Nuestro módulo guía a las instituciones en procesos de autoevaluación estructurados y convierte los hallazgos en planes de mejoramiento concretos.',
+            { name: "Tablero Principal", slug: "gegob-dashboard", description: "Vista centralizada de indicadores clave.", details: {
+                mainIcon: LayoutDashboard,
+                title: "Tablero Principal",
+                description: "Visualice en tiempo real los indicadores más importantes de la gestión educativa y el rendimiento institucional.",
                 keyServices: [
-                  { title: 'Motor de Diagnóstico Personalizable', text: 'Cree y aplique instrumentos de autoevaluación basados en las guías del MEN o en sus propios marcos de calidad.', icon: Settings },
-                  { title: 'Visualización de Resultados', text: 'Analice los resultados de la autoevaluación con gráficos de radar, barras y matrices que facilitan la identificación de fortalezas y debilidades.', icon: BarChart3 },
-                  { title: 'Conexión Directa al PMI', text: 'Convierta los indicadores con bajo desempeño en objetivos de un Plan de Mejoramiento Institucional con un solo clic.', icon: LinkIcon },
-                  { title: 'Banco de Buenas Prácticas', text: 'Acceda a un repositorio de proyectos y estrategias exitosas para inspirar y guiar sus planes de mejoramiento.', icon: Lightbulb }
+                  { title: "Resumen de Avances del PMI", text: "Monitoree el progreso de sus planes de mejoramiento de un solo vistazo.", icon: TrendingUp },
+                  { title: "Alertas de Autoevaluación", text: "Reciba notificaciones sobre plazos y tareas pendientes del proceso de autoevaluación.", icon: Bell },
+                  { title: "Estado de Proyectos Transversales", text: "Vea el estado actual de los proyectos pedagógicos institucionales.", icon: GitMerge },
+                  { title: "Indicadores de Formación Docente", text: "Analice la cobertura y el impacto de los planes de capacitación.", icon: GraduationCap }
+                ],
+                benefits: [
+                  "Visión 360° de la gestión educativa.",
+                  "Toma de decisiones ágil y basada en datos.",
+                  "Identificación rápida de áreas críticas.",
+                  "Comunicación efectiva de resultados a la comunidad."
+                ],
+                ctaText: "Explorar Tablero",
+                formSubject: "Consulta%20GeGob%20Tablero"
+            }},
+            { name: "PEI", slug: "gegob-pei", description: "Gestión del Proyecto Educativo Institucional.", details: {
+                mainIcon: FileText,
+                title: "Proyecto Educativo Institucional (PEI)",
+                description: "Gestione y articule el documento maestro que guía la identidad y el quehacer de la institución educativa.",
+                keyServices: [
+                  { title: "Constructor y Editor del Documento PEI", text: "Utilice un editor colaborativo para construir y mantener actualizado el PEI.", icon: ClipboardEdit },
+                  { title: "Alineación con PMI y Autoevaluación", text: "Asegure la coherencia entre el PEI, los planes de mejora y los resultados del diagnóstico.", icon: LinkIcon },
+                  { title: "Control de Versiones y Repositorio Histórico", text: "Mantenga un registro de los cambios y acceda a versiones anteriores del documento.", icon: History },
+                  { title: "Publicación y Socialización del PEI", text: "Comparta fácilmente el documento con la comunidad educativa y entes de control.", icon: Share2 }
+                ],
+                benefits: [
+                  "Asegura la coherencia y visión a largo plazo de la institución.",
+                  "Facilita la participación de la comunidad educativa en su construcción.",
+                  "Simplifica las actualizaciones y revisiones periódicas.",
+                  "Mantiene un registro histórico organizado y accesible."
+                ],
+                ctaText: "Gestionar PEI",
+                formSubject: "Consulta%20GeGob%20PEI"
+            }},
+            { name: "SIE", slug: "gegob-sie", description: "Sistema Institucional de Evaluación.", details: {
+                mainIcon: Award,
+                title: "Sistema Institucional de Evaluación (SIE)",
+                description: "Defina y administre los criterios y metodologías de evaluación de los estudiantes, en cumplimiento con la normativa vigente.",
+                keyServices: [
+                  { title: "Configuración de Escalas de Valoración", text: "Personalice las escalas de calificación (cuantitativas o cualitativas) según el PEI.", icon: Settings },
+                  { title: "Definición de Criterios de Promoción", text: "Establezca las reglas claras para la promoción de los estudiantes al siguiente grado.", icon: CheckCircle },
+                  { title: "Gestión de Planes de Apoyo y Nivelación", text: "Documente y dé seguimiento a las estrategias de apoyo para estudiantes con dificultades.", icon: HelpCircle },
+                  { title: "Generación de Informes de Rendimiento", text: "Cree informes consolidados sobre el rendimiento académico para análisis institucional.", icon: BarChart3 }
+                ],
+                benefits: [
+                  "Garantiza un proceso de evaluación transparente, justo y equitativo.",
+                  "Facilita la comunicación de los criterios de evaluación a toda la comunidad.",
+                  "Sistematiza el seguimiento al desempeño de los estudiantes.",
+                  "Cumple con los requisitos normativos del Ministerio de Educación."
+                ],
+                ctaText: "Configurar SIE",
+                formSubject: "Consulta%20GeGob%20SIE"
+            }},
+            { name: "Autoevaluación", slug: "gegob-autoevaluacion", description: "Diagnóstico y análisis institucional.", details: {
+                mainIcon: BarChart3,
+                title: 'Autoevaluación Institucional',
+                description: 'Guía a las instituciones en un proceso estructurado de autodiagnóstico para identificar fortalezas y oportunidades de mejora en todas sus áreas de gestión.',
+                keyServices: [
+                  { title: "Motor de Diagnóstico Personalizable", text: "Cree y aplique instrumentos de autoevaluación basados en las guías del MEN o en sus propios marcos de calidad.", icon: Settings },
+                  { title: "Recopilación de Evidencias", text: "Permita adjuntar documentos y evidencias que soporten las valoraciones en cada uno de los componentes.", icon: FileArchive },
+                  { title: "Visualización Gráfica de Resultados", text: "Analice los resultados con gráficos de radar y barras que facilitan la identificación de áreas críticas.", icon: BarChartHorizontalBig },
+                  { title: "Generación Automática de Informes", text: "Produzca informes de autoevaluación consolidados listos para ser presentados a la comunidad y entes de control.", icon: Presentation }
                 ],
                 benefits: [
                   'Fomenta una cultura de reflexión y mejora continua.',
-                  'Facilita la toma de decisiones basada en un diagnóstico objetivo.',
-                  'Asegura que los planes de mejoramiento respondan a necesidades reales.',
-                  'Permite un seguimiento claro del avance de los planes de acción.',
-                  'Simplifica la preparación para procesos de certificación y auditoría.'
+                  'Proporciona una base objetiva para la toma de decisiones.',
+                  'Simplifica y estandariza el proceso de autoevaluación anual.',
+                  'Facilita la preparación para auditorías y certificaciones de calidad.'
                 ],
-                ctaText: 'Impulse la Mejora Continua',
-                formSubject: 'Consulta%20GeGob%20PMI'
+                ctaText: "Iniciar Autoevaluación",
+                formSubject: "Consulta%20GeGob%20Autoevaluacion"
+            }},
+            { name: "Evaluaciones Externas", slug: "gegob-eval-externas", description: "Análisis de resultados de pruebas.", details: {
+                mainIcon: BarChartHorizontalBig,
+                title: "Análisis de Evaluaciones Externas",
+                description: "Importe, visualice y analice los resultados de pruebas estandarizadas (como las Pruebas Saber) para complementar el diagnóstico institucional y orientar las estrategias pedagógicas.",
+                keyServices: [
+                  { title: "Carga Masiva de Resultados de Pruebas", text: "Importe fácilmente los archivos de resultados proporcionados por el ICFES u otras entidades.", icon: UploadCloud },
+                  { title: "Tableros de Comparación Histórica", text: "Analice la evolución de los resultados de la institución a lo largo del tiempo.", icon: TrendingUp },
+                  { title: "Análisis Comparativo", text: "Compare el rendimiento de la institución con promedios nacionales, regionales y de entidades similares.", icon: UsersRound },
+                  { title: "Identificación de Fortalezas y Debilidades", text: "Desglose los resultados por área, competencia y componente para un análisis detallado.", icon: Search }
+                ],
+                benefits: [
+                  "Complementa la autoevaluación con una mirada objetiva y externa.",
+                  "Permite tomar decisiones pedagógicas y curriculares basadas en datos.",
+                  "Facilita el seguimiento al impacto de las estrategias de mejora académica.",
+                  "Proporciona información valiosa para la rendición de cuentas."
+                ],
+                ctaText: "Analizar Resultados",
+                formSubject: "Consulta%20GeGob%20EvalExternas"
+            }},
+            { name: "PMI", slug: "gegob-pmi", description: "Planes de Mejoramiento Institucional.", details: {
+                mainIcon: Lightbulb,
+                title: "Planes de Mejoramiento Institucional (PMI)",
+                description: "Transforme los hallazgos del diagnóstico en acciones concretas. Defina objetivos, actividades, responsables y plazos para cerrar las brechas identificadas.",
+                keyServices: [
+                  { title: "Conexión Directa con Autoevaluación", text: "Cree objetivos de mejora a partir de los resultados de la autoevaluación, asegurando la coherencia.", icon: LinkIcon },
+                  { title: "Formulación de Proyectos y Actividades", text: "Estructure su plan con proyectos, actividades, metas, responsables y cronogramas claros.", icon: GanttChartSquare },
+                  { title: "Seguimiento y Registro de Avances", text: "Monitoree el progreso de cada actividad y registre los avances para una gestión efectiva del plan.", icon: ClipboardCheck },
+                  { title: "Banco de Buenas Prácticas", text: "Acceda a un repositorio de estrategias exitosas para inspirar y guiar la formulación de sus planes.", icon: BrainCircuit }
+                ],
+                benefits: [
+                  "Asegura que los planes de mejoramiento respondan a necesidades reales.",
+                  "Facilita el seguimiento y control a la ejecución de las mejoras.",
+                  "Promueve la colaboración y la asignación clara de responsabilidades.",
+                  "Proporciona una hoja de ruta clara para la mejora continua."
+                ],
+                ctaText: "Construir PMI",
+                formSubject: "Consulta%20GeGob%20PMI"
+            }},
+            { name: "Proyectos Transversales", slug: "gegob-proyectos", description: "Gestión de proyectos curriculares.", details: {
+                mainIcon: GitMerge,
+                title: "Gestión de Proyectos Transversales",
+                description: "Planifique y dé seguimiento a los proyectos pedagógicos que articulan diferentes áreas del conocimiento (ambiental, sexualidad, derechos humanos, etc.).",
+                keyServices: [
+                  { title: "Banco de Proyectos Institucionales", text: "Centralice la información y documentación de todos los proyectos transversales.", icon: Briefcase },
+                  { title: "Planificación de Actividades y Recursos", text: "Asigne responsables, fechas y recursos para cada actividad de los proyectos.", icon: CalendarDays },
+                  { title: "Registro de Evidencias y Resultados", text: "Documente el impacto y los productos de cada proyecto con un repositorio de evidencias.", icon: FileArchive },
+                  { title: "Articulación con el PEI y Planes de Área", text: "Asegure que los proyectos estén alineados con la propuesta pedagógica de la institución.", icon: LinkIcon }
+                ],
+                benefits: [
+                  "Centraliza y organiza la información de los proyectos pedagógicos.",
+                  "Facilita la colaboración entre docentes de diferentes áreas.",
+                  "Permite visibilizar y comunicar el impacto de estos proyectos.",
+                  "Asegura el cumplimiento de los requerimientos normativos vigentes."
+                ],
+                ctaText: "Gestionar Proyectos",
+                formSubject: "Consulta%20GeGob%20Proyectos"
+            }},
+            { name: "Formación Docente", slug: "gegob-formacion", description: "Planes de capacitación para docentes.", details: {
+                mainIcon: GraduationCap,
+                title: "Formación y Desarrollo Docente",
+                description: "Diseñe y gestione el plan de formación continua para su equipo docente, alineado a las necesidades identificadas en la autoevaluación y el PMI.",
+                keyServices: [
+                  { title: "Detección de Necesidades de Formación", text: "Identifique las áreas de capacitación prioritarias a partir de los resultados de la evaluación.", icon: Search },
+                  { title: "Catálogo de Cursos y Capacitaciones", text: "Organice la oferta de formación interna y externa disponible para los docentes.", icon: ListOrdered },
+                  { title: "Registro de Asistencia y Participación", text: "Lleve un control de la participación de los docentes en las diferentes actividades de formación.", icon: UserCheck },
+                  { title: "Seguimiento al Impacto de la Formación", text: "Evalúe cómo la capacitación se traduce en mejores prácticas en el aula.", icon: TrendingUp }
+                ],
+                benefits: [
+                  "Potencia las competencias y habilidades del equipo docente.",
+                  "Asegura que la inversión en formación sea pertinente y estratégica.",
+                  "Mantiene un registro histórico de la capacitación recibida por cada docente.",
+                  "Contribuye directamente a la mejora de la calidad educativa."
+                ],
+                ctaText: "Planificar Formación",
+                formSubject: "Consulta%20GeGob%20Formacion"
+            }},
+            { name: "Autorización Inst.", slug: "gegob-autorizacion", description: "Gestión de licencias y autorizaciones.", details: {
+                mainIcon: ShieldCheck,
+                title: "Autorización Institucional",
+                description: "Gestione los procesos de solicitud y renovación de licencias de funcionamiento y autorizaciones oficiales ante las secretarías de educación.",
+                keyServices: [
+                  { title: "Checklist de Requisitos Normativos", text: "Asegure el cumplimiento de todos los requisitos legales y documentales para cada trámite.", icon: ClipboardCheck },
+                  { title: "Carga y Gestión de Documentos Soporte", text: "Centralice y organice toda la documentación necesaria para los procesos de autorización.", icon: UploadCloud },
+                  { title: "Seguimiento al Estado del Trámite", text: "Monitoree en qué etapa se encuentra cada solicitud ante la entidad competente.", icon: Workflow },
+                  { title: "Alertas de Vencimiento de Licencias", text: "Reciba notificaciones automáticas para iniciar los procesos de renovación a tiempo.", icon: Bell }
+                ],
+                benefits: [
+                  "Simplifica y agiliza los complejos procesos de licenciamiento.",
+                  "Reduce el riesgo de incumplimiento normativo.",
+                  "Evita la operación sin las autorizaciones vigentes.",
+                  "Centraliza toda la documentación legal de la institución en un solo lugar."
+                ],
+                ctaText: "Gestionar Autorizaciones",
+                formSubject: "Consulta%20GeGob%20Autorizacion"
+            }},
+            { name: "Administración", slug: "gegob-admin", description: "Configuración del sistema.", details: {
+                mainIcon: Settings,
+                title: "Administración del Sistema",
+                description: "Módulo de configuración general de la plataforma GeGob, gestión de usuarios, roles y parámetros institucionales.",
+                keyServices: [
+                  { title: "Gestión de Usuarios y Permisos", text: "Cree usuarios y asigne roles para controlar el acceso a los diferentes módulos y funcionalidades.", icon: Users },
+                  { title: "Configuración del Año Lectivo", text: "Defina los parámetros del año escolar, periodos académicos y calendarios.", icon: Calendar },
+                  { title: "Personalización de Parámetros", text: "Adapte la plataforma a la realidad de su institución, configurando sedes, jornadas, etc.", icon: Wrench },
+                  { title: "Auditoría de Acciones en el Sistema", text: "Realice un seguimiento de las acciones importantes realizadas por los usuarios en la plataforma.", icon: History }
+                ],
+                benefits: [
+                  "Control total sobre la seguridad y el acceso a la información.",
+                  "Flexibilidad para adaptar la plataforma a las particularidades de la institución.",
+                  "Facilita la administración técnica de la plataforma.",
+                  "Garantiza la trazabilidad de las acciones y cambios en el sistema."
+                ],
+                ctaText: "Configurar Sistema",
+                formSubject: "Consulta%20GeGob%20Admin"
             }}
         ]
     },
