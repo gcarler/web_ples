@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {
-  AlertTriangle, ArrowLeft, ArrowRight, Award, Banknote, BarChart3, Barcode, Bell, BookOpen, BookUser, Bot, Brain, BrainCircuit, Briefcase, Building, Building2, Calculator, Calendar, CalendarDays, Camera, CheckCircle, ClipboardCheck, ClipboardEdit, ClipboardList, Clock, Cloud, CloudCog, Code, ConciergeBell, Cpu, CreditCard, Database, DraftingCompass, Edit, Eye, Factory, FileArchive, FileCheck, FileDigit, FileSearch, FileSignature, FileText, Filter, FlaskConical, FolderArchive, FolderKanban, GanttChartSquare, GitMerge, GitPullRequestArrow, Globe, GraduationCap, Headset, HeartPulse, HelpCircle, History, Inbox, Info, KanbanSquare, KeyRound, Landmark, Layers, LayoutDashboard, LayoutTemplate, Lightbulb, Link as LinkIcon, ListOrdered, Lock, Mail, Map, MapPin, Megaphone, MessageCircle, MessagesSquare, MessageSquareDiff, MonitorSmartphone, MousePointerClick, Network, Package, PenSquare, Presentation, Printer, Receipt, Repeat, Rocket, Scale, School, Search, Send, Server, Settings, Share2, Shield, ShieldAlert, ShieldCheck, ShoppingBag, ShoppingCart, Tablet, Tags, Target, Timer, TrendingUp, Truck, UploadCloud, UserCheck, Users, Users2, UsersRound, Video, Warehouse, Workflow, Wrench, Zap
+  AlertTriangle, ArrowLeft, ArrowRight, Award, Banknote, BarChart3, BarChartBig, Barcode, Bell, BookOpen, BookUser, Bot, Brain, BrainCircuit, Briefcase, Building, Building2, Calculator, Calendar, CalendarDays, Camera, CheckCircle, ClipboardCheck, ClipboardEdit, ClipboardList, Clock, Cloud, CloudCog, Code, ConciergeBell, Cpu, CreditCard, Database, DraftingCompass, Edit, Eye, Factory, FileArchive, FileCheck, FileDigit, FileSearch, FileSignature, FileText, Filter, FlaskConical, FolderArchive, FolderKanban, GanttChartSquare, GitMerge, GitPullRequestArrow, Globe, GraduationCap, Headset, HeartPulse, HelpCircle, History, Inbox, Info, KanbanSquare, KeyRound, Landmark, Layers, LayoutDashboard, LayoutTemplate, Lightbulb, Link as LinkIcon, ListOrdered, Lock, Mail, Map, MapPin, Megaphone, MessageCircle, MessagesSquare, MessageSquareDiff, MonitorSmartphone, MousePointerClick, Network, Package, PenSquare, Presentation, Printer, Receipt, Repeat, Rocket, Scale, School, Search, Send, Server, Settings, Share2, Shield, ShieldAlert, ShieldCheck, ShoppingBag, ShoppingCart, Tablet, Tags, Target, Timer, TrendingUp, Truck, UploadCloud, UserCheck, Users, Users2, UsersRound, Video, Warehouse, Workflow, Wrench, Zap
 } from 'lucide-react';
 import PlexusIllustration from '@/components/illustrations/PlexusIllustration';
 import DataPipelineIllustration from '@/components/illustrations/DataPipelineIllustration';
@@ -979,7 +979,7 @@ function InteractiveSoftwareSuites() {
         const MainIcon = details.mainIcon || Globe;
         return (
             <div className="animate-fade-in-up">
-                <Button variant="ghost" onClick={onBack} className="mb-6">
+                <Button variant="ghost" onClick={onBack} className="mb-6 hover:bg-primary/10">
                     <ArrowLeft className="mr-2 h-4 w-4" />
                     Volver a los módulos
                 </Button>
@@ -1002,7 +1002,7 @@ function InteractiveSoftwareSuites() {
                             {details.keyServices.map((service: any) => {
                                 const ServiceIcon = service.icon;
                                 return (
-                                    <Card key={service.title} className="p-6 group transition-shadow duration-300 hover:shadow-lg">
+                                    <Card key={service.title} className="p-6 group transition-shadow duration-300 hover:shadow-lg bg-background/50">
                                         <div className="flex flex-col items-center text-center md:items-start md:text-left">
                                             <ServiceIcon className="h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" />
                                             <CardTitle className="text-lg font-semibold mb-2">{service.title}</CardTitle>
@@ -1095,7 +1095,7 @@ function InteractiveSoftwareSuites() {
                                             <Card 
                                                 key={module.name} 
                                                 onClick={() => handleSubModuleClick(module)}
-                                                className="h-full p-4 transition-all duration-300 ease-in-out group hover:shadow-lg hover:border-primary hover:scale-105 cursor-pointer"
+                                                className="h-full p-4 transition-all duration-300 ease-in-out group hover:shadow-lg hover:border-primary hover:scale-105 cursor-pointer bg-background/50"
                                             >
                                                 <div className="flex items-center justify-between">
                                                   <p className="font-semibold text-foreground group-hover:text-primary">{module.name}</p>
