@@ -16,15 +16,15 @@ const serviceDetails = {
   parentLink: "/ples-tic",
   parentName: "PLES TIC",
   serviceSlug: "desarrollo-software",
-  mainIcon: <Code />,
+  mainIcon: Code,
   title: 'Desarrollo de Software a Medida',
   description: 'Transformamos sus ideas en soluciones de software potentes, personalizadas y escalables. Nuestro equipo experto utiliza las últimas tecnologías y metodologías ágiles para entregar productos de alta calidad que impulsan su negocio.',
   keyServicesHeading: 'Tipos de Software que Desarrollamos:',
   keyServices: [
-    { title: 'Aplicaciones Web y Móviles', text: 'Desarrollamos aplicaciones web progresivas (PWA), nativas (iOS/Android) y plataformas complejas con interfaces intuitivas y rendimiento excepcional.', icon: <MonitorSmartphone className="h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" /> },
-    { title: 'Sistemas Empresariales (ERP/CRM)', text: 'Construimos o personalizamos sistemas ERP y CRM a medida para optimizar sus flujos de trabajo, gestión de clientes y operaciones internas.', icon: <Puzzle className="h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" /> },
-    { title: 'Integración de APIs y Microservicios', text: 'Conectamos sus sistemas existentes, desarrollamos APIs robustas y arquitecturas de microservicios para una comunicación fluida entre plataformas.', icon: <Rocket className="h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" /> },
-    { title: 'Modernización de Legado (Legacy)', text: 'Actualizamos y modernizamos sus aplicaciones antiguas, migrándolas a tecnologías actuales para mejorar su eficiencia, seguridad y escalabilidad.', icon: <Zap className="h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" /> },
+    { title: 'Aplicaciones Web y Móviles', text: 'Desarrollamos aplicaciones web progresivas (PWA), nativas (iOS/Android) y plataformas complejas con interfaces intuitivas y rendimiento excepcional.', icon: MonitorSmartphone },
+    { title: 'Sistemas Empresariales (ERP/CRM)', text: 'Construimos o personalizamos sistemas ERP y CRM a medida para optimizar sus flujos de trabajo, gestión de clientes y operaciones internas.', icon: Puzzle },
+    { title: 'Integración de APIs y Microservicios', text: 'Conectamos sus sistemas existentes, desarrollamos APIs robustas y arquitecturas de microservicios para una comunicación fluida entre plataformas.', icon: Rocket },
+    { title: 'Modernización de Legado (Legacy)', text: 'Actualizamos y modernizamos sus aplicaciones antiguas, migrándolas a tecnologías actuales para mejorar su eficiencia, seguridad y escalabilidad.', icon: Zap },
   ],
   benefitsHeading: "Beneficios de un Desarrollo a Medida:",
   benefits: [
@@ -40,6 +40,7 @@ const serviceDetails = {
 };
 
 export default function DesarrolloSoftwarePage() {
+  const MainIcon = serviceDetails.mainIcon;
   return (
     <div className="py-10 w-full px-4 sm:px-6 lg:px-8">
       <div className="max-w-screen-xl mx-auto">
@@ -60,7 +61,7 @@ export default function DesarrolloSoftwarePage() {
 
         <section className="text-center mb-16">
           <div className="inline-block p-4 bg-primary/10 rounded-lg mb-6">
-            {React.cloneElement(serviceDetails.mainIcon, { className: "h-16 w-16 text-primary" })}
+            <MainIcon className="h-16 w-16 text-primary" />
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-6">
             {serviceDetails.title}
@@ -76,15 +77,18 @@ export default function DesarrolloSoftwarePage() {
               {serviceDetails.keyServicesHeading}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-              {serviceDetails.keyServices.map((service) => (
+              {serviceDetails.keyServices.map((service) => {
+                const ServiceIcon = service.icon;
+                return (
                 <Card key={service.title} className="p-6 group transition-all duration-300 ease-in-out hover:shadow-2xl hover:scale-[1.03] hover:border-primary/50 hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:animate-gradient hover:bg-[length:200%_200%]">
                   <div className="flex flex-col items-center text-center md:items-start md:text-left">
-                    {React.cloneElement(service.icon, { className: "h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" })}
+                    <ServiceIcon className="h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" />
                     <CardTitle className="text-xl font-semibold mb-2 text-foreground group-hover:text-primary-foreground transition-colors">{service.title}</CardTitle>
                     <CardDescription className="text-muted-foreground group-hover:text-primary-foreground/90 transition-colors text-sm">{service.text}</CardDescription>
                   </div>
                 </Card>
-              ))}
+                );
+              })}
             </div>
           </section>
         )}

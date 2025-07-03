@@ -16,15 +16,15 @@ const serviceDetails = {
   parentLink: "/ples-tic",
   parentName: "PLES TIC",
   serviceSlug: "analisis-datos-bi",
-  mainIcon: <BarChartBig />,
+  mainIcon: BarChartBig,
   title: 'Análisis de Datos e Inteligencia de Negocio (BI)',
   description: 'Transformamos sus datos en su activo más valioso. Descubra insights ocultos, visualice tendencias y tome decisiones informadas que impulsan el crecimiento y la eficiencia operativa de su organización.',
   keyServicesHeading: 'Servicios Clave en Datos y BI:',
   keyServices: [
-    { title: 'Data Warehousing y Modelado de Datos', text: 'Diseñamos y construimos almacenes de datos robustos y eficientes para consolidar su información y facilitar el análisis.', icon: <Database className="h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" /> },
-    { title: 'Visualización de Datos y Dashboards', text: 'Creamos dashboards interactivos y reportes visuales (Tableau, Power BI, Looker) que comunican insights de forma clara y accionable.', icon: <BarChartHorizontalBig className="h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" /> },
-    { title: 'Análisis Predictivo y Fundamentos de ML', text: 'Aplicamos técnicas estadísticas y de machine learning para predecir tendencias, segmentar clientes y optimizar procesos.', icon: <Brain className="h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" /> },
-    { title: 'Ingeniería de Datos y ETL/ELT', text: 'Desarrollamos procesos de extracción, transformación y carga (ETL/ELT) para asegurar la calidad, integridad y disponibilidad de sus datos.', icon: <Filter className="h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" /> },
+    { title: 'Data Warehousing y Modelado de Datos', text: 'Diseñamos y construimos almacenes de datos robustos y eficientes para consolidar su información y facilitar el análisis.', icon: Database },
+    { title: 'Visualización de Datos y Dashboards', text: 'Creamos dashboards interactivos y reportes visuales (Tableau, Power BI, Looker) que comunican insights de forma clara y accionable.', icon: BarChartHorizontalBig },
+    { title: 'Análisis Predictivo y Fundamentos de ML', text: 'Aplicamos técnicas estadísticas y de machine learning para predecir tendencias, segmentar clientes y optimizar procesos.', icon: Brain },
+    { title: 'Ingeniería de Datos y ETL/ELT', text: 'Desarrollamos procesos de extracción, transformación y carga (ETL/ELT) para asegurar la calidad, integridad y disponibilidad de sus datos.', icon: Filter },
   ],
   benefitsHeading: "Beneficios de Potenciar su Negocio con Datos:",
   benefits: [
@@ -40,6 +40,7 @@ const serviceDetails = {
 };
 
 export default function AnalisisDatosBiPage() {
+  const MainIcon = serviceDetails.mainIcon;
   return (
     <div className="py-10 w-full px-4 sm:px-6 lg:px-8">
       <div className="max-w-screen-xl mx-auto">
@@ -60,7 +61,7 @@ export default function AnalisisDatosBiPage() {
 
         <section className="text-center mb-16">
           <div className="inline-block p-4 bg-primary/10 rounded-lg mb-6">
-            {React.cloneElement(serviceDetails.mainIcon, { className: "h-16 w-16 text-primary" })}
+            <MainIcon className="h-16 w-16 text-primary" />
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-6">
             {serviceDetails.title}
@@ -76,15 +77,18 @@ export default function AnalisisDatosBiPage() {
               {serviceDetails.keyServicesHeading}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-              {serviceDetails.keyServices.map((service) => (
+              {serviceDetails.keyServices.map((service) => {
+                const ServiceIcon = service.icon;
+                return (
                 <Card key={service.title} className="p-6 group transition-all duration-300 ease-in-out hover:shadow-2xl hover:scale-[1.03] hover:border-primary/50 hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:animate-gradient hover:bg-[length:200%_200%]">
                   <div className="flex flex-col items-center text-center md:items-start md:text-left">
-                    {React.cloneElement(service.icon, { className: "h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" })}
+                    <ServiceIcon className="h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" />
                     <CardTitle className="text-xl font-semibold mb-2 text-foreground group-hover:text-primary-foreground transition-colors">{service.title}</CardTitle>
                     <CardDescription className="text-muted-foreground group-hover:text-primary-foreground/90 transition-colors text-sm">{service.text}</CardDescription>
                   </div>
                 </Card>
-              ))}
+                );
+              })}
             </div>
           </section>
         )}

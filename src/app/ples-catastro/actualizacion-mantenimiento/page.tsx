@@ -14,15 +14,15 @@ const serviceDetails = {
   parentLink: "/ples-catastro",
   parentName: "PLES Catastro",
   serviceSlug: "actualizacion-mantenimiento-catastral",
-  mainIcon: <FileText />,
+  mainIcon: FileText,
   title: 'Actualización y Mantenimiento Catastral',
   description: 'Implementamos procesos continuos y automatizados para mantener la información catastral actualizada, confiable y accesible, asegurando la integridad y disponibilidad de los datos para la toma de decisiones estratégicas y la gestión territorial eficiente.',
   keyServicesHeading: 'Componentes Esenciales del Servicio:',
   keyServices: [
-    { title: 'Flujos de Trabajo Digitales', text: 'Diseño e implementación de procesos optimizados y automatizados para la gestión de novedades catastrales y la actualización continua de la base de datos.', icon: <Settings className="h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" /> },
-    { title: 'Monitoreo Continuo de Cambios', text: 'Uso de tecnologías como teledetección y análisis de imágenes para identificar cambios en el territorio y activar los procesos de actualización correspondientes.', icon: <MonitorPlay className="h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" /> },
-    { title: 'Interoperabilidad de Sistemas', text: 'Aseguramos la conexión fluida entre el sistema catastral y otras plataformas relevantes (Registro, Notariado, Planeación) para un intercambio de información eficiente.', icon: <BarChart3 className="h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" /> },
-    { title: 'Capacitación y Soporte Técnico', text: 'Programas de formación para el personal encargado del catastro y soporte continuo para garantizar la correcta operación y mantenimiento del sistema.', icon: <Users className="h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" /> },
+    { title: 'Flujos de Trabajo Digitales', text: 'Diseño e implementación de procesos optimizados y automatizados para la gestión de novedades catastrales y la actualización continua de la base de datos.', icon: Settings },
+    { title: 'Monitoreo Continuo de Cambios', text: 'Uso de tecnologías como teledetección y análisis de imágenes para identificar cambios en el territorio y activar los procesos de actualización correspondientes.', icon: MonitorPlay },
+    { title: 'Interoperabilidad de Sistemas', text: 'Aseguramos la conexión fluida entre el sistema catastral y otras plataformas relevantes (Registro, Notariado, Planeación) para un intercambio de información eficiente.', icon: BarChart3 },
+    { title: 'Capacitación y Soporte Técnico', text: 'Programas de formación para el personal encargado del catastro y soporte continuo para garantizar la correcta operación y mantenimiento del sistema.', icon: Users },
   ],
   benefitsHeading: 'Beneficios Clave para su Entidad:',
   benefits: [
@@ -37,6 +37,7 @@ const serviceDetails = {
 };
 
 export default function ActualizacionMantenimientoPage() {
+  const MainIcon = serviceDetails.mainIcon;
   return (
     <div className="py-10 w-full px-4 sm:px-6 lg:px-8">
       <div className="max-w-screen-xl mx-auto">
@@ -57,7 +58,7 @@ export default function ActualizacionMantenimientoPage() {
 
         <section className="text-center mb-16">
           <div className="inline-block p-4 bg-primary/10 rounded-lg mb-6">
-            {React.cloneElement(serviceDetails.mainIcon, { className: "h-16 w-16 text-primary" })}
+            <MainIcon className="h-16 w-16 text-primary" />
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-6">
             {serviceDetails.title}
@@ -73,15 +74,18 @@ export default function ActualizacionMantenimientoPage() {
               {serviceDetails.keyServicesHeading}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-              {serviceDetails.keyServices.map((service) => (
-                <Card key={service.title} className="p-6 group transition-all duration-300 ease-in-out hover:shadow-2xl hover:scale-[1.03] hover:border-primary/50 hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:animate-gradient hover:bg-[length:200%_200%]">
-                  <div className="flex flex-col items-center text-center md:items-start md:text-left">
-                    {React.cloneElement(service.icon, { className: "h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" })}
-                    <CardTitle className="text-xl font-semibold mb-2 text-foreground group-hover:text-primary-foreground transition-colors">{service.title}</CardTitle>
-                    <CardDescription className="text-muted-foreground group-hover:text-primary-foreground/90 transition-colors text-sm">{service.text}</CardDescription>
-                  </div>
-                </Card>
-              ))}
+              {serviceDetails.keyServices.map((service) => {
+                const ServiceIcon = service.icon;
+                return (
+                  <Card key={service.title} className="p-6 group transition-all duration-300 ease-in-out hover:shadow-2xl hover:scale-[1.03] hover:border-primary/50 hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:animate-gradient hover:bg-[length:200%_200%]">
+                    <div className="flex flex-col items-center text-center md:items-start md:text-left">
+                      <ServiceIcon className="h-8 w-8 mb-2 text-primary group-hover:text-accent transition-colors" />
+                      <CardTitle className="text-xl font-semibold mb-2 text-foreground group-hover:text-primary-foreground transition-colors">{service.title}</CardTitle>
+                      <CardDescription className="text-muted-foreground group-hover:text-primary-foreground/90 transition-colors text-sm">{service.text}</CardDescription>
+                    </div>
+                  </Card>
+                );
+              })}
             </div>
           </section>
         )}
