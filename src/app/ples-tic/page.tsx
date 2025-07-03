@@ -18,22 +18,22 @@ import { Badge } from '@/components/ui/badge';
 
 const valuePropositions = [
     {
-      icon: <Settings className="h-10 w-10 text-primary group-hover:text-primary-foreground" />,
+      icon: Settings,
       title: 'Soluciones a Medida',
       description: 'Desarrollamos software y sistemas adaptados específicamente a sus necesidades y objetivos estratégicos.',
     },
     {
-      icon: <Lightbulb className="h-10 w-10 text-primary group-hover:text-primary-foreground" />,
+      icon: Lightbulb,
       title: 'Innovación y Vanguardia',
       description: 'Aplicamos las últimas tecnologías y metodologías para garantizar soluciones modernas, eficientes y preparadas para el futuro.',
     },
     {
-      icon: <ShieldCheck className="h-10 w-10 text-primary group-hover:text-primary-foreground" />,
+      icon: ShieldCheck,
       title: 'Seguridad Integral',
       description: 'Protegemos sus activos digitales con estrategias de ciberseguridad proactivas y robustas adaptadas a su entorno.',
     },
     {
-      icon: <TrendingUp className="h-10 w-10 text-primary group-hover:text-primary-foreground" />,
+      icon: TrendingUp,
       title: 'Optimización y Eficiencia',
       description: 'Automatizamos y optimizamos sus flujos de trabajo para mejorar la productividad, reducir costos y potenciar el crecimiento.',
     },
@@ -41,7 +41,7 @@ const valuePropositions = [
 
 const coreServices = [
     {
-      icon: <Code className="h-8 w-8 text-primary group-hover:text-primary-foreground" />,
+      icon: Code,
       title: 'Desarrollo de Software a Medida',
       description: 'Creamos aplicaciones web, móviles y empresariales personalizadas, desde la concepción hasta el despliegue y mantenimiento continuo.',
       details: ["Análisis y Diseño de Sistemas", "Desarrollo Full-Stack (Frontend/Backend)", "Integración de APIs y Servicios Externos", "Metodologías Ágiles (Scrum/Kanban)"],
@@ -49,7 +49,7 @@ const coreServices = [
       ctaText: "Más sobre Desarrollo a Medida",
     },
     {
-      icon: <CloudCog className="h-8 w-8 text-primary group-hover:text-primary-foreground" />,
+      icon: CloudCog,
       title: 'Soluciones Cloud y DevOps',
       description: 'Diseñamos, implementamos y gestionamos infraestructuras cloud seguras, escalables y costo-eficientes (AWS, Azure, GCP).',
       details: ["Migración Estratégica a la Nube", "Arquitecturas Serverless y Microservicios", "Infraestructura como Código (IaC)", "CI/CD y Automatización DevOps"],
@@ -57,7 +57,7 @@ const coreServices = [
       ctaText: "Descubra Soluciones Cloud",
     },
     {
-      icon: <Lock className="h-8 w-8 text-primary group-hover:text-primary-foreground" />,
+      icon: Lock,
       title: 'Ciberseguridad Avanzada',
       description: 'Protegemos su información y sistemas contra amenazas cibernéticas con auditorías, consultoría y soluciones de seguridad de última generación.',
       details: ["Análisis de Vulnerabilidades y Pentesting Ético", "Gestión de Identidad y Acceso (IAM/IGA)", "Seguridad de Redes y Endpoints (EDR/XDR)", "Planes de Respuesta a Incidentes (IRP)"],
@@ -65,7 +65,7 @@ const coreServices = [
       ctaText: "Fortalezca su Seguridad",
     },
     {
-      icon: <BarChart3 className="h-8 w-8 text-primary group-hover:text-primary-foreground" />,
+      icon: BarChart3,
       title: 'Análisis de Datos e Inteligencia de Negocio (BI)',
       description: 'Transformamos sus datos en información valiosa para la toma de decisiones estratégicas, mediante dashboards y reportes interactivos.',
       details: ["Modelado y Almacenamiento de Datos (Data Warehousing)", "Visualización de Datos (Tableau, Power BI, Looker)", "Análisis Predictivo y Fundamentos de Machine Learning", "Procesos ETL/ELT y Calidad de Datos"],
@@ -73,7 +73,7 @@ const coreServices = [
       ctaText: "Explore Inteligencia de Negocio",
     },
     {
-      icon: <Brain className="h-8 w-8 text-primary group-hover:text-primary-foreground" />,
+      icon: Brain,
       title: 'Automatización Inteligente con IA',
       description: 'Potenciamos su negocio con soluciones de IA personalizadas que optimizan procesos, extraen valor de sus datos y mejoran la toma de decisiones.',
       details: [
@@ -88,11 +88,11 @@ const coreServices = [
 ];
 
 const ourApproachSteps = [
-    { icon: <Search className="h-8 w-8 text-primary group-hover:text-primary-foreground mb-2" />, title: 'Entendimiento y Diagnóstico', description: 'Analizamos sus necesidades, objetivos y entorno tecnológico actual.' },
-    { icon: <DraftingCompass className="h-8 w-8 text-primary group-hover:text-primary-foreground mb-2" />, title: 'Diseño y Planificación Estratégica', description: 'Definimos la arquitectura, tecnologías y hoja de ruta del proyecto.' },
-    { icon: <KanbanSquare className="h-8 w-8 text-primary group-hover:text-primary-foreground mb-2" />, title: 'Desarrollo Ágil e Implementación', description: 'Construimos la solución con enfoque en calidad y entregas incrementales.' },
-    { icon: <FlaskConical className="h-8 w-8 text-primary group-hover:text-primary-foreground mb-2" />, title: 'Pruebas Exhaustivas y Despliegue', description: 'Realizamos pruebas rigurosas para garantizar funcionalidad y seguridad.' },
-    { icon: <GitPullRequestArrow className="h-8 w-8 text-primary group-hover:text-primary-foreground mb-2" />, title: 'Soporte y Evolución Continua', description: 'Ofrecemos soporte post-implementación y planes de mantenimiento continuo.' },
+    { icon: Search, title: 'Entendimiento y Diagnóstico', description: 'Analizamos sus necesidades, objetivos y entorno tecnológico actual.' },
+    { icon: DraftingCompass, title: 'Diseño y Planificación Estratégica', description: 'Definimos la arquitectura, tecnologías y hoja de ruta del proyecto.' },
+    { icon: KanbanSquare, title: 'Desarrollo Ágil e Implementación', description: 'Construimos la solución con enfoque en calidad y entregas incrementales.' },
+    { icon: FlaskConical, title: 'Pruebas Exhaustivas y Despliegue', description: 'Realizamos pruebas rigurosas para garantizar funcionalidad y seguridad.' },
+    { icon: GitPullRequestArrow, title: 'Soporte y Evolución Continua', description: 'Ofrecemos soporte post-implementación y planes de mantenimiento continuo.' },
 ];
 
 const technologies = ['JavaScript (React, Next.js, Node.js)', 'Python (Django, Flask, FastAPI)', 'Java, C#/.NET', 'Bases de Datos (PostgreSQL, MySQL, MongoDB, Redis)', 'Docker, Kubernetes, Terraform', 'AWS, Azure, Google Cloud Platform', 'Inteligencia Artificial (Machine Learning, NLP, Computer Vision)', 'Git, Jenkins, GitLab CI', 'Marcos de Ciberseguridad (NIST, ISO 27001)', 'Herramientas BI (Tableau, Power BI)'];
@@ -1109,26 +1109,62 @@ const gobPlesModules = {
         icon: FileArchive,
         description: "Solución completa de gestión documental que cumple con la Ley 594 de 2000.",
         items: [
-            { name: "Gestión Documental y Archivo", slug: "gestordoc-trd", description: "Creación y gestión de TRD y más.", details: {
-                mainIcon: FileArchive,
-                title: 'Gestión Documental y Archivo (GestorDoc)',
-                description: 'Organice, preserve y controle el acceso al patrimonio documental de su entidad. Nuestra solución asegura el cumplimiento de la Ley General de Archivos y moderniza su gestión.',
+            { name: "Administración de Consultas", slug: "gestordoc-consultas", description: "Gestión de solicitudes de consulta de documentos.", details: {
+                mainIcon: HelpCircle,
+                title: 'Administración de Consultas',
+                description: 'Gestione solicitudes de consulta de documentos de manera presencial o virtual, proporcionando un medio eficiente para acceder a la información requerida.',
                 keyServices: [
-                  { title: 'Administración de Consultas', text: 'Gestione solicitudes de consulta de documentos de manera presencial o virtual. El módulo permite responder, mantener y devolver solicitudes, asignando un FUID para seguimiento y proveyendo acceso a la hoja de control y el historial de respuestas.', icon: HelpCircle },
-                  { title: 'Gestión de Formatos y Retención (TRD)', text: 'Organice la estructura documental con series y subseries. Cree y administre Tablas de Retención Documental (TRD), defina tipos de documento y asigne identificadores únicos (FUID) para una trazabilidad completa con su respectiva hoja de control.', icon: GanttChartSquare },
-                  { title: 'Administración y Seguridad del Sistema', text: 'Controle el acceso y la seguridad con una robusta administración de usuarios, perfiles y permisos. Gestione las dependencias organizativas y configure políticas de acceso para proteger la información.', icon: Settings },
-                  { title: 'Radicación y Flujos de Trabajo', text: 'Digitalice la ventanilla de radicación y cree flujos de trabajo para la distribución y respuesta a las comunicaciones, asegurando una trazabilidad completa.', icon: Workflow },
+                  { title: 'Solicitud y Respuesta a Consultas', text: 'Permite a los usuarios solicitar y a los funcionarios responder consultas de manera eficiente, tanto virtual como presencial.', icon: MessageCircle },
+                  { title: 'Gestión y Devolución', text: 'Mantenga y devuelva consultas, asegurando una gestión transparente y efectiva del proceso.', icon: Repeat },
+                  { title: 'Identificador Único (FUID)', text: 'Asigna un FUID a cada consulta para un seguimiento y registro ordenado.', icon: Barcode },
+                  { title: 'Consulta de Hoja de Control', text: 'Visualice la hoja de control para un seguimiento detallado del estado y la ubicación de las consultas.', icon: FileSearch }
                 ],
                 benefits: [
-                  'Cumplimiento garantizado de la normativa archivística colombiana.',
-                  'Reducción del riesgo de pérdida o deterioro de documentos importantes.',
-                  'Acceso rápido y seguro a la información desde cualquier lugar.',
-                  'Optimización del espacio físico destinado a archivos.',
-                  'Mejora de la eficiencia en la gestión de trámites y comunicaciones.',
-                  'Transparencia y trazabilidad en los procesos de consulta y radicación.'
+                  'Agiliza el acceso a la información requerida.',
+                  'Garantiza una gestión transparente y ordenada de las consultas.',
+                  'Facilita el seguimiento y registro de todas las interacciones.',
+                  'Mejora la atención y satisfacción del usuario.'
                 ],
-                ctaText: 'Modernice su Gestión Documental',
-                formSubject: 'Consulta%20GestorDoc'
+                ctaText: 'Optimice sus Consultas',
+                formSubject: 'Consulta%20GestorDoc%20Consultas'
+            }},
+            { name: "Gestión de Formatos y TRD", slug: "gestordoc-formatos", description: "Organización y clasificación documental.", details: {
+                mainIcon: GanttChartSquare,
+                title: 'Gestión de Formatos y TRD',
+                description: 'Organice, clasifique y gestione el ciclo de vida de sus documentos de acuerdo con las normativas legales, utilizando las Tablas de Retención Documental (TRD).',
+                keyServices: [
+                  { title: 'Organización por Series y Subseries', text: 'Clasifique los documentos en conjuntos lógicos para facilitar su recuperación y gestión.', icon: Layers },
+                  { title: 'Creación y Administración de TRD', text: 'Establezca plazos de conservación y disposición final de los documentos cumpliendo con la regulación.', icon: Timer },
+                  { title: 'Identificador Único (FUID) para Documentos', text: 'Asigne un FUID a cada documento para garantizar su unicidad, seguimiento y referencia.', icon: Barcode },
+                  { title: 'Hoja de Control Documental', text: 'Lleve un registro detallado del estado y ubicación de cada documento para una gestión eficiente.', icon: FileCheck }
+                ],
+                benefits: [
+                  'Cumplimiento de la Ley General de Archivos.',
+                  'Organización documental lógica y eficiente.',
+                  'Control preciso sobre el ciclo de vida de los documentos.',
+                  'Facilita auditorías y procesos de consulta.'
+                ],
+                ctaText: 'Implemente sus TRD',
+                formSubject: 'Consulta%20GestorDoc%20Formatos'
+            }},
+            { name: "Administración del Sistema", slug: "gestordoc-sistemas", description: "Control de acceso y seguridad.", details: {
+                mainIcon: Settings,
+                title: 'Administración del Sistema',
+                description: 'Controle y personalice el sistema de gestión documental. Gestione usuarios, perfiles, permisos y dependencias para un entorno seguro y adaptado a su organización.',
+                keyServices: [
+                  { title: 'Gestión de Usuarios y Perfiles', text: 'Cree y administre usuarios y perfiles, asignando roles y privilegios específicos.', icon: Users },
+                  { title: 'Gestión de Permisos de Acceso', text: 'Determine qué acciones y funcionalidades puede realizar cada usuario o perfil en el sistema.', icon: Lock },
+                  { title: 'Configuración de Políticas de Seguridad', text: 'Establezca políticas de autenticación, contraseñas y otras medidas de seguridad.', icon: ShieldCheck },
+                  { title: 'Administración de Dependencias', text: 'Gestione la estructura organizativa y las relaciones jerárquicas dentro del sistema.', icon: GitBranch }
+                ],
+                benefits: [
+                  'Entorno seguro y controlado para su patrimonio documental.',
+                  'Flexibilidad para adaptar los permisos a su estructura organizativa.',
+                  'Gestión centralizada de la seguridad y el acceso.',
+                  'Trazabilidad de las acciones realizadas en el sistema.'
+                ],
+                ctaText: 'Controle su Sistema',
+                formSubject: 'Consulta%20GestorDoc%20Sistemas'
             }}
         ]
     },
@@ -1232,8 +1268,7 @@ const gobPlesModules = {
     }
 };
 
-
-function InteractiveSoftwareSuites() {
+const InteractiveSoftwareSuites = () => {
     const [activeTab, setActiveTab] = useState('empresarial');
     const [selectedModuleKey, setSelectedModuleKey] = useState(Object.keys(ofiPlesModules)[0]);
     const [selectedSubModule, setSelectedSubModule] = useState<any | null>(null);
@@ -1353,9 +1388,9 @@ function InteractiveSoftwareSuites() {
                 </TabsList>
                 
                 <Card className="shadow-lg border w-full">
-                     <div className="text-center p-6 md:p-8 border-b">
+                     <div className="p-6 md:p-8 border-b">
                         <h3 className="text-2xl font-bold text-foreground">{activeTab === 'empresarial' ? 'Ofi-Ples' : 'Gob-Ples'}</h3>
-                        <p className="text-muted-foreground mt-2 max-w-3xl mx-auto">{currentDescription}</p>
+                        <p className="text-muted-foreground mt-2 max-w-3xl">{currentDescription}</p>
                     </div>
                     <div className="flex flex-col md:flex-row gap-0 min-h-[600px]">
                         <aside className="w-full md:w-1/3 lg:w-1/4 border-b md:border-b-0 md:border-r border-border bg-card">
@@ -1470,14 +1505,14 @@ export default function PlesTicPage() {
                 Nos enfocamos en resultados tangibles, construyendo alianzas tecnológicas a largo plazo para el éxito de su organización.
             </p>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {valuePropositions.map((vp) => (
-                <Card key={vp.title} className="text-center group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col hover:animate-gradient hover:bg-[length:200%_200%]">
+            {valuePropositions.map(({icon: Icon, title, description}) => (
+                <Card key={title} className="text-center group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col hover:animate-gradient hover:bg-[length:200%_200%]">
                 <CardHeader className="items-center">
-                    {vp.icon}
-                    <CardTitle className="mt-2 text-xl group-hover:text-primary-foreground">{vp.title}</CardTitle>
+                    <Icon className="h-10 w-10 text-primary group-hover:text-primary-foreground" />
+                    <CardTitle className="mt-2 text-xl group-hover:text-primary-foreground">{title}</CardTitle>
                 </CardHeader>
                 <CardContent className="flex-grow">
-                    <p className="text-muted-foreground group-hover:text-primary-foreground/90">{vp.description}</p>
+                    <p className="text-muted-foreground group-hover:text-primary-foreground/90">{description}</p>
                 </CardContent>
                 </Card>
             ))}
@@ -1489,30 +1524,30 @@ export default function PlesTicPage() {
         <div className="w-full px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestros Servicios Tecnológicos Clave</h2>
             <div className="grid md:grid-cols-2 gap-8">
-            {coreServices.map((service) => (
-              <Link key={service.title} href={service.ctaLink || '#'} passHref legacyBehavior>
+            {coreServices.map(({icon: Icon, title, description, details, ctaLink, ctaText}) => (
+              <Link key={title} href={ctaLink || '#'} passHref legacyBehavior>
                 <a className="block group hover:scale-105 transition-all duration-300 ease-in-out">
                   <Card className="h-full group-hover:shadow-xl group-hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground bg-card group-hover:animate-gradient hover:bg-[length:200%_200%]">
                     <CardHeader className="flex flex-row items-start gap-4">
-                        {service.icon}
+                        <Icon className="h-8 w-8 text-primary group-hover:text-primary-foreground" />
                         <div>
-                        <CardTitle className="text-xl group-hover:text-primary-foreground">{service.title}</CardTitle>
-                        <CardDescription className="mt-1 group-hover:text-primary-foreground/90">{service.description}</CardDescription>
+                        <CardTitle className="text-xl group-hover:text-primary-foreground">{title}</CardTitle>
+                        <CardDescription className="mt-1 group-hover:text-primary-foreground/90">{description}</CardDescription>
                         </div>
                     </CardHeader>
                     <CardContent>
                         <ul className="space-y-2 text-sm text-muted-foreground group-hover:text-primary-foreground/90">
-                        {service.details.map(detail => (
+                        {details.map(detail => (
                             <li key={detail} className="flex items-center">
                             <CheckCircle className="h-4 w-4 text-green-500 group-hover:text-green-300 mr-2 shrink-0" />
                             {detail}
                             </li>
                         ))}
                         </ul>
-                        {service.ctaLink && service.ctaText && (
+                        {ctaLink && ctaText && (
                           <div className="mt-4 text-right">
                             <span className="inline-flex items-center text-sm font-medium text-primary group-hover:text-primary-foreground">
-                              {service.ctaText} <ArrowRight className="ml-1 h-4 w-4"/>
+                              {ctaText} <ArrowRight className="ml-1 h-4 w-4"/>
                             </span>
                           </div>
                         )}
@@ -1534,11 +1569,11 @@ export default function PlesTicPage() {
                 Trabajamos de cerca con usted en cada etapa, desde la idea inicial hasta el soporte continuo, asegurando soluciones que realmente funcionan.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-            {ourApproachSteps.map((step) => (
-                <Card key={step.title} className="text-center p-6 group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col items-center bg-card hover:animate-gradient hover:bg-[length:200%_200%]">
-                {step.icon}
-                <CardTitle className="text-lg mt-2 mb-1 group-hover:text-primary-foreground">{step.title}</CardTitle>
-                <p className="text-xs text-muted-foreground group-hover:text-primary-foreground/90 flex-grow">{step.description}</p>
+            {ourApproachSteps.map(({icon: Icon, title, description}) => (
+                <Card key={title} className="text-center p-6 group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col items-center bg-card hover:animate-gradient hover:bg-[length:200%_200%]">
+                <Icon className="h-8 w-8 text-primary group-hover:text-primary-foreground mb-2" />
+                <CardTitle className="text-lg mt-2 mb-1 group-hover:text-primary-foreground">{title}</CardTitle>
+                <p className="text-xs text-muted-foreground group-hover:text-primary-foreground/90 flex-grow">{description}</p>
                 </Card>
             ))}
             </div>
