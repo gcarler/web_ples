@@ -14,6 +14,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { cn } from '@/lib/utils';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 const valuePropositions = [
     {
@@ -1269,31 +1270,16 @@ const gobPlesModules = {
 
 const InteractiveSoftwareSuites = () => {
     const [activeTab, setActiveTab] = useState('empresarial');
-    const [selectedModuleKey, setSelectedModuleKey] = useState(Object.keys(ofiPlesModules)[0]);
     const [selectedSubModule, setSelectedSubModule] = useState<any | null>(null);
 
-    const handleModuleSelection = (key: string) => {
-        setSelectedModuleKey(key);
-        setSelectedSubModule(null); // Reset detail view when category changes
-    };
-
-    const handleSubModuleClick = (module: any) => {
-        setSelectedSubModule(module);
-    };
-    
     const currentSuiteData = useMemo(() => activeTab === 'empresarial' ? ofiPlesModules : gobPlesModules, [activeTab]);
 
     const currentDescription = useMemo(() => activeTab === 'empresarial' 
         ? "Esta línea de productos está concebida como una solución integral de Planificación de Recursos Empresariales (ERP) y Gestión de Relaciones con el Cliente (CRM) dirigida al sector privado. El objetivo principal de Ofi-Ples es unificar y automatizar las operaciones de negocio para mejorar la eficiencia, la productividad y la toma de decisiones."
         : "Gob-Ples es la línea más diversificada y especializada de PLES-TIC, compuesta por un conjunto de plataformas diseñadas para responder a las necesidades específicas de entidades territoriales, instituciones educativas y otros organismos del sector público en Colombia. Cada software de Gob-Ples está construido para resolver problemáticas concretas de la administración pública.",
     [activeTab]);
-
+    
     useEffect(() => {
-        if (activeTab === 'empresarial') {
-            setSelectedModuleKey(Object.keys(ofiPlesModules)[0]);
-        } else {
-            setSelectedModuleKey(Object.keys(gobPlesModules)[0]);
-        }
         setSelectedSubModule(null); // Reset detail view on tab change
     }, [activeTab]);
 
@@ -1377,78 +1363,114 @@ const InteractiveSoftwareSuites = () => {
 
     return (
       <section className="w-full bg-card text-card-foreground">
-        <div className="w-full">
-            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-                <div className="w-full px-4 sm:px-6 lg:px-8 py-12">
-                    <div className="mb-12 text-center">
-                        <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestras Dos Grandes Suites de Software</h2>
-                    </div>
-                     <div className="flex justify-start">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
+            <div className="w-full py-12">
+                <div className="mb-12 text-center">
+                    <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestras Dos Grandes Suites de Software</h2>
+                </div>
+                 <div className="flex justify-start">
+                    <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
                         <TabsList className="grid grid-cols-1 sm:grid-cols-2 max-w-lg h-auto mb-8">
                             <TabsTrigger value="empresarial" className="py-2 text-base">Suite Empresarial</TabsTrigger>
                             <TabsTrigger value="gubernamental"className="py-2 text-base">Suite Gubernamental</TabsTrigger>
                         </TabsList>
-                    </div>
-                </div>
-                
-                <Card className="shadow-lg border w-full rounded-none">
-                     <div className="p-6 md:p-8 border-b">
-                        <h3 className="text-2xl font-bold text-foreground">{activeTab === 'empresarial' ? 'Ofi-Ples' : 'Gob-Ples'}</h3>
-                        <p className="text-muted-foreground mt-2 max-w-3xl">{currentDescription}</p>
-                    </div>
-                    <div className="flex flex-col md:flex-row gap-0 min-h-[600px]">
-                        <aside className="w-full md:w-1/3 lg:w-1/4 border-b md:border-b-0 md:border-r border-border bg-card">
-                            <nav className="flex flex-col p-2">
-                                {Object.entries(currentSuiteData).map(([category, data]:[string, any]) => {
-                                    const Icon = data.icon;
-                                    return (
-                                        <button
-                                            key={category}
-                                            onClick={() => handleModuleSelection(category)}
-                                            className={cn(
-                                                "flex items-center gap-3 w-full text-left px-3 py-2.5 rounded-md text-sm font-medium transition-colors",
-                                                selectedModuleKey === category
-                                                    ? "text-primary bg-primary/10"
-                                                    : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
-                                            )}
-                                        >
-                                            <Icon className="h-5 w-5 shrink-0" />
-                                            <span className="truncate">{category}</span>
-                                        </button>
-                                    );
-                                })}
-                            </nav>
-                        </aside>
-                        <main className="flex-1 bg-muted/20 dark:bg-black/20 p-6 md:p-8">
-                            {selectedSubModule ? (
-                                <RenderDetailView module={selectedSubModule} onBack={() => setSelectedSubModule(null)} />
-                            ) : (
-                                (currentSuiteData[selectedModuleKey]) ? (
-                                <div className="animate-fade-in-up">
-                                    <h4 className="text-xl font-semibold text-foreground mb-1">{selectedModuleKey}</h4>
-                                    <p className="text-muted-foreground mb-6 text-sm">{currentSuiteData[selectedModuleKey].description}</p>
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                                        {currentSuiteData[selectedModuleKey].items.map((module: any) => (
-                                            <Card 
-                                                key={module.name} 
-                                                onClick={() => handleSubModuleClick(module)}
-                                                className="h-full p-4 transition-all duration-300 ease-in-out group hover:shadow-lg hover:border-primary hover:scale-105 cursor-pointer bg-background/50"
-                                            >
-                                                <div className="flex items-center justify-between">
-                                                  <p className="font-semibold text-foreground group-hover:text-primary">{module.name}</p>
-                                                  <ArrowRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-                                                </div>
-                                                <p className="text-sm text-muted-foreground mt-1">{module.description}</p>
-                                            </Card>
-                                        ))}
-                                    </div>
+                        <TabsContent value="empresarial">
+                             <Card className="shadow-lg border w-full rounded-lg">
+                                 <div className="p-6 md:p-8 border-b">
+                                    <h3 className="text-2xl font-bold text-foreground">Ofi-Ples</h3>
+                                    <p className="text-muted-foreground mt-2 max-w-3xl">{currentDescription}</p>
                                 </div>
-                                ) : <p>Seleccione un módulo para ver sus detalles.</p>
-                            )}
-                        </main>
-                    </div>
-                </Card>
-            </Tabs>
+                                <div className="p-6 md:p-8 min-h-[600px]">
+                                    {selectedSubModule && activeTab === 'empresarial' ? (
+                                        <RenderDetailView module={selectedSubModule} onBack={() => setSelectedSubModule(null)} />
+                                    ) : (
+                                        <Accordion type="single" collapsible className="w-full">
+                                            {Object.entries(currentSuiteData).map(([category, data]: [string, any]) => {
+                                                const Icon = data.icon;
+                                                return (
+                                                    <AccordionItem value={category} key={category} className="border-b-2 border-border/50">
+                                                        <AccordionTrigger className="py-6 text-xl font-bold hover:no-underline [&[data-state=open]>div>svg]:text-accent [&[data-state=open]>div>span]:text-primary">
+                                                            <div className="flex items-center gap-4">
+                                                                <Icon className="h-8 w-8 text-primary transition-colors" />
+                                                                <span>{category}</span>
+                                                            </div>
+                                                        </AccordionTrigger>
+                                                        <AccordionContent className="pt-4 pl-14 pb-8">
+                                                            <p className="text-muted-foreground mb-6">{data.description}</p>
+                                                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                                                                {data.items.map((module: any) => (
+                                                                    <Card 
+                                                                        key={module.name} 
+                                                                        onClick={() => setSelectedSubModule(module)}
+                                                                        className="h-full p-4 transition-all duration-300 ease-in-out group hover:shadow-lg hover:border-primary hover:scale-105 cursor-pointer bg-background/50"
+                                                                    >
+                                                                        <div className="flex items-center justify-between">
+                                                                            <p className="font-semibold text-foreground group-hover:text-primary">{module.name}</p>
+                                                                            <ArrowRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                                                                        </div>
+                                                                        <p className="text-sm text-muted-foreground mt-1">{module.description}</p>
+                                                                    </Card>
+                                                                ))}
+                                                            </div>
+                                                        </AccordionContent>
+                                                    </AccordionItem>
+                                                )
+                                            })}
+                                        </Accordion>
+                                    )}
+                                </div>
+                            </Card>
+                        </TabsContent>
+                         <TabsContent value="gubernamental">
+                             <Card className="shadow-lg border w-full rounded-lg">
+                                 <div className="p-6 md:p-8 border-b">
+                                    <h3 className="text-2xl font-bold text-foreground">Gob-Ples</h3>
+                                    <p className="text-muted-foreground mt-2 max-w-3xl">{currentDescription}</p>
+                                </div>
+                               <div className="p-6 md:p-8 min-h-[600px]">
+                                    {selectedSubModule && activeTab === 'gubernamental' ? (
+                                        <RenderDetailView module={selectedSubModule} onBack={() => setSelectedSubModule(null)} />
+                                    ) : (
+                                        <Accordion type="single" collapsible className="w-full">
+                                            {Object.entries(currentSuiteData).map(([category, data]: [string, any]) => {
+                                                const Icon = data.icon;
+                                                return (
+                                                    <AccordionItem value={category} key={category} className="border-b-2 border-border/50">
+                                                        <AccordionTrigger className="py-6 text-xl font-bold hover:no-underline [&[data-state=open]>div>svg]:text-accent [&[data-state=open]>div>span]:text-primary">
+                                                            <div className="flex items-center gap-4">
+                                                                <Icon className="h-8 w-8 text-primary transition-colors" />
+                                                                <span>{category}</span>
+                                                            </div>
+                                                        </AccordionTrigger>
+                                                        <AccordionContent className="pt-4 pl-14 pb-8">
+                                                            <p className="text-muted-foreground mb-6">{data.description}</p>
+                                                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                                                                {data.items.map((module: any) => (
+                                                                    <Card 
+                                                                        key={module.name} 
+                                                                        onClick={() => setSelectedSubModule(module)}
+                                                                        className="h-full p-4 transition-all duration-300 ease-in-out group hover:shadow-lg hover:border-primary hover:scale-105 cursor-pointer bg-background/50"
+                                                                    >
+                                                                        <div className="flex items-center justify-between">
+                                                                            <p className="font-semibold text-foreground group-hover:text-primary">{module.name}</p>
+                                                                            <ArrowRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                                                                        </div>
+                                                                        <p className="text-sm text-muted-foreground mt-1">{module.description}</p>
+                                                                    </Card>
+                                                                ))}
+                                                            </div>
+                                                        </AccordionContent>
+                                                    </AccordionItem>
+                                                )
+                                            })}
+                                        </Accordion>
+                                    )}
+                                </div>
+                            </Card>
+                        </TabsContent>
+                    </Tabs>
+                </div>
+            </div>
         </div>
       </section>
     );
