@@ -161,12 +161,12 @@ const ofiPlesModules = {
               ],
               ctaText: "Empezar a Construir mi Sitio",
               formSubject: "Consulta%20OfiPles%20Sitio%20Web"
-            } 
+            }
           },
-          { name: "OfiPles Comercio electrónico", slug: "comercio-electronico", description: "Vende tus productos en línea", details: { 
-              mainIcon: ShoppingCart, 
-              title: 'OfiPles Comercio Electrónico', 
-              description: 'La solución completa para lanzar y escalar su tienda en línea. Gestione productos, procese pagos y administre pedidos desde una única plataforma integrada.', 
+          { name: "OfiPles Comercio electrónico", slug: "comercio-electronico", description: "Vende tus productos en línea", details: {
+              mainIcon: ShoppingCart,
+              title: 'OfiPles Comercio Electrónico',
+              description: 'La solución completa para lanzar y escalar su tienda en línea. Gestione productos, procese pagos y administre pedidos desde una única plataforma integrada.',
               keyServices: [
                   { title: 'Catálogo de Productos Avanzado', text: 'Gestione productos ilimitados, variantes (talla, color), inventario y precios de forma centralizada.', icon: ListOrdered },
                   { title: 'Pasarelas de Pago Seguras', text: 'Integre múltiples métodos de pago locales e internacionales para ofrecer una experiencia de compra sin fricciones.', icon: CreditCard },
@@ -184,9 +184,9 @@ const ofiPlesModules = {
               formSubject: 'Consulta%20OfiPles%20Comercio%20Electronico'
           } },
           { name: "OfiPles Blog", slug: "blog", description: "Publica entradas, anuncios y noticias", details: {
-              mainIcon: Edit, 
-              title: 'OfiPles Blog', 
-              description: 'Atraiga y fidelice a su audiencia con contenido de valor. Nuestro módulo de blog le permite crear, gestionar y optimizar sus publicaciones para llegar a más personas.', 
+              mainIcon: Edit,
+              title: 'OfiPles Blog',
+              description: 'Atraiga y fidelice a su audiencia con contenido de valor. Nuestro módulo de blog le permite crear, gestionar y optimizar sus publicaciones para llegar a más personas.',
               keyServices: [
                   { title: 'Editor de Contenido Avanzado', text: 'Cree artículos atractivos con un editor intuitivo que soporta texto enriquecido, imágenes, videos y código embebido.', icon: FileText },
                   { title: 'Gestión de Categorías y Etiquetas', text: 'Organice su contenido de manera lógica para mejorar la navegación del usuario y la estructura de su sitio.', icon: Tags },
@@ -204,9 +204,9 @@ const ofiPlesModules = {
               formSubject: 'Consulta%20OfiPles%20Blog'
           } },
           { name: "OfiPles Foro", slug: "foro", description: "Gestiona un foro para preguntas frecuentes", details: {
-              mainIcon: MessagesSquare, 
-              title: 'OfiPles Foro', 
-              description: 'Cree una comunidad activa donde sus clientes y usuarios puedan interactuar, resolver dudas y compartir conocimientos. Fomente el engagement y reduzca la carga de soporte.', 
+              mainIcon: MessagesSquare,
+              title: 'OfiPles Foro',
+              description: 'Cree una comunidad activa donde sus clientes y usuarios puedan interactuar, resolver dudas y compartir conocimientos. Fomente el engagement y reduzca la carga de soporte.',
               keyServices: [
                   { title: 'Creación de Temas y Categorías', text: 'Estructure su foro en categorías y sub-foros para mantener las conversaciones organizadas y fáciles de encontrar.', icon: FolderKanban },
                   { title: 'Perfiles de Usuario y Reputación', text: 'Permita que los usuarios personalicen sus perfiles y gane reputación a través de sus contribuciones, incentivando la participación.', icon: Users },
@@ -760,7 +760,7 @@ const gobPlesModules = {
         icon: LayoutDashboard,
         description: "Suite que integra y gestiona las dimensiones del Modelo Integrado de Planeación y Gestión (MIPG).",
         items: [
-            { name: "Talento Humano", slug: "ofigob-th", description: "Gestión integral del ciclo de vida, desarrollo y desempeño del servidor público.", details: {
+            { name: "Talento Humano", slug: "ofigob-th", description: "Gestión del ciclo de vida, desarrollo y desempeño del servidor público.", details: {
                 mainIcon: Users2,
                 title: 'Gestión del Talento Humano',
                 description: 'Plataforma para administrar el ciclo completo del servidor público, desde la vinculación hasta el retiro, fomentando el desarrollo y evaluando el desempeño para un servicio público de excelencia.',
@@ -1181,7 +1181,7 @@ const gobPlesModules = {
         icon: FileArchive,
         description: "Solución completa de gestión documental que cumple con la Ley 594 de 2000.",
         items: [
-            { name: "Tablas de Retención Documental", slug: "gestordoc-trd", description: "Creación y gestión de TRD.", details: {
+            { name: "Gestión Documental y Archivo", slug: "gestordoc-trd", description: "Creación y gestión de TRD y más.", details: {
                 mainIcon: FileArchive,
                 title: 'Gestión Documental y Archivo (GestorDoc)',
                 description: 'Organice, preserve y controle el acceso al patrimonio documental de su entidad. Nuestra solución asegura el cumplimiento de la Ley General de Archivos y moderniza su gestión.',
@@ -1491,7 +1491,7 @@ export default function PlesTicPage() {
             {coreServices.map((service) => (
               <Link key={service.title} href={service.ctaLink || '#'} passHref legacyBehavior>
                 <a className="block group hover:scale-105 transition-all duration-300 ease-in-out">
-                  <Card className="h-full group-hover:shadow-xl group-hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground bg-card group-hover:animate-gradient group-hover:bg-[length:200%_200%]">
+                  <Card className="h-full group-hover:shadow-xl group-hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground bg-card group-hover:animate-gradient hover:bg-[length:200%_200%]">
                     <CardHeader className="flex flex-row items-start gap-4">
                         {service.icon}
                         <div>
@@ -1617,4 +1617,3 @@ export default function PlesTicPage() {
     </div>
   );
 }
-
