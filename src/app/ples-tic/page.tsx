@@ -6,11 +6,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {
-  AlertTriangle, ArrowLeft, ArrowRight, Award, Banknote, BarChart2, BarChart3, BarChartBig, Barcode, Bell, BookOpen, BookUser, Bot, Brain, BrainCircuit, Briefcase, Building, Building2, Calculator, Calendar, CalendarDays, Camera, CheckCircle, ClipboardCheck, ClipboardEdit, ClipboardList, Clock, Cloud, CloudCog, Code, ConciergeBell, Cpu, CreditCard, Database, DraftingCompass, Edit, Eye, Factory, FileArchive, FileCheck, FileDigit, FileSearch, FileSignature, FileText, Filter, FlaskConical, FolderArchive, FolderKanban, GanttChartSquare, GitMerge, GitPullRequestArrow, Globe, GraduationCap, Headset, HeartPulse, HelpCircle, History, Inbox, Info, KanbanSquare, KeyRound, Landmark, Layers, LayoutDashboard, LayoutTemplate, Lightbulb, Link as LinkIcon, ListOrdered, Lock, Mail, Map, MapPin, Megaphone, MessageCircle, MessagesSquare, MessageSquareDiff, MonitorSmartphone, MousePointerClick, Network, Package, PenSquare, Presentation, Printer, Receipt, Repeat, Rocket, Scale, School, Search, Send, Server, Settings, Share2, Shield, ShieldAlert, ShieldCheck, ShoppingBag, ShoppingCart, Tablet, Tags, Target, Timer, TrendingUp, Truck, UploadCloud, UserCheck, Users, Users2, UsersRound, Video, Warehouse, Workflow, Wrench, Zap
+  AlertTriangle, ArrowLeft, ArrowRight, Award, Banknote, BarChart3, Barcode, Bell, BookOpen, BookUser, Bot, Brain, BrainCircuit, Briefcase, Building, Building2, Calculator, Calendar, CalendarDays, Camera, CheckCircle, ClipboardCheck, ClipboardEdit, ClipboardList, Clock, Cloud, CloudCog, Code, ConciergeBell, Cpu, CreditCard, Database, DraftingCompass, Edit, Eye, Factory, FileArchive, FileCheck, FileDigit, FileSearch, FileSignature, FileText, Filter, FlaskConical, FolderArchive, FolderKanban, GanttChartSquare, GitMerge, GitPullRequestArrow, Globe, GraduationCap, Headset, HeartPulse, HelpCircle, History, Inbox, Info, KanbanSquare, KeyRound, Landmark, Layers, LayoutDashboard, LayoutTemplate, Lightbulb, Link as LinkIcon, ListOrdered, Lock, Mail, Map, MapPin, Megaphone, MessageCircle, MessagesSquare, MessageSquareDiff, MonitorSmartphone, MousePointerClick, Network, Package, PenSquare, Presentation, Printer, Receipt, Repeat, Rocket, Scale, School, Search, Send, Server, Settings, Share2, Shield, ShieldAlert, ShieldCheck, ShoppingBag, ShoppingCart, Tablet, Tags, Target, Timer, TrendingUp, Truck, UploadCloud, UserCheck, Users, Users2, UsersRound, Video, Warehouse, Workflow, Wrench, Zap
 } from 'lucide-react';
 import PlexusIllustration from '@/components/illustrations/PlexusIllustration';
 import DataPipelineIllustration from '@/components/illustrations/DataPipelineIllustration';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
@@ -190,7 +190,7 @@ const ofiPlesModules = {
               keyServices: [
                   { title: 'Editor de Contenido Avanzado', text: 'Cree artículos atractivos con un editor intuitivo que soporta texto enriquecido, imágenes, videos y código embebido.', icon: FileText },
                   { title: 'Gestión de Categorías y Etiquetas', text: 'Organice su contenido de manera lógica para mejorar la navegación del usuario y la estructura de su sitio.', icon: Tags },
-                  { title: 'Optimización SEO Integrada', text: 'Herramientas para personalizar URLs, metadatos y asegurar que su contenido sea amigable para los motores de búsqueda.', icon: BarChart2 },
+                  { title: 'Optimización SEO Integrada', text: 'Herramientas para personalizar URLs, metadatos y asegurar que su contenido sea amigable para los motores de búsqueda.', icon: BarChart3 },
                   { title: 'Programación de Publicaciones', text: 'Planifique su calendario de contenidos y programe sus artículos para que se publiquen automáticamente en la fecha y hora deseadas.', icon: CalendarDays }
               ],
               benefits: [
@@ -1043,7 +1043,7 @@ function InteractiveSoftwareSuites() {
 
     return (
       <section className="w-full py-16 bg-card text-card-foreground">
-        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
                 <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestras Dos Grandes Suites de Software</h2>
             </div>
@@ -1051,7 +1051,7 @@ function InteractiveSoftwareSuites() {
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
                 <TabsList className="grid w-full grid-cols-1 sm:grid-cols-2 max-w-lg mx-auto h-auto mb-8">
                     <TabsTrigger value="empresarial" className="py-2 text-base">Suite Empresarial</TabsTrigger>
-                    <TabsTrigger value="gubernamental" className="py-2 text-base">Suite Gubernamental</TabsTrigger>
+                    <TabsTrigger value="gubernamental"className="py-2 text-base">Suite Gubernamental</TabsTrigger>
                 </TabsList>
                 
                 <Card className="shadow-lg border w-full">
@@ -1194,7 +1194,7 @@ export default function PlesTicPage() {
             {coreServices.map((service) => (
               <Link key={service.title} href={service.ctaLink || '#'} passHref legacyBehavior>
                 <a className="block group hover:scale-105 transition-all duration-300 ease-in-out">
-                  <Card className="h-full group-hover:shadow-xl group-hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground bg-card group-hover:animate-gradient group-hover:bg-[length:200%_200%]">
+                  <Card className="h-full group-hover:shadow-xl group-hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground bg-card group-hover:animate-gradient hover:bg-[length:200%_200%]">
                     <CardHeader className="flex flex-row items-start gap-4">
                         {service.icon}
                         <div>
