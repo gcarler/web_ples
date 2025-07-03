@@ -10,7 +10,7 @@ import {
 } from 'lucide-react';
 import PlexusIllustration from '@/components/illustrations/PlexusIllustration';
 import DataPipelineIllustration from '@/components/illustrations/DataPipelineIllustration';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { cn } from '@/lib/utils';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
@@ -1155,7 +1155,7 @@ const gobPlesModules = {
                   { title: 'Gestión de Usuarios y Perfiles', text: 'Cree y administre usuarios y perfiles, asignando roles y privilegios específicos.', icon: Users },
                   { title: 'Gestión de Permisos de Acceso', text: 'Determine qué acciones y funcionalidades puede realizar cada usuario o perfil en el sistema.', icon: Lock },
                   { title: 'Configuración de Políticas de Seguridad', text: 'Establezca políticas de autenticación, contraseñas y otras medidas de seguridad.', icon: ShieldCheck },
-                  { title: 'Administración de Dependencias', text: 'Gestione la estructura organizativa y las relaciones jerárquicas dentro del sistema.', icon: GitBranch }
+                  { title: 'Administración de Dependencias', text: 'Facilite la gestión y configuración de las dependencias entre diferentes áreas o unidades organizativas dentro de la entidad, lo que permite establecer relaciones jerárquicas y de colaboración efectiva en el uso del sistema.', icon: GitBranch }
                 ],
                 benefits: [
                   'Entorno seguro y controlado para su patrimonio documental.',
@@ -1281,11 +1281,13 @@ const InteractiveSoftwareSuites = () => {
     const handleSubModuleClick = (module: any) => {
         setSelectedSubModule(module);
     };
+    
+    const currentSuiteData = useMemo(() => activeTab === 'empresarial' ? ofiPlesModules : gobPlesModules, [activeTab]);
 
-    const currentModules = activeTab === 'empresarial' ? ofiPlesModules : gobPlesModules;
-    const currentDescription = activeTab === 'empresarial' 
+    const currentDescription = useMemo(() => activeTab === 'empresarial' 
         ? "Esta línea de productos está concebida como una solución integral de Planificación de Recursos Empresariales (ERP) y Gestión de Relaciones con el Cliente (CRM) dirigida al sector privado. El objetivo principal de Ofi-Ples es unificar y automatizar las operaciones de negocio para mejorar la eficiencia, la productividad y la toma de decisiones."
-        : "Gob-Ples es la línea más diversificada y especializada de PLES-TIC, compuesta por un conjunto de plataformas diseñadas para responder a las necesidades específicas de entidades territoriales, instituciones educativas y otros organismos del sector público en Colombia. Cada software de Gob-Ples está construido para resolver problemáticas concretas de la administración pública.";
+        : "Gob-Ples es la línea más diversificada y especializada de PLES-TIC, compuesta por un conjunto de plataformas diseñadas para responder a las necesidades específicas de entidades territoriales, instituciones educativas y otros organismos del sector público en Colombia. Cada software de Gob-Ples está construido para resolver problemáticas concretas de la administración pública.",
+    [activeTab]);
 
     useEffect(() => {
         if (activeTab === 'empresarial') {
@@ -1375,19 +1377,21 @@ const InteractiveSoftwareSuites = () => {
     };
 
     return (
-      <section className="w-full py-16 bg-card text-card-foreground">
-        <div className="w-full px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestras Dos Grandes Suites de Software</h2>
-            </div>
+      <section className="w-full bg-card text-card-foreground">
+        <div className="w-full">
             
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-                <TabsList className="grid w-full grid-cols-1 sm:grid-cols-2 max-w-lg mx-auto h-auto mb-8">
-                    <TabsTrigger value="empresarial" className="py-2 text-base">Suite Empresarial</TabsTrigger>
-                    <TabsTrigger value="gubernamental"className="py-2 text-base">Suite Gubernamental</TabsTrigger>
-                </TabsList>
+                <div className="px-4 sm:px-6 lg:px-8 py-12">
+                    <div className="mb-12">
+                        <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestras Dos Grandes Suites de Software</h2>
+                    </div>
+                    <TabsList className="grid w-full grid-cols-1 sm:grid-cols-2 max-w-lg h-auto mb-8">
+                        <TabsTrigger value="empresarial" className="py-2 text-base">Suite Empresarial</TabsTrigger>
+                        <TabsTrigger value="gubernamental"className="py-2 text-base">Suite Gubernamental</TabsTrigger>
+                    </TabsList>
+                </div>
                 
-                <Card className="shadow-lg border w-full">
+                <Card className="shadow-lg border w-full rounded-none">
                      <div className="p-6 md:p-8 border-b">
                         <h3 className="text-2xl font-bold text-foreground">{activeTab === 'empresarial' ? 'Ofi-Ples' : 'Gob-Ples'}</h3>
                         <p className="text-muted-foreground mt-2 max-w-3xl">{currentDescription}</p>
@@ -1395,7 +1399,7 @@ const InteractiveSoftwareSuites = () => {
                     <div className="flex flex-col md:flex-row gap-0 min-h-[600px]">
                         <aside className="w-full md:w-1/3 lg:w-1/4 border-b md:border-b-0 md:border-r border-border bg-card">
                             <nav className="flex flex-col p-2">
-                                {Object.entries(currentModules).map(([category, data]:[string, any]) => {
+                                {Object.entries(currentSuiteData).map(([category, data]:[string, any]) => {
                                     const Icon = data.icon;
                                     return (
                                         <button
@@ -1419,12 +1423,12 @@ const InteractiveSoftwareSuites = () => {
                             {selectedSubModule ? (
                                 <RenderDetailView module={selectedSubModule} onBack={() => setSelectedSubModule(null)} />
                             ) : (
-                                (currentModules[selectedModuleKey]) ? (
+                                (currentSuiteData[selectedModuleKey]) ? (
                                 <div className="animate-fade-in-up">
                                     <h4 className="text-xl font-semibold text-foreground mb-1">{selectedModuleKey}</h4>
-                                    <p className="text-muted-foreground mb-6 text-sm">{currentModules[selectedModuleKey].description}</p>
+                                    <p className="text-muted-foreground mb-6 text-sm">{currentSuiteData[selectedModuleKey].description}</p>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                                        {currentModules[selectedModuleKey].items.map((module: any) => (
+                                        {currentSuiteData[selectedModuleKey].items.map((module: any) => (
                                             <Card 
                                                 key={module.name} 
                                                 onClick={() => handleSubModuleClick(module)}
@@ -1599,7 +1603,7 @@ export default function PlesTicPage() {
           <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Proyectos Destacados</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {caseStudies.map((study) => (
-              <Card key={study.title} className="overflow-hidden group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col bg-card group-hover:animate-gradient group-hover:bg-[length:200%_200%]">
+              <Card key={study.title} className="overflow-hidden group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col bg-card group-hover:animate-gradient hover:bg-[length:200%_200%]">
                 <div className="relative h-56 w-full bg-card group-hover:bg-transparent transition-colors">
                   {study.illustration}
                 </div>
