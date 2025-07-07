@@ -16,45 +16,46 @@ const pageDetails = {
   parentName: "Sobre Nosotros",
   title: "Por Qué Somos Innovación",
   subtitle: "La creatividad y el pensamiento disruptivo para generar valor sostenible.",
-  mainIcon: <Lightbulb className="h-12 w-12 md:h-16 md:w-16" />,
+  mainIcon: Lightbulb,
   ctaLink: "/innovacion-estrategias",
   ctaText: "Descubra Cómo Innovamos"
 };
 
 const innovacionPoints = [
   {
-    icon: <UsersRound className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: UsersRound,
     title: "Diseño Centrado en las Personas",
     text: "La innovación comienza por entender profundamente las necesidades, dolores y aspiraciones de las personas y comunidades a las que servimos."
   },
   {
-    icon: <Puzzle className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: Puzzle,
     title: "Resolución Creativa de Problemas",
     text: "Abordamos los desafíos desde ángulos no convencionales, combinando ideas de diferentes campos para encontrar soluciones únicas y efectivas."
   },
   {
-    icon: <RefreshCw className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: RefreshCw,
     title: "Cultura de Iteración y Mejora",
     text: "Vemos el fracaso como una oportunidad de aprendizaje y fomentamos un ciclo constante de prototipado, prueba, retroalimentación y mejora continua."
   },
   {
-    icon: <Layers className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: Layers,
     title: "Modelos de Negocio Disruptivos",
     text: "No solo creamos productos; ayudamos a diseñar nuevos modelos de negocio y de servicio que generan un valor diferencial y sostenible en el tiempo."
   },
   {
-    icon: <TrendingUp className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: TrendingUp,
     title: "Visión de Futuro y Anticipación",
     text: "Analizamos tendencias emergentes para desarrollar soluciones que no solo resuelven los problemas de hoy, sino que preparan a nuestros clientes para el futuro."
   },
   {
-    icon: <Handshake className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: Handshake,
     title: "Ecosistemas de Colaboración Abierta",
     text: "Fomentamos la colaboración con startups, academia y otros actores para crear ecosistemas que potencien la innovación conjunta y el impacto colectivo."
   }
 ];
 
 export default function PorqueSomosInnovacionPage() {
+  const MainIcon = pageDetails.mainIcon;
   return (
     <div className="py-10 w-full">
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -76,7 +77,7 @@ export default function PorqueSomosInnovacionPage() {
         <section className="mb-16 py-12 md:py-20 text-center">
           <div className="relative px-4 z-10">
             <div className="inline-block p-5 bg-gradient-to-r from-primary to-accent text-primary-foreground rounded-full mb-8 shadow-md animate-expand-in" style={{ animationFillMode: 'forwards' }}>
-              {pageDetails.mainIcon}
+              <MainIcon className="h-12 w-12 md:h-16 md:w-16" />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-4 animate-fade-in-up" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
               {pageDetails.title}
@@ -115,10 +116,12 @@ export default function PorqueSomosInnovacionPage() {
             Pilares de Nuestra Innovación
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {innovacionPoints.map((point, index) => (
+            {innovacionPoints.map((point, index) => {
+              const PointIcon = point.icon;
+              return (
               <Card key={index} className="group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary/5 hover:to-accent/5 hover:border-primary/30 transition-all duration-300 ease-in-out transform hover:scale-[1.03] border">
                 <CardHeader className="items-center text-center md:items-start md:text-left">
-                  {point.icon}
+                  <PointIcon className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />
                   <CardTitle className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">{point.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -127,7 +130,7 @@ export default function PorqueSomosInnovacionPage() {
                   </p>
                 </CardContent>
               </Card>
-            ))}
+            )})}
           </div>
         </section>
 

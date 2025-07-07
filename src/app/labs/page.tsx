@@ -13,28 +13,28 @@ export const metadata = {
 
 const experiments = [
     {
-        icon: <BrainCircuit className="h-8 w-8 text-primary group-hover:text-accent transition-colors" />,
+        icon: BrainCircuit,
         title: "IA Geoespacial para Análisis Predictivo",
         description: "Aplicación de modelos de Machine Learning para predecir patrones de crecimiento urbano y riesgos ambientales, optimizando la planificación territorial.",
         status: "Activo",
         statusColor: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300",
     },
     {
-        icon: <Vote className="h-8 w-8 text-primary group-hover:text-accent transition-colors" />,
+        icon: Vote,
         title: "Plataforma de Participación Ciudadana con Blockchain",
         description: "Explorando el uso de tecnología blockchain para garantizar la transparencia e inmutabilidad en procesos de consulta y votación ciudadana.",
         status: "Experimental",
         statusColor: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300",
     },
     {
-        icon: <Building2 className="h-8 w-8 text-primary group-hover:text-accent transition-colors" />,
+        icon: Building2,
         title: "Gemelos Digitales para la Gestión de Infraestructura",
         description: "Creación de réplicas virtuales de activos de infraestructura para simular, monitorear y optimizar su operación y mantenimiento en tiempo real.",
         status: "Próximamente",
         statusColor: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300",
     },
      {
-        icon: <Bot className="h-8 w-8 text-primary group-hover:text-accent transition-colors" />,
+        icon: Bot,
         title: "Asistente de IA para Licitaciones Públicas",
         description: "Desarrollo de un agente de IA que analiza pliegos de licitaciones, identifica requisitos clave y ayuda a generar propuestas técnicas de forma automática.",
         status: "Experimental",
@@ -67,10 +67,12 @@ export default function LabsPage() {
             Nuestros Experimentos
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {experiments.map((exp, index) => (
+            {experiments.map((exp, index) => {
+              const ExpIcon = exp.icon;
+              return (
               <Card key={index} className="group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary/5 hover:to-accent/5 hover:border-primary/30 transition-all duration-300 ease-in-out transform hover:scale-[1.03] border flex flex-col">
                 <CardHeader className="flex flex-row items-start gap-4">
-                  {exp.icon}
+                  <ExpIcon className="h-8 w-8 text-primary group-hover:text-accent transition-colors" />
                   <div className="flex-1">
                     <CardTitle className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">{exp.title}</CardTitle>
                     <Badge variant="secondary" className={`mt-2 ${exp.statusColor}`}>{exp.status}</Badge>
@@ -91,7 +93,7 @@ export default function LabsPage() {
                     </Button>
                 </div>
               </Card>
-            ))}
+            )})}
           </div>
         </div>
       </section>

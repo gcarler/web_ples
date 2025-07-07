@@ -12,69 +12,70 @@ export const metadata = {
   description: 'Innovación en gestión territorial para un desarrollo eficiente y sostenible. Con el uso inteligente de la experiencia y tecnología de vanguardia, ofrecemos precisión, optimizamos costos y garantizamos la más alta calidad.',
 };
 
+const coreServices = [
+  {
+    icon: MapPin,
+    title: 'Levantamiento Predial Multifinalitario',
+    description: 'Ejecutamos levantamientos catastrales precisos (urbanos y rurales) con fines fiscales, jurídicos, económicos y sociales, utilizando tecnología de vanguardia.',
+    details: ['Cobertura Urbana y Rural', 'Tecnología GPS y Drones', 'Integración con SIG', 'Generación de Cartografía Base'],
+    link: '/ples-catastro/levantamiento-predial'
+  },
+  {
+    icon: FileText,
+    title: 'Actualización y Mantenimiento Catastral',
+    description: 'Implementamos procesos continuos y automatizados para mantener la información catastral actualizada, confiable y accesible.',
+    details: ['Flujos de Trabajo Digitales', 'Monitoreo de Cambios', 'Interoperabilidad de Sistemas', 'Capacitación de Personal'],
+    link: '/ples-catastro/actualizacion-mantenimiento'
+  },
+  {
+    icon: Scale,
+    title: 'Avalúos Masivos y Puntuales',
+    description: 'Realizamos valoraciones de propiedades con metodologías robustas y transparentes para una base imponible justa y una gestión eficiente de activos.',
+    details: ['Modelos de Valoración Automatizada (AVM)', 'Análisis de Mercado Inmobiliario', 'Cumplimiento Normativo', 'Informes Detallados'],
+    link: '/ples-catastro/avaluos'
+  },
+  {
+    icon: Home,
+    title: 'Planes de Ordenamiento Territorial (POT)',
+    description: 'Desarrollamos e implementamos planes estratégicos que guían el crecimiento sostenible y la ocupación eficiente del territorio, promoviendo la equidad.',
+    details: ['Diagnóstico Territorial Integral', 'Participación Ciudadana Activa', 'Zonificación y Usos del Suelo', 'Instrumentos de Gestión'],
+    link: '/ples-catastro/ordenamiento-territorial'
+  },
+];
+
+const valuePropositions = [
+  {
+    icon: TrendingUp,
+    title: 'Incremento de la Recaudación Fiscal',
+    description: 'Un catastro actualizado y preciso optimiza la base gravable, mejorando los ingresos municipales y la inversión pública.',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Seguridad Jurídica en la Tenencia',
+    description: 'Formalizamos la propiedad y reducimos conflictos sobre la tierra, brindando certeza a los ciudadanos e inversionistas.',
+  },
+  {
+    icon: Eye,
+    title: 'Planificación Territorial Informada',
+    description: 'Proveemos datos geoespaciales confiables para la toma de decisiones estratégicas en desarrollo urbano, infraestructura y gestión ambiental.',
+  },
+  {
+    icon: Settings,
+    title: 'Transparencia y Eficiencia en la Gestión',
+    description: 'Modernizamos los procesos catastrales, haciéndolos más ágiles, transparentes y accesibles para la administración y los ciudadanos.',
+  },
+];
+
+const impactFigures = [
+  { figure: "+30%", label: "Precisión en Levantamientos", icon: Target, dataAiHint: "target accuracy" },
+  { figure: "25%", label: "Reducción en Tiempos de Trámite", icon: FileText, dataAiHint: "document efficiency" },
+  { figure: "150+", label: "Municipios Asesorados", icon: Briefcase, dataAiHint: "government briefcase" },
+];
+
+const technologies = ['SIG (QGIS, ArcGIS Pro)', 'GPS y Estaciones Totales de Alta Precisión', 'Drones y Fotogrametría Aérea', 'Bases de Datos Espaciales (PostGIS)', 'Modelos de Avalúo Automatizado (AVM)', 'Plataformas Web GIS', 'Inteligencia Artificial Geoespacial'];
+
+
 export default function PlesCatastroPage() {
-  const coreServices = [
-    {
-      icon: <MapPin className="h-8 w-8 text-primary group-hover:text-primary-foreground" />,
-      title: 'Levantamiento Predial Multifinalitario',
-      description: 'Ejecutamos levantamientos catastrales precisos (urbanos y rurales) con fines fiscales, jurídicos, económicos y sociales, utilizando tecnología de vanguardia.',
-      details: ['Cobertura Urbana y Rural', 'Tecnología GPS y Drones', 'Integración con SIG', 'Generación de Cartografía Base'],
-      link: '/ples-catastro/levantamiento-predial'
-    },
-    {
-      icon: <FileText className="h-8 w-8 text-primary group-hover:text-primary-foreground" />,
-      title: 'Actualización y Mantenimiento Catastral',
-      description: 'Implementamos procesos continuos y automatizados para mantener la información catastral actualizada, confiable y accesible.',
-      details: ['Flujos de Trabajo Digitales', 'Monitoreo de Cambios', 'Interoperabilidad de Sistemas', 'Capacitación de Personal'],
-      link: '/ples-catastro/actualizacion-mantenimiento'
-    },
-    {
-      icon: <Scale className="h-8 w-8 text-primary group-hover:text-primary-foreground" />,
-      title: 'Avalúos Masivos y Puntuales',
-      description: 'Realizamos valoraciones de propiedades con metodologías robustas y transparentes para una base imponible justa y una gestión eficiente de activos.',
-      details: ['Modelos de Valoración Automatizada (AVM)', 'Análisis de Mercado Inmobiliario', 'Cumplimiento Normativo', 'Informes Detallados'],
-      link: '/ples-catastro/avaluos'
-    },
-    {
-      icon: <Home className="h-8 w-8 text-primary group-hover:text-primary-foreground" />,
-      title: 'Planes de Ordenamiento Territorial (POT)',
-      description: 'Desarrollamos e implementamos planes estratégicos que guían el crecimiento sostenible y la ocupación eficiente del territorio, promoviendo la equidad.',
-      details: ['Diagnóstico Territorial Integral', 'Participación Ciudadana Activa', 'Zonificación y Usos del Suelo', 'Instrumentos de Gestión'],
-      link: '/ples-catastro/ordenamiento-territorial'
-    },
-  ];
-
-  const valuePropositions = [
-    {
-      icon: <TrendingUp className="h-10 w-10 text-primary group-hover:text-primary-foreground" />,
-      title: 'Incremento de la Recaudación Fiscal',
-      description: 'Un catastro actualizado y preciso optimiza la base gravable, mejorando los ingresos municipales y la inversión pública.',
-    },
-    {
-      icon: <ShieldCheck className="h-10 w-10 text-primary group-hover:text-primary-foreground" />,
-      title: 'Seguridad Jurídica en la Tenencia',
-      description: 'Formalizamos la propiedad y reducimos conflictos sobre la tierra, brindando certeza a los ciudadanos e inversionistas.',
-    },
-    {
-      icon: <Eye className="h-10 w-10 text-primary group-hover:text-primary-foreground" />,
-      title: 'Planificación Territorial Informada',
-      description: 'Proveemos datos geoespaciales confiables para la toma de decisiones estratégicas en desarrollo urbano, infraestructura y gestión ambiental.',
-    },
-    {
-      icon: <Settings className="h-10 w-10 text-primary group-hover:text-primary-foreground" />,
-      title: 'Transparencia y Eficiencia en la Gestión',
-      description: 'Modernizamos los procesos catastrales, haciéndolos más ágiles, transparentes y accesibles para la administración y los ciudadanos.',
-    },
-  ];
-
-  const impactFigures = [
-    { figure: "+30%", label: "Precisión en Levantamientos", icon: <Target className="h-10 w-10 text-primary group-hover:text-primary-foreground"/>, dataAiHint: "target accuracy" },
-    { figure: "25%", label: "Reducción en Tiempos de Trámite", icon: <FileText className="h-10 w-10 text-primary group-hover:text-primary-foreground"/>, dataAiHint: "document efficiency" },
-    { figure: "150+", label: "Municipios Asesorados", icon: <Briefcase className="h-10 w-10 text-primary group-hover:text-primary-foreground"/>, dataAiHint: "government briefcase" },
-  ];
-
-  const technologies = ['SIG (QGIS, ArcGIS Pro)', 'GPS y Estaciones Totales de Alta Precisión', 'Drones y Fotogrametría Aérea', 'Bases de Datos Espaciales (PostGIS)', 'Modelos de Avalúo Automatizado (AVM)', 'Plataformas Web GIS', 'Inteligencia Artificial Geoespacial'];
-
   return (
     <div className="space-y-16">
       <section className="relative bg-background overflow-hidden">
@@ -125,17 +126,20 @@ export default function PlesCatastroPage() {
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestra Propuesta de Valor</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {valuePropositions.map((vp) => (
-              <Card key={vp.title} className="text-center group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out transform flex flex-col hover:animate-gradient hover:bg-[length:200%_200%]">
-                <CardHeader className="items-center">
-                  {vp.icon}
-                  <CardTitle className="mt-2 text-xl group-hover:text-primary-foreground">{vp.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="flex-grow">
-                  <p className="text-muted-foreground group-hover:text-primary-foreground/90">{vp.description}</p>
-                </CardContent>
-              </Card>
-            ))}
+            {valuePropositions.map((vp) => {
+              const VPIcon = vp.icon;
+              return (
+                <Card key={vp.title} className="text-center group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out transform flex flex-col hover:animate-gradient hover:bg-[length:200%_200%]">
+                  <CardHeader className="items-center">
+                    <VPIcon className="h-10 w-10 text-primary group-hover:text-primary-foreground" />
+                    <CardTitle className="mt-2 text-xl group-hover:text-primary-foreground">{vp.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="flex-grow">
+                    <p className="text-muted-foreground group-hover:text-primary-foreground/90">{vp.description}</p>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -144,12 +148,14 @@ export default function PlesCatastroPage() {
         <div className="w-full px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Servicios Catastrales Estratégicos</h2>
             <div className="grid md:grid-cols-2 gap-8">
-            {coreServices.map((service) => (
+            {coreServices.map((service) => {
+              const ServiceIcon = service.icon;
+              return (
               <Link key={service.title} href={service.link} passHref legacyBehavior>
                 <a className="block group hover:scale-105 transition-all duration-300 ease-in-out">
-                  <Card className="h-full group-hover:shadow-xl group-hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent group-hover:text-primary-foreground bg-card group-hover:animate-gradient hover:bg-[length:200%_200%]">
+                  <Card className="h-full group-hover:shadow-xl group-hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground bg-card group-hover:animate-gradient group-hover:bg-[length:200%_200%]">
                     <CardHeader className="flex flex-row items-start gap-4">
-                        {service.icon}
+                        <ServiceIcon className="h-8 w-8 text-primary group-hover:text-primary-foreground" />
                         <div>
                         <CardTitle className="text-xl group-hover:text-primary-foreground">{service.title}</CardTitle>
                         <CardDescription className="mt-1 group-hover:text-primary-foreground/90">{service.description}</CardDescription>
@@ -175,7 +181,7 @@ export default function PlesCatastroPage() {
                   </Card>
                 </a>
               </Link>
-            ))}
+            )})}
             </div>
         </div>
       </section>
@@ -275,13 +281,16 @@ export default function PlesCatastroPage() {
         <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1 mb-16">Impacto en Cifras</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12">
-            {impactFigures.map((figure) => (
-              <Card key={figure.label} className="p-6 group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col items-center hover:animate-gradient hover:bg-[length:200%_200%]">
-                <div className="flex justify-center mb-4">{figure.icon}</div>
-                <p className="text-4xl font-bold text-primary group-hover:text-primary-foreground mb-2">{figure.figure}</p>
-                <p className="text-muted-foreground group-hover:text-primary-foreground/90 text-lg">{figure.label}</p>
-              </Card>
-            ))}
+            {impactFigures.map((figure) => {
+              const FigureIcon = figure.icon;
+              return (
+                <Card key={figure.label} className="p-6 group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col items-center hover:animate-gradient hover:bg-[length:200%_200%]">
+                  <div className="flex justify-center mb-4"><FigureIcon className="h-10 w-10 text-primary group-hover:text-primary-foreground"/></div>
+                  <p className="text-4xl font-bold text-primary group-hover:text-primary-foreground mb-2">{figure.figure}</p>
+                  <p className="text-muted-foreground group-hover:text-primary-foreground/90 text-lg">{figure.label}</p>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>

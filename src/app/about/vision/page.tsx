@@ -17,39 +17,39 @@ const pageDetails = {
   parentName: "Sobre Nosotros",
   title: "Nuestra Visión",
   subtitle: "Definiendo nuestro horizonte.",
-  mainIcon: <Eye className="h-12 w-12 md:h-16 md:h-16" />,
+  mainIcon: Eye,
   ctaLink: "/forms?subject=Consulta%20Nuestra%20Vision",
   ctaText: "Proyecte el Futuro Con Nosotros"
 };
 
 const visionPoints = [
   {
-    icon: <TrendingUp className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: TrendingUp,
     title: "Inspirar un Porvenir Sostenible y Equitativo",
     text: "Buscamos ser una fuente de inspiración activa, demostrando que es posible construir un futuro donde el desarrollo económico, la justicia social y la protección ambiental coexistan y se refuercen mutuamente, beneficiando a todas las personas."
   },
   {
-    icon: <Zap className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: Zap,
     title: "Innovación como Catalizador",
     text: "Entendemos la innovación no solo como desarrollo tecnológico, sino como la capacidad de generar nuevas ideas, procesos y modelos que aborden eficazmente los desafíos críticos y creen valor de manera disruptiva."
   },
   {
-    icon: <ShieldAlert className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: ShieldAlert,
     title: "Respuesta a Desafíos Críticos",
     text: "Enfocamos nuestra experiencia y soluciones en abordar los problemas más urgentes de nuestro tiempo, como la adaptación al cambio climático y la gestión sostenible de los recursos naturales, esenciales para la supervivencia y el bienestar."
   },
   {
-    icon: <Gem className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: Gem,
     title: "Ser Referentes de Impacto Positivo y Perdurable",
     text: "Aspiramos a ser reconocidos por la excelencia y la trascendencia de nuestras intervenciones, generando un legado de cambio positivo que perdure en el tiempo y sirva de modelo para otros."
   },
   {
-    icon: <Building className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: Building,
     title: "Transformación Comunitaria hacia la Resiliencia y Justicia",
     text: "Trabajamos para empoderar a las comunidades, fortaleciendo sus capacidades para adaptarse a los cambios, superar las desigualdades y construir entornos más justos, seguros y prósperos para todos sus miembros."
   },
   {
-    icon: <Leaf className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: Leaf,
     title: "Compromiso con las Generaciones Venideras",
     text: "Nuestra visión se proyecta hacia el futuro, tomando decisiones y acciones hoy que aseguren un planeta habitable y oportunidades equitativas para las próximas generaciones, actuando con responsabilidad intergeneracional."
   }
@@ -57,6 +57,7 @@ const visionPoints = [
 
 
 export default function VisionPage() {
+  const MainIcon = pageDetails.mainIcon;
   return (
     <div className="py-10 w-full"> {/* Outer container, only vertical padding */}
 
@@ -80,7 +81,7 @@ export default function VisionPage() {
         <section className="mb-16 py-12 md:py-20 text-center">
           <div className="relative px-4 z-10">
             <div className="inline-block p-5 bg-gradient-to-r from-primary to-accent text-primary-foreground rounded-full mb-8 shadow-md animate-expand-in" style={{ animationFillMode: 'forwards' }}>
-              {pageDetails.mainIcon}
+              <MainIcon className="h-12 w-12 md:h-16 md:w-16" />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-4 animate-fade-in-up" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
               {pageDetails.title}
@@ -126,19 +127,22 @@ export default function VisionPage() {
             Desglosando Nuestra Visión:
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {visionPoints.map((point, index) => (
-              <Card key={index} className="group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary/5 hover:to-accent/5 hover:border-primary/30 transition-all duration-300 ease-in-out transform hover:scale-[1.03] border">
-                <CardHeader className="items-center text-center md:items-start md:text-left">
-                  {point.icon}
-                  <CardTitle className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">{point.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground group-hover:text-foreground/90 transition-colors text-sm md:text-left text-center">
-                    {point.text}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
+            {visionPoints.map((point, index) => {
+              const PointIcon = point.icon;
+              return (
+                <Card key={index} className="group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary/5 hover:to-accent/5 hover:border-primary/30 transition-all duration-300 ease-in-out transform hover:scale-[1.03] border">
+                  <CardHeader className="items-center text-center md:items-start md:text-left">
+                    <PointIcon className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />
+                    <CardTitle className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">{point.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground group-hover:text-foreground/90 transition-colors text-sm md:text-left text-center">
+                      {point.text}
+                    </p>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </section>
 

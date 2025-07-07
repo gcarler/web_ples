@@ -11,6 +11,7 @@ import { RotatingHeroText } from '@/components/layout/rotating-hero-text';
 import { cn } from '@/lib/utils';
 import { useState, useEffect } from 'react';
 import { type HeroStatement } from '@/lib/models/content';
+import React from 'react';
 
 const missionIcons = [
     Lightbulb, Cpu, Database, Server, Globe, MapPin, 
@@ -222,11 +223,13 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
                 { title: 'Ples TIC', description: 'Tecnologías de la información.', icon: Server, href: "/ples-tic" },
                 { title: 'Ples Catastro', description: 'Catastro y gestión territorial.', icon: HomeIcon, href: "/ples-catastro" },
                 { title: 'Ples Consulting', description: 'Consultoría estratégica.', icon: Lightbulb, href: "/ples-consulting" },
-            ].map((marca) => (
+            ].map((marca) => {
+              const MarcaIcon = marca.icon;
+              return (
                 <Card key={marca.title} className="text-center group hover:bg-primary hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out hover:shadow-xl">
                 <CardHeader>
                     <div className="mx-auto bg-primary/10 text-primary rounded-full p-3 w-fit mb-4 group-hover:bg-primary-foreground/20 group-hover:text-primary-foreground">
-                    <marca.icon className="h-8 w-8" />
+                    <MarcaIcon className="h-8 w-8" />
                     </div>
                     <CardTitle className="group-hover:text-primary-foreground">{marca.title}</CardTitle>
                     <CardDescription className="group-hover:text-primary-foreground/90">{marca.description}</CardDescription>
@@ -241,7 +244,7 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
                     </Button>
                 </CardContent>
                 </Card>
-            ))}
+            )})}
             </div>
         </div>
       </section>

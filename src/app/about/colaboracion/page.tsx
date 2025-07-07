@@ -16,40 +16,41 @@ const pageDetails = {
   parentName: "Sobre Nosotros",
   title: "Colaboración Global",
   subtitle: "Conoce cómo trabajamos.",
-  mainIcon: <UsersRound className="h-12 w-12 md:h-16 md:h-16" />,
+  mainIcon: UsersRound,
   ctaLink: "/forms?subject=Consulta%20Colaboracion%20Global",
   ctaText: "Únase a Nuestra Red"
 };
 
 const colaboracionPoints = [
   {
-    icon: <Workflow className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: Workflow,
     title: "Dinámica de Colaboración Fluida",
     text: "Nuestros procesos de colaboración están diseñados para ser ágiles y adaptables, permitiendo que la información y las ideas fluyan libremente entre equipos, disciplinas y geografías."
   },
   {
-    icon: <Globe2 className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: Globe2,
     title: "Perspectiva Global y Sensibilidad Cultural",
     text: "Entendemos y valoramos la diversidad cultural. Nuestros equipos internacionales aportan una comprensión profunda de los contextos locales, enriqueciendo las soluciones con relevancia global y aplicabilidad local."
   },
   {
-    icon: <Layers className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: Layers,
     title: "Enriquecimiento Multidimensional",
     text: "Cada plan, política, estrategia y proyecto se beneficia de múltiples capas de análisis y aportes, provenientes de diversas especialidades y experiencias, asegurando soluciones robustas y completas."
   },
   {
-    icon: <Palette className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: Palette,
     title: "Diversidad de Visiones y Disciplinas",
     text: "Fomentamos un crisol de ideas donde convergen distintas visiones, disciplinas académicas y enfoques metodológicos, generando una sinergia creativa que desafía los paradigmas convencionales."
   },
   {
-    icon: <Expand className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: Expand,
     title: "Ampliación de Horizontes de Solución",
     text: "Al integrar perspectivas variadas, expandimos significativamente el espectro de posibles soluciones, permitiéndonos abordar los desafíos desde ángulos innovadores y encontrar respuestas más efectivas y sostenibles."
   }
 ];
 
 export default function ColaboracionPage() {
+  const MainIcon = pageDetails.mainIcon;
   return (
     <div className="py-10 w-full"> {/* Outer container, only vertical padding */}
 
@@ -73,7 +74,7 @@ export default function ColaboracionPage() {
         <section className="mb-16 py-12 md:py-20 text-center">
           <div className="relative px-4 z-10">
             <div className="inline-block p-5 bg-gradient-to-r from-primary to-accent text-primary-foreground rounded-full mb-8 shadow-md animate-expand-in" style={{ animationFillMode: 'forwards' }}>
-              {pageDetails.mainIcon}
+              <MainIcon className="h-12 w-12 md:h-16 md:w-16" />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-4 animate-fade-in-up" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
               {pageDetails.title}
@@ -114,19 +115,22 @@ export default function ColaboracionPage() {
             Desglosando Nuestra Colaboración Global:
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {colaboracionPoints.map((point, index) => (
-              <Card key={index} className="group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary/5 hover:to-accent/5 hover:border-primary/30 transition-all duration-300 ease-in-out transform hover:scale-[1.03] border">
-                <CardHeader className="items-center text-center md:items-start md:text-left">
-                  {point.icon}
-                  <CardTitle className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">{point.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground group-hover:text-foreground/90 transition-colors text-sm md:text-left text-center">
-                    {point.text}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
+            {colaboracionPoints.map((point, index) => {
+              const PointIcon = point.icon;
+              return (
+                <Card key={index} className="group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary/5 hover:to-accent/5 hover:border-primary/30 transition-all duration-300 ease-in-out transform hover:scale-[1.03] border">
+                  <CardHeader className="items-center text-center md:items-start md:text-left">
+                    <PointIcon className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />
+                    <CardTitle className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">{point.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground group-hover:text-foreground/90 transition-colors text-sm md:text-left text-center">
+                      {point.text}
+                    </p>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </section>
 

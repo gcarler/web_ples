@@ -16,45 +16,46 @@ const pageDetails = {
   parentName: "Sobre Nosotros",
   title: "Nuestro Propósito",
   subtitle: "Explorando nuestro motor.",
-  mainIcon: <Lightbulb className="h-12 w-12 md:h-16 md:h-16" />,
+  mainIcon: Lightbulb,
   ctaLink: "/forms?subject=Consulta%20Nuestro%20Proposito",
   ctaText: "Descubra Cómo Podemos Ayudar"
 };
 
 const propositoPoints = [
   {
-    icon: <Zap className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: Zap,
     title: "Convicción en la Experiencia Inteligente",
     text: "Creemos firmemente que la aplicación inteligente del conocimiento y la experiencia acumulada es la clave para desbloquear soluciones innovadoras y efectivas a los desafíos complejos."
   },
   {
-    icon: <Handshake className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: Handshake,
     title: "Forjar Puentes Sólidos",
     text: "Actuamos como catalizadores, conectando los sectores público y privado con las comunidades para fomentar la colaboración, la sinergia y el logro de objetivos comunes que benefician a todos."
   },
   {
-    icon: <Users className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: Users,
     title: "Aprovechar la Sabiduría Colectiva",
     text: "Valoramos e integramos diversas perspectivas y conocimientos. Creemos que la inteligencia colectiva es fundamental para desarrollar estrategias comprensivas y soluciones holísticas."
   },
   {
-    icon: <Globe className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: Globe,
     title: "Abordar Desafíos Globales",
     text: "Nos enfocamos en los grandes retos que enfrenta nuestra sociedad, como el cambio climático, la equidad y el desarrollo sostenible, aplicando nuestra experiencia para generar un impacto positivo a escala."
   },
   {
-    icon: <Focus className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: Focus,
     title: "Estrategia Refinada",
     text: "No solo identificamos problemas, sino que diseñamos e implementamos estrategias perspicaces y bien fundamentadas, asegurando que cada intervención sea precisa, eficiente y efectiva."
   },
   {
-    icon: <Leaf className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: Leaf,
     title: "Visión de Sostenibilidad a Largo Plazo",
     text: "Todas nuestras acciones están guiadas por un compromiso con la sostenibilidad, buscando soluciones que no solo sean efectivas hoy, sino que también aseguren un futuro próspero y equitativo para las generaciones venideras."
   }
 ];
 
 export default function PropositoPage() {
+  const MainIcon = pageDetails.mainIcon;
   return (
     <div className="py-10 w-full"> {/* Outer container, only vertical padding */}
 
@@ -78,7 +79,7 @@ export default function PropositoPage() {
         <section className="mb-16 py-12 md:py-20 text-center">
           <div className="relative px-4 z-10">
             <div className="inline-block p-5 bg-gradient-to-r from-primary to-accent text-primary-foreground rounded-full mb-8 shadow-md animate-expand-in" style={{ animationFillMode: 'forwards' }}>
-              {pageDetails.mainIcon}
+              <MainIcon className="h-12 w-12 md:h-16 md:w-16" />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-4 animate-fade-in-up" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
               {pageDetails.title}
@@ -123,19 +124,22 @@ export default function PropositoPage() {
             Desglosando Nuestro Propósito:
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {propositoPoints.map((point, index) => (
-              <Card key={index} className="group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary/5 hover:to-accent/5 hover:border-primary/30 transition-all duration-300 ease-in-out transform hover:scale-[1.03] border">
-                <CardHeader className="items-center text-center md:items-start md:text-left">
-                  {point.icon}
-                  <CardTitle className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">{point.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground group-hover:text-foreground/90 transition-colors text-sm md:text-left text-center">
-                    {point.text}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
+            {propositoPoints.map((point, index) => {
+              const PointIcon = point.icon;
+              return (
+                <Card key={index} className="group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary/5 hover:to-accent/5 hover:border-primary/30 transition-all duration-300 ease-in-out transform hover:scale-[1.03] border">
+                  <CardHeader className="items-center text-center md:items-start md:text-left">
+                    <PointIcon className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />
+                    <CardTitle className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">{point.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground group-hover:text-foreground/90 transition-colors text-sm md:text-left text-center">
+                      {point.text}
+                    </p>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </section>
 

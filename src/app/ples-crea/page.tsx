@@ -7,61 +7,61 @@ import { ArrowRight, CheckCircle, Map, Brain, Lightbulb, Users, Target, ShieldCh
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
+import React from 'react';
 
 export const metadata = {
   title: 'PLES CREA - Cartografía Inteligente para un Futuro Sostenible y Equitativo',
   description: 'En PLES CREA, fusionamos la ciencia de datos geoespaciales con una visión estratégica para ofrecer soluciones cartográficas que impulsan la resiliencia ambiental, la equidad territorial y la toma de decisiones informada.',
 };
 
-export default function PlesCreaPage() {
-  const services = [
-    {
-      icon: <Map className="h-10 w-10 text-primary group-hover:text-primary-foreground transition-colors duration-300 mb-4" />,
-      title: 'Análisis de Vulnerabilidad y Riesgo',
-      description: 'Identificamos y evaluamos riesgos climáticos y socioambientales para desarrollar estrategias de adaptación efectivas.',
-    },
-    {
-      icon: <Brain className="h-10 w-10 text-primary group-hover:text-primary-foreground transition-colors duration-300 mb-4" />,
-      title: 'Mapeo Ecosistémico y Biodiversidad',
-      description: 'Cartografiamos ecosistemas, servicios ambientales y biodiversidad para la planificación y conservación territorial.',
-    },
-    {
-      icon: <Lightbulb className="h-10 w-10 text-primary group-hover:text-primary-foreground transition-colors duration-300 mb-4" />,
-      title: 'Plataformas Cartográficas Interactivas',
-      description: 'Desarrollamos visores y plataformas web personalizadas para la visualización y análisis de datos geoespaciales.',
-    },
-    {
-      icon: <Users className="h-10 w-10 text-primary group-hover:text-primary-foreground transition-colors duration-300 mb-4" />,
-      title: 'Cartografía Social y Participativa',
-      description: 'Integramos el conocimiento local y la participación comunitaria en la creación de mapas para la equidad.',
-    },
-  ];
+const services = [
+  {
+    icon: Map,
+    title: 'Análisis de Vulnerabilidad y Riesgo',
+    description: 'Identificamos y evaluamos riesgos climáticos y socioambientales para desarrollar estrategias de adaptación efectivas.',
+  },
+  {
+    icon: Brain,
+    title: 'Mapeo Ecosistémico y Biodiversidad',
+    description: 'Cartografiamos ecosistemas, servicios ambientales y biodiversidad para la planificación y conservación territorial.',
+  },
+  {
+    icon: Lightbulb,
+    title: 'Plataformas Cartográficas Interactivas',
+    description: 'Desarrollamos visores y plataformas web personalizadas para la visualización y análisis de datos geoespaciales.',
+  },
+  {
+    icon: Users,
+    title: 'Cartografía Social y Participativa',
+    description: 'Integramos el conocimiento local y la participación comunitaria en la creación de mapas para la equidad.',
+  },
+];
 
-  const benefits = [
-    { icon: <Target className="h-8 w-8 text-primary group-hover:text-primary-foreground" />, title: 'Decisiones Basadas en Evidencia', text: 'Información geoespacial precisa para fundamentar sus estrategias y acciones.' },
-    { icon: <ShieldCheck className="h-8 w-8 text-primary group-hover:text-primary-foreground" />, title: 'Planificación Resiliente', text: 'Herramientas para anticipar y mitigar riesgos, adaptándose al cambio.' },
-    { icon: <BarChart3 className="h-8 w-8 text-primary group-hover:text-primary-foreground" />, title: 'Optimización de Recursos', text: 'Identifique áreas prioritarias y optimice la asignación de recursos e inversiones.' },
-    { icon: <Users className="h-8 w-8 text-primary group-hover:text-primary-foreground" />, title: 'Participación y Equidad', text: 'Fomentamos la inclusión de comunidades en la construcción del territorio.' },
-  ];
+const benefits = [
+  { icon: Target, title: 'Decisiones Basadas en Evidencia', text: 'Información geoespacial precisa para fundamentar sus estrategias y acciones.' },
+  { icon: ShieldCheck, title: 'Planificación Resiliente', text: 'Herramientas para anticipar y mitigar riesgos, adaptándose al cambio.' },
+  { icon: BarChart3, title: 'Optimización de Recursos', text: 'Identifique áreas prioritarias y optimice la asignación de recursos e inversiones.' },
+  { icon: Users, title: 'Participación y Equidad', text: 'Fomentamos la inclusión de comunidades en la construcción del territorio.' },
+];
 
-  const caseStudies = [
-    {
-      title: 'Mapa de Riesgo Climático',
-      challenge: 'Una municipalidad necesitaba comprender las zonas más vulnerables al cambio climático para priorizar inversiones.',
-      solution: 'Desarrollamos un atlas interactivo con mapas de amenaza, exposición y vulnerabilidad, facilitando la planificación urbana resiliente.',
-      imageHint: 'city risk map',
-      tags: ['Análisis de Riesgo', 'SIG Urbano', 'Adaptación Climática']
-    },
-    {
-      title: 'Monitoreo de Cobertura Forestal con Teledetección',
-      challenge: 'Una ONG requería una herramienta para seguir la deforestación y los esfuerzos de restauración en una reserva clave.',
-      solution: 'Implementamos una plataforma con imágenes satelitales actualizadas y análisis de cambio de cobertura, mejorando la gestión de la reserva.',
-      image: '', 
-      imageHint: 'drone survey',
-      tags: ['Teledetección', 'Conservación', 'Monitoreo Ambiental']
-    },
-  ];
-  
+const caseStudies = [
+  {
+    title: 'Mapa de Riesgo Climático',
+    challenge: 'Una municipalidad necesitaba comprender las zonas más vulnerables al cambio climático para priorizar inversiones.',
+    solution: 'Desarrollamos un atlas interactivo con mapas de amenaza, exposición y vulnerabilidad, facilitando la planificación urbana resiliente.',
+    imageHint: 'city risk map',
+    tags: ['Análisis de Riesgo', 'SIG Urbano', 'Adaptación Climática']
+  },
+  {
+    title: 'Monitoreo de Cobertura Forestal con Teledetección',
+    challenge: 'Una ONG requería una herramienta para seguir la deforestación y los esfuerzos de restauración en una reserva clave.',
+    solution: 'Implementamos una plataforma con imágenes satelitales actualizadas y análisis de cambio de cobertura, mejorando la gestión de la reserva.',
+    image: '', 
+    imageHint: 'drone survey',
+    tags: ['Teledetección', 'Conservación', 'Monitoreo Ambiental']
+  },
+];
+
 const treeStyles = [
   { top: '45%', left: '10%', size: 15, delay: '1s', duration: '5.2s', opacity: 0.4 },
   { top: '42%', left: '30%', size: 18, delay: '2s', duration: '4.8s', opacity: 0.45 },
@@ -70,7 +70,6 @@ const treeStyles = [
   { top: '46%', left: '90%', size: 15, delay: '2.5s', duration: '4.6s', opacity: 0.4 },
   { top: '43%', left: '80%', size: 16, delay: '3s', duration: '5.1s', opacity: 0.4 },
   { top: '47%', left: '20%', size: 17, delay: '3.5s', duration: '4.9s', opacity: 0.45 },
-  
   { top: '55%', left: '5%', size: 22, delay: '0.2s', duration: '5.9s', opacity: 0.6 },
   { top: '58%', left: '20%', size: 25, delay: '1.2s', duration: '5.3s', opacity: 0.65 },
   { top: '52%', left: '40%', size: 24, delay: '2.2s', duration: '4.7s', opacity: 0.6 },
@@ -85,7 +84,6 @@ const treeStyles = [
   { top: '64%', left: '25%', size: 25, delay: '3.1s', duration: '5.0s', opacity: 0.65 },
   { top: '66%', left: '45%', size: 23, delay: '3.6s', duration: '4.5s', opacity: 0.6 },
   { top: '68%', left: '65%', size: 24, delay: '4s', duration: '5.3s', opacity: 0.6 },
-
   { top: '70%', left: '10%', size: 32, delay: '0.1s', duration: '5.5s', opacity: 0.8 },
   { top: '75%', left: '28%', size: 35, delay: '1.1s', duration: '4.6s', opacity: 0.85 },
   { top: '72%', left: '48%', size: 33, delay: '2.1s', duration: '5.9s', opacity: 0.8 },
@@ -106,20 +104,19 @@ const treeStyles = [
   { top: '91%', left: '88%', size: 35, delay: '4.3s', duration: '4.6s', opacity: 0.8 },
 ];
 
-
-  const technologies = ['SIG (QGIS, ArcGIS Pro, Google Earth Engine)', 'Teledetección (Sentinel, Landsat, Planet)', 'Python (GeoPandas, Rasterio, Scikit-learn)', 'Bases de Datos Espaciales (PostGIS)', 'Plataformas Web GIS (Leaflet, Mapbox GL JS)', 'Inteligencia Artificial Geoespacial', 'Estándares OGC (WMS, WFS, WCS)'];
+const technologies = ['SIG (QGIS, ArcGIS Pro, Google Earth Engine)', 'Teledetección (Sentinel, Landsat, Planet)', 'Python (GeoPandas, Rasterio, Scikit-learn)', 'Bases de Datos Espaciales (PostGIS)', 'Plataformas Web GIS (Leaflet, Mapbox GL JS)', 'Inteligencia Artificial Geoespacial', 'Estándares OGC (WMS, WFS, WCS)'];
   
-  const MapPin = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
-    <div className={cn("absolute w-10 h-auto animate-drop-in drop-shadow-lg", className)} style={style}>
-      <svg viewBox="0 0 48 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M24 0C10.7452 0 0 10.1582 0 22.6667C0 39.6667 24 60 24 60C24 60 48 39.6667 48 22.6667C48 10.1582 37.2548 0 24 0Z" fill="#F87171"/>
-        <circle cx="24" cy="22.5" r="15" fill="white"/>
-        <path d="M30 20.5L24 16L18 20.5V29H30V20.5Z" stroke="#6B7281" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    </div>
-  );
+const MapPinComponent = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
+  <div className={cn("absolute w-10 h-auto animate-drop-in drop-shadow-lg", className)} style={style}>
+    <svg viewBox="0 0 48 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M24 0C10.7452 0 0 10.1582 0 22.6667C0 39.6667 24 60 24 60C24 60 48 39.6667 48 22.6667C48 10.1582 37.2548 0 24 0Z" fill="#F87171"/>
+      <circle cx="24" cy="22.5" r="15" fill="white"/>
+      <path d="M30 20.5L24 16L18 20.5V29H30V20.5Z" stroke="#6B7281" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  </div>
+);
 
-
+export default function PlesCreaPage() {
   return (
     <div className="space-y-16">
       <section className="relative bg-background overflow-hidden">
@@ -173,17 +170,19 @@ const treeStyles = [
                 Soluciones geoespaciales innovadoras para abordar los desafíos ambientales y sociales más apremiantes.
             </p>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {services.map((service) => (
+            {services.map((service) => {
+              const ServiceIcon = service.icon;
+              return (
                 <Card key={service.title} className="text-center group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out transform flex flex-col hover:animate-gradient hover:bg-[length:200%_200%]">
                 <CardHeader className="items-center">
-                    {service.icon}
+                    <ServiceIcon className="h-10 w-10 text-primary group-hover:text-primary-foreground transition-colors duration-300 mb-4" />
                     <CardTitle className="mt-2 text-xl group-hover:text-primary-foreground">{service.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="flex-grow">
                     <p className="text-muted-foreground group-hover:text-primary-foreground/90">{service.description}</p>
                 </CardContent>
                 </Card>
-            ))}
+            )})}
             </div>
         </div>
       </section>
@@ -192,13 +191,15 @@ const treeStyles = [
         <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Beneficios de Trabajar con PLES CREA</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {benefits.map((benefit) => (
+            {benefits.map((benefit) => {
+              const BenefitIcon = benefit.icon;
+              return (
               <Card key={benefit.title} className="p-6 group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out text-center hover:animate-gradient hover:bg-[length:200%_200%]">
-                <div className="flex justify-center mb-4">{benefit.icon}</div>
+                <div className="flex justify-center mb-4"><BenefitIcon className="h-8 w-8 text-primary group-hover:text-primary-foreground" /></div>
                 <CardTitle className="text-lg group-hover:text-primary-foreground mb-2">{benefit.title}</CardTitle>
                 <p className="text-sm text-muted-foreground group-hover:text-primary-foreground/90">{benefit.text}</p>
               </Card>
-            ))}
+            )})}
           </div>
         </div>
       </section>
@@ -227,10 +228,10 @@ const treeStyles = [
                         <div className="absolute w-full h-full bg-radar-destructive animate-radar-sweep" style={{ clipPath: 'polygon(82% 82%, 100% 88%, 100% 100%, 81% 100%)', animationDelay: '-1.2s' }}></div>
 
                         {/* Layer 4: Pins */}
-                        <MapPin className="top-[10%] left-[70%]" style={{ animationDelay: '0.2s' }} />
-                        <MapPin className="top-[45%] left-[45%]" style={{ animationDelay: '0.4s' }} />
-                        <MapPin className="top-[60%] left-[10%]" style={{ animationDelay: '0.6s' }} />
-                        <MapPin className="bottom-[15%] right-[5%]" style={{ animationDelay: '0.8s' }} />
+                        <MapPinComponent className="top-[10%] left-[70%]" style={{ animationDelay: '0.2s' }} />
+                        <MapPinComponent className="top-[45%] left-[45%]" style={{ animationDelay: '0.4s' }} />
+                        <MapPinComponent className="top-[60%] left-[10%]" style={{ animationDelay: '0.6s' }} />
+                        <MapPinComponent className="bottom-[15%] right-[5%]" style={{ animationDelay: '0.8s' }} />
                       </div>
                     ) : study.imageHint === 'drone survey' ? (
                         <div className="relative h-full w-full overflow-hidden bg-gradient-to-b from-green-800/10 via-green-900/30 to-green-900/50 p-4">

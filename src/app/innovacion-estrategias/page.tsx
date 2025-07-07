@@ -16,45 +16,46 @@ const pageDetails = {
   parentName: "Sobre Nosotros",
   title: "Innovación que Impacta, Estrategias que Perduran",
   subtitle: "Profundice en nuestro enfoque para crear soluciones a medida que impulsan el progreso y aseguran un legado sostenible para su organización.",
-  mainIcon: <Cpu className="h-12 w-12 md:h-16 md:h-16" />,
+  mainIcon: Cpu,
   ctaLink: "/forms?subject=Consulta%20Innovacion%20Estrategias",
   ctaText: "Hablemos de su Proyecto"
 };
 
 const keyAspects = [
   {
-    icon: <Lightbulb className="h-10 w-10 text-primary group-hover:text-primary-foreground transition-colors" />,
+    icon: Lightbulb,
     title: "Innovación Centrada en el Propósito",
     text: "Cada innovación busca generar un valor tangible, alineado con sus objetivos estratégicos y las necesidades de sus stakeholders."
   },
   {
-    icon: <Search className="h-10 w-10 text-primary group-hover:text-primary-foreground transition-colors" />,
+    icon: Search,
     title: "Investigación y Análisis Profundo",
     text: "Basamos nuestras estrategias en una comprensión exhaustiva del contexto, las tendencias emergentes y los datos relevantes."
   },
   {
-    icon: <UsersRound className="h-10 w-10 text-primary group-hover:text-primary-foreground transition-colors" />,
+    icon: UsersRound,
     title: "Co-creación y Colaboración",
     text: "Trabajamos en estrecha colaboración con su equipo para diseñar e implementar soluciones que se apropien y se integren orgánicamente."
   },
   {
-    icon: <Layers className="h-10 w-10 text-primary group-hover:text-primary-foreground transition-colors" />,
+    icon: Layers,
     title: "Soluciones Integrales y Escalables",
     text: "Desarrollamos estrategias y soluciones que son robustas, adaptables y capaces de evolucionar con su organización."
   },
   {
-    icon: <TrendingUp className="h-10 w-10 text-primary group-hover:text-primary-foreground transition-colors" />,
+    icon: TrendingUp,
     title: "Medición de Impacto y Sostenibilidad",
     text: "Nos enfocamos en resultados medibles y en construir capacidades para que el impacto positivo perdure en el tiempo."
   },
   {
-    icon: <ShieldCheck className="h-10 w-10 text-primary group-hover:text-primary-foreground transition-colors" />,
+    icon: ShieldCheck,
     title: "Gestión de Riesgos y Resiliencia",
     text: "Incorporamos la previsión y mitigación de riesgos para asegurar la viabilidad y perdurabilidad de las estrategias implementadas."
   }
 ];
 
 export default function InnovacionEstrategiasPage() {
+  const MainIcon = pageDetails.mainIcon;
   return (
     <div className="py-10 w-full">
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -76,7 +77,7 @@ export default function InnovacionEstrategiasPage() {
         <section className="mb-16 py-12 md:py-20 text-center">
           <div className="relative px-4 z-10">
             <div className="inline-block p-5 bg-gradient-to-r from-primary to-accent text-primary-foreground rounded-full mb-8 shadow-md animate-expand-in" style={{ animationFillMode: 'forwards' }}>
-              {pageDetails.mainIcon}
+              <MainIcon className="h-12 w-12 md:h-16 md:w-16" />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-4 animate-fade-in-up" style={{ animationDelay: '0.2s', animationFillMode: 'forwards' }}>
               {pageDetails.title}
@@ -115,19 +116,22 @@ export default function InnovacionEstrategiasPage() {
             Pilares de Nuestro Enfoque
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {keyAspects.map((aspect, index) => (
-              <Card key={index} className="group border transition-all duration-300 ease-in-out transform hover:scale-[1.03] hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:border-transparent hover:animate-gradient hover:bg-[length:200%_200%]">
-                <CardHeader className="items-center text-center md:items-start md:text-left">
-                  {React.cloneElement(aspect.icon, { className: "h-10 w-10 text-primary group-hover:text-primary-foreground transition-colors" })}
-                  <CardTitle className="text-xl font-semibold text-foreground group-hover:text-primary-foreground transition-colors">{aspect.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground group-hover:text-primary-foreground/90 transition-colors text-sm md:text-left text-center">
-                    {aspect.text}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
+            {keyAspects.map((aspect, index) => {
+              const AspectIcon = aspect.icon;
+              return (
+                <Card key={index} className="group border transition-all duration-300 ease-in-out transform hover:scale-[1.03] hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:border-transparent hover:animate-gradient hover:bg-[length:200%_200%]">
+                  <CardHeader className="items-center text-center md:items-start md:text-left">
+                    <AspectIcon className="h-10 w-10 text-primary group-hover:text-primary-foreground transition-colors" />
+                    <CardTitle className="text-xl font-semibold text-foreground group-hover:text-primary-foreground transition-colors">{aspect.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground group-hover:text-primary-foreground/90 transition-colors text-sm md:text-left text-center">
+                      {aspect.text}
+                    </p>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </section>
 

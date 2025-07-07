@@ -13,14 +13,14 @@ export const metadata = {
 
 const modules = [
   {
-    icon: <FileText className="h-10 w-10 text-primary group-hover:text-primary-foreground" />,
+    icon: FileText,
     title: 'CMS - Sistema de Gestión de Contenidos',
     description: 'Actualice fácilmente el contenido dinámico de su sitio web, como los mensajes principales de la página de inicio, sin necesidad de tocar el código.',
     features: ['Edición de Contenido en Vivo', 'Gestión de Textos e Imágenes', 'Control de Versiones (futuro)', 'Facilidad de Uso'],
     link: '/admin/content-management'
   },
     {
-    icon: <ShieldCheck className="h-10 w-10 text-primary group-hover:text-primary-foreground" />,
+    icon: ShieldCheck,
     title: 'Gestión de Usuarios y Roles',
     description: 'Controle el acceso a la plataforma con un sistema granular de roles y permisos. Cree, modifique y elimine usuarios de forma segura.',
     features: ['Creación de Usuarios', 'Asignación de Roles', 'Permisos por Módulo', 'Autenticación Segura'],
@@ -57,32 +57,35 @@ export default function ModulesPage() {
       <section>
         <div className="w-full px-4 sm:px-6 lg:px-8">
             <div className="grid md:grid-cols-2 gap-8">
-            {modules.map((module) => (
-              <Link key={module.title} href={module.link} passHref legacyBehavior>
-                <a className="block group hover:scale-105 transition-all duration-300 ease-in-out">
-                  <Card className="h-full group-hover:shadow-xl group-hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] group-hover:from-primary group-hover:to-accent group-hover:text-primary-foreground bg-card group-hover:animate-gradient group-hover:bg-[length:200%_200%]">
-                    <CardHeader className="items-center text-center">
-                        {module.icon}
-                        <CardTitle className="text-xl group-hover:text-primary-foreground mt-4">{module.title}</CardTitle>
-                        <CardDescription className="mt-1 group-hover:text-primary-foreground/90">{module.description}</CardDescription>
-                    </CardHeader>
-                    <CardContent className="text-center">
-                        <p className="text-sm font-semibold mb-2 text-foreground group-hover:text-primary-foreground">Funcionalidades Clave:</p>
-                        <ul className="space-y-1 text-xs text-muted-foreground group-hover:text-primary-foreground/90">
-                        {module.features.map(feature => (
-                            <li key={feature}>{feature}</li>
-                        ))}
-                        </ul>
-                         <div className="mt-6 text-right">
-                            <span className="inline-flex items-center text-sm font-medium text-primary group-hover:text-primary-foreground">
-                                Ir al Módulo <ArrowRight className="ml-1 h-4 w-4"/>
-                            </span>
-                          </div>
-                    </CardContent>
-                  </Card>
-                </a>
-              </Link>
-            ))}
+            {modules.map((module) => {
+              const ModuleIcon = module.icon;
+              return (
+                <Link key={module.title} href={module.link} passHref legacyBehavior>
+                  <a className="block group hover:scale-105 transition-all duration-300 ease-in-out">
+                    <Card className="h-full group-hover:shadow-xl group-hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] group-hover:from-primary group-hover:to-accent group-hover:text-primary-foreground bg-card group-hover:animate-gradient group-hover:bg-[length:200%_200%]">
+                      <CardHeader className="items-center text-center">
+                          <ModuleIcon className="h-10 w-10 text-primary group-hover:text-primary-foreground" />
+                          <CardTitle className="text-xl group-hover:text-primary-foreground mt-4">{module.title}</CardTitle>
+                          <CardDescription className="mt-1 group-hover:text-primary-foreground/90">{module.description}</CardDescription>
+                      </CardHeader>
+                      <CardContent className="text-center">
+                          <p className="text-sm font-semibold mb-2 text-foreground group-hover:text-primary-foreground">Funcionalidades Clave:</p>
+                          <ul className="space-y-1 text-xs text-muted-foreground group-hover:text-primary-foreground/90">
+                          {module.features.map(feature => (
+                              <li key={feature}>{feature}</li>
+                          ))}
+                          </ul>
+                          <div className="mt-6 text-right">
+                              <span className="inline-flex items-center text-sm font-medium text-primary group-hover:text-primary-foreground">
+                                  Ir al Módulo <ArrowRight className="ml-1 h-4 w-4"/>
+                              </span>
+                            </div>
+                      </CardContent>
+                    </Card>
+                  </a>
+                </Link>
+              )
+            })}
             </div>
         </div>
       </section>
