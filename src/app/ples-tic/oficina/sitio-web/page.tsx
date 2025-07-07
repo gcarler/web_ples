@@ -1,6 +1,6 @@
+
 // This file is no longer used for navigation and can be repurposed or removed later.
 // The content is now handled within the master-detail view on the /ples-tic page.
-
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Info, ArrowLeft } from 'lucide-react';

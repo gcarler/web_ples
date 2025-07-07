@@ -1,9 +1,10 @@
+
 // src/app/ples-tic/analisis-datos-bi/page.tsx
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {
-  ArrowRight, ArrowLeft, BarChartBig, CheckCircle, Database, BarChartHorizontalBig, Brain, Lightbulb, TrendingUp, Eye, Search, Filter
+  ArrowRight, ArrowLeft, BarChartBig, CheckCircle, Database, BarChartHorizontalBig, Brain, Filter
 } from 'lucide-react';
 import React from 'react';
 

@@ -1,9 +1,10 @@
+
 // src/app/ples-tic/ciberseguridad/page.tsx
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {
-  ArrowRight, ArrowLeft, ShieldCheck, CheckCircle, Fingerprint, UserCheck, Network, AlertTriangle, ShieldAlert, Bot, ShieldQuestion, Users
+  ArrowRight, ArrowLeft, ShieldCheck, CheckCircle, Fingerprint, UserCheck, Network, AlertTriangle, ShieldQuestion, Users
 } from 'lucide-react';
 import React from 'react';
 

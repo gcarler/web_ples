@@ -1,9 +1,10 @@
+
 // src/app/ples-tic/soluciones-cloud/page.tsx
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {
-  ArrowRight, ArrowLeft, CloudCog, CheckCircle, Server, UploadCloud, Scaling, Shield, Repeat, Zap, Settings, MessageSquare, GitBranch, Database
+  ArrowRight, ArrowLeft, CloudCog, CheckCircle, Server, UploadCloud, Shield, Repeat, GitBranch, Database, Scaling
 } from 'lucide-react';
 import React from 'react';
 

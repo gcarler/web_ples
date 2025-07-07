@@ -1,9 +1,10 @@
+
 // src/app/ples-tic/automatizacion-ia/page.tsx
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {
-  ArrowRight, ArrowLeft, CheckCircle, Brain, Zap, Bot, FileArchive, Store, Users, MessageSquare, Cpu, Settings, Search, UsersRound, TrendingUp, FileSearch, ClipboardEdit
+  ArrowRight, ArrowLeft, CheckCircle, Brain, Zap, Bot, FileArchive, Store, Users, MessageSquare, Cpu, UsersRound, TrendingUp, FileSearch, ClipboardEdit
 } from 'lucide-react';
 import React from 'react';
 

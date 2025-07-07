@@ -1,9 +1,10 @@
+
 // src/app/ples-crea/page.tsx
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, CheckCircle, Map, Brain, Lightbulb, Users, Target, ShieldCheck, BarChart3, Settings, Search, HelpCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle, Map, Brain, Lightbulb, Users, Target, ShieldCheck, BarChart3, Settings, Search, HelpCircle, FileArchive, BrainCircuit } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';

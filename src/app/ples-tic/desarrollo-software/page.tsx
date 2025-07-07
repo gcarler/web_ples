@@ -1,9 +1,10 @@
+
 // src/app/ples-tic/desarrollo-software/page.tsx
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {
-  ArrowRight, ArrowLeft, Code, CheckCircle, Layers, Puzzle, Rocket, Zap, Users, BarChart3, Lightbulb, ShieldCheck, Settings, MonitorSmartphone, CloudCog
+  ArrowRight, ArrowLeft, Code, CheckCircle, Puzzle, Rocket, Zap, MonitorSmartphone
 } from 'lucide-react';
 import React from 'react';
 

@@ -1,3 +1,4 @@
+
 // src/app/porque-somos-tecnologia/page.tsx
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -116,10 +117,10 @@ export default function PorqueSomosTecnologiaPage() {
             Nuestras Capacidades Tecnológicas
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {tecnologiaPoints.map((point, index) => {
+            {tecnologiaPoints.map((point) => {
               const PointIcon = point.icon;
               return (
-                <Card key={index} className="group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary/5 hover:to-accent/5 hover:border-primary/30 transition-all duration-300 ease-in-out transform hover:scale-[1.03] border">
+                <Card key={point.title} className="group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary/5 hover:to-accent/5 hover:border-primary/30 transition-all duration-300 ease-in-out transform hover:scale-[1.03] border">
                   <CardHeader className="items-center text-center md:items-start md:text-left">
                     <PointIcon className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />
                     <CardTitle className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">{point.title}</CardTitle>
