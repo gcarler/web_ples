@@ -7,8 +7,8 @@ import { PlesGroupLogo } from '@/components/logo';
 export function Footer() {
   return (
     <footer className="relative bg-muted text-muted-foreground pt-16 pb-8 overflow-hidden">
-      <div className="w-full px-4 sm:px-6 lg:px-8 max-w-screen-xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-12">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-12 max-w-screen-xl mx-auto">
           {/* Column 1: Logo and Slogan */}
           <div className="lg:col-span-4 flex flex-col items-start text-left">
             <Link href="/" className="mb-6">
@@ -71,7 +71,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="text-center text-xs text-muted-foreground/80 border-t border-muted-foreground/20 pt-8 mt-8">
+        <div className="text-center text-xs text-muted-foreground/80 border-t border-muted-foreground/20 pt-8 mt-8 max-w-screen-xl mx-auto">
           <p>&copy; {new Date().getFullYear()} PLES GROUP S.A.S. Todos los derechos reservados.</p>
         </div>
       </div>
