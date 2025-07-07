@@ -1115,7 +1115,7 @@ const gobPlesModules = {
                 description: 'Gestione solicitudes de consulta de documentos de manera presencial o virtual, proporcionando un medio eficiente para acceder a la información requerida.',
                 keyServices: [
                   { title: 'Solicitud y Respuesta a Consultas', text: 'Permite a los usuarios solicitar y a los funcionarios responder consultas de manera eficiente, tanto virtual como presencial.', icon: MessageCircle },
-                  { title: 'Gestión y Devolución', text: 'Mantenga y devuelva consultas, asegurando una gestión transparente y efectiva del proceso.', icon: Repeat },
+                  { title: 'Mantenimiento y Devolución', text: 'Mantenga y devuelva consultas, asegurando una gestión transparente y efectiva del proceso.', icon: Repeat },
                   { title: 'Identificador Único (FUID)', text: 'Asigna un FUID a cada consulta para un seguimiento y registro ordenado.', icon: Barcode },
                   { title: 'Consulta de Hoja de Control', text: 'Visualice la hoja de control para un seguimiento detallado del estado y la ubicación de las consultas.', icon: FileSearch }
                 ],
@@ -1358,7 +1358,7 @@ const InteractiveSoftwareSuites = () => {
 
     return (
       <section className="w-full bg-card text-card-foreground">
-        <div className="w-full py-16 px-4 sm:px-6 lg:px-8">
+        <div className="py-16 px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-8">
                 <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestras Dos Grandes Suites de Software</h2>
             </div>
@@ -1366,16 +1366,10 @@ const InteractiveSoftwareSuites = () => {
             <div className="mb-8">
                 <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full max-w-lg">
                     <TabsList className="grid grid-cols-2">
-                        <TabsTrigger value="empresarial" className="py-2 text-base">Suite Empresarial</TabsTrigger>
-                        <TabsTrigger value="gubernamental" className="py-2 text-base">Suite Gubernamental</TabsTrigger>
+                        <TabsTrigger value="empresarial" className="py-2 text-base">Suite Empresarial - OfiPles</TabsTrigger>
+                        <TabsTrigger value="gubernamental" className="py-2 text-base">Suite Gubernamental - GobPles</TabsTrigger>
                     </TabsList>
                 </Tabs>
-                <p className="text-muted-foreground mt-4 max-w-3xl">
-                    {activeTab === 'empresarial' 
-                        ? "Solución integral de ERP y CRM para unificar y automatizar las operaciones del sector privado, mejorando la eficiencia y la toma de decisiones."
-                        : "Conjunto de plataformas especializadas para resolver las necesidades específicas de entidades territoriales e instituciones del sector público."
-                    }
-                </p>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-8 min-h-[600px]">
