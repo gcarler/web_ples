@@ -93,7 +93,7 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
             setFadingCard(null); // Trigger fade-in
             cardToUpdate = (cardToUpdate + 1) % allMetrics.length; // Prepare for next card
         }, 500); // Must match CSS transition duration
-    }, 2000); // Change one card every 2 seconds
+    }, 4000); // Change one card every 4 seconds
 
     return () => clearInterval(interval);
   }, []); // Run only once on mount
