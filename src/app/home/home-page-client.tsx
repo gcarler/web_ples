@@ -58,6 +58,7 @@ const allMetrics = [
   ]
 ];
 
+
 interface HomePageClientProps {
   initialHeroStatements: HeroStatement[];
 }

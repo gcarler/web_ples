@@ -8,5 +8,8 @@ export const metadata: Metadata = {
 };
 
 export default function PorqueSomosCienciaPage() {
+  // This is a server component that renders the client component.
+  // It's a good pattern for fetching data in the future if needed,
+  // while keeping interactions on the client.
   return <CienciaClientPage />;
 }

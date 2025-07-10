@@ -18,32 +18,32 @@ const pageDetails = {
 
 const cienciaPoints = [
   {
-    icon: <Search className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: Search,
     title: "Investigación Basada en Evidencia",
     text: "Cada solución parte de un análisis profundo de datos y evidencia científica para comprender el problema en su totalidad, evitando suposiciones y asegurando un diagnóstico preciso."
   },
   {
-    icon: <BarChart3 className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: BarChart3,
     title: "Rigor Metodológico y Cuantitativo",
     text: "Aplicamos métodos científicos y estadísticos rigurosos para garantizar la validez, fiabilidad y replicabilidad de nuestros resultados, lo que se traduce en soluciones robustas."
   },
   {
-    icon: <Settings className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: Settings,
     title: "Experimentación y Validación",
     text: "Fomentamos la experimentación controlada y la validación de hipótesis para probar y refinar soluciones antes de su implementación a gran escala, minimizando riesgos."
   },
   {
-    icon: <BookOpen className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: BookOpen,
     title: "Gestión del Conocimiento",
     text: "Sistematizamos el aprendizaje y la experiencia acumulada para construir una base de conocimiento sólida que enriquece y acelera cada nuevo proyecto."
   },
   {
-    icon: <CheckCircle className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: CheckCircle,
     title: "Objetividad y Transparencia",
     text: "Nuestro enfoque científico garantiza que las recomendaciones se basen en datos objetivos, promoviendo la transparencia y la confianza con nuestros clientes y aliados."
   },
   {
-    icon: <BrainCircuit className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />,
+    icon: BrainCircuit,
     title: "Enfoque Interdisciplinario",
     text: "Conectamos diversas disciplinas científicas (ciencias de datos, sociales, ambientales) para abordar problemas complejos desde una perspectiva holística e integrada."
   }
@@ -104,19 +104,21 @@ export default function CienciaClientPage() {
                 Nuestros Principios Científicos
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {cienciaPoints.map((point, index) => (
-                <Card key={index} className="group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary/5 hover:to-accent/5 hover:border-primary/30 transition-all duration-300 ease-in-out transform hover:scale-[1.03] border">
-                    <CardHeader className="items-center text-center md:items-start md:text-left">
-                    {point.icon}
-                    <CardTitle className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">{point.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                    <p className="text-muted-foreground group-hover:text-foreground/90 transition-colors text-sm md:text-left text-center">
-                        {point.text}
-                    </p>
-                    </CardContent>
-                </Card>
-                ))}
+                {cienciaPoints.map((point, index) => {
+                  const PointIcon = point.icon;
+                  return (
+                    <Card key={index} className="group hover:shadow-xl hover:bg-gradient-to-b hover:from-primary/5 hover:to-accent/5 hover:border-primary/30 transition-all duration-300 ease-in-out transform hover:scale-[1.03] border">
+                        <CardHeader className="items-center text-center md:items-start md:text-left">
+                        <PointIcon className="h-10 w-10 text-primary mb-4 group-hover:text-accent transition-colors" />
+                        <CardTitle className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">{point.title}</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                        <p className="text-muted-foreground group-hover:text-foreground/90 transition-colors text-sm md:text-left text-center">
+                            {point.text}
+                        </p>
+                        </CardContent>
+                    </Card>
+                )})}
             </div>
             </section>
             

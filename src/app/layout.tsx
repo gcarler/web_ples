@@ -15,7 +15,7 @@ export default function RootLayout({
 }: PropsWithChildren) {
   const pathname = usePathname();
   // Hide header and footer on full-screen pages like login, register, etc. for a cleaner UI.
-  const noLayoutRoutes = ['/login', '/register', '/forgot-password', '/forms'];
+  const noLayoutRoutes = ['/login', '/register', '/forgot-password', '/forms', '/footer'];
   const showHeader = !noLayoutRoutes.includes(pathname);
   const showFooter = !noLayoutRoutes.includes(pathname);
 

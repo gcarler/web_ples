@@ -34,11 +34,8 @@ export async function addUser(
 
     // Validate using the server-side schema
     const validatedData = AddUserInputSchema.safeParse(rawData);
-    console.log('validatedData:', validatedData);
-
 
     if (!validatedData.success) {
-      console.error('Validation Error:', validatedData.error.flatten().fieldErrors);
       const errorMessages = Object.values(validatedData.error.flatten().fieldErrors)
         .map(errors => errors?.join(', '))
         .filter(Boolean)
@@ -49,8 +46,7 @@ export async function addUser(
     const { email, password, displayName, role } = validatedData.data;
 
     // 1. Create user in Firebase Authentication
-    console.log('Data being sent to adminAuth.createUser:', { email, password, displayName });
-      const userRecord = await adminAuth.createUser({
+    const userRecord = await adminAuth.createUser({
       email: email,
       password: password,
       displayName: displayName,
@@ -68,7 +64,6 @@ export async function addUser(
       // tenantId: // Assign tenant ID if using multi-tenancy
     };
 
-    console.log('Data being sent to setDoc:', userProfileData);
     const userDocRef = doc(adminDb, 'users', userRecord.uid);
     await setDoc(userDocRef, {
       ...userProfileData,
@@ -76,7 +71,6 @@ export async function addUser(
       updatedAt: serverTimestamp(),
     });
 
-    console.log('User created successfully:', userRecord.uid);
     // Revalidate relevant pages
     revalidatePath('/admin/users'); // If created via admin panel
     revalidatePath('/register');    // If created via registration page
@@ -84,7 +78,6 @@ export async function addUser(
     return { message: 'User created successfully!', success: true };
 
   } catch (error: any) {
-    console.error("Error catched", error)
     console.error('Error adding user:', error);
     let errorMessage = 'Failed to add user.';
     if (error.code === 'auth/email-already-exists') {
@@ -169,7 +162,6 @@ export async function updateUserRole(
             updatedAt: serverTimestamp(),
         });
 
-        console.log(`User role updated successfully for UID: ${uid}`);
         revalidatePath('/admin/users');
         return { message: 'User role updated successfully!', success: true };
     } catch (error: any) {
@@ -194,7 +186,6 @@ export async function deleteUser(uid: string): Promise<{ message: string | null;
         const userDocRef = doc(collection(adminDb, 'users'), uid);
         await deleteDoc(userDocRef);
 
-        console.log(`User deleted successfully: ${uid}`);
         revalidatePath('/admin/users');
         return { message: 'User deleted successfully!', success: true };
     } catch (error: any) {

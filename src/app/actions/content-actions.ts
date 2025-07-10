@@ -55,7 +55,6 @@ export async function getHeroStatements(): Promise<HeroStatement[]> {
     const hasMeaningfulData = snapshot.docs.some(doc => doc.data().title);
 
     if (snapshot.empty || !hasMeaningfulData) {
-      console.log('No meaningful hero statements found. Seeding database...');
       const batch = writeBatch(adminDb);
       
       // Delete existing placeholder docs if they exist
@@ -136,7 +135,6 @@ export async function getCoreValues(): Promise<CoreValue[]> {
         const hasMeaningfulData = snapshot.docs.some(doc => doc.data().name);
 
         if (snapshot.empty || !hasMeaningfulData) {
-            console.log('No meaningful core values found. Seeding database...');
             const batch = writeBatch(adminDb);
             
             // Delete existing placeholder docs if they exist
@@ -196,7 +194,6 @@ export async function getPillars(): Promise<Pillar[]> {
         const hasMeaningfulData = snapshot.docs.some(doc => doc.data().title);
 
         if (snapshot.empty || !hasMeaningfulData) {
-            console.log('No meaningful pillars found. Seeding database...');
             const batch = writeBatch(adminDb);
             
             // Delete existing placeholder docs if they exist
