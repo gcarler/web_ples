@@ -69,19 +69,20 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
   }, []);
   
   useEffect(() => {
-    const rotateMetrics = () => {
-        setCardOrder(prevOrder => {
-            const currentIds = prevOrder.map(c => c.id);
-            const nextMetricIndex = allMetrics.findIndex(m => !currentIds.includes(m.id));
-            const nextMetric = allMetrics[nextMetricIndex] || allMetrics[0]; // Fallback to the first metric
-            
-            // Rotate the array: [0, 1, 2] -> [1, 2, next]
-            const newOrder = [prevOrder[1], prevOrder[2], nextMetric];
-            return newOrder;
-        });
+    // Function to shuffle the array of cards
+    const shuffleCards = () => {
+      setCardOrder(prevOrder => {
+        // Create a copy and shuffle it
+        const newOrder = [...prevOrder];
+        for (let i = newOrder.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [newOrder[i], newOrder[j]] = [newOrder[j], newOrder[i]];
+        }
+        return newOrder;
+      });
     };
 
-    const interval = setInterval(rotateMetrics, 4000); // Change every 4 seconds
+    const interval = setInterval(shuffleCards, 4000); // Change every 4 seconds
     return () => clearInterval(interval);
   }, []);
 
@@ -131,35 +132,37 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
             EL USO INTELIGENTE DE LA EXPERIENCIA
           </h1>
           <div className="relative grid grid-cols-1 sm:grid-cols-3 justify-center items-stretch gap-8 md:gap-12 text-lg text-foreground mb-20 h-40">
-            {cardOrder.map((metric, index) => {
-                const Icon = metric.icon;
-                let positionClass = '';
-                switch(index) {
-                    case 0: positionClass = 'translate-x-0 scale-100 opacity-100'; break;
-                    case 1: positionClass = 'translate-x-[calc(100%_+_2rem)] sm:translate-x-[calc(100%_+_3rem)] scale-100 opacity-100'; break;
-                    case 2: positionClass = 'translate-x-[calc(200%_+_4rem)] sm:translate-x-[calc(200%_+_6rem)] scale-100 opacity-100'; break;
-                }
-                // When an item is about to be removed (now the first), we scale it down.
-                if (cardOrder.length > 3 && index === 0) {
-                     positionClass += ' scale-0 opacity-0';
-                }
+            {allMetrics.slice(0, 3).map((_, index) => {
+              const metric = cardOrder[index];
+              const Icon = metric.icon;
+              // Determine target position based on the original index of the metric in the `allMetrics` array
+              const originalIndex = allMetrics.findIndex(m => m.id === metric.id);
+              let positionClass = '';
+              // This maps the card's original position to its new shuffled position visually.
+              // Find where the card should go based on its content.
+              const targetIndex = cardOrder.findIndex(c => c.id === allMetrics[index].id);
 
-                return (
-                    <div
-                      key={metric.id}
-                      className={cn(
-                        'absolute w-full sm:w-1/3 flex flex-col items-center p-6 bg-card rounded-lg shadow-md hover:shadow-xl transition-all duration-700 ease-in-out h-full',
-                        positionClass
-                      )}
-                      style={{
-                        // This calculation places the cards correctly in the grid gap
-                        width: 'calc((100% - 2 * 2rem) / 3)' // For md gap-8
-                      }}
-                    >
-                      <Icon className="h-12 w-12 text-primary mb-4" />
-                      <span className="text-xl leading-tight">{metric.text}</span>
-                    </div>
-                );
+              switch(targetIndex) {
+                    case 0: positionClass = 'translate-x-0'; break;
+                    case 1: positionClass = 'translate-x-[calc(100%_+_2rem)] sm:translate-x-[calc(100%_+_3rem)]'; break;
+                    case 2: positionClass = 'translate-x-[calc(200%_+_4rem)] sm:translate-x-[calc(200%_+_6rem)]'; break;
+              }
+
+              return (
+                  <div
+                    key={allMetrics[index].id} // Use a stable key based on position
+                    className={cn(
+                      'absolute w-full sm:w-1/3 flex flex-col items-center p-6 bg-card rounded-lg shadow-md hover:shadow-xl transition-transform duration-700 ease-in-out h-full',
+                      positionClass
+                    )}
+                    style={{
+                      width: 'calc((100% - 2 * 3rem) / 3)' // For md gap-12
+                    }}
+                  >
+                    <Icon className="h-12 w-12 text-primary mb-4" />
+                    <span className="text-xl leading-tight">{metric.text}</span>
+                  </div>
+              );
             })}
           </div>
           <Button asChild size="lg" variant="accent">
