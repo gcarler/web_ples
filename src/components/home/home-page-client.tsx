@@ -41,21 +41,12 @@ const iconStyles = [
 ];
 
 const allMetrics = [
-  // Card 1 Options
-  [
-    { icon: CheckCircle, text: "+15 proyectos ejecutados", dataAiHint:"projects checkmark" },
-    { icon: Lightbulb, text: "+5000 horas de consultoría", dataAiHint:"consulting lightbulb" },
-  ],
-  // Card 2 Options
-  [
-    { icon: Database, text: "42 sistemas de información desarrollados", dataAiHint:"database systems" },
-    { icon: Building, text: "10+ sectores impactados", dataAiHint:"building sectors" },
-  ],
-  // Card 3 Options
-  [
-    { icon: UsersRound, text: "8 alianzas académicas y comunitarias", dataAiHint:"community alliance" },
-    { icon: BrainCircuit, text: "+20 soluciones de IA implementadas", dataAiHint:"ai solutions brain" },
-  ]
+    { id: 1, icon: CheckCircle, text: "+15 proyectos ejecutados", dataAiHint:"projects checkmark" },
+    { id: 2, icon: Database, text: "42 sistemas de información desarrollados", dataAiHint:"database systems" },
+    { id: 3, icon: UsersRound, text: "8 alianzas académicas y comunitarias", dataAiHint:"community alliance" },
+    { id: 4, icon: Lightbulb, text: "+5000 horas de consultoría", dataAiHint:"consulting lightbulb" },
+    { id: 5, icon: Building, text: "10+ sectores impactados", dataAiHint:"building sectors" },
+    { id: 6, icon: BrainCircuit, text: "+20 soluciones de IA implementadas", dataAiHint:"ai solutions brain" },
 ];
 
 
@@ -65,8 +56,7 @@ interface HomePageClientProps {
 
 export default function HomePageClient({ initialHeroStatements }: HomePageClientProps) {
   const [currentIconIndex, setCurrentIconIndex] = useState(0);
-  const [metricIndices, setMetricIndices] = useState([0, 0, 0]);
-  const [fadingCard, setFadingCard] = useState<number | null>(null);
+  const [cardOrder, setCardOrder] = useState([allMetrics[0], allMetrics[1], allMetrics[2]]);
 
   useEffect(() => {
     if (missionIcons.length <= 1) return;
@@ -79,24 +69,21 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
   }, []);
   
   useEffect(() => {
-    let cardToUpdate = 0;
-    const interval = setInterval(() => {
-        setFadingCard(cardToUpdate); // Trigger fade-out on the current card
-        
-        // After fade duration, update content and fade back in
-        setTimeout(() => {
-            setMetricIndices(prevIndices => {
-                const newIndices = [...prevIndices];
-                newIndices[cardToUpdate] = (newIndices[cardToUpdate] + 1) % allMetrics[cardToUpdate].length;
-                return newIndices;
-            });
-            setFadingCard(null); // Trigger fade-in
-            cardToUpdate = (cardToUpdate + 1) % allMetrics.length; // Prepare for next card
-        }, 500); // Must match CSS transition duration
-    }, 4000); // Change one card every 4 seconds
+    const rotateMetrics = () => {
+        setCardOrder(prevOrder => {
+            const currentIds = prevOrder.map(c => c.id);
+            const nextMetricIndex = allMetrics.findIndex(m => !currentIds.includes(m.id));
+            const nextMetric = allMetrics[nextMetricIndex] || allMetrics[0]; // Fallback to the first metric
+            
+            // Rotate the array: [0, 1, 2] -> [1, 2, next]
+            const newOrder = [prevOrder[1], prevOrder[2], nextMetric];
+            return newOrder;
+        });
+    };
 
+    const interval = setInterval(rotateMetrics, 4000); // Change every 4 seconds
     return () => clearInterval(interval);
-  }, []); // Run only once on mount
+  }, []);
 
 
   const CurrentIcon = missionIcons[currentIconIndex];
@@ -143,21 +130,34 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-16">
             EL USO INTELIGENTE DE LA EXPERIENCIA
           </h1>
-          <div className="grid grid-cols-1 sm:grid-cols-3 justify-center items-stretch gap-8 md:gap-12 text-lg text-foreground mb-20">
-            {allMetrics.map((metrics, cardIndex) => {
-                const metric = metrics[metricIndices[cardIndex]];
+          <div className="relative grid grid-cols-1 sm:grid-cols-3 justify-center items-stretch gap-8 md:gap-12 text-lg text-foreground mb-20 h-32">
+            {cardOrder.map((metric, index) => {
                 const Icon = metric.icon;
+                let positionClass = '';
+                switch(index) {
+                    case 0: positionClass = 'translate-x-0 scale-100 opacity-100'; break;
+                    case 1: positionClass = 'translate-x-[calc(100%_+_2rem)] sm:translate-x-[calc(100%_+_3rem)] scale-100 opacity-100'; break;
+                    case 2: positionClass = 'translate-x-[calc(200%_+_4rem)] sm:translate-x-[calc(200%_+_6rem)] scale-100 opacity-100'; break;
+                }
+                // When an item is about to be removed (now the first), we scale it down.
+                if (cardOrder.length > 3 && index === 0) {
+                     positionClass += ' scale-0 opacity-0';
+                }
+
                 return (
-                    <div 
-                        key={cardIndex} 
-                        className={cn(
-                            "flex flex-col items-center p-6 bg-card rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 ease-in-out",
-                            "transition-opacity duration-500", // Add fade transition
-                            fadingCard === cardIndex ? 'opacity-0' : 'opacity-100'
-                        )}
+                    <div
+                      key={metric.id}
+                      className={cn(
+                        'absolute w-full sm:w-1/3 flex flex-col items-center p-6 bg-card rounded-lg shadow-md hover:shadow-xl transition-all duration-700 ease-in-out',
+                        positionClass
+                      )}
+                      style={{
+                        // This calculation places the cards correctly in the grid gap
+                        width: 'calc((100% - 2 * 2rem) / 3)' // For md gap-8
+                      }}
                     >
-                        <Icon className="h-12 w-12 text-primary mb-4" />
-                        <span className="text-xl leading-tight">{metric.text}</span>
+                      <Icon className="h-12 w-12 text-primary mb-4" />
+                      <span className="text-xl leading-tight">{metric.text}</span>
                     </div>
                 );
             })}

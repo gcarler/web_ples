@@ -186,8 +186,9 @@ export default {
         },
         'draw-line-alt': {
           'from': { strokeDashoffset: 'var(--path-length, 200)' },
+          'to': { strokeDashoffset: '0' },
           '40%, 60%': { strokeDashoffset: '0' },
-          'to': { strokeDashoffset: 'var(--path-length, 200)' },
+          '100%': { strokeDashoffset: 'var(--path-length, 200)' },
         },
         'subtle-float': {
             '0%, 100%': { transform: 'translateY(0)' },
