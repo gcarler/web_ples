@@ -130,7 +130,7 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-16">
             EL USO INTELIGENTE DE LA EXPERIENCIA
           </h1>
-          <div className="relative grid grid-cols-1 sm:grid-cols-3 justify-center items-stretch gap-8 md:gap-12 text-lg text-foreground mb-20 h-32">
+          <div className="relative grid grid-cols-1 sm:grid-cols-3 justify-center items-stretch gap-8 md:gap-12 text-lg text-foreground mb-20 h-40">
             {cardOrder.map((metric, index) => {
                 const Icon = metric.icon;
                 let positionClass = '';
@@ -148,7 +148,7 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
                     <div
                       key={metric.id}
                       className={cn(
-                        'absolute w-full sm:w-1/3 flex flex-col items-center p-6 bg-card rounded-lg shadow-md hover:shadow-xl transition-all duration-700 ease-in-out',
+                        'absolute w-full sm:w-1/3 flex flex-col items-center p-6 bg-card rounded-lg shadow-md hover:shadow-xl transition-all duration-700 ease-in-out h-full',
                         positionClass
                       )}
                       style={{
