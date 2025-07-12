@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { ArrowRight, Building, Users, Handshake, Quote, CheckCircle, Database, UsersRound, Globe, Server, HomeIcon, Lightbulb, Layers, Cpu, BookOpen, Send, MapPin, BarChart3, ShieldCheck, Settings, BrainCircuit } from 'lucide-react';
+import { ArrowRight, Building, Users, Handshake, Quote, CheckCircle, Database, UsersRound, Globe, Server, HomeIcon, Lightbulb, Layers, Cpu, BookOpen, Send, MapPin, BarChart3, ShieldCheck, Settings, BrainCircuit, GraduationCap, Briefcase } from 'lucide-react';
 import { RotatingHeroText } from '@/components/layout/rotating-hero-text';
 import { cn } from '@/lib/utils';
 import { useState, useEffect } from 'react';
@@ -320,27 +320,33 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
             <h2 className="text-3xl font-bold text-center mb-10">Testimonios</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-                { name: 'Ruth Gutierrez', title: 'Directora OEDS, Universidad de Cartagena', text: '¡Increíble servicio! Superaron nuestras expectativas.', image: 'https://placehold.co/100x100.png', hint: 'person face director' },
-                { name: 'Olga Montes', title: 'Directora, Corporación Rhema', text: 'La implementación fue fluida y el soporte excelente.', image: 'https://placehold.co/100x100.png', hint: 'person face director' },
-                { name: 'Mary Janacet', title: 'CEO, Betrip', text: 'Nos ayudaron a optimizar nuestros procesos clave.', image: 'https://placehold.co/100x100.png', hint: 'person face ceo' },
-            ].map((testimonial) => (
-                <Card key={testimonial.name} className="flex flex-col">
-                <CardContent className="pt-6 flex-grow">
-                    <Quote className="h-6 w-6 text-muted-foreground mb-4" />
-                    <p className="text-foreground italic mb-4">"{testimonial.text}"</p>
-                </CardContent>
-                <CardHeader className="flex flex-row items-center gap-4 pt-0 mt-auto">
-                    <Avatar>
-                    <AvatarImage src={testimonial.image} alt={testimonial.name} data-ai-hint={testimonial.hint}/>
-                    <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
-                    </Avatar>
-                    <div>
-                    <p className="font-semibold">{testimonial.name}</p>
-                    <p className="text-sm text-muted-foreground">{testimonial.title}</p>
-                    </div>
-                </CardHeader>
-                </Card>
-            ))}
+                { name: 'Ruth Gutierrez', title: 'Directora OEDS, Universidad de Cartagena', text: '¡Increíble servicio! Superaron nuestras expectativas.', image: 'https://placehold.co/100x100.png', hint: 'person face director', icon: GraduationCap },
+                { name: 'Olga Montes', title: 'Directora, Corporación Rhema', text: 'La implementación fue fluida y el soporte excelente.', image: 'https://placehold.co/100x100.png', hint: 'person face director', icon: Building },
+                { name: 'Mary Janacet', title: 'CEO, Betrip', text: 'Nos ayudaron a optimizar nuestros procesos clave.', image: 'https://placehold.co/100x100.png', hint: 'person face ceo', icon: Briefcase },
+            ].map((testimonial) => {
+                const TestimonialIcon = testimonial.icon;
+                return (
+                    <Card key={testimonial.name} className="flex flex-col">
+                        <CardContent className="pt-6 flex-grow">
+                            <Quote className="h-6 w-6 text-muted-foreground mb-4" />
+                            <p className="text-foreground italic mb-4">"{testimonial.text}"</p>
+                        </CardContent>
+                        <CardHeader className="flex flex-row items-center gap-4 pt-0 mt-auto">
+                            <Avatar>
+                            <AvatarImage src={testimonial.image} alt={testimonial.name} data-ai-hint={testimonial.hint}/>
+                            <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
+                            </Avatar>
+                            <div className="flex-1">
+                                <div className="flex items-center gap-2">
+                                    <p className="font-semibold">{testimonial.name}</p>
+                                    <TestimonialIcon className="h-4 w-4 text-primary" />
+                                </div>
+                                <p className="text-sm text-muted-foreground">{testimonial.title}</p>
+                            </div>
+                        </CardHeader>
+                    </Card>
+                )
+            })}
             </div>
         </div>
       </section>
