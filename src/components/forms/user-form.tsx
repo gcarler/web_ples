@@ -19,6 +19,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
 import { Send } from 'lucide-react';
+import React from "react"
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -39,6 +40,7 @@ type UserFormData = z.infer<typeof formSchema>;
 
 export function UserForm() {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
   
   const form = useForm<UserFormData>({
     resolver: zodResolver(formSchema),
@@ -54,13 +56,50 @@ export function UserForm() {
   });
 
   // Client-side submission handler
-  function onSubmit(data: UserFormData) {
+  async function onSubmit(data: UserFormData) {
+    setIsSubmitting(true);
+    
+    // Check for the n8n webhook URL from environment variables
+    const webhookUrl = process.env.NEXT_PUBLIC_N8N_CONTACT_FORM_WEBHOOK_URL;
+
+    if (webhookUrl) {
+      try {
+        const response = await fetch(webhookUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok.');
+        }
+        
+        console.log("Form data successfully sent to n8n workflow.", await response.json());
+
+      } catch (error) {
+        console.error("Failed to send data to n8n:", error);
+        toast({
+            title: "Error de Integración",
+            description: "No se pudo enviar el formulario a nuestro sistema de automatización. Por favor, intente de nuevo más tarde.",
+            variant: "destructive"
+        });
+        setIsSubmitting(false);
+        return; // Stop execution if webhook fails
+      }
+    } else {
+        console.warn("N8N_CONTACT_FORM_WEBHOOK_URL is not defined. Skipping n8n integration.");
+    }
+    
+    // This part will run regardless of webhook, or if webhook is not defined
     console.log("Form data submitted:", data);
     toast({
       title: "¡Formulario Enviado!",
       description: "Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.",
     });
     form.reset(); // Reset form fields after successful submission
+    setIsSubmitting(false);
   }
 
   return (
@@ -74,7 +113,7 @@ export function UserForm() {
                 <FormItem>
                 <FormLabel>Name</FormLabel>
                 <FormControl>
-                    <Input placeholder="John Doe" {...field} />
+                    <Input placeholder="John Doe" {...field} disabled={isSubmitting} />
                 </FormControl>
                 <FormMessage />
                 </FormItem>
@@ -87,7 +126,7 @@ export function UserForm() {
                 <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                    <Input type="email" placeholder="you@example.com" {...field} />
+                    <Input type="email" placeholder="you@example.com" {...field} disabled={isSubmitting} />
                 </FormControl>
                 <FormMessage />
                 </FormItem>
@@ -103,7 +142,7 @@ export function UserForm() {
                     <FormItem>
                     <FormLabel>Phone (Optional)</FormLabel>
                     <FormControl>
-                        <Input type="tel" placeholder="+1 234 567 890" {...field} />
+                        <Input type="tel" placeholder="+1 234 567 890" {...field} disabled={isSubmitting} />
                     </FormControl>
                     <FormMessage />
                     </FormItem>
@@ -116,7 +155,7 @@ export function UserForm() {
                     <FormItem>
                     <FormLabel>Company (Optional)</FormLabel>
                     <FormControl>
-                        <Input placeholder="Acme Corporation" {...field} />
+                        <Input placeholder="Acme Corporation" {...field} disabled={isSubmitting} />
                     </FormControl>
                     <FormMessage />
                     </FormItem>
@@ -132,7 +171,7 @@ export function UserForm() {
                     <FormItem>
                     <FormLabel>Job Title (Optional)</FormLabel>
                     <FormControl>
-                        <Input placeholder="Project Manager" {...field} />
+                        <Input placeholder="Project Manager" {...field} disabled={isSubmitting} />
                     </FormControl>
                     <FormMessage />
                     </FormItem>
@@ -151,6 +190,7 @@ export function UserForm() {
                   placeholder="Tell us a little bit about how we can help"
                   className="resize-none"
                   {...field}
+                  disabled={isSubmitting}
                 />
               </FormControl>
               <FormMessage />
@@ -168,6 +208,7 @@ export function UserForm() {
                         name="subscribe"
                         checked={field.value}
                         onCheckedChange={field.onChange}
+                        disabled={isSubmitting}
                     />
                 </FormControl>
                 <div className="space-y-1 leading-none">
@@ -185,8 +226,9 @@ export function UserForm() {
         <Button
             type="submit"
             className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
+            disabled={isSubmitting}
         >
-          Submit Form
+          {isSubmitting ? 'Enviando...' : 'Submit Form'}
           <Send className="ml-2" />
         </Button>
       </form>
