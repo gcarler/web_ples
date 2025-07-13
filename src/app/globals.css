@@ -108,4 +108,19 @@ body {
   .logo-outline {
     stroke: hsl(var(--border));
   }
+
+  .nav-link-underline::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: hsl(var(--primary));
+    transition: width .3s;
+  }
+
+  .nav-link-underline.active::after,
+  .nav-link-underline:hover::after {
+    width: 100%;
+  }
+
 }

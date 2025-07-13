@@ -82,9 +82,9 @@ export function Header() {
                            key={link.href}
                            href={link.href}
                            className={cn(
-                               "px-3 py-2 rounded-md text-sm font-medium transition-colors",
+                               "nav-link-underline relative px-3 py-2 text-sm font-medium transition-colors",
                                isActive
-                                 ? "bg-primary text-primary-foreground"
+                                 ? "text-primary active"
                                  : "text-foreground hover:text-primary"
                            )}
                            aria-current={isActive ? "page" : undefined}
