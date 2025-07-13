@@ -72,7 +72,7 @@ export function Footer() {
         </div>
 
         <div className="text-center text-xs text-muted-foreground/80 border-t border-muted-foreground/20 pt-8 mt-8">
-          <p>&copy; {new Date().getFullYear()} PLES GROUP S.A.S. Todos los derechos reservados.</p>
+          <p>&copy; {new Date().getFullYear()} PLES S.A.S. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>
