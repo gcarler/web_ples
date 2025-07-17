@@ -1,7 +1,7 @@
 // src/app/[locale]/page.tsx
 'use client'
 
-import Home from '../home/home-page-client'; // Import the renamed HomePage component
+import Home from '../page'; // Import the default Home component
 
 export default function LocalePage() {
   return <Home />;
