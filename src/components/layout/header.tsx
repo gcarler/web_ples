@@ -86,10 +86,10 @@ export function Header() {
   
     const navLinks = [
       { href: "/about", label: t.about },
-      { href: "/ples-crea", label: "PLES CREA" },
-      { href: "/ples-tic", label: "PLES TIC" },
-      { href: "/ples-catastro", label: "PLES Catastro" },
-      { href: "/ples-consulting", label: "PLES Consulting" },
+      { href: "/ples-crea", label: t.plesCrea },
+      { href: "/ples-tic", label: t.plesTic },
+      { href: "/ples-catastro", label: t.plesCatastro },
+      { href: "/ples-consulting", label: t.plesConsulting },
   ];
 
   return (

@@ -11,6 +11,9 @@ import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import { type CoreValue, type Pillar } from '@/lib/models/content';
 import React from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { translations } from '@/lib/translations';
+
 
 // Icon Map to render Lucide icons from string names
 const iconMap: { [key: string]: React.ElementType } = {
@@ -59,6 +62,9 @@ interface AboutPageClientProps {
 }
 
 export default function AboutPageClient({ initialCoreValues, initialPillars }: AboutPageClientProps) {
+  const { language } = useLanguage();
+  const t = translations[language].AboutPage;
+
   const [selectedValue, setSelectedValue] = useState(initialCoreValues[2]?.id || 'integridad');
   const selectedContent = initialCoreValues.find(v => v.id === selectedValue);
 
@@ -104,18 +110,18 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
 
             <div className="w-full lg:w-7/12 text-center lg:text-left relative z-20 order-2 lg:order-none">
               <h1 className="text-4xl sm:text-5xl xl:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-6">
-                Sobre PLES
+                {t.hero.title}
               </h1>
               <p className="text-lg sm:text-xl text-foreground mb-8 max-w-2xl mx-auto lg:mx-0">
-                Fusionamos visión global y enfoque multidisciplinario para construir un legado de impacto y sostenibilidad.
+                {t.hero.description}
               </p>
               <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-10">
-                <Badge variant="default" className="text-md px-4 py-2 shadow-md">#VisiónGlobal</Badge>
-                <Badge variant="default" className="text-md px-4 py-2 shadow-md">#Innovación</Badge>
-                <Badge variant="default" className="text-md px-4 py-2 shadow-md">#Sostenibilidad</Badge>
+                {t.hero.badges.map((badge: string, index: number) => (
+                    <Badge key={index} variant="default" className="text-md px-4 py-2 shadow-md">{badge}</Badge>
+                ))}
               </div>
               <Button size="lg" variant="accent" className="text-lg px-8 py-3" asChild>
-                <Link href="/about/esencia"><span className="flex items-center">Nuestra Historia <ArrowRight className="ml-2 h-5 w-5" /></span></Link>
+                <Link href="/about/esencia"><span className="flex items-center">{t.hero.cta} <ArrowRight className="ml-2 h-5 w-5" /></span></Link>
               </Button>
             </div>
           </div>
@@ -126,17 +132,22 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
       <section className="w-full px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div className="space-y-6">
-            <h2 className="text-3xl font-bold text-primary">Nuestra Identidad</h2>
+            <h2 className="text-3xl font-bold text-primary">{t.identity.title}</h2>
             <p className="text-lg mb-4">
-              Con una visión global y un enfoque multidisciplinario, nuestro equipo converge talentos y conocimientos diversos para la consecución de objetivos trascendentes. En PLES, valoramos la riqueza de cada perspectiva, cultivando un espacio donde las ideas disruptivas e innovadoras florecen, permitiendo intervenciones estratégicas y perspicaces en cualquier escenario.
+              {t.identity.description}
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {sections.map((section, index) => (
-              <Card key={index} className="group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out hover:animate-gradient hover:bg-[length:200%_200%]">
-                <CardContent className="p-0"><DynamicSection {...section} /></CardContent>
-              </Card>
-            ))}
+            {t.identity.sections.map((section: any, index: number) => {
+               const IconComponent = iconMap[section.icon] || HeartPulse;
+               return (
+                  <Card key={index} className="group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out hover:animate-gradient hover:bg-[length:200%_200%]">
+                    <CardContent className="p-0">
+                        <DynamicSection title={section.title} content={section.content} link={section.link} icon={IconComponent} />
+                    </CardContent>
+                  </Card>
+               )
+            })}
           </div>
         </div>
       </section>
@@ -179,7 +190,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                     <div className="relative w-full h-full rounded-full bg-accent flex items-center text-accent-foreground shadow-2xl">
                        <div className="w-4/5 ml-auto text-right flex items-center pr-12">
                           <p className="text-base leading-relaxed">
-                              {integridadPhrases.map((phrase, index) => (
+                              {t.values.integrityPhrases.map((phrase: string, index: number) => (
                               <span
                                   key={index}
                                   className="inline-block animate-fade-in-up opacity-0 transition-all duration-300 hover:font-bold hover:bg-white/20 hover:scale-110 rounded-md cursor-pointer px-2 py-1"
@@ -213,29 +224,10 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                             {selectedContent.name}
                         </h3>
                         <div className="flex w-full justify-start">
-                            <p className="text-lg md:text-xl leading-relaxed text-accent-foreground/80 max-w-md text-left">
-                              {[
-                                <React.Fragment key="t1">Como motor de nuestro progreso, la </React.Fragment>,
-                                <strong key="s1" className="text-accent-foreground font-bold">innovación</strong>,
-                                <React.Fragment key="t2"> nos impulsa a </React.Fragment>,
-                                <strong key="s2" className="text-accent-foreground font-bold">desafiar el status quo</strong>,
-                                <React.Fragment key="t3"> y a explorar constantemente </React.Fragment>,
-                                <strong key="s4" className="text-accent-foreground font-bold">nuevas tecnologías y metodologías</strong>,
-                                <React.Fragment key="t5">. Convertimos </React.Fragment>,
-                                <strong key="s6" className="text-accent-foreground font-bold">ideas audaces</strong>,
-                                <React.Fragment key="t7"> en soluciones prácticas que aportan un </React.Fragment>,
-                                <strong key="s8" className="text-accent-foreground font-bold">valor tangible y sostenible</strong>,
-                                <React.Fragment key="t9"> a nuestros clientes.</React.Fragment>,
-                              ].map((chunk, index) => (
-                                <span
-                                  key={index}
-                                  className="inline-block animate-fade-in-up opacity-0"
-                                  style={{ animationDelay: `${index * 0.1}s`, animationFillMode: 'forwards' }}
-                                >
-                                  {chunk}
-                                </span>
-                              ))}
-                            </p>
+                            <p
+                                className="text-lg md:text-xl leading-relaxed text-accent-foreground/80 max-w-md text-left"
+                                dangerouslySetInnerHTML={{ __html: t.values.innovationDescription }}
+                            />
                         </div>
                     </div>
                 </div>
@@ -249,7 +241,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                         {selectedContent.name}
                     </h3>
                     <p className="text-lg text-primary-foreground/90 leading-relaxed max-w-2xl mx-auto">
-                        {collaborationPhrases.map((phrase, index) => (
+                        {t.values.collaborationPhrases.map((phrase: string, index: number) => (
                             <span
                                 key={index}
                                 className="inline-block animate-fade-in-up opacity-0 transition-all duration-300 hover:text-accent hover:scale-105 cursor-pointer"
@@ -270,7 +262,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
       {/* Pillars Section */}
       <section className="w-full px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">
-          Nuestros Pilares Fundamentales
+          {t.pillars.title}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {initialPillars.map((pilar) => {
@@ -286,7 +278,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                 </CardContent>
                 <div className="p-6 pt-0">
                     <Button variant="link" asChild className="text-primary group-hover:text-primary-foreground">
-                    <Link href={pilar.link}><span className="flex items-center">Saber Más <ArrowRight className="ml-1 h-4 w-4" /></span></Link>
+                    <Link href={pilar.link}><span className="flex items-center">{t.pillars.cta} <ArrowRight className="ml-1 h-4 w-4" /></span></Link>
                     </Button>
                 </div>
                 </Card>
@@ -297,7 +289,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
 
       <section className="w-full px-4 sm:px-6 lg:px-8">
         <p className="mt-12 text-center text-md text-muted-foreground italic max-w-3xl mx-auto">
-          Estos valores se manifiestan en nuestro compromiso inquebrantable con la resiliencia ambiental y la equidad de género, buscando generar un legado significativo y duradero en cada comunidad que abrazamos.
+          {t.closingStatement}
         </p>
       </section>
     </div>

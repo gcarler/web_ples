@@ -10,7 +10,8 @@ import './globals.css';
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
-    <html lang="es" suppressHydrationWarning>
+    // The lang attribute will be managed by the [locale] layout
+    <html suppressHydrationWarning>
       <body className="min-h-screen flex flex-col antialiased bg-background text-foreground">
         <LanguageProvider>
           <ThemeProvider
