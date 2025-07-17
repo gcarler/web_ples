@@ -42,12 +42,21 @@ const iconStyles = [
 ];
 
 const allMetrics = [
-    { id: 1, icon: CheckCircle, text: "+15 proyectos ejecutados", dataAiHint:"projects checkmark" },
-    { id: 2, icon: Database, text: "42 sistemas de información desarrollados", dataAiHint:"database systems" },
-    { id: 3, icon: UsersRound, text: "8 alianzas académicas y comunitarias", dataAiHint:"community alliance" },
-    { id: 4, icon: Lightbulb, text: "+5000 horas de consultoría", dataAiHint:"consulting lightbulb" },
-    { id: 5, icon: Building, text: "10+ sectores impactados", dataAiHint:"building sectors" },
-    { id: 6, icon: BrainCircuit, text: "+20 soluciones de IA implementadas", dataAiHint:"ai solutions brain" },
+  // Card 1 Options
+  [
+    { icon: CheckCircle, text: "+15 proyectos ejecutados", dataAiHint:"projects checkmark" },
+    { icon: Lightbulb, text: "+5000 horas de consultoría", dataAiHint:"consulting lightbulb" },
+  ],
+  // Card 2 Options
+  [
+    { icon: Database, text: "42 sistemas de información desarrollados", dataAiHint:"database systems" },
+    { icon: Building, text: "10+ sectores impactados", dataAiHint:"building sectors" },
+  ],
+  // Card 3 Options
+  [
+    { icon: UsersRound, text: "8 alianzas académicas y comunitarias", dataAiHint:"community alliance" },
+    { icon: BrainCircuit, text: "+20 soluciones de IA implementadas", dataAiHint:"ai solutions brain" },
+  ]
 ];
 
 
@@ -57,7 +66,8 @@ interface HomePageClientProps {
 
 export default function HomePageClient({ initialHeroStatements }: HomePageClientProps) {
   const [currentIconIndex, setCurrentIconIndex] = useState(0);
-  const [cardOrder, setCardOrder] = useState([allMetrics[0], allMetrics[1], allMetrics[2]]);
+  const [metricIndices, setMetricIndices] = useState([0, 0, 0]);
+  const [fadingCard, setFadingCard] = useState<number | null>(null);
   const t = useTranslations('HomePage');
 
   const translatedStatements = initialHeroStatements.map((stmt, index) => ({
@@ -78,22 +88,24 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
   }, []);
   
   useEffect(() => {
-    // Function to shuffle the array of cards
-    const shuffleCards = () => {
-      setCardOrder(prevOrder => {
-        // Create a copy and shuffle it
-        const newOrder = [...prevOrder];
-        for (let i = newOrder.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [newOrder[i], newOrder[j]] = [newOrder[j], newOrder[i]];
-        }
-        return newOrder;
-      });
-    };
+    let cardToUpdate = 0;
+    const interval = setInterval(() => {
+        setFadingCard(cardToUpdate); // Trigger fade-out on the current card
+        
+        // After fade duration, update content and fade back in
+        setTimeout(() => {
+            setMetricIndices(prevIndices => {
+                const newIndices = [...prevIndices];
+                newIndices[cardToUpdate] = (newIndices[cardToUpdate] + 1) % allMetrics[cardToUpdate].length;
+                return newIndices;
+            });
+            setFadingCard(null); // Trigger fade-in
+            cardToUpdate = (cardToUpdate + 1) % allMetrics.length; // Prepare for next card
+        }, 500); // Must match CSS transition duration
+    }, 2000); // Change one card every 2 seconds
 
-    const interval = setInterval(shuffleCards, 4000); // Change every 4 seconds
     return () => clearInterval(interval);
-  }, []);
+  }, []); // Run only once on mount
 
 
   const CurrentIcon = missionIcons[currentIconIndex];
@@ -140,38 +152,23 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-16">
             EL USO INTELIGENTE DE LA EXPERIENCIA
           </h1>
-          <div className="relative grid grid-cols-1 sm:grid-cols-3 justify-center items-stretch gap-8 md:gap-12 text-lg text-foreground mb-20 h-40">
-            {allMetrics.slice(0, 3).map((_, index) => {
-              const metric = cardOrder[index];
-              const Icon = metric.icon;
-              // Determine target position based on the original index of the metric in the `allMetrics` array
-              const originalIndex = allMetrics.findIndex(m => m.id === metric.id);
-              let positionClass = '';
-              // This maps the card's original position to its new shuffled position visually.
-              // Find where the card should go based on its content.
-              const targetIndex = cardOrder.findIndex(c => c.id === allMetrics[index].id);
-
-              switch(targetIndex) {
-                    case 0: positionClass = 'translate-x-0'; break;
-                    case 1: positionClass = 'translate-x-[calc(100%_+_2rem)] sm:translate-x-[calc(100%_+_3rem)]'; break;
-                    case 2: positionClass = 'translate-x-[calc(200%_+_4rem)] sm:translate-x-[calc(200%_+_6rem)]'; break;
-              }
-
-              return (
-                  <div
-                    key={allMetrics[index].id} // Use a stable key based on position
-                    className={cn(
-                      'absolute w-full sm:w-1/3 flex flex-col items-center p-6 bg-card rounded-lg shadow-md hover:shadow-xl transition-transform duration-700 ease-in-out h-full',
-                      positionClass
-                    )}
-                    style={{
-                      width: 'calc((100% - 2 * 3rem) / 3)' // For md gap-12
-                    }}
-                  >
-                    <Icon className="h-12 w-12 text-primary mb-4" />
-                    <span className="text-xl leading-tight">{metric.text}</span>
-                  </div>
-              );
+          <div className="grid grid-cols-1 sm:grid-cols-3 justify-center items-stretch gap-8 md:gap-12 text-lg text-foreground mb-20">
+            {allMetrics.map((metrics, cardIndex) => {
+                const metric = metrics[metricIndices[cardIndex]];
+                const Icon = metric.icon;
+                return (
+                    <div 
+                        key={cardIndex} 
+                        className={cn(
+                            "flex flex-col items-center p-6 bg-card rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 ease-in-out",
+                            "transition-opacity duration-500", // Add fade transition
+                            fadingCard === cardIndex ? 'opacity-0' : 'opacity-100'
+                        )}
+                    >
+                        <Icon className="h-12 w-12 text-primary mb-4" />
+                        <span className="text-xl leading-tight">{metric.text}</span>
+                    </div>
+                );
             })}
           </div>
           <Button asChild size="lg" variant="accent">
