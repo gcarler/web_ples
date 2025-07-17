@@ -5,7 +5,10 @@ export default createMiddleware({
   locales: ['en', 'es'],
  
   // Used when no locale matches
-  defaultLocale: 'es'
+  defaultLocale: 'es',
+
+  // Disable automatic locale detection to use path-based routing only
+  localeDetection: false
 });
  
 export const config = {

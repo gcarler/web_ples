@@ -1,7 +1,6 @@
 import { getHeroStatements } from '@/app/actions/content-actions';
 import HomePageClient from '@/components/home/home-page-client';
 import { HeroStatement } from '@/lib/models/content';
-import { getTranslations } from 'next-intl/server';
 
 async function getStatements(): Promise<HeroStatement[]> {
   try {
@@ -25,14 +24,6 @@ async function getStatements(): Promise<HeroStatement[]> {
 
 export default async function Home() {
   const heroStatements = await getStatements();
-  const t = await getTranslations('HomePage');
-
-  const translatedStatements = heroStatements.map((stmt, index) => ({
-      ...stmt,
-      title: t(`heroStatements.${index}.title`),
-      description: t(`heroStatements.${index}.description`),
-      ctaText: t(`heroStatements.${index}.ctaText`)
-  }));
-
-  return <HomePageClient initialHeroStatements={translatedStatements} />;
+  
+  return <HomePageClient initialHeroStatements={heroStatements} />;
 }

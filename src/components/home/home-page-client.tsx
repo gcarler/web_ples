@@ -12,6 +12,7 @@ import { cn } from '@/lib/utils';
 import { useState, useEffect } from 'react';
 import { type HeroStatement } from '@/lib/models/content';
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
 const missionIcons = [
     Lightbulb, Cpu, Database, Server, Globe, MapPin, 
@@ -57,6 +58,14 @@ interface HomePageClientProps {
 export default function HomePageClient({ initialHeroStatements }: HomePageClientProps) {
   const [currentIconIndex, setCurrentIconIndex] = useState(0);
   const [cardOrder, setCardOrder] = useState([allMetrics[0], allMetrics[1], allMetrics[2]]);
+  const t = useTranslations('HomePage');
+
+  const translatedStatements = initialHeroStatements.map((stmt, index) => ({
+      ...stmt,
+      title: t(`heroStatements.${index}.title`),
+      description: t(`heroStatements.${index}.description`),
+      ctaText: t(`heroStatements.${index}.ctaText`)
+  }));
 
   useEffect(() => {
     if (missionIcons.length <= 1) return;
@@ -116,7 +125,7 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
 
             <div className="w-full lg:w-7/12 text-center lg:text-left relative z-20 order-2 lg:order-none">
               <RotatingHeroText
-                statements={initialHeroStatements}
+                statements={translatedStatements}
                 className="items-center text-center lg:items-start lg:text-left"
                 titleClassName="text-4xl sm:text-5xl xl:text-6xl text-foreground mb-6"
                 descriptionClassName="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0"
