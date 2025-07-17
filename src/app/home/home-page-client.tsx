@@ -12,6 +12,8 @@ import { cn } from '@/lib/utils';
 import { useState, useEffect } from 'react';
 import { type HeroStatement } from '@/lib/models/content';
 import React from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { translations } from '@/lib/translations';
 
 const missionIcons = [
     Lightbulb, Cpu, Database, Server, Globe, MapPin, 
@@ -40,33 +42,15 @@ const iconStyles = [
   { top: '15%', left: '90%', size: 'h-8 w-8', duration: '35s', delay: '-4s' },
 ];
 
-const allMetrics = [
-  // Card 1 Options
-  [
-    { icon: CheckCircle, text: "+15 proyectos ejecutados", dataAiHint:"projects checkmark" },
-    { icon: Lightbulb, text: "+5000 horas de consultoría", dataAiHint:"consulting lightbulb" },
-  ],
-  // Card 2 Options
-  [
-    { icon: Database, text: "42 sistemas de información desarrollados", dataAiHint:"database systems" },
-    { icon: Building, text: "10+ sectores impactados", dataAiHint:"building sectors" },
-  ],
-  // Card 3 Options
-  [
-    { icon: UsersRound, text: "8 alianzas académicas y comunitarias", dataAiHint:"community alliance" },
-    { icon: BrainCircuit, text: "+20 soluciones de IA implementadas", dataAiHint:"ai solutions brain" },
-  ]
-];
-
-
-interface HomePageClientProps {
-  initialHeroStatements: HeroStatement[];
-}
-
-export default function HomePageClient({ initialHeroStatements }: HomePageClientProps) {
+export default function HomePageClient() {
+  const { language } = useLanguage();
+  const t = translations[language].HomePage;
+  
   const [currentIconIndex, setCurrentIconIndex] = useState(0);
   const [metricIndices, setMetricIndices] = useState([0, 0, 0]);
   const [fadingCard, setFadingCard] = useState<number | null>(null);
+
+   const heroStatements: HeroStatement[] = t.heroStatements;
 
   useEffect(() => {
     if (missionIcons.length <= 1) return;
@@ -87,16 +71,16 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
         setTimeout(() => {
             setMetricIndices(prevIndices => {
                 const newIndices = [...prevIndices];
-                newIndices[cardToUpdate] = (newIndices[cardToUpdate] + 1) % allMetrics[cardToUpdate].length;
+                newIndices[cardToUpdate] = (newIndices[cardToUpdate] + 1) % t.metrics[cardToUpdate].length;
                 return newIndices;
             });
             setFadingCard(null); // Trigger fade-in
-            cardToUpdate = (cardToUpdate + 1) % allMetrics.length; // Prepare for next card
+            cardToUpdate = (cardToUpdate + 1) % t.metrics.length; // Prepare for next card
         }, 500); // Must match CSS transition duration
     }, 2000); // Change one card every 2 seconds
 
     return () => clearInterval(interval);
-  }, []); // Run only once on mount
+  }, [t.metrics]); // Rerun effect if metrics change
 
 
   const CurrentIcon = missionIcons[currentIconIndex];
@@ -128,7 +112,7 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
 
             <div className="w-full lg:w-7/12 text-center lg:text-left relative z-20 order-2 lg:order-none">
               <RotatingHeroText
-                statements={initialHeroStatements}
+                statements={heroStatements}
                 className="items-center text-center lg:items-start lg:text-left"
                 titleClassName="text-4xl sm:text-5xl xl:text-6xl text-foreground mb-6"
                 descriptionClassName="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0"
@@ -141,10 +125,10 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
       <section className="py-20 md:py-28 bg-background">
         <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-16">
-            EL USO INTELIGENTE DE LA EXPERIENCIA
+            {t.experienceTitle}
           </h1>
           <div className="grid grid-cols-1 sm:grid-cols-3 justify-center items-stretch gap-8 md:gap-12 text-lg text-foreground mb-20">
-            {allMetrics.map((metrics, cardIndex) => {
+            {t.metrics.map((metrics, cardIndex) => {
                 const metric = metrics[metricIndices[cardIndex]];
                 const Icon = metric.icon;
                 return (
@@ -165,7 +149,7 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
           <Button asChild size="lg" variant="accent">
             <Link href="/about">
               <span className="flex items-center">
-                Saber Más <ArrowRight className="ml-2 h-5 w-5" />
+                {t.knowMore} <ArrowRight className="ml-2 h-5 w-5" />
               </span>
             </Link>
           </Button>
@@ -176,14 +160,14 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
         <div className="w-full px-4 sm:px-6 lg:px-8">
            <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
              <div className="order-first">
-               <h2 className="text-3xl lg:text-4xl font-bold mb-4">Nuestra Misión</h2>
+               <h2 className="text-3xl lg:text-4xl font-bold mb-4">{t.missionTitle}</h2>
                <p className="text-lg lg:text-xl opacity-90 mb-8 leading-relaxed">
-                 Somos una empresa dedicada a ofrecer soluciones innovadoras y eficientes que impulsan el crecimiento y la transformación digital de nuestros clientes. Creemos en el poder de la tecnología para simplificar procesos y crear valor.
+                 {t.missionDescription}
                </p>
                <Button asChild size="lg" variant="accent" className="bg-white/20 hover:bg-white/30 border border-white/50 backdrop-blur-sm">
                  <Link href="/about/mision">
                    <span className="flex items-center">
-                     Explora nuestra Misión <ArrowRight className="ml-2 h-5 w-5" />
+                     {t.missionCTA} <ArrowRight className="ml-2 h-5 w-5" />
                    </span>
                  </Link>
                </Button>
@@ -216,14 +200,9 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
 
       <section className="py-16 bg-background" id="nuestras-marcas">
         <div className="w-full px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center mb-10">Nuestras Marcas</h2>
+            <h2 className="text-3xl font-bold text-center mb-10">{t.brandsTitle}</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-                { title: 'Ples CREA', description: 'Cartografía y diseño geoespacial.', icon: Globe, href: "/ples-crea" },
-                { title: 'Ples TIC', description: 'Tecnologías de la información.', icon: Server, href: "/ples-tic" },
-                { title: 'Ples Catastro', description: 'Catastro y gestión territorial.', icon: HomeIcon, href: "/ples-catastro" },
-                { title: 'Ples Consulting', description: 'Consultoría estratégica.', icon: Lightbulb, href: "/ples-consulting" },
-            ].map((marca) => {
+            {t.brands.map((marca) => {
               const MarcaIcon = marca.icon;
               return (
                 <Card key={marca.title} className="text-center group hover:bg-primary hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out hover:shadow-xl">
@@ -238,7 +217,7 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
                     <Button variant="link" asChild className="text-primary group-hover:text-primary-foreground">
                     <Link href={marca.href}>
                         <span className="flex items-center">
-                        Ver Detalles <ArrowRight className="ml-1 h-4 w-4" />
+                        {t.viewDetails} <ArrowRight className="ml-1 h-4 w-4" />
                         </span>
                     </Link>
                     </Button>
@@ -251,61 +230,38 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
 
       <section className="py-16 bg-secondary">
          <div className="w-full px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center mb-10">Nuestro Público Objetivo</h2>
+            <h2 className="text-3xl font-bold text-center mb-10">{t.audienceTitle}</h2>
             <div className="grid md:grid-cols-3 gap-8">
-            <Card className="shadow-sm group hover:shadow-xl hover:scale-105 hover:border-primary transition-all duration-300 ease-in-out border">
-                <CardHeader>
-                <div className="flex items-center gap-3 mb-2">
-                    <Building className="h-6 w-6 text-primary group-hover:text-accent transition-colors"/>
-                    <CardTitle>Sector Público</CardTitle>
-                </div>
-                </CardHeader>
-                <CardContent>
-                <p className="text-muted-foreground">
-                    Ofrecemos soluciones adaptadas a las necesidades de entidades gubernamentales y administraciones públicas, mejorando la eficiencia y transparencia.
-                </p>
-                </CardContent>
-            </Card>
-            <Card className="shadow-sm group hover:shadow-xl hover:scale-105 hover:border-primary transition-all duration-300 ease-in-out border">
-                <CardHeader>
+             {t.audiences.map((audience) => {
+                const AudienceIcon = audience.icon;
+                return (
+                 <Card key={audience.title} className="shadow-sm group hover:shadow-xl hover:scale-105 hover:border-primary transition-all duration-300 ease-in-out border">
+                    <CardHeader>
                     <div className="flex items-center gap-3 mb-2">
-                    <Handshake className="h-6 w-6 text-accent group-hover:text-primary transition-colors"/>
-                    <CardTitle>Sector Privado</CardTitle>
+                        <AudienceIcon className="h-6 w-6 text-primary group-hover:text-accent transition-colors"/>
+                        <CardTitle>{audience.title}</CardTitle>
                     </div>
-                </CardHeader>
-                <CardContent>
-                <p className="text-muted-foreground">
-                    Impulsamos la competitividad de las empresas con herramientas tecnológicas y consultoría estratégica para optimizar sus operaciones.
-                </p>
-                </CardContent>
-            </Card>
-            <Card className="shadow-sm group hover:shadow-xl hover:scale-105 hover:border-primary transition-all duration-300 ease-in-out border">
-                <CardHeader>
-                    <div className="flex items-center gap-3 mb-2">
-                        <Users className="h-6 w-6 text-primary group-hover:text-accent transition-colors" />
-                    <CardTitle>Sector Social y Comunitario</CardTitle>
-                    </div>
-                </CardHeader>
-                <CardContent>
-                <p className="text-muted-foreground">
-                    Colaboramos con organizaciones sin fines de lucro y comunidades para fortalecer su impacto social a través de la tecnología y la innovación.
-                </p>
-                </CardContent>
-            </Card>
+                    </CardHeader>
+                    <CardContent>
+                    <p className="text-muted-foreground">{audience.description}</p>
+                    </CardContent>
+                </Card>
+                )
+             })}
             </div>
         </div>
       </section>
 
       <section className="relative py-24 overflow-hidden bg-background">
         <div className="w-full px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h2 className="text-3xl font-bold mb-4 text-primary">¿Listo para Transformar su Organización?</h2>
+          <h2 className="text-3xl font-bold mb-4 text-primary">{t.readyTitle}</h2>
           <p className="text-lg text-foreground mb-8 max-w-2xl mx-auto">
-            Contáctenos hoy mismo para descubrir cómo nuestras soluciones pueden ayudarle a alcanzar sus objetivos.
+            {t.readyDescription}
           </p>
           <Button size="lg" variant="accent" asChild>
              <Link href="/forms">
                <span className="flex items-center">
-                 Contactar Ahora <ArrowRight className="ml-2" />
+                 {t.readyCTA} <ArrowRight className="ml-2" />
                </span>
             </Link>
           </Button>
