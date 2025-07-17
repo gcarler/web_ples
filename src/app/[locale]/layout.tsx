@@ -1,54 +1,48 @@
 
-'use client';
-
-import '../globals.css';
+import {notFound} from 'next/navigation';
+import {NextIntlClientProvider} from 'next-intl';
+import { getRequestConfig } from 'next-intl/server';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { Toaster } from '@/components/ui/toaster';
 import { AuthProvider } from '@/contexts/AuthContext';
 import { ThemeProvider } from "next-themes";
-import type { PropsWithChildren } from 'react';
-import { usePathname } from 'next/navigation';
-import { NextIntlClientProvider, useMessages } from 'next-intl';
+import '../globals.css';
 
 type Props = {
   children: React.ReactNode;
   params: {locale: string};
 };
 
-function MainLayout({ children }: PropsWithChildren) {
-    const pathname = usePathname();
-    const noLayoutRoutes = ['/login', '/register', '/forgot-password', '/forms', '/footer'];
-    const showHeader = !noLayoutRoutes.some(route => pathname.includes(route));
-    const showFooter = !noLayoutRoutes.some(route => pathname.includes(route));
-
-    return (
-        <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-        >
-            <AuthProvider>
-                {showHeader && <Header />}
-                <main className="flex-grow w-full">{children}</main>
-                {showFooter && <Footer />}
-                <Toaster />
-            </AuthProvider>
-        </ThemeProvider>
-    );
+// This function is required by next-intl to load messages for the given locale.
+async function getMessages(locale: string) {
+  try {
+    return (await import(`../../messages/${locale}.json`)).default;
+  } catch (error) {
+    notFound();
+  }
 }
 
-
-export default function LocaleLayout({ children, params: {locale} }: Props) {
-  const messages = useMessages();
+export default async function LocaleLayout({ children, params: {locale} }: Props) {
+  const messages = await getMessages(locale);
 
   return (
-    // The suppressHydrationWarning is needed because of next-themes
     <html lang={locale} suppressHydrationWarning>
       <body className="min-h-screen flex flex-col antialiased bg-background text-foreground">
         <NextIntlClientProvider locale={locale} messages={messages}>
-            <MainLayout>{children}</MainLayout>
+           <ThemeProvider
+              attribute="class"
+              defaultTheme="dark"
+              enableSystem
+              disableTransitionOnChange
+           >
+              <AuthProvider>
+                  <Header />
+                  <main className="flex-grow w-full">{children}</main>
+                  <Footer />
+                  <Toaster />
+              </AuthProvider>
+           </ThemeProvider>
         </NextIntlClientProvider>
       </body>
     </html>
