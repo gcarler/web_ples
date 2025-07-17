@@ -1,16 +1,13 @@
-
 // src/app/porque-somos-tecnologia/page.tsx
+'use client'
+
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, Cpu, Code, CloudCog, Database, Bot, ShieldCheck, MonitorSmartphone } from 'lucide-react';
 import React from 'react';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-
-export const metadata = {
-  title: 'Por Qué Somos Tecnología - PLES',
-  description: 'Descubra cómo aplicamos herramientas de vanguardia y desarrollamos soluciones robustas para catalizar la eficiencia y la escala.',
-};
+import { usePathname } from 'next/navigation';
 
 const pageDetails = {
   parentLink: "/about",
@@ -55,21 +52,23 @@ const tecnologiaPoints = [
   }
 ];
 
-export default function PorqueSomosTecnologiaPage() {
+export default function PorqueSomosTecnologiaPage({ params }: { params: { locale: string } }) {
+  const locale = params.locale;
   const MainIcon = pageDetails.mainIcon;
+
   return (
     <div className="py-10 w-full">
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center space-x-2 mb-12">
           <Button variant="outline" size="sm" asChild className="group hover:bg-primary hover:text-primary-foreground transition-colors">
-            <Link href={pageDetails.parentLink}>
+            <Link href={`/${locale}${pageDetails.parentLink}`}>
               <ArrowLeft className="mr-2 h-4 w-4 group-hover:text-primary-foreground" />
               Volver a {pageDetails.parentName}
             </Link>
           </Button>
            <span className="text-muted-foreground">|</span>
           <Button variant="outline" size="sm" asChild className="group hover:bg-primary hover:text-primary-foreground transition-colors">
-            <Link href="/">
+            <Link href={`/${locale}`}>
                PLES Home
             </Link>
           </Button>
@@ -138,7 +137,7 @@ export default function PorqueSomosTecnologiaPage() {
 
         <section className="text-center mt-0 mb-16 animate-fade-in-up" style={{ animationDelay: '0.8s', animationFillMode: 'forwards' }}>
           <Button size="lg" variant="accent" asChild className="text-lg px-8 py-4">
-            <Link href={pageDetails.ctaLink}>
+            <Link href={`/${locale}${pageDetails.ctaLink}`}>
               <span className="flex items-center">
                 {pageDetails.ctaText} <ArrowRight className="ml-2 h-5 w-5" />
               </span>

@@ -1,5 +1,6 @@
-
 // src/app/ples-crea/page.tsx
+'use client'
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
@@ -9,11 +10,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import React from 'react';
-
-export const metadata = {
-  title: 'PLES CREA - Cartografía Inteligente para un Futuro Sostenible y Equitativo',
-  description: 'En PLES CREA, fusionamos la ciencia de datos geoespaciales con una visión estratégica para ofrecer soluciones cartográficas que impulsan la resiliencia ambiental, la equidad territorial y la toma de decisiones informada.',
-};
+import { usePathname } from 'next/navigation';
 
 const services = [
   {
@@ -117,7 +114,9 @@ const MapPinComponent = ({ className, style }: { className?: string; style?: Rea
   </div>
 );
 
-export default function PlesCreaPage() {
+export default function PlesCreaPage({ params }: { params: { locale: string } }) {
+  const locale = params.locale;
+
   return (
     <div className="space-y-16">
       <section className="relative bg-background overflow-hidden">
@@ -153,7 +152,7 @@ export default function PlesCreaPage() {
                 <Badge variant="default" className="text-md px-4 py-2 shadow-md">#EquidadTerritorial</Badge>
               </div>
               <Button size="lg" variant="accent" className="text-lg px-8 py-3" asChild>
-                <Link href="/forms?service=ples-crea&subject=Consulta%20PLES%20CREA">
+                <Link href={`/${locale}/forms?service=ples-crea&subject=Consulta%20PLES%20CREA`}>
                   <span className="flex items-center">
                     Descubra Nuestras Soluciones <ArrowRight className="ml-2 h-5 w-5" />
                   </span>
@@ -300,7 +299,7 @@ export default function PlesCreaPage() {
                 </CardContent>
                 <div className="p-6 pt-0">
                         <Button variant="link" asChild className="text-primary group-hover:text-primary-foreground">
-                            <Link href="/forms?subject=Mas%20Informacion%20Caso%20Estudio%20CREA">
+                            <Link href={`/${locale}/forms?subject=Mas%20Informacion%20Caso%20Estudio%20CREA`}>
                                 <span className="flex items-center">
                                     Conocer Más <ArrowRight className="ml-1 h-4 w-4"/>
                                 </span>
@@ -367,7 +366,7 @@ export default function PlesCreaPage() {
               Permítanos ayudarle a visualizar sus desafíos y oportunidades para tomar decisiones más informadas y construir un futuro más resiliente y equitativo.
             </p>
             <Button size="xl" variant="accent" className="text-lg px-10 py-4" asChild>
-            <Link href="/forms?service=ples-crea&subject=Consulta%20Cartografia%20Inteligente">
+            <Link href={`/${locale}/forms?service=ples-crea&subject=Consulta%20Cartografia%20Inteligente`}>
                 <span className="flex items-center">
                     Hablemos de su Proyecto <ArrowRight className="ml-3 h-5 w-5" />
                 </span>

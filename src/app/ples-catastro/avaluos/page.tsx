@@ -1,15 +1,12 @@
-
 // src/app/ples-catastro/avaluos/page.tsx
+'use client'
+
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, CheckCircle, Scale, BarChart3, ClipboardCheck, FileText, TrendingUp } from 'lucide-react';
 import React from 'react';
-
-export const metadata = {
-  title: 'Avalúos Masivos y Puntuales - PLES Catastro',
-  description: 'Realizamos valoraciones de propiedades con metodologías robustas y transparentes para una base imponible justa y una gestión eficiente de activos.',
-};
+import { usePathname } from 'next/navigation';
 
 const serviceDetails = {
   parentLink: "/ples-catastro",
@@ -37,21 +34,23 @@ const serviceDetails = {
   formSubject: 'Consulta%20Avaluos'
 };
 
-export default function AvaluosPage() {
+export default function AvaluosPage({ params }: { params: { locale: string } }) {
+  const locale = params.locale;
   const MainIcon = serviceDetails.mainIcon;
+
   return (
     <div className="py-10 w-full px-4 sm:px-6 lg:px-8">
       <div className="max-w-screen-xl mx-auto">
         <div className="flex items-center space-x-2 mb-8">
           <Button variant="outline" size="sm" asChild className="group hover:bg-primary hover:text-primary-foreground transition-colors">
-            <Link href={serviceDetails.parentLink}>
+            <Link href={`/${locale}${serviceDetails.parentLink}`}>
               <ArrowLeft className="mr-2 h-4 w-4 group-hover:text-primary-foreground" />
               Volver a {serviceDetails.parentName}
             </Link>
           </Button>
           <span className="text-muted-foreground">|</span>
           <Button variant="outline" size="sm" asChild className="group hover:bg-primary hover:text-primary-foreground transition-colors">
-            <Link href="/">
+            <Link href={`/${locale}`}>
                PLES Home
             </Link>
           </Button>
@@ -109,7 +108,7 @@ export default function AvaluosPage() {
         
         <section className="text-center">
           <Button size="lg" variant="accent" asChild className="text-lg px-8 py-4">
-            <Link href={`/forms?service=${serviceDetails.serviceSlug}&subject=${serviceDetails.formSubject}`}>
+            <Link href={`/${locale}/forms?service=${serviceDetails.serviceSlug}&subject=${serviceDetails.formSubject}`}>
               <span className="flex items-center">
                 {serviceDetails.ctaText} <ArrowRight className="ml-2 h-5 w-5" />
               </span>

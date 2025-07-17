@@ -11,6 +11,7 @@ import PlexusIllustration from '@/components/illustrations/PlexusIllustration';
 import DataPipelineIllustration from '@/components/illustrations/DataPipelineIllustration';
 import { Badge } from '@/components/ui/badge';
 import { InteractiveSoftwareSuites } from '@/components/ples-tic/interactive-software-suites';
+import { usePathname } from 'next/navigation';
 
 const valuePropositions = [
     {
@@ -133,7 +134,8 @@ const caseStudies = [
     },
 ];
 
-export default function PlesTicPage() {
+export default function PlesTicPage({ params }: { params: { locale: string } }) {
+  const locale = params.locale;
 
   return (
     <div className="space-y-0">
@@ -170,7 +172,7 @@ export default function PlesTicPage() {
                 <Badge variant="default" className="text-md px-4 py-2 shadow-md">#TransformacionDigital</Badge>
               </div>
               <Button size="lg" variant="accent" className="text-lg px-8 py-3" asChild>
-                <Link href="/forms?service=ples-tic&subject=Consulta%20Soluciones%20PLES%20TIC">
+                <Link href={`/${locale}/forms?service=ples-tic&subject=Consulta%20Soluciones%20PLES%20TIC`}>
                   <span className="flex items-center">
                     Descubra Nuestras Soluciones <ArrowRight className="ml-2 h-5 w-5" />
                   </span>
@@ -208,7 +210,7 @@ export default function PlesTicPage() {
             <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestros Servicios Tecnológicos Clave</h2>
             <div className="grid md:grid-cols-2 gap-8">
             {coreServices.map(({icon: Icon, title, description, details, ctaLink, ctaText}) => (
-              <Link key={title} href={ctaLink || '#'} passHref legacyBehavior>
+              <Link key={title} href={`/${locale}${ctaLink}` || '#'} passHref legacyBehavior>
                 <a className="block group hover:scale-105 transition-all duration-300 ease-in-out">
                   <Card className="h-full group-hover:shadow-xl group-hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground bg-card group-hover:animate-gradient group-hover:bg-[length:200%_200%]">
                     <CardHeader className="flex flex-row items-start gap-4">
@@ -304,7 +306,7 @@ export default function PlesTicPage() {
                 </CardContent>
                 <div className="p-6 pt-0">
                     <Button variant="link" asChild className="text-primary group-hover:text-primary-foreground">
-                        <Link href="/forms?subject=Mas%20Informacion%20Caso%20Estudio%20TIC">
+                        <Link href={`/${locale}/forms?subject=Mas%20Informacion%20Caso%20Estudio%20TIC`}>
                             <span className="flex items-center">
                                 Conocer Más <ArrowRight className="ml-1 h-4 w-4"/>
                             </span>
@@ -325,7 +327,7 @@ export default function PlesTicPage() {
              Descubra cómo las soluciones personalizadas de PLES TIC pueden transformar su organización, optimizar sus operaciones y abrir nuevas oportunidades de crecimiento.
             </p>
             <Button size="xl" variant="accent" className="text-lg px-10 py-4" asChild>
-            <Link href="/forms?service=ples-tic&subject=Solicitud%20Asesoria%20Tecnologica">
+            <Link href={`/${locale}/forms?service=ples-tic&subject=Solicitud%20Asesoria%20Tecnologica`}>
                 <span className="flex items-center">
                     Solicitar Asesoría Tecnológica <ArrowRight className="ml-3 h-5 w-5" />
                 </span>

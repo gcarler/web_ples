@@ -1,15 +1,14 @@
 // src/app/innovacion-estrategias/page.tsx
+'use client'
+
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, CheckCircle, Cpu, Lightbulb, Search, UsersRound, Layers, TrendingUp, ShieldCheck } from 'lucide-react';
 import React from 'react';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { usePathname } from 'next/navigation';
 
-export const metadata = {
-  title: 'Innovación que Impacta, Estrategias que Perduran - PLES',
-  description: 'Descubra cómo PLES combina innovación disruptiva con estrategias robustas para generar un impacto medible y construir un legado sostenible para su organización.',
-};
 
 const pageDetails = {
   parentLink: "/about",
@@ -54,21 +53,23 @@ const keyAspects = [
   }
 ];
 
-export default function InnovacionEstrategiasPage() {
+export default function InnovacionEstrategiasPage({ params }: { params: { locale: string } }) {
+  const locale = params.locale;
   const MainIcon = pageDetails.mainIcon;
+
   return (
     <div className="py-10 w-full">
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center space-x-2 mb-12">
           <Button variant="outline" size="sm" asChild className="group hover:bg-primary hover:text-primary-foreground transition-colors">
-            <Link href={pageDetails.parentLink}>
+            <Link href={`/${locale}${pageDetails.parentLink}`}>
               <ArrowLeft className="mr-2 h-4 w-4 group-hover:text-primary-foreground" />
               Volver a {pageDetails.parentName}
             </Link>
           </Button>
           <span className="text-muted-foreground">|</span>
           <Button variant="outline" size="sm" asChild className="group hover:bg-primary hover:text-primary-foreground transition-colors">
-            <Link href="/">
+            <Link href={`/${locale}`}>
                PLES Home
             </Link>
           </Button>
@@ -137,7 +138,7 @@ export default function InnovacionEstrategiasPage() {
 
         <section className="text-center mt-0 mb-16 animate-fade-in-up" style={{ animationDelay: '0.8s', animationFillMode: 'forwards' }}>
           <Button size="lg" variant="accent" asChild className="text-lg px-8 py-4">
-            <Link href={pageDetails.ctaLink}>
+            <Link href={`/${locale}${pageDetails.ctaLink}`}>
               <span className="flex items-center">
                 {pageDetails.ctaText} <ArrowRight className="ml-2 h-5 w-5" />
               </span>

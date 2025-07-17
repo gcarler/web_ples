@@ -1,14 +1,12 @@
 // src/app/ples-consulting/page.tsx
+'use client'
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ArrowRight, CheckCircle, Lightbulb, Users, TrendingUp, ShieldCheck, Briefcase, Layers, BookOpen, MessageSquare, Search, Users2, BarChart3, Zap, Settings } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
-
-export const metadata = {
-  title: 'PLES Consulting - Estrategia, Innovación y Transformación para el Impacto',
-  description: 'Consultoría experta para diseñar e implementar estrategias que generan impacto positivo y duradero en organizaciones públicas, privadas y del sector social.',
-};
+import { usePathname } from 'next/navigation';
 
 const expertiseAreas = [
   {
@@ -64,7 +62,9 @@ const processSteps = [
   }
 ];
 
-export default function PlesConsultingPage() {
+export default function PlesConsultingPage({ params }: { params: { locale: string } }) {
+  const locale = params.locale;
+
   return (
     <div className="space-y-16">
       <section className="relative bg-background overflow-hidden">
@@ -100,7 +100,7 @@ export default function PlesConsultingPage() {
                 <Badge variant="default" className="text-md px-4 py-2 shadow-md">#DesarrolloSostenible</Badge>
               </div>
               <Button size="lg" variant="accent" className="text-lg px-8 py-3" asChild>
-                <Link href="/forms?service=ples-consulting&subject=Consulta%20PLES%20Consulting">
+                <Link href={`/${locale}/forms?service=ples-consulting&subject=Consulta%20PLES%20Consulting`}>
                   <span className="flex items-center">
                     Conversemos Sobre sus Desafíos <ArrowRight className="ml-2 h-5 w-5" />
                   </span>
@@ -214,7 +214,7 @@ export default function PlesConsultingPage() {
              Si busca un aliado estratégico para navegar la complejidad, innovar con propósito y alcanzar resultados extraordinarios, PLES Consulting es su socio ideal.
             </p>
             <Button size="xl" variant="accent" className="text-lg px-10 py-4" asChild>
-            <Link href="/forms?service=ples-consulting&subject=Solicitud%20Asesoria%20Estrategica">
+            <Link href={`/${locale}/forms?service=ples-consulting&subject=Solicitud%20Asesoria%20Estrategica`}>
                 <span className="flex items-center">
                     Contacte con Nuestros Expertos <ArrowRight className="ml-3 h-5 w-5" />
                 </span>

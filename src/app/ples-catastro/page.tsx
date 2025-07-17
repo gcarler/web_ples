@@ -1,16 +1,13 @@
 // src/app/ples-catastro/page.tsx
+'use client'
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, CheckCircle, Home, Scale, Users, BarChart3, FileText, Settings, Briefcase, MapPin, ShieldCheck, Lightbulb, Target, Search, TrendingUp, Layers, Database, Eye } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
-
-export const metadata = {
-  title: 'PLES Catastro - Soluciones Innovadoras para la Gestión Territorial',
-  description: 'Innovación en gestión territorial para un desarrollo eficiente y sostenible. Con el uso inteligente de la experiencia y tecnología de vanguardia, ofrecemos precisión, optimizamos costos y garantizamos la más alta calidad.',
-};
+import { usePathname } from 'next/navigation';
 
 const coreServices = [
   {
@@ -66,16 +63,11 @@ const valuePropositions = [
   },
 ];
 
-const impactFigures = [
-  { figure: "+30%", label: "Precisión en Levantamientos", icon: Target, dataAiHint: "target accuracy" },
-  { figure: "25%", label: "Reducción en Tiempos de Trámite", icon: FileText, dataAiHint: "document efficiency" },
-  { figure: "150+", label: "Municipios Asesorados", icon: Briefcase, dataAiHint: "government briefcase" },
-];
-
 const technologies = ['SIG (QGIS, ArcGIS Pro)', 'GPS y Estaciones Totales de Alta Precisión', 'Drones y Fotogrametría Aérea', 'Bases de Datos Espaciales (PostGIS)', 'Modelos de Avalúo Automatizado (AVM)', 'Plataformas Web GIS', 'Inteligencia Artificial Geoespacial'];
 
+export default function PlesCatastroPage({ params }: { params: { locale: string } }) {
+  const locale = params.locale;
 
-export default function PlesCatastroPage() {
   return (
     <div className="space-y-16">
       <section className="relative bg-background overflow-hidden">
@@ -111,7 +103,7 @@ export default function PlesCatastroPage() {
                 <Badge variant="default" className="text-md px-4 py-2 shadow-md">#AdministracionDeTierras</Badge>
               </div>
               <Button size="lg" variant="accent" className="text-lg px-8 py-3" asChild>
-                <Link href="/forms?service=ples-catastro&subject=Consulta%20PLES%20Catastro">
+                <Link href={`/${locale}/forms?service=ples-catastro&subject=Consulta%20PLES%20Catastro`}>
                   <span className="flex items-center">
                     Descubra Nuestras Soluciones <ArrowRight className="ml-2 h-5 w-5" />
                   </span>
@@ -151,7 +143,7 @@ export default function PlesCatastroPage() {
             {coreServices.map((service) => {
               const ServiceIcon = service.icon;
               return (
-              <Link key={service.title} href={service.link} passHref legacyBehavior>
+              <Link key={service.title} href={`/${locale}${service.link}`} passHref legacyBehavior>
                 <a className="block group hover:scale-105 transition-all duration-300 ease-in-out">
                   <Card className="h-full group-hover:shadow-xl group-hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground bg-card group-hover:animate-gradient group-hover:bg-[length:200%_200%]">
                     <CardHeader className="flex flex-row items-start gap-4">
@@ -277,27 +269,9 @@ export default function PlesCatastroPage() {
         </div>
       </section>
 
-       <section className="py-12 bg-background">
+      <section className="py-12 bg-background">
         <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1 mb-16">Impacto en Cifras</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12">
-            {impactFigures.map((figure) => {
-              const FigureIcon = figure.icon;
-              return (
-                <Card key={figure.label} className="p-6 group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col items-center hover:animate-gradient hover:bg-[length:200%_200%]">
-                  <div className="flex justify-center mb-4"><FigureIcon className="h-10 w-10 text-primary group-hover:text-primary-foreground"/></div>
-                  <p className="text-4xl font-bold text-primary group-hover:text-primary-foreground mb-2">{figure.figure}</p>
-                  <p className="text-muted-foreground group-hover:text-primary-foreground/90 text-lg">{figure.label}</p>
-                </Card>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 bg-background">
-        <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Tecnologías y Herramientas de Vanguardia</h2>
+          <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1 mb-16">Tecnologías y Herramientas de Vanguardia</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto mb-10">
             Combinamos conocimiento experto con las herramientas más avanzadas para ofrecer resultados superiores en cada proyecto catastral, asegurando la eficiencia y la calidad de los productos finales.
           </p>
@@ -319,7 +293,7 @@ export default function PlesCatastroPage() {
             Contáctenos para una evaluación personalizada y descubra cómo nuestras soluciones pueden ayudar a su organización a alcanzar sus objetivos de desarrollo y gestión territorial de manera eficiente y sostenible, aprovechando nuestra experiencia para optimizar sus recursos.
             </p>
             <Button size="xl" variant="accent" className="text-lg px-10 py-4" asChild>
-            <Link href="/forms?service=ples-catastro&subject=Consulta%20Modernizacion%20Catastral">
+            <Link href={`/${locale}/forms?service=ples-catastro&subject=Consulta%20Modernizacion%20Catastral`}>
                 <span className="flex items-center">
                     Solicitar Asesoría Especializada <ArrowRight className="ml-3 h-5 w-5" />
                 </span>
