@@ -1,33 +1,13 @@
 // src/app/layout.tsx
 import type { PropsWithChildren } from 'react';
-import { Header } from '@/components/layout/header';
-import { Footer } from '@/components/layout/footer';
-import { Toaster } from '@/components/ui/toaster';
-import { AuthProvider } from '@/contexts/AuthContext';
-import { LanguageProvider } from '@/contexts/LanguageContext';
-import { ThemeProvider } from "next-themes";
 import './globals.css';
 
+// This is now a pass-through layout. The main structure is in [locale]/layout.tsx
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
-    // The lang attribute will be managed by the [locale] layout
     <html suppressHydrationWarning>
-      <body className="min-h-screen flex flex-col antialiased bg-background text-foreground">
-        <LanguageProvider>
-          <ThemeProvider
-              attribute="class"
-              defaultTheme="dark"
-              enableSystem
-              disableTransitionOnChange
-          >
-              <AuthProvider>
-                  <Header />
-                  <main className="flex-grow w-full">{children}</main>
-                  <Footer />
-                  <Toaster />
-              </AuthProvider>
-          </ThemeProvider>
-        </LanguageProvider>
+      <body>
+          {children}
       </body>
     </html>
   );
