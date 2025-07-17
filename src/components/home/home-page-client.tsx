@@ -314,42 +314,6 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
           </Button>
         </div>
       </section>
-
-      <section className="py-16 bg-background">
-         <div className="w-full px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center mb-10">Testimonios</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-                { name: 'Ruth Gutierrez', title: 'Directora OEDS, Universidad de Cartagena', text: '¡Increíble servicio! Superaron nuestras expectativas.', image: 'https://placehold.co/100x100.png', hint: 'woman director', icon: GraduationCap },
-                { name: 'Olga Montes', title: 'Directora, Corporación Rhema', text: 'La implementación fue fluida y el soporte excelente.', image: 'https://placehold.co/100x100.png', hint: 'woman professional', icon: Building },
-                { name: 'Mary Janacet', title: 'CEO, Betrip', text: 'Nos ayudaron a optimizar nuestros procesos clave.', image: 'https://placehold.co/100x100.png', hint: 'woman ceo', icon: Briefcase },
-            ].map((testimonial) => {
-                const TestimonialIcon = testimonial.icon;
-                return (
-                    <Card key={testimonial.name} className="flex flex-col">
-                        <CardContent className="pt-6 flex-grow">
-                            <Quote className="h-6 w-6 text-muted-foreground mb-4" />
-                            <p className="text-foreground italic mb-4">"{testimonial.text}"</p>
-                        </CardContent>
-                        <CardHeader className="flex flex-row items-center gap-4 pt-0 mt-auto">
-                            <Avatar className="h-12 w-12">
-                                <AvatarImage src={testimonial.image} alt={testimonial.name} data-ai-hint={testimonial.hint} />
-                                <AvatarFallback>{testimonial.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
-                            </Avatar>
-                            <div className="flex-1">
-                                <div className="flex items-center gap-2">
-                                    <p className="font-semibold">{testimonial.name}</p>
-                                    <TestimonialIcon className="h-4 w-4 text-primary" />
-                                </div>
-                                <p className="text-sm text-muted-foreground">{testimonial.title}</p>
-                            </div>
-                        </CardHeader>
-                    </Card>
-                )
-            })}
-            </div>
-        </div>
-      </section>
     </div>
   );
 }
