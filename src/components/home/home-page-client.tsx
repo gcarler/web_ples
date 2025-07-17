@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { ArrowRight, Building, Users, Handshake, Quote, CheckCircle, Database, UsersRound, Globe, Server, HomeIcon, Lightbulb, Layers, Cpu, BookOpen, Send, MapPin, BarChart3, ShieldCheck, Settings, BrainCircuit, GraduationCap, Briefcase } from 'lucide-react';
 import { RotatingHeroText } from '@/components/layout/rotating-hero-text';
 import { cn } from '@/lib/utils';
@@ -331,16 +332,10 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
                             <p className="text-foreground italic mb-4">"{testimonial.text}"</p>
                         </CardContent>
                         <CardHeader className="flex flex-row items-center gap-4 pt-0 mt-auto">
-                            <div className="relative h-12 w-12 flex-shrink-0">
-                                <Image
-                                    src={`https://placehold.co/100x100.png`}
-                                    alt={testimonial.name}
-                                    width={100}
-                                    height={100}
-                                    data-ai-hint={testimonial.hint}
-                                    className="rounded-lg object-cover"
-                                />
-                            </div>
+                            <Avatar className="h-12 w-12">
+                                <AvatarImage src={testimonial.image} alt={testimonial.name} data-ai-hint={testimonial.hint} />
+                                <AvatarFallback>{testimonial.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                            </Avatar>
                             <div className="flex-1">
                                 <div className="flex items-center gap-2">
                                     <p className="font-semibold">{testimonial.name}</p>
