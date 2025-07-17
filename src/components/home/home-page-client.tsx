@@ -333,12 +333,12 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
                         <CardHeader className="flex flex-row items-center gap-4 pt-0 mt-auto">
                             <div className="relative h-12 w-12 flex-shrink-0">
                                 <Image
-                                    src={testimonial.image}
+                                    src={`https://placehold.co/100x100.png`}
                                     alt={testimonial.name}
-                                    layout="fill"
-                                    objectFit="cover"
+                                    width={100}
+                                    height={100}
                                     data-ai-hint={testimonial.hint}
-                                    className="rounded-lg"
+                                    className="rounded-lg object-cover"
                                 />
                             </div>
                             <div className="flex-1">
