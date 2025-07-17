@@ -11,8 +11,8 @@ import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import { type CoreValue, type Pillar } from '@/lib/models/content';
 import React from 'react';
-import { useLanguage } from '@/contexts/LanguageContext';
 import { translations } from '@/lib/translations';
+import { usePathname } from 'next/navigation';
 
 
 // Icon Map to render Lucide icons from string names
@@ -62,8 +62,17 @@ interface AboutPageClientProps {
 }
 
 export default function AboutPageClient({ initialCoreValues, initialPillars }: AboutPageClientProps) {
-  const { language } = useLanguage();
-  const t = translations[language].AboutPage;
+  const pathname = usePathname();
+  const [locale, setLocale] = useState('es');
+
+  useEffect(() => {
+    const segments = pathname.split('/');
+    if (segments.length > 1 && (segments[1] === 'en' || segments[1] === 'es')) {
+      setLocale(segments[1]);
+    }
+  }, [pathname]);
+
+  const t = translations[locale as 'en' | 'es'].AboutPage;
 
   const [selectedValue, setSelectedValue] = useState(initialCoreValues[2]?.id || 'integridad');
   const selectedContent = initialCoreValues.find(v => v.id === selectedValue);
@@ -121,7 +130,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                 ))}
               </div>
               <Button size="lg" variant="accent" className="text-lg px-8 py-3" asChild>
-                <Link href="/about/esencia"><span className="flex items-center">{t.hero.cta} <ArrowRight className="ml-2 h-5 w-5" /></span></Link>
+                <Link href={`/${locale}/about/esencia`}><span className="flex items-center">{t.hero.cta} <ArrowRight className="ml-2 h-5 w-5" /></span></Link>
               </Button>
             </div>
           </div>
@@ -143,7 +152,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                return (
                   <Card key={index} className="group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out hover:animate-gradient hover:bg-[length:200%_200%]">
                     <CardContent className="p-0">
-                        <DynamicSection title={section.title} content={section.content} link={section.link} icon={IconComponent} />
+                        <DynamicSection title={section.title} content={section.content} link={`/${locale}${section.link}`} icon={IconComponent} />
                     </CardContent>
                   </Card>
                )
@@ -278,7 +287,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                 </CardContent>
                 <div className="p-6 pt-0">
                     <Button variant="link" asChild className="text-primary group-hover:text-primary-foreground">
-                    <Link href={pilar.link}><span className="flex items-center">{t.pillars.cta} <ArrowRight className="ml-1 h-4 w-4" /></span></Link>
+                    <Link href={`/${locale}${pilar.link}`}><span className="flex items-center">{t.pillars.cta} <ArrowRight className="ml-1 h-4 w-4" /></span></Link>
                     </Button>
                 </div>
                 </Card>

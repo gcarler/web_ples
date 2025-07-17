@@ -4,10 +4,7 @@ import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { Toaster } from '@/components/ui/toaster';
 import { AuthProvider } from '@/contexts/AuthContext';
-import { LanguageProvider } from '@/contexts/LanguageContext';
 import { ThemeProvider } from "next-themes";
-
-// Removed Inter font to ensure Comfortaa from globals.css is used.
 
 type Props = {
   children: React.ReactNode;
@@ -20,21 +17,19 @@ export default function LocaleLayout({children, params: {locale}}: Props) {
     <html lang={locale} suppressHydrationWarning>
       {/* The className no longer includes a font, so it defaults to what's in globals.css */}
       <body className={`min-h-screen flex flex-col antialiased bg-background text-foreground`}>
-        <LanguageProvider>
-          <ThemeProvider
-              attribute="class"
-              defaultTheme="dark"
-              enableSystem
-              disableTransitionOnChange
-          >
-              <AuthProvider>
-                  <Header />
-                  <main className="flex-grow w-full">{children}</main>
-                  <Footer />
-                  <Toaster />
-              </AuthProvider>
-          </ThemeProvider>
-        </LanguageProvider>
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+        >
+            <AuthProvider>
+                <Header />
+                <main className="flex-grow w-full">{children}</main>
+                <Footer />
+                <Toaster />
+            </AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

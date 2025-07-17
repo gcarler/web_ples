@@ -18,13 +18,35 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { PlesGroupLogo } from '@/components/logo';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
-import { useLanguage } from '@/contexts/LanguageContext';
 import { translations } from '@/lib/translations';
 
 function LanguageSwitcher() {
-  const { language, setLanguage } = useLanguage();
+  const pathname = usePathname();
+  const router = useRouter();
+  const [currentLocale, setCurrentLocale] = useState('es');
+
+  useEffect(() => {
+    const segments = pathname.split('/');
+    if (segments.length > 1 && ['en', 'es'].includes(segments[1])) {
+      setCurrentLocale(segments[1]);
+    }
+  }, [pathname]);
+
+  const switchLanguage = (newLocale: 'en' | 'es') => {
+    if (newLocale === currentLocale) return;
+    
+    const segments = pathname.split('/');
+    // If the path has a locale, replace it. Otherwise, add it.
+    if (segments.length > 1 && ['en', 'es'].includes(segments[1])) {
+        segments[1] = newLocale;
+    } else {
+        segments.splice(1, 0, newLocale);
+    }
+    const newPath = segments.join('/');
+    router.push(newPath);
+  };
 
   return (
     <DropdownMenu>
@@ -35,10 +57,10 @@ function LanguageSwitcher() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setLanguage('en')} disabled={language === 'en'}>
+        <DropdownMenuItem onClick={() => switchLanguage('en')} disabled={currentLocale === 'en'}>
           English
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setLanguage('es')} disabled={language === 'es'}>
+        <DropdownMenuItem onClick={() => switchLanguage('es')} disabled={currentLocale === 'es'}>
           Español
         </DropdownMenuItem>
       </DropdownMenuContent>
@@ -49,14 +71,24 @@ function LanguageSwitcher() {
 
 export function Header() {
   const { user, loading, userProfile } = useAuth(); // Added userProfile for logout message
-  const { language } = useLanguage();
-  const t = translations[language].Header;
-  
   const auth = app ? getAuth(app) : null;
   const { toast } = useToast();
   const router = useRouter();
   const pathname = usePathname();
+  
+  const [locale, setLocale] = useState('es');
 
+  useEffect(() => {
+    const segments = pathname.split('/');
+    if (segments.length > 1 && (segments[1] === 'en' || segments[1] === 'es')) {
+      setLocale(segments[1]);
+    } else {
+      setLocale('es'); // Default locale
+    }
+  }, [pathname]);
+
+  const t = translations[locale as 'en' | 'es'].Header;
+  
   const handleLogout = async () => {
     if (!auth) {
         toast({
@@ -85,18 +117,18 @@ export function Header() {
   };
   
   const navLinks = [
-    { href: `/${language}/about`, label: t.about },
-    { href: `/${language}/ples-crea`, label: t.plesCrea },
-    { href: `/${language}/ples-tic`, label: t.plesTic },
-    { href: `/${language}/ples-catastro`, label: t.plesCatastro },
-    { href: `/${language}/ples-consulting`, label: t.plesConsulting },
+    { href: `/${locale}/about`, label: t.about },
+    { href: `/${locale}/ples-crea`, label: t.plesCrea },
+    { href: `/${locale}/ples-tic`, label: t.plesTic },
+    { href: `/${locale}/ples-catastro`, label: t.plesCatastro },
+    { href: `/${locale}/ples-consulting`, label: t.plesConsulting },
   ];
 
   return (
     <header className="bg-card text-card-foreground sticky top-0 z-50 border-b">
       <nav className="w-full px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
         <div className="flex items-center gap-4">
-          <Link href={`/${language}`} className="flex-shrink-0">
+          <Link href={`/${locale}`} className="flex-shrink-0">
             <PlesGroupLogo className="text-5xl" />
           </Link>
         </div>
@@ -105,7 +137,7 @@ export function Header() {
            {/* Desktop Navigation */}
            <div className="flex items-center gap-2">
                {navLinks.map((link) => {
-                   const isActive = pathname.startsWith(link.href);
+                   const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`);
                    return (
                        <Link
                            key={link.href}

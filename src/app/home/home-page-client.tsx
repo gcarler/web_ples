@@ -12,8 +12,8 @@ import { cn } from '@/lib/utils';
 import { useState, useEffect } from 'react';
 import { type HeroStatement } from '@/lib/models/content';
 import React from 'react';
-import { useLanguage } from '@/contexts/LanguageContext';
 import { translations } from '@/lib/translations';
+import { usePathname } from 'next/navigation';
 
 const missionIcons = [
     Lightbulb, Cpu, Database, Server, Globe, MapPin, 
@@ -43,8 +43,17 @@ const iconStyles = [
 ];
 
 export default function HomePageClient() {
-  const { language } = useLanguage();
-  const t = translations[language].HomePage;
+  const pathname = usePathname();
+  const [locale, setLocale] = useState('es');
+
+  useEffect(() => {
+    const segments = pathname.split('/');
+    if (segments.length > 1 && (segments[1] === 'en' || segments[1] === 'es')) {
+      setLocale(segments[1]);
+    }
+  }, [pathname]);
+
+  const t = translations[locale as 'en' | 'es'].HomePage;
   
   const [currentIconIndex, setCurrentIconIndex] = useState(0);
   const [metricIndices, setMetricIndices] = useState([0, 0, 0]);
@@ -112,7 +121,7 @@ export default function HomePageClient() {
 
             <div className="w-full lg:w-7/12 text-center lg:text-left relative z-20 order-2 lg:order-none">
               <RotatingHeroText
-                statements={heroStatements}
+                statements={heroStatements.map(s => ({ ...s, ctaLink: `/${locale}${s.ctaLink}` }))}
                 className="items-center text-center lg:items-start lg:text-left"
                 titleClassName="text-4xl sm:text-5xl xl:text-6xl text-foreground mb-6"
                 descriptionClassName="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0"
@@ -147,7 +156,7 @@ export default function HomePageClient() {
             })}
           </div>
           <Button asChild size="lg" variant="accent">
-            <Link href="/about">
+            <Link href={`/${locale}/about`}>
               <span className="flex items-center">
                 {t.knowMore} <ArrowRight className="ml-2 h-5 w-5" />
               </span>
@@ -165,7 +174,7 @@ export default function HomePageClient() {
                  {t.missionDescription}
                </p>
                <Button asChild size="lg" variant="accent" className="bg-white/20 hover:bg-white/30 border border-white/50 backdrop-blur-sm">
-                 <Link href="/about/mision">
+                 <Link href={`/${locale}/about/mision`}>
                    <span className="flex items-center">
                      {t.missionCTA} <ArrowRight className="ml-2 h-5 w-5" />
                    </span>
@@ -215,7 +224,7 @@ export default function HomePageClient() {
                 </CardHeader>
                 <CardContent>
                     <Button variant="link" asChild className="text-primary group-hover:text-primary-foreground">
-                    <Link href={marca.href}>
+                    <Link href={`/${locale}${marca.href}`}>
                         <span className="flex items-center">
                         {t.viewDetails} <ArrowRight className="ml-1 h-4 w-4" />
                         </span>
@@ -259,7 +268,7 @@ export default function HomePageClient() {
             {t.readyDescription}
           </p>
           <Button size="lg" variant="accent" asChild>
-             <Link href="/forms">
+             <Link href={`/${locale}/forms`}>
                <span className="flex items-center">
                  {t.readyCTA} <ArrowRight className="ml-2" />
                </span>
