@@ -14,7 +14,7 @@ type Props = {
   params: {locale: string};
 };
 
-// This function is required by next-intl to load messages for the given locale.
+// Moved getMessages function here to be used by the server component
 async function getMessages(locale: string) {
   try {
     return (await import(`../../messages/${locale}.json`)).default;
@@ -24,6 +24,7 @@ async function getMessages(locale: string) {
 }
 
 export default async function LocaleLayout({ children, params: {locale} }: Props) {
+  // Await messages here in the Server Component
   const messages = await getMessages(locale);
 
   return (
