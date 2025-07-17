@@ -1,5 +1,4 @@
 // src/app/[locale]/layout.tsx
-import { Inter } from "next/font/google";
 import type { PropsWithChildren } from 'react';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
@@ -8,7 +7,7 @@ import { AuthProvider } from '@/contexts/AuthContext';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import { ThemeProvider } from "next-themes";
 
-const inter = Inter({ subsets: ["latin"] });
+// Removed Inter font to ensure Comfortaa from globals.css is used.
 
 type Props = {
   children: React.ReactNode;
@@ -19,7 +18,8 @@ export default function LocaleLayout({children, params: {locale}}: Props) {
   return (
     // The lang attribute is set here to ensure it's on the root html tag
     <html lang={locale} suppressHydrationWarning>
-      <body className={`min-h-screen flex flex-col antialiased bg-background text-foreground ${inter.className}`}>
+      {/* The className no longer includes a font, so it defaults to what's in globals.css */}
+      <body className={`min-h-screen flex flex-col antialiased bg-background text-foreground`}>
         <LanguageProvider>
           <ThemeProvider
               attribute="class"
