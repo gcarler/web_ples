@@ -1,12 +1,14 @@
-// Middleware has been temporarily disabled to resolve build issues.
-// Auth logic can be re-implemented in a server component layout or page.
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
-
-export function middleware(request: NextRequest) {
-  return NextResponse.next();
-}
-
+import createMiddleware from 'next-intl/middleware';
+ 
+export default createMiddleware({
+  // A list of all locales that are supported
+  locales: ['en', 'es'],
+ 
+  // Used when no locale matches
+  defaultLocale: 'es'
+});
+ 
 export const config = {
-  matcher: '/admin/:path*',
+  // Match only internationalized pathnames
+  matcher: ['/', '/(es|en)/:path*']
 };

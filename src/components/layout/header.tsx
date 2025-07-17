@@ -2,7 +2,7 @@
 'use client';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { LogIn, LogOut, LayoutDashboard, ChevronDown, FlaskConical } from 'lucide-react';
+import { LogIn, LogOut, LayoutDashboard, ChevronDown, FlaskConical, Globe } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { getAuth, signOut } from 'firebase/auth';
 import { app } from '@/lib/firebase/firebase-config';
@@ -20,6 +20,43 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { PlesGroupLogo } from '@/components/logo';
 import React from 'react';
 import { cn } from '@/lib/utils';
+import { useLocale, useTranslations } from 'next-intl';
+import { useTransition } from 'react';
+
+function LanguageSwitcher() {
+  const [isPending, startTransition] = useTransition();
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const onSelectChange = (nextLocale: string) => {
+    startTransition(() => {
+      // The path will be like /es/about, so we need to remove the current locale
+      const newPath = pathname.startsWith(`/${locale}`) ? pathname.substring(3) : pathname;
+      router.replace(`/${nextLocale}${newPath}`);
+    });
+  };
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" size="icon" className="h-9 w-9 rounded-md" disabled={isPending}>
+          <Globe className="h-[1.2rem] w-[1.2rem]" />
+          <span className="sr-only">Change language</span>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <DropdownMenuItem onClick={() => onSelectChange('en')} disabled={locale === 'en'}>
+          English
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => onSelectChange('es')} disabled={locale === 'es'}>
+          Español
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}
+
 
 export function Header() {
   const { user, loading, userProfile } = useAuth(); // Added userProfile for logout message
@@ -27,6 +64,8 @@ export function Header() {
   const { toast } = useToast();
   const router = useRouter();
   const pathname = usePathname();
+  const t = useTranslations('Header');
+
 
   const handleLogout = async () => {
     if (!auth) {
@@ -56,7 +95,7 @@ export function Header() {
   };
   
     const navLinks = [
-      { href: "/about", label: "Sobre Nosotros" },
+      { href: "/about", label: t('about') },
       { href: "/ples-crea", label: "PLES CREA" },
       { href: "/ples-tic", label: "PLES TIC" },
       { href: "/ples-catastro", label: "PLES Catastro" },
@@ -76,7 +115,7 @@ export function Header() {
            {/* Desktop Navigation */}
            <div className="flex items-center gap-2">
                {navLinks.map((link) => {
-                   const isActive = pathname.startsWith(link.href);
+                   const isActive = pathname.includes(link.href);
                    return (
                        <Link
                            key={link.href}
@@ -96,6 +135,7 @@ export function Header() {
            </div>
           
           <ThemeToggle />
+          <LanguageSwitcher />
           {!loading && (
             user ? (
               <DropdownMenu>
@@ -125,7 +165,7 @@ export function Header() {
                 <Link href="/login">
                   <span className="flex items-center">
                     <LogIn className="mr-2 h-4 w-4" />
-                    Iniciar sesión
+                    {t('login')}
                   </span>
                 </Link>
               </Button>

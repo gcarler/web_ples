@@ -1,0 +1,26 @@
+
+{
+  "Header": {
+    "about": "About Us",
+    "login": "Login"
+  },
+  "HomePage": {
+    "heroStatements": [
+      {
+        "title": "Data, engineering, and purpose for development",
+        "description": "From idea to action: we help governments and companies generate real impact.",
+        "ctaText": "Start Today"
+      },
+      {
+        "title": "Innovation that Impacts, Strategies that Last",
+        "description": "We create custom solutions that drive progress and build a sustainable legacy for your organization.",
+        "ctaText": "Learn How"
+      },
+      {
+        "title": "Comprehensive Solutions for Complex Challenges",
+        "description": "Technology, data, and strategy at the service of your goals.",
+        "ctaText": "Explore Services"
+      }
+    ]
+  }
+}

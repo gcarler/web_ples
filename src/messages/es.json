@@ -1,0 +1,26 @@
+
+{
+  "Header": {
+    "about": "Sobre Nosotros",
+    "login": "Iniciar sesión"
+  },
+  "HomePage": {
+    "heroStatements": [
+      {
+        "title": "Datos, ingeniería y propósito para el desarrollo",
+        "description": "De la idea a la acción: acompañamos gobiernos y empresas a generar impacto real.",
+        "ctaText": "Empieza hoy"
+      },
+      {
+        "title": "Innovación que Impacta, Estrategias que Perduran",
+        "description": "Creamos soluciones a medida que impulsan el progreso y construyen un legado sostenible para su organización.",
+        "ctaText": "Conoce cómo"
+      },
+      {
+        "title": "Soluciones Integrales para Desafíos Complejos",
+        "description": "Tecnología, datos y estrategia al servicio de tus metas.",
+        "ctaText": "Explora Servicios"
+      }
+    ]
+  }
+}

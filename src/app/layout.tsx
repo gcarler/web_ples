@@ -1,41 +1,11 @@
-
-'use client';
-
-import './globals.css';
-import { Header } from '@/components/layout/header';
-import { Footer } from '@/components/layout/footer';
-import { Toaster } from '@/components/ui/toaster';
-import { AuthProvider } from '@/contexts/AuthContext';
-import { ThemeProvider } from "next-themes";
+// This component is now very simple because the logic is moved to the [locale] layout.
 import type { PropsWithChildren } from 'react';
-import { usePathname } from 'next/navigation';
 
-export default function RootLayout({
-  children,
-}: PropsWithChildren) {
-  const pathname = usePathname();
-  // Hide header and footer on full-screen pages like login, register, etc. for a cleaner UI.
-  const noLayoutRoutes = ['/login', '/register', '/forgot-password', '/forms', '/footer'];
-  const showHeader = !noLayoutRoutes.includes(pathname);
-  const showFooter = !noLayoutRoutes.includes(pathname);
-
+// Since this is a root layout, it needs the html and body tags.
+export default function RootLayout({ children }: PropsWithChildren) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="min-h-screen flex flex-col antialiased bg-background text-foreground">
-        <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-        >
-          <AuthProvider>
-            {showHeader && <Header />}
-            <main className="flex-grow w-full">{children}</main>
-            {showFooter && <Footer />}
-            <Toaster />
-          </AuthProvider>
-        </ThemeProvider>
-      </body>
+    <html lang="en">
+      <body>{children}</body>
     </html>
   );
 }
