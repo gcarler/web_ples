@@ -13,7 +13,6 @@ import { useState, useEffect } from 'react';
 import { type HeroStatement } from '@/lib/models/content';
 import React from 'react';
 import { translations } from '@/lib/translations';
-import { usePathname } from 'next/navigation';
 
 const missionIcons = [
     Lightbulb, Cpu, Database, Server, Globe, MapPin, 
@@ -42,24 +41,23 @@ const iconStyles = [
   { top: '15%', left: '90%', size: 'h-8 w-8', duration: '35s', delay: '-4s' },
 ];
 
-export default function HomePageClient() {
-  const pathname = usePathname();
-  const [locale, setLocale] = useState('es');
+interface HomePageClientProps {
+  locale: string;
+}
 
-  useEffect(() => {
-    const segments = pathname.split('/');
-    if (segments.length > 1 && (segments[1] === 'en' || segments[1] === 'es')) {
-      setLocale(segments[1]);
-    }
-  }, [pathname]);
-
-  const t = translations[locale as 'en' | 'es'].HomePage;
+export default function HomePageClient({ locale }: HomePageClientProps) {
+  const t = translations[locale as 'en' | 'es']?.HomePage;
   
   const [currentIconIndex, setCurrentIconIndex] = useState(0);
   const [metricIndices, setMetricIndices] = useState([0, 0, 0]);
   const [fadingCard, setFadingCard] = useState<number | null>(null);
 
-   const heroStatements: HeroStatement[] = t.heroStatements;
+  if (!t) {
+    // Render a fallback or loading state if translations are not yet available
+    return <div>Loading translations...</div>;
+  }
+
+  const heroStatements: HeroStatement[] = t.heroStatements;
 
   useEffect(() => {
     if (missionIcons.length <= 1) return;
@@ -80,7 +78,9 @@ export default function HomePageClient() {
         setTimeout(() => {
             setMetricIndices(prevIndices => {
                 const newIndices = [...prevIndices];
-                newIndices[cardToUpdate] = (newIndices[cardToUpdate] + 1) % t.metrics[cardToUpdate].length;
+                if (t.metrics[cardToUpdate]) {
+                    newIndices[cardToUpdate] = (newIndices[cardToUpdate] + 1) % t.metrics[cardToUpdate].length;
+                }
                 return newIndices;
             });
             setFadingCard(null); // Trigger fade-in
