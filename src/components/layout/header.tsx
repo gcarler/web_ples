@@ -2,7 +2,7 @@
 'use client';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { LogIn, LogOut, LayoutDashboard, ChevronDown, FlaskConical, Globe } from 'lucide-react';
+import { LogIn, LogOut, LayoutDashboard, ChevronDown, Globe } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { getAuth, signOut } from 'firebase/auth';
 import { app } from '@/lib/firebase/firebase-config';
@@ -22,29 +22,16 @@ import React, { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { translations } from '@/lib/translations';
 
-function LanguageSwitcher() {
+function LanguageSwitcher({ currentLocale }: { currentLocale: string }) {
   const pathname = usePathname();
   const router = useRouter();
-  const [currentLocale, setCurrentLocale] = useState('es');
-
-  useEffect(() => {
-    const segments = pathname.split('/');
-    if (segments.length > 1 && ['en', 'es'].includes(segments[1])) {
-      setCurrentLocale(segments[1]);
-    }
-  }, [pathname]);
 
   const switchLanguage = (newLocale: 'en' | 'es') => {
     if (newLocale === currentLocale) return;
     
-    const segments = pathname.split('/');
-    // If the path has a locale, replace it. Otherwise, add it.
-    if (segments.length > 1 && ['en', 'es'].includes(segments[1])) {
-        segments[1] = newLocale;
-    } else {
-        segments.splice(1, 0, newLocale);
-    }
-    const newPath = segments.join('/');
+    // Pathname has the locale prefix, so we need to replace it.
+    // e.g. /en/about -> /es/about
+    const newPath = pathname.replace(`/${currentLocale}`, `/${newLocale}`);
     router.push(newPath);
   };
 
@@ -68,26 +55,20 @@ function LanguageSwitcher() {
   );
 }
 
-
-export function Header() {
-  const { user, loading, userProfile } = useAuth(); // Added userProfile for logout message
+// Header now accepts locale as a prop
+export function Header({ locale }: { locale: string }) {
+  const { user, loading, userProfile } = useAuth();
   const auth = app ? getAuth(app) : null;
   const { toast } = useToast();
   const router = useRouter();
   const pathname = usePathname();
   
-  const [locale, setLocale] = useState('es');
+  const t = translations[locale as 'en' | 'es']?.Header;
 
-  useEffect(() => {
-    const segments = pathname.split('/');
-    if (segments.length > 1 && (segments[1] === 'en' || segments[1] === 'es')) {
-      setLocale(segments[1]);
-    } else {
-      setLocale('es'); // Default locale
-    }
-  }, [pathname]);
-
-  const t = translations[locale as 'en' | 'es'].Header;
+  // If translations for the current locale are not found, use a fallback.
+  if (!t) {
+    return null; 
+  }
   
   const handleLogout = async () => {
     if (!auth) {
@@ -116,6 +97,7 @@ export function Header() {
     }
   };
   
+  // Navigation links are now built using the locale prop
   const navLinks = [
     { href: `/${locale}/about`, label: t.about },
     { href: `/${locale}/ples-crea`, label: t.plesCrea },
@@ -134,7 +116,6 @@ export function Header() {
         </div>
 
         <div className="hidden md:flex items-center space-x-2">
-           {/* Desktop Navigation */}
            <div className="flex items-center gap-2">
                {navLinks.map((link) => {
                    const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`);
@@ -157,7 +138,8 @@ export function Header() {
            </div>
           
           <ThemeToggle />
-          <LanguageSwitcher />
+          <LanguageSwitcher currentLocale={locale} />
+
           {!loading && (
             user ? (
               <DropdownMenu>
@@ -193,7 +175,6 @@ export function Header() {
               </Button>
             )
           )}
-            {/* Add a mobile menu trigger here if needed */}
         </div>
       </nav>
     </header>
