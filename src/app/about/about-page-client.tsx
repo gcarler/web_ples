@@ -35,27 +35,6 @@ const collaborationIcons = [
     { icon: Share2, size: "h-14 w-14", style: { top: '80%', left: '55%', animationDuration: '26s', animationDelay: '-10s' }, color: 'text-accent/50' },
 ];
 
-const sections = [
-  { title: 'Nuestra Esencia', content: 'Comprendiendo quienes somos.', link: '/about/esencia', icon: HeartPulse },
-  { title: 'Nuestro Propósito', content: 'Explorando nuestro motor.', link: '/about/proposito', icon: Target },
-  { title: 'Colaboración Global', content: 'Conoce cómo trabajamos.', link: '/about/colaboracion', icon: Globe },
-  { title: 'Nuestra Misión', content: 'Guiando nuestras acciones.', link: '/about/mision', icon: Rocket },
-  { title: 'Nuestra Visión', content: 'Definiendo nuestro horizonte.', link: '/about/vision', icon: Eye },
-];
-
-const collaborationPhrases = [
-  "La colaboración", "es la esencia", "de nuestro accionar.",
-  "Fomentamos la sinergia", "entre equipos", "multidisciplinarios",
-  "y promovemos", "alianzas estratégicas", "para co-crear",
-  "soluciones integrales", "que superan", "las expectativas",
-  "y generan", "un impacto", "duradero."
-];
-
-const integridadPhrases = [
-  "Actuamos con honestidad,", "transparencia y ética", "profesional en cada interacción.",
-  "La integridad es el pilar", "de la confianza que construimos", "con nuestros clientes, socios", "y la comunidad, garantizando", "que nuestras acciones", "siempre estén alineadas", "con nuestros principios."
-];
-
 interface AboutPageClientProps {
   initialCoreValues: CoreValue[];
   initialPillars: Pillar[];
