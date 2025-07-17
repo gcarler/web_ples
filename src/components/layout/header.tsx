@@ -84,19 +84,19 @@ export function Header() {
     }
   };
   
-    const navLinks = [
-      { href: "/about", label: t.about },
-      { href: "/ples-crea", label: t.plesCrea },
-      { href: "/ples-tic", label: t.plesTic },
-      { href: "/ples-catastro", label: t.plesCatastro },
-      { href: "/ples-consulting", label: t.plesConsulting },
+  const navLinks = [
+    { href: `/${language}/about`, label: t.about },
+    { href: `/${language}/ples-crea`, label: t.plesCrea },
+    { href: `/${language}/ples-tic`, label: t.plesTic },
+    { href: `/${language}/ples-catastro`, label: t.plesCatastro },
+    { href: `/${language}/ples-consulting`, label: t.plesConsulting },
   ];
 
   return (
     <header className="bg-card text-card-foreground sticky top-0 z-50 border-b">
       <nav className="w-full px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
         <div className="flex items-center gap-4">
-          <Link href="/" className="flex-shrink-0">
+          <Link href={`/${language}`} className="flex-shrink-0">
             <PlesGroupLogo className="text-5xl" />
           </Link>
         </div>
@@ -105,7 +105,7 @@ export function Header() {
            {/* Desktop Navigation */}
            <div className="flex items-center gap-2">
                {navLinks.map((link) => {
-                   const isActive = pathname.includes(link.href);
+                   const isActive = pathname.startsWith(link.href);
                    return (
                        <Link
                            key={link.href}
