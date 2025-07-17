@@ -26,12 +26,22 @@ function LanguageSwitcher({ currentLocale }: { currentLocale: string }) {
   const pathname = usePathname();
   const router = useRouter();
 
+  // This function will strip the locale from the current pathname
+  const getPathWithoutLocale = () => {
+    const segments = pathname.split('/');
+    if (segments.length > 1 && (segments[1] === 'en' || segments[1] === 'es')) {
+      segments.splice(1, 1);
+      return segments.join('/') || '/';
+    }
+    return pathname;
+  };
+  
   const switchLanguage = (newLocale: 'en' | 'es') => {
     if (newLocale === currentLocale) return;
     
-    // Pathname has the locale prefix, so we need to replace it.
-    // e.g. /en/about -> /es/about
-    const newPath = pathname.replace(`/${currentLocale}`, `/${newLocale}`);
+    const pathWithoutLocale = getPathWithoutLocale();
+    const newPath = `/${newLocale}${pathWithoutLocale}`;
+    
     router.push(newPath);
   };
 
@@ -86,7 +96,7 @@ export function Header({ locale }: { locale: string }) {
         title: 'Logged Out',
         description: `Successfully logged out ${userProfile?.email || ''}.`,
       });
-      router.push('/login'); 
+      router.push(`/${locale}/login`); 
     } catch (error) {
       console.error('Logout Error:', error);
       toast({
@@ -166,7 +176,7 @@ export function Header({ locale }: { locale: string }) {
               </DropdownMenu>
             ) : (
               <Button variant="accent" size="sm" asChild className="rounded-md">
-                <Link href="/login">
+                <Link href={`/${locale}/login`}>
                   <span className="flex items-center">
                     <LogIn className="mr-2 h-4 w-4" />
                     {t.login}

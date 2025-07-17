@@ -1,60 +1,23 @@
-// src/middleware.ts
-import { NextRequest, NextResponse } from 'next/server';
+import createMiddleware from 'next-intl/middleware';
+import { locales, defaultLocale } from './i18n';
+ 
+export default createMiddleware({
+  // A list of all locales that are supported
+  locales,
+ 
+  // Used when no locale matches
+  defaultLocale,
 
-const locales = ['en', 'es'];
-const defaultLocale = 'es';
-
-function getLocale(request: NextRequest): string {
-    const acceptLanguage = request.headers.get('accept-language');
-    if (!acceptLanguage) {
-        return defaultLocale;
-    }
-
-    const languages = acceptLanguage.split(',').map(lang => lang.split(';')[0].trim());
-    for (const lang of languages) {
-        if (locales.includes(lang)) {
-            return lang;
-        }
-        // Handle cases like en-US -> en
-        const baseLang = lang.split('-')[0];
-        if (locales.includes(baseLang)) {
-            return baseLang;
-        }
-    }
-    
-    return defaultLocale;
-}
-
-export function middleware(request: NextRequest) {
-    const { pathname } = request.nextUrl;
-
-    // Skip middleware for specific paths like API routes, static files, etc.
-    if (
-        pathname.startsWith('/api/') ||
-        pathname.startsWith('/_next/') ||
-        pathname.startsWith('/static/') ||
-        pathname.startsWith('/admin') || // Exclude all admin routes
-        pathname.includes('.') // Exclude files with extensions
-    ) {
-        return NextResponse.next();
-    }
-
-    const pathnameHasLocale = locales.some(
-        (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
-    );
-
-    if (pathnameHasLocale) {
-        return NextResponse.next();
-    }
-
-    const locale = getLocale(request);
-    request.nextUrl.pathname = `/${locale}${pathname}`;
-    
-    return Response.redirect(request.nextUrl);
-}
-
+  // Don't use a locale prefix for the default language
+  localePrefix: 'as-needed'
+});
+ 
 export const config = {
-    matcher: [
-        '/((?!api|_next/static|_next/image|favicon.ico|admin).*)',
-    ],
+  // Match only internationalized pathnames
+  matcher: [
+    // Match all pathnames except for
+    // - … if they start with `/api`, `/_next` or `.` (e.g. `favicon.ico`)
+    // - … the ones containing a dot (e.g. `favicon.ico`)
+    '/((?!api|_next/static|_next/image|favicon.ico|admin).*)'
+  ]
 };
