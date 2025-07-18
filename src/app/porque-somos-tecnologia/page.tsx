@@ -52,8 +52,7 @@ const tecnologiaPoints = [
   }
 ];
 
-export default function PorqueSomosTecnologiaPage({ params }: { params: { locale: string } }) {
-  const locale = params.locale;
+export default function PorqueSomosTecnologiaPage() {
   const MainIcon = pageDetails.mainIcon;
 
   return (
@@ -61,14 +60,14 @@ export default function PorqueSomosTecnologiaPage({ params }: { params: { locale
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center space-x-2 mb-12">
           <Button variant="outline" size="sm" asChild className="group hover:bg-primary hover:text-primary-foreground transition-colors">
-            <Link href={`/${locale}${pageDetails.parentLink}`}>
+            <Link href={pageDetails.parentLink}>
               <ArrowLeft className="mr-2 h-4 w-4 group-hover:text-primary-foreground" />
               Volver a {pageDetails.parentName}
             </Link>
           </Button>
            <span className="text-muted-foreground">|</span>
           <Button variant="outline" size="sm" asChild className="group hover:bg-primary hover:text-primary-foreground transition-colors">
-            <Link href={`/${locale}`}>
+            <Link href={`/`}>
                PLES Home
             </Link>
           </Button>
@@ -137,7 +136,7 @@ export default function PorqueSomosTecnologiaPage({ params }: { params: { locale
 
         <section className="text-center mt-0 mb-16 animate-fade-in-up" style={{ animationDelay: '0.8s', animationFillMode: 'forwards' }}>
           <Button size="lg" variant="accent" asChild className="text-lg px-8 py-4">
-            <Link href={`/${locale}${pageDetails.ctaLink}`}>
+            <Link href={pageDetails.ctaLink}>
               <span className="flex items-center">
                 {pageDetails.ctaText} <ArrowRight className="ml-2 h-5 w-5" />
               </span>

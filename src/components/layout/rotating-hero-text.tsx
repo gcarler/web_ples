@@ -1,4 +1,3 @@
-
 // src/components/layout/rotating-hero-text.tsx
 'use client';
 

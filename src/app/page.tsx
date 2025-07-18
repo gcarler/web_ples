@@ -1,7 +1,7 @@
-import {redirect} from 'next/navigation';
-import { defaultLocale } from '@/i18n';
+import HomePageClient from '@/components/home/home-page-client';
 
-// This page only redirects to the default locale.
-export default function RootPage() {
-  redirect(`/${defaultLocale}`);
+// This is the main page component
+export default function Page() {
+  // We pass 'es' as the default locale now
+  return <HomePageClient locale="es" />;
 }

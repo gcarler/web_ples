@@ -65,8 +65,7 @@ const valuePropositions = [
 
 const technologies = ['SIG (QGIS, ArcGIS Pro)', 'GPS y Estaciones Totales de Alta Precisión', 'Drones y Fotogrametría Aérea', 'Bases de Datos Espaciales (PostGIS)', 'Modelos de Avalúo Automatizado (AVM)', 'Plataformas Web GIS', 'Inteligencia Artificial Geoespacial'];
 
-export default function PlesCatastroPage({ params }: { params: { locale: string } }) {
-  const locale = params.locale;
+export default function PlesCatastroPage() {
 
   return (
     <div className="space-y-16">
@@ -103,7 +102,7 @@ export default function PlesCatastroPage({ params }: { params: { locale: string 
                 <Badge variant="default" className="text-md px-4 py-2 shadow-md">#AdministracionDeTierras</Badge>
               </div>
               <Button size="lg" variant="accent" className="text-lg px-8 py-3" asChild>
-                <Link href={`/${locale}/forms?service=ples-catastro&subject=Consulta%20PLES%20Catastro`}>
+                <Link href={`/forms?service=ples-catastro&subject=Consulta%20PLES%20Catastro`}>
                   <span className="flex items-center">
                     Descubra Nuestras Soluciones <ArrowRight className="ml-2 h-5 w-5" />
                   </span>
@@ -143,7 +142,7 @@ export default function PlesCatastroPage({ params }: { params: { locale: string 
             {coreServices.map((service) => {
               const ServiceIcon = service.icon;
               return (
-              <Link key={service.title} href={`/${locale}${service.link}`} passHref legacyBehavior>
+              <Link key={service.title} href={service.link} passHref legacyBehavior>
                 <a className="block group hover:scale-105 transition-all duration-300 ease-in-out">
                   <Card className="h-full group-hover:shadow-xl group-hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground bg-card group-hover:animate-gradient group-hover:bg-[length:200%_200%]">
                     <CardHeader className="flex flex-row items-start gap-4">
@@ -293,7 +292,7 @@ export default function PlesCatastroPage({ params }: { params: { locale: string 
             Contáctenos para una evaluación personalizada y descubra cómo nuestras soluciones pueden ayudar a su organización a alcanzar sus objetivos de desarrollo y gestión territorial de manera eficiente y sostenible, aprovechando nuestra experiencia para optimizar sus recursos.
             </p>
             <Button size="xl" variant="accent" className="text-lg px-10 py-4" asChild>
-            <Link href={`/${locale}/forms?service=ples-catastro&subject=Consulta%20Modernizacion%20Catastral`}>
+            <Link href={`/forms?service=ples-catastro&subject=Consulta%20Modernizacion%20Catastral`}>
                 <span className="flex items-center">
                     Solicitar Asesoría Especializada <ArrowRight className="ml-3 h-5 w-5" />
                 </span>

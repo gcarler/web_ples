@@ -2,7 +2,7 @@
 'use client';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { LogIn, LogOut, LayoutDashboard, ChevronDown, Globe } from 'lucide-react';
+import { LogIn, LogOut, LayoutDashboard, ChevronDown } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { getAuth, signOut } from 'firebase/auth';
 import { app } from '@/lib/firebase/firebase-config';
@@ -18,52 +18,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { PlesGroupLogo } from '@/components/logo';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { cn } from '@/lib/utils';
 import { translations } from '@/lib/translations';
-
-function LanguageSwitcher({ currentLocale }: { currentLocale: string }) {
-  const pathname = usePathname();
-  const router = useRouter();
-
-  // This function will strip the locale from the current pathname
-  const getPathWithoutLocale = () => {
-    const segments = pathname.split('/');
-    if (segments.length > 1 && (segments[1] === 'en' || segments[1] === 'es')) {
-      segments.splice(1, 1);
-      return segments.join('/') || '/';
-    }
-    return pathname;
-  };
-  
-  const switchLanguage = (newLocale: 'en' | 'es') => {
-    if (newLocale === currentLocale) return;
-    
-    const pathWithoutLocale = getPathWithoutLocale();
-    const newPath = `/${newLocale}${pathWithoutLocale}`;
-    
-    router.push(newPath);
-  };
-
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className="h-9 w-9 rounded-md">
-          <Globe className="h-[1.2rem] w-[1.2rem]" />
-          <span className="sr-only">Change language</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => switchLanguage('en')} disabled={currentLocale === 'en'}>
-          English
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => switchLanguage('es')} disabled={currentLocale === 'es'}>
-          Español
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  );
-}
 
 // Header now accepts locale as a prop
 export function Header({ locale }: { locale: string }) {
@@ -96,7 +53,7 @@ export function Header({ locale }: { locale: string }) {
         title: 'Logged Out',
         description: `Successfully logged out ${userProfile?.email || ''}.`,
       });
-      router.push(`/${locale}/login`); 
+      router.push(`/login`); 
     } catch (error) {
       console.error('Logout Error:', error);
       toast({
@@ -107,20 +64,19 @@ export function Header({ locale }: { locale: string }) {
     }
   };
   
-  // Navigation links are now built using the locale prop
   const navLinks = [
-    { href: `/${locale}/about`, label: t.about },
-    { href: `/${locale}/ples-crea`, label: t.plesCrea },
-    { href: `/${locale}/ples-tic`, label: t.plesTic },
-    { href: `/${locale}/ples-catastro`, label: t.plesCatastro },
-    { href: `/${locale}/ples-consulting`, label: t.plesConsulting },
+    { href: `/about`, label: t.about },
+    { href: `/ples-crea`, label: t.plesCrea },
+    { href: `/ples-tic`, label: t.plesTic },
+    { href: `/ples-catastro`, label: t.plesCatastro },
+    { href: `/ples-consulting`, label: t.plesConsulting },
   ];
 
   return (
     <header className="bg-card text-card-foreground sticky top-0 z-50 border-b">
       <nav className="w-full px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
         <div className="flex items-center gap-4">
-          <Link href={`/${locale}`} className="flex-shrink-0">
+          <Link href={`/`} className="flex-shrink-0">
             <PlesGroupLogo className="text-5xl" />
           </Link>
         </div>
@@ -148,7 +104,6 @@ export function Header({ locale }: { locale: string }) {
            </div>
           
           <ThemeToggle />
-          <LanguageSwitcher currentLocale={locale} />
 
           {!loading && (
             user ? (
@@ -176,7 +131,7 @@ export function Header({ locale }: { locale: string }) {
               </DropdownMenu>
             ) : (
               <Button variant="accent" size="sm" asChild className="rounded-md">
-                <Link href={`/${locale}/login`}>
+                <Link href={`/login`}>
                   <span className="flex items-center">
                     <LogIn className="mr-2 h-4 w-4" />
                     {t.login}

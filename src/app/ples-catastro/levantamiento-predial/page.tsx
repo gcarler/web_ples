@@ -55,8 +55,7 @@ const serviceDetails = {
   formSubject: 'Consulta%20Levantamiento%20Predial'
 };
 
-export default function LevantamientoPredialPage({ params }: { params: { locale: string } }) {
-  const locale = params.locale;
+export default function LevantamientoPredialPage() {
   const MainIcon = serviceDetails.mainIcon;
   
   return (
@@ -64,14 +63,14 @@ export default function LevantamientoPredialPage({ params }: { params: { locale:
       <div className="max-w-screen-xl mx-auto">
         <div className="flex items-center space-x-2 mb-8">
           <Button variant="outline" size="sm" asChild className="group hover:bg-primary hover:text-primary-foreground transition-colors">
-            <Link href={`/${locale}${serviceDetails.parentLink}`}>
+            <Link href={serviceDetails.parentLink}>
               <ArrowLeft className="mr-2 h-4 w-4 group-hover:text-primary-foreground" />
               Volver a {serviceDetails.parentName}
             </Link>
           </Button>
           <span className="text-muted-foreground">|</span>
           <Button variant="outline" size="sm" asChild className="group hover:bg-primary hover:text-primary-foreground transition-colors">
-            <Link href={`/${locale}`}>
+            <Link href={`/`}>
                PLES Home
             </Link>
           </Button>
@@ -159,7 +158,7 @@ export default function LevantamientoPredialPage({ params }: { params: { locale:
             
         <section className="text-center">
           <Button size="lg" variant="accent" asChild className="text-lg px-8 py-4">
-            <Link href={`/${locale}/forms?service=${serviceDetails.serviceSlug}&subject=${serviceDetails.formSubject}`}>
+            <Link href={`/forms?service=${serviceDetails.serviceSlug}&subject=${serviceDetails.formSubject}`}>
               <span className="flex items-center">
                 {serviceDetails.ctaText} <ArrowRight className="ml-2 h-5 w-5" />
               </span>
