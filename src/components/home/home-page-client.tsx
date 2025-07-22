@@ -12,7 +12,7 @@ import { cn } from '@/lib/utils';
 import { useState, useEffect } from 'react';
 import { type HeroStatement } from '@/lib/models/content';
 import React from 'react';
-import { translations } from '@/lib/translations';
+import { useTranslations, useLocale } from 'next-intl';
 
 const missionIcons = [
     Lightbulb, Cpu, Database, Server, Globe, MapPin, 
@@ -41,23 +41,24 @@ const iconStyles = [
   { top: '15%', left: '90%', size: 'h-8 w-8', duration: '35s', delay: '-4s' },
 ];
 
-interface HomePageClientProps {
-  locale: string;
-}
+const iconMap: { [key: string]: React.ElementType } = {
+  CheckCircle, Lightbulb, Database, Building, UsersRound, BrainCircuit, Globe, Server, HomeIcon, Handshake, Users
+};
 
-export default function HomePageClient({ locale }: HomePageClientProps) {
-  const t = translations[locale as 'en' | 'es']?.HomePage;
-  
+
+export default function HomePageClient() {
+  const t = useTranslations('HomePage');
+  const locale = useLocale();
+
   const [currentIconIndex, setCurrentIconIndex] = useState(0);
   const [metricIndices, setMetricIndices] = useState([0, 0, 0]);
   const [isAnimatingOut, setIsAnimatingOut] = useState<number | null>(null);
 
-  if (!t) {
-    // Render a fallback or loading state if translations are not yet available
-    return <div>Loading translations...</div>;
-  }
-
-  const heroStatements: HeroStatement[] = t.heroStatements;
+  const heroStatements: HeroStatement[] = t.raw('heroStatements');
+  const metricsData = t.raw('metrics');
+  const brandsData = t.raw('brands');
+  const audiencesData = t.raw('audiences');
+  const testimonialsData = t.raw('testimonials');
 
   useEffect(() => {
     if (missionIcons.length <= 1) return;
@@ -70,7 +71,7 @@ export default function HomePageClient({ locale }: HomePageClientProps) {
   }, []);
   
   useEffect(() => {
-    if (!t.metrics || t.metrics.length === 0) return;
+    if (!metricsData || metricsData.length === 0) return;
 
     let cardToUpdate = 0;
     const interval = setInterval(() => {
@@ -79,18 +80,18 @@ export default function HomePageClient({ locale }: HomePageClientProps) {
       setTimeout(() => {
         setMetricIndices(prevIndices => {
           const newIndices = [...prevIndices];
-          if (t.metrics[cardToUpdate]) {
-            newIndices[cardToUpdate] = (newIndices[cardToUpdate] + 1) % t.metrics[cardToUpdate].length;
+          if (metricsData[cardToUpdate]) {
+            newIndices[cardToUpdate] = (newIndices[cardToUpdate] + 1) % metricsData[cardToUpdate].length;
           }
           return newIndices;
         });
         setIsAnimatingOut(null); // Reset animation state to trigger slide-in
-        cardToUpdate = (cardToUpdate + 1) % t.metrics.length;
+        cardToUpdate = (cardToUpdate + 1) % metricsData.length;
       }, 300); // Duration of the slide-out animation
     }, 2000); // Change one card every 2 seconds
 
     return () => clearInterval(interval);
-  }, [t.metrics]);
+  }, [metricsData]);
 
 
   const CurrentIcon = missionIcons[currentIconIndex];
@@ -122,7 +123,7 @@ export default function HomePageClient({ locale }: HomePageClientProps) {
 
             <div className="w-full lg:w-7/12 text-center lg:text-left relative z-20 order-2 lg:order-none">
               <RotatingHeroText
-                statements={heroStatements}
+                statements={heroStatements.map(s => ({...s, ctaLink: `/${locale}${s.ctaLink}`}))}
                 className="items-center text-center lg:items-start lg:text-left"
                 titleClassName="text-4xl sm:text-5xl xl:text-6xl text-foreground mb-6"
                 descriptionClassName="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0"
@@ -135,12 +136,12 @@ export default function HomePageClient({ locale }: HomePageClientProps) {
       <section className="py-20 md:py-28 bg-background">
         <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-16">
-            {t.experienceTitle}
+            {t('experienceTitle')}
           </h1>
           <div className="grid grid-cols-1 sm:grid-cols-3 justify-center items-stretch gap-8 md:gap-12 text-lg text-foreground mb-20">
-            {t.metrics.map((metrics, cardIndex) => {
+            {metricsData.map((metrics: any[], cardIndex: number) => {
                 const metric = metrics[metricIndices[cardIndex]];
-                const Icon = metric.icon;
+                const Icon = iconMap[metric.icon as keyof typeof iconMap] || CheckCircle;
                 return (
                     <div 
                         key={cardIndex} 
@@ -163,9 +164,9 @@ export default function HomePageClient({ locale }: HomePageClientProps) {
             })}
           </div>
           <Button asChild size="lg" variant="accent">
-            <Link href={`/about`}>
+            <Link href={`/${locale}/about`}>
               <span className="flex items-center">
-                {t.knowMore} <ArrowRight className="ml-2 h-5 w-5" />
+                {t('knowMore')} <ArrowRight className="ml-2 h-5 w-5" />
               </span>
             </Link>
           </Button>
@@ -176,14 +177,14 @@ export default function HomePageClient({ locale }: HomePageClientProps) {
         <div className="w-full px-4 sm:px-6 lg:px-8">
            <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
              <div className="order-first">
-               <h2 className="text-3xl lg:text-4xl font-bold mb-4">{t.missionTitle}</h2>
+               <h2 className="text-3xl lg:text-4xl font-bold mb-4">{t('missionTitle')}</h2>
                <p className="text-lg lg:text-xl opacity-90 mb-8 leading-relaxed">
-                 {t.missionDescription}
+                 {t('missionDescription')}
                </p>
                <Button asChild size="lg" variant="accent" className="bg-white/20 hover:bg-white/30 border border-white/50 backdrop-blur-sm">
-                 <Link href={`/about/mision`}>
+                 <Link href={`/${locale}/about/mision`}>
                    <span className="flex items-center">
-                     {t.missionCTA} <ArrowRight className="ml-2 h-5 w-5" />
+                     {t('missionCTA')} <ArrowRight className="ml-2 h-5 w-5" />
                    </span>
                  </Link>
                </Button>
@@ -216,10 +217,10 @@ export default function HomePageClient({ locale }: HomePageClientProps) {
 
       <section className="py-16 bg-background" id="nuestras-marcas">
         <div className="w-full px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center mb-10">{t.brandsTitle}</h2>
+            <h2 className="text-3xl font-bold text-center mb-10">{t('brandsTitle')}</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {t.brands.map((marca) => {
-              const MarcaIcon = marca.icon;
+            {brandsData.map((marca: any) => {
+              const MarcaIcon = iconMap[marca.icon as keyof typeof iconMap] || Globe;
               return (
                 <Card key={marca.title} className="text-center group hover:bg-primary hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out hover:shadow-xl">
                 <CardHeader>
@@ -231,9 +232,9 @@ export default function HomePageClient({ locale }: HomePageClientProps) {
                 </CardHeader>
                 <CardContent>
                     <Button variant="link" asChild className="text-primary group-hover:text-primary-foreground">
-                    <Link href={`${marca.href}`}>
+                    <Link href={`/${locale}${marca.href}`}>
                         <span className="flex items-center">
-                        {t.viewDetails} <ArrowRight className="ml-1 h-4 w-4" />
+                        {t('viewDetails')} <ArrowRight className="ml-1 h-4 w-4" />
                         </span>
                     </Link>
                     </Button>
@@ -246,10 +247,10 @@ export default function HomePageClient({ locale }: HomePageClientProps) {
 
       <section className="py-16 bg-secondary">
          <div className="w-full px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center mb-10">{t.audienceTitle}</h2>
+            <h2 className="text-3xl font-bold text-center mb-10">{t('audienceTitle')}</h2>
             <div className="grid md:grid-cols-3 gap-8">
-             {t.audiences.map((audience) => {
-                const AudienceIcon = audience.icon;
+             {audiencesData.map((audience: any) => {
+                const AudienceIcon = iconMap[audience.icon as keyof typeof iconMap] || Building;
                 return (
                  <Card key={audience.title} className="shadow-sm group hover:shadow-xl hover:scale-105 hover:border-primary transition-all duration-300 ease-in-out border">
                     <CardHeader>
@@ -270,14 +271,14 @@ export default function HomePageClient({ locale }: HomePageClientProps) {
 
       <section className="relative py-24 overflow-hidden bg-background">
         <div className="w-full px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h2 className="text-3xl font-bold mb-4 text-primary">{t.readyTitle}</h2>
+          <h2 className="text-3xl font-bold mb-4 text-primary">{t('readyTitle')}</h2>
           <p className="text-lg text-foreground mb-8 max-w-2xl mx-auto">
-            {t.readyDescription}
+            {t('readyDescription')}
           </p>
           <Button size="lg" variant="accent" asChild>
-             <Link href={`/forms`}>
+             <Link href={`/${locale}/forms`}>
                <span className="flex items-center">
-                 {t.readyCTA} <ArrowRight className="ml-2" />
+                 {t('readyCTA')} <ArrowRight className="ml-2" />
                </span>
             </Link>
           </Button>
@@ -286,13 +287,9 @@ export default function HomePageClient({ locale }: HomePageClientProps) {
 
       <section className="py-16 bg-background">
          <div className="w-full px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center mb-10">Testimonios</h2>
+            <h2 className="text-3xl font-bold text-center mb-10">{t('testimonials.title')}</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-                { name: 'Ruth Gutierrez', title: 'Directora OEDS, Universidad de Cartagena', text: '¡Increíble servicio! Superaron nuestras expectativas.', image: 'https://placehold.co/100x100.png', hint: 'person face director' },
-                { name: 'Olga Montes', title: 'Directora, Corporación Rhema', text: 'La implementación fue fluida y el soporte excelente.', image: 'https://placehold.co/100x100.png', hint: 'person face director' },
-                { name: 'Mary Janacet', title: 'CEO, Betrip', text: 'Nos ayudaron a optimizar nuestros procesos clave.', image: 'https://placehold.co/100x100.png', hint: 'person face ceo' },
-            ].map((testimonial) => (
+            {testimonialsData.map((testimonial: any) => (
                 <Card key={testimonial.name} className="flex flex-col">
                 <CardContent className="pt-6 flex-grow">
                     <Quote className="h-6 w-6 text-muted-foreground mb-4" />

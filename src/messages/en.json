@@ -2,25 +2,82 @@
 {
   "Header": {
     "about": "About Us",
-    "login": "Login"
+    "login": "Login",
+    "plesCrea": "PLES CREA",
+    "plesTic": "PLES TIC",
+    "plesCatastro": "PLES Catastro",
+    "plesConsulting": "PLES Consulting"
   },
   "HomePage": {
     "heroStatements": [
       {
-        "title": "Data, engineering, and purpose for development",
-        "description": "From idea to action: we help governments and companies generate real impact.",
-        "ctaText": "Start Today"
+        "title": "Data, Engineering, and Purpose for Development",
+        "description": "From idea to action: we assist governments and companies in generating real impact.",
+        "ctaText": "Start Today",
+        "ctaLink": "/forms",
+        "ctaIconName": "Send",
+        "ctaVariant": "accent"
       },
       {
-        "title": "Innovation that Impacts, Strategies that Last",
-        "description": "We create custom solutions that drive progress and build a sustainable legacy for your organization.",
-        "ctaText": "Learn How"
+        "title": "Innovation that Impacts, Strategies that Endure",
+        "description": "We create tailored solutions that drive progress and build a sustainable legacy for your organization.",
+        "ctaText": "Learn How",
+        "ctaLink": "/innovacion-estrategias",
+        "ctaIconName": "BookOpen",
+        "ctaVariant": "accent"
       },
       {
         "title": "Comprehensive Solutions for Complex Challenges",
         "description": "Technology, data, and strategy at the service of your goals.",
-        "ctaText": "Explore Services"
+        "ctaText": "Explore Services",
+        "ctaLink": "/#nuestras-marcas",
+        "ctaIconName": "Layers",
+        "ctaVariant": "accent"
       }
-    ]
+    ],
+    "experienceTitle": "THE INTELLIGENT USE OF EXPERIENCE",
+    "metrics": [
+      [
+        { "icon": "CheckCircle", "text": "+15 projects executed" },
+        { "icon": "Lightbulb", "text": "+5000 consulting hours" }
+      ],
+      [
+        { "icon": "Database", "text": "42 information systems developed" },
+        { "icon": "Building", "text": "10+ sectors impacted" }
+      ],
+      [
+        { "icon": "UsersRound", "text": "8 academic and community alliances" },
+        { "icon": "BrainCircuit", "text": "+20 AI solutions implemented" }
+      ]
+    ],
+    "knowMore": "Know More",
+    "missionTitle": "Our Mission",
+    "missionDescription": "We are a company dedicated to offering innovative and efficient solutions that drive the growth and digital transformation of our clients. We believe in the power of technology to simplify processes and create value.",
+    "missionCTA": "Explore our Mission",
+    "brandsTitle": "Our Brands",
+    "brands": [
+      { "title": "Ples CREA", "description": "Cartography and geospatial design.", "icon": "Globe", "href": "/ples-crea" },
+      { "title": "Ples TIC", "description": "Information technologies.", "icon": "Server", "href": "/ples-tic" },
+      { "title": "Ples Catastro", "description": "Cadastre and land management.", "icon": "HomeIcon", "href": "/ples-catastro" },
+      { "title": "Ples Consulting", "description": "Strategic consulting.", "icon": "Lightbulb", "href": "/ples-consulting" }
+    ],
+    "viewDetails": "View Details",
+    "audienceTitle": "Our Target Audience",
+    "audiences": [
+      { "icon": "Building", "title": "Public Sector", "description": "We offer solutions adapted to the needs of government entities and public administrations, improving efficiency and transparency." },
+      { "icon": "Handshake", "title": "Private Sector", "description": "We boost business competitiveness with technological tools and strategic consulting to optimize their operations." },
+      { "icon": "Users", "title": "Social and Community Sector", "description": "We collaborate with non-profit organizations and communities to strengthen their social impact through technology and innovation." }
+    ],
+    "readyTitle": "Ready to Transform your Organization?",
+    "readyDescription": "Contact us today to discover how our solutions can help you achieve your goals.",
+    "readyCTA": "Contact Us Now",
+    "testimonials": {
+      "title": "Testimonials",
+      "items": [
+        { "name": "Ruth Gutierrez", "title": "Director OEDS, University of Cartagena", "text": "Incredible service! They exceeded our expectations.", "image": "https://placehold.co/100x100.png", "hint": "person face director" },
+        { "name": "Olga Montes", "title": "Director, Rhema Corporation", "text": "The implementation was smooth and the support was excellent.", "image": "https://placehold.co/100x100.png", "hint": "person face director" },
+        { "name": "Mary Janacet", "title": "CEO, Betrip", "text": "They helped us optimize our key processes.", "image": "https://placehold.co/100x100.png", "hint": "person face ceo" }
+      ]
+    }
   }
 }

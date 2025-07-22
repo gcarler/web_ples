@@ -2,25 +2,82 @@
 {
   "Header": {
     "about": "Sobre Nosotros",
-    "login": "Iniciar sesión"
+    "login": "Iniciar Sesión",
+    "plesCrea": "PLES CREA",
+    "plesTic": "PLES TIC",
+    "plesCatastro": "PLES Catastro",
+    "plesConsulting": "PLES Consulting"
   },
   "HomePage": {
     "heroStatements": [
       {
         "title": "Datos, ingeniería y propósito para el desarrollo",
         "description": "De la idea a la acción: acompañamos gobiernos y empresas a generar impacto real.",
-        "ctaText": "Empieza hoy"
+        "ctaText": "Empieza hoy",
+        "ctaLink": "/forms",
+        "ctaIconName": "Send",
+        "ctaVariant": "accent"
       },
       {
         "title": "Innovación que Impacta, Estrategias que Perduran",
         "description": "Creamos soluciones a medida que impulsan el progreso y construyen un legado sostenible para su organización.",
-        "ctaText": "Conoce cómo"
+        "ctaText": "Conoce cómo",
+        "ctaLink": "/innovacion-estrategias",
+        "ctaIconName": "BookOpen",
+        "ctaVariant": "accent"
       },
       {
         "title": "Soluciones Integrales para Desafíos Complejos",
         "description": "Tecnología, datos y estrategia al servicio de tus metas.",
-        "ctaText": "Explora Servicios"
+        "ctaText": "Explora Servicios",
+        "ctaLink": "/#nuestras-marcas",
+        "ctaIconName": "Layers",
+        "ctaVariant": "accent"
       }
-    ]
+    ],
+    "experienceTitle": "EL USO INTELIGENTE DE LA EXPERIENCIA",
+    "metrics": [
+      [
+        { "icon": "CheckCircle", "text": "+15 proyectos ejecutados" },
+        { "icon": "Lightbulb", "text": "+5000 horas de consultoría" }
+      ],
+      [
+        { "icon": "Database", "text": "42 sistemas de información desarrollados" },
+        { "icon": "Building", "text": "10+ sectores impactados" }
+      ],
+      [
+        { "icon": "UsersRound", "text": "8 alianzas académicas y comunitarias" },
+        { "icon": "BrainCircuit", "text": "+20 soluciones de IA implementadas" }
+      ]
+    ],
+    "knowMore": "Saber Más",
+    "missionTitle": "Nuestra Misión",
+    "missionDescription": "Somos una empresa dedicada a ofrecer soluciones innovadoras y eficientes que impulsan el crecimiento y la transformación digital de nuestros clientes. Creemos en el poder de la tecnología para simplificar procesos y crear valor.",
+    "missionCTA": "Explora nuestra Misión",
+    "brandsTitle": "Nuestras Marcas",
+    "brands": [
+      { "title": "Ples CREA", "description": "Cartografía y diseño geoespacial.", "icon": "Globe", "href": "/ples-crea" },
+      { "title": "Ples TIC", "description": "Tecnologías de la información.", "icon": "Server", "href": "/ples-tic" },
+      { "title": "Ples Catastro", "description": "Catastro y gestión territorial.", "icon": "HomeIcon", "href": "/ples-catastro" },
+      { "title": "Ples Consulting", "description": "Consultoría estratégica.", "icon": "Lightbulb", "href": "/ples-consulting" }
+    ],
+    "viewDetails": "Ver Detalles",
+    "audienceTitle": "Nuestro Público Objetivo",
+    "audiences": [
+      { "icon": "Building", "title": "Sector Público", "description": "Ofrecemos soluciones adaptadas a las necesidades de entidades gubernamentales y administraciones públicas, mejorando la eficiencia y transparencia." },
+      { "icon": "Handshake", "title": "Sector Privado", "description": "Impulsamos la competitividad de las empresas con herramientas tecnológicas y consultoría estratégica para optimizar sus operaciones." },
+      { "icon": "Users", "title": "Sector Social y Comunitario", "description": "Colaboramos con organizaciones sin fines de lucro y comunidades para fortalecer su impacto social a través de la tecnología y la innovación." }
+    ],
+    "readyTitle": "¿Listo para Transformar su Organización?",
+    "readyDescription": "Contáctenos hoy mismo para descubrir cómo nuestras soluciones pueden ayudarle a alcanzar sus objetivos.",
+    "readyCTA": "Contactar Ahora",
+    "testimonials": {
+      "title": "Testimonios",
+      "items": [
+        { "name": "Ruth Gutierrez", "title": "Directora OEDS, Universidad de Cartagena", "text": "¡Increíble servicio! Superaron nuestras expectativas.", "image": "https://placehold.co/100x100.png", "hint": "person face director" },
+        { "name": "Olga Montes", "title": "Directora, Corporación Rhema", "text": "La implementación fue fluida y el soporte excelente.", "image": "https://placehold.co/100x100.png", "hint": "person face director" },
+        { "name": "Mary Janacet", "title": "CEO, Betrip", "text": "Nos ayudaron a optimizar nuestros procesos clave.", "image": "https://placehold.co/100x100.png", "hint": "person face ceo" }
+      ]
+    }
   }
 }
