@@ -58,7 +58,7 @@ export function Footer() {
           <div className="lg:col-span-3 space-y-4">
             <h3 className="text-base font-semibold text-foreground tracking-wider uppercase">Síguenos</h3>
             <div className="flex space-x-4">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="p-2 rounded-full bg-muted-foreground/10 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-all">
+              <a href="https://www.facebook.com/share/16tpHggVQZ/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="p-2 rounded-full bg-muted-foreground/10 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-all">
                 <Facebook className="h-5 w-5" />
               </a>
               <a href="https://x.com/plesempresa" target="_blank" rel="noopener noreferrer" aria-label="X (formerly Twitter)" className="p-2 rounded-full bg-muted-foreground/10 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-all">
