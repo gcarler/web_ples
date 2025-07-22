@@ -50,7 +50,7 @@ export default function HomePageClient({ locale }: HomePageClientProps) {
   
   const [currentIconIndex, setCurrentIconIndex] = useState(0);
   const [metricIndices, setMetricIndices] = useState([0, 0, 0]);
-  const [fadingCard, setFadingCard] = useState<number | null>(null);
+  const [isAnimatingOut, setIsAnimatingOut] = useState<number | null>(null);
 
   if (!t) {
     // Render a fallback or loading state if translations are not yet available
@@ -70,26 +70,27 @@ export default function HomePageClient({ locale }: HomePageClientProps) {
   }, []);
   
   useEffect(() => {
+    if (!t.metrics || t.metrics.length === 0) return;
+
     let cardToUpdate = 0;
     const interval = setInterval(() => {
-        setFadingCard(cardToUpdate); // Trigger fade-out on the current card
-        
-        // After fade duration, update content and fade back in
-        setTimeout(() => {
-            setMetricIndices(prevIndices => {
-                const newIndices = [...prevIndices];
-                if (t.metrics[cardToUpdate]) {
-                    newIndices[cardToUpdate] = (newIndices[cardToUpdate] + 1) % t.metrics[cardToUpdate].length;
-                }
-                return newIndices;
-            });
-            setFadingCard(null); // Trigger fade-in
-            cardToUpdate = (cardToUpdate + 1) % t.metrics.length; // Prepare for next card
-        }, 500); // Must match CSS transition duration
+      setIsAnimatingOut(cardToUpdate); // Trigger slide-out animation
+
+      setTimeout(() => {
+        setMetricIndices(prevIndices => {
+          const newIndices = [...prevIndices];
+          if (t.metrics[cardToUpdate]) {
+            newIndices[cardToUpdate] = (newIndices[cardToUpdate] + 1) % t.metrics[cardToUpdate].length;
+          }
+          return newIndices;
+        });
+        setIsAnimatingOut(null); // Reset animation state to trigger slide-in
+        cardToUpdate = (cardToUpdate + 1) % t.metrics.length;
+      }, 300); // Duration of the slide-out animation
     }, 2000); // Change one card every 2 seconds
 
     return () => clearInterval(interval);
-  }, [t.metrics]); // Rerun effect if metrics change
+  }, [t.metrics]);
 
 
   const CurrentIcon = missionIcons[currentIconIndex];
@@ -143,14 +144,20 @@ export default function HomePageClient({ locale }: HomePageClientProps) {
                 return (
                     <div 
                         key={cardIndex} 
-                        className={cn(
-                            "flex flex-col items-center p-6 bg-card rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 ease-in-out",
-                            "transition-opacity duration-500", // Add fade transition
-                            fadingCard === cardIndex ? 'opacity-0' : 'opacity-100'
-                        )}
+                        className="flex flex-col items-center p-6 bg-card rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 ease-in-out h-40 overflow-hidden"
                     >
                         <Icon className="h-12 w-12 text-primary mb-4" />
-                        <span className="text-xl leading-tight">{metric.text}</span>
+                        <div className="relative h-12 flex items-center">
+                            <span
+                                key={metric.text} // Use text as key to trigger animation on change
+                                className={cn(
+                                    "block text-xl leading-tight text-center",
+                                    isAnimatingOut === cardIndex ? 'animate-slide-out-up' : 'animate-slide-in-up'
+                                )}
+                            >
+                                {metric.text}
+                            </span>
+                        </div>
                     </div>
                 );
             })}
