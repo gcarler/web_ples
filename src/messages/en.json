@@ -79,5 +79,43 @@
         { "name": "Mary Janacet", "title": "CEO, Betrip", "text": "They helped us optimize our key processes.", "image": "https://placehold.co/100x100.png", "hint": "person face ceo" }
       ]
     }
+  },
+  "AboutPage": {
+    "hero": {
+        "title": "About PLES",
+        "description": "We merge global vision and a multidisciplinary approach to build a legacy of impact and sustainability.",
+        "badges": ["#GlobalVision", "#Innovation", "#Sustainability"],
+        "cta": "Our Story"
+    },
+    "identity": {
+        "title": "Our Identity",
+        "description": "With a global vision and a multidisciplinary approach, our team converges diverse talents and knowledge to achieve transcendent objectives. At PLES, we value the richness of each perspective, cultivating a space where disruptive and innovative ideas flourish, allowing for strategic and insightful interventions in any scenario.",
+        "sections": [
+          { "title": "Our Essence", "content": "Understanding who we are.", "link": "/about/esencia", "icon": "HeartPulse" },
+          { "title": "Our Purpose", "content": "Exploring what drives us.", "link": "/about/proposito", "icon": "Target" },
+          { "title": "Global Collaboration", "content": "Learn how we work.", "link": "/about/colaboracion", "icon": "Globe" },
+          { "title": "Our Mission", "content": "Guiding our actions.", "link": "/about/mision", "icon": "Rocket" },
+          { "title": "Our Vision", "content": "Defining our horizon.", "link": "/about/vision", "icon": "Eye" }
+        ]
+    },
+    "values": {
+        "integrityPhrases": [
+          "We act with honesty,", "transparency, and professional", "ethics in every interaction.",
+          "Integrity is the pillar", "of the trust we build", "with our clients, partners,", "and the community, ensuring", "that our actions", "are always aligned", "with our principles."
+        ],
+        "innovationDescription": "As the engine of our progress, <strong>innovation</strong> drives us to <strong>challenge the status quo</strong> and constantly explore <strong>new technologies and methodologies</strong>. We turn <strong>bold ideas</strong> into practical solutions that provide <strong>tangible and sustainable value</strong> to our clients.",
+        "collaborationPhrases": [
+          "Collaboration", "is the essence", "of our actions.",
+          "We foster synergy", "between multidisciplinary", "teams",
+          "and promote", "strategic alliances", "to co-create",
+          "comprehensive solutions", "that exceed", "expectations",
+          "and generate", "a lasting", "impact."
+        ]
+    },
+    "pillars": {
+        "title": "Our Fundamental Pillars",
+        "cta": "Learn More"
+    },
+    "closingStatement": "These values are manifested in our unwavering commitment to environmental resilience and gender equity, seeking to generate a significant and lasting legacy in every community we embrace."
   }
 }

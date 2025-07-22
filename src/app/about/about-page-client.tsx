@@ -11,9 +11,7 @@ import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import { type CoreValue, type Pillar } from '@/lib/models/content';
 import React from 'react';
-import { translations } from '@/lib/translations';
-import { usePathname } from 'next/navigation';
-
+import { useLocale, useTranslations } from 'next-intl';
 
 // Icon Map to render Lucide icons from string names
 const iconMap: { [key: string]: React.ElementType } = {
@@ -24,34 +22,14 @@ const iconMap: { [key: string]: React.ElementType } = {
   FileCheck, Award
 };
 
-const collaborationIcons = [
-    { icon: UsersIcon, size: "h-16 w-16", style: { top: '15%', left: '10%', animationDuration: '25s', animationDelay: '0s' }, color: 'text-primary-foreground/30' },
-    { icon: Handshake, size: "h-20 w-20", style: { top: '30%', left: '75%', animationDuration: '30s', animationDelay: '-4s' }, color: 'text-accent/50' },
-    { icon: Puzzle, size: "h-12 w-12", style: { top: '75%', left: '85%', animationDuration: '20s', animationDelay: '-8s' }, color: 'text-primary-foreground/30' },
-    { icon: LinkIcon, size: "h-24 w-24", style: { top: '85%', left: '15%', animationDuration: '35s', animationDelay: '-1s' }, color: 'text-accent/50' },
-    { icon: Workflow, size: "h-14 w-14", style: { top: '55%', left: '45%', animationDuration: '22s', animationDelay: '-12s' }, color: 'text-primary-foreground/30' },
-    { icon: MessageSquare, size: "h-16 w-16", style: { top: '10%', left: '40%', animationDuration: '28s', animationDelay: '-6s' }, color: 'text-accent/50' },
-    { icon: GitMerge, size: "h-12 w-12", style: { top: '45%', left: '5%', animationDuration: '32s', animationDelay: '-2s' }, color: 'text-primary-foreground/30' },
-    { icon: Share2, size: "h-14 w-14", style: { top: '80%', left: '55%', animationDuration: '26s', animationDelay: '-10s' }, color: 'text-accent/50' },
-];
-
 interface AboutPageClientProps {
   initialCoreValues: CoreValue[];
   initialPillars: Pillar[];
 }
 
 export default function AboutPageClient({ initialCoreValues, initialPillars }: AboutPageClientProps) {
-  const pathname = usePathname();
-  const [locale, setLocale] = useState('es');
-
-  useEffect(() => {
-    const segments = pathname.split('/');
-    if (segments.length > 1 && (segments[1] === 'en' || segments[1] === 'es')) {
-      setLocale(segments[1]);
-    }
-  }, [pathname]);
-
-  const t = translations[locale as 'en' | 'es'].AboutPage;
+  const locale = useLocale();
+  const t = useTranslations('AboutPage');
 
   const [selectedValue, setSelectedValue] = useState(initialCoreValues[2]?.id || 'integridad');
   const selectedContent = initialCoreValues.find(v => v.id === selectedValue);
@@ -79,6 +57,11 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
 
   const SelectedIconComponent = selectedContent ? iconMap[selectedContent.iconName] || Shield : Shield;
 
+  const identitySections = t.raw('identity.sections');
+  const heroBadges = t.raw('hero.badges');
+  const integrityPhrases = t.raw('values.integrityPhrases');
+  const collaborationPhrases = t.raw('values.collaborationPhrases');
+
   return (
     <div className="pb-10 space-y-16">
       {/* Hero Section */}
@@ -98,18 +81,18 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
 
             <div className="w-full lg:w-7/12 text-center lg:text-left relative z-20 order-2 lg:order-none">
               <h1 className="text-4xl sm:text-5xl xl:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-6">
-                {t.hero.title}
+                {t('hero.title')}
               </h1>
               <p className="text-lg sm:text-xl text-foreground mb-8 max-w-2xl mx-auto lg:mx-0">
-                {t.hero.description}
+                {t('hero.description')}
               </p>
               <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-10">
-                {t.hero.badges.map((badge: string, index: number) => (
+                {heroBadges.map((badge: string, index: number) => (
                     <Badge key={index} variant="default" className="text-md px-4 py-2 shadow-md">{badge}</Badge>
                 ))}
               </div>
               <Button size="lg" variant="accent" className="text-lg px-8 py-3" asChild>
-                <Link href={`/${locale}/about/esencia`}><span className="flex items-center">{t.hero.cta} <ArrowRight className="ml-2 h-5 w-5" /></span></Link>
+                <Link href={`/${locale}/about/esencia`}><span className="flex items-center">{t('hero.cta')} <ArrowRight className="ml-2 h-5 w-5" /></span></Link>
               </Button>
             </div>
           </div>
@@ -120,13 +103,13 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
       <section className="w-full px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div className="space-y-6">
-            <h2 className="text-3xl font-bold text-primary">{t.identity.title}</h2>
+            <h2 className="text-3xl font-bold text-primary">{t('identity.title')}</h2>
             <p className="text-lg mb-4">
-              {t.identity.description}
+              {t('identity.description')}
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {t.identity.sections.map((section: any, index: number) => {
+            {identitySections.map((section: any, index: number) => {
                const IconComponent = iconMap[section.icon] || HeartPulse;
                return (
                   <Card key={index} className="group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out hover:animate-gradient hover:bg-[length:200%_200%]">
@@ -178,7 +161,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                     <div className="relative w-full h-full rounded-full bg-accent flex items-center text-accent-foreground shadow-2xl">
                        <div className="w-4/5 ml-auto text-right flex items-center pr-12">
                           <p className="text-base leading-relaxed">
-                              {t.values.integrityPhrases.map((phrase: string, index: number) => (
+                              {integrityPhrases.map((phrase: string, index: number) => (
                               <span
                                   key={index}
                                   className="inline-block animate-fade-in-up opacity-0 transition-all duration-300 hover:font-bold hover:bg-white/20 hover:scale-110 rounded-md cursor-pointer px-2 py-1"
@@ -214,7 +197,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                         <div className="flex w-full justify-start">
                             <p
                                 className="text-lg md:text-xl leading-relaxed text-accent-foreground/80 max-w-md text-left"
-                                dangerouslySetInnerHTML={{ __html: t.values.innovationDescription }}
+                                dangerouslySetInnerHTML={{ __html: t('values.innovationDescription') }}
                             />
                         </div>
                     </div>
@@ -229,7 +212,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                         {selectedContent.name}
                     </h3>
                     <p className="text-lg text-primary-foreground/90 leading-relaxed max-w-2xl mx-auto">
-                        {t.values.collaborationPhrases.map((phrase: string, index: number) => (
+                        {collaborationPhrases.map((phrase: string, index: number) => (
                             <span
                                 key={index}
                                 className="inline-block animate-fade-in-up opacity-0 transition-all duration-300 hover:text-accent hover:scale-105 cursor-pointer"
@@ -250,7 +233,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
       {/* Pillars Section */}
       <section className="w-full px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">
-          {t.pillars.title}
+          {t('pillars.title')}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {initialPillars.map((pilar) => {
@@ -266,7 +249,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                 </CardContent>
                 <div className="p-6 pt-0">
                     <Button variant="link" asChild className="text-primary group-hover:text-primary-foreground">
-                    <Link href={`/${locale}${pilar.link}`}><span className="flex items-center">{t.pillars.cta} <ArrowRight className="ml-1 h-4 w-4" /></span></Link>
+                    <Link href={`/${locale}${pilar.link}`}><span className="flex items-center">{t('pillars.cta')} <ArrowRight className="ml-1 h-4 w-4" /></span></Link>
                     </Button>
                 </div>
                 </Card>
@@ -277,7 +260,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
 
       <section className="w-full px-4 sm:px-6 lg:px-8">
         <p className="mt-12 text-center text-md text-muted-foreground italic max-w-3xl mx-auto">
-          {t.closingStatement}
+          {t('closingStatement')}
         </p>
       </section>
     </div>
