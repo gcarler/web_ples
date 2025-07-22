@@ -121,7 +121,7 @@ export default function HomePageClient({ locale }: HomePageClientProps) {
 
             <div className="w-full lg:w-7/12 text-center lg:text-left relative z-20 order-2 lg:order-none">
               <RotatingHeroText
-                statements={heroStatements.map(s => ({ ...s, ctaLink: `/${locale}${s.ctaLink}` }))}
+                statements={heroStatements}
                 className="items-center text-center lg:items-start lg:text-left"
                 titleClassName="text-4xl sm:text-5xl xl:text-6xl text-foreground mb-6"
                 descriptionClassName="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0"
@@ -156,7 +156,7 @@ export default function HomePageClient({ locale }: HomePageClientProps) {
             })}
           </div>
           <Button asChild size="lg" variant="accent">
-            <Link href={`/${locale}/about`}>
+            <Link href={`/about`}>
               <span className="flex items-center">
                 {t.knowMore} <ArrowRight className="ml-2 h-5 w-5" />
               </span>
@@ -174,7 +174,7 @@ export default function HomePageClient({ locale }: HomePageClientProps) {
                  {t.missionDescription}
                </p>
                <Button asChild size="lg" variant="accent" className="bg-white/20 hover:bg-white/30 border border-white/50 backdrop-blur-sm">
-                 <Link href={`/${locale}/about/mision`}>
+                 <Link href={`/about/mision`}>
                    <span className="flex items-center">
                      {t.missionCTA} <ArrowRight className="ml-2 h-5 w-5" />
                    </span>
@@ -224,7 +224,7 @@ export default function HomePageClient({ locale }: HomePageClientProps) {
                 </CardHeader>
                 <CardContent>
                     <Button variant="link" asChild className="text-primary group-hover:text-primary-foreground">
-                    <Link href={`/${locale}${marca.href}`}>
+                    <Link href={`${marca.href}`}>
                         <span className="flex items-center">
                         {t.viewDetails} <ArrowRight className="ml-1 h-4 w-4" />
                         </span>
@@ -268,7 +268,7 @@ export default function HomePageClient({ locale }: HomePageClientProps) {
             {t.readyDescription}
           </p>
           <Button size="lg" variant="accent" asChild>
-             <Link href={`/${locale}/forms`}>
+             <Link href={`/forms`}>
                <span className="flex items-center">
                  {t.readyCTA} <ArrowRight className="ml-2" />
                </span>

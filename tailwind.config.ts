@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 const defaultTheme = require('tailwindcss/defaultTheme'); // Required for default font stack
 
@@ -12,7 +11,7 @@ export default {
   theme: {
   	extend: {
       fontFamily: {
-        sans: ['Comfortaa', ...defaultTheme.fontFamily.sans], // Add Comfortaa to the beginning of the sans-serif stack
+        sans: ['var(--font-comfortaa)', ...defaultTheme.fontFamily.sans],
       },
       backgroundImage: {
         'radar-destructive': 'radial-gradient(circle, hsl(var(--destructive) / 0.7) 0%, hsl(var(--destructive) / 0.1) 60%, transparent 70%)',
@@ -206,6 +205,20 @@ export default {
             '0%, 100%': { transform: 'scale(1) translateX(-50%) translateY(-50%)', opacity: 0.8 },
             '50%': { transform: 'scale(1.5) translateX(-50%) translateY(-50%)', opacity: 1 },
         },
+        'heartbeat-scale': {
+          '0%, 100%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.2)' },
+        },
+        'heartbeat-glow': {
+            '0%, 100%': {
+                boxShadow: '0 0 0 0 hsl(var(--accent) / 0.7)',
+                opacity: '1'
+            },
+            '50%': {
+                boxShadow: '0 0 0 1rem hsl(var(--accent) / 0)',
+                opacity: '0'
+            },
+        },
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
@@ -235,6 +248,8 @@ export default {
         'pulse-glow-shield': 'pulse-glow-shield 3s ease-in-out infinite',
         'station-pop-in': 'station-pop-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
         'flow-pulse': 'flow-pulse 2s ease-in-out infinite',
+        'heartbeat-scale': 'heartbeat-scale 1.5s ease-in-out infinite',
+        'heartbeat-glow': 'heartbeat-glow 1.5s ease-in-out infinite',
   		}
   	}
   },

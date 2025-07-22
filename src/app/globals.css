@@ -8,7 +8,7 @@
 
 body {
   /* Set default body font - applies to most elements */
-  font-family: 'Comfortaa', Arial, sans-serif;
+  font-family: var(--font-comfortaa), Arial, sans-serif;
 }
 
 @layer base {
@@ -91,12 +91,12 @@ body {
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Comfortaa', sans-serif; /* Apply Comfortaa font to body */
+    font-family: var(--font-comfortaa), sans-serif; /* Apply Comfortaa font to body */
   }
 
   /* Ensure h1 elements specifically use Comfortaa */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Comfortaa', sans-serif;
+    font-family: var(--font-comfortaa), sans-serif;
   }
 
   /* Ensure header navigation appears above carousel content */
