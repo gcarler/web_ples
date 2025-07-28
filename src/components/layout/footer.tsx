@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Facebook, X, Instagram } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { PlesGroupLogo } from '@/components/logo';
+import GoogleTranslateWidget from '../google-translate-widget';
 
 export function Footer() {
   return (
@@ -69,6 +70,9 @@ export function Footer() {
               <a href="https://www.instagram.com/plesempresa?igsh=MXI3amE2dnBqMnZnMA%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="p-2 rounded-full bg-muted-foreground/10 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-all">
                 <Instagram className="h-5 w-5" />
               </a>
+            </div>
+            <div className="pt-4">
+               <GoogleTranslateWidget />
             </div>
           </div>
         </div>
