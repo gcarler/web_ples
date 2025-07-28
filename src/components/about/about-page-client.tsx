@@ -1,4 +1,4 @@
-// src/app/[locale]/about/about-page-client.tsx
+// src/components/about/about-page-client.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -11,7 +11,6 @@ import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import { type CoreValue, type Pillar } from '@/lib/models/content';
 import React from 'react';
-import { useLocale, useTranslations } from 'next-intl';
 
 // Icon Map to render Lucide icons from string names
 const iconMap: { [key: string]: React.ElementType } = {
@@ -28,9 +27,6 @@ interface AboutPageClientProps {
 }
 
 export default function AboutPageClient({ initialCoreValues, initialPillars }: AboutPageClientProps) {
-  const locale = useLocale();
-  const t = useTranslations('AboutPage');
-
   const [selectedValue, setSelectedValue] = useState(initialCoreValues[2]?.id || 'integridad');
   const selectedContent = initialCoreValues.find(v => v.id === selectedValue);
 
@@ -44,8 +40,8 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
       style: {
         top: `${Math.random() * 100}%`,
         left: `${Math.random() * 100}%`,
-        animationDuration: `${Math.random() * 20 + 20}s`, // 20-40s
-        animationDelay: `-${Math.random() * 20}s`, // random start in cycle
+        animationDuration: `${Math.random() * 20 + 20}s`,
+        animationDelay: `-${Math.random() * 20}s`,
       },
       className: cn(
         sizes[Math.floor(Math.random() * sizes.length)],
@@ -53,14 +49,32 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
       ),
     }));
     setBubbles(generatedBubbles);
-  }, []); // empty dependency array, so it runs only once on client mount
+  }, []);
 
   const SelectedIconComponent = selectedContent ? iconMap[selectedContent.iconName] || Shield : Shield;
+  
+  const identitySections = [
+      { title: 'Nuestra Esencia', content: 'Comprendiendo quienes somos.', link: '/about/esencia', icon: 'HeartPulse' },
+      { title: 'Nuestro Propósito', content: 'Explorando nuestro motor.', link: '/about/proposito', icon: 'Target' },
+      { title: 'Colaboración Global', content: 'Conoce cómo trabajamos.', link: '/about/colaboracion', icon: 'Globe' },
+      { title: 'Nuestra Misión', content: 'Guiando nuestras acciones.', link: '/about/mision', icon: 'Rocket' },
+      { title: 'Nuestra Visión', content: 'Definiendo nuestro horizonte.', link: '/about/vision', icon: 'Eye' },
+  ];
+  
+  const integrityPhrases = [
+      "Actuamos con honestidad,", "transparencia y ética", "profesional en cada interacción.",
+      "La integridad es el pilar", "de la confianza que construimos", "con nuestros clientes, socios,", "y la comunidad, garantizando", "que nuestras acciones", "siempre estén alineadas", "con nuestros principios."
+  ];
 
-  const identitySections = t.raw('identity.sections');
-  const heroBadges = t.raw('hero.badges');
-  const integrityPhrases = t.raw('values.integrityPhrases');
-  const collaborationPhrases = t.raw('values.collaborationPhrases');
+  const innovationDescription = `Como motor de nuestro progreso, la <strong>innovación</strong> nos impulsa a <strong>desafiar el status quo</strong> y a explorar constantemente <strong>nuevas tecnologías y metodologías</strong>. Convertimos <strong>ideas audaces</strong> en soluciones prácticas que aportan un <strong>valor tangible y sostenible</strong> a nuestros clientes.`;
+  
+  const collaborationPhrases = [
+      "La colaboración", "es la esencia", "de nuestro accionar.",
+      "Fomentamos la sinergia", "entre equipos", "multidisciplinarios",
+      "y promovemos", "alianzas estratégicas", "para co-crear",
+      "soluciones integrales", "que superan", "las expectativas",
+      "y generan", "un impacto", "duradero."
+  ];
 
   return (
     <div className="pb-10 space-y-16">
@@ -81,18 +95,18 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
 
             <div className="w-full lg:w-7/12 text-center lg:text-left relative z-20 order-2 lg:order-none">
               <h1 className="text-4xl sm:text-5xl xl:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-6">
-                {t('hero.title')}
+                Sobre PLES
               </h1>
               <p className="text-lg sm:text-xl text-foreground mb-8 max-w-2xl mx-auto lg:mx-0">
-                {t('hero.description')}
+                Fusionamos visión global y enfoque multidisciplinario para construir un legado de impacto y sostenibilidad.
               </p>
               <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-10">
-                {heroBadges.map((badge: string, index: number) => (
-                    <Badge key={index} variant="default" className="text-md px-4 py-2 shadow-md">{badge}</Badge>
-                ))}
+                <Badge variant="default" className="text-md px-4 py-2 shadow-md">#VisiónGlobal</Badge>
+                <Badge variant="default" className="text-md px-4 py-2 shadow-md">#Innovación</Badge>
+                <Badge variant="default" className="text-md px-4 py-2 shadow-md">#Sostenibilidad</Badge>
               </div>
               <Button size="lg" variant="accent" className="text-lg px-8 py-3" asChild>
-                <Link href={`/${locale}/about/esencia`}><span className="flex items-center">{t('hero.cta')} <ArrowRight className="ml-2 h-5 w-5" /></span></Link>
+                <Link href="/about/esencia"><span className="flex items-center">Nuestra Historia <ArrowRight className="ml-2 h-5 w-5" /></span></Link>
               </Button>
             </div>
           </div>
@@ -103,18 +117,18 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
       <section className="w-full px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div className="space-y-6">
-            <h2 className="text-3xl font-bold text-primary">{t('identity.title')}</h2>
+            <h2 className="text-3xl font-bold text-primary">Nuestra Identidad</h2>
             <p className="text-lg mb-4">
-              {t('identity.description')}
+              Con una visión global y un enfoque multidisciplinario, nuestro equipo converge talentos y conocimientos diversos para la consecución de objetivos trascendentes. En PLES, valoramos la riqueza de cada perspectiva, cultivando un espacio donde las ideas disruptivas e innovadoras florecen, permitiendo intervenciones estratégicas y perspicaces en cualquier escenario.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {identitySections.map((section: any, index: number) => {
+            {identitySections.map((section, index) => {
                const IconComponent = iconMap[section.icon] || HeartPulse;
                return (
                   <Card key={index} className="group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out hover:animate-gradient hover:bg-[length:200%_200%]">
                     <CardContent className="p-0">
-                        <DynamicSection title={section.title} content={section.content} link={`/${locale}${section.link}`} icon={IconComponent} />
+                        <DynamicSection title={section.title} content={section.content} link={section.link} icon={IconComponent} />
                     </CardContent>
                   </Card>
                )
@@ -152,16 +166,14 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
               {/* --- Conditional Rendering for Content --- */}
               {selectedValue === 'integridad' ? (
                 <div key="integridad-content" className="relative h-full w-full animate-fade-in overflow-hidden">
-                   {/* Big text in background, animated separately */}
-                  <h3 className="absolute top-1/2 text-[12rem] md:text-[16rem] font-bold text-primary-foreground/10 tracking-tighter lowercase select-none z-0 pointer-events-none animate-slide-across-text">
+                   <h3 className="absolute top-1/2 text-[12rem] md:text-[16rem] font-bold text-primary-foreground/10 tracking-tighter lowercase select-none z-0 pointer-events-none animate-slide-across-text">
                       {selectedContent.name}
                   </h3>
-                   {/* Circle with content, animated separately */}
                   <div className="absolute top-1/2 w-[420px] h-[420px] md:w-[480px] md:h-[480px] animate-slide-across z-10">
                     <div className="relative w-full h-full rounded-full bg-accent flex items-center text-accent-foreground shadow-2xl">
                        <div className="w-4/5 ml-auto text-right flex items-center pr-12">
                           <p className="text-base leading-relaxed">
-                              {integrityPhrases.map((phrase: string, index: number) => (
+                              {integrityPhrases.map((phrase, index) => (
                               <span
                                   key={index}
                                   className="inline-block animate-fade-in-up opacity-0 transition-all duration-300 hover:font-bold hover:bg-white/20 hover:scale-110 rounded-md cursor-pointer px-2 py-1"
@@ -180,7 +192,6 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                 </div>
               ) : selectedValue === 'innovacion' ? (
                 <div key="innovacion-content" className="flex h-full w-full animate-fade-in relative overflow-hidden">
-                    {/* Background Bubbles (more prominent) */}
                     {bubbles.map((bubble) => (
                       <div
                         key={bubble.id}
@@ -189,7 +200,6 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                       />
                     ))}
 
-                    {/* Content Container */}
                     <div className="relative z-10 flex h-full w-full flex-col justify-between p-8 md:p-12 lg:p-16">
                         <h3 className="text-7xl md:text-9xl font-thin text-accent-foreground tracking-tight lowercase">
                             {selectedContent.name}
@@ -197,7 +207,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                         <div className="flex w-full justify-start">
                             <p
                                 className="text-lg md:text-xl leading-relaxed text-accent-foreground/80 max-w-md text-left"
-                                dangerouslySetInnerHTML={{ __html: t('values.innovationDescription') }}
+                                dangerouslySetInnerHTML={{ __html: innovationDescription }}
                             />
                         </div>
                     </div>
@@ -212,7 +222,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                         {selectedContent.name}
                     </h3>
                     <p className="text-lg text-primary-foreground/90 leading-relaxed max-w-2xl mx-auto">
-                        {collaborationPhrases.map((phrase: string, index: number) => (
+                        {collaborationPhrases.map((phrase, index) => (
                             <span
                                 key={index}
                                 className="inline-block animate-fade-in-up opacity-0 transition-all duration-300 hover:text-accent hover:scale-105 cursor-pointer"
@@ -233,7 +243,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
       {/* Pillars Section */}
       <section className="w-full px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">
-          {t('pillars.title')}
+          Nuestros Pilares Fundamentales
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {initialPillars.map((pilar) => {
@@ -249,7 +259,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                 </CardContent>
                 <div className="p-6 pt-0">
                     <Button variant="link" asChild className="text-primary group-hover:text-primary-foreground">
-                    <Link href={`/${locale}${pilar.link}`}><span className="flex items-center">{t('pillars.cta')} <ArrowRight className="ml-1 h-4 w-4" /></span></Link>
+                    <Link href={pilar.link}><span className="flex items-center">Saber Más <ArrowRight className="ml-1 h-4 w-4" /></span></Link>
                     </Button>
                 </div>
                 </Card>
@@ -260,7 +270,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
 
       <section className="w-full px-4 sm:px-6 lg:px-8">
         <p className="mt-12 text-center text-md text-muted-foreground italic max-w-3xl mx-auto">
-          {t('closingStatement')}
+          Estos valores se manifiestan en nuestro compromiso inquebrantable con la resiliencia ambiental y la equidad de género, buscando generar un legado significativo y duradero en cada comunidad que abrazamos.
         </p>
       </section>
     </div>

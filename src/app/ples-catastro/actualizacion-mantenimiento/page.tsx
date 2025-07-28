@@ -1,4 +1,4 @@
-// src/app/[locale]/ples-catastro/actualizacion-mantenimiento/page.tsx
+// src/app/ples-catastro/actualizacion-mantenimiento/page.tsx
 'use client'
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, CheckCircle, FileText, Settings, MonitorPlay, Users, BarChart3 } from 'lucide-react';
 import React from 'react';
-import { usePathname } from 'next/navigation';
 
 const serviceDetails = {
   parentLink: "/ples-catastro",
@@ -34,8 +33,7 @@ const serviceDetails = {
   formSubject: 'Consulta%20Actualizacion%20Mantenimiento%20Catastral'
 };
 
-export default function ActualizacionMantenimientoPage({ params }: { params: { locale: string } }) {
-  const locale = params.locale;
+export default function ActualizacionMantenimientoPage() {
   const MainIcon = serviceDetails.mainIcon;
 
   return (
@@ -43,14 +41,14 @@ export default function ActualizacionMantenimientoPage({ params }: { params: { l
       <div className="max-w-screen-xl mx-auto">
         <div className="flex items-center space-x-2 mb-8">
           <Button variant="outline" size="sm" asChild className="group hover:bg-primary hover:text-primary-foreground transition-colors">
-            <Link href={`/${locale}${serviceDetails.parentLink}`}>
+            <Link href={serviceDetails.parentLink}>
               <ArrowLeft className="mr-2 h-4 w-4 group-hover:text-primary-foreground" />
               Volver a {serviceDetails.parentName}
             </Link>
           </Button>
           <span className="text-muted-foreground">|</span>
           <Button variant="outline" size="sm" asChild className="group hover:bg-primary hover:text-primary-foreground transition-colors">
-            <Link href={`/${locale}`}>
+            <Link href="/">
                PLES Home
             </Link>
           </Button>
@@ -108,7 +106,7 @@ export default function ActualizacionMantenimientoPage({ params }: { params: { l
 
         <section className="text-center">
           <Button size="lg" variant="accent" asChild className="text-lg px-8 py-4">
-            <Link href={`/${locale}/forms?service=${serviceDetails.serviceSlug}&subject=${serviceDetails.formSubject}`}>
+            <Link href={`/forms?service=${serviceDetails.serviceSlug}&subject=${serviceDetails.formSubject}`}>
               <span className="flex items-center">
                 {serviceDetails.ctaText} <ArrowRight className="ml-2 h-5 w-5" />
               </span>

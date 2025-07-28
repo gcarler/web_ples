@@ -5,30 +5,28 @@ import Link from 'next/link';
 import { Facebook, X, Instagram } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { PlesGroupLogo } from '@/components/logo';
-import { useLocale } from 'next-intl';
 
 export function Footer() {
-  const locale = useLocale();
   return (
     <footer className="relative w-full bg-muted text-muted-foreground py-8 overflow-hidden">
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-12">
           {/* Column 1: Logo and Slogan */}
           <div className="lg:col-span-4 flex flex-col items-start text-left">
-            <Link href={`/${locale}`} className="mb-6">
+            <Link href="/" className="mb-6">
               <PlesGroupLogo className="text-9xl" hoverVariant="black-gradient" />
             </Link>
             <p className="text-lg text-foreground/80 leading-relaxed">
               Somos{' '}
-              <Link href={`/${locale}/porque-somos-ciencia`} className="font-bold text-primary transition-colors hover:text-accent hover:underline">
+              <Link href="/porque-somos-ciencia" className="font-bold text-primary transition-colors hover:text-accent hover:underline">
                 Ciencia
               </Link>
               ,{' '}
-              <Link href={`/${locale}/porque-somos-tecnologia`} className="font-bold text-primary transition-colors hover:text-accent hover:underline">
+              <Link href="/porque-somos-tecnologia" className="font-bold text-primary transition-colors hover:text-accent hover:underline">
                 Tecnología
               </Link>{' '}
               e{' '}
-              <Link href={`/${locale}/porque-somos-innovacion`} className="font-bold text-primary transition-colors hover:text-accent hover:underline">
+              <Link href="/porque-somos-innovacion" className="font-bold text-primary transition-colors hover:text-accent hover:underline">
                 Innovación
               </Link>.
             </p>
@@ -41,10 +39,10 @@ export function Footer() {
           <div className="lg:col-span-2 space-y-4">
             <h3 className="text-base font-semibold text-foreground tracking-wider uppercase">Enlaces</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link href={`/${locale}`} className="hover:text-primary transition-colors">Inicio</Link></li>
-              <li><Link href={`/${locale}/about`} className="hover:text-primary transition-colors">Sobre Nosotros</Link></li>
-              <li><Link href={`/${locale}/#nuestras-marcas`} className="hover:text-primary transition-colors">Servicios</Link></li>
-              <li><Link href={`/${locale}/forms`} className="hover:text-primary transition-colors">Contáctenos</Link></li>
+              <li><Link href="/" className="hover:text-primary transition-colors">Inicio</Link></li>
+              <li><Link href="/about" className="hover:text-primary transition-colors">Sobre Nosotros</Link></li>
+              <li><Link href="/#nuestras-marcas" className="hover:text-primary transition-colors">Servicios</Link></li>
+              <li><Link href="/forms" className="hover:text-primary transition-colors">Contáctenos</Link></li>
             </ul>
           </div>
           

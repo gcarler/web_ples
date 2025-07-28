@@ -1,42 +1,39 @@
-// src/app/[locale]/ples-catastro/ordenamiento-territorial/page.tsx
+// src/app/ples-catastro/avaluos/page.tsx
 'use client'
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, CheckCircle, Home, Users, Map, Layers, Edit3 } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle, Scale, BarChart3, ClipboardCheck, FileText, TrendingUp } from 'lucide-react';
 import React from 'react';
-import { usePathname } from 'next/navigation';
 
 const serviceDetails = {
   parentLink: "/ples-catastro",
   parentName: "PLES Catastro",
-  serviceSlug: "planes-ordenamiento-territorial",
-  mainIcon: Home,
-  title: 'Planes de Ordenamiento Territorial (POT)',
-  description: 'Desarrollamos e implementamos planes estratégicos integrales que guían el crecimiento sostenible y la ocupación eficiente del territorio, promoviendo la equidad social, la protección ambiental y el desarrollo económico.',
-  keyServicesHeading: 'Elementos Clave de Nuestros POT:',
+  serviceSlug: "avaluos-catastrales",
+  mainIcon: Scale,
+  title: 'Avalúos Masivos y Puntuales',
+  description: 'Realizamos valoraciones de propiedades con metodologías robustas y transparentes, tanto para procesos masivos como para avalúos individuales, asegurando una base imponible justa y una gestión eficiente de activos públicos y privados.',
+  keyServicesHeading: 'Aspectos Destacados del Servicio:',
   keyServices: [
-    { title: 'Diagnóstico Territorial Integral', text: 'Análisis exhaustivo de las dinámicas físicas, sociales, económicas y ambientales del territorio para identificar potencialidades y problemáticas.', icon: Map },
-    { title: 'Participación Ciudadana Estratégica', text: 'Diseño y facilitación de procesos participativos inclusivos para asegurar la legitimidad y apropiación social del plan.', icon: Users },
-    { title: 'Zonificación y Usos del Suelo', text: 'Definición de zonas con usos específicos (residencial, comercial, industrial, protección, etc.) y normativas asociadas para orientar el desarrollo.', icon: Layers },
-    { title: 'Instrumentos de Gestión y Seguimiento', text: 'Desarrollo de herramientas y mecanismos para la implementación, monitoreo y evaluación continua del POT, asegurando su efectividad a largo plazo.', icon: Edit3 },
+    { title: 'Modelos de Valoración Automatizada (AVM)', text: 'Desarrollo e implementación de modelos econométricos y algoritmos de IA para la valoración masiva de predios, garantizando eficiencia y consistencia.', icon: BarChart3 },
+    { title: 'Análisis de Mercado Inmobiliario', text: 'Estudios detallados del comportamiento del mercado inmobiliario, identificación de zonas homogéneas físicas y geoeconómicas para fundamentar las valoraciones.', icon: TrendingUp },
+    { title: 'Cumplimiento Normativo y Estándares', text: 'Aplicación de metodologías y normativas vigentes (nacionales e internacionales como IVSC) para asegurar la validez y legalidad de los avalúos.', icon: ClipboardCheck },
+    { title: 'Informes Detallados y Sustentados', text: 'Generación de informes técnicos completos y comprensibles que detallan la metodología, fuentes de información y resultados de la valoración.', icon: FileText },
   ],
-  benefitsHeading: 'Beneficios de un POT Estratégico:',
+  benefitsHeading: 'Beneficios de Nuestros Servicios de Avalúos:',
   benefits: [
-    'Desarrollo Urbano y Rural Ordenado y Sostenible',
-    'Mejora de la Calidad de Vida de los Habitantes',
-    'Protección del Patrimonio Natural y Cultural',
-    'Atracción de Inversiones y Fomento Económico',
-    'Fortalecimiento de la Gobernanza Territorial',
-    'Reducción de Vulnerabilidades y Riesgos',
+    'Base Gravable Actualizada y Equitativa para Impuestos Prediales',
+    'Valoración Precisa para Transacciones Inmobiliarias',
+    'Soporte Técnico para Expropiaciones y Procesos Jurídicos',
+    'Optimización de la Gestión de Activos Inmobiliarios',
+    'Transparencia en los Procesos de Valoración Catastral',
   ],
-  ctaText: 'Planifique el Futuro de su Territorio',
-  formSubject: 'Consulta%20Planes%20Ordenamiento%20Territorial'
+  ctaText: 'Solicite su Avalúo Profesional',
+  formSubject: 'Consulta%20Avaluos'
 };
 
-export default function OrdenamientoTerritorialPage({ params }: { params: { locale: string } }) {
-  const locale = params.locale;
+export default function AvaluosPage() {
   const MainIcon = serviceDetails.mainIcon;
 
   return (
@@ -44,21 +41,21 @@ export default function OrdenamientoTerritorialPage({ params }: { params: { loca
       <div className="max-w-screen-xl mx-auto">
         <div className="flex items-center space-x-2 mb-8">
           <Button variant="outline" size="sm" asChild className="group hover:bg-primary hover:text-primary-foreground transition-colors">
-            <Link href={`/${locale}${serviceDetails.parentLink}`}>
+            <Link href={serviceDetails.parentLink}>
               <ArrowLeft className="mr-2 h-4 w-4 group-hover:text-primary-foreground" />
               Volver a {serviceDetails.parentName}
             </Link>
           </Button>
           <span className="text-muted-foreground">|</span>
           <Button variant="outline" size="sm" asChild className="group hover:bg-primary hover:text-primary-foreground transition-colors">
-            <Link href={`/${locale}`}>
+            <Link href="/">
                PLES Home
             </Link>
           </Button>
         </div>
 
         <section className="text-center mb-16">
-          <div className="inline-block p-4 bg-primary/10 rounded-lg mb-6">
+           <div className="inline-block p-4 bg-primary/10 rounded-lg mb-6">
             <MainIcon className="h-16 w-16 text-primary" />
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-6">
@@ -109,7 +106,7 @@ export default function OrdenamientoTerritorialPage({ params }: { params: { loca
         
         <section className="text-center">
           <Button size="lg" variant="accent" asChild className="text-lg px-8 py-4">
-            <Link href={`/${locale}/forms?service=${serviceDetails.serviceSlug}&subject=${serviceDetails.formSubject}`}>
+            <Link href={`/forms?service=${serviceDetails.serviceSlug}&subject=${serviceDetails.formSubject}`}>
               <span className="flex items-center">
                 {serviceDetails.ctaText} <ArrowRight className="ml-2 h-5 w-5" />
               </span>

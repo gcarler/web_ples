@@ -20,19 +20,13 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { PlesGroupLogo } from '@/components/logo';
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { useTranslations } from 'next-intl';
-import { useLocale } from 'next-intl';
 
-
-// Header now accepts locale as a prop
 export function Header() {
   const { user, loading, userProfile } = useAuth();
   const auth = app ? getAuth(app) : null;
   const { toast } = useToast();
   const router = useRouter();
   const pathname = usePathname();
-  const locale = useLocale();
-  const t = useTranslations('Header');
   
   const handleLogout = async () => {
     if (!auth) {
@@ -50,7 +44,7 @@ export function Header() {
         title: 'Logged Out',
         description: `Successfully logged out ${userProfile?.email || ''}.`,
       });
-      router.push(`/${locale}/login`); 
+      router.push(`/login`); 
     } catch (error) {
       console.error('Logout Error:', error);
       toast({
@@ -62,18 +56,18 @@ export function Header() {
   };
   
   const navLinks = [
-    { href: `/${locale}/about`, label: t('about') },
-    { href: `/${locale}/ples-crea`, label: t('plesCrea') },
-    { href: `/${locale}/ples-tic`, label: t('plesTic') },
-    { href: `/${locale}/ples-catastro`, label: t('plesCatastro') },
-    { href: `/${locale}/ples-consulting`, label: t('plesConsulting') },
+    { href: `/about`, label: "Sobre Nosotros" },
+    { href: `/ples-crea`, label: "PLES CREA" },
+    { href: `/ples-tic`, label: "PLES TIC" },
+    { href: `/ples-catastro`, label: "PLES Catastro" },
+    { href: `/ples-consulting`, label: "PLES Consulting" },
   ];
 
   return (
     <header className="bg-card text-card-foreground sticky top-0 z-50 border-b">
       <nav className="w-full px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
         <div className="flex items-center gap-4">
-          <Link href={`/${locale}`} className="flex-shrink-0">
+          <Link href="/" className="flex-shrink-0">
             <PlesGroupLogo className="text-5xl" />
           </Link>
         </div>
@@ -128,10 +122,10 @@ export function Header() {
               </DropdownMenu>
             ) : (
               <Button variant="accent" size="sm" asChild className="rounded-md">
-                <Link href={`/${locale}/login`}>
+                <Link href={`/login`}>
                   <span className="flex items-center">
                     <LogIn className="mr-2 h-4 w-4" />
-                    {t('login')}
+                    Iniciar Sesión
                   </span>
                 </Link>
               </Button>
