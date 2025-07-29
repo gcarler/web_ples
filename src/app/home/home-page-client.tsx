@@ -12,7 +12,6 @@ import { cn } from '@/lib/utils';
 import { useState, useEffect } from 'react';
 import { type HeroStatement } from '@/lib/models/content';
 import React from 'react';
-import { translations } from '@/lib/translations';
 
 const missionIcons = [
     Lightbulb, Cpu, Database, Server, Globe, MapPin, 
@@ -41,55 +40,88 @@ const iconStyles = [
   { top: '15%', left: '90%', size: 'h-8 w-8', duration: '35s', delay: '-4s' },
 ];
 
-interface HomePageClientProps {
-  locale: string;
-}
-
-export default function HomePageClient({ locale }: HomePageClientProps) {
-  const t = translations[locale as 'en' | 'es']?.HomePage;
-  
+export default function HomePageClient() {
   const [currentIconIndex, setCurrentIconIndex] = useState(0);
   const [metricIndices, setMetricIndices] = useState([0, 0, 0]);
-  const [fadingCard, setFadingCard] = useState<number | null>(null);
+  const [isAnimatingOut, setIsAnimatingOut] = useState<number | null>(null);
 
-  if (!t) {
-    // Render a fallback or loading state if translations are not yet available
-    return <div>Loading translations...</div>;
-  }
+  const heroStatements: HeroStatement[] = [
+    {
+      title: "Datos, ingeniería y propósito para el desarrollo",
+      description: "De la idea a la acción: acompañamos gobiernos y empresas a generar impacto real.",
+      ctaText: "Empieza hoy",
+      ctaLink: "/forms",
+      ctaIconName: "Send",
+      ctaVariant: 'accent',
+      order: 1,
+    },
+    {
+      title: "Innovación que Impacta, Estrategias que Perduran",
+      description: "Creamos soluciones a medida que impulsan el progreso y construyen un legado sostenible para su organización.",
+      ctaText: "Conoce cómo",
+      ctaLink: "/innovacion-estrategias",
+      ctaIconName: "BookOpen",
+      ctaVariant: 'accent',
+      order: 2,
+    },
+    {
+      title: "Soluciones Integrales para Desafíos Complejos",
+      description: "Tecnología, datos y estrategia al servicio de tus metas.",
+      ctaText: "Explora Servicios",
+      ctaLink: "/#nuestras-marcas",
+      ctaIconName: "Layers",
+      ctaVariant: 'accent',
+      order: 3,
+    },
+  ];
 
-  const heroStatements: HeroStatement[] = t.heroStatements;
+  const metricsData = [
+    [
+      { icon: CheckCircle, text: "+15 proyectos ejecutados" },
+      { icon: Lightbulb, text: "+5000 horas de consultoría" },
+    ],
+    [
+      { icon: Database, text: "42 sistemas de información desarrollados" },
+      { icon: Building, text: "10+ sectores impactados" },
+    ],
+    [
+      { icon: UsersRound, text: "8 alianzas académicas y comunitarias" },
+      { icon: BrainCircuit, text: "+20 soluciones de IA implementadas" },
+    ],
+  ];
 
   useEffect(() => {
     if (missionIcons.length <= 1) return;
 
     const timer = setInterval(() => {
       setCurrentIconIndex((prevIndex) => (prevIndex + 1) % missionIcons.length);
-    }, 7000); // Change icon every 7 seconds
+    }, 7000);
     
     return () => clearInterval(timer);
   }, []);
   
   useEffect(() => {
+    if (!metricsData || metricsData.length === 0) return;
+
     let cardToUpdate = 0;
     const interval = setInterval(() => {
-        setFadingCard(cardToUpdate); // Trigger fade-out on the current card
-        
-        // After fade duration, update content and fade back in
-        setTimeout(() => {
-            setMetricIndices(prevIndices => {
-                const newIndices = [...prevIndices];
-                if (t.metrics[cardToUpdate]) {
-                    newIndices[cardToUpdate] = (newIndices[cardToUpdate] + 1) % t.metrics[cardToUpdate].length;
-                }
-                return newIndices;
-            });
-            setFadingCard(null); // Trigger fade-in
-            cardToUpdate = (cardToUpdate + 1) % t.metrics.length; // Prepare for next card
-        }, 500); // Must match CSS transition duration
-    }, 2000); // Change one card every 2 seconds
+      setIsAnimatingOut(cardToUpdate);
+
+      setTimeout(() => {
+        setMetricIndices(prevIndices => {
+          const newIndices = [...prevIndices];
+          if (metricsData[cardToUpdate]) {
+            newIndices[cardToUpdate] = (newIndices[cardToUpdate] + 1) % metricsData[cardToUpdate].length;
+          }
+          return newIndices;
+        });
+        setIsAnimatingOut(null);
+        cardToUpdate = (cardToUpdate + 1) % metricsData.length;
+      }, 300);
+    }, 2000);
 
     return () => clearInterval(interval);
-  }, [t.metrics]); // Rerun effect if metrics change
+  }, [metricsData]);
 
 
   const CurrentIcon = missionIcons[currentIconIndex];
@@ -134,31 +166,37 @@ export default function HomePageClient({ locale }: HomePageClientProps) {
       <section className="py-20 md:py-28 bg-background">
         <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-16">
-            {t.experienceTitle}
+            EL USO INTELIGENTE DE LA EXPERIENCIA
           </h1>
           <div className="grid grid-cols-1 sm:grid-cols-3 justify-center items-stretch gap-8 md:gap-12 text-lg text-foreground mb-20">
-            {t.metrics.map((metrics, cardIndex) => {
+            {metricsData.map((metrics, cardIndex) => {
                 const metric = metrics[metricIndices[cardIndex]];
                 const Icon = metric.icon;
                 return (
                     <div 
                         key={cardIndex} 
-                        className={cn(
-                            "flex flex-col items-center p-6 bg-card rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 ease-in-out",
-                            "transition-opacity duration-500", // Add fade transition
-                            fadingCard === cardIndex ? 'opacity-0' : 'opacity-100'
-                        )}
+                        className="flex flex-col items-center p-6 bg-card rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 ease-in-out h-40 overflow-hidden"
                     >
                         <Icon className="h-12 w-12 text-primary mb-4" />
-                        <span className="text-xl leading-tight">{metric.text}</span>
+                        <div className="relative h-12 flex items-center">
+                            <span
+                                key={metric.text}
+                                className={cn(
+                                    "block text-xl leading-tight text-center",
+                                    isAnimatingOut === cardIndex ? 'animate-slide-out-up' : 'animate-slide-in-up'
+                                )}
+                            >
+                                {metric.text}
+                            </span>
+                        </div>
                     </div>
                 );
             })}
           </div>
           <Button asChild size="lg" variant="accent">
-            <Link href={`/about`}>
+            <Link href="/about">
               <span className="flex items-center">
-                {t.knowMore} <ArrowRight className="ml-2 h-5 w-5" />
+                Saber Más <ArrowRight className="ml-2 h-5 w-5" />
               </span>
             </Link>
           </Button>
@@ -169,21 +207,21 @@ export default function HomePageClient({ locale }: HomePageClientProps) {
         <div className="w-full px-4 sm:px-6 lg:px-8">
            <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
              <div className="order-first">
-               <h2 className="text-3xl lg:text-4xl font-bold mb-4">{t.missionTitle}</h2>
+               <h2 className="text-3xl lg:text-4xl font-bold mb-4">Nuestra Misión</h2>
                <p className="text-lg lg:text-xl opacity-90 mb-8 leading-relaxed">
-                 {t.missionDescription}
+                 Somos una empresa dedicada a ofrecer soluciones innovadoras y eficientes que impulsan el crecimiento y la transformación digital de nuestros clientes. Creemos en el poder de la tecnología para simplificar procesos y crear valor.
                </p>
                <Button asChild size="lg" variant="accent" className="bg-white/20 hover:bg-white/30 border border-white/50 backdrop-blur-sm">
-                 <Link href={`/about/mision`}>
+                 <Link href="/about/mision">
                    <span className="flex items-center">
-                     {t.missionCTA} <ArrowRight className="ml-2 h-5 w-5" />
+                     Explora nuestra Misión <ArrowRight className="ml-2 h-5 w-5" />
                    </span>
                  </Link>
                </Button>
              </div>
               <div className="relative h-96 w-full overflow-hidden rounded-lg md:h-[600px] order-last">
                   {missionIcons.map((Icon, index) => {
-                    const style = iconStyles[index % iconStyles.length]; // Use modulo for safety
+                    const style = iconStyles[index % iconStyles.length];
                     return (
                         <div
                             key={index}
@@ -209,9 +247,14 @@ export default function HomePageClient({ locale }: HomePageClientProps) {
 
       <section className="py-16 bg-background" id="nuestras-marcas">
         <div className="w-full px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center mb-10">{t.brandsTitle}</h2>
+            <h2 className="text-3xl font-bold text-center mb-10">Nuestras Marcas</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {t.brands.map((marca) => {
+            {[
+                { title: 'Ples CREA', description: 'Cartografía y diseño geoespacial.', icon: Globe, href: "/ples-crea" },
+                { title: 'Ples TIC', description: 'Tecnologías de la información.', icon: Server, href: "/ples-tic" },
+                { title: 'Ples Catastro', description: 'Catastro y gestión territorial.', icon: HomeIcon, href: "/ples-catastro" },
+                { title: 'Ples Consulting', description: 'Consultoría estratégica.', icon: Lightbulb, href: "/ples-consulting" },
+            ].map((marca) => {
               const MarcaIcon = marca.icon;
               return (
                 <Card key={marca.title} className="text-center group hover:bg-primary hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out hover:shadow-xl">
@@ -226,7 +269,7 @@ export default function HomePageClient({ locale }: HomePageClientProps) {
                     <Button variant="link" asChild className="text-primary group-hover:text-primary-foreground">
                     <Link href={`${marca.href}`}>
                         <span className="flex items-center">
-                        {t.viewDetails} <ArrowRight className="ml-1 h-4 w-4" />
+                        Ver Detalles <ArrowRight className="ml-1 h-4 w-4" />
                         </span>
                     </Link>
                     </Button>
@@ -239,9 +282,13 @@ export default function HomePageClient({ locale }: HomePageClientProps) {
 
       <section className="py-16 bg-secondary">
          <div className="w-full px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center mb-10">{t.audienceTitle}</h2>
+            <h2 className="text-3xl font-bold text-center mb-10">Nuestro Público Objetivo</h2>
             <div className="grid md:grid-cols-3 gap-8">
-             {t.audiences.map((audience) => {
+             {[
+                { icon: Building, title: 'Sector Público', description: 'Ofrecemos soluciones adaptadas a las necesidades de entidades gubernamentales y administraciones públicas, mejorando la eficiencia y transparencia.'},
+                { icon: Handshake, title: 'Sector Privado', description: 'Impulsamos la competitividad de las empresas con herramientas tecnológicas y consultoría estratégica para optimizar sus operaciones.'},
+                { icon: Users, title: 'Sector Social y Comunitario', description: 'Colaboramos con organizaciones sin fines de lucro y comunidades para fortalecer su impacto social a través de la tecnología y la innovación.'},
+             ].map((audience) => {
                 const AudienceIcon = audience.icon;
                 return (
                  <Card key={audience.title} className="shadow-sm group hover:shadow-xl hover:scale-105 hover:border-primary transition-all duration-300 ease-in-out border">
@@ -263,14 +310,14 @@ export default function HomePageClient({ locale }: HomePageClientProps) {
 
       <section className="relative py-24 overflow-hidden bg-background">
         <div className="w-full px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h2 className="text-3xl font-bold mb-4 text-primary">{t.readyTitle}</h2>
+          <h2 className="text-3xl font-bold mb-4 text-primary">¿Listo para Transformar su Organización?</h2>
           <p className="text-lg text-foreground mb-8 max-w-2xl mx-auto">
-            {t.readyDescription}
+            Contáctenos hoy mismo para descubrir cómo nuestras soluciones pueden ayudarle a alcanzar sus objetivos.
           </p>
           <Button size="lg" variant="accent" asChild>
-             <Link href={`/forms`}>
+             <Link href="/forms">
                <span className="flex items-center">
-                 {t.readyCTA} <ArrowRight className="ml-2" />
+                 Contactar Ahora <ArrowRight className="ml-2" />
                </span>
             </Link>
           </Button>
