@@ -40,40 +40,16 @@ const iconStyles = [
   { top: '15%', left: '90%', size: 'h-8 w-8', duration: '35s', delay: '-4s' },
 ];
 
-export default function HomePageClient() {
+interface HomePageClientProps {
+  initialHeroStatements: HeroStatement[];
+}
+
+export default function HomePageClient({ initialHeroStatements }: HomePageClientProps) {
   const [currentIconIndex, setCurrentIconIndex] = useState(0);
   const [metricIndices, setMetricIndices] = useState([0, 0, 0]);
   const [isAnimatingOut, setIsAnimatingOut] = useState<number | null>(null);
 
-  const heroStatements: HeroStatement[] = [
-    {
-      title: "Datos, ingeniería y propósito para el desarrollo",
-      description: "De la idea a la acción: acompañamos gobiernos y empresas a generar impacto real.",
-      ctaText: "Empieza hoy",
-      ctaLink: "/forms",
-      ctaIconName: "Send",
-      ctaVariant: 'accent',
-      order: 1,
-    },
-    {
-      title: "Innovación que Impacta, Estrategias que Perduran",
-      description: "Creamos soluciones a medida que impulsan el progreso y construyen un legado sostenible para su organización.",
-      ctaText: "Conoce cómo",
-      ctaLink: "/innovacion-estrategias",
-      ctaIconName: "BookOpen",
-      ctaVariant: 'accent',
-      order: 2,
-    },
-    {
-      title: "Soluciones Integrales para Desafíos Complejos",
-      description: "Tecnología, datos y estrategia al servicio de tus metas.",
-      ctaText: "Explora Servicios",
-      ctaLink: "/#nuestras-marcas",
-      ctaIconName: "Layers",
-      ctaVariant: 'accent',
-      order: 3,
-    },
-  ];
+  const heroStatements = initialHeroStatements;
 
   const metricsData = [
     [
