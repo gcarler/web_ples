@@ -1,7 +1,7 @@
 // src/components/layout/rotating-hero-text.tsx
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { Button, type ButtonProps } from '@/components/ui/button';
 import { ArrowRight, Send, BookOpen, Layers, Cpu } from 'lucide-react'; // Import all icons here
@@ -35,17 +35,19 @@ export function RotatingHeroText({
   buttonContainerClassName,
 }: RotatingHeroTextProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isFading, setIsFading] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
     if (statements.length <= 1) return;
 
     const changeStatement = () => {
-      setIsFading(true);
-      setTimeout(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % statements.length);
-        setIsFading(false);
-      }, 500); // Duration of fade-out transition
+        setIsAnimating(true);
+        // Timeout to allow fade-out animation to complete
+        setTimeout(() => {
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % statements.length);
+            // After changing the index, the new content will render, and we set animating to false to trigger the fade-in
+            setIsAnimating(false);
+        }, 600); // This should match your fade-out duration
     };
 
     const timer = setInterval(changeStatement, interval);
@@ -57,8 +59,9 @@ export function RotatingHeroText({
   }
 
   const currentStatement = statements[currentIndex];
-  // Use ctaIconName to get the component from the map, fallback to ArrowRight
   const CtaIcon = currentStatement.ctaIconName ? iconMap[currentStatement.ctaIconName] || ArrowRight : ArrowRight;
+
+  const titleWords = useMemo(() => currentStatement.title.split(' '), [currentStatement.title]);
 
   return (
     <div
@@ -67,28 +70,37 @@ export function RotatingHeroText({
         className
       )}
     >
-      <div
-        className={cn(
-          'transition-opacity duration-500 ease-in-out',
-          isFading ? 'opacity-0' : 'opacity-100'
-        )}
-      >
         <h1 className={cn("font-bold leading-tight", titleClassName)}>
-          {currentStatement.title}
+          {titleWords.map((word, index) => (
+            <span
+              key={index}
+              className={cn(
+                "inline-block transition-all duration-500",
+                isAnimating ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
+              )}
+              style={{ transitionDelay: isAnimating ? '0s' : `${index * 100}ms`}}
+            >
+              {word}&nbsp;
+            </span>
+          ))}
         </h1>
-        <p className={cn("text-muted-foreground mt-6", descriptionClassName)}> {/* Adjusted margin top for description */}
-          {currentStatement.description}
-        </p>
-        <div className={cn("mt-10", buttonContainerClassName)}> {/* Adjusted margin top for button */}
-            <Button size="lg" variant={currentStatement.ctaVariant || 'default'} asChild>
-                <Link href={currentStatement.ctaLink}>
-                    <span className="flex items-center">
-                    {currentStatement.ctaText} <CtaIcon className="ml-2 h-5 w-5" />
-                    </span>
-                </Link>
-            </Button>
+        <div 
+            className={cn('transition-opacity duration-500', isAnimating ? 'opacity-0' : 'opacity-100')}
+            style={{ transitionDelay: isAnimating ? '0s' : `${titleWords.length * 100}ms` }}
+        >
+            <p className={cn("text-muted-foreground mt-6", descriptionClassName)}>
+                {currentStatement.description}
+            </p>
+            <div className={cn("mt-10", buttonContainerClassName)}>
+                <Button size="lg" variant={currentStatement.ctaVariant || 'default'} asChild>
+                    <Link href={currentStatement.ctaLink}>
+                        <span className="flex items-center">
+                        {currentStatement.ctaText} <CtaIcon className="ml-2 h-5 w-5" />
+                        </span>
+                    </Link>
+                </Button>
+            </div>
         </div>
-      </div>
     </div>
   );
 }
