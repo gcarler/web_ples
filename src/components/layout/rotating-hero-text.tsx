@@ -96,7 +96,7 @@ export function RotatingHeroText({
           </span>
 
           {titleParts.length > 1 && (
-              <span className="relative inline-block align-text-bottom text-left overflow-hidden h-[1.2em] top-[1px]">
+              <span className="relative inline-block align-text-bottom text-left overflow-hidden h-[1.2em] top-[3px]">
                 <span 
                     className="inline-block transition-transform duration-500 ease-in-out"
                     style={{ transform: `translateY(-${rotatingWordIndex * 1.2}em)`}}
