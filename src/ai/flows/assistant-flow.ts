@@ -14,18 +14,14 @@ import { z } from 'genkit';
 export const AssistantInputSchema = z.object({
   query: z.string(),
 });
+export type AssistantInput = z.infer<typeof AssistantInputSchema>;
+
 
 export const AssistantOutputSchema = z.object({
   response: z.string(),
 });
+export type AssistantOutput = z.infer<typeof AssistantOutputSchema>;
 
-// Main exported function to be called by the client
-export async function assistantFlow(
-  input: z.infer<typeof AssistantInputSchema>
-): Promise<z.infer<typeof AssistantOutputSchema>> {
-  const { output } = await assistantPrompt(input);
-  return output!;
-}
 
 const assistantPrompt = ai.definePrompt(
   {
@@ -58,3 +54,24 @@ const assistantPrompt = ai.definePrompt(
     `,
   },
 );
+
+const assistantGenkitFlow = ai.defineFlow(
+  {
+    name: 'assistantGenkitFlow',
+    inputSchema: AssistantInputSchema,
+    outputSchema: AssistantOutputSchema,
+  },
+  async (input) => {
+    const { output } = await assistantPrompt(input);
+    if (!output) {
+        // Fallback in case the model doesn't return a valid structured response
+        return { response: "No he podido procesar tu solicitud en este momento. Inténtalo de nuevo." };
+    }
+    return output;
+  }
+);
+
+// Main exported function to be called by the client. This wraps the Genkit flow.
+export async function assistantFlow(input: AssistantInput): Promise<AssistantOutput> {
+  return await assistantGenkitFlow(input);
+}
