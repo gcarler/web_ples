@@ -13,13 +13,13 @@ import {
 } from 'lucide-react';
 
 const ofiPlesModules = {
-    "Sitio Web": {
-        icon: Globe,
+    "Interacción con Cliente": {
+        icon: UsersRound,
         description: "Herramientas para construir y gestionar su presencia en línea de manera integral.",
         items: [
-          { name: "OfiPles Sitio web", slug: "sitio-web", description: "Creador de sitios web empresariales", details: {
+          { name: "Sitio Web", slug: "sitio-web", description: "Creador de sitios web empresariales", details: {
               mainIcon: Globe,
-              title: 'OfiPles Sitio Web',
+              title: 'Ofi-Ples Sitio Web',
               description: 'Su plataforma todo-en-uno para crear, lanzar y gestionar sitios web empresariales de alto impacto. Sin necesidad de código, con resultados profesionales.',
               keyServices: [
                 { title: 'Editor Visual Intuitivo', text: 'Diseñe y modifique páginas con un potente sistema de arrastrar y soltar. Vea los cambios en tiempo real y construya su sitio de forma visual.', icon: MousePointerClick },
@@ -32,15 +32,15 @@ const ofiPlesModules = {
                 'Total autonomía para actualizar y gestionar su contenido sin depender de terceros.',
                 'Mejore su posicionamiento en Google y atraiga más clientes.',
                 'Proyecte una imagen de marca sólida, profesional y confiable.',
-                'Integración nativa con otros módulos de OfiPles como Blog, Tienda y CRM.',
+                'Integración nativa con otros módulos de Ofi-Ples como Blog, Tienda y CRM.',
               ],
               ctaText: "Empezar a Construir mi Sitio",
               formSubject: "Consulta%20OfiPles%20Sitio%20Web"
             }
           },
-          { name: "OfiPles Comercio electrónico", slug: "comercio-electronico", description: "Vende tus productos en línea", details: {
+          { name: "Comercio Electrónico", slug: "comercio-electronico", description: "Vende tus productos en línea", details: {
               mainIcon: ShoppingCart,
-              title: 'OfiPles Comercio Electrónico',
+              title: 'Ofi-Ples Comercio Electrónico',
               description: 'La solución completa para lanzar y escalar su tienda en línea. Gestione productos, procese pagos y administre pedidos desde una única plataforma integrada.',
               keyServices: [
                   { title: 'Catálogo de Productos Avanzado', text: 'Gestione productos ilimitados, variantes (talla, color), inventario y precios de forma centralizada.', icon: ListOrdered },
@@ -58,9 +58,9 @@ const ofiPlesModules = {
               ctaText: 'Comience a Vender en Línea',
               formSubject: 'Consulta%20OfiPles%20Comercio%20Electronico'
           } },
-          { name: "OfiPles Blog", slug: "blog", description: "Publica entradas, anuncios y noticias", details: {
+          { name: "Blog", slug: "blog", description: "Publica entradas, anuncios y noticias", details: {
               mainIcon: Edit,
-              title: 'OfiPles Blog',
+              title: 'Ofi-Ples Blog',
               description: 'Atraiga y fidelice a su audiencia con contenido de valor. Nuestro módulo de blog le permite crear, gestionar y optimizar sus publicaciones para llegar a más personas.',
               keyServices: [
                   { title: 'Editor de Contenido Avanzado', text: 'Cree artículos atractivos con un editor intuitivo que soporta texto enriquecido, imágenes, videos y código embebido.', icon: FileText },
@@ -78,9 +78,9 @@ const ofiPlesModules = {
               ctaText: 'Empiece a Escribir su Historia',
               formSubject: 'Consulta%20OfiPles%20Blog'
           } },
-          { name: "OfiPles Foro", slug: "foro", description: "Gestiona un foro para preguntas frecuentes", details: {
+          { name: "Foro", slug: "foro", description: "Gestiona un foro para preguntas frecuentes", details: {
               mainIcon: MessagesSquare,
-              title: 'OfiPles Foro',
+              title: 'Ofi-Ples Foro',
               description: 'Cree una comunidad activa donde sus clientes y usuarios puedan interactuar, resolver dudas y compartir conocimientos. Fomente el engagement y reduzca la carga de soporte.',
               keyServices: [
                   { title: 'Creación de Temas y Categorías', text: 'Estructure su foro en categorías y sub-foros para mantener las conversaciones organizadas y fáciles de encontrar.', icon: FolderKanban },
@@ -98,9 +98,9 @@ const ofiPlesModules = {
               ctaText: 'Construya su Comunidad',
               formSubject: 'Consulta%20OfiPles%20Foro'
           } },
-          { name: "OfiPles eLearning", slug: "elearning", description: "Gestiona y publica tus cursos", details: {
+          { name: "eLearning", slug: "elearning", description: "Gestiona y publica tus cursos", details: {
               mainIcon: GraduationCap,
-              title: 'OfiPles eLearning',
+              title: 'Ofi-Ples eLearning',
               description: 'Transforme su conocimiento en cursos en línea. Nuestra plataforma le permite crear, vender y gestionar experiencias de aprendizaje impactantes para su audiencia.',
               keyServices: [
                   { title: 'Constructor de Cursos Intuitivo', text: 'Estructure sus cursos con lecciones, videos, documentos, y otros recursos multimedia de forma sencilla.', icon: Layers },
@@ -118,9 +118,9 @@ const ofiPlesModules = {
               ctaText: 'Cree su Academia en Línea',
               formSubject: 'Consulta%20OfiPles%20eLearning'
           } },
-          { name: "OfiPles Chat en vivo", slug: "chat-en-vivo", description: "Chatea con los visitantes de tu sitio web", details: {
+          { name: "Chat en Vivo", slug: "chat-en-vivo", description: "Chatea con los visitantes de tu sitio web", details: {
               mainIcon: MessageCircle,
-              title: 'OfiPles Chat en Vivo',
+              title: 'Ofi-Ples Chat en Vivo',
               description: 'Conecte instantáneamente con los visitantes de su sitio web para resolver dudas, capturar leads y mejorar la conversión. No deje que un cliente potencial se vaya con preguntas sin responder.',
               keyServices: [
                   { title: 'Comunicación en Tiempo Real', text: 'Interactúe en vivo con los visitantes, guiándolos a través de su sitio y respondiendo preguntas al instante.', icon: Zap },
@@ -144,9 +144,9 @@ const ofiPlesModules = {
         icon: ShoppingCart,
         description: "Optimice todo su ciclo de ventas, desde la captación de clientes hasta la facturación final.",
         items: [
-          { name: "OfiPles CRM", slug: "crm", description: "Gestiona tus leads y cierra oportunidades", details: {
+          { name: "CRM", slug: "crm", description: "Gestiona tus leads y cierra oportunidades", details: {
               mainIcon: Users,
-              title: 'OfiPles CRM',
+              title: 'Ofi-Ples CRM (Gestión de Relaciones con el Cliente)',
               description: 'Centralice la gestión de sus clientes y oportunidades de venta. Obtenga una vista 360° de cada interacción y optimice su proceso comercial para cerrar más negocios, más rápido.',
               keyServices: [
                   { title: 'Gestión de Contactos y Empresas', text: 'Mantenga una base de datos centralizada y limpia de todos sus prospectos, clientes y las organizaciones a las que pertenecen.', icon: Users2 },
@@ -164,9 +164,9 @@ const ofiPlesModules = {
               ctaText: 'Optimice su Proceso de Ventas',
               formSubject: 'Consulta%20OfiPles%20CRM'
           } },
-          { name: "OfiPles Ventas", slug: "ventas", description: "De cotizaciones a facturas", details: {
+          { name: "Ventas", slug: "ventas", description: "De cotizaciones a facturas", details: {
               mainIcon: FileText,
-              title: 'OfiPles Ventas',
+              title: 'Ofi-Ples Ventas',
               description: 'Agilice su proceso de ventas con una herramienta que le permite crear y enviar cotizaciones profesionales, gestionar pedidos y convertirlos en facturas con un solo clic.',
               keyServices: [
                   { title: 'Creación de Cotizaciones', text: 'Genere cotizaciones personalizadas y profesionales con su marca, productos y precios en minutos.', icon: ClipboardEdit },
@@ -184,9 +184,9 @@ const ofiPlesModules = {
               ctaText: 'Agilice sus Cotizaciones',
               formSubject: 'Consulta%20OfiPles%20Ventas'
           } },
-          { name: "OfiPles Punto de venta", slug: "punto-de-venta", description: "Interfaz para tiendas y restaurantes", details: {
+          { name: "Punto de Venta", slug: "punto-de-venta", description: "Interfaz para tiendas y restaurantes", details: {
               mainIcon: Tablet,
-              title: 'OfiPles Punto de Venta (POS)',
+              title: 'Ofi-Ples Punto de Venta (POS)',
               description: 'Una interfaz de punto de venta rápida, intuitiva y potente para su tienda física o restaurante. Funciona en cualquier dispositivo y se integra perfectamente con su inventario y contabilidad.',
               keyServices: [
                   { title: 'Interfaz Rápida y Táctil', text: 'Diseñado para la velocidad, con una interfaz limpia y optimizada para pantallas táctiles que minimiza los clics.', icon: MousePointerClick },
@@ -204,9 +204,9 @@ const ofiPlesModules = {
               ctaText: 'Modernice su Punto de Venta',
               formSubject: 'Consulta%20OfiPles%20Punto%20de%20Venta'
           } },
-          { name: "OfiPles Suscripciones", slug: "suscripciones", description: "Facturas recurrentes y renovaciones", details: {
+          { name: "Suscripciones", slug: "suscripciones", description: "Facturas recurrentes y renovaciones", details: {
               mainIcon: Repeat,
-              title: 'OfiPles Suscripciones',
+              title: 'Ofi-Ples Suscripciones',
               description: 'Gestione modelos de negocio basados en ingresos recurrentes. Automatice la facturación, gestione planes y suscripciones, y reduzca la pérdida de clientes (churn).',
               keyServices: [
                   { title: 'Facturación Recurrente Automática', text: 'Configure planes y deje que el sistema genere y envíe facturas automáticamente según la periodicidad definida (mensual, anual, etc.).', icon: Zap },
@@ -224,9 +224,9 @@ const ofiPlesModules = {
               ctaText: 'Automatice sus Ingresos Recurrentes',
               formSubject: 'Consulta%20OfiPles%20Suscripciones'
           } },
-          { name: "OfiPles Alquiler", slug: "alquiler", description: "Gestiona contratos y disponibilidad", details: {
+          { name: "Alquiler", slug: "alquiler", description: "Gestiona contratos y disponibilidad", details: {
               mainIcon: KeyRound,
-              title: 'OfiPles Alquiler',
+              title: 'Ofi-Ples Alquiler',
               description: 'Una solución completa para gestionar su negocio de alquiler. Controle la disponibilidad de sus productos, gestione contratos y programe recogidas y devoluciones desde un solo lugar.',
               keyServices: [
                   { title: 'Calendario de Disponibilidad Visual', text: 'Vea la disponibilidad de sus productos de alquiler en un calendario tipo Gantt, evitando reservas duplicadas.', icon: Calendar },
@@ -250,9 +250,9 @@ const ofiPlesModules = {
         icon: Landmark,
         description: "Controle la salud financiera de su empresa con herramientas contables y de facturación robustas.",
         items: [
-          { name: "OfiPles Contabilidad", slug: "contabilidad", description: "Gestiona tu contabilidad financiera", details: {
+          { name: "Contabilidad", slug: "contabilidad", description: "Gestiona tu contabilidad financiera", details: {
               mainIcon: BookUser,
-              title: 'OfiPles Contabilidad',
+              title: 'Ofi-Ples Contabilidad',
               description: 'Un sistema contable completo y flexible que simplifica la gestión financiera de su empresa, automatiza asientos y genera informes precisos para el cumplimiento y la toma de decisiones.',
               keyServices: [
                   { title: 'Plan de Cuentas Personalizable', text: 'Adapte el plan de cuentas a la estructura de su empresa y a las normativas locales.', icon: Settings },
@@ -270,9 +270,9 @@ const ofiPlesModules = {
               ctaText: 'Simplifique su Contabilidad',
               formSubject: 'Consulta%20OfiPles%20Contabilidad'
           } },
-          { name: "OfiPles Facturación", slug: "facturacion", description: "Facturas y pagos", details: {
+          { name: "Facturación", slug: "facturacion", description: "Facturas y pagos", details: {
               mainIcon: Receipt,
-              title: 'OfiPles Facturación',
+              title: 'Ofi-Ples Facturación',
               description: 'Cree y envíe facturas profesionales, gestione pagos y haga seguimiento de sus cuentas por cobrar de manera eficiente. Integrado con su contabilidad para una gestión impecable.',
               keyServices: [
                   { title: 'Creación Rápida de Facturas', text: 'Genere facturas a partir de pedidos de venta, hojas de horas o de forma manual con plantillas personalizables.', icon: FileDigit },
@@ -290,9 +290,9 @@ const ofiPlesModules = {
               ctaText: 'Optimice su Facturación',
               formSubject: 'Consulta%20OfiPles%20Facturacion'
           } },
-          { name: "OfiPles Gastos", slug: "gastos", description: "Gestiona los gastos de tus empleados", details: {
+          { name: "Gastos", slug: "gastos", description: "Gestiona los gastos de tus empleados", details: {
               mainIcon: CreditCard,
-              title: 'OfiPles Gastos',
+              title: 'Ofi-Ples Gastos',
               description: 'Simplifique el proceso de reporte y aprobación de gastos de los empleados. Desde la captura del recibo hasta el reembolso y la contabilización, todo en un flujo de trabajo digital.',
               keyServices: [
                   { title: 'Reporte de Gastos Simplificado', text: 'Los empleados pueden registrar gastos fácilmente, incluso tomando una foto del recibo desde su móvil.', icon: Camera },
@@ -310,9 +310,9 @@ const ofiPlesModules = {
               ctaText: 'Digitalice la Gestión de Gastos',
               formSubject: 'Consulta%20OfiPles%20Gastos'
           } },
-          { name: "OfiPles Documentos", slug: "documentos", description: "Gestión de documentos", details: {
+          { name: "Documentos", slug: "documentos", description: "Gestión de documentos", details: {
               mainIcon: FolderArchive,
-              title: 'OfiPles Documentos',
+              title: 'Ofi-Ples Documentos',
               description: 'Un sistema de gestión documental colaborativo y seguro. Organice, comparta y controle el acceso a todos los archivos de su empresa en un espacio de trabajo centralizado.',
               keyServices: [
                   { title: 'Organización por Espacios de Trabajo', text: 'Cree carpetas y subcarpetas para organizar sus documentos por proyecto, departamento o cualquier otra estructura lógica.', icon: FolderKanban },
@@ -330,9 +330,9 @@ const ofiPlesModules = {
               ctaText: 'Centralice sus Documentos',
               formSubject: 'Consulta%20OfiPles%20Documentos'
           } },
-          { name: "OfiPles Firma electrónica", slug: "firma-electronica", description: "Firma documentos en línea", details: {
+          { name: "Firma Electrónica", slug: "firma-electronica", description: "Firma documentos en línea", details: {
               mainIcon: PenSquare,
-              title: 'OfiPles Firma Electrónica',
+              title: 'Ofi-Ples Firma Electrónica',
               description: 'Acelere sus acuerdos y contratos. Envíe, firme y gestione documentos de forma electrónica con plena validez legal, sin necesidad de imprimir ni escanear.',
               keyServices: [
                   { title: 'Envío Fácil para Firma', text: 'Suba un documento PDF, arrastre y suelte los campos de firma y envíelo a una o varias personas para que lo firmen.', icon: Send },
@@ -352,13 +352,13 @@ const ofiPlesModules = {
           } }
         ]
     },
-    "Inventario y Fabricación": {
+    "Operaciones": {
         icon: Warehouse,
         description: "Gestione eficientemente su cadena de suministro, producción y control de calidad.",
         items: [
-          { name: "OfiPles Inventario", slug: "inventario", description: "Gestiona tu inventario y logística", details: {
+          { name: "Inventario", slug: "inventario", description: "Gestiona tu inventario y logística", details: {
               mainIcon: Warehouse,
-              title: 'OfiPles Inventario',
+              title: 'Ofi-Ples Inventario',
               description: 'Optimice toda su cadena de suministro con un sistema de gestión de inventario de doble entrada. Controle cada movimiento, desde la recepción hasta la entrega al cliente.',
               keyServices: [
                   { title: 'Trazabilidad Completa', text: 'Rastree cada producto con números de serie o lotes, desde su origen hasta su destino final.', icon: Barcode },
@@ -376,9 +376,9 @@ const ofiPlesModules = {
               ctaText: 'Controle su Inventario',
               formSubject: 'Consulta%20OfiPles%20Inventario'
           } },
-          { name: "OfiPles Manufactura", slug: "manufactura", description: "Órdenes de fabricación y listas de materiales", details: {
+          { name: "Manufactura", slug: "manufactura", description: "Órdenes de fabricación y listas de materiales", details: {
               mainIcon: Factory,
-              title: 'OfiPles Manufactura (MRP)',
+              title: 'Ofi-Ples Manufactura (MRP)',
               description: 'Planifique, programe y controle su producción de principio a fin. Gestione listas de materiales, órdenes de fabricación y centros de trabajo para optimizar su planta.',
               keyServices: [
                   { title: 'Listas de Materiales (BoM)', text: 'Cree y gestione listas de materiales de múltiples niveles y versiones para sus productos.', icon: ClipboardList },
@@ -395,6 +395,86 @@ const ofiPlesModules = {
               ],
               ctaText: 'Optimice su Producción',
               formSubject: 'Consulta%20OfiPles%20Manufactura'
+          } },
+          { name: "PLM", slug: "plm", description: "Gestión del Ciclo de Vida del Producto", details: {
+              mainIcon: GitPullRequestArrow,
+              title: 'Ofi-Ples Gestión del Ciclo de Vida del Producto (PLM)',
+              description: 'Plataforma colaborativa para gestionar todo el ciclo de vida de un producto, desde su concepción y diseño hasta su fabricación y eventual retirada del mercado.',
+              keyServices: [
+                  { title: 'Gestión de Versiones (LdM/BOM)', text: 'Cree y gestione listas de materiales (LdM) de múltiples niveles y versiones, y controle los cambios con un sistema de versionado.', icon: GitMerge },
+                  { title: 'Órdenes de Cambio de Ingeniería (ECO)', text: 'Gestione los procesos de cambio de ingeniería de manera controlada, asegurando que todas las partes interesadas aprueben las modificaciones.', icon: ClipboardCheck },
+                  { title: 'Centralización de Documentación Técnica', text: 'Vincule planos, especificaciones y otros documentos técnicos a cada versión del producto, asegurando una única fuente de verdad.', icon: FileArchive },
+                  { title: 'Flujos de Aprobación Colaborativos', text: 'Defina flujos de trabajo para la revisión y aprobación de nuevos diseños o cambios, involucrando a los equipos de ingeniería, calidad y producción.', icon: Workflow }
+              ],
+              benefits: [
+                  'Acelera el tiempo de lanzamiento de nuevos productos al mercado (time-to-market).',
+                  'Reduce errores y costos asociados a cambios de diseño no controlados.',
+                  'Mejora la colaboración entre los equipos de diseño, ingeniería y producción.',
+                  'Asegura que la fabricación siempre utilice la versión más reciente y aprobada de un diseño.',
+                  'Proporciona una trazabilidad completa del historial de cambios de un producto.'
+              ],
+              ctaText: 'Controle el Ciclo de Vida',
+              formSubject: 'Consulta%20OfiPles%20PLM'
+          } },
+          { name: "Compra", slug: "compra", description: "Gestión de compras y proveedores", details: {
+              mainIcon: ShoppingBag,
+              title: 'Ofi-Ples Compra',
+              description: 'Automatice y optimice todo el ciclo de aprovisionamiento, desde la identificación de una necesidad hasta el pago al proveedor (procure-to-pay).',
+              keyServices: [
+                  { title: 'Solicitudes de Cotización (RFQ)', text: 'Gestione solicitudes de cotización a múltiples proveedores y compare sus ofertas de manera estandarizada.', icon: FileText },
+                  { title: 'Órdenes de Compra y Aprobaciones', text: 'Cree y envíe órdenes de compra, y gestione flujos de aprobación para controlar el gasto.', icon: CheckCircle },
+                  { title: 'Gestión de Proveedores', text: 'Mantenga una base de datos de sus proveedores, gestione sus acuerdos de compra y evalúe su rendimiento.', icon: Users },
+                  { title: 'Recepción y Verificación de Mercancía', text: 'Controle la recepción de productos en su almacén, comparando la entrega con la orden de compra.', icon: Package }
+              ],
+              benefits: [
+                  'Reduce los costos de adquisición a través de una mejor negociación y comparación.',
+                  'Aumenta la eficiencia del proceso de compra gracias a la automatización.',
+                  'Mejora el control sobre los gastos y el cumplimiento de las políticas de compra.',
+                  'Fortalece las relaciones con los proveedores a través de una comunicación transparente.',
+                  'Asegura el suministro oportuno de bienes y servicios.'
+              ],
+              ctaText: 'Optimice sus Compras',
+              formSubject: 'Consulta%20OfiPles%20Compra'
+          } },
+          { name: "Mantenimiento", slug: "mantenimiento", description: "Mantenimiento preventivo y correctivo", details: {
+              mainIcon: Wrench,
+              title: 'Ofi-Ples Mantenimiento',
+              description: 'Maximice la disponibilidad y la fiabilidad de sus activos productivos, como maquinaria y equipos, a través de una estrategia de mantenimiento proactiva.',
+              keyServices: [
+                  { title: 'Gestión de Equipos y Activos', text: 'Mantenga un registro centralizado de todos sus equipos, incluyendo su historial de mantenimiento y documentación técnica.', icon: Briefcase },
+                  { title: 'Mantenimiento Preventivo', text: 'Planifique y programe actividades de mantenimiento basadas en el tiempo o en el uso para prevenir averías.', icon: Calendar },
+                  { title: 'Mantenimiento Correctivo', text: 'Gestione las solicitudes de mantenimiento cuando se produce una avería, desde la creación del ticket hasta la resolución.', icon: AlertTriangle },
+                  { title: 'Informes de Rendimiento de Equipos', text: 'Analice métricas como el tiempo medio entre fallos (MTBF) y el tiempo medio de reparación (MTTR) para optimizar su estrategia.', icon: BarChart3 }
+              ],
+              benefits: [
+                  'Reduce los costos asociados a las reparaciones de emergencia.',
+                  'Minimiza los tiempos de inactividad no planificados de la producción.',
+                  'Prolonga la vida útil de sus activos más importantes.',
+                  'Mejora la seguridad en la planta de producción.',
+                  'Permite pasar a un modelo de mantenimiento predictivo (PdM).'
+              ],
+              ctaText: 'Maximice la Vida de sus Activos',
+              formSubject: 'Consulta%20OfiPles%20Mantenimiento'
+          } },
+          { name: "Calidad", slug: "calidad", description: "Control de calidad y no conformidades", details: {
+              mainIcon: ShieldCheck,
+              title: 'Ofi-Ples Calidad',
+              description: 'Integre la gestión de la calidad en todos sus procesos operativos para asegurar que los productos cumplan con las especificaciones y reducir los costos de no calidad.',
+              keyServices: [
+                  { title: 'Planes de Control de Calidad', text: 'Defina los puntos de inspección y las pruebas de calidad que se deben realizar en diferentes etapas (recepción, producción, etc.).', icon: ClipboardCheck },
+                  { title: 'Gestión de Alertas de Calidad', text: 'Registre y gestione las no conformidades, activando flujos de trabajo para su análisis y resolución.', icon: Bell },
+                  { title: 'Análisis de Causa Raíz', text: 'Utilice herramientas de calidad para identificar la causa raíz de los problemas y definir acciones correctivas y preventivas.', icon: BrainCircuit },
+                  { title: 'Informes de Calidad', text: 'Analice las tendencias de la calidad, los costos de no calidad y el rendimiento de los proveedores.', icon: BarChart3 }
+              ],
+              benefits: [
+                  'Mejora la calidad y la consistencia de sus productos.',
+                  'Reduce el desperdicio, el retrabajo y las devoluciones.',
+                  'Aumenta la satisfacción y la confianza de sus clientes.',
+                  'Facilita el cumplimiento de normativas y certificaciones como ISO 9001.',
+                  'Fomenta una cultura de mejora continua en toda la organización.'
+              ],
+              ctaText: 'Asegure su Calidad',
+              formSubject: 'Consulta%20OfiPles%20Calidad'
           } }
         ]
     },
@@ -402,9 +482,9 @@ const ofiPlesModules = {
         icon: Users2,
         description: "Administre el ciclo de vida completo de sus empleados, desde la contratación hasta la evaluación.",
         items: [
-          { name: "OfiPles Empleados", slug: "empleados", description: "Centraliza la información de tus empleados", details: {
+          { name: "Empleados", slug: "empleados", description: "Centraliza la información de tus empleados", details: {
               mainIcon: Users,
-              title: 'OfiPles Empleados',
+              title: 'Ofi-Ples Empleados',
               description: 'Centralice toda la información de su equipo en un solo lugar. Gestione perfiles, contratos, ausencias y mucho más, de forma segura y accesible.',
               keyServices: [
                   { title: 'Directorio de Empleados', text: 'Mantenga una base de datos centralizada con toda la información relevante de cada empleado, desde datos de contacto hasta roles y departamentos.', icon: Users2 },
@@ -422,9 +502,9 @@ const ofiPlesModules = {
               ctaText: 'Gestione su Talento',
               formSubject: 'Consulta%20OfiPles%20Empleados'
           } },
-          { name: "OfiPles Reclutamiento", slug: "reclutamiento", description: "Monitorea tu flujo de reclutamiento", details: {
+          { name: "Reclutamiento", slug: "reclutamiento", description: "Monitorea tu flujo de reclutamiento", details: {
               mainIcon: Briefcase,
-              title: 'OfiPles Reclutamiento',
+              title: 'Ofi-Ples Reclutamiento',
               description: 'Atraiga y contrate al mejor talento. Gestione todo su proceso de selección, desde la publicación de ofertas hasta la contratación, en una plataforma colaborativa.',
               keyServices: [
                   { title: 'Portal de Empleo Personalizado', text: 'Publique sus ofertas de trabajo en una página de empleo con su propia marca, integrada en su sitio web.', icon: Megaphone },
@@ -442,9 +522,9 @@ const ofiPlesModules = {
               ctaText: 'Atraiga al Mejor Talento',
               formSubject: 'Consulta%20OfiPles%20Reclutamiento'
           } },
-          { name: "OfiPles Evaluaciones", slug: "evaluaciones", description: "Evalúa a tus empleados", details: {
+          { name: "Evaluaciones", slug: "evaluaciones", description: "Evalúa a tus empleados", details: {
               mainIcon: ClipboardCheck,
-              title: 'OfiPles Evaluaciones',
+              title: 'Ofi-Ples Evaluaciones',
               description: 'Fomente una cultura de mejora continua con un sistema de evaluación del desempeño flexible y colaborativo. Defina objetivos, recopile feedback y cree planes de desarrollo.',
               keyServices: [
                   { title: 'Evaluaciones Periódicas', text: 'Programe y realice evaluaciones de desempeño (anuales, semestrales) con formularios y flujos de trabajo personalizables.', icon: Calendar },
@@ -468,9 +548,9 @@ const ofiPlesModules = {
         icon: Megaphone,
         description: "Cree, automatice y mida sus campañas de marketing para llegar a su público objetivo.",
         items: [
-            { name: "OfiPles Marketing por correo electrónico", slug: "email-marketing", description: "Diseña, envía y monitorea correos electrónicos", details: {
+            { name: "Marketing por Correo Electrónico", slug: "email-marketing", description: "Diseña, envía y monitorea correos electrónicos", details: {
                 mainIcon: Mail,
-                title: 'OfiPles Marketing por Correo Electrónico',
+                title: 'Ofi-Ples Marketing por Correo Electrónico',
                 description: 'Cree y envíe campañas de email marketing impactantes. Desde newsletters hasta promociones, nuestra herramienta le ayuda a conectar con su audiencia y obtener resultados medibles.',
                 keyServices: [
                     { title: 'Editor de Arrastrar y Soltar', text: 'Diseñe correos visualmente atractivos sin necesidad de código, utilizando un editor intuitivo y plantillas profesionales.', icon: LayoutTemplate },
@@ -494,9 +574,9 @@ const ofiPlesModules = {
         icon: ConciergeBell,
         description: "Gestione proyectos, soporte y servicios de campo con herramientas diseñadas para la eficiencia.",
         items: [
-          { name: "OfiPles Proyecto", slug: "proyecto", description: "Organiza y planea tus proyectos", details: {
+          { name: "Proyecto", slug: "proyecto", description: "Organiza y planea tus proyectos", details: {
               mainIcon: Briefcase,
-              title: 'OfiPles Proyecto',
+              title: 'Ofi-Ples Proyecto',
               description: 'Planifique, siga y gestione sus proyectos de forma colaborativa. Obtenga una visión clara del progreso, gestione recursos y asegure entregas a tiempo y dentro del presupuesto.',
               keyServices: [
                   { title: 'Vista de Tareas (Kanban, Gantt)', text: 'Visualice sus proyectos y tareas en diferentes formatos, como tableros Kanban, diagramas de Gantt y listas.', icon: KanbanSquare },
@@ -514,9 +594,9 @@ const ofiPlesModules = {
               ctaText: 'Organice sus Proyectos',
               formSubject: 'Consulta%20OfiPles%20Proyecto'
           } },
-          { name: "OfiPles Soporte al cliente", slug: "soporte-cliente", description: "Monitorea y soluciona tickets", details: {
+          { name: "Soporte al Cliente", slug: "soporte-cliente", description: "Monitorea y soluciona tickets", details: {
               mainIcon: Headset,
-              title: 'OfiPles Soporte al Cliente',
+              title: 'Ofi-Ples Soporte al Cliente',
               description: 'Ofrezca un servicio de atención al cliente excepcional. Gestione, priorice y resuelva todas las solicitudes de sus clientes desde una plataforma multicanal.',
               keyServices: [
                   { title: 'Sistema de Tickets Multicanal', text: 'Centralice las solicitudes de soporte recibidas por correo electrónico, teléfono o chat en vivo en un único sistema de tickets.', icon: Inbox },
