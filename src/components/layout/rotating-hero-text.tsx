@@ -99,12 +99,12 @@ export function RotatingHeroText({
           ))}
 
           {titleParts.length > 1 && (
-               <span className="relative inline-block w-48 text-left">
+               <span className="relative inline-block w-48 text-left h-[1.2em]">
                 {rotatingWords.map((item, index) => (
                      <span
                         key={item.word}
                         className={cn(
-                          "absolute transition-all duration-500",
+                          "absolute inset-0 flex justify-center items-center transition-all duration-500",
                           item.className,
                           rotatingWordIndex === index
                               ? "opacity-100 translate-y-0"
