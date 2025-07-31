@@ -1,7 +1,7 @@
 // src/components/layout/rotating-hero-text.tsx
 'use client';
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import Link from 'next/link';
 import { Button, type ButtonProps } from '@/components/ui/button';
 import { ArrowRight, Send, BookOpen, Layers, Cpu } from 'lucide-react'; // Import all icons here
@@ -43,6 +43,8 @@ export function RotatingHeroText({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [rotatingWordIndex, setRotatingWordIndex] = useState(0);
+  const [containerWidth, setContainerWidth] = useState<number | undefined>(undefined);
+  const wordSpansRef = useRef<(HTMLSpanElement | null)[]>([]);
 
   useEffect(() => {
     if (statements.length <= 1) return;
@@ -67,6 +69,15 @@ export function RotatingHeroText({
       }, 2000); // Change word every 2 seconds
       return () => clearInterval(wordRotator);
   }, []);
+
+  useEffect(() => {
+    // Adjust container width to the current word's width
+    const currentWordSpan = wordSpansRef.current[rotatingWordIndex];
+    if (currentWordSpan) {
+        setContainerWidth(currentWordSpan.offsetWidth);
+    }
+  }, [rotatingWordIndex]);
+
 
   if (!statements || statements.length === 0) {
     return null;
@@ -99,16 +110,20 @@ export function RotatingHeroText({
           ))}
 
           {titleParts.length > 1 && (
-               <span className="relative inline-block w-48 text-left h-[1.2em]">
+               <span 
+                className="relative inline-block text-left transition-all duration-300 ease-in-out" 
+                style={{ width: containerWidth ? `${containerWidth}px` : 'auto', height: '1.2em' }}
+               >
                 {rotatingWords.map((item, index) => (
                      <span
                         key={item.word}
+                        ref={el => wordSpansRef.current[index] = el}
                         className={cn(
-                          "absolute inset-0 flex justify-center items-center transition-all duration-500",
+                          "absolute inset-0 flex items-center transition-all duration-500",
                           item.className,
                           rotatingWordIndex === index
                               ? "opacity-100 translate-y-0"
-                              : "opacity-0 -translate-y-4"
+                              : "opacity-0 -translate-y-full"
                         )}
                       >
                         {item.word}
@@ -126,7 +141,7 @@ export function RotatingHeroText({
               )}
               style={{ transitionDelay: isAnimating ? '0s' : `${(titleParts[0].split(' ').length + index) * 100}ms`}}
             >
-              &nbsp;{word}
+              {word.startsWith(' ') ? word : ` ${word}`}
             </span>
           ))}
         </h1>
