@@ -43,8 +43,6 @@ export function RotatingHeroText({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [rotatingWordIndex, setRotatingWordIndex] = useState(0);
-  const [containerWidth, setContainerWidth] = useState<number | undefined>(undefined);
-  const wordSpansRef = useRef<(HTMLSpanElement | null)[]>([]);
 
   useEffect(() => {
     if (statements.length <= 1) return;
@@ -69,14 +67,6 @@ export function RotatingHeroText({
       }, 2000); // Change word every 2 seconds
       return () => clearInterval(wordRotator);
   }, []);
-
-  useEffect(() => {
-    // Adjust container width to the current word's width
-    const currentWordSpan = wordSpansRef.current[rotatingWordIndex];
-    if (currentWordSpan) {
-        setContainerWidth(currentWordSpan.offsetWidth);
-    }
-  }, [rotatingWordIndex]);
 
 
   if (!statements || statements.length === 0) {
@@ -110,26 +100,18 @@ export function RotatingHeroText({
           ))}
 
           {titleParts.length > 1 && (
-               <span 
-                className="relative inline-block text-left transition-all duration-300 ease-in-out" 
-                style={{ width: containerWidth ? `${containerWidth}px` : 'auto', height: '1.2em' }}
-               >
-                {rotatingWords.map((item, index) => (
-                     <span
-                        key={item.word}
-                        ref={el => wordSpansRef.current[index] = el}
-                        className={cn(
-                          "absolute inset-0 flex items-center transition-all duration-500",
-                          item.className,
-                          rotatingWordIndex === index
-                              ? "opacity-100 translate-y-0"
-                              : "opacity-0 -translate-y-full"
-                        )}
-                      >
-                        {item.word}
-                     </span>
-                ))}
-            </span>
+              <span className="inline-block align-bottom text-left overflow-hidden h-[1.2em]">
+                <span 
+                    className="inline-block transition-transform duration-500 ease-in-out"
+                    style={{ transform: `translateY(-${rotatingWordIndex * 1.2}em)`}}
+                >
+                    {rotatingWords.map((item, index) => (
+                        <span key={index} className={cn("block h-[1.2em]", item.className)}>
+                            {item.word}
+                        </span>
+                    ))}
+                </span>
+              </span>
           )}
 
           {titleParts[1] && titleParts[1].split(' ').map((word, index) => (
