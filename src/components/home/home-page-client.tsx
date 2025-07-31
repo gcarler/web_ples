@@ -12,6 +12,7 @@ import { cn } from '@/lib/utils';
 import { useState, useEffect } from 'react';
 import { type HeroStatement } from '@/lib/models/content';
 import React from 'react';
+import { ChatAssistant } from '@/components/ai/chat-assistant';
 
 const missionIcons = [
     Lightbulb, Cpu, Database, Server, Globe, MapPin, 
@@ -329,6 +330,8 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
             </div>
         </div>
       </section>
+
+      <ChatAssistant />
     </div>
   );
 }
