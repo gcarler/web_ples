@@ -15,7 +15,7 @@ const sdkNotInitializedError = { message: "Firebase Admin SDK is not configured.
 export async function getHeroStatements(): Promise<HeroStatement[]> {
   const defaultStatements = [
       {
-        title: "Datos, ingeniería y propósito para el desarrollo",
+        title: "Datos, ingeniería y propósito para el {{word}}",
         description: "De la idea a la acción: acompañamos gobiernos y empresas a generar impacto real.",
         ctaText: "Empieza hoy",
         ctaLink: "/forms",

@@ -26,11 +26,20 @@ const iconMap: { [key: string]: React.ElementType } = {
   ArrowRight, // Default
 };
 
-const rotatingWords = [
-    { word: "Integrales", className: "text-primary" },
-    { word: "Inteligentes", className: "text-accent" },
-    { word: "Innovadoras", className: "text-ring" }
-];
+const rotatingWordsConfig = {
+    "default": [
+        { word: "Integrales", className: "text-primary" },
+        { word: "Inteligentes", className: "text-accent" },
+        { word: "Innovadoras", className: "text-ring" }
+    ],
+    "desarrollo": [
+        { word: "desarrollo", className: "text-primary" },
+        { word: "impacto", className: "text-accent" },
+        { word: "progreso", className: "text-ring" },
+        { word: "futuro", className: "text-primary" }
+    ]
+};
+
 
 export function RotatingHeroText({
   statements,
@@ -61,19 +70,24 @@ export function RotatingHeroText({
     return () => clearInterval(timer);
   }, [statements, interval]);
 
+  const currentStatement = statements[currentIndex];
+  
+  const wordSetKey = currentStatement.title.includes("propósito") ? "desarrollo" : "default";
+  const rotatingWords = rotatingWordsConfig[wordSetKey];
+
   useEffect(() => {
       const wordRotator = setInterval(() => {
           setRotatingWordIndex(prevIndex => (prevIndex + 1) % rotatingWords.length);
       }, 2000); // Change word every 2 seconds
       return () => clearInterval(wordRotator);
-  }, []);
+  }, [rotatingWords]);
 
 
   if (!statements || statements.length === 0) {
     return null;
   }
 
-  const currentStatement = statements[currentIndex];
+  
   const CtaIcon = currentStatement.ctaIconName ? iconMap[currentStatement.ctaIconName] || ArrowRight : ArrowRight;
   
   const titleParts = useMemo(() => currentStatement.title.split('{{word}}'), [currentStatement.title]);
@@ -103,7 +117,7 @@ export function RotatingHeroText({
                 >
                     {rotatingWords.map((item, index) => (
                         <span key={index} className={cn("block h-[1.2em]", item.className)}>
-                          &nbsp;{item.word}&nbsp;
+                          &nbsp;{item.word}
                         </span>
                     ))}
                 </span>
