@@ -26,7 +26,7 @@ const iconMap: { [key: string]: React.ElementType } = {
   ArrowRight, // Default
 };
 
-const rotatingWordsConfig = {
+const rotatingWordsConfig: { [key: string]: { word: string; className: string }[] } = {
     "default": [
         { word: "Integrales", className: "text-primary" },
         { word: "Inteligentes", className: "text-accent" },
@@ -37,6 +37,12 @@ const rotatingWordsConfig = {
         { word: "impacto", className: "text-accent" },
         { word: "progreso", className: "text-ring" },
         { word: "futuro", className: "text-primary" }
+    ],
+    "estrategias": [
+        { word: "Perduran", className: "text-primary" },
+        { word: "Transforman", className: "text-accent" },
+        { word: "Inspiran", className: "text-ring" },
+        { word: "Evolucionan", className: "text-primary" }
     ]
 };
 
@@ -72,7 +78,13 @@ export function RotatingHeroText({
 
   const currentStatement = statements[currentIndex];
   
-  const wordSetKey = currentStatement.title.includes("propósito") ? "desarrollo" : "default";
+  const getWordSetKey = (title: string) => {
+    if (title.includes("propósito")) return "desarrollo";
+    if (title.includes("Estrategias")) return "estrategias";
+    return "default";
+  }
+
+  const wordSetKey = getWordSetKey(currentStatement.title);
   const rotatingWords = rotatingWordsConfig[wordSetKey];
 
   useEffect(() => {
@@ -117,7 +129,7 @@ export function RotatingHeroText({
                 >
                     {rotatingWords.map((item, index) => (
                         <span key={index} className={cn("block h-[1.2em]", item.className)}>
-                          &nbsp;{item.word}
+                          {` ${item.word}`}
                         </span>
                     ))}
                 </span>

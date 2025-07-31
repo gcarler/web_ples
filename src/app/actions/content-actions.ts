@@ -24,7 +24,7 @@ export async function getHeroStatements(): Promise<HeroStatement[]> {
         order: 1,
       },
       {
-        title: "Innovación que Impacta, Estrategias que Perduran",
+        title: "Innovación que Impacta, Estrategias que {{word}}",
         description: "Creamos soluciones a medida que impulsan el progreso y construyen un legado sostenible para su organización.",
         ctaText: "Conoce cómo",
         ctaLink: "/innovacion-estrategias",
