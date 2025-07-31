@@ -26,6 +26,12 @@ const iconMap: { [key: string]: React.ElementType } = {
   ArrowRight, // Default
 };
 
+const rotatingWords = [
+    { word: "Integrales", className: "text-primary" },
+    { word: "Inteligentes", className: "text-accent" },
+    { word: "Innovadoras", className: "text-ring" }
+];
+
 export function RotatingHeroText({
   statements,
   interval = 7000,
@@ -36,6 +42,7 @@ export function RotatingHeroText({
 }: RotatingHeroTextProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [rotatingWordIndex, setRotatingWordIndex] = useState(0);
 
   useEffect(() => {
     if (statements.length <= 1) return;
@@ -54,14 +61,21 @@ export function RotatingHeroText({
     return () => clearInterval(timer);
   }, [statements, interval]);
 
+  useEffect(() => {
+      const wordRotator = setInterval(() => {
+          setRotatingWordIndex(prevIndex => (prevIndex + 1) % rotatingWords.length);
+      }, 2000); // Change word every 2 seconds
+      return () => clearInterval(wordRotator);
+  }, []);
+
   if (!statements || statements.length === 0) {
     return null;
   }
 
   const currentStatement = statements[currentIndex];
   const CtaIcon = currentStatement.ctaIconName ? iconMap[currentStatement.ctaIconName] || ArrowRight : ArrowRight;
-
-  const titleWords = useMemo(() => currentStatement.title.split(' '), [currentStatement.title]);
+  
+  const titleParts = useMemo(() => currentStatement.title.split('{{word}}'), [currentStatement.title]);
 
   return (
     <div
@@ -71,7 +85,7 @@ export function RotatingHeroText({
       )}
     >
         <h1 className={cn("font-bold leading-tight", titleClassName)}>
-          {titleWords.map((word, index) => (
+          {titleParts[0].split(' ').map((word, index) => (
             <span
               key={index}
               className={cn(
@@ -83,10 +97,42 @@ export function RotatingHeroText({
               {word}&nbsp;
             </span>
           ))}
+
+          {titleParts.length > 1 && (
+               <span className="relative inline-block w-48 text-left">
+                {rotatingWords.map((item, index) => (
+                     <span
+                        key={item.word}
+                        className={cn(
+                          "absolute transition-all duration-500",
+                          item.className,
+                          rotatingWordIndex === index
+                              ? "opacity-100 translate-y-0"
+                              : "opacity-0 -translate-y-4"
+                        )}
+                      >
+                        {item.word}
+                     </span>
+                ))}
+            </span>
+          )}
+
+          {titleParts[1] && titleParts[1].split(' ').map((word, index) => (
+             <span
+              key={index}
+              className={cn(
+                "inline-block transition-all duration-500",
+                isAnimating ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
+              )}
+              style={{ transitionDelay: isAnimating ? '0s' : `${(titleParts[0].split(' ').length + index) * 100}ms`}}
+            >
+              &nbsp;{word}
+            </span>
+          ))}
         </h1>
         <div 
             className={cn('transition-opacity duration-500', isAnimating ? 'opacity-0' : 'opacity-100')}
-            style={{ transitionDelay: isAnimating ? '0s' : `${titleWords.length * 100}ms` }}
+            style={{ transitionDelay: isAnimating ? '0s' : `${titleParts[0].split(' ').length * 100}ms` }}
         >
             <p className={cn("text-muted-foreground mt-6", descriptionClassName)}>
                 {currentStatement.description}

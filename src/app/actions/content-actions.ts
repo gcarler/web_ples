@@ -33,7 +33,7 @@ export async function getHeroStatements(): Promise<HeroStatement[]> {
         order: 2,
       },
       {
-        title: "Soluciones Integrales para Desafíos Complejos",
+        title: "Soluciones {{word}} para Desafíos Complejos",
         description: "Tecnología, datos y estrategia al servicio de tus metas.",
         ctaText: "Explora Servicios",
         ctaLink: "/#nuestras-marcas",
