@@ -86,18 +86,14 @@ export function RotatingHeroText({
       )}
     >
         <h1 className={cn("font-bold leading-tight", titleClassName)}>
-          {titleParts[0].split(' ').map((word, index) => (
-            <span
-              key={index}
-              className={cn(
-                "inline-block transition-all duration-500",
-                isAnimating ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
-              )}
-              style={{ transitionDelay: isAnimating ? '0s' : `${index * 100}ms`}}
-            >
-              {word}&nbsp;
-            </span>
-          ))}
+          <span
+            className={cn(
+              "inline-block transition-all duration-500",
+              isAnimating ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
+            )}
+          >
+            {titleParts[0]}
+          </span>
 
           {titleParts.length > 1 && (
               <span className="inline-block align-bottom text-left overflow-hidden h-[1.2em]">
@@ -107,29 +103,26 @@ export function RotatingHeroText({
                 >
                     {rotatingWords.map((item, index) => (
                         <span key={index} className={cn("block h-[1.2em]", item.className)}>
-                            {item.word}
+                          &nbsp;{item.word}&nbsp;
                         </span>
                     ))}
                 </span>
               </span>
           )}
 
-          {titleParts[1] && titleParts[1].split(' ').map((word, index) => (
-             <span
-              key={index}
-              className={cn(
-                "inline-block transition-all duration-500",
-                isAnimating ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
-              )}
-              style={{ transitionDelay: isAnimating ? '0s' : `${(titleParts[0].split(' ').length + index) * 100}ms`}}
-            >
-              {word.startsWith(' ') ? word : ` ${word}`}
-            </span>
-          ))}
+          <span
+            className={cn(
+              "inline-block transition-all duration-500",
+              isAnimating ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
+            )}
+            style={{ transitionDelay: isAnimating ? '0s' : `200ms`}}
+          >
+            {titleParts[1]}
+          </span>
         </h1>
         <div 
             className={cn('transition-opacity duration-500', isAnimating ? 'opacity-0' : 'opacity-100')}
-            style={{ transitionDelay: isAnimating ? '0s' : `${titleParts[0].split(' ').length * 100}ms` }}
+            style={{ transitionDelay: isAnimating ? '0s' : `400ms` }}
         >
             <p className={cn("text-muted-foreground mt-6", descriptionClassName)}>
                 {currentStatement.description}
