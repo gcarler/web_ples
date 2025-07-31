@@ -122,6 +122,8 @@ export function RotatingHeroText({
           </span>
 
           {titleParts.length > 1 && (
+            <>
+              {' '}
               <span className="relative inline-block align-text-bottom text-left overflow-hidden h-[1.2em] top-[3px]">
                 <span 
                     className="inline-block transition-transform duration-500 ease-in-out"
@@ -129,11 +131,12 @@ export function RotatingHeroText({
                 >
                     {rotatingWords.map((item, index) => (
                         <span key={index} className={cn("block h-[1.2em]", item.className)}>
-                          {` ${item.word}`}
+                          {item.word}
                         </span>
                     ))}
                 </span>
               </span>
+            </>
           )}
 
           <span
