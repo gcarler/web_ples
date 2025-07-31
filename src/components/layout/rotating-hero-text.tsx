@@ -96,7 +96,7 @@ export function RotatingHeroText({
           </span>
 
           {titleParts.length > 1 && (
-              <span className="inline-block align-text-bottom text-left overflow-hidden h-[1.2em]">
+              <span className="relative inline-block align-text-bottom text-left overflow-hidden h-[1.2em] top-[1px]">
                 <span 
                     className="inline-block transition-transform duration-500 ease-in-out"
                     style={{ transform: `translateY(-${rotatingWordIndex * 1.2}em)`}}
@@ -117,7 +117,7 @@ export function RotatingHeroText({
             )}
             style={{ transitionDelay: isAnimating ? '0s' : `200ms`}}
           >
-            {titleParts[1]}
+            {titleParts.length > 1 ? titleParts[1] : ''}
           </span>
         </h1>
         <div 
