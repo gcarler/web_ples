@@ -17,9 +17,9 @@ const ofiPlesModules = {
         icon: UsersRound,
         description: "Herramientas para construir y gestionar su presencia en línea de manera integral.",
         items: [
-          { name: "Sitio Web", slug: "sitio-web", description: "Creador de sitios web empresariales", details: {
+          { name: "Plataforma Web", slug: "sitio-web", description: "Creador de sitios web empresariales", details: {
               mainIcon: Globe,
-              title: 'Ofi-Ples Sitio Web',
+              title: 'Ofi-Ples Plataforma Web',
               description: 'Su plataforma todo-en-uno para crear, lanzar y gestionar sitios web empresariales de alto impacto. Sin necesidad de código, con resultados profesionales.',
               keyServices: [
                 { title: 'Editor Visual Intuitivo', text: 'Diseñe y modifique páginas con un potente sistema de arrastrar y soltar. Vea los cambios en tiempo real y construya su sitio de forma visual.', icon: MousePointerClick },
@@ -35,7 +35,7 @@ const ofiPlesModules = {
                 'Integración nativa con otros módulos de Ofi-Ples como Blog, Tienda y CRM.',
               ],
               ctaText: "Empezar a Construir mi Sitio",
-              formSubject: "Consulta%20OfiPles%20Sitio%20Web"
+              formSubject: "Consulta%20OfiPles%20Plataforma%20Web"
             }
           },
           { name: "Comercio Electrónico", slug: "comercio-electronico", description: "Vende tus productos en línea", details: {
