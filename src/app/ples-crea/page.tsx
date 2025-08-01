@@ -148,7 +148,7 @@ export default function PlesCreaPage() {
             <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
                 Aplicamos un enfoque metodológico riguroso para garantizar resultados de la más alta calidad y precisión en cada proyecto.
             </p>
-            <div className="relative flex flex-col md:flex-row items-start justify-center gap-8 md:gap-0 max-w-6xl mx-auto">
+            <div className="relative flex flex-col md:flex-row items-start justify-center gap-8 md:gap-0 mx-auto">
                 {processSteps.map((step, index) => {
                     const StepIcon = step.icon;
                     return (
@@ -165,7 +165,7 @@ export default function PlesCreaPage() {
 
                             {index < processSteps.length - 1 && (
                                 <div className="hidden md:flex items-center justify-center flex-1 h-16 animate-fade-in-up" style={{ animationDelay: `${(index + 0.5) * 0.2}s` }}>
-                                    <div className="w-full h-px border-t border-primary/30" />
+                                    <div className="w-full h-px border-t border-dashed border-primary/30" />
                                 </div>
                             )}
                         </React.Fragment>
