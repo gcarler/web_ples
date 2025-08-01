@@ -148,7 +148,7 @@ export default function PlesCreaPage() {
             <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
                 Aplicamos un enfoque metodológico riguroso para garantizar resultados de la más alta calidad y precisión en cada proyecto.
             </p>
-            <div className="relative flex flex-col md:flex-row items-stretch justify-center gap-8 md:gap-0 max-w-6xl mx-auto">
+            <div className="relative flex flex-col md:flex-row items-start justify-center gap-8 md:gap-0 max-w-6xl mx-auto">
                 {processSteps.map((step, index) => {
                     const StepIcon = step.icon;
                     return (
@@ -159,13 +159,13 @@ export default function PlesCreaPage() {
                                 </div>
                                 <div className="mt-2">
                                     <h3 className="text-xl font-semibold text-foreground">{step.title}</h3>
-                                    <p className="text-muted-foreground mt-2 text-sm">{step.description}</p>
+                                    <p className="text-muted-foreground mt-2 text-sm max-w-xs mx-auto">{step.description}</p>
                                 </div>
                             </div>
 
                             {index < processSteps.length - 1 && (
-                                <div className="hidden md:flex items-center justify-center flex-shrink-0 w-24 animate-fade-in-up" style={{ animationDelay: `${(index + 0.5) * 0.2}s` }}>
-                                    <div className="w-full h-px border-t-2 border-dashed border-primary/30" />
+                                <div className="hidden md:flex items-center justify-center flex-1 h-16 animate-fade-in-up" style={{ animationDelay: `${(index + 0.5) * 0.2}s` }}>
+                                    <div className="w-full h-px border-t border-primary/30" />
                                 </div>
                             )}
                         </React.Fragment>
