@@ -15,25 +15,6 @@ export const GlobeIllustration = () => {
         },
     };
 
-    const orbitVariants = {
-        animate: { 
-            rotate: 360, 
-            transition: { duration: 40, ease: "linear", repeat: Infinity }
-        },
-    };
-
-    const satelliteVariants = {
-        animate: (i: number) => ({
-            offsetDistance: ["0%", "100%"],
-            transition: { 
-                duration: 10 + i * 5, // Adjusted duration for more variation
-                repeat: Infinity,
-                ease: "linear",
-                delay: i * 2,
-            }
-        }),
-    };
-    
     // Define satellites in a more maintainable way
     const satellites = [
         {
@@ -64,12 +45,6 @@ export const GlobeIllustration = () => {
 
     return (
         <div className="relative w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] md:w-[420px] md:h-[420px] xl:w-[480px] xl:h-[480px]">
-            <motion.div
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180%] h-[180%] bg-card rounded-full shadow-2xl"
-                initial={{ scale: 0, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1, transition: { duration: 0.8, ease: "easeOut" } }}
-            />
-            
             <motion.div 
                 className="absolute inset-0 z-10"
                 variants={mainGlobeVariants}
@@ -98,40 +73,38 @@ export const GlobeIllustration = () => {
                     </div>
 
                     {/* Satellites */}
-                    {satellites.map((sat, index) => {
-                        const pathRadius = (parseFloat(sat.orbit.size) / 100) * 0.5 * 280; // Simplified calculation
-                        const path = `M 0,${pathRadius} a ${pathRadius},${pathRadius} 0 1,0 ${pathRadius * 2},0 a ${pathRadius},${pathRadius} 0 1,0 -${pathRadius * 2},0`;
-
-                        return (
-                             <motion.div
-                                key={`orbit-path-${index}`}
-                                className="absolute"
-                                style={{ width: sat.orbit.size, height: sat.orbit.size, transform: `rotateX(70deg) rotateZ(${sat.orbit.rotation})` }}
-                                variants={{ animate: { rotate: 360, transition: { duration: sat.orbit.duration, ease: "linear", repeat: Infinity } } }}
+                    {satellites.map((sat, index) => (
+                         <motion.div
+                            key={`orbit-path-${index}`}
+                            className="absolute"
+                            style={{ width: sat.orbit.size, height: sat.orbit.size, transform: `rotateX(70deg) rotateZ(${sat.orbit.rotation})` }}
+                            variants={{ animate: { rotate: 360, transition: { duration: sat.orbit.duration, ease: "linear", repeat: Infinity } } }}
+                            animate="animate"
+                        >
+                            <motion.div
+                                className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                                variants={{
+                                    animate: () => ({
+                                        rotate: [0, 360],
+                                        transition: {
+                                            duration: sat.animation.duration,
+                                            repeat: Infinity,
+                                            ease: "linear",
+                                            delay: sat.animation.delay
+                                        }
+                                    })
+                                }}
                                 animate="animate"
+                                style={{
+                                    transformOrigin: `0px ${(parseFloat(sat.orbit.size) / 100) * 0.5 * parseFloat(sat.orbit.size)}px`,
+                                }}
                             >
-                                <motion.div
-                                    className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                                    custom={index}
-                                    variants={{
-                                        animate: (i) => ({
-                                            offsetDistance: ["0%", "100%"],
-                                            transition: {
-                                                duration: sat.animation.duration,
-                                                repeat: Infinity,
-                                                ease: "linear",
-                                                delay: sat.animation.delay
-                                            }
-                                        })
-                                    }}
-                                    animate="animate"
-                                    style={{ offsetPath: `path("${path}")` }}
-                                >
+                                <div style={{transform: `translateY(-${(parseFloat(sat.orbit.size) / 100) * 0.5 * parseFloat(sat.orbit.size)}px)` }}>
                                     {sat.element}
-                                </motion.div>
+                                </div>
                             </motion.div>
-                        );
-                    })}
+                        </motion.div>
+                    ))}
                 </div>
             </motion.div>
         </div>
