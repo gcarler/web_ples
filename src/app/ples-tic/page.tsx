@@ -8,7 +8,7 @@ import {
   ArrowRight, Award, BarChart3, BookOpen, Brain, Briefcase, CheckCircle, CloudCog, Code, Cpu, Database, DraftingCompass, FileText, FlaskConical, GitPullRequestArrow, Globe, Handshake, HomeIcon, KanbanSquare, Layers, Lightbulb, Lock, MapPin, Rocket, Search, Send, Server, Settings, ShieldCheck, ShoppingCart, Target, TrendingUp, Users, Users2
 } from 'lucide-react';
 import PlexusIllustration from '@/components/illustrations/PlexusIllustration';
-import DataPipelineIllustration from '@/components/illustrations/DataPipelineIllustration';
+import HealthDataIllustration from '@/components/illustrations/HealthDataIllustration';
 import { Badge } from '@/components/ui/badge';
 import { InteractiveSoftwareSuites } from '@/components/ples-tic/interactive-software-suites';
 
@@ -127,7 +127,7 @@ const caseStudies = [
       challenge: 'Silos de información médica, dificultad para el análisis de datos de pacientes y necesidad de cumplir con estrictas normativas de privacidad (HIPAA/GDPR).',
       solution: 'Implementamos una plataforma centralizada en la nube para la gestión de datos de pacientes, con dashboards de BI para análisis clínicos y robustas medidas de seguridad y cumplimiento normativo. Se logró una mejora significativa en la toma de decisiones médicas y la eficiencia operativa.',
       illustration: (
-        <DataPipelineIllustration className="h-full w-full rounded-lg"/>
+        <HealthDataIllustration className="h-full w-full rounded-lg"/>
       ),
       tags: ['Inteligencia de Negocio', 'Arquitectura Cloud', 'Seguridad de Datos']
     },
@@ -141,7 +141,16 @@ export default function PlesTicPage() {
           <div className="flex flex-col lg:flex-row items-center w-full gap-12 lg:gap-8">
             <div className="w-full lg:w-5/12 flex justify-center items-center relative order-1 lg:order-none">
                <div className="relative w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] md:w-[420px] md:h-[420px] xl:w-[480px] xl:h-[480px]">
-                 <DataPipelineIllustration className="absolute inset-0" />
+                 <PlexusIllustration className="absolute inset-0" />
+                 <div className="absolute inset-0 flex justify-center items-center">
+                   <div className="relative w-2/3 h-2/3">
+                     <div className="absolute inset-0 bg-primary/20 rounded-full animate-pulse-glow-shield" />
+                     <div className="absolute inset-2 bg-background rounded-full" />
+                     <div className="absolute inset-0 flex justify-center items-center">
+                       <Cpu className="h-1/2 w-1/2 text-primary" />
+                     </div>
+                   </div>
+                 </div>
                </div>
             </div>
 
