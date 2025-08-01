@@ -1316,7 +1316,7 @@ export const InteractiveSoftwareSuites = () => {
             </div>
             
             <div className="mb-8 flex justify-start">
-                <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full max-w-lg">
+                <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full max-w-2xl">
                     <TabsList className="grid grid-cols-2">
                         <TabsTrigger value="empresarial" className="py-2 text-base">Suite Empresarial - OfiPles</TabsTrigger>
                         <TabsTrigger value="gubernamental" className="py-2 text-base">Suite Gubernamental - GobPles</TabsTrigger>
