@@ -44,7 +44,7 @@ export const GlobeIllustration = () => {
     ];
 
     return (
-        <div className="relative w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] md:w-[420px] md:h-[420px] xl:w-[480px] xl:h-[480px]">
+        <div className="relative w-[320px] h-[320px] sm:w-[400px] sm:h-[400px] md:w-[480px] md:h-[480px] xl:w-[520px] xl:h-[520px]">
             <motion.div 
                 className="absolute inset-0 z-10"
                 variants={mainGlobeVariants}
@@ -68,7 +68,7 @@ export const GlobeIllustration = () => {
                     ))}
 
                     {/* Central Globe */}
-                     <div className="relative w-[70%] h-[70%] bg-gradient-to-br from-primary via-primary/50 to-accent rounded-full flex items-center justify-center shadow-xl">
+                     <div className="relative w-[85%] h-[85%] bg-gradient-to-br from-primary via-primary/50 to-accent rounded-full flex items-center justify-center shadow-xl">
                         <Globe className="h-4/5 w-4/5 text-primary-foreground/50" strokeWidth={0.5} />
                     </div>
 
