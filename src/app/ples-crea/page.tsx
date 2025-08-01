@@ -142,13 +142,13 @@ export default function PlesCreaPage() {
       </section>
       
       {/* Process Section */}
-       <section className="py-12">
-        <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
+       <section className="py-12 w-full px-4 sm:px-6 lg:px-8">
+        <div className="text-center">
             <h2 className="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestro Proceso Colaborativo</h2>
             <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
                 Aplicamos un enfoque metodológico riguroso para garantizar resultados de la más alta calidad y precisión en cada proyecto.
             </p>
-            <div className="relative flex flex-col md:flex-row items-stretch justify-center gap-8 md:gap-0 mx-auto">
+            <div className="relative flex flex-col md:flex-row items-stretch justify-center gap-8 md:gap-0">
                 {processSteps.map((step, index) => {
                     const StepIcon = step.icon;
                     return (
@@ -164,8 +164,8 @@ export default function PlesCreaPage() {
                             </div>
 
                             {index < processSteps.length - 1 && (
-                                <div className="hidden md:flex items-center justify-center flex-1 h-16 animate-fade-in-up" style={{ animationDelay: `${(index + 0.5) * 0.2}s` }}>
-                                    <div className="w-full border-t-2 border-dashed border-primary/50" />
+                                <div className="hidden md:flex items-center justify-center flex-1 animate-fade-in-up" style={{ animationDelay: `${(index + 0.5) * 0.2}s`}}>
+                                    <div className="w-full h-px bg-gradient-to-r from-transparent via-primary to-transparent shadow-[0_0_15px_hsl(var(--primary)/0.5)]" />
                                 </div>
                             )}
                         </React.Fragment>
