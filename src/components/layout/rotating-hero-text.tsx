@@ -27,18 +27,18 @@ const iconMap: { [key: string]: React.ElementType } = {
 };
 
 const rotatingWordsConfig: { [key: string]: { word: string; className: string }[] } = {
-    "default": [
+    default: [
         { word: "Integrales", className: "text-primary" },
         { word: "Inteligentes", className: "text-accent" },
         { word: "Innovadoras", className: "text-ring" }
     ],
-    "desarrollo": [
+    desarrollo: [
         { word: "desarrollo", className: "text-primary" },
         { word: "impacto", className: "text-accent" },
         { word: "progreso", className: "text-ring" },
         { word: "futuro", className: "text-primary" }
     ],
-    "estrategias": [
+    estrategias: [
         { word: "Perduran", className: "text-primary" },
         { word: "Transforman", className: "text-accent" },
         { word: "Inspiran", className: "text-ring" },
@@ -104,6 +104,16 @@ export function RotatingHeroText({
   
   const titleParts = useMemo(() => currentStatement.title.split('{{word}}'), [currentStatement.title]);
 
+  const renderTextWithBreaks = (text: string) => {
+    return text.split('\n').map((line, index, array) => (
+      <React.Fragment key={index}>
+        {line}
+        {index < array.length - 1 && <br />}
+      </React.Fragment>
+    ));
+  };
+
+
   return (
     <div
       className={cn(
@@ -118,7 +128,7 @@ export function RotatingHeroText({
               isAnimating ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
             )}
           >
-            {titleParts[0]}
+            {renderTextWithBreaks(titleParts[0])}
           </span>
 
           {titleParts.length > 1 && (
@@ -146,7 +156,7 @@ export function RotatingHeroText({
             )}
             style={{ transitionDelay: isAnimating ? '0s' : `200ms`}}
           >
-            {titleParts.length > 1 ? titleParts[1] : ''}
+            {titleParts.length > 1 ? renderTextWithBreaks(titleParts[1]) : ''}
           </span>
         </h1>
         <div 
