@@ -2,6 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Globe, GitMerge } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 export const GlobeIllustration = () => {
     const mainGlobeVariants = {
@@ -25,13 +26,41 @@ export const GlobeIllustration = () => {
         animate: (i: number) => ({
             offsetDistance: ["0%", "100%"],
             transition: { 
-                duration: 10 + i * 2,
+                duration: 10 + i * 5, // Adjusted duration for more variation
                 repeat: Infinity,
                 ease: "linear",
-                delay: i * 0.5
+                delay: i * 2,
             }
         }),
     };
+    
+    // Define satellites in a more maintainable way
+    const satellites = [
+        {
+            orbit: {
+                size: '100%',
+                rotation: '0deg',
+                duration: 40,
+            },
+            element: <div className="w-3 h-3 rounded-full bg-accent shadow-lg" />,
+            animation: {
+                duration: 12,
+                delay: 0,
+            }
+        },
+        {
+            orbit: {
+                size: '85%',
+                rotation: '60deg',
+                duration: 35
+            },
+            element: <GitMerge className="w-4 h-4 text-primary" />,
+            animation: {
+                duration: 15,
+                delay: 1.5,
+            }
+        }
+    ];
 
     return (
         <div className="relative w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] md:w-[420px] md:h-[420px] xl:w-[480px] xl:h-[480px]">
@@ -49,57 +78,60 @@ export const GlobeIllustration = () => {
             >
                 <div className="relative w-full h-full flex justify-center items-center">
                     {/* Orbit Paths */}
-                    <motion.div 
-                        className="absolute w-full h-full border border-dashed border-primary/30 rounded-full"
-                        style={{ transform: "rotateX(70deg) rotateZ(0deg)" }}
-                        variants={orbitVariants}
-                        animate="animate"
-                    />
-                     <motion.div 
-                        className="absolute w-[85%] h-[85%] border border-dashed border-accent/30 rounded-full"
-                        style={{ transform: "rotateX(70deg) rotateZ(60deg)" }}
-                        variants={orbitVariants}
-                        animate="animate"
-                    />
+                    {satellites.map((sat, index) => (
+                        <motion.div 
+                            key={`orbit-${index}`}
+                            className="absolute border border-dashed border-primary/30 rounded-full"
+                            style={{
+                                width: sat.orbit.size,
+                                height: sat.orbit.size,
+                                transform: `rotateX(70deg) rotateZ(${sat.orbit.rotation})` 
+                            }}
+                            variants={{ animate: { rotate: 360, transition: { duration: sat.orbit.duration, ease: "linear", repeat: Infinity } } }}
+                            animate="animate"
+                        />
+                    ))}
 
                     {/* Central Globe */}
                      <div className="relative w-[70%] h-[70%] bg-gradient-to-br from-primary via-primary/50 to-accent rounded-full flex items-center justify-center shadow-xl">
                         <Globe className="h-4/5 w-4/5 text-primary-foreground/50" strokeWidth={0.5} />
                     </div>
 
-                    {/* Orbit 1 */}
-                    <motion.div
-                        className="absolute w-full h-full"
-                        style={{ transform: "rotateX(70deg) rotateZ(0deg)" }}
-                        variants={orbitVariants}
-                        animate="animate"
-                    >
-                         <motion.div
-                            className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-accent shadow-lg"
-                            custom={1}
-                            variants={satelliteVariants}
-                            animate="animate"
-                            style={{ offsetPath: `path("M 0,${140 * (window.innerWidth > 640 ? 1 : 0.7)} a ${140 * (window.innerWidth > 640 ? 1 : 0.7)},${140 * (window.innerWidth > 640 ? 1 : 0.7)} 0 1,0 ${280 * (window.innerWidth > 640 ? 1 : 0.7)},0 a ${140 * (window.innerWidth > 640 ? 1 : 0.7)},${140 * (window.innerWidth > 640 ? 1 : 0.7)} 0 1,0 -${280 * (window.innerWidth > 640 ? 1 : 0.7)},0")` }}
-                         />
-                    </motion.div>
-                    
-                    {/* Orbit 2 */}
-                    <motion.div
-                        className="absolute w-[85%] h-[85%]"
-                        style={{ transform: "rotateX(70deg) rotateZ(60deg)" }}
-                        variants={orbitVariants}
-                        animate="animate"
-                    >
-                          <motion.div
-                            className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                            custom={2}
-                            variants={satelliteVariants}
-                            animate="animate"
-                            style={{ offsetPath: `path("M 0,${119 * (window.innerWidth > 640 ? 1 : 0.7)} a ${119 * (window.innerWidth > 640 ? 1 : 0.7)},${119 * (window.innerWidth > 640 ? 1 : 0.7)} 0 1,0 ${238 * (window.innerWidth > 640 ? 1 : 0.7)},0 a ${119 * (window.innerWidth > 640 ? 1 : 0.7)},${119 * (window.innerWidth > 640 ? 1 : 0.7)} 0 1,0 -${238 * (window.innerWidth > 640 ? 1 : 0.7)},0")` }}
-                         >
-                            <GitMerge className="w-4 h-4 text-primary" />
-                         </motion.div>
-                    </motion.div>
+                    {/* Satellites */}
+                    {satellites.map((sat, index) => {
+                        const pathRadius = (parseFloat(sat.orbit.size) / 100) * 0.5 * 280; // Simplified calculation
+                        const path = `M 0,${pathRadius} a ${pathRadius},${pathRadius} 0 1,0 ${pathRadius * 2},0 a ${pathRadius},${pathRadius} 0 1,0 -${pathRadius * 2},0`;
+
+                        return (
+                             <motion.div
+                                key={`orbit-path-${index}`}
+                                className="absolute"
+                                style={{ width: sat.orbit.size, height: sat.orbit.size, transform: `rotateX(70deg) rotateZ(${sat.orbit.rotation})` }}
+                                variants={{ animate: { rotate: 360, transition: { duration: sat.orbit.duration, ease: "linear", repeat: Infinity } } }}
+                                animate="animate"
+                            >
+                                <motion.div
+                                    className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                                    custom={index}
+                                    variants={{
+                                        animate: (i) => ({
+                                            offsetDistance: ["0%", "100%"],
+                                            transition: {
+                                                duration: sat.animation.duration,
+                                                repeat: Infinity,
+                                                ease: "linear",
+                                                delay: sat.animation.delay
+                                            }
+                                        })
+                                    }}
+                                    animate="animate"
+                                    style={{ offsetPath: `path("${path}")` }}
+                                >
+                                    {sat.element}
+                                </motion.div>
+                            </motion.div>
+                        );
+                    })}
                 </div>
             </motion.div>
         </div>
