@@ -144,26 +144,34 @@ export default function PlesCreaPage() {
       {/* Process Section */}
       <section className="py-12">
         <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestro Proceso Colaborativo</h2>
-          <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
-            Aplicamos un enfoque metodológico riguroso para garantizar resultados de la más alta calidad y precisión en cada proyecto.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {processSteps.map((step, index) => {
-              const StepIcon = step.icon;
-              return (
-                <div key={index} className="flex flex-col items-center text-center gap-4 animate-fade-in-up" style={{ animationDelay: `${index * 0.2}s`}}>
-                  <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary shadow-lg border border-primary/20">
-                    <StepIcon className="h-8 w-8" />
-                  </div>
-                  <div className="text-center">
-                    <h3 className="text-xl font-semibold text-foreground">{step.title}</h3>
-                    <p className="text-muted-foreground mt-2 text-sm">{step.description}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+            <h2 className="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestro Proceso Colaborativo</h2>
+            <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
+                Aplicamos un enfoque metodológico riguroso para garantizar resultados de la más alta calidad y precisión en cada proyecto.
+            </p>
+            <div className="relative flex flex-col md:flex-row items-stretch justify-center gap-8 md:gap-0 max-w-6xl mx-auto">
+                {processSteps.map((step, index) => {
+                    const StepIcon = step.icon;
+                    return (
+                        <React.Fragment key={step.title}>
+                            <div className="flex flex-col items-center gap-4 text-center md:flex-1 p-4 animate-fade-in-up" style={{ animationDelay: `${index * 0.2}s` }}>
+                                <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary shadow-lg border border-primary/20">
+                                    <StepIcon className="h-8 w-8" />
+                                </div>
+                                <div className="mt-2">
+                                    <h3 className="text-xl font-semibold text-foreground">{step.title}</h3>
+                                    <p className="text-muted-foreground mt-2 text-sm">{step.description}</p>
+                                </div>
+                            </div>
+
+                            {index < processSteps.length - 1 && (
+                                <div className="hidden md:flex items-center justify-center flex-shrink-0 w-24 animate-fade-in-up" style={{ animationDelay: `${(index + 0.5) * 0.2}s` }}>
+                                    <div className="w-full h-px border-t-2 border-dashed border-primary/30" />
+                                </div>
+                            )}
+                        </React.Fragment>
+                    );
+                })}
+            </div>
         </div>
       </section>
 
