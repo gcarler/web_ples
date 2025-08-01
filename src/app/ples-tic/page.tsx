@@ -8,7 +8,6 @@ import {
   ArrowRight, Award, BarChart3, BookOpen, Brain, Briefcase, CheckCircle, CloudCog, Code, Cpu, Database, DraftingCompass, FileText, FlaskConical, GitPullRequestArrow, Globe, Handshake, HomeIcon, KanbanSquare, Layers, Lightbulb, Lock, MapPin, Rocket, Search, Send, Server, Settings, ShieldCheck, ShoppingCart, Target, TrendingUp, Users, Users2
 } from 'lucide-react';
 import PlexusIllustration from '@/components/illustrations/PlexusIllustration';
-import HealthDataIllustration from '@/components/illustrations/HealthDataIllustration';
 import { Badge } from '@/components/ui/badge';
 import { InteractiveSoftwareSuites } from '@/components/ples-tic/interactive-software-suites';
 
@@ -127,7 +126,7 @@ const caseStudies = [
       challenge: 'Silos de información médica, dificultad para el análisis de datos de pacientes y necesidad de cumplir con estrictas normativas de privacidad (HIPAA/GDPR).',
       solution: 'Implementamos una plataforma centralizada en la nube para la gestión de datos de pacientes, con dashboards de BI para análisis clínicos y robustas medidas de seguridad y cumplimiento normativo. Se logró una mejora significativa en la toma de decisiones médicas y la eficiencia operativa.',
       illustration: (
-        <HealthDataIllustration className="h-full w-full rounded-lg"/>
+        <PlexusIllustration className="h-full w-full rounded-lg"/>
       ),
       tags: ['Inteligencia de Negocio', 'Arquitectura Cloud', 'Seguridad de Datos']
     },
@@ -335,3 +334,5 @@ export default function PlesTicPage() {
     </div>
   );
 }
+
+    
