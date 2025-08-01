@@ -141,7 +141,7 @@ export default function PlesTicPage() {
           <div className="flex flex-col lg:flex-row items-center w-full gap-12 lg:gap-8">
             <div className="w-full lg:w-5/12 flex justify-center items-center relative order-1 lg:order-none">
                <div className="relative w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] md:w-[420px] md:h-[420px] xl:w-[480px] xl:h-[480px]">
-                 <PlexusIllustration className="absolute inset-0" />
+                 <DataPipelineIllustration className="absolute inset-0" />
                </div>
             </div>
 

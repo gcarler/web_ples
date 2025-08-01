@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 const defaultTheme = require('tailwindcss/defaultTheme'); // Required for default font stack
 
