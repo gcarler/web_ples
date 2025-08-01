@@ -121,7 +121,7 @@ export function RotatingHeroText({
         className
       )}
     >
-        <h1 className={cn("font-bold leading-none", titleClassName)}>
+        <h1 className={cn("font-bold", titleClassName)} style={{ lineHeight: 1.1 }}>
           <span
             className={cn(
               "inline-block transition-all duration-500",
