@@ -1,3 +1,4 @@
+
 // src/app/layout.tsx
 import type { PropsWithChildren } from 'react';
 import './globals.css'; // Use relative path to globals.css
@@ -7,6 +8,7 @@ import { AuthProvider } from '@/contexts/AuthContext';
 import { ThemeProvider } from "next-themes";
 import { Comfortaa } from "next/font/google";
 import { Toaster } from '@/components/ui/toaster';
+import { ChatAssistant } from '@/components/ai/chat-assistant';
 
 const comfortaa = Comfortaa({ 
     subsets: ['latin'],
@@ -29,6 +31,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
                 <main className="flex-grow w-full">{children}</main>
                 <Footer />
                 <Toaster />
+                <ChatAssistant />
             </AuthProvider>
         </ThemeProvider>
       </body>
