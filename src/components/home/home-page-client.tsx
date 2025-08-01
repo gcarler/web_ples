@@ -188,7 +188,7 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
                  Somos una empresa dedicada a ofrecer soluciones innovadoras y eficientes que impulsan el crecimiento y la transformación digital de nuestros clientes. Creemos en el poder de la tecnología para simplificar procesos y crear valor.
                </p>
                <Button asChild size="lg" variant="accent" className="bg-white/20 hover:bg-white/30 border border-white/50 backdrop-blur-sm">
-                 <Link href="/about/mision">
+                 <Link href="/about#identidad">
                    <span className="flex items-center">
                      Explora nuestra Misión <ArrowRight className="ml-2 h-5 w-5" />
                    </span>

@@ -1,3 +1,4 @@
+
 // src/components/about/about-page-client.tsx
 'use client';
 
@@ -114,7 +115,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
       </section>
 
       {/* Identity Section */}
-      <section className="w-full px-4 sm:px-6 lg:px-8">
+      <section className="w-full px-4 sm:px-6 lg:px-8 scroll-mt-20" id="identidad">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div className="space-y-6">
             <h2 className="text-3xl font-bold text-primary">Nuestra Identidad</h2>
