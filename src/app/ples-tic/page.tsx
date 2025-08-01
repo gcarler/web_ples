@@ -10,6 +10,7 @@ import {
 import PlexusIllustration from '@/components/illustrations/PlexusIllustration';
 import { Badge } from '@/components/ui/badge';
 import { InteractiveSoftwareSuites } from '@/components/ples-tic/interactive-software-suites';
+import { CodeTypingIllustration } from '@/components/illustrations/CodeTypingIllustration';
 
 const valuePropositions = [
     {
@@ -139,18 +140,7 @@ export default function PlesTicPage() {
         <div className="w-full px-4 sm:px-6 lg:px-8 min-h-[calc(70vh)] lg:min-h-0 py-16 sm:py-20 md:py-24 lg:py-32 flex items-center">
           <div className="flex flex-col lg:flex-row items-center w-full gap-12 lg:gap-8">
             <div className="w-full lg:w-5/12 flex justify-center items-center relative order-1 lg:order-none">
-               <div className="relative w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] md:w-[420px] md:h-[420px] xl:w-[480px] xl:h-[480px]">
-                 <PlexusIllustration className="absolute inset-0" />
-                 <div className="absolute inset-0 flex justify-center items-center">
-                   <div className="relative w-2/3 h-2/3">
-                     <div className="absolute inset-0 bg-primary/20 rounded-full animate-pulse-glow-shield" />
-                     <div className="absolute inset-2 bg-background rounded-full" />
-                     <div className="absolute inset-0 flex justify-center items-center">
-                       <Cpu className="h-1/2 w-1/2 text-primary" />
-                     </div>
-                   </div>
-                 </div>
-               </div>
+                <CodeTypingIllustration />
             </div>
 
             <div className="w-full lg:w-7/12 text-center lg:text-left relative z-20 order-2 lg:order-none">
@@ -334,5 +324,7 @@ export default function PlesTicPage() {
     </div>
   );
 }
+
+    
 
     
