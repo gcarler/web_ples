@@ -5,9 +5,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {
-  ArrowRight, Award, BarChart3, BookOpen, Brain, Briefcase, CheckCircle, CloudCog, Code, Cpu, Database, DraftingCompass, FileText, FlaskConical, GitPullRequestArrow, Globe, Handshake, HomeIcon, KanbanSquare, Layers, Lightbulb, Lock, MapPin, Rocket, Search, Send, Server, Settings, ShieldCheck, ShoppingCart, Target, TrendingUp, Users, Users2, BarChartHorizontalBig, MessageSquare, UsersRound, Zap
+  ArrowRight, Award, BarChart3, BookOpen, Brain, Briefcase, CheckCircle, CloudCog, Code, Cpu, Database, DraftingCompass, FileText, FlaskConical, GitPullRequestArrow, Globe, Handshake, HomeIcon, KanbanSquare, Layers, Lightbulb, Lock, MapPin, Rocket, Search, Send, Server, Settings, ShieldCheck, ShoppingCart, Target, TrendingUp, Users, Users2, BarChartHorizontalBig, MessageSquare, UsersRound, Zap, BrainCircuit, ChevronRight
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import { cn } from '@/lib/utils';
+
 
 const expertiseAreas = [
   {
@@ -48,18 +50,18 @@ const methodologies = ['Design Thinking', 'Gestión Ágil de Proyectos (Scrum/Ka
 const processSteps = [
   {
       icon: Search,
-      title: "1. Diagnóstico Profundo y Escucha Activa",
-      description: "Iniciamos con una inmersión total para comprender sus desafíos, contexto, necesidades y aspiraciones. Escuchamos a todas las partes interesadas y analizamos la información existente para construir una base sólida."
+      title: "1. Diagnóstico Profundo",
+      description: "Iniciamos con una inmersión total para comprender sus desafíos, contexto y aspiraciones, construyendo una base sólida para la estrategia."
   },
   {
       icon: Lightbulb,
-      title: "2. Co-creación de Soluciones Estratégicas",
-      description: "Trabajamos de la mano con su equipo para diseñar estrategias y soluciones innovadoras y a la medida. Fomentamos la participación activa para asegurar la apropiación y la viabilidad de las propuestas."
+      title: "2. Co-creación de Soluciones",
+      description: "Trabajamos de la mano con su equipo para diseñar estrategias y soluciones innovadoras y a la medida, asegurando su viabilidad y apropiación."
   },
   {
-      icon: Settings,
-      title: "3. Implementación Ágil y Acompañamiento",
-      description: "Apoyamos la puesta en marcha de las soluciones con un enfoque flexible y adaptativo. Brindamos acompañamiento continuo, transferimos capacidades y ajustamos el rumbo según sea necesario para garantizar resultados sostenibles."
+      icon: Rocket,
+      title: "3. Implementación y Acompañamiento",
+      description: "Apoyamos la puesta en marcha con un enfoque flexible, transfiriendo capacidades y ajustando el rumbo para garantizar resultados sostenibles."
   }
 ];
 
@@ -79,7 +81,7 @@ export default function PlesConsultingPage() {
                   <div
                     className="bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--ring))] bg-[length:200%_200%] animate-gradient rounded-full w-full h-full shadow-xl flex justify-center items-center"
                   >
-                    <Briefcase className="h-3/5 w-3/5 text-accent" />
+                    <BrainCircuit className="h-3/5 w-3/5 text-accent" />
                   </div>
                 </div>
               </div>
@@ -173,20 +175,32 @@ export default function PlesConsultingPage() {
             <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
                 Creemos en un enfoque participativo y adaptado a sus necesidades, asegurando soluciones pertinentes y sostenibles.
             </p>
-            <div className="grid md:grid-cols-3 gap-8">
-                {processSteps.map((step) => {
+             <div className="relative flex flex-col md:flex-row items-stretch justify-center gap-8 md:gap-0">
+                {processSteps.map((step, index) => {
                   const StepIcon = step.icon;
                   return (
-                    <Card key={step.title} className="group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out text-center transform flex flex-col hover:animate-gradient hover:bg-[length:200%_200%]">
-                        <CardHeader className="items-center">
-                            <StepIcon className="h-10 w-10 text-primary group-hover:text-primary-foreground mx-auto mb-3"/>
-                            <CardTitle className="mt-2 text-lg group-hover:text-primary-foreground">{step.title}</CardTitle>
-                        </CardHeader>
-                        <CardContent className="flex-grow">
-                            <p className="text-muted-foreground group-hover:text-primary-foreground/90 text-sm">{step.description}</p>
-                        </CardContent>
-                    </Card>
-                )})}
+                    <React.Fragment key={step.title}>
+                        <div className="flex flex-col items-center gap-4 md:flex-1 animate-fade-in-up" style={{ animationDelay: `${index * 0.2}s`}}>
+                            <div className="relative flex items-center justify-center">
+                                <div className="absolute -inset-2 border-2 border-dashed border-primary/30 rounded-full animate-spin" style={{ animationDuration: `${10 + index * 5}s`}}/>
+                                <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary shadow-lg">
+                                    <StepIcon className="h-8 w-8" />
+                                </div>
+                            </div>
+                            <div className="text-center">
+                                <h3 className="text-xl font-semibold text-foreground">{step.title}</h3>
+                                <p className="text-muted-foreground mt-1 text-sm max-w-xs mx-auto">{step.description}</p>
+                            </div>
+                        </div>
+
+                        {index < processSteps.length - 1 && (
+                            <div className="hidden md:flex items-center justify-center flex-1 animate-fade-in-up" style={{ animationDelay: `${(index + 0.5) * 0.2}s`}}>
+                                <ChevronRight className="h-10 w-10 text-primary/30" />
+                            </div>
+                        )}
+                    </React.Fragment>
+                  )
+                })}
             </div>
         </div>
       </section>
