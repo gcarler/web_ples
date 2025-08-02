@@ -1,3 +1,4 @@
+
 'use client';
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
@@ -28,7 +29,7 @@ df = pd.read_csv('sales_data.csv')
 # Calculate total revenue
 total_revenue = (df['price'] * df['quantity']).sum()
 
-print(f"Total Revenue: ${total_revenue:,.2f}")`,
+print("Total Revenue: ${:,.2f}".format(total_revenue))`,
   },
   {
     lang: 'SQL',
@@ -137,5 +138,3 @@ export const CodeTypingIllustration = () => {
     </motion.div>
   );
 };
-
-    
