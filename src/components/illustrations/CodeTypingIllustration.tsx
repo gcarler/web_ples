@@ -43,20 +43,20 @@ const codeSnippets = [
     color: 'text-[#F7DF1E]', // Yellow
     code: (
         <>
-            <SyntaxHighlight type="keyword">import</SyntaxHighlight> <SyntaxHighlight type="default">{{ ai }} </SyntaxHighlight><SyntaxHighlight type="keyword">from</SyntaxHighlight><SyntaxHighlight type="string"> '@/ai/genkit'</SyntaxHighlight><SyntaxHighlight type="default">;{"\n"}</SyntaxHighlight>
-            <SyntaxHighlight type="keyword">import</SyntaxHighlight> <SyntaxHighlight type="default">{{ z }} </SyntaxHighlight><SyntaxHighlight type="keyword">from</SyntaxHighlight><SyntaxHighlight type="string"> 'genkit'</SyntaxHighlight><SyntaxHighlight type="default">;{"\n\n"}</SyntaxHighlight>
+            <SyntaxHighlight type="keyword">import</SyntaxHighlight> <SyntaxHighlight type="default">{'{ ai }'} </SyntaxHighlight><SyntaxHighlight type="keyword">from</SyntaxHighlight><SyntaxHighlight type="string"> '@/ai/genkit'</SyntaxHighlight><SyntaxHighlight type="default">;{"\n"}</SyntaxHighlight>
+            <SyntaxHighlight type="keyword">import</SyntaxHighlight> <SyntaxHighlight type="default">{'{ z }'} </SyntaxHighlight><SyntaxHighlight type="keyword">from</SyntaxHighlight><SyntaxHighlight type="string"> 'genkit'</SyntaxHighlight><SyntaxHighlight type="default">;{"\n\n"}</SyntaxHighlight>
             <SyntaxHighlight type="comment">{'// Define a generative AI flow'}</SyntaxHighlight>{"\n"}
             <SyntaxHighlight type="keyword">export const</SyntaxHighlight><SyntaxHighlight type="default"> storyFlow = ai.</SyntaxHighlight><SyntaxHighlight type="function">defineFlow</SyntaxHighlight><SyntaxHighlight type="default">({"\n"}</SyntaxHighlight>
             <SyntaxHighlight type="default">  name: </SyntaxHighlight><SyntaxHighlight type="string">'storyFlow'</SyntaxHighlight><SyntaxHighlight type="default">,{"\n"}</SyntaxHighlight>
             <SyntaxHighlight type="default">  inputSchema: z.</SyntaxHighlight><SyntaxHighlight type="function">string</SyntaxHighlight><SyntaxHighlight type="default">(),{"\n"}</SyntaxHighlight>
             <SyntaxHighlight type="default">  outputSchema: z.</SyntaxHighlight><SyntaxHighlight type="function">string</SyntaxHighlight><SyntaxHighlight type="default">(),{"\n"}</SyntaxHighlight>
-            <SyntaxHighlight type="default">}, </SyntaxHighlight><SyntaxHighlight type="keyword">async</SyntaxHighlight><SyntaxHighlight type="default"> (prompt) =></SyntaxHighlight><SyntaxHighlight type="default"> {"{\n"}</SyntaxHighlight>
+            <SyntaxHighlight type="default">{"}, "}</SyntaxHighlight><SyntaxHighlight type="keyword">async</SyntaxHighlight><SyntaxHighlight type="default"> (prompt) ={'>'} </SyntaxHighlight><SyntaxHighlight type="default">{"{\n"}</SyntaxHighlight>
             <SyntaxHighlight type="keyword">    const</SyntaxHighlight><SyntaxHighlight type="default"> llmResponse = </SyntaxHighlight><SyntaxHighlight type="keyword">await</SyntaxHighlight><SyntaxHighlight type="default"> ai.</SyntaxHighlight><SyntaxHighlight type="function">generate</SyntaxHighlight><SyntaxHighlight type="default">({"\n"}</SyntaxHighlight>
-            <SyntaxHighlight type="default">      prompt: </SyntaxHighlight><SyntaxHighlight type="string">{`Write a story about \${prompt}`}</SyntaxHighlight><SyntaxHighlight type="default">,{"\n"}</SyntaxHighlight>
+            <SyntaxHighlight type="default">      prompt: </SyntaxHighlight><SyntaxHighlight type="string">{'`Write a story about ${prompt}`'}</SyntaxHighlight><SyntaxHighlight type="default">,{"\n"}</SyntaxHighlight>
             <SyntaxHighlight type="default">      model: </SyntaxHighlight><SyntaxHighlight type="string">'googleai/gemini-pro'</SyntaxHighlight><SyntaxHighlight type="default">,{"\n"}</SyntaxHighlight>
-            <SyntaxHighlight type="default">    });{"\n\n"}</SyntaxHighlight>
+            <SyntaxHighlight type="default">    {"});\n\n"}</SyntaxHighlight>
             <SyntaxHighlight type="keyword">    return</SyntaxHighlight><SyntaxHighlight type="default"> llmResponse.text();{"\n"}</SyntaxHighlight>
-            <SyntaxHighlight type="default">  }{"\n"});</SyntaxHighlight>
+            <SyntaxHighlight type="default">  {"}\n"});</SyntaxHighlight>
         </>
     ),
     textLength: 489,
@@ -68,18 +68,18 @@ const codeSnippets = [
       <>
         <SyntaxHighlight type="keyword">package</SyntaxHighlight><SyntaxHighlight type="default"> main{"\n\n"}</SyntaxHighlight>
         <SyntaxHighlight type="keyword">import</SyntaxHighlight><SyntaxHighlight type="default"> ({"\n"}</SyntaxHighlight>
-        <SyntaxHighlight type="default">    </SyntaxHighlight><SyntaxHighlight type="string">"fmt"</SyntaxHighlight>{"\n"}
-        <SyntaxHighlight type="default">    </SyntaxHighlight><SyntaxHighlight type="string">"sync"</SyntaxHighlight>{"\n"}
+        <SyntaxHighlight type="string">    "fmt"</SyntaxHighlight>{"\n"}
+        <SyntaxHighlight type="string">    "sync"</SyntaxHighlight>{"\n"}
         <SyntaxHighlight type="default">){"\n\n"}</SyntaxHighlight>
         <SyntaxHighlight type="comment">{'// Worker pool for concurrent processing'}</SyntaxHighlight>{"\n"}
-        <SyntaxHighlight type="keyword">func</SyntaxHighlight><SyntaxHighlight type="function"> worker</SyntaxHighlight><SyntaxHighlight type="default">(id </SyntaxHighlight><SyntaxHighlight type="keyword">int</SyntaxHighlight><SyntaxHighlight type="default">, jobs {"<-"}</SyntaxHighlight><SyntaxHighlight type="keyword">chan int</SyntaxHighlight><SyntaxHighlight type="default">, results </SyntaxHighlight><SyntaxHighlight type="keyword">chan</SyntaxHighlight><SyntaxHighlight type="default">{"<-"} </SyntaxHighlight><SyntaxHighlight type="keyword">int</SyntaxHighlight><SyntaxHighlight type="default">, wg *sync.WaitGroup) {"{\n"}</SyntaxHighlight>
-        <SyntaxHighlight type="default">    </SyntaxHighlight><SyntaxHighlight type="keyword">defer</SyntaxHighlight><SyntaxHighlight type="default"> wg.Done(){"\n"}</SyntaxHighlight>
+        <SyntaxHighlight type="keyword">func</SyntaxHighlight><SyntaxHighlight type="function"> worker</SyntaxHighlight><SyntaxHighlight type="default">(id </SyntaxHighlight><SyntaxHighlight type="keyword">int</SyntaxHighlight><SyntaxHighlight type="default">, jobs {"<-chan int"}, results {"chan<- int"}, wg *sync.WaitGroup) {"{\n"}</SyntaxHighlight>
+        <SyntaxHighlight type="keyword">    defer</SyntaxHighlight><SyntaxHighlight type="default"> wg.Done(){"\n"}</SyntaxHighlight>
         <SyntaxHighlight type="keyword">    for</SyntaxHighlight><SyntaxHighlight type="default"> j := </SyntaxHighlight><SyntaxHighlight type="keyword">range</SyntaxHighlight><SyntaxHighlight type="default"> jobs {"{\n"}</SyntaxHighlight>
         <SyntaxHighlight type="default">        fmt.</SyntaxHighlight><SyntaxHighlight type="function">Printf</SyntaxHighlight><SyntaxHighlight type="default">(</SyntaxHighlight><SyntaxHighlight type="string">"Worker %d started job %d\\n"</SyntaxHighlight><SyntaxHighlight type="default">, id, j){"\n"}</SyntaxHighlight>
         <SyntaxHighlight type="default">        results {"<-"} j * </SyntaxHighlight><SyntaxHighlight type="number">2</SyntaxHighlight><SyntaxHighlight type="comment"> // Simulate work</SyntaxHighlight>{"\n"}
         <SyntaxHighlight type="default">        fmt.</SyntaxHighlight><SyntaxHighlight type="function">Printf</SyntaxHighlight><SyntaxHighlight type="default">(</SyntaxHighlight><SyntaxHighlight type="string">"Worker %d finished job %d\\n"</SyntaxHighlight><SyntaxHighlight type="default">, id, j){"\n"}</SyntaxHighlight>
-        <SyntaxHighlight type="default">    }}{"\n"}</SyntaxHighlight>
-        <SyntaxHighlight type="default">}{"\n"}</SyntaxHighlight>
+        <SyntaxHighlight type="default">    {"}\n"}</SyntaxHighlight>
+        <SyntaxHighlight type="default">{"}"}</SyntaxHighlight>
       </>
     ),
     textLength: 497,
@@ -100,7 +100,7 @@ const codeSnippets = [
         <SyntaxHighlight type="keyword">FROM</SyntaxHighlight>{"\n"}
         <SyntaxHighlight type="default">    daily_sales{"\n"}</SyntaxHighlight>
         <SyntaxHighlight type="keyword">WHERE</SyntaxHighlight>{"\n"}
-        <SyntaxHighlight type="default">    sale_date >= </SyntaxHighlight><SyntaxHighlight type="string">'2024-01-01'</SyntaxHighlight>{"\n"}
+        <SyntaxHighlight type="default">    sale_date {'>'}= </SyntaxHighlight><SyntaxHighlight type="string">'2024-01-01'</SyntaxHighlight>{"\n"}
         <SyntaxHighlight type="keyword">ORDER BY</SyntaxHighlight>{"\n"}
         <SyntaxHighlight type="default">    sale_date;</SyntaxHighlight>
       </>
@@ -133,7 +133,7 @@ const getTypedChildren = (children: React.ReactNode, charsLeft: number): React.R
         let charsProcessed = 0;
         const newChildren = [];
         for (const child of children) {
-            const childTextLength = child.props.children?.length || 0;
+            const childTextLength = typeof child.props.children === 'string' ? child.props.children.length : 0;
             if (charsProcessed + childTextLength < charsLeft) {
                 newChildren.push(child);
                 charsProcessed += childTextLength;
