@@ -14,7 +14,6 @@ const SyntaxHighlight = ({ children, type }: { children: React.ReactNode, type: 
         number: 'text-[#B5CEA8]', // Light green/blue for numbers
         default: 'text-foreground/90',
     };
-    // This component now just applies styling. The animation logic will handle the text content.
     return <span className={cn(colorMap[type])}>{children}</span>;
 };
 
@@ -61,7 +60,7 @@ const codeSnippets = [
       { type: 'string', content: '    "sync"\n' },
       { type: 'default', content: ')\n\n' },
       { type: 'comment', content: '// Worker pool for concurrent processing\n' },
-      { type: 'keyword', content: 'func ' }, { type: 'function', content: 'worker' }, { type: 'default', content: '(id ' }, { type: 'keyword', content: 'int' }, { type: 'default', content: ', jobs ' }, { type: 'keyword', content: '<-chan int' }, { type: 'default', content: ') {\n' },
+      { type: 'keyword', content: 'func ' }, { type: 'function', content: 'worker' }, { type: 'default', content: '(id ' }, { type: 'keyword', content: 'int' }, { type: 'default', content: ', jobs ' }, { type: 'keyword', content: '<-' }, { type: 'keyword', content: 'chan int' }, { type: 'default', content: ') {\n' },
       { type: 'keyword', content: '    for ' }, { type: 'default', content: 'j := ' }, { type: 'keyword', content: 'range ' }, { type: 'default', content: 'jobs {\n' },
       { type: 'default', content: '        fmt.' }, { type: 'function', content: 'Printf' }, { type: 'default', content: '(' }, { type: 'string', content: `"w:%d j:%d"` }, { type: 'default', content: ', id, j)\n' },
       { type: 'default', content: '    }\n' },
@@ -214,4 +213,3 @@ export const CodeTypingIllustration = () => {
     </motion.div>
   );
 };
-
