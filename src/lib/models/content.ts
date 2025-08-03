@@ -33,7 +33,7 @@ export const PillarSchema = z.object({
   id: z.string().optional(),
   title: z.string().min(1, "Title is required."),
   description: z.string().min(1, "Description is required."),
-  link: z.string().url("Must be a valid URL."),
+  link: z.string().min(1, "Link is required."),
   iconName: z.string().min(1, "Icon name is required."),
   order: z.number().int().default(0),
   createdAt: z.date().optional(),

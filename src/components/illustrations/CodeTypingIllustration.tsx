@@ -29,7 +29,7 @@ df = pd.read_csv('sales_data.csv')
 # Calculate total revenue
 total_revenue = (df['price'] * df['quantity']).sum()
 
-print(f"Total Revenue: ${{total_revenue:,.2f}}")`,
+print(f"Total Revenue: {{total_revenue:,.2f}}")`,
   },
   {
     lang: 'SQL',
