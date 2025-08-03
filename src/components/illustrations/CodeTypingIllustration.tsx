@@ -23,7 +23,7 @@ const codeSnippets = [
     color: 'text-[#3776AB]', // Blue
     code: (
       <>
-        <SyntaxHighlight type="keyword">import</SyntaxHighlight> <SyntaxHighlight type="default">tensorflow </SyntaxHighlight><SyntaxHighlight type="keyword">as</SyntaxHighlight><SyntaxHighlight type="default"> tf{"\n\n"}</SyntaxHighlight>
+        <SyntaxHighlight type="keyword">import</SyntaxHighlight><SyntaxHighlight type="default"> tensorflow </SyntaxHighlight><SyntaxHighlight type="keyword">as</SyntaxHighlight><SyntaxHighlight type="default"> tf{"\n\n"}</SyntaxHighlight>
         <SyntaxHighlight type="comment"># Define a simple sequential model</SyntaxHighlight>{"\n"}
         <SyntaxHighlight type="default">model = tf.keras.Sequential([{"\n"}</SyntaxHighlight>
         <SyntaxHighlight type="default">    tf.keras.layers.Dense(</SyntaxHighlight><SyntaxHighlight type="number">128</SyntaxHighlight><SyntaxHighlight type="default">, activation=</SyntaxHighlight><SyntaxHighlight type="string">'relu'</SyntaxHighlight><SyntaxHighlight type="default">, input_shape=(</SyntaxHighlight><SyntaxHighlight type="number">784</SyntaxHighlight><SyntaxHighlight type="default">,)),{"\n"}</SyntaxHighlight>
@@ -222,3 +222,5 @@ export const CodeTypingIllustration = () => {
     </motion.div>
   );
 };
+
+    
