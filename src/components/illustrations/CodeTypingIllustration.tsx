@@ -1,7 +1,7 @@
 
 'use client';
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 // Define styles for syntax highlighting to be used in JSX
@@ -14,106 +14,76 @@ const SyntaxHighlight = ({ children, type }: { children: React.ReactNode, type: 
         number: 'text-[#B5CEA8]', // Light green/blue for numbers
         default: 'text-foreground/90',
     };
+    // This component now just applies styling. The animation logic will handle the text content.
     return <span className={cn(colorMap[type])}>{children}</span>;
 };
 
+// Data structure for code snippets with color highlighting
 const codeSnippets = [
   {
     lang: 'Python',
     color: 'text-[#3776AB]', // Blue
     code: [
-      <><SyntaxHighlight type="keyword">import</SyntaxHighlight><SyntaxHighlight type="default"> tensorflow </SyntaxHighlight><SyntaxHighlight type="keyword">as</SyntaxHighlight><SyntaxHighlight type="default"> tf</SyntaxHighlight></>,
-      <></>,
-      <><SyntaxHighlight type="comment"># Define a simple sequential model</SyntaxHighlight></>,
-      <><SyntaxHighlight type="default">model = tf.keras.Sequential([</SyntaxHighlight></>,
-      <><SyntaxHighlight type="default">    tf.keras.layers.Dense(</SyntaxHighlight><SyntaxHighlight type="number">128</SyntaxHighlight><SyntaxHighlight type="default">, activation=</SyntaxHighlight><SyntaxHighlight type="string">'relu'</SyntaxHighlight><SyntaxHighlight type="default">, input_shape=(</SyntaxHighlight><SyntaxHighlight type="number">784</SyntaxHighlight><SyntaxHighlight type="default">,)),</SyntaxHighlight></>,
-      <><SyntaxHighlight type="default">    tf.keras.layers.Dropout(</SyntaxHighlight><SyntaxHighlight type="number">0.2</SyntaxHighlight><SyntaxHighlight type="default">),</SyntaxHighlight></>,
-      <><SyntaxHighlight type="default">    tf.keras.layers.Dense(</SyntaxHighlight><SyntaxHighlight type="number">10</SyntaxHighlight><SyntaxHighlight type="default">, activation=</SyntaxHighlight><SyntaxHighlight type="string">'softmax'</SyntaxHighlight><SyntaxHighlight type="default">)</SyntaxHighlight></>,
-      <><SyntaxHighlight type="default">])</SyntaxHighlight></>,
-      <></>,
-      <><SyntaxHighlight type="default">model.</SyntaxHighlight><SyntaxHighlight type="function">compile</SyntaxHighlight><SyntaxHighlight type="default">(optimizer=</SyntaxHighlight><SyntaxHighlight type="string">'adam'</SyntaxHighlight><SyntaxHighlight type="default">, loss=</SyntaxHighlight><SyntaxHighlight type="string">'categorical_crossentropy'</SyntaxHighlight><SyntaxHighlight type="default">, metrics=[</SyntaxHighlight><SyntaxHighlight type="string">'accuracy'</SyntaxHighlight><SyntaxHighlight type="default">])</SyntaxHighlight></>
+      { type: 'keyword', content: 'import ' }, { type: 'default', content: 'tensorflow ' }, { type: 'keyword', content: 'as ' }, { type: 'default', content: 'tf\n\n' },
+      { type: 'comment', content: '# Define a simple sequential model\n' },
+      { type: 'default', content: 'model = tf.keras.Sequential([\n' },
+      { type: 'default', content: '    tf.keras.layers.Dense(' }, { type: 'number', content: '128' }, { type: 'default', content: ', activation=' }, { type: 'string', content: "'relu'" }, { type: 'default', content: ', input_shape=(' }, { type: 'number', content: '784' }, { type: 'default', content: ',)),\n' },
+      { type: 'default', content: '    tf.keras.layers.Dropout(' }, { type: 'number', content: '0.2' }, { type: 'default', content: '),\n' },
+      { type: 'default', content: '    tf.keras.layers.Dense(' }, { type: 'number', content: '10' }, { type: 'default', content: ', activation=' }, { type: 'string', content: "'softmax'" }, { type: 'default', content: ')\n' },
+      { type: 'default', content: '])\n\n' },
+      { type: 'default', content: 'model.' }, { type: 'function', content: 'compile' }, { type: 'default', content: '(optimizer=' }, { type: 'string', content: "'adam'" }, { type: 'default', content: ')' },
     ],
   },
   {
     lang: 'JavaScript',
     color: 'text-[#F7DF1E]', // Yellow
     code: [
-        <><SyntaxHighlight type="keyword">import</SyntaxHighlight> <SyntaxHighlight type="default">{'{ ai }'} </SyntaxHighlight><SyntaxHighlight type="keyword">from</SyntaxHighlight><SyntaxHighlight type="string"> '@/ai/genkit'</SyntaxHighlight><SyntaxHighlight type="default">;</SyntaxHighlight></>,
-        <><SyntaxHighlight type="keyword">import</SyntaxHighlight> <SyntaxHighlight type="default">{'{ z }'} </SyntaxHighlight><SyntaxHighlight type="keyword">from</SyntaxHighlight><SyntaxHighlight type="string"> 'genkit'</SyntaxHighlight><SyntaxHighlight type="default">;</SyntaxHighlight></>,
-        <></>,
-        <><SyntaxHighlight type="comment">{'// Define a generative AI flow'}</SyntaxHighlight></>,
-        <><SyntaxHighlight type="keyword">export const</SyntaxHighlight><SyntaxHighlight type="default"> storyFlow = ai.</SyntaxHighlight><SyntaxHighlight type="function">defineFlow</SyntaxHighlight><SyntaxHighlight type="default">({'{'}</SyntaxHighlight></>,
-        <><SyntaxHighlight type="default">  name: </SyntaxHighlight><SyntaxHighlight type="string">'storyFlow'</SyntaxHighlight><SyntaxHighlight type="default">,</SyntaxHighlight></>,
-        <><SyntaxHighlight type="default">  inputSchema: z.</SyntaxHighlight><SyntaxHighlight type="function">string</SyntaxHighlight><SyntaxHighlight type="default">(),</SyntaxHighlight></>,
-        <><SyntaxHighlight type="keyword">  async</SyntaxHighlight><SyntaxHighlight type="default"> (prompt) ={'>'} {'{'}</SyntaxHighlight></>,
-        <><SyntaxHighlight type="keyword">    const</SyntaxHighlight><SyntaxHighlight type="default"> llmResponse = </SyntaxHighlight><SyntaxHighlight type="keyword">await</SyntaxHighlight><SyntaxHighlight type="default"> ai.</SyntaxHighlight><SyntaxHighlight type="function">generate</SyntaxHighlight><SyntaxHighlight type="default">({'{'}</SyntaxHighlight></>,
-        <><SyntaxHighlight type="default">      prompt: </SyntaxHighlight><SyntaxHighlight type="string">{`Write a story about \${prompt}`}</SyntaxHighlight><SyntaxHighlight type="default">,</SyntaxHighlight></>,
-        <><SyntaxHighlight type="default">      model: </SyntaxHighlight><SyntaxHighlight type="string">'googleai/gemini-pro'</SyntaxHighlight><SyntaxHighlight type="default">,</SyntaxHighlight></>,
-        <><SyntaxHighlight type="default">    {'}'});</SyntaxHighlight></>,
-        <></>,
-        <><SyntaxHighlight type="keyword">    return</SyntaxHighlight><SyntaxHighlight type="default"> llmResponse.text();</SyntaxHighlight></>,
-        <><SyntaxHighlight type="default">  {'}})'}</SyntaxHighlight></>
+        { type: 'keyword', content: 'import ' }, { type: 'default', content: '{ ai } ' }, { type: 'keyword', content: 'from ' }, { type: 'string', content: "'@/ai/genkit'" }, { type: 'default', content: ';\n' },
+        { type: 'keyword', content: 'import ' }, { type: 'default', content: '{ z } ' }, { type: 'keyword', content: 'from ' }, { type: 'string', content: "'genkit'" }, { type: 'default', content: ';\n\n' },
+        { type: 'comment', content: '// Define a generative AI flow\n' },
+        { type: 'keyword', content: 'export const ' }, { type: 'default', content: 'storyFlow = ai.' }, { type: 'function', content: 'defineFlow' }, { type: 'default', content: '({\n' },
+        { type: 'default', content: '  name: ' }, { type: 'string', content: "'storyFlow'" }, { type: 'default', content: ',\n' },
+        { type: 'default', content: '  inputSchema: z.' }, { type: 'function', content: 'string' }, { type: 'default', content: '(),\n' },
+        { type: 'keyword', content: '  async ' }, { type: 'default', content: '(prompt) => {\n' },
+        { type: 'keyword', content: '    const ' }, { type: 'default', content: 'llmResponse = ' }, { type: 'keyword', content: 'await ' }, { type: 'default', content: 'ai.' }, { type: 'function', content: 'generate' }, { type: 'default', content: '({ ... });\n' },
+        { type: 'keyword', content: '    return ' }, { type: 'default', content: 'llmResponse.text();\n' },
+        { type: 'default', content: '  }\n' },
+        { type: 'default', content: '});' },
     ],
   },
-  {
+   {
     lang: 'Go',
     color: 'text-[#00ADD8]', // Cyan
     code: [
-      <><SyntaxHighlight type="keyword">package</SyntaxHighlight><SyntaxHighlight type="default"> main</SyntaxHighlight></>,
-      <></>,
-      <><SyntaxHighlight type="keyword">import</SyntaxHighlight><SyntaxHighlight type="default"> ({"\n"}</SyntaxHighlight><SyntaxHighlight type="string">    "fmt"</SyntaxHighlight>{"\n"}<SyntaxHighlight type="string">    "sync"</SyntaxHighlight>{"\n"}<SyntaxHighlight type="default">{')'}</SyntaxHighlight></>,
-      <></>,
-      <><SyntaxHighlight type="comment">{'// Worker pool for concurrent processing'}</SyntaxHighlight></>,
-      <><SyntaxHighlight type="keyword">func</SyntaxHighlight><SyntaxHighlight type="function"> worker</SyntaxHighlight><SyntaxHighlight type="default">(id </SyntaxHighlight><SyntaxHighlight type="keyword">int</SyntaxHighlight><SyntaxHighlight type="default">, jobs </SyntaxHighlight><SyntaxHighlight type="keyword">{'<-chan int'}</SyntaxHighlight><SyntaxHighlight type="default">, results </SyntaxHighlight><SyntaxHighlight type="keyword">{'chan<- int'}</SyntaxHighlight><SyntaxHighlight type="default">, wg *sync.WaitGroup) {'{'}</SyntaxHighlight></>,
-      <><SyntaxHighlight type="keyword">    defer</SyntaxHighlight><SyntaxHighlight type="default"> wg.Done()</SyntaxHighlight></>,
-      <><SyntaxHighlight type="keyword">    for</SyntaxHighlight><SyntaxHighlight type="default"> j := </SyntaxHighlight><SyntaxHighlight type="keyword">range</SyntaxHighlight><SyntaxHighlight type="default"> jobs {'{'}</SyntaxHighlight></>,
-      <><SyntaxHighlight type="default">        fmt.</SyntaxHighlight><SyntaxHighlight type="function">Printf</SyntaxHighlight><SyntaxHighlight type="default">(</SyntaxHighlight><SyntaxHighlight type="string">"Worker %d started job %d\\n"</SyntaxHighlight><SyntaxHighlight type="default">, id, j)</SyntaxHighlight></>,
-      <><SyntaxHighlight type="default">        results </SyntaxHighlight><SyntaxHighlight type="keyword">{'<-'}</SyntaxHighlight><SyntaxHighlight type="default"> j * </SyntaxHighlight><SyntaxHighlight type="number">2</SyntaxHighlight><SyntaxHighlight type="comment"> // Simulate work</SyntaxHighlight></>,
-      <><SyntaxHighlight type="default">    {'}'}</SyntaxHighlight></>,
-      <><SyntaxHighlight type="default">{'}'}</SyntaxHighlight></>
+      { type: 'keyword', content: 'package ' }, { type: 'default', content: 'main\n\n' },
+      { type: 'keyword', content: 'import ' }, { type: 'default', content: '(\n' },
+      { type: 'string', content: '    "fmt"\n' },
+      { type: 'string', content: '    "sync"\n' },
+      { type: 'default', content: ')\n\n' },
+      { type: 'comment', content: '// Worker pool for concurrent processing\n' },
+      { type: 'keyword', content: 'func ' }, { type: 'function', content: 'worker' }, { type: 'default', content: '(id ' }, { type: 'keyword', content: 'int' }, { type: 'default', content: ', jobs ' }, { type: 'keyword', content: '<-chan int' }, { type: 'default', content: ') {\n' },
+      { type: 'keyword', content: '    for ' }, { type: 'default', content: 'j := ' }, { type: 'keyword', content: 'range ' }, { type: 'default', content: 'jobs {\n' },
+      { type: 'default', content: '        fmt.' }, { type: 'function', content: 'Printf' }, { type: 'default', content: '(' }, { type: 'string', content: `"w:%d j:%d"` }, { type: 'default', content: ', id, j)\n' },
+      { type: 'default', content: '    }\n' },
+      { type: 'default', content: '}' },
     ],
   },
   {
     lang: 'SQL',
     color: 'text-[#4479A1]', // Another Blue
     code: [
-      <><SyntaxHighlight type="keyword">SELECT</SyntaxHighlight></>,
-      <><SyntaxHighlight type="default">    sale_date,</SyntaxHighlight></>,
-      <><SyntaxHighlight type="default">    revenue,</SyntaxHighlight></>,
-      <><SyntaxHighlight type="comment">    -- Calculate 7-day moving average</SyntaxHighlight></>,
-      <><SyntaxHighlight type="function">    AVG</SyntaxHighlight><SyntaxHighlight type="default">(revenue) </SyntaxHighlight><SyntaxHighlight type="keyword">OVER</SyntaxHighlight><SyntaxHighlight type="default"> (</SyntaxHighlight></>,
-      <><SyntaxHighlight type="keyword">        ORDER BY</SyntaxHighlight><SyntaxHighlight type="default"> sale_date</SyntaxHighlight></>,
-      <><SyntaxHighlight type="keyword">        ROWS BETWEEN</SyntaxHighlight><SyntaxHighlight type="number"> 6</SyntaxHighlight><SyntaxHighlight type="keyword"> PRECEDING AND CURRENT ROW</SyntaxHighlight></>,
-      <><SyntaxHighlight type="default">    ) </SyntaxHighlight><SyntaxHighlight type="keyword">AS</SyntaxHighlight><SyntaxHighlight type="default"> moving_avg_7_days</SyntaxHighlight></>,
-      <><SyntaxHighlight type="keyword">FROM</SyntaxHighlight></>,
-      <><SyntaxHighlight type="default">    daily_sales</SyntaxHighlight></>,
-      <><SyntaxHighlight type="keyword">WHERE</SyntaxHighlight></>,
-      <><SyntaxHighlight type="default">    sale_date {'>'}= </SyntaxHighlight><SyntaxHighlight type="string">'2024-01-01'</SyntaxHighlight></>,
-      <><SyntaxHighlight type="keyword">ORDER BY</SyntaxHighlight></>,
-      <><SyntaxHighlight type="default">    sale_date;</SyntaxHighlight></>
+      { type: 'keyword', content: 'SELECT\n' },
+      { type: 'default', content: '    sale_date,\n' },
+      { type: 'default', content: '    revenue,\n' },
+      { type: 'comment', content: '    -- 7-day moving average\n' },
+      { type: 'function', content: '    AVG' }, { type: 'default', content: '(revenue) ' }, { type: 'keyword', content: 'OVER ' }, { type: 'default', content: '(\n' },
+      { type: 'keyword', content: '        ORDER BY ' }, { type: 'default', content: 'sale_date\n' },
+      { type: 'keyword', content: '        ROWS BETWEEN 6 PRECEDING AND CURRENT ROW' }, { type: 'default', content: '\n' },
+      { type: 'default', content: '    ) ' }, { type: 'keyword', content: 'AS ' }, { type: 'default', content: 'moving_avg\n' },
+      { type: 'keyword', content: 'FROM ' }, { type: 'default', content: 'daily_sales;' },
     ],
   },
 ];
-
-const lineVariants = {
-  hidden: { opacity: 0, y: 10 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.1, // Stagger animation for each line
-      duration: 0.3,
-    },
-  }),
-  exit: (i: number) => ({
-    opacity: 0,
-    y: -10,
-     transition: {
-      delay: i * 0.05, // Stagger exit animation
-      duration: 0.2,
-    },
-  })
-};
 
 const BlinkingCursor = () => (
     <motion.div
@@ -121,30 +91,88 @@ const BlinkingCursor = () => (
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ repeat: Infinity, duration: 0.8, ease: 'easeInOut' }}
-      className="inline-block h-4 w-0.5 bg-accent"
+      className="inline-block h-4 w-0.5 bg-accent ml-0.5"
     />
-)
+);
 
 export const CodeTypingIllustration = () => {
-  const [snippetIndex, setSnippetIndex] = useState(0);
-  const [isExiting, setIsExiting] = useState(false);
+    const [snippetIndex, setSnippetIndex] = useState(0);
+    const [displayedCode, setDisplayedCode] = useState<any[]>([]);
+    const [typingStatus, setTypingStatus] = useState('typing'); // typing, pausing, deleting
 
-  useEffect(() => {
-    const totalDuration = (codeSnippets[snippetIndex].code.length * 150) + 3000; // time per line + pause
-    const timeout = setTimeout(() => {
-        setIsExiting(true);
-        // Start changing the snippet after exit animation completes
-        setTimeout(() => {
-            setSnippetIndex((prevIndex) => (prevIndex + 1) % codeSnippets.length);
-            setIsExiting(false);
-        }, codeSnippets[snippetIndex].code.length * 50 + 500); // Wait for all lines to exit
-    }, totalDuration);
+    const currentSnippet = codeSnippets[snippetIndex];
+    const fullCodeString = currentSnippet.code.map(s => s.content).join('');
 
-    return () => clearTimeout(timeout);
-  }, [snippetIndex]);
+    useEffect(() => {
+        let charIndex = 0;
+        let timeoutId: NodeJS.Timeout;
 
+        const type = () => {
+            if (charIndex < fullCodeString.length) {
+                const newChar = fullCodeString[charIndex];
+                
+                // Find which segment the character belongs to
+                let accumulatedLength = 0;
+                const segment = currentSnippet.code.find(s => {
+                    const nextLength = accumulatedLength + s.content.length;
+                    if (charIndex < nextLength) return true;
+                    accumulatedLength = nextLength;
+                    return false;
+                });
 
-  const currentSnippet = codeSnippets[snippetIndex];
+                // Update displayed code
+                setDisplayedCode(prev => {
+                    const last = prev[prev.length - 1];
+                    // If the new char is part of the same style segment, append it
+                    if (last && last.type === segment?.type) {
+                        const allButLast = prev.slice(0, -1);
+                        return [...allButLast, { ...last, content: last.content + newChar }];
+                    }
+                    // Otherwise, start a new segment
+                    return [...prev, { type: segment?.type, content: newChar }];
+                });
+
+                charIndex++;
+                timeoutId = setTimeout(type, 30 + Math.random() * 30); // Typing speed
+            } else {
+                // Finished typing, start pausing
+                setTypingStatus('pausing');
+                timeoutId = setTimeout(() => setTypingStatus('deleting'), 2000); // Pause duration
+            }
+        };
+
+        const deleteCode = () => {
+            if (displayedCode.length > 0) {
+                 setDisplayedCode(prev => {
+                    const last = prev[prev.length - 1];
+                    if (last.content.length > 1) {
+                         const allButLast = prev.slice(0, -1);
+                         return [...allButLast, { ...last, content: last.content.slice(0, -1) }];
+                    }
+                    return prev.slice(0, -1);
+                });
+                timeoutId = setTimeout(deleteCode, 20); // Deleting speed
+            } else {
+                 // Finished deleting, switch to next snippet
+                 setTypingStatus('typing');
+                 setSnippetIndex((prev) => (prev + 1) % codeSnippets.length);
+            }
+        };
+
+        if (typingStatus === 'typing') {
+            type();
+        } else if (typingStatus === 'deleting') {
+            deleteCode();
+        }
+
+        return () => clearTimeout(timeoutId);
+
+    }, [snippetIndex, typingStatus]);
+    
+    // Reset displayed code when snippet changes
+    useEffect(() => {
+        setDisplayedCode([]);
+    }, [snippetIndex]);
 
   return (
     <motion.div
@@ -174,25 +202,16 @@ export const CodeTypingIllustration = () => {
       <div className="p-4 font-mono text-xs md:text-sm overflow-hidden h-[calc(100%-2.5rem)]">
         <pre className="whitespace-pre-wrap">
           <code>
-            <AnimatePresence initial={false}>
-            {!isExiting && currentSnippet.code.map((line, i) => (
-                <motion.div
-                  key={`${snippetIndex}-${i}`}
-                  custom={i}
-                  initial="hidden"
-                  animate="visible"
-                  variants={lineVariants}
-                  className="block min-h-[1.2em]" // Ensure line takes up space
-                >
-                  {line}
-                  {/* Show cursor only on the last line as it types */}
-                  {i === currentSnippet.code.length - 1 && <BlinkingCursor />}
-                </motion.div>
-              ))}
-            </AnimatePresence>
+            {displayedCode.map((segment, index) => (
+              <SyntaxHighlight key={index} type={segment.type}>
+                {segment.content}
+              </SyntaxHighlight>
+            ))}
+            <BlinkingCursor />
           </code>
         </pre>
       </div>
     </motion.div>
   );
 };
+
