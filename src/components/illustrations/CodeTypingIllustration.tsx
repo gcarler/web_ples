@@ -6,63 +6,84 @@ import { cn } from '@/lib/utils';
 
 const codeSnippets = [
   {
-    lang: 'JavaScript',
-    color: 'text-[#F7DF1E]', // Yellow
-    code: `import { Button } from '@/components/ui/button';
-
-function App() {
-  return (
-    <Button onClick={() => alert('Hello, PLES!')}>
-      Click me
-    </Button>
-  );
-}`,
-  },
-  {
     lang: 'Python',
     color: 'text-[#3776AB]', // Blue
-    code: `import pandas as pd
+    code: `import tensorflow as tf
 
-# Load data from a CSV file
-df = pd.read_csv('sales_data.csv')
+# Define a simple sequential model
+model = tf.keras.Sequential([
+    tf.keras.layers.Dense(128, activation='relu', input_shape=(784,)),
+    tf.keras.layers.Dropout(0.2),
+    tf.keras.layers.Dense(10, activation='softmax')
+])
 
-# Calculate total revenue
-total_revenue = (df['price'] * df['quantity']).sum()
+model.compile(optimizer='adam',
+              loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
 
-print(f"Total Revenue: {{total_revenue:,.2f}}")`,
+model.summary()`,
+  },
+  {
+    lang: 'JavaScript',
+    color: 'text-[#F7DF1E]', // Yellow
+    code: `import { ai } from '@/ai/genkit';
+import { z } from 'genkit';
+
+// Define a generative AI flow
+export const storyFlow = ai.defineFlow(
+  {
+    name: 'storyFlow',
+    inputSchema: z.string(),
+    outputSchema: z.string(),
+  },
+  async (prompt) => {
+    const llmResponse = await ai.generate({
+      prompt: \`Write a story about \${prompt}\`,
+      model: 'googleai/gemini-pro',
+    });
+
+    return llmResponse.text();
+  }
+);`,
+  },
+  {
+    lang: 'Go',
+    color: 'text-[#00ADD8]', // Cyan
+    code: `package main
+
+import (
+    "fmt"
+    "sync"
+)
+
+// Worker pool for concurrent processing
+func worker(id int, jobs <-chan int, results chan<- int, wg *sync.WaitGroup) {
+    defer wg.Done()
+    for j := range jobs {
+        fmt.Printf("Worker %d started job %d\\n", id, j)
+        results <- j * 2 // Simulate work
+        fmt.Printf("Worker %d finished job %d\\n", id, j)
+    }
+}
+`,
   },
   {
     lang: 'SQL',
     color: 'text-[#4479A1]', // Another Blue
-    code: `SELECT 
-    c.customer_name,
-    COUNT(o.order_id) AS total_orders,
-    SUM(o.order_value) AS total_spent
-FROM 
-    customers c
-JOIN 
-    orders o ON c.customer_id = o.customer_id
-WHERE 
-    c.signup_date > '2023-01-01'
-GROUP BY 
-    c.customer_name
-ORDER BY 
-    total_spent DESC;`,
-  },
-  {
-    lang: 'CloudFormation',
-    color: 'text-[#FF9900]', // Orange (AWS)
-    code: `Resources:
-  MyEC2Instance:
-    Type: 'AWS::EC2::Instance'
-    Properties:
-      InstanceType: 't2.micro'
-      ImageId: 'ami-0c55b159cbfafe1f0' # Example AMI
-      Tags:
-        - Key: 'Name'
-          Value: 'Ples-Web-Server'
-      SecurityGroups:
-        - !Ref WebServerSecurityGroup`,
+    code: `SELECT
+    sale_date,
+    revenue,
+    -- Calculate 7-day moving average
+    AVG(revenue) OVER (
+        ORDER BY sale_date
+        ROWS BETWEEN 6 PRECEDING AND CURRENT ROW
+    ) AS moving_avg_7_days
+FROM
+    daily_sales
+WHERE
+    sale_date >= '2024-01-01'
+ORDER BY
+    sale_date;`,
   },
 ];
 
