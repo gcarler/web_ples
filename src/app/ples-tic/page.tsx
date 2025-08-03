@@ -155,7 +155,7 @@ export default function PlesTicPage() {
                 <Badge variant="default" className="text-md px-4 py-2 shadow-md">#SolucionesCloud</Badge>
                 <Badge variant="default" className="text-md px-4 py-2 shadow-md">#Ciberseguridad</Badge>
                 <Badge variant="default" className="text-md px-4 py-2 shadow-md">#AutomatizacionIA</Badge>
-                <Badge variant="default" className="text-md px-4 py-2 shadow-md">#TransformacionDigital</Badge>
+                <Badge variant="default" className="text-md px-4 py-2 shadow-md">#AnalisisDeDatos</Badge>
               </div>
               <Button size="lg" variant="accent" className="text-lg px-8 py-3" asChild>
                 <Link href={`/forms?service=ples-tic&subject=Consulta%20Soluciones%20PLES%20TIC`}>
@@ -328,3 +328,4 @@ export default function PlesTicPage() {
     
 
     
+
