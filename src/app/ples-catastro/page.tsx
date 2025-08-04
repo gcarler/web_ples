@@ -21,11 +21,11 @@ const services = [
     {
       slug: 'levantamiento-predial',
       icon: MapPin,
-      title: 'Levantamiento Predial Multifinalitario',
+      title: 'Levantamiento Predial Multipropósito',
       description: 'Levantamientos catastrales precisos (urbanos y rurales) con fines fiscales, jurídicos y económicos.',
       details: {
         mainIcon: MapPin,
-        title: 'Levantamiento Predial Multifinalitario',
+        title: 'Levantamiento Predial Multipropósito',
         description: 'Ejecutamos levantamientos catastrales precisos (urbanos y rurales) con fines fiscales, jurídicos, económicos y sociales. Aplicamos <strong class="text-primary group-hover:text-accent transition-colors">el uso inteligente de la experiencia</strong>, metodologías científicas y tecnología de vanguardia para garantizar información territorial confiable, optimizar tiempos y costos, y entregar productos de alta calidad.',
         keyServicesHeading: 'Características Clave del Servicio:',
         keyServices: [ 
