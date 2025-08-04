@@ -12,7 +12,6 @@ interface HealthDataIllustrationProps {
 export const HealthDataIllustration = ({ className }: HealthDataIllustrationProps) => {
     // An extended ECG path designed to tile horizontally
     const ecgPath = "M0,50 L20,50 L25,40 L30,60 L35,50 L55,50 L60,45 L65,55 L70,50 L90,50";
-    const pathLength = 200; // Approximate length for animation
 
     return (
         <div className={cn("relative h-full w-full overflow-hidden rounded-lg bg-background/50", className)}>
