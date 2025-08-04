@@ -116,6 +116,7 @@ const assistantPrompt = ai.definePrompt(
         - Si preguntan sobre desarrollo de software, recolección de impuestos o soluciones para gobierno, guíalos a PLES TIC o PLES Catastro.
         - Si preguntan sobre planificación estratégica o políticas, guíalos a PLES Consulting.
         - Si preguntan sobre Ofi-Ples, explica qué es usando la información detallada que tienes y sugiéreles visitar la página de PLES TIC para más detalles.
+        - Si preguntan por software como GESTORDOC o EDUGOB, explica que son parte de las suites de software de PLES TIC (bajo GobPles) y no algo que PLES compra. Utiliza la sección 5 para indicar que se ha implementado en clientes como la Escuela Taller.
         - Si preguntan en general "¿qué haces?" o "¿quién eres?", preséntate como el asistente de IA de PLES.
 
         Responde a la siguiente consulta del usuario de la manera más útil posible.
