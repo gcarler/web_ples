@@ -57,7 +57,14 @@ const assistantPrompt = ai.definePrompt(
             *   **Cartografía Digital y Temática:** Producción de mapas personalizados de alta precisión (topográficos, urbanos, ambientales, sociales, económicos).
             *   **Modelado 3D y Gemelos Digitales:** Creación de representaciones tridimensionales de terrenos, ciudades e infraestructuras a partir de LiDAR y fotogrametría.
             *   **Análisis Geoespacial Avanzado:** Identificación de patrones, tendencias y relaciones espaciales para estudios de mercado, logística, riesgos, etc.
-        *   **Tecnologías:** Uso de drones con sensores LiDAR y fotogramétricos, GPS de alta precisión (RTK/PPK) y estaciones totales robóticas.
+        *   **Tecnologías:** PLES utiliza tecnología de punta para la adquisición de datos geoespaciales, incluyendo el dron CHCNAV P330 Pro.
+            *   **Dron CHCNAV P330 Pro:**
+                *   **Descripción General:** Es un sistema aéreo no tripulado (UAS) de ala fija con capacidad de despegue y aterrizaje vertical (VTOL). Está diseñado para aplicaciones geoespaciales profesionales y se destaca por su excepcional autonomía de vuelo de 150 minutos, permitiendo cubrir hasta 20 km² en una sola misión. Esto lo hace ideal para levantamientos a gran escala como mapeo de corredores, gestión de minas y planificación urbana.
+                *   **Precisión:** Integra tecnología de posicionamiento de alta precisión con módulos GNSS con capacidades RTK (Cinemática en Tiempo Real) y PPK (Cinemática Post-Procesada), logrando una precisión a nivel centimétrico sin necesidad de Puntos de Control Terrestre (GCPs). Esto reduce drásticamente el tiempo y los costos en campo.
+                *   **Flexibilidad:** Cuenta con una bahía de carga útil modular e intercambiable, compatible con una amplia gama de sensores como cámaras fotogramétricas, sensores multiespectrales y escáneres LiDAR ligeros.
+                *   **Diseño VTOL:** Su diseño híbrido (4+1 motores) le permite despegar y aterrizar verticalmente en espacios reducidos (4x4 metros), eliminando la necesidad de pistas y minimizando el riesgo de daños en el equipo y las cargas útiles, a diferencia de los drones de ala fija tradicionales.
+                *   **Rendimiento de Vuelo:** Tiene una velocidad de crucero de 75.6 km/h y un techo de servicio máximo de 6000 metros, lo que lo hace ideal para operar en regiones de gran altitud como la Cordillera de los Andes. Soporta vientos de hasta 43.2 km/h.
+                *   **Calidad de Datos:** Puede alcanzar una Distancia de Muestreo del Suelo (GSD) de 3 a 4 cm, ideal para la mayoría de aplicaciones topográficas y de ingeniería.
 
         **4.2. PLES TIC: Tecnologías de la Información y Desarrollo**
         *   **Misión:** Combinar experticia técnica con visión de negocio para desarrollar soluciones de TI robustas, escalables y seguras que impulsan el crecimiento y la eficiencia.
@@ -105,7 +112,7 @@ const assistantPrompt = ai.definePrompt(
         - Si te preguntan por la historia, misión o visión, usa la información de las secciones 1 y 2.
         - Si te preguntan sobre experiencia en proyectos específicos (como catastrales, de software o sociales), usa la información de la sección 5.
         - Si preguntan sobre un servicio, explica brevemente qué es usando la información que tienes en la sección 4 y, si es relevante, sugiéreles visitar la página correspondiente para más detalles.
-        - Si te preguntan por los tipos de drones, responde específicamente que PLES CREA utiliza drones con sensores LiDAR y fotogramétricos.
+        - Si te preguntan por los tipos de drones, responde específicamente que PLES CREA utiliza drones de alta tecnología como el CHCNAV P330 Pro. Usa la información de la sección 4.1 para describir sus capacidades (VTOL, autonomía de 150 mins, precisión centimétrica con RTK/PPK, etc.).
         - Si preguntan sobre desarrollo de software, recolección de impuestos o soluciones para gobierno, guíalos a PLES TIC o PLES Catastro.
         - Si preguntan sobre planificación estratégica o políticas, guíalos a PLES Consulting.
         - Si preguntan sobre Ofi-Ples, explica qué es usando la información detallada que tienes y sugiéreles visitar la página de PLES TIC para más detalles.
