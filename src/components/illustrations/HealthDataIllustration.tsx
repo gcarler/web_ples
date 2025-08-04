@@ -1,4 +1,3 @@
-
 'use client';
 
 import React from 'react';
@@ -10,8 +9,8 @@ interface HealthDataIllustrationProps {
 }
 
 export const HealthDataIllustration = ({ className }: HealthDataIllustrationProps) => {
-    // A single, long path for the ECG line to be drawn
-    const ecgPath = "M0,50 L80,50 L90,40 L100,60 L110,50 L150,50 L160,45 L170,55 L180,50 L250,50 L260,60 L270,30 L280,50 L350,50";
+    // A single, long path for the ECG line to be drawn with more pronounced peaks.
+    const ecgPath = "M0,50 L80,50 L90,25 L100,75 L110,50 L150,50 L160,35 L170,65 L180,50 L250,50 L260,70 L270,10 L280,50 L350,50";
 
     return (
         <div className={cn("relative h-full w-full overflow-hidden rounded-lg bg-background/50", className)}>
