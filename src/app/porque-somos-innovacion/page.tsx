@@ -22,7 +22,7 @@ const principles = [
     { title: "Inteligencia Artificial", description: "Asistentes que entienden y actúan." },
     { title: "Experiencias Inmersivas", description: "Interfaces que cautivan y responden." },
     { title: "Rendimiento Radical", description: "Velocidad que se siente instantánea." },
-    { title: "Conectividad Total", description: "Integración fluida con tu ecosistema." },
+    { title: "Conectividad Total", description: "Integración fluida con su ecosistema." },
 ];
 
 interface Message {

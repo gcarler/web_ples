@@ -16,15 +16,15 @@ export default function AddUserPage() {
         <Button variant="outline" size="sm" asChild className="mb-4">
             <Link href="/admin/users">
                 <span className="flex items-center">
-                    <ArrowLeft className="mr-2 h-4 w-4" /> Back to Users
+                    <ArrowLeft className="mr-2 h-4 w-4" /> Volver a Usuarios
                 </span>
             </Link>
         </Button>
        <Card className="shadow-lg border">
          <CardHeader>
-           <CardTitle className="text-2xl">Add New User</CardTitle>
+           <CardTitle className="text-2xl">Añadir Nuevo Usuario</CardTitle>
            <CardDescription>
-             Enter the details below to create a new user account and assign their role. The user will receive login credentials (or reset password instructions).
+             Introduce los detalles a continuación para crear una nueva cuenta de usuario y asignarle su rol. El usuario recibirá credenciales de inicio de sesión (o instrucciones para restablecer la contraseña).
            </CardDescription>
          </CardHeader>
          <CardContent>

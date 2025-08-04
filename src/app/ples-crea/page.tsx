@@ -80,8 +80,8 @@ export default function PlesCreaPage() {
               </p>
               <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-10">
                 <Badge variant="default" className="text-md px-4 py-2 shadow-md">#Geoespacial</Badge>
-                <Badge variant="default" className="text-md px-4 py-2 shadow-md">#CartografiaDigital</Badge>
-                <Badge variant="default" className="text-md px-4 py-2 shadow-md">#Innovacion3D</Badge>
+                <Badge variant="default" className="text-md px-4 py-2 shadow-md">#CartografíaDigital</Badge>
+                <Badge variant="default" className="text-md px-4 py-2 shadow-md">#Innovación3D</Badge>
               </div>
               <Button size="lg" variant="accent" className="text-lg px-8 py-3" asChild>
                 <Link href={`/forms?service=ples-crea&subject=Consulta%20PLES%20CREA`}>

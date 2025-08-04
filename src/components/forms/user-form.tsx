@@ -23,15 +23,15 @@ import React from "react"
 
 const formSchema = z.object({
   name: z.string().min(2, {
-    message: "Name must be at least 2 characters.",
-  }).max(100, { message: "Name cannot exceed 100 characters."}),
+    message: "El nombre debe tener al menos 2 caracteres.",
+  }).max(100, { message: "El nombre no puede exceder los 100 caracteres."}),
   email: z.string().email({
-    message: "Please enter a valid email address.",
+    message: "Por favor, introduce una dirección de correo electrónico válida.",
   }).max(100),
   phone: z.string().optional(),
   company: z.string().optional(),
   title: z.string().optional(),
-  bio: z.string().max(500, { message: "Bio cannot exceed 500 characters."}).optional(),
+  bio: z.string().max(500, { message: "El mensaje no puede exceder los 500 caracteres."}).optional(),
   subscribe: z.boolean().default(false).optional(),
 })
 
@@ -111,7 +111,7 @@ export function UserForm() {
             name="name"
             render={({ field }) => (
                 <FormItem>
-                <FormLabel>Name</FormLabel>
+                <FormLabel>Nombre</FormLabel>
                 <FormControl>
                     <Input placeholder="John Doe" {...field} disabled={isSubmitting} />
                 </FormControl>
@@ -124,9 +124,9 @@ export function UserForm() {
             name="email"
             render={({ field }) => (
                 <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>Correo Electrónico</FormLabel>
                 <FormControl>
-                    <Input type="email" placeholder="you@example.com" {...field} disabled={isSubmitting} />
+                    <Input type="email" placeholder="tu@ejemplo.com" {...field} disabled={isSubmitting} />
                 </FormControl>
                 <FormMessage />
                 </FormItem>
@@ -140,7 +140,7 @@ export function UserForm() {
                 name="phone"
                 render={({ field }) => (
                     <FormItem>
-                    <FormLabel>Phone (Optional)</FormLabel>
+                    <FormLabel>Teléfono (Opcional)</FormLabel>
                     <FormControl>
                         <Input type="tel" placeholder="+1 234 567 890" {...field} disabled={isSubmitting} />
                     </FormControl>
@@ -153,7 +153,7 @@ export function UserForm() {
                 name="company"
                 render={({ field }) => (
                     <FormItem>
-                    <FormLabel>Company (Optional)</FormLabel>
+                    <FormLabel>Empresa (Opcional)</FormLabel>
                     <FormControl>
                         <Input placeholder="Acme Corporation" {...field} disabled={isSubmitting} />
                     </FormControl>
@@ -169,9 +169,9 @@ export function UserForm() {
                 name="title"
                 render={({ field }) => (
                     <FormItem>
-                    <FormLabel>Job Title (Optional)</FormLabel>
+                    <FormLabel>Cargo (Opcional)</FormLabel>
                     <FormControl>
-                        <Input placeholder="Project Manager" {...field} disabled={isSubmitting} />
+                        <Input placeholder="Gerente de Proyectos" {...field} disabled={isSubmitting} />
                     </FormControl>
                     <FormMessage />
                     </FormItem>
@@ -184,10 +184,10 @@ export function UserForm() {
           name="bio"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Message / Bio (Optional)</FormLabel>
+              <FormLabel>Mensaje (Opcional)</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="Tell us a little bit about how we can help"
+                  placeholder="Cuéntanos un poco sobre cómo podemos ayudarte"
                   className="resize-none"
                   {...field}
                   disabled={isSubmitting}
@@ -213,10 +213,10 @@ export function UserForm() {
                 </FormControl>
                 <div className="space-y-1 leading-none">
                     <FormLabel>
-                    Subscribe to newsletter
+                    Suscribirse al boletín
                     </FormLabel>
                     <FormDescription>
-                    Receive updates via email.
+                    Recibe actualizaciones por correo electrónico.
                     </FormDescription>
                 </div>
                  <FormMessage />
@@ -228,7 +228,7 @@ export function UserForm() {
             className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
             disabled={isSubmitting}
         >
-          {isSubmitting ? 'Enviando...' : 'Submit Form'}
+          {isSubmitting ? 'Enviando...' : 'Enviar Formulario'}
           <Send className="ml-2" />
         </Button>
       </form>

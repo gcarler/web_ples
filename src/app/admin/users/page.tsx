@@ -10,8 +10,8 @@ import { Suspense } from 'react';
 import { Skeleton } from '@/components/ui/skeleton'; 
 
 export const metadata = {
-  title: 'Manage Users - PLES Admin',
-  description: 'Create, view, and manage user accounts and roles.',
+  title: 'Gestionar Usuarios - PLES Admin',
+  description: 'Crear, ver y gestionar cuentas de usuario y roles.',
 };
 
 async function UserManagementContent() {
@@ -24,13 +24,13 @@ async function UserManagementContent() {
                     <UserDataTable columns={userColumns} data={users} />
                 ) : (
                     <div className="text-center py-10">
-                        <p className="text-muted-foreground">No users found.</p>
+                        <p className="text-muted-foreground">No se encontraron usuarios.</p>
                         <p className="mt-2 text-sm text-muted-foreground">
-                            Add new users to grant them access.
+                            Añada nuevos usuarios para concederles acceso.
                         </p>
                          <Button variant="outline" size="sm" className="mt-4" asChild>
                             <Link href="/admin/users/new">
-                                <span className="flex items-center">Add User</span>
+                                <span className="flex items-center">Añadir Usuario</span>
                             </Link>
                          </Button>
                     </div>
@@ -63,15 +63,15 @@ export default function ManageUsersPage() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-            <h1 className="text-3xl font-bold tracking-tight">Manage Users</h1>
+            <h1 className="text-3xl font-bold tracking-tight">Gestionar Usuarios</h1>
             <p className="text-muted-foreground">
-                 Create, view, and manage user accounts and roles.
+                 Cree, vea y gestione cuentas de usuario y roles.
             </p>
         </div>
         <Button asChild>
             <Link href="/admin/users/new">
                 <span className="flex items-center">
-                    <PlusCircle className="mr-2 h-4 w-4" /> Add User
+                    <PlusCircle className="mr-2 h-4 w-4" /> Añadir Usuario
                 </span>
             </Link>
         </Button>

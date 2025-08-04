@@ -38,7 +38,7 @@ function SubmitButton() {
     const { pending } = useFormStatus();
     return (
         <Button type="submit" className="w-full" disabled={pending}>
-          {pending ? 'Creating User...' : 'Create User'}
+          {pending ? 'Creando Usuario...' : 'Crear Usuario'}
         </Button>
     );
 }
@@ -83,12 +83,12 @@ export function AddUserForm() {
             name="email"
             render={({ field }) => (
                 <FormItem>
-                <FormLabel>Email Address</FormLabel>
+                <FormLabel>Dirección de Correo Electrónico</FormLabel>
                 <FormControl>
-                    <Input type="email" placeholder="user@example.com" {...field} />
+                    <Input type="email" placeholder="usuario@ejemplo.com" {...field} />
                 </FormControl>
                  <FormDescription>
-                    The email address the user will use to log in.
+                    La dirección de correo electrónico que el usuario usará para iniciar sesión.
                  </FormDescription>
                 <FormMessage />
                 </FormItem>
@@ -100,12 +100,12 @@ export function AddUserForm() {
                 name="password"
                 render={({ field }) => (
                     <FormItem>
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel>Contraseña</FormLabel>
                     <FormControl>
                         <Input type="password" placeholder="••••••••" {...field} />
                     </FormControl>
                      <FormDescription>
-                        Must be at least 6 characters long.
+                        Debe tener al menos 6 caracteres.
                     </FormDescription>
                     <FormMessage />
                     </FormItem>
@@ -117,12 +117,12 @@ export function AddUserForm() {
                 name="displayName"
                 render={({ field }) => (
                     <FormItem>
-                    <FormLabel>Display Name (Optional)</FormLabel>
+                    <FormLabel>Nombre a Mostrar (Opcional)</FormLabel>
                     <FormControl>
                         <Input placeholder="John Doe" {...field} />
                     </FormControl>
                      <FormDescription>
-                        How the user's name will appear.
+                        Cómo aparecerá el nombre del usuario.
                     </FormDescription>
                     <FormMessage />
                     </FormItem>
@@ -134,11 +134,11 @@ export function AddUserForm() {
                 name="role"
                 render={({ field }) => (
                     <FormItem>
-                        <FormLabel>Assign Role</FormLabel>
+                        <FormLabel>Asignar Rol</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
                                 <SelectTrigger>
-                                    <SelectValue placeholder="Select a role" />
+                                    <SelectValue placeholder="Seleccionar un rol" />
                                 </SelectTrigger>
                             </FormControl>
                             <SelectContent>
@@ -151,7 +151,7 @@ export function AddUserForm() {
                             </SelectContent>
                         </Select>
                          <FormDescription>
-                            Determines the user's access permissions.
+                            Determina los permisos de acceso del usuario.
                         </FormDescription>
                         <FormMessage />
                     </FormItem>
