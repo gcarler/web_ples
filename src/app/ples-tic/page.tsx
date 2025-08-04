@@ -11,6 +11,7 @@ import PlexusIllustration from '@/components/illustrations/PlexusIllustration';
 import { Badge } from '@/components/ui/badge';
 import { InteractiveSoftwareSuites } from '@/components/ples-tic/interactive-software-suites';
 import { CodeTypingIllustration } from '@/components/illustrations/CodeTypingIllustration';
+import { HealthDataIllustration } from '@/components/illustrations/HealthDataIllustration';
 
 const valuePropositions = [
     {
@@ -127,7 +128,7 @@ const caseStudies = [
       challenge: 'Silos de información médica, dificultad para el análisis de datos de pacientes y necesidad de cumplir con estrictas normativas de privacidad (HIPAA/GDPR).',
       solution: 'Implementamos una plataforma centralizada en la nube para la gestión de datos de pacientes, con dashboards de BI para análisis clínicos y robustas medidas de seguridad y cumplimiento normativo. Se logró una mejora significativa en la toma de decisiones médicas y la eficiencia operativa.',
       illustration: (
-        <PlexusIllustration className="h-full w-full rounded-lg"/>
+        <HealthDataIllustration className="h-full w-full rounded-lg"/>
       ),
       tags: ['Inteligencia de Negocio', 'Arquitectura Cloud', 'Seguridad de Datos']
     },
@@ -148,7 +149,7 @@ export default function PlesTicPage() {
                 PLES TIC
               </h1>
               <p className="text-lg sm:text-xl text-foreground mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                <strong className="text-primary">Innovación Tecnológica y Estrategia Digital</strong> para el Presente. En PLES TIC, combinamos experticia técnica con visión de negocio para desarrollar soluciones de TI <strong className="text-accent">robustas, escalables y seguras</strong> que impulsan su <strong className="text-primary">crecimiento y eficiencia operativa</strong>.
+                <strong className="text-primary">Innovación Tecnológica y Estrategia Digital para el Presente</strong>. En PLES TIC, combinamos experticia técnica con visión de negocio para desarrollar soluciones de TI <strong className="text-accent">robustas, escalables y seguras</strong> que impulsan su <strong className="text-primary">crecimiento y eficiencia operativa</strong>.
               </p>
               <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-10">
                 <Badge variant="default" className="text-md px-4 py-2 shadow-md">#DesarrolloDeSoftware</Badge>
@@ -328,4 +329,5 @@ export default function PlesTicPage() {
     
 
     
+
 
