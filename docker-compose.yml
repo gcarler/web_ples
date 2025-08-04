@@ -1,0 +1,24 @@
+# docker-compose.yml
+
+version: '3.8'
+
+services:
+  web:
+    # Construye la imagen a partir del Dockerfile en el directorio actual
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # Nombra el contenedor para una fácil identificación
+    container_name: ples_web_app
+    # Reinicia el contenedor automáticamente a menos que se detenga manualmente
+    restart: unless-stopped
+    # Mapea el puerto 3000 del contenedor al puerto 3000 de la máquina anfitrión
+    ports:
+      - "3000:3000"
+    # Carga las variables de entorno desde el archivo .env para que estén disponibles en la aplicación
+    env_file:
+      - .env
+    # Define las variables de entorno directamente si es necesario
+    environment:
+      - NODE_ENV=production
+      - NEXT_TELEMETRY_DISABLED=1
