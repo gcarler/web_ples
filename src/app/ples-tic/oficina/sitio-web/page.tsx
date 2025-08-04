@@ -1,4 +1,3 @@
-
 // This file is no longer used for navigation and can be repurposed or removed later.
 // The content is now handled within the master-detail view on the /ples-tic page.
 import { Button } from '@/components/ui/button';
