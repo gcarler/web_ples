@@ -46,7 +46,14 @@ const differentiators = [
   { icon: ShieldCheck, title: 'Compromiso Ético y Sostenible', text: 'Nuestras recomendaciones buscan la sostenibilidad a largo plazo y se basan en principios de equidad, transparencia e integridad.' },
 ];
 
-const methodologies = ['Design Thinking', 'Gestión Ágil de Proyectos (Scrum/Kanban)', 'Análisis de Datos Avanzado (Cualitativo y Cuantitativo)', 'Facilitación Estratégica y Co-creación', 'Marco Lógico y Teoría del Cambio', 'Investigación Acción Participativa'];
+const methodologies = [
+    { name: 'Design Thinking', href: '/ples-consulting/design-thinking' },
+    { name: 'Gestión Ágil de Proyectos (Scrum/Kanban)', href: '/ples-consulting/gestion-agil' },
+    { name: 'Análisis de Datos Avanzado (Cualitativo y Cuantitativo)', href: '/ples-consulting/analisis-datos' },
+    { name: 'Facilitación Estratégica y Co-creación', href: '/ples-consulting/facilitacion-estrategica' },
+    { name: 'Marco Lógico y Teoría del Cambio', href: '/ples-consulting/marco-logico' },
+    { name: 'Investigación Acción Participativa', href: '/ples-consulting/investigacion-accion' }
+];
 
 const processSteps = [
   {
@@ -214,7 +221,14 @@ export default function PlesConsultingPage() {
           </p>
           <div className="flex flex-wrap justify-center items-center gap-3">
             {methodologies.map((method) => (
-              <Badge key={method} variant="outline" className="text-md md:text-lg px-4 py-2 border-primary text-primary shadow-sm transition-all duration-300 hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:text-primary-foreground hover:border-transparent hover:scale-105">{method}</Badge>
+                <Link key={method.name} href={method.href} passHref>
+                    <Badge
+                        variant="outline"
+                        className="text-md md:text-lg px-4 py-2 border-primary text-primary shadow-sm transition-all duration-300 hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:text-primary-foreground hover:border-transparent hover:scale-105 cursor-pointer"
+                    >
+                        {method.name}
+                    </Badge>
+                </Link>
             ))}
           </div>
         </div>
