@@ -1,4 +1,5 @@
-﻿'use client';
+// src/components/auth/login-form.tsx
+'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -14,8 +15,6 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { app } from '@/lib/firebase/firebase-config';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Loader } from 'lucide-react';
@@ -41,34 +40,24 @@ export function LoginForm() {
   });
 
   async function onSubmit(values: LoginFormData) {
-    if (!app) {
-      toast({
-        title: 'Error de Configuración',
-        description: 'Firebase no está configurado. Por favor, revisa el archivo .env.local',
-        variant: 'destructive',
-      });
-      return;
-    }
-
     setIsLoading(true);
-    const auth = getAuth(app);
-    try {
-      await signInWithEmailAndPassword(auth, values.email, values.password);
-      toast({
-        title: '¡Inicio de sesión exitoso!',
-        description: 'Redirigiendo al panel de administración...',
-      });
-      router.push('/admin/dashboard');
-    } catch (error: any) {
-      console.error('Login Error:', error);
-      toast({
-        title: 'Error de Autenticación',
-        description: 'Credenciales inválidas o problema de conexión.',
-        variant: 'destructive',
-      });
-    } finally {
-      setIsLoading(false);
+    // Mock login logic
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+    
+    if (values.email === 'admin@ples.com.co' && values.password === 'admin123') {
+        toast({
+            title: '¡Inicio de sesión exitoso!',
+            description: 'Redirigiendo al panel de administración (Mock)...',
+        });
+        router.push('/admin/dashboard');
+    } else {
+        toast({
+            title: 'Error de Autenticación',
+            description: 'Credenciales inválidas (Pruebe con admin@ples.com.co / admin123).',
+            variant: 'destructive',
+        });
     }
+    setIsLoading(false);
   }
 
   return (

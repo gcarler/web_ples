@@ -1,35 +1,28 @@
-
 // src/components/about/about-page-client.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import DynamicSection from '@/components/DynamicSection';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { ArrowRight, Info, Shield, Lightbulb, Users as UsersIcon, Cpu, Layers, Zap, FlaskConical, Brain, Search, Settings, Handshake, Puzzle, Link as LinkIcon, Workflow, MessageSquare, GitMerge, Share2, ShieldCheck, Scale, Lock, Verified, FileCheck, Award, Gem, Target, Globe, Rocket, Eye, HeartPulse } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { ArrowRight, Info, Shield, Lightbulb, Users as UsersIcon, Cpu, FlaskConical, HeartPulse, Target, Globe, Rocket, Eye, Gem } from 'lucide-react';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
-import { type CoreValue, type Pillar } from '@/lib/models/content';
+import { useLanguage } from '@/contexts/LanguageContext';
 import React from 'react';
 
-// Icon Map to render Lucide icons from string names
 const iconMap: { [key: string]: React.ElementType } = {
   UsersIcon, Lightbulb, Shield, FlaskConical, Cpu,
-  Gem, HeartPulse, Target, Globe, Rocket, Eye, Info,
-  Layers, Zap, Brain, Search, Settings, Handshake, Puzzle, LinkIcon,
-  Workflow, MessageSquare, GitMerge, Share2, ShieldCheck, Scale, Lock, Verified,
-  FileCheck, Award
+  Gem, HeartPulse, Target, Globe, Rocket, Eye, Info
 };
 
-interface AboutPageClientProps {
-  initialCoreValues: CoreValue[];
-  initialPillars: Pillar[];
-}
-
-export default function AboutPageClient({ initialCoreValues, initialPillars }: AboutPageClientProps) {
-  const [selectedValue, setSelectedValue] = useState(initialCoreValues[2]?.id || 'integridad');
-  const selectedContent = initialCoreValues.find(v => v.id === selectedValue);
+export default function AboutPageClient() {
+  const { t } = useLanguage();
+  const content = t.AboutPage;
+  
+  const [selectedValue, setSelectedValue] = useState(content.coreValues[2]?.id || 'integridad');
+  const selectedContent = content.coreValues.find((v: any) => v.id === selectedValue);
 
   const [bubbles, setBubbles] = useState<any[]>([]);
 
@@ -53,33 +46,9 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
   }, []);
 
   const SelectedIconComponent = selectedContent ? iconMap[selectedContent.iconName] || Shield : Shield;
-  
-  const identitySections = [
-      { title: 'Nuestra Esencia', content: 'Comprendiendo quienes somos.', link: '/about/esencia', icon: 'HeartPulse' },
-      { title: 'Nuestro Prop?sito', content: 'Explorando nuestro motor.', link: '/about/proposito', icon: 'Target' },
-      { title: 'Colaboraci?n Global', content: 'Conoce c?mo trabajamos.', link: '/about/colaboracion', icon: 'Globe' },
-      { title: 'Nuestra Misi?n', content: 'Guiando nuestras acciones.', link: '/about/mision', icon: 'Rocket' },
-      { title: 'Nuestra Visi?n', content: 'Definiendo nuestro horizonte.', link: '/about/vision', icon: 'Eye' },
-  ];
-  
-  const integrityPhrases = [
-      "Actuamos con honestidad,", "transparencia y ?tica", "profesional en cada interacci?n.",
-      "La integridad es el pilar", "de la confianza que construimos", "con nuestros clientes, socios,", "y la comunidad, garantizando", "que nuestras acciones", "siempre est?n alineadas", "con nuestros principios."
-  ];
-
-  const innovationDescription = `Como motor de nuestro progreso, la <strong>innovaci?n</strong> nos impulsa a <strong>desafiar el status quo</strong> y a explorar constantemente <strong>nuevas tecnolog?as y metodolog?as</strong>. Convertimos <strong>ideas audaces</strong> en soluciones pr?cticas que aportan un <strong>valor tangible y sostenible</strong> a nuestros clientes.`;
-  
-  const collaborationPhrases = [
-      "La colaboraci?n", "es la esencia", "de nuestro accionar.",
-      "Fomentamos la sinergia", "entre equipos", "multidisciplinarios",
-      "y promovemos", "alianzas estrat?gicas", "para co-crear",
-      "soluciones integrales", "que superan", "las expectativas",
-      "y generan", "un impacto", "duradero."
-  ];
 
   return (
     <div className="pb-10 space-y-16">
-      {/* Hero Section */}
       <section className="relative bg-background overflow-hidden">
         <div className="w-full px-4 sm:px-6 lg:px-8 min-h-[calc(70vh)] lg:min-h-0 py-16 sm:py-20 md:py-24 lg:py-32 flex items-center">
           <div className="flex flex-col lg:flex-row items-center w-full gap-12 lg:gap-8">
@@ -87,7 +56,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
               <div className="relative w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] md:w-[420px] md:h-[420px] xl:w-[480px] xl:h-[480px] animate-slide-in-from-left-hero">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180%] h-[180%] bg-card rounded-full shadow-2xl"></div>
                 <div className="absolute inset-0 flex justify-center items-center z-10 p-4">
-                  <div className="bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--ring))] bg-[length:200%_200%] animate-gradient animate-zoom-in-bounce-hero rounded-full w-full h-full shadow-xl flex justify-center items-center">
+                  <div className="bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--ring))] bg-[length:200%_200%] animate-gradient animate-zoom-in-bounce-hero rounded-full w-full h-full shadow-xl flex items-center justify-center">
                     <Info className="h-3/5 w-3/5 text-accent" />
                   </div>
                 </div>
@@ -96,35 +65,34 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
 
             <div className="w-full lg:w-7/12 text-center lg:text-left relative z-20 order-2 lg:order-none">
               <h1 className="text-4xl sm:text-5xl xl:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-6">
-                Sobre PLES
+                {content.hero.title}
               </h1>
               <p className="text-lg sm:text-xl text-foreground mb-8 max-w-2xl mx-auto lg:mx-0">
-                Fusionamos visi?n global y enfoque multidisciplinario para construir un legado de impacto y sostenibilidad.
+                {content.hero.description}
               </p>
               <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-10">
-                <Badge variant="default" className="text-md px-4 py-2 shadow-md">#Visi?nGlobal</Badge>
-                <Badge variant="default" className="text-md px-4 py-2 shadow-md">#Innovaci?n</Badge>
-                <Badge variant="default" className="text-md px-4 py-2 shadow-md">#Sostenibilidad</Badge>
+                {content.hero.badges.map((badge: string) => (
+                    <Badge key={badge} variant="default" className="text-md px-4 py-2 shadow-md">{badge}</Badge>
+                ))}
               </div>
               <Button size="lg" variant="accent" className="text-lg px-8 py-3" asChild>
-                <Link href="/about/esencia"><span className="flex items-center">Nuestra Historia <ArrowRight className="ml-2 h-5 w-5" /></span></Link>
+                <Link href="/about/esencia"><span className="flex items-center">{content.hero.cta} <ArrowRight className="ml-2 h-5 w-5" /></span></Link>
               </Button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Identity Section */}
       <section className="w-full px-4 sm:px-6 lg:px-8 scroll-mt-20" id="identidad">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div className="space-y-6">
-            <h2 className="text-3xl font-bold text-primary">Nuestra Identidad</h2>
+            <h2 className="text-3xl font-bold text-primary">{content.identity.title}</h2>
             <p className="text-lg mb-4">
-              Con una visi?n global y un enfoque multidisciplinario, nuestro equipo converge talentos y conocimientos diversos para la consecuci?n de objetivos trascendentes. En PLES, valoramos la riqueza de cada perspectiva, cultivando un espacio donde las ideas disruptivas e innovadoras florecen, permitiendo intervenciones estrat?gicas y perspicaces en cualquier escenario.
+              {content.identity.description}
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {identitySections.map((section, index) => {
+            {content.identity.sections.map((section: any, index: number) => {
                const IconComponent = iconMap[section.icon] || HeartPulse;
                return (
                   <Card key={index} className="group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out hover:animate-gradient hover:bg-[length:200%_200%]">
@@ -138,17 +106,16 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
         </div>
       </section>
 
-      {/* Interactive Core Values Section */}
       <section className="w-full relative">
         <div className="flex flex-col md:flex-row shadow-2xl border-y border-border/20 md:h-[520px] overflow-hidden">
           <div className="flex md:flex-col md:w-1/3 lg:w-1/4 bg-card md:border-r md:border-border/20">
-            {initialCoreValues.map((value, index) => (
+            {content.coreValues.map((value: any, index: number) => (
               <button
                 key={value.id}
                 onClick={() => setSelectedValue(value.id!)}
                 className={cn(
                   "w-full p-4 md:p-6 text-center font-semibold uppercase tracking-wider transition-all duration-300 ease-in-out focus:outline-none",
-                  "border-b border-border/20", index < initialCoreValues.length - 1 ? "md:border-b" : "md:border-b-0", 
+                  "border-b border-border/20", index < content.coreValues.length - 1 ? "md:border-b" : "md:border-b-0",
                   "md:flex-1 md:flex md:items-center md:justify-center",
                   selectedValue === value.id ? 'bg-accent text-accent-foreground animate-gradient bg-[length:200%_200%]' : 'bg-primary text-primary-foreground hover:bg-primary/80'
                 )}
@@ -157,16 +124,15 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
               </button>
             ))}
           </div>
-          
+
           {selectedContent && (
             <div className={cn(
                 "flex-1 p-0 relative md:h-full",
-                selectedValue === 'innovacion' ? "bg-accent text-accent-foreground" :
+                selectedValue === 'innovation' || selectedValue === 'innovacion' ? "bg-accent text-accent-foreground" :
                 "bg-primary text-primary-foreground"
             )}>
-              {/* --- Conditional Rendering for Content --- */}
-              {selectedValue === 'integridad' ? (
-                <div key="integridad-content" className="relative h-full w-full animate-fade-in overflow-hidden">
+              {selectedValue === 'integrity' || selectedValue === 'integridad' ? (
+                <div key="integrity-content" className="relative h-full w-full animate-fade-in overflow-hidden">
                    <h3 className="absolute top-1/2 text-[12rem] md:text-[16rem] font-bold text-primary-foreground/10 tracking-tighter lowercase select-none z-0 pointer-events-none animate-slide-across-text">
                       {selectedContent.name}
                   </h3>
@@ -174,7 +140,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                     <div className="relative w-full h-full rounded-full bg-accent flex items-center text-accent-foreground shadow-2xl">
                        <div className="w-4/5 ml-auto text-right flex items-center pr-12">
                           <p className="text-base leading-relaxed">
-                              {integrityPhrases.map((phrase, index) => (
+                              {content.integrityPhrases.map((phrase: string, index: number) => (
                               <span
                                   key={index}
                                   className="inline-block animate-fade-in-up opacity-0 transition-all duration-300 hover:font-bold hover:bg-white/20 hover:scale-110 rounded-md cursor-pointer px-2 py-1"
@@ -191,8 +157,8 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                     </div>
                   </div>
                 </div>
-              ) : selectedValue === 'innovacion' ? (
-                <div key="innovacion-content" className="flex h-full w-full animate-fade-in relative overflow-hidden">
+              ) : selectedValue === 'innovation' || selectedValue === 'innovacion' ? (
+                <div key="innovation-content" className="flex h-full w-full animate-fade-in relative overflow-hidden">
                     {bubbles.map((bubble) => (
                       <div
                         key={bubble.id}
@@ -208,13 +174,13 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                         <div className="flex w-full justify-start">
                             <p
                                 className="text-lg md:text-xl leading-relaxed text-accent-foreground/80 max-w-md text-left"
-                                dangerouslySetInnerHTML={{ __html: innovationDescription }}
+                                dangerouslySetInnerHTML={{ __html: content.innovationDescription }}
                             />
                         </div>
                     </div>
                 </div>
               ) : (
-                <div key="colaboracion-content" className="h-full w-full relative animate-fade-in flex items-center justify-center p-8 md:p-12 lg:p-16 gap-8">
+                <div key="collaboration-content" className="h-full w-full relative animate-fade-in flex items-center justify-center p-8 md:p-12 lg:p-16 gap-8">
                   <div className="w-1/4 flex justify-center">
                     <SelectedIconComponent className="h-32 w-32 sm:h-40 sm:w-40 text-accent" />
                   </div>
@@ -223,7 +189,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                         {selectedContent.name}
                     </h3>
                     <p className="text-lg text-primary-foreground/90 leading-relaxed max-w-2xl mx-auto">
-                        {collaborationPhrases.map((phrase, index) => (
+                        {content.collaborationPhrases.map((phrase: string, index: number) => (
                             <span
                                 key={index}
                                 className="inline-block animate-fade-in-up opacity-0 transition-all duration-300 hover:text-accent hover:scale-105 cursor-pointer"
@@ -240,14 +206,13 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
           )}
         </div>
       </section>
-      
-      {/* Pillars Section */}
+
       <section className="w-full px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">
-          Nuestros Pilares Fundamentales
+          {content.pillars.title}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {initialPillars.map((pilar) => {
+          {content.pillars.items.map((pilar: any) => {
             const PillarIcon = iconMap[pilar.iconName] || FlaskConical;
             return (
                 <Card key={pilar.title} className="text-center group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out transform flex flex-col hover:animate-gradient hover:bg-[length:200%_200%]">
@@ -260,7 +225,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                 </CardContent>
                 <div className="p-6 pt-0">
                     <Button variant="link" asChild className="text-primary group-hover:text-primary-foreground">
-                    <Link href={pilar.link}><span className="flex items-center">Saber M?s <ArrowRight className="ml-1 h-4 w-4" /></span></Link>
+                    <Link href={pilar.link}><span className="flex items-center">{content.pillars.cta} <ArrowRight className="ml-1 h-4 w-4" /></span></Link>
                     </Button>
                 </div>
                 </Card>
@@ -271,7 +236,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
 
       <section className="w-full px-4 sm:px-6 lg:px-8">
         <p className="mt-12 text-center text-md text-muted-foreground italic max-w-3xl mx-auto">
-          Estos valores se manifiestan en nuestro compromiso inquebrantable con la resiliencia ambiental y la equidad de g?nero, buscando generar un legado significativo y duradero en cada comunidad que abrazamos.
+          {content.closingStatement}
         </p>
       </section>
     </div>

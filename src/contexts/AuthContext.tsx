@@ -1,91 +1,24 @@
 // src/contexts/AuthContext.tsx
 'use client';
 
-import React, { createContext, useContext, useState, useEffect, type ReactNode, type PropsWithChildren } from 'react';
-import { getAuth, onAuthStateChanged, User as FirebaseAuthUser } from 'firebase/auth';
-import { doc, getDoc, onSnapshot } from 'firebase/firestore';
-import { app, db } from '@/lib/firebase/firebase-config';
-import { UserProfile, UserProfileSchema, UserRole } from '@/lib/models/user';
-import { Skeleton } from '@/components/ui/skeleton';
+import React, { createContext, useContext, useState, type PropsWithChildren } from 'react';
 
 interface AuthContextType {
-  user: FirebaseAuthUser | null;
-  userProfile: UserProfile | null;
+  user: any | null;
+  userProfile: any | null;
   loading: boolean;
-  userRole: UserRole | null;
+  userRole: string | null;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<PropsWithChildren> = ({ children }) => {
-  const [user, setUser] = useState<FirebaseAuthUser | null>(null);
-  const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
-  const [loading, setLoading] = useState(true);
-  const auth = app ? getAuth(app) : null;
-
-  useEffect(() => {
-    if (!auth) {
-        setLoading(false);
-        return;
-    }
-    const unsubscribeAuth = onAuthStateChanged(auth, async (currentUser) => {
-      setUser(currentUser);
-      if (currentUser && db) {
-        const userDocRef = doc(db, 'users', currentUser.uid);
-        const unsubscribeProfile = onSnapshot(userDocRef, (docSnap) => {
-          if (docSnap.exists()) {
-            const data = docSnap.data();
-            const profileToValidate = {
-                ...data,
-                uid: currentUser.uid,
-                createdAt: data.createdAt?.toDate(),
-                updatedAt: data.updatedAt?.toDate(),
-            };
-
-            const parsedProfile = UserProfileSchema.safeParse(profileToValidate);
-
-            if (parsedProfile.success) {
-                 setUserProfile(parsedProfile.data);
-            } else {
-                console.error("Firestore User Profile validation error on client:", parsedProfile.error);
-                setUserProfile(null);
-            }
-          } else {
-            console.warn(`User profile not found in Firestore for uid: ${currentUser.uid}`);
-            setUserProfile(null);
-          }
-          setLoading(false);
-        }, (error) => {
-            console.error("Error fetching user profile:", error);
-            setUserProfile(null);
-            setLoading(false);
-        });
-         return () => unsubscribeProfile();
-
-      } else {
-        setUserProfile(null);
-        setLoading(false);
-      }
-    });
-
-    return () => unsubscribeAuth();
-  }, [auth]);
-
-  if (loading) {
-     return (
-        <div className="flex items-center justify-center min-h-screen">
-            <div className="space-y-2">
-                <Skeleton className="h-8 w-[250px]" />
-                <Skeleton className="h-4 w-[200px]" />
-            </div>
-        </div>
-        );
-  }
-
-  const userRole = userProfile?.role ? null;
+  const [user] = useState<any | null>(null);
+  const [userProfile] = useState<any | null>(null);
+  const [loading] = useState(false);
 
   return (
-    <AuthContext.Provider value={{ user, userProfile, loading, userRole }}>
+    <AuthContext.Provider value={{ user, userProfile, loading, userRole: null }}>
       {children}
     </AuthContext.Provider>
   );

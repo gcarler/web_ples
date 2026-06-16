@@ -1,10 +1,9 @@
-﻿'use client';
+// src/components/layout/header.tsx
+'use client';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { LogIn, LogOut, LayoutDashboard, ChevronDown } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
-import { getAuth, signOut } from 'firebase/auth';
-import { app } from '@/lib/firebase/firebase-config';
 import { useToast } from '@/hooks/use-toast';
 import { useRouter, usePathname } from 'next/navigation';
 import {
@@ -22,38 +21,18 @@ import { cn } from '@/lib/utils';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export function Header() {
-  const { user, loading, userProfile } = useAuth();
+  const { user, loading } = useAuth();
   const { language, setLanguage, t } = useLanguage();
-  const auth = app ? getAuth(app) : null;
   const { toast } = useToast();
   const router = useRouter();
   const pathname = usePathname();
 
   const handleLogout = async () => {
-    if (!auth) {
-        toast({
-            title: "Logout Failed",
-            description: "Firebase is not configured.",
-            variant: "destructive",
-        });
-        return;
-    }
-    try {
-      await signOut(auth);
-      document.cookie = 'firebaseIdToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
       toast({
         title: 'Logged Out',
-        description: `Successfully logged out ${userProfile?.email || ''}.`,
+        description: `Successfully logged out (Mock).`,
       });
       router.push(`/login`);
-    } catch (error) {
-      console.error('Logout Error:', error);
-      toast({
-        title: 'Logout Failed',
-        description: 'An error occurred during logout. Please try again.',
-        variant: 'destructive',
-      });
-    }
   };
 
   const navLinks = [
