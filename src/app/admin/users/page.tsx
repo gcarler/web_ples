@@ -26,11 +26,11 @@ async function UserManagementContent() {
                     <div className="text-center py-10">
                         <p className="text-muted-foreground">No se encontraron usuarios.</p>
                         <p className="mt-2 text-sm text-muted-foreground">
-                            Añada nuevos usuarios para concederles acceso.
+                            A?ada nuevos usuarios para concederles acceso.
                         </p>
                          <Button variant="outline" size="sm" className="mt-4" asChild>
                             <Link href="/admin/users/new">
-                                <span className="flex items-center">Añadir Usuario</span>
+                                <span className="flex items-center">A?adir Usuario</span>
                             </Link>
                          </Button>
                     </div>
@@ -71,7 +71,7 @@ export default function ManageUsersPage() {
         <Button asChild>
             <Link href="/admin/users/new">
                 <span className="flex items-center">
-                    <PlusCircle className="mr-2 h-4 w-4" /> Añadir Usuario
+                    <PlusCircle className="mr-2 h-4 w-4" /> A?adir Usuario
                 </span>
             </Link>
         </Button>

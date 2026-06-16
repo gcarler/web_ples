@@ -22,9 +22,9 @@ export default function AddUserPage() {
         </Button>
        <Card className="shadow-lg border">
          <CardHeader>
-           <CardTitle className="text-2xl">Añadir Nuevo Usuario</CardTitle>
+           <CardTitle className="text-2xl">A?adir Nuevo Usuario</CardTitle>
            <CardDescription>
-             Introduce los detalles a continuación para crear una nueva cuenta de usuario y asignarle su rol. El usuario recibirá credenciales de inicio de sesión (o instrucciones para restablecer la contraseña).
+             Introduce los detalles a continuaci?n para crear una nueva cuenta de usuario y asignarle su rol. El usuario recibir? credenciales de inicio de sesi?n (o instrucciones para restablecer la contrase?a).
            </CardDescription>
          </CardHeader>
          <CardContent>

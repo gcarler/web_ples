@@ -79,7 +79,7 @@ export function RotatingHeroText({
   const currentStatement = statements[currentIndex];
   
   const getWordSetKey = (title: string) => {
-    if (title.includes("propósito")) return "desarrollo";
+    if (title.includes("prop?sito")) return "desarrollo";
     if (title.includes("Estrategias")) return "estrategias";
     return "default";
   }

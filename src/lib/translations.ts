@@ -174,7 +174,7 @@ export const translations: Translations = {
   es: {
     Header: {
       about: "Sobre Nosotros",
-      login: "Iniciar Sesión",
+      login: "Iniciar Sesi?n",
       plesCrea: "PLES CREA",
       plesTic: "PLES TIC",
       plesCatastro: "PLES Catastro",
@@ -183,8 +183,8 @@ export const translations: Translations = {
     HomePage: {
       heroStatements: [
         {
-          title: "Datos, ingeniería y propósito para el desarrollo",
-          description: "De la idea a la acción: acompañamos gobiernos y empresas a generar impacto real.",
+          title: "Datos, ingenier?a y prop?sito para el desarrollo",
+          description: "De la idea a la acci?n: acompa?amos gobiernos y empresas a generar impacto real.",
           ctaText: "Empieza hoy",
           ctaLink: "/forms",
           ctaIconName: "Send",
@@ -192,17 +192,17 @@ export const translations: Translations = {
           order: 1,
         },
         {
-          title: "Innovación que Impacta, Estrategias que Perduran",
-          description: "Creamos soluciones a medida que impulsan el progreso y construyen un legado sostenible para su organización.",
-          ctaText: "Conoce cómo",
+          title: "Innovaci?n que Impacta, Estrategias que Perduran",
+          description: "Creamos soluciones a medida que impulsan el progreso y construyen un legado sostenible para su organizaci?n.",
+          ctaText: "Conoce c?mo",
           ctaLink: "/innovacion-estrategias",
           ctaIconName: "BookOpen",
           ctaVariant: 'accent',
           order: 2,
         },
         {
-          title: "Soluciones Integrales para Desafíos Complejos",
-          description: "Tecnología, datos y estrategia al servicio de tus metas.",
+          title: "Soluciones Integrales para Desaf?os Complejos",
+          description: "Tecnolog?a, datos y estrategia al servicio de tus metas.",
           ctaText: "Explora Servicios",
           ctaLink: "/#nuestras-marcas",
           ctaIconName: "Layers",
@@ -214,76 +214,76 @@ export const translations: Translations = {
       metrics: [
         [
           { icon: CheckCircle, text: "+15 proyectos ejecutados", dataAiHint:"projects checkmark" },
-          { icon: Lightbulb, text: "+5000 horas de consultoría", dataAiHint:"consulting lightbulb" },
+          { icon: Lightbulb, text: "+5000 horas de consultor?a", dataAiHint:"consulting lightbulb" },
         ],
         [
-          { icon: Database, text: "42 sistemas de información desarrollados", dataAiHint:"database systems" },
+          { icon: Database, text: "42 sistemas de informaci?n desarrollados", dataAiHint:"database systems" },
           { icon: Building, text: "10+ sectores impactados", dataAiHint:"building sectors" },
         ],
         [
-          { icon: UsersRound, text: "8 alianzas académicas y comunitarias", dataAiHint:"community alliance" },
+          { icon: UsersRound, text: "8 alianzas acad?micas y comunitarias", dataAiHint:"community alliance" },
           { icon: BrainCircuit, text: "+20 soluciones de IA implementadas", dataAiHint:"ai solutions brain" },
         ]
       ],
-      knowMore: "Saber Más",
-      missionTitle: "Nuestra Misión",
-      missionDescription: "Somos una empresa dedicada a ofrecer soluciones innovadoras y eficientes que impulsan el crecimiento y la transformación digital de nuestros clientes. Creemos en el poder de la tecnología para simplificar procesos y crear valor.",
-      missionCTA: "Explora nuestra Misión",
+      knowMore: "Saber M?s",
+      missionTitle: "Nuestra Misi?n",
+      missionDescription: "Somos una empresa dedicada a ofrecer soluciones innovadoras y eficientes que impulsan el crecimiento y la transformaci?n digital de nuestros clientes. Creemos en el poder de la tecnolog?a para simplificar procesos y crear valor.",
+      missionCTA: "Explora nuestra Misi?n",
       brandsTitle: "Nuestras Marcas",
       brands: [
-        { title: 'Ples CREA', description: 'Cartografía y diseño geoespacial.', icon: Globe, href: "/ples-crea" },
-        { title: 'Ples TIC', description: 'Tecnologías de la información.', icon: Server, href: "/ples-tic" },
-        { title: 'Ples Catastro', description: 'Catastro y gestión territorial.', icon: HomeIcon, href: "/ples-catastro" },
-        { title: 'Ples Consulting', description: 'Consultoría estratégica.', icon: Lightbulb, href: "/ples-consulting" },
+        { title: 'Ples CREA', description: 'Cartograf?a y dise?o geoespacial.', icon: Globe, href: "/ples-crea" },
+        { title: 'Ples TIC', description: 'Tecnolog?as de la informaci?n.', icon: Server, href: "/ples-tic" },
+        { title: 'Ples Catastro', description: 'Catastro y gesti?n territorial.', icon: HomeIcon, href: "/ples-catastro" },
+        { title: 'Ples Consulting', description: 'Consultor?a estrat?gica.', icon: Lightbulb, href: "/ples-consulting" },
       ],
       viewDetails: "Ver Detalles",
-      audienceTitle: "Nuestro Público Objetivo",
+      audienceTitle: "Nuestro P?blico Objetivo",
       audiences: [
-          { icon: Building, title: 'Sector Público', description: 'Ofrecemos soluciones adaptadas a las necesidades de entidades gubernamentales y administraciones públicas, mejorando la eficiencia y transparencia.'},
-          { icon: Handshake, title: 'Sector Privado', description: 'Impulsamos la competitividad de las empresas con herramientas tecnológicas y consultoría estratégica para optimizar sus operaciones.'},
-          { icon: Users, title: 'Sector Social y Comunitario', description: 'Colaboramos con organizaciones sin fines de lucro y comunidades para fortalecer su impacto social a través de la tecnología y la innovación.'},
+          { icon: Building, title: 'Sector P?blico', description: 'Ofrecemos soluciones adaptadas a las necesidades de entidades gubernamentales y administraciones p?blicas, mejorando la eficiencia y transparencia.'},
+          { icon: Handshake, title: 'Sector Privado', description: 'Impulsamos la competitividad de las empresas con herramientas tecnol?gicas y consultor?a estrat?gica para optimizar sus operaciones.'},
+          { icon: Users, title: 'Sector Social y Comunitario', description: 'Colaboramos con organizaciones sin fines de lucro y comunidades para fortalecer su impacto social a trav?s de la tecnolog?a y la innovaci?n.'},
       ],
-      readyTitle: "¿Listo para Transformar su Organización?",
-      readyDescription: "Contáctenos hoy mismo para descubrir cómo nuestras soluciones pueden ayudarle a alcanzar sus objetivos.",
+      readyTitle: "?Listo para Transformar su Organizaci?n?",
+      readyDescription: "Cont?ctenos hoy mismo para descubrir c?mo nuestras soluciones pueden ayudarle a alcanzar sus objetivos.",
       readyCTA: "Contactar Ahora",
     },
     AboutPage: {
         hero: {
             title: "Sobre PLES",
-            description: "Fusionamos visión global y enfoque multidisciplinario para construir un legado de impacto y sostenibilidad.",
-            badges: ["#VisiónGlobal", "#Innovación", "#Sostenibilidad"],
+            description: "Fusionamos visi?n global y enfoque multidisciplinario para construir un legado de impacto y sostenibilidad.",
+            badges: ["#Visi?nGlobal", "#Innovaci?n", "#Sostenibilidad"],
             cta: "Nuestra Historia"
         },
         identity: {
             title: "Nuestra Identidad",
-            description: "Con una visión global y un enfoque multidisciplinario, nuestro equipo converge talentos y conocimientos diversos para la consecución de objetivos trascendentes. En PLES, valoramos la riqueza de cada perspectiva, cultivando un espacio donde las ideas disruptivas e innovadoras florecen, permitiendo intervenciones estratégicas y perspicaces en cualquier escenario.",
+            description: "Con una visi?n global y un enfoque multidisciplinario, nuestro equipo converge talentos y conocimientos diversos para la consecuci?n de objetivos trascendentes. En PLES, valoramos la riqueza de cada perspectiva, cultivando un espacio donde las ideas disruptivas e innovadoras florecen, permitiendo intervenciones estrat?gicas y perspicaces en cualquier escenario.",
             sections: [
               { title: 'Nuestra Esencia', content: 'Comprendiendo quienes somos.', link: '/about/esencia', icon: 'HeartPulse' },
-              { title: 'Nuestro Propósito', content: 'Explorando nuestro motor.', link: '/about/proposito', icon: 'Target' },
-              { title: 'Colaboración Global', content: 'Conoce cómo trabajamos.', link: '/about/colaboracion', icon: 'Globe' },
-              { title: 'Nuestra Misión', content: 'Guiando nuestras acciones.', link: '/about/mision', icon: 'Rocket' },
-              { title: 'Nuestra Visión', content: 'Definiendo nuestro horizonte.', link: '/about/vision', icon: 'Eye' },
+              { title: 'Nuestro Prop?sito', content: 'Explorando nuestro motor.', link: '/about/proposito', icon: 'Target' },
+              { title: 'Colaboraci?n Global', content: 'Conoce c?mo trabajamos.', link: '/about/colaboracion', icon: 'Globe' },
+              { title: 'Nuestra Misi?n', content: 'Guiando nuestras acciones.', link: '/about/mision', icon: 'Rocket' },
+              { title: 'Nuestra Visi?n', content: 'Definiendo nuestro horizonte.', link: '/about/vision', icon: 'Eye' },
             ]
         },
         values: {
             integrityPhrases: [
-              "Actuamos con honestidad,", "transparencia y ética", "profesional en cada interacción.",
-              "La integridad es el pilar", "de la confianza que construimos", "con nuestros clientes, socios", "y la comunidad, garantizando", "que nuestras acciones", "siempre estén alineadas", "con nuestros principios."
+              "Actuamos con honestidad,", "transparencia y ?tica", "profesional en cada interacci?n.",
+              "La integridad es el pilar", "de la confianza que construimos", "con nuestros clientes, socios", "y la comunidad, garantizando", "que nuestras acciones", "siempre est?n alineadas", "con nuestros principios."
             ],
-            innovationDescription: `Como motor de nuestro progreso, la <strong>innovación</strong> nos impulsa a <strong>desafiar el status quo</strong> y a explorar constantemente <strong>nuevas tecnologías y metodologías</strong>. Convertimos <strong>ideas audaces</strong> en soluciones prácticas que aportan un <strong>valor tangible y sostenible</strong> a nuestros clientes.`,
+            innovationDescription: `Como motor de nuestro progreso, la <strong>innovaci?n</strong> nos impulsa a <strong>desafiar el status quo</strong> y a explorar constantemente <strong>nuevas tecnolog?as y metodolog?as</strong>. Convertimos <strong>ideas audaces</strong> en soluciones pr?cticas que aportan un <strong>valor tangible y sostenible</strong> a nuestros clientes.`,
             collaborationPhrases: [
-              "La colaboración", "es la esencia", "de nuestro accionar.",
+              "La colaboraci?n", "es la esencia", "de nuestro accionar.",
               "Fomentamos la sinergia", "entre equipos", "multidisciplinarios",
-              "y promovemos", "alianzas estratégicas", "para co-crear",
+              "y promovemos", "alianzas estrat?gicas", "para co-crear",
               "soluciones integrales", "que superan", "las expectativas",
               "y generan", "un impacto", "duradero."
             ]
         },
         pillars: {
             title: "Nuestros Pilares Fundamentales",
-            cta: "Saber Más",
+            cta: "Saber M?s",
         },
-        closingStatement: "Estos valores se manifiestan en nuestro compromiso inquebrantable con la resiliencia ambiental y la equidad de género, buscando generar un legado significativo y duradero en cada comunidad que abrazamos."
+        closingStatement: "Estos valores se manifiestan en nuestro compromiso inquebrantable con la resiliencia ambiental y la equidad de g?nero, buscando generar un legado significativo y duradero en cada comunidad que abrazamos."
     }
   }
 };

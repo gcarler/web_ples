@@ -1,21 +1,20 @@
-
-'use client';
+﻿'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { ArrowRight, Building, Users, Handshake, Quote, CheckCircle, Database, UsersRound, Globe, Server, HomeIcon, Lightbulb, Layers, Cpu, BookOpen, Send, MapPin, BarChart3, ShieldCheck, Settings, BrainCircuit } from 'lucide-react';
+import { ArrowRight, Quote } from 'lucide-react';
 import { RotatingHeroText } from '@/components/layout/rotating-hero-text';
 import { cn } from '@/lib/utils';
 import { useState, useEffect } from 'react';
 import { type HeroStatement } from '@/lib/models/content';
 import React from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const missionIcons = [
-    Lightbulb, Cpu, Database, Server, Globe, MapPin, 
-    BarChart3, Users, ShieldCheck, Layers, Settings, Handshake
+    'Lightbulb', 'Cpu', 'Database', 'Server', 'Globe', 'MapPin',
+    'BarChart3', 'Users', 'ShieldCheck', 'Layers', 'Settings', 'Handshake'
 ];
 
 const iconAnimations = [
@@ -40,49 +39,33 @@ const iconStyles = [
   { top: '15%', left: '90%', size: 'h-8 w-8', duration: '35s', delay: '-4s' },
 ];
 
+import * as LucideIcons from 'lucide-react';
+
 interface HomePageClientProps {
   initialHeroStatements: HeroStatement[];
 }
 
 export default function HomePageClient({ initialHeroStatements }: HomePageClientProps) {
+  const { t } = useLanguage();
   const [currentIconIndex, setCurrentIconIndex] = useState(0);
   const [metricIndices, setMetricIndices] = useState([0, 0, 0]);
   const [isAnimatingOut, setIsAnimatingOut] = useState<number | null>(null);
 
-  const heroStatements = initialHeroStatements;
-
-  const metricsData = [
-    [
-      { icon: CheckCircle, text: "+15 proyectos ejecutados" },
-      { icon: Lightbulb, text: "+5000 horas de consultoría" },
-    ],
-    [
-      { icon: Database, text: "42 sistemas de información desarrollados" },
-      { icon: Building, text: "10+ sectores impactados" },
-    ],
-    [
-      { icon: UsersRound, text: "8 alianzas académicas y comunitarias" },
-      { icon: BrainCircuit, text: "+20 soluciones de IA implementadas" },
-    ],
-  ];
+  const heroStatements = t.HomePage.heroStatements || initialHeroStatements;
+  const metricsData = t.HomePage.metrics;
 
   useEffect(() => {
-    if (missionIcons.length <= 1) return;
-
     const timer = setInterval(() => {
       setCurrentIconIndex((prevIndex) => (prevIndex + 1) % missionIcons.length);
     }, 7000);
-    
     return () => clearInterval(timer);
   }, []);
-  
+
   useEffect(() => {
     if (!metricsData || metricsData.length === 0) return;
-
     let cardToUpdate = 0;
     const interval = setInterval(() => {
       setIsAnimatingOut(cardToUpdate);
-
       setTimeout(() => {
         setMetricIndices(prevIndices => {
           const newIndices = [...prevIndices];
@@ -95,14 +78,13 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
         cardToUpdate = (cardToUpdate + 1) % metricsData.length;
       }, 300);
     }, 2000);
-
     return () => clearInterval(interval);
   }, [metricsData]);
 
-
-  const CurrentIcon = missionIcons[currentIconIndex];
+  const currentIconName = missionIcons[currentIconIndex];
+  const CurrentIcon = (LucideIcons as any)[currentIconName] || LucideIcons.HelpCircle;
   const currentAnimationClass = iconAnimations[currentIconIndex % iconAnimations.length];
-  
+
   return (
     <div className="space-y-0">
       <section className="relative bg-background overflow-hidden">
@@ -110,23 +92,14 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
           <div className="flex flex-col lg:flex-row items-center w-full gap-8">
             <div className="w-full lg:w-5/12 flex justify-center items-center relative order-1 lg:order-none">
               <div className="relative w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] md:w-[420px] md:h-[420px] xl:w-[480px] xl:h-[480px]">
-                <div
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180%] h-[180%] bg-card rounded-full shadow-2xl"
-                ></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180%] h-[180%] bg-card rounded-full shadow-2xl"></div>
                 <div className="absolute inset-0 flex justify-center items-center z-10 p-4">
-                  <div
-                    className="relative bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--ring))] bg-[length:200%_200%] animate-gradient rounded-full w-full h-full shadow-xl overflow-hidden flex items-center justify-center"
-                  >
-                    <CurrentIcon
-                      key={currentIconIndex}
-                      className={cn("h-3/5 w-3/5 text-accent", currentAnimationClass)}
-                      strokeWidth={1}
-                    />
+                  <div className="relative bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--ring))] bg-[length:200%_200%] animate-gradient rounded-full w-full h-full shadow-xl overflow-hidden flex items-center justify-center">
+                    <CurrentIcon key={currentIconIndex} className={cn("h-3/5 w-3/5 text-accent", currentAnimationClass)} strokeWidth={1} />
                   </div>
                 </div>
               </div>
             </div>
-
             <div className="w-full lg:w-7/12 text-center lg:text-left relative z-20 order-2 lg:order-none">
               <RotatingHeroText
                 statements={heroStatements}
@@ -142,26 +115,17 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
       <section className="py-20 md:py-28 bg-background">
         <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent mb-16">
-            EL USO INTELIGENTE DE LA EXPERIENCIA
+            {t.HomePage.experienceTitle}
           </h1>
           <div className="grid grid-cols-1 sm:grid-cols-3 justify-center items-stretch gap-8 md:gap-12 text-lg text-foreground mb-20">
             {metricsData.map((metrics, cardIndex) => {
                 const metric = metrics[metricIndices[cardIndex]];
                 const Icon = metric.icon;
                 return (
-                    <div 
-                        key={cardIndex} 
-                        className="flex flex-col items-center p-6 bg-card rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 ease-in-out h-40 overflow-hidden"
-                    >
+                    <div key={cardIndex} className="flex flex-col items-center p-6 bg-card rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 ease-in-out h-40 overflow-hidden">
                         <Icon className="h-12 w-12 text-primary mb-4" />
                         <div className="relative h-12 flex items-center">
-                            <span
-                                key={metric.text}
-                                className={cn(
-                                    "block text-xl leading-tight text-center",
-                                    isAnimatingOut === cardIndex ? 'animate-slide-out-up' : 'animate-slide-in-up'
-                                )}
-                            >
+                            <span key={metric.text} className={cn("block text-xl leading-tight text-center", isAnimatingOut === cardIndex ? 'animate-slide-out-up' : 'animate-slide-in-up')}>
                                 {metric.text}
                             </span>
                         </div>
@@ -172,7 +136,7 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
           <Button asChild size="lg" variant="accent">
             <Link href="/about">
               <span className="flex items-center">
-                Saber Más <ArrowRight className="ml-2 h-5 w-5" />
+                {t.HomePage.knowMore} <ArrowRight className="ml-2 h-5 w-5" />
               </span>
             </Link>
           </Button>
@@ -183,36 +147,23 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
         <div className="w-full px-4 sm:px-6 lg:px-8">
            <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
              <div className="order-first">
-               <h2 className="text-3xl lg:text-4xl font-bold mb-4">Nuestra Misión</h2>
-               <p className="text-lg lg:text-xl opacity-90 mb-8 leading-relaxed">
-                 Somos una empresa dedicada a ofrecer soluciones innovadoras y eficientes que impulsan el crecimiento y la transformación digital de nuestros clientes. Creemos en el poder de la tecnología para simplificar procesos y crear valor.
-               </p>
+               <h2 className="text-3xl lg:text-4xl font-bold mb-4">{t.HomePage.missionTitle}</h2>
+               <p className="text-lg lg:text-xl opacity-90 mb-8 leading-relaxed">{t.HomePage.missionDescription}</p>
                <Button asChild size="lg" variant="accent" className="bg-white/20 hover:bg-white/30 border border-white/50 backdrop-blur-sm">
                  <Link href="/about#identidad">
                    <span className="flex items-center">
-                     Explora nuestra Misión <ArrowRight className="ml-2 h-5 w-5" />
+                     {t.HomePage.missionCTA} <ArrowRight className="ml-2 h-5 w-5" />
                    </span>
                  </Link>
                </Button>
              </div>
               <div className="relative h-96 w-full overflow-hidden rounded-lg md:h-[600px] order-last">
-                  {missionIcons.map((Icon, index) => {
+                  {missionIcons.map((iconName, index) => {
                     const style = iconStyles[index % iconStyles.length];
+                    const Icon = (LucideIcons as any)[iconName] || LucideIcons.HelpCircle;
                     return (
-                        <div
-                            key={index}
-                            className="absolute animate-move-and-scale"
-                            style={{
-                                top: style.top,
-                                left: style.left,
-                                animationDuration: style.duration,
-                                animationDelay: style.delay,
-                            }}
-                        >
-                            <Icon 
-                                className={cn("text-white", style.size)}
-                                strokeWidth={1.5}
-                            />
+                        <div key={index} className="absolute animate-move-and-scale" style={{ top: style.top, left: style.left, animationDuration: style.duration, animationDelay: style.delay }}>
+                            <Icon className={cn("text-white", style.size)} strokeWidth={1.5} />
                         </div>
                     );
                   })}
@@ -223,14 +174,9 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
 
       <section className="py-16 bg-background" id="nuestras-marcas">
         <div className="w-full px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center mb-10">Nuestras Marcas</h2>
+            <h2 className="text-3xl font-bold text-center mb-10">{t.HomePage.brandsTitle}</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-                { title: 'Ples CREA', description: 'Cartografía y diseño geoespacial.', icon: Globe, href: "/ples-crea" },
-                { title: 'Ples TIC', description: 'Tecnologías de la información.', icon: Server, href: "/ples-tic" },
-                { title: 'Ples Catastro', description: 'Catastro y gestión territorial.', icon: HomeIcon, href: "/ples-catastro" },
-                { title: 'Ples Consulting', description: 'Consultoría estratégica.', icon: Lightbulb, href: "/ples-consulting" },
-            ].map((marca) => {
+            {t.HomePage.brands.map((marca) => {
               const MarcaIcon = marca.icon;
               return (
                 <Card key={marca.title} className="text-center group hover:bg-primary hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out hover:shadow-xl">
@@ -245,7 +191,7 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
                     <Button variant="link" asChild className="text-primary group-hover:text-primary-foreground">
                     <Link href={`${marca.href}`}>
                         <span className="flex items-center">
-                        Ver Detalles <ArrowRight className="ml-1 h-4 w-4" />
+                        {t.HomePage.viewDetails} <ArrowRight className="ml-1 h-4 w-4" />
                         </span>
                     </Link>
                     </Button>
@@ -258,13 +204,9 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
 
       <section className="py-16 bg-secondary">
          <div className="w-full px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center mb-10">Nuestro Público Objetivo</h2>
+            <h2 className="text-3xl font-bold text-center mb-10">{t.HomePage.audienceTitle}</h2>
             <div className="grid md:grid-cols-3 gap-8">
-             {[
-                { icon: Building, title: 'Sector Público', description: 'Ofrecemos soluciones adaptadas a las necesidades de entidades gubernamentales y administraciones públicas, mejorando la eficiencia y transparencia.'},
-                { icon: Handshake, title: 'Sector Privado', description: 'Impulsamos la competitividad de las empresas con herramientas tecnológicas y consultoría estratégica para optimizar sus operaciones.'},
-                { icon: Users, title: 'Sector Social y Comunitario', description: 'Colaboramos con organizaciones sin fines de lucro y comunidades para fortalecer su impacto social a través de la tecnología y la innovación.'},
-             ].map((audience) => {
+             {t.HomePage.audiences.map((audience) => {
                 const AudienceIcon = audience.icon;
                 return (
                  <Card key={audience.title} className="shadow-sm group hover:shadow-xl hover:scale-105 hover:border-primary transition-all duration-300 ease-in-out border">
@@ -286,14 +228,12 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
 
       <section className="relative py-24 overflow-hidden bg-background">
         <div className="w-full px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h2 className="text-3xl font-bold mb-4 text-primary">¿Listo para Transformar su Organización?</h2>
-          <p className="text-lg text-foreground mb-8 max-w-2xl mx-auto">
-            Contáctenos hoy mismo para descubrir cómo nuestras soluciones pueden ayudarle a alcanzar sus objetivos.
-          </p>
+          <h2 className="text-3xl font-bold mb-4 text-primary">{t.HomePage.readyTitle}</h2>
+          <p className="text-lg text-foreground mb-8 max-w-2xl mx-auto">{t.HomePage.readyDescription}</p>
           <Button size="lg" variant="accent" asChild>
              <Link href="/forms">
                <span className="flex items-center">
-                 Contactar Ahora <ArrowRight className="ml-2" />
+                 {t.HomePage.readyCTA} <ArrowRight className="ml-2" />
                </span>
             </Link>
           </Button>
@@ -305,9 +245,9 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
             <h2 className="text-3xl font-bold text-center mb-10">Testimonios</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-                { name: 'Ruth Gutierrez', title: 'Directora OEDS, Universidad de Cartagena', text: '¡Increíble servicio! Superaron nuestras expectativas.', image: 'https://placehold.co/100x100.png', hint: 'person face director' },
-                { name: 'Olga Montes', title: 'Directora, Corporación Rhema', text: 'La implementación fue fluida y el soporte excelente.', image: 'https://placehold.co/100x100.png', hint: 'person face director' },
-                { name: 'Mary Janacet', title: 'CEO, Betrip', text: 'Nos ayudaron a optimizar nuestros procesos clave.', image: 'https://placehold.co/100x100.png', hint: 'person face ceo' },
+                { name: 'Ruth Gutierrez', title: 'Directora OEDS, Universidad de Cartagena', text: '¡Increíble servicio! Superaron nuestras expectativas.', image: 'https://placehold.co/100x100.png' },
+                { name: 'Olga Montes', title: 'Directora, Corporación Rhema', text: 'La implementación fue fluida y el soporte excelente.', image: 'https://placehold.co/100x100.png' },
+                { name: 'Mary Janacet', title: 'CEO, Betrip', text: 'Nos ayudaron a optimizar nuestros procesos clave.', image: 'https://placehold.co/100x100.png' },
             ].map((testimonial) => (
                 <Card key={testimonial.name} className="flex flex-col">
                 <CardContent className="pt-6 flex-grow">
@@ -316,7 +256,7 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
                 </CardContent>
                 <CardHeader className="flex flex-row items-center gap-4 pt-0 mt-auto">
                     <Avatar>
-                    <AvatarImage src={testimonial.image} alt={testimonial.name} data-ai-hint={testimonial.hint}/>
+                    <AvatarImage src={testimonial.image} alt={testimonial.name} />
                     <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
                     </Avatar>
                     <div>

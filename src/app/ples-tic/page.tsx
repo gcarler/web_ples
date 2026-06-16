@@ -17,12 +17,12 @@ const valuePropositions = [
     {
       icon: Settings,
       title: 'Soluciones a Medida',
-      description: 'Desarrollamos software y sistemas adaptados específicamente a sus necesidades y objetivos estratégicos.',
+      description: 'Desarrollamos software y sistemas adaptados espec?ficamente a sus necesidades y objetivos estrat?gicos.',
     },
     {
       icon: Lightbulb,
-      title: 'Innovación y Vanguardia',
-      description: 'Aplicamos las últimas tecnologías y metodologías para garantizar soluciones modernas, eficientes y preparadas para el futuro.',
+      title: 'Innovaci?n y Vanguardia',
+      description: 'Aplicamos las ?ltimas tecnolog?as y metodolog?as para garantizar soluciones modernas, eficientes y preparadas para el futuro.',
     },
     {
       icon: ShieldCheck,
@@ -31,7 +31,7 @@ const valuePropositions = [
     },
     {
       icon: TrendingUp,
-      title: 'Optimización y Eficiencia',
+      title: 'Optimizaci?n y Eficiencia',
       description: 'Automatizamos y optimizamos sus flujos de trabajo para mejorar la productividad, reducir costos y potenciar el crecimiento.',
     },
   ];
@@ -40,44 +40,44 @@ const coreServices = [
     {
       icon: Code,
       title: 'Desarrollo de Software a Medida',
-      description: 'Creamos aplicaciones web, móviles y empresariales personalizadas, desde la concepción hasta el despliegue y mantenimiento continuo.',
-      details: ["Análisis y Diseño de Sistemas", "Desarrollo Full-Stack (Frontend/Backend)", "Integración de APIs y Servicios Externos", "Metodologías Ágiles (Scrum/Kanban)"],
+      description: 'Creamos aplicaciones web, m?viles y empresariales personalizadas, desde la concepci?n hasta el despliegue y mantenimiento continuo.',
+      details: ["An?lisis y Dise?o de Sistemas", "Desarrollo Full-Stack (Frontend/Backend)", "Integraci?n de APIs y Servicios Externos", "Metodolog?as ?giles (Scrum/Kanban)"],
       ctaLink: "/ples-tic/desarrollo-software",
-      ctaText: "Más sobre Desarrollo a Medida",
+      ctaText: "M?s sobre Desarrollo a Medida",
     },
     {
       icon: CloudCog,
       title: 'Soluciones Cloud y DevOps',
-      description: 'Diseñamos, implementamos y gestionamos infraestructuras cloud seguras, escalables y costo-eficientes (AWS, Azure, GCP).',
-      details: ["Migración Estratégica a la Nube", "Arquitecturas Serverless y Microservicios", "Infraestructura como Código (IaC)", "CI/CD y Automatización DevOps"],
+      description: 'Dise?amos, implementamos y gestionamos infraestructuras cloud seguras, escalables y costo-eficientes (AWS, Azure, GCP).',
+      details: ["Migraci?n Estrat?gica a la Nube", "Arquitecturas Serverless y Microservicios", "Infraestructura como C?digo (IaC)", "CI/CD y Automatizaci?n DevOps"],
       ctaLink: "/ples-tic/soluciones-cloud",
       ctaText: "Descubra Soluciones Cloud",
     },
     {
       icon: Lock,
       title: 'Ciberseguridad Avanzada',
-      description: 'Protegemos su información y sistemas contra amenazas cibernéticas con auditorías, consultoría y soluciones de seguridad de última generación.',
-      details: ["Análisis de Vulnerabilidades y Pentesting Ético", "Gestión de Identidad y Acceso (IAM/IGA)", "Seguridad de Redes y Endpoints (EDR/XDR)", "Planes de Respuesta a Incidentes (IRP)"],
+      description: 'Protegemos su informaci?n y sistemas contra amenazas cibern?ticas con auditor?as, consultor?a y soluciones de seguridad de ?ltima generaci?n.',
+      details: ["An?lisis de Vulnerabilidades y Pentesting ?tico", "Gesti?n de Identidad y Acceso (IAM/IGA)", "Seguridad de Redes y Endpoints (EDR/XDR)", "Planes de Respuesta a Incidentes (IRP)"],
       ctaLink: "/ples-tic/ciberseguridad",
       ctaText: "Fortalezca su Seguridad",
     },
     {
       icon: BarChart3,
-      title: 'Análisis de Datos e Inteligencia de Negocio (BI)',
-      description: 'Transformamos sus datos en información valiosa para la toma de decisiones estratégicas, mediante dashboards y reportes interactivos.',
-      details: ["Modelado y Almacenamiento de Datos (Data Warehousing)", "Visualización de Datos (Tableau, Power BI, Looker)", "Análisis Predictivo y Fundamentos de Machine Learning", "Procesos ETL/ELT y Calidad de Datos"],
+      title: 'An?lisis de Datos e Inteligencia de Negocio (BI)',
+      description: 'Transformamos sus datos en informaci?n valiosa para la toma de decisiones estrat?gicas, mediante dashboards y reportes interactivos.',
+      details: ["Modelado y Almacenamiento de Datos (Data Warehousing)", "Visualizaci?n de Datos (Tableau, Power BI, Looker)", "An?lisis Predictivo y Fundamentos de Machine Learning", "Procesos ETL/ELT y Calidad de Datos"],
       ctaLink: "/ples-tic/analisis-datos-bi",
       ctaText: "Explore Inteligencia de Negocio",
     },
     {
       icon: Brain,
-      title: 'Automatización Inteligente con IA',
+      title: 'Automatizaci?n Inteligente con IA',
       description: 'Potenciamos su negocio con soluciones de IA personalizadas que optimizan procesos, extraen valor de sus datos y mejoran la toma de decisiones.',
       details: [
-        "Análisis y Diagnóstico de Oportunidades de IA",
+        "An?lisis y Diagn?stico de Oportunidades de IA",
         "Desarrollo de Modelos de Machine Learning y Deep Learning",
-        "Implementación de Chatbots y Asistentes Virtuales Inteligentes",
-        "Procesamiento de Lenguaje Natural (NLP) y Visión por Computadora",
+        "Implementaci?n de Chatbots y Asistentes Virtuales Inteligentes",
+        "Procesamiento de Lenguaje Natural (NLP) y Visi?n por Computadora",
       ],
       ctaLink: "/ples-tic/automatizacion-ia",
       ctaText: "Conozca Nuestras Capacidades en IA",
@@ -85,20 +85,20 @@ const coreServices = [
 ];
 
 const ourApproachSteps = [
-    { icon: Search, title: 'Entendimiento y Diagnóstico', description: 'Analizamos sus necesidades, objetivos y entorno tecnológico actual.' },
-    { icon: DraftingCompass, title: 'Diseño y Planificación Estratégica', description: 'Definimos la arquitectura, tecnologías y hoja de ruta del proyecto.' },
-    { icon: KanbanSquare, title: 'Desarrollo Ágil e Implementación', description: 'Construimos la solución con enfoque en calidad y entregas incrementales.' },
+    { icon: Search, title: 'Entendimiento y Diagn?stico', description: 'Analizamos sus necesidades, objetivos y entorno tecnol?gico actual.' },
+    { icon: DraftingCompass, title: 'Dise?o y Planificaci?n Estrat?gica', description: 'Definimos la arquitectura, tecnolog?as y hoja de ruta del proyecto.' },
+    { icon: KanbanSquare, title: 'Desarrollo ?gil e Implementaci?n', description: 'Construimos la soluci?n con enfoque en calidad y entregas incrementales.' },
     { icon: FlaskConical, title: 'Pruebas Exhaustivas y Despliegue', description: 'Realizamos pruebas rigurosas para garantizar funcionalidad y seguridad.' },
-    { icon: GitPullRequestArrow, title: 'Soporte y Evolución Continua', description: 'Ofrecemos soporte post-implementación y planes de mantenimiento continuo.' },
+    { icon: GitPullRequestArrow, title: 'Soporte y Evoluci?n Continua', description: 'Ofrecemos soporte post-implementaci?n y planes de mantenimiento continuo.' },
 ];
 
 const technologies = ['JavaScript (React, Next.js, Node.js)', 'Python (Django, Flask, FastAPI)', 'Java, C#/.NET', 'Bases de Datos (PostgreSQL, MySQL, MongoDB, Redis)', 'Docker, Kubernetes, Terraform', 'AWS, Azure, Google Cloud Platform', 'Inteligencia Artificial (Machine Learning, NLP, Computer Vision)', 'Git, Jenkins, GitLab CI', 'Marcos de Ciberseguridad (NIST, ISO 27001)', 'Herramientas BI (Tableau, Power BI)'];
 
 const caseStudies = [
     {
-      title: 'Transformación Digital para Empresa Retail Global',
+      title: 'Transformaci?n Digital para Empresa Retail Global',
       challenge: 'Procesos manuales obsoletos, falta de visibilidad de inventario en tiempo real y una experiencia de cliente desactualizada.',
-      solution: 'Desarrollamos una plataforma e-commerce omnicanal, integramos un sistema ERP en la nube y creamos una estrategia de marketing digital personalizada. Resultados: Incremento de ventas online del 45% y mejora en la satisfacción del cliente.',
+      solution: 'Desarrollamos una plataforma e-commerce omnicanal, integramos un sistema ERP en la nube y creamos una estrategia de marketing digital personalizada. Resultados: Incremento de ventas online del 45% y mejora en la satisfacci?n del cliente.',
       illustration: (
         <div className="relative h-full w-full overflow-hidden rounded-lg">
           <PlexusIllustration />
@@ -121,12 +121,12 @@ const caseStudies = [
           </div>
         </div>
       ),
-      tags: ['Desarrollo Web Full-Stack', 'Soluciones Cloud', 'Integración ERP']
+      tags: ['Desarrollo Web Full-Stack', 'Soluciones Cloud', 'Integraci?n ERP']
     },
     {
-      title: 'Plataforma Segura de Gestión de Datos para Sector Salud',
-      challenge: 'Silos de información médica, dificultad para el análisis de datos de pacientes y necesidad de cumplir con estrictas normativas de privacidad (HIPAA/GDPR).',
-      solution: 'Implementamos una plataforma centralizada en la nube para la gestión de datos de pacientes, con dashboards de BI para análisis clínicos y robustas medidas de seguridad y cumplimiento normativo. Se logró una mejora significativa en la toma de decisiones médicas y la eficiencia operativa.',
+      title: 'Plataforma Segura de Gesti?n de Datos para Sector Salud',
+      challenge: 'Silos de informaci?n m?dica, dificultad para el an?lisis de datos de pacientes y necesidad de cumplir con estrictas normativas de privacidad (HIPAA/GDPR).',
+      solution: 'Implementamos una plataforma centralizada en la nube para la gesti?n de datos de pacientes, con dashboards de BI para an?lisis cl?nicos y robustas medidas de seguridad y cumplimiento normativo. Se logr? una mejora significativa en la toma de decisiones m?dicas y la eficiencia operativa.',
       illustration: (
         <HealthDataIllustration className="h-full w-full rounded-lg"/>
       ),
@@ -149,7 +149,7 @@ export default function PlesTicPage() {
                 PLES TIC
               </h1>
               <p className="text-lg sm:text-xl text-foreground mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                <strong className="text-primary">Innovación Tecnológica y Estrategia Digital para el Presente</strong>. En PLES TIC, combinamos experticia técnica con visión de negocio para desarrollar soluciones de TI <strong className="text-accent">robustas, escalables y seguras</strong> que impulsan su <strong className="text-primary">crecimiento y eficiencia operativa</strong>.
+                <strong className="text-primary">Innovaci?n Tecnol?gica y Estrategia Digital para el Presente</strong>. En PLES TIC, combinamos experticia t?cnica con visi?n de negocio para desarrollar soluciones de TI <strong className="text-accent">robustas, escalables y seguras</strong> que impulsan su <strong className="text-primary">crecimiento y eficiencia operativa</strong>.
               </p>
               <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-10">
                 <Badge variant="default" className="text-md px-4 py-2 shadow-md">#DesarrolloDeSoftware</Badge>
@@ -172,9 +172,9 @@ export default function PlesTicPage() {
 
       <section>
         <div className="w-full py-16 px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">¿Por Qué Elegir PLES TIC?</h2>
+            <h2 className="text-3xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">?Por Qu? Elegir PLES TIC?</h2>
             <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
-                Nos enfocamos en resultados tangibles, construyendo alianzas tecnológicas a largo plazo para el éxito de su organización.
+                Nos enfocamos en resultados tangibles, construyendo alianzas tecnol?gicas a largo plazo para el ?xito de su organizaci?n.
             </p>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {valuePropositions.map(({icon: Icon, title, description}) => (
@@ -194,7 +194,7 @@ export default function PlesTicPage() {
 
       <section className="py-12 bg-secondary">
         <div className="w-full px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestros Servicios Tecnológicos Clave</h2>
+            <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestros Servicios Tecnol?gicos Clave</h2>
             <div className="grid md:grid-cols-2 gap-8">
             {coreServices.map(({icon: Icon, title, description, details, ctaLink, ctaText}) => (
               <Link key={title} href={ctaLink || '#'} passHref legacyBehavior>
@@ -254,9 +254,9 @@ export default function PlesTicPage() {
 
       <section className="py-12 bg-card shadow-xl">
         <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Tecnologías y Plataformas que Dominamos</h2>
+          <h2 className="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Tecnolog?as y Plataformas que Dominamos</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto mb-10">
-            Utilizamos un stack tecnológico moderno y flexible para construir soluciones robustas, escalables y seguras, adaptadas a los desafíos de su industria.
+            Utilizamos un stack tecnol?gico moderno y flexible para construir soluciones robustas, escalables y seguras, adaptadas a los desaf?os de su industria.
           </p>
           <div className="flex flex-wrap justify-center items-center gap-3">
             {technologies.map((tech) => (
@@ -283,11 +283,11 @@ export default function PlesTicPage() {
                 </CardHeader>
                 <CardContent className="flex-grow space-y-3">
                   <div>
-                    <p className="font-semibold text-foreground group-hover:text-primary-foreground mb-1">Desafío:</p>
+                    <p className="font-semibold text-foreground group-hover:text-primary-foreground mb-1">Desaf?o:</p>
                     <p className="text-sm text-muted-foreground group-hover:text-primary-foreground/90">{study.challenge}</p>
                   </div>
                   <div>
-                    <p className="font-semibold text-foreground group-hover:text-primary-foreground mb-1">Solución PLES TIC:</p>
+                    <p className="font-semibold text-foreground group-hover:text-primary-foreground mb-1">Soluci?n PLES TIC:</p>
                     <p className="text-sm text-muted-foreground group-hover:text-primary-foreground/90">{study.solution}</p>
                   </div>
                 </CardContent>
@@ -295,7 +295,7 @@ export default function PlesTicPage() {
                     <Button variant="link" asChild className="text-primary group-hover:text-primary-foreground">
                         <Link href={`/forms?subject=Mas%20Informacion%20Caso%20Estudio%20TIC`}>
                             <span className="flex items-center">
-                                Conocer Más <ArrowRight className="ml-1 h-4 w-4"/>
+                                Conocer M?s <ArrowRight className="ml-1 h-4 w-4"/>
                             </span>
                         </Link>
                     </Button>
@@ -309,14 +309,14 @@ export default function PlesTicPage() {
       <section className="text-center py-20 bg-primary text-primary-foreground animate-gradient bg-[length:200%_200%]">
         <div className="w-full px-4 sm:px-6 lg:px-8">
             <Rocket className="h-16 w-16 mx-auto mb-6 opacity-80" />
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Impulse su Negocio con la Tecnología del Mañana</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Impulse su Negocio con la Tecnolog?a del Ma?ana</h2>
             <p className="text-lg md:text-xl mb-10 max-w-3xl mx-auto opacity-90">
-             Descubra cómo las soluciones personalizadas de PLES TIC pueden transformar su organización, optimizar sus operaciones y abrir nuevas oportunidades de crecimiento.
+             Descubra c?mo las soluciones personalizadas de PLES TIC pueden transformar su organizaci?n, optimizar sus operaciones y abrir nuevas oportunidades de crecimiento.
             </p>
             <Button size="xl" variant="accent" className="text-lg px-10 py-4" asChild>
             <Link href={`/forms?service=ples-tic&subject=Solicitud%20Asesoria%20Tecnologica`}>
                 <span className="flex items-center">
-                    Solicitar Asesoría Tecnológica <ArrowRight className="ml-3 h-5 w-5" />
+                    Solicitar Asesor?a Tecnol?gica <ArrowRight className="ml-3 h-5 w-5" />
                 </span>
             </Link>
             </Button>

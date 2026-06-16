@@ -82,7 +82,7 @@ export const AuthProvider: React.FC<PropsWithChildren> = ({ children }) => {
         );
   }
 
-  const userRole = userProfile?.role ?? null;
+  const userRole = userProfile?.role ? null;
 
   return (
     <AuthContext.Provider value={{ user, userProfile, loading, userRole }}>

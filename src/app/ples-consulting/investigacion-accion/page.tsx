@@ -10,47 +10,47 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 const pageDetails = {
     parentLink: "/ples-consulting",
     parentName: "PLES Consulting",
-    title: "Investigación Acción Participativa (IAP)",
+    title: "Investigaci?n Acci?n Participativa (IAP)",
     subtitle: "Un enfoque colaborativo donde la comunidad se convierte en co-investigadora para generar conocimiento y transformar su propia realidad.",
 };
 
 const keyPrinciples = [
     {
         icon: Users,
-        title: "Participación Genuina",
-        description: "La comunidad no es un objeto de estudio, sino un actor protagónico. Los miembros participan activamente en todas las fases del proceso de investigación."
+        title: "Participaci?n Genuina",
+        description: "La comunidad no es un objeto de estudio, sino un actor protag?nico. Los miembros participan activamente en todas las fases del proceso de investigaci?n."
     },
     {
         icon: Lightbulb,
-        title: "Conocimiento para la Acción",
-        description: "La investigación no termina en un informe. Su propósito fundamental es generar conocimiento que impulse acciones concretas de cambio y mejora."
+        title: "Conocimiento para la Acci?n",
+        description: "La investigaci?n no termina en un informe. Su prop?sito fundamental es generar conocimiento que impulse acciones concretas de cambio y mejora."
     },
     {
         icon: Repeat,
-        title: "Proceso Cíclico y Reflexivo",
-        description: "Es un ciclo continuo de planificación, acción, observación y reflexión. Cada ciclo informa y mejora el siguiente, en una espiral de aprendizaje."
+        title: "Proceso C?clico y Reflexivo",
+        description: "Es un ciclo continuo de planificaci?n, acci?n, observaci?n y reflexi?n. Cada ciclo informa y mejora el siguiente, en una espiral de aprendizaje."
     },
     {
         icon: Search,
-        title: "Diálogo de Saberes",
-        description: "Valoramos y combinamos el conocimiento técnico y científico con el saber popular y la experiencia vivida de la comunidad para una comprensión más rica."
+        title: "Di?logo de Saberes",
+        description: "Valoramos y combinamos el conocimiento t?cnico y cient?fico con el saber popular y la experiencia vivida de la comunidad para una comprensi?n m?s rica."
     }
 ];
 
 const processSteps = [
-    { title: "1. Diagnóstico Participativo", description: "Junto con la comunidad, identificamos y priorizamos los problemas o temas de interés que desean investigar y transformar." },
-    { title: "2. Planificación de la Acción", description: "Co-diseñamos un plan de acción y una estrategia de investigación. Definimos qué queremos saber, cómo lo averiguaremos y qué acciones tomaremos." },
-    { title: "3. Acción y Observación Sistemática", description: "Implementamos las acciones planificadas mientras recopilamos datos y observamos sistemáticamente los efectos y resultados." },
-    { title: "4. Reflexión y Sistematización", description: "El grupo analiza e interpreta la información recopilada, reflexiona sobre el proceso y sistematiza los aprendizajes para generar nuevo conocimiento." },
-    { title: "5. Replanteamiento y Nuevo Ciclo", description: "Con base en los aprendizajes, se evalúan las acciones, se redefine el problema si es necesario, y se planifica un nuevo ciclo de acción-investigación." }
+    { title: "1. Diagn?stico Participativo", description: "Junto con la comunidad, identificamos y priorizamos los problemas o temas de inter?s que desean investigar y transformar." },
+    { title: "2. Planificaci?n de la Acci?n", description: "Co-dise?amos un plan de acci?n y una estrategia de investigaci?n. Definimos qu? queremos saber, c?mo lo averiguaremos y qu? acciones tomaremos." },
+    { title: "3. Acci?n y Observaci?n Sistem?tica", description: "Implementamos las acciones planificadas mientras recopilamos datos y observamos sistem?ticamente los efectos y resultados." },
+    { title: "4. Reflexi?n y Sistematizaci?n", description: "El grupo analiza e interpreta la informaci?n recopilada, reflexiona sobre el proceso y sistematiza los aprendizajes para generar nuevo conocimiento." },
+    { title: "5. Replanteamiento y Nuevo Ciclo", description: "Con base en los aprendizajes, se eval?an las acciones, se redefine el problema si es necesario, y se planifica un nuevo ciclo de acci?n-investigaci?n." }
 ];
 
 const benefits = [
-    "Soluciones más sostenibles y apropiadas por la comunidad.",
+    "Soluciones m?s sostenibles y apropiadas por la comunidad.",
     "Empoderamiento y fortalecimiento de las capacidades locales.",
-    "Generación de conocimiento contextualizado y relevante.",
-    "Promoción de la democracia, la participación y la ciudadanía activa.",
-    "Transformaciones sociales más profundas y duraderas."
+    "Generaci?n de conocimiento contextualizado y relevante.",
+    "Promoci?n de la democracia, la participaci?n y la ciudadan?a activa.",
+    "Transformaciones sociales m?s profundas y duraderas."
 ];
 
 
@@ -99,7 +99,7 @@ export default function InvestigacionAccionPage() {
                 </section>
 
                 <section className="mb-16">
-                    <h2 className="text-3xl font-bold text-center mb-10">El Ciclo de la Investigación-Acción</h2>
+                    <h2 className="text-3xl font-bold text-center mb-10">El Ciclo de la Investigaci?n-Acci?n</h2>
                      <div className="relative max-w-2xl mx-auto">
                         <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-border -translate-x-1/2" aria-hidden="true" />
                         {processSteps.map((step, index) => (
@@ -141,7 +141,7 @@ export default function InvestigacionAccionPage() {
                             <div className="flex justify-center mb-4">
                                 <Users className="h-12 w-12 text-primary" />
                             </div>
-                            <CardTitle className="text-2xl">¿Busca generar un cambio social desde la base?</CardTitle>
+                            <CardTitle className="text-2xl">?Busca generar un cambio social desde la base?</CardTitle>
                             <CardDescription>Facilitamos procesos de IAP que empoderan a las comunidades para que sean protagonistas de su propio desarrollo.</CardDescription>
                         </CardHeader>
                         <CardContent>

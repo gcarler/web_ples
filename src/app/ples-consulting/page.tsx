@@ -15,60 +15,60 @@ import { cn } from '@/lib/utils';
 const expertiseAreas = [
   {
     icon: TrendingUp,
-    title: 'Planificación Estratégica y Desarrollo Organizacional',
-    description: 'Facilitamos procesos de planificación y transformación para alinear sus recursos con objetivos de alto impacto, fortaleciendo la visión a largo plazo y la capacidad de adaptación.',
-    details: ['Diagnóstico Organizacional 360°', 'Diseño de Modelos de Negocio Sostenibles', 'Gestión del Cambio y Cultura Organizacional', 'Optimización de Procesos y Eficiencia Operativa']
+    title: 'Planificaci?n Estrat?gica y Desarrollo Organizacional',
+    description: 'Facilitamos procesos de planificaci?n y transformaci?n para alinear sus recursos con objetivos de alto impacto, fortaleciendo la visi?n a largo plazo y la capacidad de adaptaci?n.',
+    details: ['Diagn?stico Organizacional 360°', 'Dise?o de Modelos de Negocio Sostenibles', 'Gesti?n del Cambio y Cultura Organizacional', 'Optimizaci?n de Procesos y Eficiencia Operativa']
   },
   {
     icon: Layers,
-    title: 'Diseño y Evaluación de Políticas Públicas',
-    description: 'Apoyamos la formulación de políticas efectivas, basadas en evidencia y orientadas a resultados medibles, con un enfoque en la inclusión y la sostenibilidad.',
-    details: ['Análisis de Viabilidad y Factibilidad', 'Formulación Basada en Evidencia', 'Monitoreo y Evaluación de Impacto (M&E)', 'Participación Ciudadana en Políticas']
+    title: 'Dise?o y Evaluaci?n de Pol?ticas P?blicas',
+    description: 'Apoyamos la formulaci?n de pol?ticas efectivas, basadas en evidencia y orientadas a resultados medibles, con un enfoque en la inclusi?n y la sostenibilidad.',
+    details: ['An?lisis de Viabilidad y Factibilidad', 'Formulaci?n Basada en Evidencia', 'Monitoreo y Evaluaci?n de Impacto (M&E)', 'Participaci?n Ciudadana en Pol?ticas']
   },
   {
     icon: Lightbulb,
-    title: 'Innovación Social y Transformación Digital',
-    description: 'Impulsamos la adopción de enfoques innovadores y tecnologías digitales para resolver desafíos sociales complejos, fomentando la colaboración y la escalabilidad.',
-    details: ['Laboratorios de Innovación Social', 'Estrategias de Transformación Digital', 'Soluciones Tecnológicas con Propósito', 'Modelos de Inversión de Impacto']
+    title: 'Innovaci?n Social y Transformaci?n Digital',
+    description: 'Impulsamos la adopci?n de enfoques innovadores y tecnolog?as digitales para resolver desaf?os sociales complejos, fomentando la colaboraci?n y la escalabilidad.',
+    details: ['Laboratorios de Innovaci?n Social', 'Estrategias de Transformaci?n Digital', 'Soluciones Tecnol?gicas con Prop?sito', 'Modelos de Inversi?n de Impacto']
   },
   {
     icon: BookOpen,
-    title: 'Gestión del Conocimiento y Fortalecimiento de Capacidades',
-    description: 'Diseñamos e implementamos estrategias para mejorar el aprendizaje organizacional, la gestión del conocimiento y las competencias de los equipos.',
-    details: ['Sistemas de Gestión del Conocimiento', 'Programas de Capacitación a Medida', 'Comunidades de Práctica y Aprendizaje', 'Evaluación de Competencias']
+    title: 'Gesti?n del Conocimiento y Fortalecimiento de Capacidades',
+    description: 'Dise?amos e implementamos estrategias para mejorar el aprendizaje organizacional, la gesti?n del conocimiento y las competencias de los equipos.',
+    details: ['Sistemas de Gesti?n del Conocimiento', 'Programas de Capacitaci?n a Medida', 'Comunidades de Pr?ctica y Aprendizaje', 'Evaluaci?n de Competencias']
   },
 ];
 
 const differentiators = [
-  { icon: Users2, title: 'Enfoque Multidisciplinario', text: 'Combinamos experticia en diversas áreas para ofrecer soluciones integrales y creativas adaptadas a la complejidad de cada desafío.' },
-  { icon: Zap, title: 'Innovación Constante', text: 'Nos mantenemos a la vanguardia de metodologías y tecnologías para proponer soluciones que no solo resuelven, sino que transforman.' },
-  { icon: BarChart3, title: 'Orientación a Resultados Medibles', text: 'Definimos indicadores claros y medimos el impacto de nuestras intervenciones para asegurar la generación de valor tangible.' },
-  { icon: ShieldCheck, title: 'Compromiso Ético y Sostenible', text: 'Nuestras recomendaciones buscan la sostenibilidad a largo plazo y se basan en principios de equidad, transparencia e integridad.' },
+  { icon: Users2, title: 'Enfoque Multidisciplinario', text: 'Combinamos experticia en diversas ?reas para ofrecer soluciones integrales y creativas adaptadas a la complejidad de cada desaf?o.' },
+  { icon: Zap, title: 'Innovaci?n Constante', text: 'Nos mantenemos a la vanguardia de metodolog?as y tecnolog?as para proponer soluciones que no solo resuelven, sino que transforman.' },
+  { icon: BarChart3, title: 'Orientaci?n a Resultados Medibles', text: 'Definimos indicadores claros y medimos el impacto de nuestras intervenciones para asegurar la generaci?n de valor tangible.' },
+  { icon: ShieldCheck, title: 'Compromiso ?tico y Sostenible', text: 'Nuestras recomendaciones buscan la sostenibilidad a largo plazo y se basan en principios de equidad, transparencia e integridad.' },
 ];
 
 const methodologies = [
     { name: 'Design Thinking', href: '/ples-consulting/design-thinking' },
-    { name: 'Gestión Ágil de Proyectos (Scrum/Kanban)', href: '/ples-consulting/gestion-agil' },
-    { name: 'Análisis de Datos Avanzado (Cualitativo y Cuantitativo)', href: '/ples-consulting/analisis-datos' },
-    { name: 'Facilitación Estratégica y Co-creación', href: '/ples-consulting/facilitacion-estrategica' },
-    { name: 'Marco Lógico y Teoría del Cambio', href: '/ples-consulting/marco-logico' },
-    { name: 'Investigación Acción Participativa', href: '/ples-consulting/investigacion-accion' }
+    { name: 'Gesti?n ?gil de Proyectos (Scrum/Kanban)', href: '/ples-consulting/gestion-agil' },
+    { name: 'An?lisis de Datos Avanzado (Cualitativo y Cuantitativo)', href: '/ples-consulting/analisis-datos' },
+    { name: 'Facilitaci?n Estrat?gica y Co-creaci?n', href: '/ples-consulting/facilitacion-estrategica' },
+    { name: 'Marco L?gico y Teor?a del Cambio', href: '/ples-consulting/marco-logico' },
+    { name: 'Investigaci?n Acci?n Participativa', href: '/ples-consulting/investigacion-accion' }
 ];
 
 const processSteps = [
   {
       icon: Search,
-      title: "1. Diagnóstico Profundo",
-      description: "Iniciamos con una inmersión total para comprender sus desafíos, contexto y aspiraciones, construyendo una base sólida para la estrategia."
+      title: "1. Diagn?stico Profundo",
+      description: "Iniciamos con una inmersi?n total para comprender sus desaf?os, contexto y aspiraciones, construyendo una base s?lida para la estrategia."
   },
   {
       icon: Lightbulb,
-      title: "2. Co-creación de Soluciones",
-      description: "Trabajamos de la mano con su equipo para diseñar estrategias y soluciones innovadoras y a la medida, asegurando su viabilidad y apropiación."
+      title: "2. Co-creaci?n de Soluciones",
+      description: "Trabajamos de la mano con su equipo para dise?ar estrategias y soluciones innovadoras y a la medida, asegurando su viabilidad y apropiaci?n."
   },
   {
       icon: Rocket,
-      title: "3. Implementación y Acompañamiento",
+      title: "3. Implementaci?n y Acompa?amiento",
       description: "Apoyamos la puesta en marcha con un enfoque flexible, transfiriendo capacidades y ajustando el rumbo para garantizar resultados sostenibles."
   }
 ];
@@ -101,7 +101,7 @@ export default function PlesConsultingPage() {
                 PLES Consulting
               </h1>
               <p className="text-lg sm:text-xl text-foreground mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                Aliados estratégicos para la <strong className="text-primary">innovación y la transformación</strong>. Colaboramos con organizaciones para diseñar e implementar soluciones que generan un <strong className="text-accent">impacto positivo y duradero</strong>.
+                Aliados estrat?gicos para la <strong className="text-primary">innovaci?n y la transformaci?n</strong>. Colaboramos con organizaciones para dise?ar e implementar soluciones que generan un <strong className="text-accent">impacto positivo y duradero</strong>.
               </p>
               <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-10">
                 <Badge variant="default" className="text-md px-4 py-2 shadow-md">#EstrategiaOrganizacional</Badge>
@@ -111,7 +111,7 @@ export default function PlesConsultingPage() {
               <Button size="lg" variant="accent" className="text-lg px-8 py-3" asChild>
                 <Link href={`/forms?service=ples-consulting&subject=Consulta%20PLES%20Consulting`}>
                   <span className="flex items-center">
-                    Conversemos Sobre sus Desafíos <ArrowRight className="ml-2 h-5 w-5" />
+                    Conversemos Sobre sus Desaf?os <ArrowRight className="ml-2 h-5 w-5" />
                   </span>
                 </Link>
               </Button>
@@ -122,9 +122,9 @@ export default function PlesConsultingPage() {
 
       <section>
         <div className="w-full px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestras Áreas de Expertise</h2>
+            <h2 className="text-3xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestras ?reas de Expertise</h2>
             <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
-                Desde la planificación estratégica hasta la transformación digital, ofrecemos un abanico de servicios diseñados para potenciar el crecimiento y la eficiencia de su organización.
+                Desde la planificaci?n estrat?gica hasta la transformaci?n digital, ofrecemos un abanico de servicios dise?ados para potenciar el crecimiento y la eficiencia de su organizaci?n.
             </p>
             <div className="grid md:grid-cols-2 gap-8">
             {expertiseAreas.map((area) => {
@@ -179,7 +179,7 @@ export default function PlesConsultingPage() {
 
       <section className="py-12">
         <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Cómo Trabajamos: Nuestro Proceso Colaborativo</h2>
+            <h2 className="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">C?mo Trabajamos: Nuestro Proceso Colaborativo</h2>
             <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
                 Creemos en un enfoque participativo y adaptado a sus necesidades, asegurando soluciones pertinentes y sostenibles.
             </p>
@@ -215,9 +215,9 @@ export default function PlesConsultingPage() {
 
       <section className="py-12 bg-card shadow-xl">
         <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Metodologías y Herramientas que Potencian el Éxito</h2>
+          <h2 className="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Metodolog?as y Herramientas que Potencian el ?xito</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto mb-10">
-            Aplicamos un conjunto diverso de metodologías probadas y herramientas innovadoras para abordar sus desafíos desde múltiples perspectivas y asegurar resultados de alto impacto.
+            Aplicamos un conjunto diverso de metodolog?as probadas y herramientas innovadoras para abordar sus desaf?os desde m?ltiples perspectivas y asegurar resultados de alto impacto.
           </p>
           <div className="flex flex-wrap justify-center items-center gap-3">
             {methodologies.map((method) => (
@@ -237,9 +237,9 @@ export default function PlesConsultingPage() {
       <section className="text-center py-20 bg-primary text-primary-foreground animate-gradient bg-[length:200%_200%]">
         <div className="w-full px-4 sm:px-6 lg:px-8">
             <MessageSquare className="h-16 w-16 mx-auto mb-6 opacity-80" />
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Impulsemos Juntos la Próxima Etapa de su Organización</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Impulsemos Juntos la Pr?xima Etapa de su Organizaci?n</h2>
             <p className="text-lg md:text-xl mb-10 max-w-3xl mx-auto opacity-90">
-             Si busca un aliado estratégico para navegar la complejidad, innovar con propósito y alcanzar resultados extraordinarios, PLES Consulting es su socio ideal.
+             Si busca un aliado estrat?gico para navegar la complejidad, innovar con prop?sito y alcanzar resultados extraordinarios, PLES Consulting es su socio ideal.
             </p>
             <Button size="xl" variant="accent" className="text-lg px-10 py-4" asChild>
             <Link href={`/forms?service=ples-consulting&subject=Solicitud%20Asesoria%20Estrategica`}>

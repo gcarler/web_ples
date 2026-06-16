@@ -52,7 +52,7 @@ export default async function DashboardPage() {
           <div>
             <h1 className="text-3xl font-bold tracking-tight">Admin Dashboard</h1>
             <p className="text-muted-foreground">
-              Bienvenido al panel de administración de PLES. Desde aquí puede gestionar el contenido del sitio web y el acceso de los usuarios.
+              Bienvenido al panel de administraci?n de PLES. Desde aqu? puede gestionar el contenido del sitio web y el acceso de los usuarios.
             </p>
           </div>
       </div>
@@ -60,30 +60,30 @@ export default async function DashboardPage() {
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
         <FeatureCard
-          title="Gestión de Contenido"
-          description="Edite y actualice varias secciones de contenido de su sitio web público, como el texto de la página de inicio."
+          title="Gesti?n de Contenido"
+          description="Edite y actualice varias secciones de contenido de su sitio web p?blico, como el texto de la p?gina de inicio."
           icon={FileText}
           href="/admin/content-management"
           linkText="Ir a Contenido"
         />
         <FeatureCard
-          title="Gestión de Usuarios"
+          title="Gesti?n de Usuarios"
           description="Cree, vea y gestione cuentas de usuario y sus roles y permisos."
           icon={Users}
           href="/admin/users"
           linkText="Gestionar Usuarios"
         />
          <FeatureCard
-          title="Configuración"
-          description="Gestione la configuración global de la plataforma (próximamente)."
+          title="Configuraci?n"
+          description="Gestione la configuraci?n global de la plataforma (pr?ximamente)."
           icon={Settings}
           href="#"
           linkText="Configurar"
           disabled={true}
         />
          <FeatureCard
-          title="Ver Sitio Público"
-          description="Abra la página de inicio pública en una nueva pestaña para ver sus cambios en vivo."
+          title="Ver Sitio P?blico"
+          description="Abra la p?gina de inicio p?blica en una nueva pesta?a para ver sus cambios en vivo."
           icon={ExternalLink}
           href="/"
           linkText="Abrir Sitio"

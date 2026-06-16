@@ -47,8 +47,8 @@ export default function HomePageClient() {
 
   const heroStatements: HeroStatement[] = [
     {
-      title: "Datos, ingeniería y propósito para el desarrollo",
-      description: "De la idea a la acción: acompañamos gobiernos y empresas a generar impacto real.",
+      title: "Datos, ingenier?a y prop?sito para el desarrollo",
+      description: "De la idea a la acci?n: acompa?amos gobiernos y empresas a generar impacto real.",
       ctaText: "Empieza hoy",
       ctaLink: "/forms",
       ctaIconName: "Send",
@@ -56,17 +56,17 @@ export default function HomePageClient() {
       order: 1,
     },
     {
-      title: "Innovación que Impacta, Estrategias que Perduran",
-      description: "Creamos soluciones a medida que impulsan el progreso y construyen un legado sostenible para su organización.",
-      ctaText: "Conoce cómo",
+      title: "Innovaci?n que Impacta, Estrategias que Perduran",
+      description: "Creamos soluciones a medida que impulsan el progreso y construyen un legado sostenible para su organizaci?n.",
+      ctaText: "Conoce c?mo",
       ctaLink: "/innovacion-estrategias",
       ctaIconName: "BookOpen",
       ctaVariant: 'accent',
       order: 2,
     },
     {
-      title: "Soluciones Integrales para Desafíos Complejos",
-      description: "Tecnología, datos y estrategia al servicio de tus metas.",
+      title: "Soluciones Integrales para Desaf?os Complejos",
+      description: "Tecnolog?a, datos y estrategia al servicio de tus metas.",
       ctaText: "Explora Servicios",
       ctaLink: "/#nuestras-marcas",
       ctaIconName: "Layers",
@@ -78,14 +78,14 @@ export default function HomePageClient() {
   const metricsData = [
     [
       { icon: CheckCircle, text: "+15 proyectos ejecutados" },
-      { icon: Lightbulb, text: "+5000 horas de consultoría" },
+      { icon: Lightbulb, text: "+5000 horas de consultor?a" },
     ],
     [
-      { icon: Database, text: "42 sistemas de información desarrollados" },
+      { icon: Database, text: "42 sistemas de informaci?n desarrollados" },
       { icon: Building, text: "10+ sectores impactados" },
     ],
     [
-      { icon: UsersRound, text: "8 alianzas académicas y comunitarias" },
+      { icon: UsersRound, text: "8 alianzas acad?micas y comunitarias" },
       { icon: BrainCircuit, text: "+20 soluciones de IA implementadas" },
     ],
   ];
@@ -196,7 +196,7 @@ export default function HomePageClient() {
           <Button asChild size="lg" variant="accent">
             <Link href="/about">
               <span className="flex items-center">
-                Saber Más <ArrowRight className="ml-2 h-5 w-5" />
+                Saber M?s <ArrowRight className="ml-2 h-5 w-5" />
               </span>
             </Link>
           </Button>
@@ -207,14 +207,14 @@ export default function HomePageClient() {
         <div className="w-full px-4 sm:px-6 lg:px-8">
            <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
              <div className="order-first">
-               <h2 className="text-3xl lg:text-4xl font-bold mb-4">Nuestra Misión</h2>
+               <h2 className="text-3xl lg:text-4xl font-bold mb-4">Nuestra Misi?n</h2>
                <p className="text-lg lg:text-xl opacity-90 mb-8 leading-relaxed">
-                 Somos una empresa dedicada a ofrecer soluciones innovadoras y eficientes que impulsan el crecimiento y la transformación digital de nuestros clientes. Creemos en el poder de la tecnología para simplificar procesos y crear valor.
+                 Somos una empresa dedicada a ofrecer soluciones innovadoras y eficientes que impulsan el crecimiento y la transformaci?n digital de nuestros clientes. Creemos en el poder de la tecnolog?a para simplificar procesos y crear valor.
                </p>
                <Button asChild size="lg" variant="accent" className="bg-white/20 hover:bg-white/30 border border-white/50 backdrop-blur-sm">
                  <Link href="/about/mision">
                    <span className="flex items-center">
-                     Explora nuestra Misión <ArrowRight className="ml-2 h-5 w-5" />
+                     Explora nuestra Misi?n <ArrowRight className="ml-2 h-5 w-5" />
                    </span>
                  </Link>
                </Button>
@@ -250,10 +250,10 @@ export default function HomePageClient() {
             <h2 className="text-3xl font-bold text-center mb-10">Nuestras Marcas</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-                { title: 'Ples CREA', description: 'Cartografía y diseño geoespacial.', icon: Globe, href: "/ples-crea" },
-                { title: 'Ples TIC', description: 'Tecnologías de la información.', icon: Server, href: "/ples-tic" },
-                { title: 'Ples Catastro', description: 'Catastro y gestión territorial.', icon: HomeIcon, href: "/ples-catastro" },
-                { title: 'Ples Consulting', description: 'Consultoría estratégica.', icon: Lightbulb, href: "/ples-consulting" },
+                { title: 'Ples CREA', description: 'Cartograf?a y dise?o geoespacial.', icon: Globe, href: "/ples-crea" },
+                { title: 'Ples TIC', description: 'Tecnolog?as de la informaci?n.', icon: Server, href: "/ples-tic" },
+                { title: 'Ples Catastro', description: 'Catastro y gesti?n territorial.', icon: HomeIcon, href: "/ples-catastro" },
+                { title: 'Ples Consulting', description: 'Consultor?a estrat?gica.', icon: Lightbulb, href: "/ples-consulting" },
             ].map((marca) => {
               const MarcaIcon = marca.icon;
               return (
@@ -282,12 +282,12 @@ export default function HomePageClient() {
 
       <section className="py-16 bg-secondary">
          <div className="w-full px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center mb-10">Nuestro Público Objetivo</h2>
+            <h2 className="text-3xl font-bold text-center mb-10">Nuestro P?blico Objetivo</h2>
             <div className="grid md:grid-cols-3 gap-8">
              {[
-                { icon: Building, title: 'Sector Público', description: 'Ofrecemos soluciones adaptadas a las necesidades de entidades gubernamentales y administraciones públicas, mejorando la eficiencia y transparencia.'},
-                { icon: Handshake, title: 'Sector Privado', description: 'Impulsamos la competitividad de las empresas con herramientas tecnológicas y consultoría estratégica para optimizar sus operaciones.'},
-                { icon: Users, title: 'Sector Social y Comunitario', description: 'Colaboramos con organizaciones sin fines de lucro y comunidades para fortalecer su impacto social a través de la tecnología y la innovación.'},
+                { icon: Building, title: 'Sector P?blico', description: 'Ofrecemos soluciones adaptadas a las necesidades de entidades gubernamentales y administraciones p?blicas, mejorando la eficiencia y transparencia.'},
+                { icon: Handshake, title: 'Sector Privado', description: 'Impulsamos la competitividad de las empresas con herramientas tecnol?gicas y consultor?a estrat?gica para optimizar sus operaciones.'},
+                { icon: Users, title: 'Sector Social y Comunitario', description: 'Colaboramos con organizaciones sin fines de lucro y comunidades para fortalecer su impacto social a trav?s de la tecnolog?a y la innovaci?n.'},
              ].map((audience) => {
                 const AudienceIcon = audience.icon;
                 return (
@@ -310,9 +310,9 @@ export default function HomePageClient() {
 
       <section className="relative py-24 overflow-hidden bg-background">
         <div className="w-full px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h2 className="text-3xl font-bold mb-4 text-primary">¿Listo para Transformar su Organización?</h2>
+          <h2 className="text-3xl font-bold mb-4 text-primary">?Listo para Transformar su Organizaci?n?</h2>
           <p className="text-lg text-foreground mb-8 max-w-2xl mx-auto">
-            Contáctenos hoy mismo para descubrir cómo nuestras soluciones pueden ayudarle a alcanzar sus objetivos.
+            Cont?ctenos hoy mismo para descubrir c?mo nuestras soluciones pueden ayudarle a alcanzar sus objetivos.
           </p>
           <Button size="lg" variant="accent" asChild>
              <Link href="/forms">
@@ -329,8 +329,8 @@ export default function HomePageClient() {
             <h2 className="text-3xl font-bold text-center mb-10">Testimonios</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-                { name: 'Ruth Gutierrez', title: 'Directora OEDS, Universidad de Cartagena', text: '¡Increíble servicio! Superaron nuestras expectativas.', image: 'https://placehold.co/100x100.png', hint: 'person face director' },
-                { name: 'Olga Montes', title: 'Directora, Corporación Rhema', text: 'La implementación fue fluida y el soporte excelente.', image: 'https://placehold.co/100x100.png', hint: 'person face director' },
+                { name: 'Ruth Gutierrez', title: 'Directora OEDS, Universidad de Cartagena', text: '?Incre?ble servicio! Superaron nuestras expectativas.', image: 'https://placehold.co/100x100.png', hint: 'person face director' },
+                { name: 'Olga Montes', title: 'Directora, Corporaci?n Rhema', text: 'La implementaci?n fue fluida y el soporte excelente.', image: 'https://placehold.co/100x100.png', hint: 'person face director' },
                 { name: 'Mary Janacet', title: 'CEO, Betrip', text: 'Nos ayudaron a optimizar nuestros procesos clave.', image: 'https://placehold.co/100x100.png', hint: 'person face ceo' },
             ].map((testimonial) => (
                 <Card key={testimonial.name} className="flex flex-col">

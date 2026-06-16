@@ -15,7 +15,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Mail } from 'lucide-react';
 
 const formSchema = z.object({
-  email: z.string().email({ message: "Por favor, ingresa una dirección de correo electrónico válida." }),
+  email: z.string().email({ message: "Por favor, ingresa una direcci?n de correo electr?nico v?lida." }),
 });
 
 type ForgotPasswordFormData = z.infer<typeof formSchema>;
@@ -38,28 +38,28 @@ export function ForgotPasswordForm() {
     setMessage(null);
 
     if (!auth) {
-        const configError = "Firebase no está configurado. No se puede enviar el correo de restablecimiento.";
+        const configError = "Firebase no est? configurado. No se puede enviar el correo de restablecimiento.";
         setMessage({ type: 'error', text: configError });
-        toast({ title: 'Error de Configuración', description: configError, variant: 'destructive' });
+        toast({ title: 'Error de Configuraci?n', description: configError, variant: 'destructive' });
         setIsLoading(false);
         return;
     }
 
     try {
       await sendPasswordResetEmail(auth, data.email);
-      setMessage({ type: 'success', text: '¡Correo de restablecimiento enviado! Revisa tu bandeja de entrada.' });
+      setMessage({ type: 'success', text: '?Correo de restablecimiento enviado! Revisa tu bandeja de entrada.' });
       toast({
         title: 'Correo Enviado',
-        description: 'Las instrucciones para restablecer tu contraseña han sido enviadas a tu correo.',
+        description: 'Las instrucciones para restablecer tu contrase?a han sido enviadas a tu correo.',
       });
       form.reset(); // Reset form on success
     } catch (error: any) {
       console.error('Password Reset Error:', error);
-      let errorMessage = 'No se pudo enviar el correo de restablecimiento. Por favor, inténtalo de nuevo.';
+      let errorMessage = 'No se pudo enviar el correo de restablecimiento. Por favor, int?ntalo de nuevo.';
       if (error.code === 'auth/user-not-found') {
-        errorMessage = 'No se encontró ningún usuario con esta dirección de correo electrónico.';
+        errorMessage = 'No se encontr? ning?n usuario con esta direcci?n de correo electr?nico.';
       } else if (error.code === 'auth/invalid-email') {
-          errorMessage = 'Por favor, ingresa una dirección de correo electrónico válida.';
+          errorMessage = 'Por favor, ingresa una direcci?n de correo electr?nico v?lida.';
       }
       setMessage({ type: 'error', text: errorMessage });
       toast({
@@ -80,7 +80,7 @@ export function ForgotPasswordForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Dirección de Correo Electrónico</FormLabel>
+              <FormLabel>Direcci?n de Correo Electr?nico</FormLabel>
               <FormControl>
                 <div className="relative">
                    <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />

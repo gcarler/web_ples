@@ -72,7 +72,7 @@ const ServiceLayoutClient: React.FC<React.PropsWithChildren<ServiceLayoutProps>>
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12">
           <aside className="lg:col-span-1 lg:sticky top-24 self-start">
             <nav className="space-y-2">
-                <h3 className="font-semibold text-lg mb-3">En esta página</h3>
+                <h3 className="font-semibold text-lg mb-3">En esta p?gina</h3>
                 {sections.map(section => (
                     <a
                         key={section.id}
@@ -107,19 +107,19 @@ export default function ServiceLayout({ children }: { children: React.ReactNode 
     const serviceDetails = {
         '/ples-tic/desarrollo-software': {
             pageTitle: 'Desarrollo de Software a Medida',
-            pageSubtitle: 'Construimos soluciones tecnológicas precisas, robustas y escalables que se alinean perfectamente con sus objetivos de negocio.',
+            pageSubtitle: 'Construimos soluciones tecnol?gicas precisas, robustas y escalables que se alinean perfectamente con sus objetivos de negocio.',
             sections: [
-                { id: 'introduccion', title: 'Introducción' },
-                { id: 'nuestra-metodologia', title: 'Nuestra Metodología' },
-                { id: 'stack-tecnologico', title: 'Stack Tecnológico' },
+                { id: 'introduccion', title: 'Introducci?n' },
+                { id: 'nuestra-metodologia', title: 'Nuestra Metodolog?a' },
+                { id: 'stack-tecnologico', title: 'Stack Tecnol?gico' },
                 { id: 'casos-de-uso', title: 'Casos de Uso' },
             ]
         },
         '/ples-tic/soluciones-cloud': {
             pageTitle: 'Soluciones Cloud y DevOps',
-            pageSubtitle: 'Diseñamos arquitecturas cloud-native y optimizamos operaciones con prácticas DevOps para máxima eficiencia, escalabilidad y seguridad.',
+            pageSubtitle: 'Dise?amos arquitecturas cloud-native y optimizamos operaciones con pr?cticas DevOps para m?xima eficiencia, escalabilidad y seguridad.',
             sections: [
-                { id: 'introduccion', title: 'Introducción' },
+                { id: 'introduccion', title: 'Introducci?n' },
                 { id: 'servicios-cloud', title: 'Servicios Cloud' },
                 { id: 'enfoque-devops', title: 'Nuestro Enfoque DevOps' },
                 { id: 'plataformas-principales', title: 'Plataformas Principales' },
@@ -127,31 +127,31 @@ export default function ServiceLayout({ children }: { children: React.ReactNode 
         },
         '/ples-tic/ciberseguridad': {
             pageTitle: 'Ciberseguridad Avanzada',
-            pageSubtitle: 'Protegemos sus activos digitales más críticos con una estrategia de ciberseguridad 360°, desde la prevención hasta la respuesta a incidentes.',
+            pageSubtitle: 'Protegemos sus activos digitales m?s cr?ticos con una estrategia de ciberseguridad 360°, desde la prevenci?n hasta la respuesta a incidentes.',
             sections: [
-                { id: 'introduccion', title: 'Introducción' },
+                { id: 'introduccion', title: 'Introducci?n' },
                 { id: 'nuestro-enfoque', title: 'Nuestro Enfoque 360°' },
                 { id: 'servicios-clave', title: 'Servicios Clave' },
                 { id: 'marcos-de-referencia', title: 'Marcos de Referencia' },
             ]
         },
         '/ples-tic/analisis-datos-bi': {
-            pageTitle: 'Análisis de Datos e Inteligencia de Negocio',
-            pageSubtitle: 'Convertimos sus datos crudos en insights estratégicos, impulsando una toma de decisiones informada y una ventaja competitiva sostenible.',
+            pageTitle: 'An?lisis de Datos e Inteligencia de Negocio',
+            pageSubtitle: 'Convertimos sus datos crudos en insights estrat?gicos, impulsando una toma de decisiones informada y una ventaja competitiva sostenible.',
             sections: [
-                { id: 'introduccion', title: 'Introducción' },
+                { id: 'introduccion', title: 'Introducci?n' },
                 { id: 'nuestros-servicios-bi', title: 'Nuestros Servicios de BI' },
                 { id: 'proceso-de-datos', title: 'Nuestro Proceso de Datos' },
                 { id: 'herramientas', title: 'Herramientas que Dominamos' },
             ]
         },
         '/ples-tic/automatizacion-ia': {
-            pageTitle: 'Automatización Inteligente con IA',
+            pageTitle: 'Automatizaci?n Inteligente con IA',
             pageSubtitle: 'Implementamos soluciones de Inteligencia Artificial para automatizar procesos, optimizar operaciones y descubrir nuevas oportunidades de negocio.',
             sections: [
-                { id: 'introduccion', title: 'Introducción' },
+                { id: 'introduccion', title: 'Introducci?n' },
                 { id: 'capacidades-ia', title: 'Capacidades en IA' },
-                { id: 'nuestro-proceso', title: 'Nuestro Proceso de Implementación' },
+                { id: 'nuestro-proceso', title: 'Nuestro Proceso de Implementaci?n' },
                 { id: 'casos-de-uso', title: 'Casos de Uso' },
             ]
         }

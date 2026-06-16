@@ -21,75 +21,75 @@ const services = [
     {
       slug: 'levantamiento-predial',
       icon: MapPin,
-      title: 'Levantamiento Predial Multipropósito',
-      description: 'Levantamientos catastrales precisos (urbanos y rurales) con fines fiscales, jurídicos y económicos.',
+      title: 'Levantamiento Predial Multiprop?sito',
+      description: 'Levantamientos catastrales precisos (urbanos y rurales) con fines fiscales, jur?dicos y econ?micos.',
       details: {
         mainIcon: MapPin,
-        title: 'Levantamiento Predial Multipropósito',
-        description: 'Ejecutamos levantamientos catastrales precisos (urbanos y rurales) con fines fiscales, jurídicos, económicos y sociales. Aplicamos <strong class="text-primary group-hover:text-accent transition-colors">el uso inteligente de la experiencia</strong>, metodologías científicas y tecnología de vanguardia para garantizar información territorial confiable, optimizar tiempos y costos, y entregar productos de alta calidad.',
-        keyServicesHeading: 'Características Clave del Servicio:',
+        title: 'Levantamiento Predial Multiprop?sito',
+        description: 'Ejecutamos levantamientos catastrales precisos (urbanos y rurales) con fines fiscales, jur?dicos, econ?micos y sociales. Aplicamos <strong class="text-primary group-hover:text-accent transition-colors">el uso inteligente de la experiencia</strong>, metodolog?as cient?ficas y tecnolog?a de vanguardia para garantizar informaci?n territorial confiable, optimizar tiempos y costos, y entregar productos de alta calidad.',
+        keyServicesHeading: 'Caracter?sticas Clave del Servicio:',
         keyServices: [ 
           { title: 'Cobertura Exhaustiva', text: 'Levantamientos detallados en zonas urbanas y rurales, adaptados a las particularidades de cada territorio.', icon: 'GlobeIcon' },
-          { title: 'Tecnología de Precisión', text: 'Uso de GPS RTK/PPK, drones con sensores LiDAR/Fotogramétricos y estaciones totales robóticas para máxima exactitud.', icon: 'CpuIcon' },
-          { title: 'Integración SIG', text: 'Compatibilidad nativa con Sistemas de Información Geográfica (SIG) y Bases de Datos Espaciales para una gestión eficiente.', icon: 'LayersIcon' },
-          { title: 'Soporte a la Formalización', text: 'Asesoría técnica y metodológica para la formalización de la propiedad y regularización de la tenencia de la tierra.', icon: 'DraftingCompassIcon' },
+          { title: 'Tecnolog?a de Precisi?n', text: 'Uso de GPS RTK/PPK, drones con sensores LiDAR/Fotogram?tricos y estaciones totales rob?ticas para m?xima exactitud.', icon: 'CpuIcon' },
+          { title: 'Integraci?n SIG', text: 'Compatibilidad nativa con Sistemas de Informaci?n Geogr?fica (SIG) y Bases de Datos Espaciales para una gesti?n eficiente.', icon: 'LayersIcon' },
+          { title: 'Soporte a la Formalizaci?n', text: 'Asesor?a t?cnica y metodol?gica para la formalizaci?n de la propiedad y regularizaci?n de la tenencia de la tierra.', icon: 'DraftingCompassIcon' },
         ],
-        methodologyHeading: 'Nuestra Metodología Avanzada:',
+        methodologyHeading: 'Nuestra Metodolog?a Avanzada:',
         methodology: [
           {
             icon: 'Settings',
-            title: "Planificación Detallada y Científica",
-            text: "Definimos alcances, seleccionamos tecnologías óptimas y diseñamos flujos de trabajo eficientes basados en análisis técnico y nuestra vasta experiencia."
+            title: "Planificaci?n Detallada y Cient?fica",
+            text: "Definimos alcances, seleccionamos tecnolog?as ?ptimas y dise?amos flujos de trabajo eficientes basados en an?lisis t?cnico y nuestra vasta experiencia."
           },
           {
             icon: 'TargetIcon',
-            title: "Captura de Datos de Alta Precisión",
-            text: "Utilizamos GPS RTK/PPK, estaciones totales robóticas y drones equipados con sensores LiDAR o fotogramétricos para garantizar la máxima exactitud en campo."
+            title: "Captura de Datos de Alta Precisi?n",
+            text: "Utilizamos GPS RTK/PPK, estaciones totales rob?ticas y drones equipados con sensores LiDAR o fotogram?tricos para garantizar la m?xima exactitud en campo."
           },
           {
             icon: 'CpuIcon',
             title: "Procesamiento y Modelado Avanzado",
-            text: "Empleamos software especializado y algoritmos de IA para el procesamiento de datos, generación de Modelos Digitales de Terreno (MDT), Modelos Digitales de Superficie (MDS) y ortofotomosaicos."
+            text: "Empleamos software especializado y algoritmos de IA para el procesamiento de datos, generaci?n de Modelos Digitales de Terreno (MDT), Modelos Digitales de Superficie (MDS) y ortofotomosaicos."
           },
           {
             icon: 'CheckCircleIcon',
-            title: "Integración y Validación Rigurosa",
-            text: "Consolidamos información física, jurídica y económica en SIG, aplicando controles de calidad continuos para asegurar la consistencia y fiabilidad de los datos."
+            title: "Integraci?n y Validaci?n Rigurosa",
+            text: "Consolidamos informaci?n f?sica, jur?dica y econ?mica en SIG, aplicando controles de calidad continuos para asegurar la consistencia y fiabilidad de los datos."
           }
         ],
         benefitsHeading: 'Beneficios de Nuestro Levantamiento Predial:',
         benefits: [
-          { icon: 'BarChart3Icon', title: "Base Catastral Precisa", text: "Fundamento sólido para la toma de decisiones estratégicas y gestión territorial." },
-          { icon: 'ShieldCheckIcon', title: "Seguridad Jurídica", text: "Facilita la formalización, reduce conflictos y optimiza la recaudación." },
-          { icon: 'Clock', title: "Eficiencia y Ahorro", text: "Optimización de tiempos y costos operativos gracias a tecnología y experiencia." }
+          { icon: 'BarChart3Icon', title: "Base Catastral Precisa", text: "Fundamento s?lido para la toma de decisiones estrat?gicas y gesti?n territorial." },
+          { icon: 'ShieldCheckIcon', title: "Seguridad Jur?dica", text: "Facilita la formalizaci?n, reduce conflictos y optimiza la recaudaci?n." },
+          { icon: 'Clock', title: "Eficiencia y Ahorro", text: "Optimizaci?n de tiempos y costos operativos gracias a tecnolog?a y experiencia." }
         ],
-        ctaText: 'Solicitar Asesoría Especializada',
+        ctaText: 'Solicitar Asesor?a Especializada',
         formSubject: 'Consulta%20Levantamiento%20Predial'
       }
     },
     {
       slug: 'actualizacion-mantenimiento-catastral',
       icon: FileText,
-      title: 'Actualización y Mantenimiento Catastral',
-      description: 'Procesos continuos y automatizados para mantener la información catastral actualizada y confiable.',
+      title: 'Actualizaci?n y Mantenimiento Catastral',
+      description: 'Procesos continuos y automatizados para mantener la informaci?n catastral actualizada y confiable.',
       details: {
         mainIcon: FileText,
-        title: 'Actualización y Mantenimiento Catastral',
-        description: 'Implementamos procesos continuos y automatizados para mantener la información catastral actualizada, confiable y accesible, asegurando la integridad y disponibilidad de los datos para la toma de decisiones estratégicas y la gestión territorial eficiente.',
+        title: 'Actualizaci?n y Mantenimiento Catastral',
+        description: 'Implementamos procesos continuos y automatizados para mantener la informaci?n catastral actualizada, confiable y accesible, asegurando la integridad y disponibilidad de los datos para la toma de decisiones estrat?gicas y la gesti?n territorial eficiente.',
         keyServicesHeading: 'Componentes Esenciales del Servicio:',
         keyServices: [
-          { title: 'Flujos de Trabajo Digitales', text: 'Diseño e implementación de procesos optimizados y automatizados para la gestión de novedades catastrales y la actualización continua de la base de datos.', icon: 'Settings' },
-          { title: 'Monitoreo Continuo de Cambios', text: 'Uso de tecnologías como teledetección y análisis de imágenes para identificar cambios en el territorio y activar los procesos de actualización correspondientes.', icon: 'MonitorPlay' },
-          { title: 'Interoperabilidad de Sistemas', text: 'Aseguramos la conexión fluida entre el sistema catastral y otras plataformas relevantes (Registro, Notariado, Planeación) para un intercambio de información eficiente.', icon: 'BarChart3' },
-          { title: 'Capacitación y Soporte Técnico', text: 'Programas de formación para el personal encargado del catastro y soporte continuo para garantizar la correcta operación y mantenimiento del sistema.', icon: 'Users' },
+          { title: 'Flujos de Trabajo Digitales', text: 'Dise?o e implementaci?n de procesos optimizados y automatizados para la gesti?n de novedades catastrales y la actualizaci?n continua de la base de datos.', icon: 'Settings' },
+          { title: 'Monitoreo Continuo de Cambios', text: 'Uso de tecnolog?as como teledetecci?n y an?lisis de im?genes para identificar cambios en el territorio y activar los procesos de actualizaci?n correspondientes.', icon: 'MonitorPlay' },
+          { title: 'Interoperabilidad de Sistemas', text: 'Aseguramos la conexi?n fluida entre el sistema catastral y otras plataformas relevantes (Registro, Notariado, Planeaci?n) para un intercambio de informaci?n eficiente.', icon: 'BarChart3' },
+          { title: 'Capacitaci?n y Soporte T?cnico', text: 'Programas de formaci?n para el personal encargado del catastro y soporte continuo para garantizar la correcta operaci?n y mantenimiento del sistema.', icon: 'Users' },
         ],
         benefitsHeading: 'Beneficios Clave para su Entidad:',
         benefits: [
-          'Información Catastral Siempre Precisa y Actualizada',
+          'Informaci?n Catastral Siempre Precisa y Actualizada',
           'Mayor Confiabilidad en los Datos para la Toma de Decisiones',
-          'Optimización de Procesos y Reducción de Tiempos Operativos',
-          'Facilita la Gestión Fiscal y la Planificación Territorial',
-          'Transparencia y Acceso Mejorado a la Información',
+          'Optimizaci?n de Procesos y Reducci?n de Tiempos Operativos',
+          'Facilita la Gesti?n Fiscal y la Planificaci?n Territorial',
+          'Transparencia y Acceso Mejorado a la Informaci?n',
         ],
         ctaText: 'Optimice su Mantenimiento Catastral',
         formSubject: 'Consulta%20Actualizacion%20Mantenimiento%20Catastral'
@@ -98,28 +98,28 @@ const services = [
     {
       slug: 'avaluos-catastrales',
       icon: Scale,
-      title: 'Avalúos Masivos y Puntuales',
-      description: 'Valoraciones de propiedades con metodologías robustas para una base imponible justa.',
+      title: 'Aval?os Masivos y Puntuales',
+      description: 'Valoraciones de propiedades con metodolog?as robustas para una base imponible justa.',
       details: {
         mainIcon: ScaleIcon,
-        title: 'Avalúos Masivos y Puntuales',
-        description: 'Realizamos valoraciones de propiedades con metodologías robustas y transparentes, tanto para procesos masivos como para avalúos individuales, asegurando una base imponible justa y una gestión eficiente de activos públicos y privados.',
+        title: 'Aval?os Masivos y Puntuales',
+        description: 'Realizamos valoraciones de propiedades con metodolog?as robustas y transparentes, tanto para procesos masivos como para aval?os individuales, asegurando una base imponible justa y una gesti?n eficiente de activos p?blicos y privados.',
         keyServicesHeading: 'Aspectos Destacados del Servicio:',
         keyServices: [
-          { title: 'Modelos de Valoración Automatizada (AVM)', text: 'Desarrollo e implementación de modelos econométricos y algoritmos de IA para la valoración masiva de predios, garantizando eficiencia y consistencia.', icon: 'BarChart3' },
-          { title: 'Análisis de Mercado Inmobiliario', text: 'Estudios detallados del comportamiento del mercado inmobiliario, identificación de zonas homogéneas físicas y geoeconómicas para fundamentar las valoraciones.', icon: 'TrendingUpIcon' },
-          { title: 'Cumplimiento Normativo y Estándares', text: 'Aplicación de metodologías y normativas vigentes (nacionales e internacionales como IVSC) para asegurar la validez y legalidad de los avalúos.', icon: 'ClipboardCheck' },
-          { title: 'Informes Detallados y Sustentados', text: 'Generación de informes técnicos completos y comprensibles que detallan la metodología, fuentes de información y resultados de la valoración.', icon: 'FileTextIcon' },
+          { title: 'Modelos de Valoraci?n Automatizada (AVM)', text: 'Desarrollo e implementaci?n de modelos econom?tricos y algoritmos de IA para la valoraci?n masiva de predios, garantizando eficiencia y consistencia.', icon: 'BarChart3' },
+          { title: 'An?lisis de Mercado Inmobiliario', text: 'Estudios detallados del comportamiento del mercado inmobiliario, identificaci?n de zonas homog?neas f?sicas y geoecon?micas para fundamentar las valoraciones.', icon: 'TrendingUpIcon' },
+          { title: 'Cumplimiento Normativo y Est?ndares', text: 'Aplicaci?n de metodolog?as y normativas vigentes (nacionales e internacionales como IVSC) para asegurar la validez y legalidad de los aval?os.', icon: 'ClipboardCheck' },
+          { title: 'Informes Detallados y Sustentados', text: 'Generaci?n de informes t?cnicos completos y comprensibles que detallan la metodolog?a, fuentes de informaci?n y resultados de la valoraci?n.', icon: 'FileTextIcon' },
         ],
-        benefitsHeading: 'Beneficios de Nuestros Servicios de Avalúos:',
+        benefitsHeading: 'Beneficios de Nuestros Servicios de Aval?os:',
         benefits: [
           'Base Gravable Actualizada y Equitativa para Impuestos Prediales',
-          'Valoración Precisa para Transacciones Inmobiliarias',
-          'Soporte Técnico para Expropiaciones y Procesos Jurídicos',
-          'Optimización de la Gestión de Activos Inmobiliarios',
-          'Transparencia en los Procesos de Valoración Catastral',
+          'Valoraci?n Precisa para Transacciones Inmobiliarias',
+          'Soporte T?cnico para Expropiaciones y Procesos Jur?dicos',
+          'Optimizaci?n de la Gesti?n de Activos Inmobiliarios',
+          'Transparencia en los Procesos de Valoraci?n Catastral',
         ],
-        ctaText: 'Solicite su Avalúo Profesional',
+        ctaText: 'Solicite su Aval?o Profesional',
         formSubject: 'Consulta%20Avaluos'
       }
     },
@@ -127,26 +127,26 @@ const services = [
       slug: 'planes-ordenamiento-territorial',
       icon: Home,
       title: 'Planes de Ordenamiento Territorial (POT)',
-      description: 'Planes estratégicos que guían el crecimiento sostenible y la ocupación eficiente del territorio.',
+      description: 'Planes estrat?gicos que gu?an el crecimiento sostenible y la ocupaci?n eficiente del territorio.',
       details: {
         mainIcon: Home,
         title: 'Planes de Ordenamiento Territorial (POT)',
-        description: 'Desarrollamos e implementamos planes estratégicos integrales que guían el crecimiento sostenible y la ocupación eficiente del territorio, promoviendo la equidad social, la protección ambiental y el desarrollo económico.',
+        description: 'Desarrollamos e implementamos planes estrat?gicos integrales que gu?an el crecimiento sostenible y la ocupaci?n eficiente del territorio, promoviendo la equidad social, la protecci?n ambiental y el desarrollo econ?mico.',
         keyServicesHeading: 'Elementos Clave de Nuestros POT:',
         keyServices: [
-          { title: 'Diagnóstico Territorial Integral', text: 'Análisis exhaustivo de las dinámicas físicas, sociales, económicas y ambientales del territorio para identificar potencialidades y problemáticas.', icon: 'Map' },
-          { title: 'Participación Ciudadana Estratégica', text: 'Diseño y facilitación de procesos participativos inclusivos para asegurar la legitimidad y apropiación social del plan.', icon: 'Users' },
-          { title: 'Zonificación y Usos del Suelo', text: 'Definición de zonas con usos específicos (residencial, comercial, industrial, protección, etc.) y normativas asociadas para orientar el desarrollo.', icon: 'Layers' },
-          { title: 'Instrumentos de Gestión y Seguimiento', text: 'Desarrollo de herramientas y mecanismos para la implementación, monitoreo y evaluación continua del POT, asegurando su efectividad a largo plazo.', icon: 'Edit3' },
+          { title: 'Diagn?stico Territorial Integral', text: 'An?lisis exhaustivo de las din?micas f?sicas, sociales, econ?micas y ambientales del territorio para identificar potencialidades y problem?ticas.', icon: 'Map' },
+          { title: 'Participaci?n Ciudadana Estrat?gica', text: 'Dise?o y facilitaci?n de procesos participativos inclusivos para asegurar la legitimidad y apropiaci?n social del plan.', icon: 'Users' },
+          { title: 'Zonificaci?n y Usos del Suelo', text: 'Definici?n de zonas con usos espec?ficos (residencial, comercial, industrial, protecci?n, etc.) y normativas asociadas para orientar el desarrollo.', icon: 'Layers' },
+          { title: 'Instrumentos de Gesti?n y Seguimiento', text: 'Desarrollo de herramientas y mecanismos para la implementaci?n, monitoreo y evaluaci?n continua del POT, asegurando su efectividad a largo plazo.', icon: 'Edit3' },
         ],
-        benefitsHeading: 'Beneficios de un POT Estratégico:',
+        benefitsHeading: 'Beneficios de un POT Estrat?gico:',
         benefits: [
           'Desarrollo Urbano y Rural Ordenado y Sostenible',
           'Mejora de la Calidad de Vida de los Habitantes',
-          'Protección del Patrimonio Natural y Cultural',
-          'Atracción de Inversiones y Fomento Económico',
+          'Protecci?n del Patrimonio Natural y Cultural',
+          'Atracci?n de Inversiones y Fomento Econ?mico',
           'Fortalecimiento de la Gobernanza Territorial',
-          'Reducción de Vulnerabilidades y Riesgos',
+          'Reducci?n de Vulnerabilidades y Riesgos',
         ],
         ctaText: 'Planifique el Futuro de su Territorio',
         formSubject: 'Consulta%20Planes%20Ordenamiento%20Territorial'
@@ -257,7 +257,7 @@ const RenderDetailView = ({ service }: { service: any }) => {
                 <Button size="lg" variant="accent" asChild className="text-lg px-8 py-4">
                     <Link href={`/forms?service=${service.slug}&subject=${details.formSubject}`}>
                         <span className="flex items-center">
-                            {details.ctaText || 'Solicitar Información'} <ArrowRight className="ml-2 h-5 w-5" />
+                            {details.ctaText || 'Solicitar Informaci?n'} <ArrowRight className="ml-2 h-5 w-5" />
                         </span>
                     </Link>
                 </Button>
@@ -320,11 +320,11 @@ const PlesCatastroPageContent = () => {
                                 PLES Catastro
                             </h1>
                             <p className="text-lg sm:text-xl text-foreground mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                                Expertos en <strong className="text-primary">gestión territorial y catastral</strong> con enfoque multipropósito. Modernizamos la administración del territorio aplicando <strong className="text-accent">tecnología de vanguardia y metodologías científicas</strong> para garantizar la seguridad jurídica y el desarrollo sostenible.
+                                Expertos en <strong className="text-primary">gesti?n territorial y catastral</strong> con enfoque multiprop?sito. Modernizamos la administraci?n del territorio aplicando <strong className="text-accent">tecnolog?a de vanguardia y metodolog?as cient?ficas</strong> para garantizar la seguridad jur?dica y el desarrollo sostenible.
                             </p>
                             <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-10">
-                                <Badge variant="default" className="text-md px-4 py-2 shadow-md">#CatastroMultipropósito</Badge>
-                                <Badge variant="default" className="text-md px-4 py-2 shadow-md">#GestiónTerritorial</Badge>
+                                <Badge variant="default" className="text-md px-4 py-2 shadow-md">#CatastroMultiprop?sito</Badge>
+                                <Badge variant="default" className="text-md px-4 py-2 shadow-md">#Gesti?nTerritorial</Badge>
                                 <Badge variant="default" className="text-md px-4 py-2 shadow-md">#SIG</Badge>
                             </div>
                             <Button size="lg" variant="accent" className="text-lg px-8 py-3" asChild>

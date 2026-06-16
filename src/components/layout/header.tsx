@@ -1,5 +1,4 @@
-// src/components/layout/header.tsx
-'use client';
+﻿'use client';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { LogIn, LogOut, LayoutDashboard, ChevronDown } from 'lucide-react';
@@ -20,14 +19,16 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { PlesGroupLogo } from '@/components/logo';
 import React from 'react';
 import { cn } from '@/lib/utils';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export function Header() {
   const { user, loading, userProfile } = useAuth();
+  const { language, setLanguage, t } = useLanguage();
   const auth = app ? getAuth(app) : null;
   const { toast } = useToast();
   const router = useRouter();
   const pathname = usePathname();
-  
+
   const handleLogout = async () => {
     if (!auth) {
         toast({
@@ -44,7 +45,7 @@ export function Header() {
         title: 'Logged Out',
         description: `Successfully logged out ${userProfile?.email || ''}.`,
       });
-      router.push(`/login`); 
+      router.push(`/login`);
     } catch (error) {
       console.error('Logout Error:', error);
       toast({
@@ -54,9 +55,9 @@ export function Header() {
       });
     }
   };
-  
+
   const navLinks = [
-    { href: `/about`, label: "Sobre Nosotros" },
+    { href: `/about`, label: t.Header.about },
     { href: `/ples-crea`, label: "PLES CREA" },
     { href: `/ples-tic`, label: "PLES TIC" },
     { href: `/ples-catastro`, label: "PLES Catastro" },
@@ -93,8 +94,20 @@ export function Header() {
                    );
                })}
            </div>
-          
+
           <ThemeToggle />
+          
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="sm" className="w-9 px-0 font-bold text-xs">
+                {language.toUpperCase()}
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem onClick={() => setLanguage('es')}>ES</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setLanguage('en')}>EN</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
 
           {!loading && (
             user ? (
@@ -125,7 +138,7 @@ export function Header() {
                 <Link href={`/login`}>
                   <span className="flex items-center">
                     <LogIn className="mr-2 h-4 w-4" />
-                    Iniciar Sesión
+                    {t.Header.login}
                   </span>
                 </Link>
               </Button>

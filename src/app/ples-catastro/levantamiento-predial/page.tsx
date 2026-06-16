@@ -13,14 +13,14 @@ export default function DeprecatedLevantamientoPage() {
           <div className="mx-auto p-3 bg-primary/10 rounded-full w-fit mb-4">
             <Info className="h-12 w-12 text-primary" />
           </div>
-          <CardTitle className="text-2xl font-bold">Página Reubicada</CardTitle>
+          <CardTitle className="text-2xl font-bold">P?gina Reubicada</CardTitle>
           <CardDescription className="text-muted-foreground mt-2">
-            El contenido de esta página ahora se muestra de forma interactiva.
+            El contenido de esta p?gina ahora se muestra de forma interactiva.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <p className="text-muted-foreground">
-            Para una mejor experiencia, por favor explora nuestros servicios directamente en la página principal de PLES Catastro.
+            Para una mejor experiencia, por favor explora nuestros servicios directamente en la p?gina principal de PLES Catastro.
           </p>
           <Button asChild size="lg" variant="accent">
             <Link href="/ples-catastro">

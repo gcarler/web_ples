@@ -35,7 +35,7 @@ export function ChatAssistant() {
       setMessages([
         {
           role: 'assistant',
-          content: '¡Hola! Soy el asistente de PLES. ¿En qué puedo ayudarte a encontrar hoy?',
+          content: '?Hola! Soy el asistente de PLES. ?En qu? puedo ayudarte a encontrar hoy?',
         },
       ]);
     }
@@ -61,7 +61,7 @@ export function ChatAssistant() {
       console.error('Error calling assistant flow:', error);
       const errorMessage: Message = {
         role: 'assistant',
-        content: 'Lo siento, he encontrado un problema. Por favor, inténtalo de nuevo más tarde.',
+        content: 'Lo siento, he encontrado un problema. Por favor, int?ntalo de nuevo m?s tarde.',
       };
       setMessages((prev) => [...prev, errorMessage]);
     } finally {

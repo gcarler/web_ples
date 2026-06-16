@@ -8,6 +8,7 @@ import { AuthProvider } from '@/contexts/AuthContext';
 import { ThemeProvider } from "next-themes";
 import { Comfortaa } from "next/font/google";
 import { Toaster } from '@/components/ui/toaster';
+import { LanguageProvider } from '@/contexts/LanguageContext';
 import { ChatAssistant } from '@/components/ai/chat-assistant';
 
 const comfortaa = Comfortaa({ 
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
             enableSystem
             disableTransitionOnChange
         >
+            <LanguageProvider>
             <AuthProvider>
                 <Header />
                 <main className="flex-grow w-full">{children}</main>
@@ -33,6 +35,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
                 <Toaster />
                 <ChatAssistant />
             </AuthProvider>
+            </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

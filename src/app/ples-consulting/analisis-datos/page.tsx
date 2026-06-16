@@ -10,47 +10,47 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 const pageDetails = {
     parentLink: "/ples-consulting",
     parentName: "PLES Consulting",
-    title: "Análisis de Datos Avanzado",
-    subtitle: "Transformamos datos crudos en decisiones estratégicas, combinando métodos cualitativos y cuantitativos para una comprensión 360°.",
+    title: "An?lisis de Datos Avanzado",
+    subtitle: "Transformamos datos crudos en decisiones estrat?gicas, combinando m?todos cualitativos y cuantitativos para una comprensi?n 360°.",
 };
 
 const keyPrinciples = [
     {
         icon: Database,
-        title: "Integración de Fuentes",
-        description: "Unificamos datos de múltiples orígenes (encuestas, entrevistas, bases de datos, redes sociales) para crear una visión completa y sin silos."
+        title: "Integraci?n de Fuentes",
+        description: "Unificamos datos de m?ltiples or?genes (encuestas, entrevistas, bases de datos, redes sociales) para crear una visi?n completa y sin silos."
     },
     {
         icon: BarChart3,
         title: "Rigor Cuantitativo",
-        description: "Aplicamos modelos estadísticos y algoritmos de machine learning para identificar patrones, correlaciones y tendencias predictivas en sus datos."
+        description: "Aplicamos modelos estad?sticos y algoritmos de machine learning para identificar patrones, correlaciones y tendencias predictivas en sus datos."
     },
     {
         icon: Search,
         title: "Profundidad Cualitativa",
-        description: "Utilizamos técnicas como el análisis de contenido y de sentimiento para extraer el 'porqué' detrás de los números, capturando el contexto y las percepciones humanas."
+        description: "Utilizamos t?cnicas como el an?lisis de contenido y de sentimiento para extraer el 'porqu?' detr?s de los n?meros, capturando el contexto y las percepciones humanas."
     },
     {
         icon: BrainCircuit,
-        title: "Visualización Estratégica",
-        description: "Diseñamos dashboards e informes interactivos que comunican los hallazgos de manera clara y accionable, facilitando la toma de decisiones en todos los niveles."
+        title: "Visualizaci?n Estrat?gica",
+        description: "Dise?amos dashboards e informes interactivos que comunican los hallazgos de manera clara y accionable, facilitando la toma de decisiones en todos los niveles."
     }
 ];
 
 const processSteps = [
-    { title: "1. Definición del Problema y Objetivos", description: "Colaboramos con usted para traducir sus preguntas de negocio en objetivos de análisis claros y medibles." },
-    { title: "2. Recopilación y Limpieza de Datos", description: "Identificamos, recopilamos y preparamos los datos, asegurando su calidad y consistencia para un análisis fiable." },
-    { title: "3. Análisis Mixto", description: "Ejecutamos análisis cuantitativos y cualitativos en paralelo, cruzando los hallazgos para obtener insights más robustos." },
-    { title: "4. Síntesis y Generación de Insights", description: "Sintetizamos los resultados en conclusiones claras y recomendaciones estratégicas priorizadas." },
-    { title: "5. Comunicación y Taller de Acción", description: "Presentamos los hallazgos de manera visual y facilitamos un taller para traducir los insights en un plan de acción concreto." }
+    { title: "1. Definici?n del Problema y Objetivos", description: "Colaboramos con usted para traducir sus preguntas de negocio en objetivos de an?lisis claros y medibles." },
+    { title: "2. Recopilaci?n y Limpieza de Datos", description: "Identificamos, recopilamos y preparamos los datos, asegurando su calidad y consistencia para un an?lisis fiable." },
+    { title: "3. An?lisis Mixto", description: "Ejecutamos an?lisis cuantitativos y cualitativos en paralelo, cruzando los hallazgos para obtener insights m?s robustos." },
+    { title: "4. S?ntesis y Generaci?n de Insights", description: "Sintetizamos los resultados en conclusiones claras y recomendaciones estrat?gicas priorizadas." },
+    { title: "5. Comunicaci?n y Taller de Acci?n", description: "Presentamos los hallazgos de manera visual y facilitamos un taller para traducir los insights en un plan de acci?n concreto." }
 ];
 
 const benefits = [
-    "Decisiones de negocio basadas en evidencia sólida, no en intuición.",
-    "Comprensión profunda del comportamiento y las necesidades de sus clientes.",
-    "Identificación de nuevas oportunidades de mercado y optimización de procesos.",
+    "Decisiones de negocio basadas en evidencia s?lida, no en intuici?n.",
+    "Comprensi?n profunda del comportamiento y las necesidades de sus clientes.",
+    "Identificaci?n de nuevas oportunidades de mercado y optimizaci?n de procesos.",
     "Capacidad para anticipar tendencias y predecir resultados futuros.",
-    "Comunicación clara y convincente de la historia que cuentan sus datos."
+    "Comunicaci?n clara y convincente de la historia que cuentan sus datos."
 ];
 
 
@@ -98,7 +98,7 @@ export default function AnalisisDatosPage() {
 
                 <section className="mb-16 py-12 bg-secondary rounded-lg">
                     <div className="max-w-4xl mx-auto px-4">
-                        <h2 className="text-3xl font-bold text-center mb-10">Nuestro Proceso de Análisis</h2>
+                        <h2 className="text-3xl font-bold text-center mb-10">Nuestro Proceso de An?lisis</h2>
                         <div className="relative space-y-8">
                             <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-0.5 bg-border -translate-x-1/2" aria-hidden="true" />
                             {processSteps.map((step, index) => (
@@ -117,7 +117,7 @@ export default function AnalisisDatosPage() {
                 </section>
 
                 <section className="mb-16">
-                    <h2 className="text-3xl font-bold text-center mb-10">Beneficios para su Organización</h2>
+                    <h2 className="text-3xl font-bold text-center mb-10">Beneficios para su Organizaci?n</h2>
                     <Card className="bg-card/50 border">
                         <CardContent className="p-6">
                             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
@@ -138,8 +138,8 @@ export default function AnalisisDatosPage() {
                             <div className="flex justify-center mb-4">
                                 <BarChart3 className="h-12 w-12 text-primary" />
                             </div>
-                            <CardTitle className="text-2xl">¿Listo para que sus datos trabajen para usted?</CardTitle>
-                            <CardDescription>Permítanos ayudarle a descubrir las historias y oportunidades ocultas en su información.</CardDescription>
+                            <CardTitle className="text-2xl">?Listo para que sus datos trabajen para usted?</CardTitle>
+                            <CardDescription>Perm?tanos ayudarle a descubrir las historias y oportunidades ocultas en su informaci?n.</CardDescription>
                         </CardHeader>
                         <CardContent>
                             <Button size="lg" asChild>

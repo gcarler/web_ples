@@ -10,45 +10,45 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 const pageDetails = {
     parentLink: "/ples-consulting",
     parentName: "PLES Consulting",
-    title: "Gestión Ágil de Proyectos (Scrum/Kanban)",
-    subtitle: "Adoptamos un enfoque iterativo e incremental para entregar valor de forma temprana y continua, adaptándonos al cambio.",
+    title: "Gesti?n ?gil de Proyectos (Scrum/Kanban)",
+    subtitle: "Adoptamos un enfoque iterativo e incremental para entregar valor de forma temprana y continua, adapt?ndonos al cambio.",
 };
 
 const keyPrinciples = [
     {
         icon: Repeat,
         title: "Entrega Iterativa e Incremental",
-        description: "Construimos y entregamos el proyecto en ciclos cortos y funcionales (Sprints), permitiendo una retroalimentación constante y una adaptación rápida."
+        description: "Construimos y entregamos el proyecto en ciclos cortos y funcionales (Sprints), permitiendo una retroalimentaci?n constante y una adaptaci?n r?pida."
     },
     {
         icon: Users,
-        title: "Colaboración y Comunicación",
-        description: "Fomentamos una comunicación diaria y transparente entre el equipo del proyecto y los stakeholders para asegurar la alineación y resolver impedimentos."
+        title: "Colaboraci?n y Comunicaci?n",
+        description: "Fomentamos una comunicaci?n diaria y transparente entre el equipo del proyecto y los stakeholders para asegurar la alineaci?n y resolver impedimentos."
     },
     {
         icon: Lightbulb,
-        title: "Adaptación al Cambio",
-        description: "Damos la bienvenida al cambio. Nuestra metodología está diseñada para ser flexible y responder a nuevos requisitos o prioridades en cualquier etapa del proyecto."
+        title: "Adaptaci?n al Cambio",
+        description: "Damos la bienvenida al cambio. Nuestra metodolog?a est? dise?ada para ser flexible y responder a nuevos requisitos o prioridades en cualquier etapa del proyecto."
     },
     {
         icon: CheckCircle,
         title: "Enfoque en el Valor",
-        description: "Priorizamos el trabajo en función del valor que aporta al negocio, asegurando que los recursos se centren en las funcionalidades más importantes primero."
+        description: "Priorizamos el trabajo en funci?n del valor que aporta al negocio, asegurando que los recursos se centren en las funcionalidades m?s importantes primero."
     }
 ];
 
 const processSteps = {
     scrum: [
-        { title: "Planificación del Sprint", description: "El equipo selecciona un conjunto de tareas del Product Backlog para completar en el próximo ciclo (Sprint)." },
-        { title: "Ejecución del Sprint", description: "El equipo trabaja en las tareas seleccionadas, con reuniones diarias (Daily Stand-ups) para sincronizarse y resolver bloqueos." },
-        { title: "Revisión del Sprint (Review)", description: "Al final del Sprint, el equipo presenta el trabajo completado (incremento) a los stakeholders para obtener feedback." },
-        { title: "Retrospectiva del Sprint", description: "El equipo reflexiona sobre el Sprint pasado para identificar qué funcionó bien y qué se puede mejorar en el siguiente ciclo." }
+        { title: "Planificaci?n del Sprint", description: "El equipo selecciona un conjunto de tareas del Product Backlog para completar en el pr?ximo ciclo (Sprint)." },
+        { title: "Ejecuci?n del Sprint", description: "El equipo trabaja en las tareas seleccionadas, con reuniones diarias (Daily Stand-ups) para sincronizarse y resolver bloqueos." },
+        { title: "Revisi?n del Sprint (Review)", description: "Al final del Sprint, el equipo presenta el trabajo completado (incremento) a los stakeholders para obtener feedback." },
+        { title: "Retrospectiva del Sprint", description: "El equipo reflexiona sobre el Sprint pasado para identificar qu? funcion? bien y qu? se puede mejorar en el siguiente ciclo." }
     ],
     kanban: [
         { title: "Visualizar el Flujo", description: "Mapeamos su proceso actual en un tablero visual (Tablero Kanban) con columnas que representan cada etapa del trabajo." },
-        { title: "Limitar el Trabajo en Progreso (WIP)", description: "Establecemos límites en la cantidad de tareas que pueden estar en cada etapa a la vez, para evitar cuellos de botella y mejorar el flujo." },
-        { title: "Gestionar el Flujo", description: "Nos enfocamos en mover las tareas a través del tablero de la manera más fluida posible, midiendo y optimizando el tiempo de ciclo." },
-        { title: "Mejora Continua", description: "Utilizamos métricas como el tiempo de ciclo y el rendimiento para identificar oportunidades de mejora en el proceso de forma continua." }
+        { title: "Limitar el Trabajo en Progreso (WIP)", description: "Establecemos l?mites en la cantidad de tareas que pueden estar en cada etapa a la vez, para evitar cuellos de botella y mejorar el flujo." },
+        { title: "Gestionar el Flujo", description: "Nos enfocamos en mover las tareas a trav?s del tablero de la manera m?s fluida posible, midiendo y optimizando el tiempo de ciclo." },
+        { title: "Mejora Continua", description: "Utilizamos m?tricas como el tiempo de ciclo y el rendimiento para identificar oportunidades de mejora en el proceso de forma continua." }
     ]
 };
 
@@ -105,7 +105,7 @@ export default function GestionAgilPage() {
                 </section>
 
                 <section className="mb-16">
-                    <h2 className="text-3xl font-bold text-center mb-10">Nuestros Marcos de Trabajo Ágiles</h2>
+                    <h2 className="text-3xl font-bold text-center mb-10">Nuestros Marcos de Trabajo ?giles</h2>
                     <div className="grid md:grid-cols-2 gap-8">
                         <Card className="bg-card/50 border">
                             <CardHeader>
@@ -124,7 +124,7 @@ export default function GestionAgilPage() {
                         <Card className="bg-card/50 border">
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-2"><KanbanSquare className="text-primary"/> Kanban: Para la Mejora Continua del Flujo</CardTitle>
-                                <CardDescription>Un método para visualizar el trabajo, limitar el trabajo en curso (WIP) y maximizar la eficiencia del flujo de entrega.</CardDescription>
+                                <CardDescription>Un m?todo para visualizar el trabajo, limitar el trabajo en curso (WIP) y maximizar la eficiencia del flujo de entrega.</CardDescription>
                             </CardHeader>
                             <CardContent className="space-y-3">
                                 {processSteps.kanban.map(step => (
@@ -160,13 +160,13 @@ export default function GestionAgilPage() {
                             <div className="flex justify-center mb-4">
                                 <KanbanSquare className="h-12 w-12 text-primary" />
                             </div>
-                            <CardTitle className="text-2xl">¿Quiere acelerar la entrega de valor?</CardTitle>
-                            <CardDescription>Le ayudamos a implementar el marco ágil que mejor se adapte a su cultura y a las necesidades de su proyecto para lograr resultados tangibles más rápido.</CardDescription>
+                            <CardTitle className="text-2xl">?Quiere acelerar la entrega de valor?</CardTitle>
+                            <CardDescription>Le ayudamos a implementar el marco ?gil que mejor se adapte a su cultura y a las necesidades de su proyecto para lograr resultados tangibles m?s r?pido.</CardDescription>
                         </CardHeader>
                         <CardContent>
                             <Button size="lg" asChild>
                                 <Link href="/forms?subject=Consulta%20sobre%20Gestion%20Agil">
-                                    Solicitar Asesoría Ágil <ArrowRight className="ml-2 h-5 w-5" />
+                                    Solicitar Asesor?a ?gil <ArrowRight className="ml-2 h-5 w-5" />
                                 </Link>
                             </Button>
                         </CardContent>

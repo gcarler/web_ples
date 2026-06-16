@@ -52,7 +52,7 @@ export function UserRowActions<TData extends UserProfile>({
     const result = await updateUserRole(userProfile.uid, newRole);
     toast({
       title: result.success ? "Role Updated" : "Update Failed",
-      description: result.message ?? (result.success ? `User role changed to ${newRole}.` : 'Failed to update role.'),
+      description: result.message ? (result.success ? `User role changed to ${newRole}.` : 'Failed to update role.'),
       variant: result.success ? "default" : "destructive",
     });
     if (result.success) {
@@ -71,7 +71,7 @@ export function UserRowActions<TData extends UserProfile>({
       const result = await deleteUser(userProfile.uid);
       toast({
         title: result.success ? "User Deleted" : "Deletion Failed",
-        description: result.message ?? (result.success ? 'User successfully deleted.' : 'Failed to delete user.'),
+        description: result.message ? (result.success ? 'User successfully deleted.' : 'Failed to delete user.'),
         variant: result.success ? "default" : "destructive",
       });
       // Optionally refresh or redirect if needed, revalidatePath should handle table update

@@ -16,39 +16,39 @@ import { GlobeIllustration } from '@/components/illustrations/GlobeIllustration'
 const services = [
   {
     icon: Layers,
-    title: 'Cartografía Digital y Temática',
-    description: 'Diseñamos y producimos mapas personalizados de alta precisión, que visualizan datos complejos de manera clara y efectiva para la toma de decisiones estratégicas.',
-    details: ['Mapas base topográficos y urbanos', 'Cartografía temática (ambiental, social, económica)', 'Diseño infográfico y de atlas', 'Optimización para web y móvil']
+    title: 'Cartograf?a Digital y Tem?tica',
+    description: 'Dise?amos y producimos mapas personalizados de alta precisi?n, que visualizan datos complejos de manera clara y efectiva para la toma de decisiones estrat?gicas.',
+    details: ['Mapas base topogr?ficos y urbanos', 'Cartograf?a tem?tica (ambiental, social, econ?mica)', 'Dise?o infogr?fico y de atlas', 'Optimizaci?n para web y m?vil']
   },
   {
     icon: Cpu,
     title: 'Modelado 3D y Gemelos Digitales',
-    description: 'Creamos representaciones tridimensionales realistas de terrenos, ciudades e infraestructuras, proporcionando una comprensión inmersiva del entorno.',
-    details: ['Modelos Digitales de Elevación (MDE)', 'Reconstrucción 3D a partir de LiDAR y fotogrametría', 'Creación de Gemelos Digitales de activos', 'Simulaciones y análisis de visibilidad']
+    description: 'Creamos representaciones tridimensionales realistas de terrenos, ciudades e infraestructuras, proporcionando una comprensi?n inmersiva del entorno.',
+    details: ['Modelos Digitales de Elevaci?n (MDE)', 'Reconstrucci?n 3D a partir de LiDAR y fotogrametr?a', 'Creaci?n de Gemelos Digitales de activos', 'Simulaciones y an?lisis de visibilidad']
   },
   {
     icon: BrainCircuit,
-    title: 'Análisis Geoespacial Avanzado',
-    description: 'Transformamos datos geográficos en insights de negocio, identificando patrones, tendencias y relaciones espaciales que no son visibles a simple vista.',
-    details: ['Análisis de rutas óptimas y logística', 'Estudios de mercado y localización de sitios', 'Modelado de riesgos y vulnerabilidades', 'Análisis de redes y flujos']
+    title: 'An?lisis Geoespacial Avanzado',
+    description: 'Transformamos datos geogr?ficos en insights de negocio, identificando patrones, tendencias y relaciones espaciales que no son visibles a simple vista.',
+    details: ['An?lisis de rutas ?ptimas y log?stica', 'Estudios de mercado y localizaci?n de sitios', 'Modelado de riesgos y vulnerabilidades', 'An?lisis de redes y flujos']
   }
 ];
 
 const processSteps = [
     {
         icon: Search,
-        title: "1. Diagnóstico y Adquisición de Datos",
-        description: "Comprendemos sus necesidades y recopilamos los datos geoespaciales más precisos utilizando sensores remotos, drones y fuentes de datos confiables."
+        title: "1. Diagn?stico y Adquisici?n de Datos",
+        description: "Comprendemos sus necesidades y recopilamos los datos geoespaciales m?s precisos utilizando sensores remotos, drones y fuentes de datos confiables."
     },
     {
         icon: DraftingCompass,
         title: "2. Procesamiento y Modelado",
-        description: "Aplicamos algoritmos avanzados y técnicas de modelado para procesar, limpiar y estructurar los datos, preparándolos para el análisis y la visualización."
+        description: "Aplicamos algoritmos avanzados y t?cnicas de modelado para procesar, limpiar y estructurar los datos, prepar?ndolos para el an?lisis y la visualizaci?n."
     },
     {
         icon: Eye,
-        title: "3. Diseño y Visualización de Información",
-        description: "Creamos productos cartográficos y visualizaciones interactivas que comunican los resultados de manera clara, intuitiva y estéticamente impactante."
+        title: "3. Dise?o y Visualizaci?n de Informaci?n",
+        description: "Creamos productos cartogr?ficos y visualizaciones interactivas que comunican los resultados de manera clara, intuitiva y est?ticamente impactante."
     }
 ];
 
@@ -76,12 +76,12 @@ export default function PlesCreaPage() {
                 PLES CREA
               </h1>
               <p className="text-lg sm:text-xl text-foreground mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                Transformamos <strong className="text-primary">datos geoespaciales</strong> en <strong className="text-accent">conocimiento visual</strong>. Diseñamos mapas y modelos 3D que revelan patrones, optimizan decisiones y dan forma al futuro.
+                Transformamos <strong className="text-primary">datos geoespaciales</strong> en <strong className="text-accent">conocimiento visual</strong>. Dise?amos mapas y modelos 3D que revelan patrones, optimizan decisiones y dan forma al futuro.
               </p>
               <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-10">
                 <Badge variant="default" className="text-md px-4 py-2 shadow-md">#Geoespacial</Badge>
-                <Badge variant="default" className="text-md px-4 py-2 shadow-md">#CartografíaDigital</Badge>
-                <Badge variant="default" className="text-md px-4 py-2 shadow-md">#Innovación3D</Badge>
+                <Badge variant="default" className="text-md px-4 py-2 shadow-md">#Cartograf?aDigital</Badge>
+                <Badge variant="default" className="text-md px-4 py-2 shadow-md">#Innovaci?n3D</Badge>
               </div>
               <Button size="lg" variant="accent" className="text-lg px-8 py-3" asChild>
                 <Link href={`/forms?service=ples-crea&subject=Consulta%20PLES%20CREA`}>
@@ -100,7 +100,7 @@ export default function PlesCreaPage() {
         <div className="w-full px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestros Servicios Geoespaciales</h2>
             <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
-                Ofrecemos un portafolio completo de servicios para cubrir todas las fases de un proyecto geoespacial, desde la captura de datos hasta el análisis avanzado.
+                Ofrecemos un portafolio completo de servicios para cubrir todas las fases de un proyecto geoespacial, desde la captura de datos hasta el an?lisis avanzado.
             </p>
             <div className="grid md:grid-cols-3 gap-8 group/spotlight" onMouseMove={handleMouseMove}>
             {services.map((service) => {
@@ -146,7 +146,7 @@ export default function PlesCreaPage() {
         <div className="text-center">
             <h2 className="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">Nuestro Proceso Colaborativo</h2>
             <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
-                Aplicamos un enfoque metodológico riguroso para garantizar resultados de la más alta calidad y precisión en cada proyecto.
+                Aplicamos un enfoque metodol?gico riguroso para garantizar resultados de la m?s alta calidad y precisi?n en cada proyecto.
             </p>
             <div className="relative flex flex-col md:flex-row items-stretch justify-center gap-8 md:gap-0">
                 {processSteps.map((step, index) => {
@@ -181,7 +181,7 @@ export default function PlesCreaPage() {
             <Globe className="h-16 w-16 mx-auto mb-6 opacity-80" />
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Visualice su Mundo. Transforme sus Decisiones.</h2>
             <p className="text-lg md:text-xl mb-10 max-w-3xl mx-auto opacity-90">
-             Permítanos mostrarle cómo la inteligencia geoespacial puede revelar nuevas oportunidades y optimizar sus operaciones.
+             Perm?tanos mostrarle c?mo la inteligencia geoespacial puede revelar nuevas oportunidades y optimizar sus operaciones.
             </p>
             <Button size="xl" variant="accent" className="text-lg px-10 py-4" asChild>
             <Link href={`/forms?service=ples-crea&subject=Solicitud%20Asesoria%20Geoespacial`}>

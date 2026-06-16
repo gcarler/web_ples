@@ -26,7 +26,7 @@ const formSchema = z.object({
     message: "El nombre debe tener al menos 2 caracteres.",
   }).max(100, { message: "El nombre no puede exceder los 100 caracteres."}),
   email: z.string().email({
-    message: "Por favor, introduce una dirección de correo electrónico válida.",
+    message: "Por favor, introduce una direcci?n de correo electr?nico v?lida.",
   }).max(100),
   phone: z.string().optional(),
   company: z.string().optional(),
@@ -81,8 +81,8 @@ export function UserForm() {
       } catch (error) {
         console.error("Failed to send data to n8n:", error);
         toast({
-            title: "Error de Integración",
-            description: "No se pudo enviar el formulario a nuestro sistema de automatización. Por favor, intente de nuevo más tarde.",
+            title: "Error de Integraci?n",
+            description: "No se pudo enviar el formulario a nuestro sistema de automatizaci?n. Por favor, intente de nuevo m?s tarde.",
             variant: "destructive"
         });
         setIsSubmitting(false);
@@ -95,7 +95,7 @@ export function UserForm() {
     // This part will run regardless of webhook, or if webhook is not defined
     console.log("Form data submitted:", data);
     toast({
-      title: "¡Formulario Enviado!",
+      title: "?Formulario Enviado!",
       description: "Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.",
     });
     form.reset(); // Reset form fields after successful submission
@@ -124,7 +124,7 @@ export function UserForm() {
             name="email"
             render={({ field }) => (
                 <FormItem>
-                <FormLabel>Correo Electrónico</FormLabel>
+                <FormLabel>Correo Electr?nico</FormLabel>
                 <FormControl>
                     <Input type="email" placeholder="tu@ejemplo.com" {...field} disabled={isSubmitting} />
                 </FormControl>
@@ -140,7 +140,7 @@ export function UserForm() {
                 name="phone"
                 render={({ field }) => (
                     <FormItem>
-                    <FormLabel>Teléfono (Opcional)</FormLabel>
+                    <FormLabel>Tel?fono (Opcional)</FormLabel>
                     <FormControl>
                         <Input type="tel" placeholder="+1 234 567 890" {...field} disabled={isSubmitting} />
                     </FormControl>
@@ -187,7 +187,7 @@ export function UserForm() {
               <FormLabel>Mensaje (Opcional)</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="Cuéntanos un poco sobre cómo podemos ayudarte"
+                  placeholder="Cu?ntanos un poco sobre c?mo podemos ayudarte"
                   className="resize-none"
                   {...field}
                   disabled={isSubmitting}
@@ -213,10 +213,10 @@ export function UserForm() {
                 </FormControl>
                 <div className="space-y-1 leading-none">
                     <FormLabel>
-                    Suscribirse al boletín
+                    Suscribirse al bolet?n
                     </FormLabel>
                     <FormDescription>
-                    Recibe actualizaciones por correo electrónico.
+                    Recibe actualizaciones por correo electr?nico.
                     </FormDescription>
                 </div>
                  <FormMessage />

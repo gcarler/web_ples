@@ -6,19 +6,19 @@ import { ArrowRight, CheckCircle, Eye, GitBranch, HeartPulse, ListChecks, Lock, 
 import { Badge } from '@/components/ui/badge';
 
 const approachSteps = [
-    { icon: Eye, title: 'Identificar', description: 'Evaluamos su postura de seguridad, identificando activos críticos, amenazas y vulnerabilidades para entender su perfil de riesgo.' },
+    { icon: Eye, title: 'Identificar', description: 'Evaluamos su postura de seguridad, identificando activos cr?ticos, amenazas y vulnerabilidades para entender su perfil de riesgo.' },
     { icon: ShieldCheck, title: 'Proteger', description: 'Implementamos controles y arquitecturas de seguridad robustas para salvaguardar sus sistemas, datos y redes de forma proactiva.' },
-    { icon: HeartPulse, title: 'Detectar', description: 'Desplegamos sistemas de monitoreo continuo y análisis de comportamiento para detectar actividades anómalas y posibles brechas en tiempo real.' },
-    { icon: Zap, title: 'Responder', description: 'Desarrollamos y probamos planes de respuesta a incidentes para contener, erradicar y recuperarse rápidamente de un ataque cibernético.' },
-    { icon: GitBranch, title: 'Recuperar', description: 'Aseguramos que sus planes de continuidad de negocio y recuperación ante desastres estén alineados para restaurar las capacidades críticas.' },
+    { icon: HeartPulse, title: 'Detectar', description: 'Desplegamos sistemas de monitoreo continuo y an?lisis de comportamiento para detectar actividades an?malas y posibles brechas en tiempo real.' },
+    { icon: Zap, title: 'Responder', description: 'Desarrollamos y probamos planes de respuesta a incidentes para contener, erradicar y recuperarse r?pidamente de un ataque cibern?tico.' },
+    { icon: GitBranch, title: 'Recuperar', description: 'Aseguramos que sus planes de continuidad de negocio y recuperaci?n ante desastres est?n alineados para restaurar las capacidades cr?ticas.' },
 ];
 
 const keyServices = [
-    { title: "Evaluación de Seguridad y Pentesting Ético", description: "Realizamos pruebas de penetración y análisis de vulnerabilidades para descubrir y remediar debilidades antes de que sean explotadas." },
-    { title: "Gestión de Identidad y Acceso (IAM)", description: "Implementamos soluciones para asegurar que solo las personas autorizadas accedan a los recursos correctos, en el momento correcto." },
-    { title: "Seguridad en la Nube (Cloud Security)", description: "Configuramos y gestionamos la seguridad en entornos AWS, Azure y GCP, aplicando las mejores prácticas para proteger sus cargas de trabajo." },
-    { title: "Seguridad de Endpoints y Redes", description: "Desplegamos soluciones de Detección y Respuesta Extendida (XDR) y firewalls de última generación para proteger sus dispositivos y redes." },
-    { title: "Consultoría y Cumplimiento Normativo", description: "Le ayudamos a navegar y cumplir con normativas como ISO 27001, GDPR, HIPAA, entre otras, alineando la seguridad con los requisitos legales." },
+    { title: "Evaluaci?n de Seguridad y Pentesting ?tico", description: "Realizamos pruebas de penetraci?n y an?lisis de vulnerabilidades para descubrir y remediar debilidades antes de que sean explotadas." },
+    { title: "Gesti?n de Identidad y Acceso (IAM)", description: "Implementamos soluciones para asegurar que solo las personas autorizadas accedan a los recursos correctos, en el momento correcto." },
+    { title: "Seguridad en la Nube (Cloud Security)", description: "Configuramos y gestionamos la seguridad en entornos AWS, Azure y GCP, aplicando las mejores pr?cticas para proteger sus cargas de trabajo." },
+    { title: "Seguridad de Endpoints y Redes", description: "Desplegamos soluciones de Detecci?n y Respuesta Extendida (XDR) y firewalls de ?ltima generaci?n para proteger sus dispositivos y redes." },
+    { title: "Consultor?a y Cumplimiento Normativo", description: "Le ayudamos a navegar y cumplir con normativas como ISO 27001, GDPR, HIPAA, entre otras, alineando la seguridad con los requisitos legales." },
     { title: "Respuesta a Incidentes y Ciber-resiliencia", description: "Desarrollamos su capacidad para resistir, responder y recuperarse de incidentes de seguridad, minimizando el impacto en el negocio." },
 ];
 
@@ -30,14 +30,14 @@ export default function CiberseguridadPage() {
       <section id="introduccion">
         <h2 className="text-3xl font-semibold text-foreground mb-4">Ciberseguridad como Habilitador de Negocio</h2>
         <div className="space-y-4 text-muted-foreground">
-            <p>En el panorama digital actual, la ciberseguridad ya no es un mero requisito técnico, sino un pilar fundamental para la confianza, la continuidad y la competitividad del negocio. En PLES TIC, abordamos la seguridad de forma holística, integrándola en el ADN de su organización.</p>
-            <p>Nuestro enfoque va más allá de la simple implementación de herramientas. Construimos una cultura de seguridad, alineamos las estrategias de protección con sus objetivos de negocio y le ayudamos a gestionar el riesgo cibernético de manera inteligente para que pueda innovar con confianza.</p>
+            <p>En el panorama digital actual, la ciberseguridad ya no es un mero requisito t?cnico, sino un pilar fundamental para la confianza, la continuidad y la competitividad del negocio. En PLES TIC, abordamos la seguridad de forma hol?stica, integr?ndola en el ADN de su organizaci?n.</p>
+            <p>Nuestro enfoque va m?s all? de la simple implementaci?n de herramientas. Construimos una cultura de seguridad, alineamos las estrategias de protecci?n con sus objetivos de negocio y le ayudamos a gestionar el riesgo cibern?tico de manera inteligente para que pueda innovar con confianza.</p>
         </div>
       </section>
 
       <section id="nuestro-enfoque">
         <h2 className="text-3xl font-semibold text-foreground mb-6">Nuestro Enfoque 360°: Un Ciclo de Vida Completo</h2>
-        <p className="text-muted-foreground mb-6 text-center max-w-2xl mx-auto">Basamos nuestra metodología en el reconocido marco del NIST, cubriendo el ciclo de vida completo de la gestión de la ciberseguridad.</p>
+        <p className="text-muted-foreground mb-6 text-center max-w-2xl mx-auto">Basamos nuestra metodolog?a en el reconocido marco del NIST, cubriendo el ciclo de vida completo de la gesti?n de la ciberseguridad.</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {approachSteps.map((step, index) => {
                 const StepIcon = step.icon;
@@ -71,8 +71,8 @@ export default function CiberseguridadPage() {
       </section>
       
       <section id="marcos-de-referencia">
-        <h2 className="text-3xl font-semibold text-foreground mb-6">Marcos de Referencia y Estándares</h2>
-         <p className="text-muted-foreground mb-6">Nuestros servicios se basan en estándares y marcos de trabajo reconocidos internacionalmente, asegurando las mejores prácticas.</p>
+        <h2 className="text-3xl font-semibold text-foreground mb-6">Marcos de Referencia y Est?ndares</h2>
+         <p className="text-muted-foreground mb-6">Nuestros servicios se basan en est?ndares y marcos de trabajo reconocidos internacionalmente, asegurando las mejores pr?cticas.</p>
         <div className="flex flex-wrap gap-3 justify-center">
             {frameworks.map((framework) => (
                 <Badge key={framework} className="text-md px-4 py-2" variant="outline">{framework}</Badge>
@@ -86,13 +86,13 @@ export default function CiberseguridadPage() {
                 <div className="flex justify-center mb-4">
                     <Lock className="h-12 w-12 text-primary"/>
                 </div>
-                <CardTitle className="text-2xl">Proteja su Activo más Valioso: Su Información</CardTitle>
-                <CardDescription>Un incidente de seguridad puede tener consecuencias devastadoras. Permítanos ayudarle a construir una defensa robusta y resiliente.</CardDescription>
+                <CardTitle className="text-2xl">Proteja su Activo m?s Valioso: Su Informaci?n</CardTitle>
+                <CardDescription>Un incidente de seguridad puede tener consecuencias devastadoras. Perm?tanos ayudarle a construir una defensa robusta y resiliente.</CardDescription>
             </CardHeader>
             <CardContent>
                  <Button size="lg" asChild>
                     <Link href="/forms?service=ciberseguridad&subject=Consulta%20sobre%20Ciberseguridad">
-                        Solicitar una Evaluación de Seguridad <ArrowRight className="ml-2 h-5 w-5"/>
+                        Solicitar una Evaluaci?n de Seguridad <ArrowRight className="ml-2 h-5 w-5"/>
                     </Link>
                 </Button>
             </CardContent>

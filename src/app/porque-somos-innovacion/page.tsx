@@ -14,15 +14,15 @@ import { getComponentSuggestion, type ComponentSuggestionOutput } from '@/ai/flo
 const pageDetails = {
     parentLink: "/about",
     parentName: "Sobre Nosotros",
-    title: "Laboratorio de Innovación",
-    subtitle: "Donde las ideas audaces se convierten en soluciones prácticas y de valor.",
+    title: "Laboratorio de Innovaci?n",
+    subtitle: "Donde las ideas audaces se convierten en soluciones pr?cticas y de valor.",
 };
 
 const principles = [
-    { title: "Inteligencia Artificial", description: "Asistentes que entienden y actúan." },
+    { title: "Inteligencia Artificial", description: "Asistentes que entienden y act?an." },
     { title: "Experiencias Inmersivas", description: "Interfaces que cautivan y responden." },
-    { title: "Rendimiento Radical", description: "Velocidad que se siente instantánea." },
-    { title: "Conectividad Total", description: "Integración fluida con su ecosistema." },
+    { title: "Rendimiento Radical", description: "Velocidad que se siente instant?nea." },
+    { title: "Conectividad Total", description: "Integraci?n fluida con su ecosistema." },
 ];
 
 interface Message {
@@ -47,7 +47,7 @@ export default function InnovacionPage() {
         setMessages([
             {
                 role: 'assistant',
-                content: "Soy tu asistente de diseño de UI. Descríbeme un componente que necesites, como 'un formulario de inicio de sesión con temática futurista' o 'una tarjeta de perfil de usuario para una red social', y generaré una sugerencia para ti.",
+                content: "Soy tu asistente de dise?o de UI. Descr?beme un componente que necesites, como 'un formulario de inicio de sesi?n con tem?tica futurista' o 'una tarjeta de perfil de usuario para una red social', y generar? una sugerencia para ti.",
             }
         ]);
     }, []);
@@ -106,8 +106,8 @@ export default function InnovacionPage() {
                                 <Wand2 className="h-6 w-6 text-primary" />
                             </div>
                             <div>
-                                <CardTitle>Asistente de Diseño de Componentes</CardTitle>
-                                <CardDescription>Usa IA para generar ideas y código para componentes de UI.</CardDescription>
+                                <CardTitle>Asistente de Dise?o de Componentes</CardTitle>
+                                <CardDescription>Usa IA para generar ideas y c?digo para componentes de UI.</CardDescription>
                             </div>
                         </div>
                     </CardHeader>
@@ -153,7 +153,7 @@ export default function InnovacionPage() {
                                 <Textarea
                                     value={input}
                                     onChange={(e) => setInput(e.target.value)}
-                                    placeholder="Ej: 'una tarjeta de métricas para un dashboard con un ícono y un título...'"
+                                    placeholder="Ej: 'una tarjeta de m?tricas para un dashboard con un ?cono y un t?tulo...'"
                                     className="pr-16 resize-none"
                                     disabled={isPending}
                                     onKeyDown={(e) => {

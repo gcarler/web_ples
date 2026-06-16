@@ -10,8 +10,8 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 const pageDetails = {
   parentLink: "/about",
   parentName: "Sobre Nosotros",
-  title: "Por Qué Somos Ciencia",
-  subtitle: "El rigor metodológico como pilar de la confianza y la efectividad.",
+  title: "Por Qu? Somos Ciencia",
+  subtitle: "El rigor metodol?gico como pilar de la confianza y la efectividad.",
   ctaLink: "/forms?subject=Consulta%20Proyectos%20Cientificos",
   ctaText: "Explore Nuestros Proyectos"
 };
@@ -19,33 +19,33 @@ const pageDetails = {
 const cienciaPoints = [
   {
     icon: Search,
-    title: "Investigación Basada en Evidencia",
-    text: "Cada solución parte de un análisis profundo de datos y evidencia científica para comprender el problema en su totalidad, evitando suposiciones y asegurando un diagnóstico preciso."
+    title: "Investigaci?n Basada en Evidencia",
+    text: "Cada soluci?n parte de un an?lisis profundo de datos y evidencia cient?fica para comprender el problema en su totalidad, evitando suposiciones y asegurando un diagn?stico preciso."
   },
   {
     icon: BarChart3,
-    title: "Rigor Metodológico y Cuantitativo",
-    text: "Aplicamos métodos científicos y estadísticos rigurosos para garantizar la validez, fiabilidad y replicabilidad de nuestros resultados, lo que se traduce en soluciones robustas."
+    title: "Rigor Metodol?gico y Cuantitativo",
+    text: "Aplicamos m?todos cient?ficos y estad?sticos rigurosos para garantizar la validez, fiabilidad y replicabilidad de nuestros resultados, lo que se traduce en soluciones robustas."
   },
   {
     icon: Settings,
-    title: "Experimentación y Validación",
-    text: "Fomentamos la experimentación controlada y la validación de hipótesis para probar y refinar soluciones antes de su implementación a gran escala, minimizando riesgos."
+    title: "Experimentaci?n y Validaci?n",
+    text: "Fomentamos la experimentaci?n controlada y la validaci?n de hip?tesis para probar y refinar soluciones antes de su implementaci?n a gran escala, minimizando riesgos."
   },
   {
     icon: BookOpen,
-    title: "Gestión del Conocimiento",
-    text: "Sistematizamos el aprendizaje y la experiencia acumulada para construir una base de conocimiento sólida que enriquece y acelera cada nuevo proyecto."
+    title: "Gesti?n del Conocimiento",
+    text: "Sistematizamos el aprendizaje y la experiencia acumulada para construir una base de conocimiento s?lida que enriquece y acelera cada nuevo proyecto."
   },
   {
     icon: CheckCircle,
     title: "Objetividad y Transparencia",
-    text: "Nuestro enfoque científico garantiza que las recomendaciones se basen en datos objetivos, promoviendo la transparencia y la confianza con nuestros clientes y aliados."
+    text: "Nuestro enfoque cient?fico garantiza que las recomendaciones se basen en datos objetivos, promoviendo la transparencia y la confianza con nuestros clientes y aliados."
   },
   {
     icon: BrainCircuit,
     title: "Enfoque Interdisciplinario",
-    text: "Conectamos diversas disciplinas científicas (ciencias de datos, sociales, ambientales) para abordar problemas complejos desde una perspectiva holística e integrada."
+    text: "Conectamos diversas disciplinas cient?ficas (ciencias de datos, sociales, ambientales) para abordar problemas complejos desde una perspectiva hol?stica e integrada."
   }
 ];
 
@@ -101,7 +101,7 @@ export default function CienciaClientPage() {
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
             <section className="py-16 animate-fade-in-up" style={{ animationDelay: '0.7s', animationFillMode: 'forwards' }}>
             <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">
-                Nuestros Principios Científicos
+                Nuestros Principios Cient?ficos
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {cienciaPoints.map((point, index) => {
@@ -128,9 +128,9 @@ export default function CienciaClientPage() {
                   <div className="flex justify-center mb-4">
                     <FlaskConical className="h-10 w-10 text-primary" />
                   </div>
-                  <CardTitle>Explore Nuestro Laboratorio de Innovación</CardTitle>
+                  <CardTitle>Explore Nuestro Laboratorio de Innovaci?n</CardTitle>
                   <CardDescription>
-                    Vea cómo aplicamos estos principios científicos en experimentos y prototipos de vanguardia.
+                    Vea c?mo aplicamos estos principios cient?ficos en experimentos y prototipos de vanguardia.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>

@@ -26,7 +26,7 @@ export function UserTableToolbar<TData>({
         {/* Global search */}
         <Input
           placeholder="Filter users by email..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+          value={(table.getColumn("email")?.getFilterValue() as string) ? ""}
           onChange={(event) =>
             table.getColumn("email")?.setFilterValue(event.target.value)
           }

@@ -10,39 +10,39 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 const pageDetails = {
     parentLink: "/ples-consulting",
     parentName: "PLES Consulting",
-    title: "Marco Lógico y Teoría del Cambio",
-    subtitle: "Herramientas estratégicas para diseñar, monitorear y evaluar proyectos con claridad, coherencia y un enfoque en resultados medibles.",
+    title: "Marco L?gico y Teor?a del Cambio",
+    subtitle: "Herramientas estrat?gicas para dise?ar, monitorear y evaluar proyectos con claridad, coherencia y un enfoque en resultados medibles.",
 };
 
 const keyConcepts = {
     marcoLogico: {
-        title: "El Marco Lógico: La Matriz para la Claridad",
-        description: "Es una herramienta de diseño y gestión que resume un proyecto en una matriz 4x4. Ayuda a asegurar la coherencia lógica entre los insumos, las actividades, los resultados y el objetivo final.",
+        title: "El Marco L?gico: La Matriz para la Claridad",
+        description: "Es una herramienta de dise?o y gesti?n que resume un proyecto en una matriz 4x4. Ayuda a asegurar la coherencia l?gica entre los insumos, las actividades, los resultados y el objetivo final.",
         components: [
-            { icon: Target, title: "Jerarquía de Objetivos", description: "Define la lógica vertical: Actividades -> Componentes (Resultados) -> Propósito -> Fin." },
-            { icon: BarChart3, title: "Indicadores Verificables", description: "Establece cómo se medirá el éxito en cada nivel de la jerarquía de objetivos." },
-            { icon: CheckCircle, title: "Medios de Verificación", description: "Especifica las fuentes de datos que se utilizarán para medir los indicadores." },
-            { icon: Puzzle, title: "Supuestos y Riesgos", description: "Identifica las condiciones externas necesarias para que el proyecto tenga éxito, permitiendo una gestión proactiva de riesgos." }
+            { icon: Target, title: "Jerarqu?a de Objetivos", description: "Define la l?gica vertical: Actividades -> Componentes (Resultados) -> Prop?sito -> Fin." },
+            { icon: BarChart3, title: "Indicadores Verificables", description: "Establece c?mo se medir? el ?xito en cada nivel de la jerarqu?a de objetivos." },
+            { icon: CheckCircle, title: "Medios de Verificaci?n", description: "Especifica las fuentes de datos que se utilizar?n para medir los indicadores." },
+            { icon: Puzzle, title: "Supuestos y Riesgos", description: "Identifica las condiciones externas necesarias para que el proyecto tenga ?xito, permitiendo una gesti?n proactiva de riesgos." }
         ]
     },
     teoriaDelCambio: {
-        title: "La Teoría del Cambio: El Mapa Causal del Impacto",
-        description: "Es un proceso participativo que explica cómo y por qué se espera que un cambio suceda. Se enfoca en mapear la 'caja negra' entre lo que hacemos (intervenciones) y lo que queremos lograr (impacto).",
+        title: "La Teor?a del Cambio: El Mapa Causal del Impacto",
+        description: "Es un proceso participativo que explica c?mo y por qu? se espera que un cambio suceda. Se enfoca en mapear la 'caja negra' entre lo que hacemos (intervenciones) y lo que queremos lograr (impacto).",
         components: [
             { icon: GitMerge, title: "Cadena de Resultados", description: "Visualiza la secuencia causal desde las actividades hasta los resultados a corto, mediano y largo plazo, culminando en el impacto final." },
-            { icon: Puzzle, title: "Identificación de Supuestos", description: "Hace explícitas todas las suposiciones que conectan cada paso de la cadena de resultados." },
-            { icon: BarChart3, title: "Definición de Indicadores", description: "Establece indicadores para medir el progreso en cada eslabón de la cadena, no solo al final." },
-            { icon: Target, title: "Visión de Éxito a Largo Plazo", description: "Comienza con el fin en mente: define claramente el impacto a largo plazo que se busca y luego trabaja hacia atrás." }
+            { icon: Puzzle, title: "Identificaci?n de Supuestos", description: "Hace expl?citas todas las suposiciones que conectan cada paso de la cadena de resultados." },
+            { icon: BarChart3, title: "Definici?n de Indicadores", description: "Establece indicadores para medir el progreso en cada eslab?n de la cadena, no solo al final." },
+            { icon: Target, title: "Visi?n de ?xito a Largo Plazo", description: "Comienza con el fin en mente: define claramente el impacto a largo plazo que se busca y luego trabaja hacia atr?s." }
         ]
     }
 };
 
 const benefits = [
-    "Claridad y consenso sobre los objetivos y la lógica del proyecto.",
-    "Mejora en la planificación y la asignación de recursos.",
-    "Base sólida para un sistema de monitoreo y evaluación (M&E) efectivo.",
-    "Facilita la comunicación del proyecto a donantes y stakeholders.",
-    "Mejora la gestión de riesgos y la capacidad de adaptación.",
+    "Claridad y consenso sobre los objetivos y la l?gica del proyecto.",
+    "Mejora en la planificaci?n y la asignaci?n de recursos.",
+    "Base s?lida para un sistema de monitoreo y evaluaci?n (M&E) efectivo.",
+    "Facilita la comunicaci?n del proyecto a donantes y stakeholders.",
+    "Mejora la gesti?n de riesgos y la capacidad de adaptaci?n.",
     "Aumenta la probabilidad de lograr el impacto deseado."
 ];
 
@@ -70,7 +70,7 @@ export default function MarcoLogicoPage() {
 
                 <section className="mb-16">
                     <div className="grid md:grid-cols-2 gap-8">
-                        {/* Marco Lógico */}
+                        {/* Marco L?gico */}
                         <Card className="bg-card/50 border">
                             <CardHeader>
                                 <CardTitle className="text-2xl text-primary">{keyConcepts.marcoLogico.title}</CardTitle>
@@ -91,7 +91,7 @@ export default function MarcoLogicoPage() {
                                 })}
                             </CardContent>
                         </Card>
-                        {/* Teoría del Cambio */}
+                        {/* Teor?a del Cambio */}
                         <Card className="bg-card/50 border">
                             <CardHeader>
                                 <CardTitle className="text-2xl text-primary">{keyConcepts.teoriaDelCambio.title}</CardTitle>
@@ -116,7 +116,7 @@ export default function MarcoLogicoPage() {
                 </section>
 
                 <section className="mb-16">
-                    <h2 className="text-3xl font-bold text-center mb-10">Beneficios de un Diseño Robusto de Proyectos</h2>
+                    <h2 className="text-3xl font-bold text-center mb-10">Beneficios de un Dise?o Robusto de Proyectos</h2>
                     <Card className="bg-card/50 border">
                         <CardContent className="p-6">
                             <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4">
@@ -137,13 +137,13 @@ export default function MarcoLogicoPage() {
                             <div className="flex justify-center mb-4">
                                 <Target className="h-12 w-12 text-primary" />
                             </div>
-                            <CardTitle className="text-2xl">¿Quiere que sus proyectos generen un impacto real y medible?</CardTitle>
-                            <CardDescription>Le ayudamos a diseñar proyectos con una lógica impecable y una estrategia de cambio clara desde el inicio.</CardDescription>
+                            <CardTitle className="text-2xl">?Quiere que sus proyectos generen un impacto real y medible?</CardTitle>
+                            <CardDescription>Le ayudamos a dise?ar proyectos con una l?gica impecable y una estrategia de cambio clara desde el inicio.</CardDescription>
                         </CardHeader>
                         <CardContent>
                             <Button size="lg" asChild>
                                 <Link href="/forms?subject=Consulta%20sobre%20Marco%20Logico%20y%20Teoria%20del%20Cambio">
-                                    Solicitar un Taller de Diseño de Proyectos <ArrowRight className="ml-2 h-5 w-5" />
+                                    Solicitar un Taller de Dise?o de Proyectos <ArrowRight className="ml-2 h-5 w-5" />
                                 </Link>
                             </Button>
                         </CardContent>

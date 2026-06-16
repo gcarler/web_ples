@@ -11,46 +11,46 @@ const pageDetails = {
     parentLink: "/ples-consulting",
     parentName: "PLES Consulting",
     title: "Design Thinking",
-    subtitle: "Una metodología centrada en el ser humano para la innovación y la resolución de problemas complejos.",
+    subtitle: "Una metodolog?a centrada en el ser humano para la innovaci?n y la resoluci?n de problemas complejos.",
 };
 
 const keyPrinciples = [
     {
         icon: Users,
-        title: "Empatía Profunda",
+        title: "Empat?a Profunda",
         description: "Nos sumergimos en el mundo de sus usuarios para comprender sus necesidades, dolores y motivaciones reales, no solo las aparentes."
     },
     {
         icon: Lightbulb,
-        title: "Ideación sin Límites",
-        description: "Fomentamos un ambiente de creatividad y colaboración donde todas las ideas son bienvenidas, promoviendo el pensamiento divergente para encontrar soluciones novedosas."
+        title: "Ideaci?n sin L?mites",
+        description: "Fomentamos un ambiente de creatividad y colaboraci?n donde todas las ideas son bienvenidas, promoviendo el pensamiento divergente para encontrar soluciones novedosas."
     },
     {
         icon: DraftingCompass,
-        title: "Prototipado Rápido",
+        title: "Prototipado R?pido",
         description: "Creemos en 'mostrar, no solo contar'. Construimos prototipos de baja y alta fidelidad para tangibilizar ideas y obtener feedback temprano y valioso."
     },
     {
         icon: Rocket,
-        title: "Iteración Constante",
-        description: "Vemos el fracaso como una oportunidad de aprendizaje. Probamos, medimos, aprendemos y refinamos las soluciones de forma cíclica para asegurar su éxito."
+        title: "Iteraci?n Constante",
+        description: "Vemos el fracaso como una oportunidad de aprendizaje. Probamos, medimos, aprendemos y refinamos las soluciones de forma c?clica para asegurar su ?xito."
     }
 ];
 
 const processSteps = [
-    { title: "1. Empatizar", description: "Realizamos investigaciones de campo, entrevistas y observaciones para construir un mapa de empatía profundo del usuario." },
+    { title: "1. Empatizar", description: "Realizamos investigaciones de campo, entrevistas y observaciones para construir un mapa de empat?a profundo del usuario." },
     { title: "2. Definir", description: "Sintetizamos los hallazgos para definir claramente el problema central que debemos resolver desde la perspectiva del usuario." },
-    { title: "3. Idear", description: "Conducimos talleres de brainstorming y co-creación para generar una amplia gama de posibles soluciones al problema definido." },
+    { title: "3. Idear", description: "Conducimos talleres de brainstorming y co-creaci?n para generar una amplia gama de posibles soluciones al problema definido." },
     { title: "4. Prototipar", description: "Creamos versiones tangibles y de bajo costo de las mejores ideas, desde storyboards y maquetas hasta prototipos interactivos." },
-    { title: "5. Probar", description: "Ponemos los prototipos en manos de usuarios reales para obtener feedback, validar hipótesis y aprender qué funciona y qué no." }
+    { title: "5. Probar", description: "Ponemos los prototipos en manos de usuarios reales para obtener feedback, validar hip?tesis y aprender qu? funciona y qu? no." }
 ];
 
 const benefits = [
     "Soluciones que realmente resuelven las necesidades de los usuarios finales.",
-    "Reducción del riesgo al validar ideas antes de grandes inversiones.",
-    "Fomento de una cultura de innovación y colaboración en su equipo.",
-    "Aceleración del tiempo de lanzamiento de nuevos productos o servicios.",
-    "Generación de soluciones más creativas y disruptivas."
+    "Reducci?n del riesgo al validar ideas antes de grandes inversiones.",
+    "Fomento de una cultura de innovaci?n y colaboraci?n en su equipo.",
+    "Aceleraci?n del tiempo de lanzamiento de nuevos productos o servicios.",
+    "Generaci?n de soluciones m?s creativas y disruptivas."
 ];
 
 export default function DesignThinkingPage() {
@@ -119,7 +119,7 @@ export default function DesignThinkingPage() {
                 </section>
 
                 <section className="mb-16">
-                    <h2 className="text-3xl font-bold text-center mb-10">Beneficios para su Organización</h2>
+                    <h2 className="text-3xl font-bold text-center mb-10">Beneficios para su Organizaci?n</h2>
                     <Card className="bg-card/50 border">
                         <CardContent className="p-6">
                             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
@@ -140,13 +140,13 @@ export default function DesignThinkingPage() {
                             <div className="flex justify-center mb-4">
                                 <Lightbulb className="h-12 w-12 text-primary" />
                             </div>
-                            <CardTitle className="text-2xl">¿Listo para innovar con propósito?</CardTitle>
-                            <CardDescription>Descubra cómo el Design Thinking puede desbloquear el potencial de su equipo y generar soluciones que enamoren a sus usuarios.</CardDescription>
+                            <CardTitle className="text-2xl">?Listo para innovar con prop?sito?</CardTitle>
+                            <CardDescription>Descubra c?mo el Design Thinking puede desbloquear el potencial de su equipo y generar soluciones que enamoren a sus usuarios.</CardDescription>
                         </CardHeader>
                         <CardContent>
                             <Button size="lg" asChild>
                                 <Link href="/forms?subject=Taller%20de%20Design%20Thinking">
-                                    Solicitar un Taller de Innovación <ArrowRight className="ml-2 h-5 w-5" />
+                                    Solicitar un Taller de Innovaci?n <ArrowRight className="ml-2 h-5 w-5" />
                                 </Link>
                             </Button>
                         </CardContent>

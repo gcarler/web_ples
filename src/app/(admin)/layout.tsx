@@ -102,7 +102,7 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                  </SidebarGroup>
                  
                  <SidebarGroup>
-                    <SidebarGroupLabel>Gestión</SidebarGroupLabel>
+                    <SidebarGroupLabel>Gesti?n</SidebarGroupLabel>
                     <SidebarMenu>
                          {/* Temporarily disabling permission checks to allow UI to render without a logged-in user */}
                          <SidebarMenuItem>
@@ -132,7 +132,7 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                               <Link href="#">
                                 <span className="flex items-center gap-x-2 text-muted-foreground/70">
                                    <Settings />
-                                   Configuración
+                                   Configuraci?n
                                 </span>
                               </Link>
                            </SidebarMenuButton>
@@ -148,7 +148,7 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                                 <Link href="/" target="_blank">
                                   <span className="flex items-center gap-x-2">
                                      <Home />
-                                     Ver Sitio Público
+                                     Ver Sitio P?blico
                                   </span>
                                 </Link>
                             </SidebarMenuButton>
@@ -162,7 +162,7 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                      <SidebarMenuItem>
                          <SidebarMenuButton onClick={handleLogout} className="text-destructive hover:bg-destructive/10 focus:bg-destructive/10">
                              <LogOut />
-                             <span>Logout ({userProfile?.email ?? 'Admin'})</span>
+                             <span>Logout ({userProfile?.email ? 'Admin'})</span>
                          </SidebarMenuButton>
                      </SidebarMenuItem>
                 </SidebarMenu>

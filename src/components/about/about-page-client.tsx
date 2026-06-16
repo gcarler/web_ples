@@ -56,23 +56,23 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
   
   const identitySections = [
       { title: 'Nuestra Esencia', content: 'Comprendiendo quienes somos.', link: '/about/esencia', icon: 'HeartPulse' },
-      { title: 'Nuestro Propósito', content: 'Explorando nuestro motor.', link: '/about/proposito', icon: 'Target' },
-      { title: 'Colaboración Global', content: 'Conoce cómo trabajamos.', link: '/about/colaboracion', icon: 'Globe' },
-      { title: 'Nuestra Misión', content: 'Guiando nuestras acciones.', link: '/about/mision', icon: 'Rocket' },
-      { title: 'Nuestra Visión', content: 'Definiendo nuestro horizonte.', link: '/about/vision', icon: 'Eye' },
+      { title: 'Nuestro Prop?sito', content: 'Explorando nuestro motor.', link: '/about/proposito', icon: 'Target' },
+      { title: 'Colaboraci?n Global', content: 'Conoce c?mo trabajamos.', link: '/about/colaboracion', icon: 'Globe' },
+      { title: 'Nuestra Misi?n', content: 'Guiando nuestras acciones.', link: '/about/mision', icon: 'Rocket' },
+      { title: 'Nuestra Visi?n', content: 'Definiendo nuestro horizonte.', link: '/about/vision', icon: 'Eye' },
   ];
   
   const integrityPhrases = [
-      "Actuamos con honestidad,", "transparencia y ética", "profesional en cada interacción.",
-      "La integridad es el pilar", "de la confianza que construimos", "con nuestros clientes, socios,", "y la comunidad, garantizando", "que nuestras acciones", "siempre estén alineadas", "con nuestros principios."
+      "Actuamos con honestidad,", "transparencia y ?tica", "profesional en cada interacci?n.",
+      "La integridad es el pilar", "de la confianza que construimos", "con nuestros clientes, socios,", "y la comunidad, garantizando", "que nuestras acciones", "siempre est?n alineadas", "con nuestros principios."
   ];
 
-  const innovationDescription = `Como motor de nuestro progreso, la <strong>innovación</strong> nos impulsa a <strong>desafiar el status quo</strong> y a explorar constantemente <strong>nuevas tecnologías y metodologías</strong>. Convertimos <strong>ideas audaces</strong> en soluciones prácticas que aportan un <strong>valor tangible y sostenible</strong> a nuestros clientes.`;
+  const innovationDescription = `Como motor de nuestro progreso, la <strong>innovaci?n</strong> nos impulsa a <strong>desafiar el status quo</strong> y a explorar constantemente <strong>nuevas tecnolog?as y metodolog?as</strong>. Convertimos <strong>ideas audaces</strong> en soluciones pr?cticas que aportan un <strong>valor tangible y sostenible</strong> a nuestros clientes.`;
   
   const collaborationPhrases = [
-      "La colaboración", "es la esencia", "de nuestro accionar.",
+      "La colaboraci?n", "es la esencia", "de nuestro accionar.",
       "Fomentamos la sinergia", "entre equipos", "multidisciplinarios",
-      "y promovemos", "alianzas estratégicas", "para co-crear",
+      "y promovemos", "alianzas estrat?gicas", "para co-crear",
       "soluciones integrales", "que superan", "las expectativas",
       "y generan", "un impacto", "duradero."
   ];
@@ -99,11 +99,11 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                 Sobre PLES
               </h1>
               <p className="text-lg sm:text-xl text-foreground mb-8 max-w-2xl mx-auto lg:mx-0">
-                Fusionamos visión global y enfoque multidisciplinario para construir un legado de impacto y sostenibilidad.
+                Fusionamos visi?n global y enfoque multidisciplinario para construir un legado de impacto y sostenibilidad.
               </p>
               <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-10">
-                <Badge variant="default" className="text-md px-4 py-2 shadow-md">#VisiónGlobal</Badge>
-                <Badge variant="default" className="text-md px-4 py-2 shadow-md">#Innovación</Badge>
+                <Badge variant="default" className="text-md px-4 py-2 shadow-md">#Visi?nGlobal</Badge>
+                <Badge variant="default" className="text-md px-4 py-2 shadow-md">#Innovaci?n</Badge>
                 <Badge variant="default" className="text-md px-4 py-2 shadow-md">#Sostenibilidad</Badge>
               </div>
               <Button size="lg" variant="accent" className="text-lg px-8 py-3" asChild>
@@ -120,7 +120,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
           <div className="space-y-6">
             <h2 className="text-3xl font-bold text-primary">Nuestra Identidad</h2>
             <p className="text-lg mb-4">
-              Con una visión global y un enfoque multidisciplinario, nuestro equipo converge talentos y conocimientos diversos para la consecución de objetivos trascendentes. En PLES, valoramos la riqueza de cada perspectiva, cultivando un espacio donde las ideas disruptivas e innovadoras florecen, permitiendo intervenciones estratégicas y perspicaces en cualquier escenario.
+              Con una visi?n global y un enfoque multidisciplinario, nuestro equipo converge talentos y conocimientos diversos para la consecuci?n de objetivos trascendentes. En PLES, valoramos la riqueza de cada perspectiva, cultivando un espacio donde las ideas disruptivas e innovadoras florecen, permitiendo intervenciones estrat?gicas y perspicaces en cualquier escenario.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -260,7 +260,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
                 </CardContent>
                 <div className="p-6 pt-0">
                     <Button variant="link" asChild className="text-primary group-hover:text-primary-foreground">
-                    <Link href={pilar.link}><span className="flex items-center">Saber Más <ArrowRight className="ml-1 h-4 w-4" /></span></Link>
+                    <Link href={pilar.link}><span className="flex items-center">Saber M?s <ArrowRight className="ml-1 h-4 w-4" /></span></Link>
                     </Button>
                 </div>
                 </Card>
@@ -271,7 +271,7 @@ export default function AboutPageClient({ initialCoreValues, initialPillars }: A
 
       <section className="w-full px-4 sm:px-6 lg:px-8">
         <p className="mt-12 text-center text-md text-muted-foreground italic max-w-3xl mx-auto">
-          Estos valores se manifiestan en nuestro compromiso inquebrantable con la resiliencia ambiental y la equidad de género, buscando generar un legado significativo y duradero en cada comunidad que abrazamos.
+          Estos valores se manifiestan en nuestro compromiso inquebrantable con la resiliencia ambiental y la equidad de g?nero, buscando generar un legado significativo y duradero en cada comunidad que abrazamos.
         </p>
       </section>
     </div>
