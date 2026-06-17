@@ -1,4 +1,4 @@
-import { Building, CheckCircle, Database, UsersRound, Globe, Server, HomeIcon, Lightbulb, Handshake, Users, BrainCircuit, Code, CloudCog, Lock, BarChart3, Brain, Settings, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, ShoppingCart, Rocket, Layers, Zap, MessageSquare, MapPin, Scale, Home, Edit3, MonitorPlay, Clock, Target, ShieldCheck, Eye, Info, HeartPulse, Shield } from 'lucide-react';
+import { Building, CheckCircle, Database, UsersRound, Globe, Server, HomeIcon, Lightbulb, Handshake, Users, BrainCircuit, Code, CloudCog, Lock, BarChart3, Brain, Settings, Search, DraftingCompass, KanbanSquare, FlaskConical, GitPullRequestArrow, ShoppingCart, Rocket, Layers, Zap, MessageSquare, MapPin, Scale, Home, Edit3, MonitorPlay, Clock, Target, ShieldCheck, Eye, Info, HeartPulse, Shield, TrendingUp } from 'lucide-react';
 
 export const translations = {
   en: {
@@ -333,7 +333,7 @@ export const translations = {
             "Actuamos con honestidad,", "transparencia y ética", "profesional en cada interacción.",
             "La integridad es el pilar", "de la confianza que construimos", "con nuestros clientes, socios", "y la comunidad, garantizando", "que nuestras acciones", "siempre estén alineadas", "con nuestros principios."
         ],
-        innovationDescription: `Como motor de nuestro progreso, la <strong>innovación</strong> nos impulsa a <strong>desafiar el status quo</strong> y a explorar constantemente <strong>nuevas tecnologías y metodologíass</strong>. Convertimos <strong>ideas audaces</strong> en soluciones prácticas que aportan un <strong>valor tangible y sostenible</strong> a nuestros clientes.`,
+        innovationDescription: `Como motor de nuestro progreso, la <strong>innovación</strong> nos impulsa a <strong>desafiar el status quo</strong> y a explorar constantemente <strong>nuevas tecnologías y metodologías</strong>. Convertimos <strong>ideas audaces</strong> en soluciones prácticas que aportan un <strong>valor tangible y sostenible</strong> a nuestros clientes.`,
         collaborationPhrases: [
             "La colaboración", "es la esencia", "de nuestro accionar.",
             "Fomentamos la sinergia", "entre equipos", "multidisciplinarios",
