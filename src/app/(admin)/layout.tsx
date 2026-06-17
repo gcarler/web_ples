@@ -1,26 +1,20 @@
-// src/app/(admin)/layout.tsx
-'use client';
+﻿'use client';
 
 import type { PropsWithChildren } from 'react';
-import { useAuth } from '@/contexts/AuthContext';
+import { useSession, signOut } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { Sidebar, SidebarProvider, SidebarInset, SidebarHeader, SidebarTrigger, SidebarContent, SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarFooter } from '@/components/ui/sidebar';
 import { PlesGroupLogo } from '@/components/logo';
 import { LayoutDashboard, LogOut, ShieldCheck, FileText, Home, Settings } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
 import Link from 'next/link';
 
 export default function AdminLayout({ children }: PropsWithChildren) {
-  const { userProfile } = useAuth();
+  const { data: session } = useSession();
+  const user = session?.user;
   const router = useRouter();
-  const { toast } = useToast();
 
   const handleLogout = async () => {
-    toast({
-      title: 'Logged Out',
-      description: 'You have been logged out (Mock).',
-    });
-    router.push('/login');
+    await signOut({ callbackUrl: '/login' });
   };
 
   return (
@@ -112,7 +106,7 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                      <SidebarMenuItem>
                          <SidebarMenuButton onClick={handleLogout} className="text-destructive hover:bg-destructive/10 focus:bg-destructive/10">
                              <LogOut />
-                             <span>Logout ({userProfile?.email || 'Mock Admin'})</span>
+                             <span>Logout ({user?.email || 'User'})</span>
                          </SidebarMenuButton>
                      </SidebarMenuItem>
                 </SidebarMenu>

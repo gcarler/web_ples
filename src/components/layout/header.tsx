@@ -1,9 +1,8 @@
-// src/components/layout/header.tsx
-'use client';
+﻿'use client';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { LogIn, LogOut, LayoutDashboard, ChevronDown } from 'lucide-react';
-import { useAuth } from '@/contexts/AuthContext';
+import { useSession, signOut } from 'next-auth/react';
 import { useToast } from '@/hooks/use-toast';
 import { useRouter, usePathname } from 'next/navigation';
 import {
@@ -21,26 +20,24 @@ import { cn } from '@/lib/utils';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export function Header() {
-  const { user, loading } = useAuth();
+  const { data: session, status } = useSession();
+  const user = session?.user;
+  const loading = status === 'loading';
   const { language, setLanguage, t } = useLanguage();
   const { toast } = useToast();
   const router = useRouter();
   const pathname = usePathname();
 
   const handleLogout = async () => {
-      toast({
-        title: 'Logged Out',
-        description: `Successfully logged out (Mock).`,
-      });
-      router.push(`/login`);
+      await signOut({ callbackUrl: '/login' });
   };
 
   const navLinks = [
-    { href: `/about`, label: t.Header.about },
-    { href: `/ples-crea`, label: "PLES CREA" },
-    { href: `/ples-tic`, label: "PLES TIC" },
-    { href: `/ples-catastro`, label: "PLES Catastro" },
-    { href: `/ples-consulting`, label: "PLES Consulting" },
+    { href: /about, label: t.Header.about },
+    { href: /ples-crea, label: "PLES CREA" },
+    { href: /ples-tic, label: "PLES TIC" },
+    { href: /ples-catastro, label: "PLES Catastro" },
+    { href: /ples-consulting, label: "PLES Consulting" },
   ];
 
   return (
@@ -55,7 +52,7 @@ export function Header() {
         <div className="hidden md:flex items-center space-x-2">
            <div className="flex items-center gap-2">
                {navLinks.map((link) => {
-                   const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`);
+                   const isActive = pathname === link.href || pathname.startsWith(${link.href}/);
                    return (
                        <Link
                            key={link.href}
@@ -114,7 +111,7 @@ export function Header() {
               </DropdownMenu>
             ) : (
               <Button variant="accent" size="sm" asChild className="rounded-md">
-                <Link href={`/login`}>
+                <Link href={/login}>
                   <span className="flex items-center">
                     <LogIn className="mr-2 h-4 w-4" />
                     {t.Header.login}
