@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { LogIn, LogOut, LayoutDashboard, ChevronDown } from 'lucide-react';
@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { PlesGroupLogo } from '@/components/logo';
+import { LanguageSelector } from "@/components/language-selector";
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -33,11 +34,11 @@ export function Header() {
   };
 
   const navLinks = [
-    { href: /about, label: t.Header.about },
-    { href: /ples-crea, label: "PLES CREA" },
-    { href: /ples-tic, label: "PLES TIC" },
-    { href: /ples-catastro, label: "PLES Catastro" },
-    { href: /ples-consulting, label: "PLES Consulting" },
+    { href: "/about", label: t.Header.about },
+    { href: "/ples-crea", label: "PLES CREA" },
+    { href: "/ples-tic", label: "PLES TIC" },
+    { href: "/ples-catastro", label: "PLES Catastro" },
+    { href: "/ples-consulting", label: "PLES Consulting" },
   ];
 
   return (
@@ -52,7 +53,7 @@ export function Header() {
         <div className="hidden md:flex items-center space-x-2">
            <div className="flex items-center gap-2">
                {navLinks.map((link) => {
-                   const isActive = pathname === link.href || pathname.startsWith(${link.href}/);
+                   const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`);
                    return (
                        <Link
                            key={link.href}
@@ -73,17 +74,7 @@ export function Header() {
 
           <ThemeToggle />
           
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="sm" className="w-9 px-0 font-bold text-xs">
-                {language.toUpperCase()}
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => setLanguage('es')}>ES</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setLanguage('en')}>EN</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <LanguageSelector />
 
           {!loading && (
             user ? (
@@ -111,7 +102,7 @@ export function Header() {
               </DropdownMenu>
             ) : (
               <Button variant="accent" size="sm" asChild className="rounded-md">
-                <Link href={/login}>
+                <Link href="/login">
                   <span className="flex items-center">
                     <LogIn className="mr-2 h-4 w-4" />
                     {t.Header.login}

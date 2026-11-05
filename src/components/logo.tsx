@@ -10,7 +10,7 @@ export function PlesGroupLogo({ className, style, hoverVariant }: { className?: 
     <>
       <div
         className={cn(
-          "logo-container font-comfortaa font-bold group",
+          "logo-container inline-flex flex-row flex-nowrap items-baseline whitespace-nowrap leading-none cursor-pointer font-comfortaa font-bold group select-none",
           className 
         )}
         style={style}
@@ -18,19 +18,19 @@ export function PlesGroupLogo({ className, style, hoverVariant }: { className?: 
         aria-label="PLES Logo"
         role="img"
       >
-        <span className="letra-p-con-punto letter">p</span>
-        <span className="letter" style={{ transitionDelay: '50ms' }}>l</span>
-        <span className="letter" style={{ transitionDelay: '100ms' }}>e</span>
-        <span className="letter" style={{ transitionDelay: '150ms' }}>s</span>
+        <span className="letra-p-con-punto letter inline-block">p</span>
+        <span className="letter inline-block" style={{ transitionDelay: '50ms' }}>l</span>
+        <span className="letter inline-block" style={{ transitionDelay: '100ms' }}>e</span>
+        <span className="letter inline-block" style={{ transitionDelay: '150ms' }}>s</span>
       </div>
       <style jsx>{`
         @keyframes sonar {
           0% {
-            transform: scale(1);
+            transform: translate(-50%, -50%) scale(1);
             opacity: 0.6;
           }
           100% {
-            transform: scale(2.5);
+            transform: translate(-50%, -50%) scale(2.2);
             opacity: 0;
           }
         }
@@ -72,31 +72,30 @@ export function PlesGroupLogo({ className, style, hoverVariant }: { className?: 
           content: '';
           position: absolute;
           background-color: hsl(var(--primary)); 
-          border-radius: 100%;
+          border-radius: 50%;
           transition: background-color 0.3s ease;
           
-          width: 0.3em;
-          height: 0.3em;
+          width: 0.22em;
+          height: 0.22em;
           
-          top: 0.395em;
-          left: 0.215em;
+          top: 0.538em;
+          left: 0.362em;
+          transform: translate(-50%, -50%);
           z-index: -1;
-
-          transform-origin: center;
-          /* No animation, this is the static dot */
         }
 
         /* New animated element */
         .letra-p-con-punto::after {
           content: '';
           position: absolute;
-          width: 0.3em;
-          height: 0.3em;
-          top: 0.395em;
-          left: 0.215em;
+          width: 0.22em;
+          height: 0.22em;
+          top: 0.538em;
+          left: 0.362em;
+          transform: translate(-50%, -50%);
           z-index: -2; /* Behind the main dot */
           background-color: hsl(var(--primary));
-          border-radius: 100%;
+          border-radius: 50%;
           animation: sonar 2.5s infinite;
           transition: background-color 0.3s ease;
         }

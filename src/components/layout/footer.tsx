@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Facebook, X, Instagram } from 'lucide-react';
 import { PlesGroupLogo } from '@/components/logo';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { LanguageSelector } from '@/components/language-selector';
 
 export function Footer() {
   const { t } = useLanguage();
@@ -60,8 +61,9 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="text-center text-xs text-muted-foreground/80 border-t border-muted-foreground/20 pt-8 mt-8">
-          <p>&copy; {new Date().getFullYear()} PLES S.A.S. {content.rights}</p> 
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground/80 border-t border-muted-foreground/20 pt-8 mt-8">
+          <p>&copy; {new Date().getFullYear()} PLES S.A.S. {content.rights}</p>
+          <LanguageSelector variant="header" />
         </div>
       </div>
     </footer>

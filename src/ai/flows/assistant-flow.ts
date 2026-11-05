@@ -133,12 +133,53 @@ const assistantGenkitFlow = ai.defineFlow(
     outputSchema: AssistantOutputSchema,
   },
   async (input) => {
-    const { output } = await assistantPrompt(input);
-    if (!output) {
-        // Fallback in case the model doesn't return a valid structured response
-        return { response: "No he podido procesar tu solicitud en este momento. Int?ntalo de nuevo." };
+    try {
+      const { output } = await assistantPrompt(input);
+      if (output && output.response) {
+        return output;
+      }
+    } catch (genkitError) {
+      console.warn('Genkit/Gemini API error, executing fallback:', genkitError);
     }
-    return output;
+
+    // Fallback 1: Local Ollama (if available in current environment)
+    try {
+      const ollamaRes = await fetch('http://127.0.0.1:11434/api/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'qwen2.5:7b',
+          prompt: `Eres el Asistente virtual de PLES SAS en Cartagena, Colombia. Responde en español de forma profesional, amable y concisa a la siguiente consulta sobre PLES (servicios de cartografía y drones PLES CREA, soluciones de software PLES TIC con Ofi-Ples y GobPles, catastro multipropósito PLES Catastro, o consultoría PLES Consulting):\n\nPregunta: ${input.query}`,
+          stream: false,
+        }),
+        signal: AbortSignal.timeout(8000),
+      });
+      if (ollamaRes.ok) {
+        const data = await ollamaRes.json();
+        if (data && data.response) {
+          return { response: data.response.trim() };
+        }
+      }
+    } catch {
+      // Proceed to rule-based knowledge fallback
+    }
+
+    // Fallback 2: Knowledge Base fallback matching
+    const q = input.query.toLowerCase();
+    if (q.includes('drone') || q.includes('dron') || q.includes('chcnav') || q.includes('crea') || q.includes('mapa')) {
+      return { response: "En PLES CREA transformamos datos geoespaciales en conocimiento visual mediante cartografía digital, modelos 3D y tecnología de punta como el dron CHCNAV P330 Pro VTOL (150 min de autonomía y precisión centimétrica con RTK/PPK)." };
+    }
+    if (q.includes('catastro') || q.includes('predial') || q.includes('pot') || q.includes('avaluo') || q.includes('tierra')) {
+      return { response: "PLES Catastro lidera la gestión territorial sostenible: levantamientos prediales multipropósito, actualización y mantenimiento catastral, avalúos y formulación de Planes de Ordenamiento Territorial (POT)." };
+    }
+    if (q.includes('software') || q.includes('tic') || q.includes('ofic') || q.includes('ofiples') || q.includes('gobples') || q.includes('cloud')) {
+      return { response: "PLES TIC desarrolla software a medida, aplicaciones en la nube, ciberseguridad, automatización con IA y suites empresariales como Ofi-Ples (ERP/CRM) y GobPles." };
+    }
+    if (q.includes('contacto') || q.includes('telefono') || q.includes('correo') || q.includes('direccion') || q.includes('donde') || q.includes('nit')) {
+      return { response: "PLES SAS tiene sede en Cra 9a #33-19, Cartagena, Colombia. NIT: 901156404-0. Puedes comunicarte al 304 5705161 o escribir a contacto@ples.com.co." };
+    }
+
+    return { response: "¡Hola! Soy el asistente virtual de PLES SAS. Con gusto puedo brindarte información sobre nuestras áreas de experiencia: PLES CREA (cartografía y drones), PLES TIC (software y cloud), PLES Catastro (gestión territorial) y PLES Consulting (estrategia). ¿En qué podemos ayudarte?" };
   }
 );
 

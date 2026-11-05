@@ -84,12 +84,12 @@ export function ChatAssistant() {
 
       {isOpen && (
         <Card className="fixed bottom-24 right-6 z-50 w-full max-w-sm h-[60vh] flex flex-col shadow-2xl animate-fade-in-up">
-          <CardHeader className="flex flex-row items-center justify-between p-4 border-b">
-            <div className="flex items-center gap-2">
-              <PlesGroupLogo className="text-3xl" />
-              <CardTitle className="text-lg">Asistente PLES</CardTitle>
+          <CardHeader className="flex flex-row items-center justify-between p-3.5 border-b gap-2">
+            <div className="flex items-center gap-2 min-w-0 flex-nowrap">
+              <PlesGroupLogo className="text-2xl flex-shrink-0" />
+              <CardTitle className="text-base font-semibold truncate">Asistente PLES</CardTitle>
             </div>
-            <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="h-7 w-7">
+            <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="h-7 w-7 flex-shrink-0">
                 <X className="h-5 w-5" />
             </Button>
           </CardHeader>

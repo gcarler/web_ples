@@ -1,16 +1,34 @@
 // src/components/about/about-page-client.tsx
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import DynamicSection from '@/components/DynamicSection';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, Info, Shield, Lightbulb, Users as UsersIcon, Cpu, FlaskConical, HeartPulse, Target, Globe, Rocket, Eye, Gem } from 'lucide-react';
+import {
+  ArrowRight,
+  Info,
+  Shield,
+  Lightbulb,
+  Users as UsersIcon,
+  Cpu,
+  FlaskConical,
+  HeartPulse,
+  Target,
+  Globe,
+  Rocket,
+  Eye,
+  Gem,
+  CheckCircle2,
+  Sparkles
+} from 'lucide-react';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/contexts/LanguageContext';
 import React from 'react';
+import { InnovationAiNetwork } from '@/components/about/innovation-ai-network';
+import { CollaborationAbsorb } from '@/components/about/collaboration-absorb';
 
 const iconMap: { [key: string]: React.ElementType } = {
   UsersIcon, Lightbulb, Shield, FlaskConical, Cpu,
@@ -18,37 +36,21 @@ const iconMap: { [key: string]: React.ElementType } = {
 };
 
 export default function AboutPageClient() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const isEn = language === 'en';
   const content = t.AboutPage;
-  
+
+  // Selected value tab
   const [selectedValue, setSelectedValue] = useState(content.coreValues[2]?.id || 'integridad');
   const selectedContent = content.coreValues.find((v: any) => v.id === selectedValue);
 
-  const [bubbles, setBubbles] = useState<any[]>([]);
-
-  useEffect(() => {
-    const colors = ['bg-primary/20', 'bg-accent/20', 'bg-ring/20', 'bg-primary/30', 'bg-accent/30', 'bg-ring/30', 'bg-accent/40'];
-    const sizes = ['h-8 w-8', 'h-12 w-12', 'h-16 w-16', 'h-20 w-20', 'h-24 w-24', 'h-32 w-32'];
-    const generatedBubbles = Array.from({ length: 15 }).map((_, i) => ({
-      id: i,
-      style: {
-        top: `${Math.random() * 100}%`,
-        left: `${Math.random() * 100}%`,
-        animationDuration: `${Math.random() * 20 + 20}s`,
-        animationDelay: `-${Math.random() * 20}s`,
-      },
-      className: cn(
-        sizes[Math.floor(Math.random() * sizes.length)],
-        colors[Math.floor(Math.random() * colors.length)]
-      ),
-    }));
-    setBubbles(generatedBubbles);
-  }, []);
-
-  const SelectedIconComponent = selectedContent ? iconMap[selectedContent.iconName] || Shield : Shield;
+  const isIntegrity = selectedValue === 'integrity' || selectedValue === 'integridad';
+  const isInnovation = selectedValue === 'innovation' || selectedValue === 'innovacion';
+  const isCollaboration = selectedValue === 'collaboration' || selectedValue === 'colaboracion';
 
   return (
     <div className="pb-10 space-y-16">
+      {/* Hero Section */}
       <section className="relative bg-background overflow-hidden">
         <div className="w-full px-4 sm:px-6 lg:px-8 min-h-[calc(70vh)] lg:min-h-0 py-16 sm:py-20 md:py-24 lg:py-32 flex items-center">
           <div className="flex flex-col lg:flex-row items-center w-full gap-12 lg:gap-8">
@@ -57,7 +59,7 @@ export default function AboutPageClient() {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180%] h-[180%] bg-card rounded-full shadow-2xl"></div>
                 <div className="absolute inset-0 flex justify-center items-center z-10 p-4">
                   <div className="bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--accent))] to-[hsl(var(--ring))] bg-[length:200%_200%] animate-gradient animate-zoom-in-bounce-hero rounded-full w-full h-full shadow-xl flex items-center justify-center">
-                    <Info className="h-3/5 w-3/5 text-accent" />
+                    <Info className="h-3/5 w-3/5 text-primary-foreground" />
                   </div>
                 </div>
               </div>
@@ -72,134 +74,183 @@ export default function AboutPageClient() {
               </p>
               <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-10">
                 {content.hero.badges.map((badge: string) => (
-                    <Badge key={badge} variant="default" className="text-md px-4 py-2 shadow-md">{badge}</Badge>
+                  <Badge key={badge} variant="default" className="text-md px-4 py-2 shadow-md">
+                    {badge}
+                  </Badge>
                 ))}
               </div>
               <Button size="lg" variant="accent" className="text-lg px-8 py-3" asChild>
-                <Link href="/about/esencia"><span className="flex items-center">{content.hero.cta} <ArrowRight className="ml-2 h-5 w-5" /></span></Link>
+                <Link href="/about/esencia">
+                  <span className="flex items-center">
+                    {content.hero.cta} <ArrowRight className="ml-2 h-5 w-5" />
+                  </span>
+                </Link>
               </Button>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Identity Section */}
       <section className="w-full px-4 sm:px-6 lg:px-8 scroll-mt-20" id="identidad">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div className="space-y-6">
             <h2 className="text-3xl font-bold text-primary">{content.identity.title}</h2>
-            <p className="text-lg mb-4">
+            <p className="text-lg mb-4 text-foreground/90">
               {content.identity.description}
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {content.identity.sections.map((section: any, index: number) => {
-               const IconComponent = iconMap[section.icon] || HeartPulse;
-               return (
-                  <Card key={index} className="group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out hover:animate-gradient hover:bg-[length:200%_200%]">
-                    <CardContent className="p-0">
-                        <DynamicSection title={section.title} content={section.content} link={section.link} icon={IconComponent} />
-                    </CardContent>
-                  </Card>
-               )
+              const IconComponent = iconMap[section.icon] || HeartPulse;
+              return (
+                <Card
+                  key={index}
+                  className="group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out hover:animate-gradient hover:bg-[length:200%_200%]"
+                >
+                  <CardContent className="p-0">
+                    <DynamicSection
+                      title={section.title}
+                      content={section.content}
+                      link={section.link}
+                      icon={IconComponent}
+                    />
+                  </CardContent>
+                </Card>
+              );
             })}
           </div>
         </div>
       </section>
 
+      {/* Fullscreen Interactive Core Values Section (Expanded to ~850px) */}
       <section className="w-full relative">
-        <div className="flex flex-col md:flex-row shadow-2xl border-y border-border/20 md:h-[520px] overflow-hidden">
-          <div className="flex md:flex-col md:w-1/3 lg:w-1/4 bg-card md:border-r md:border-border/20">
-            {content.coreValues.map((value: any, index: number) => (
-              <button
-                key={value.id}
-                onClick={() => setSelectedValue(value.id!)}
-                className={cn(
-                  "w-full p-4 md:p-6 text-center font-semibold uppercase tracking-wider transition-all duration-300 ease-in-out focus:outline-none",
-                  "border-b border-border/20", index < content.coreValues.length - 1 ? "md:border-b" : "md:border-b-0",
-                  "md:flex-1 md:flex md:items-center md:justify-center",
-                  selectedValue === value.id ? 'bg-accent text-accent-foreground animate-gradient bg-[length:200%_200%]' : 'bg-primary text-primary-foreground hover:bg-primary/80'
-                )}
-              >
-                <span className="text-xl md:text-2xl">{value.name}</span>
-              </button>
-            ))}
+        <div className="flex flex-col md:flex-row shadow-2xl border-y border-border/20 md:h-[820px] lg:h-[860px] min-h-[720px] overflow-hidden">
+          {/* Vertical Menu Tabs */}
+          <div className="flex md:flex-col md:w-1/4 lg:w-1/5 bg-card md:border-r md:border-border/20 z-20">
+            {content.coreValues.map((value: any, index: number) => {
+              const isCurrent = selectedValue === value.id;
+              return (
+                <button
+                  key={value.id}
+                  onClick={() => setSelectedValue(value.id!)}
+                  className={cn(
+                    "w-full p-5 md:p-8 text-center font-semibold uppercase tracking-wider transition-all duration-300 ease-in-out focus:outline-none select-none",
+                    "border-b border-border/20",
+                    index < content.coreValues.length - 1 ? "md:border-b" : "md:border-b-0",
+                    "md:flex-1 md:flex md:flex-col md:items-center md:justify-center gap-2",
+                    isCurrent
+                      ? 'bg-accent text-accent-foreground animate-gradient bg-[length:200%_200%] shadow-lg'
+                      : 'bg-card text-foreground hover:bg-muted/70 hover:text-primary'
+                  )}
+                >
+                  <span className="text-lg md:text-2xl font-bold font-comfortaa">{value.name}</span>
+                  <span className="hidden md:inline-block text-xs opacity-75 font-normal capitalize">
+                    {value.id === 'colaboracion' || value.id === 'collaboration'
+                      ? (isEn ? "Strategic Synergy" : "Sinergia Estratégica")
+                      : value.id === 'innovacion' || value.id === 'innovation'
+                      ? (isEn ? "Advanced Technology" : "Tecnología Aplicada")
+                      : (isEn ? "Ethical Governance" : "Gobernanza y Ética")}
+                  </span>
+                </button>
+              );
+            })}
           </div>
 
+          {/* Fullscreen Interactive Canvas */}
           {selectedContent && (
-            <div className={cn(
-                "flex-1 p-0 relative md:h-full",
-                selectedValue === 'innovation' || selectedValue === 'innovacion' ? "bg-accent text-accent-foreground" :
-                "bg-primary text-primary-foreground"
-            )}>
-              {selectedValue === 'integrity' || selectedValue === 'integridad' ? (
-                <div key="integrity-content" className="relative h-full w-full animate-fade-in overflow-hidden">
-                   <h3 className="absolute top-1/2 text-[12rem] md:text-[16rem] font-bold text-primary-foreground/10 tracking-tighter lowercase select-none z-0 pointer-events-none animate-slide-across-text">
-                      {selectedContent.name}
+            <div
+              className={cn(
+                "flex-1 p-0 relative h-full w-full overflow-hidden transition-colors duration-500",
+                isInnovation ? "bg-accent text-accent-foreground" : "bg-primary text-primary-foreground"
+              )}
+            >
+              {/* ---------------- 1. INTEGRIDAD ---------------- */}
+              {isIntegrity && (
+                <div key="integrity-content" className="relative h-full w-full animate-fade-in overflow-hidden flex items-center">
+                  {/* Watermark Kinetic Typography */}
+                  <h3 className="absolute top-1/2 left-0 -translate-y-1/2 text-[12rem] md:text-[18rem] lg:text-[22rem] font-bold text-primary-foreground/10 tracking-tighter lowercase select-none pointer-events-none z-0">
+                    {selectedContent.name}
                   </h3>
-                  <div className="absolute top-1/2 w-[420px] h-[420px] md:w-[480px] md:h-[480px] animate-slide-across z-10">
-                    <div className="relative w-full h-full rounded-full bg-accent flex items-center text-accent-foreground shadow-2xl">
-                       <div className="w-4/5 ml-auto text-right flex items-center pr-12">
-                          <p className="text-base leading-relaxed">
-                              {content.integrityPhrases.map((phrase: string, index: number) => (
-                              <span
-                                  key={index}
-                                  className="inline-block animate-fade-in-up opacity-0 transition-all duration-300 hover:font-bold hover:bg-white/20 hover:scale-110 rounded-md cursor-pointer px-2 py-1"
-                                  style={{
-                                  animationDelay: `${(index + 3) * 0.1}s`,
-                                  animationFillMode: 'forwards',
-                                  }}
-                              >
-                                  {phrase}{' '}
-                              </span>
-                              ))}
+
+                  <div className="relative z-10 w-full h-full flex flex-col lg:flex-row items-center justify-between p-8 sm:p-12 lg:p-16 gap-8">
+                    {/* Left: Manifesto & Clear Text (NO awkward chopped words) */}
+                    <div className="w-full lg:w-7/12 space-y-6 max-w-2xl">
+                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-foreground/10 border border-primary-foreground/20 text-xs font-semibold uppercase tracking-wider">
+                        <Shield className="h-3.5 w-3.5 text-primary-foreground" />
+                        <span>{isEn ? "Ethical Pillar" : "Pilar Institucional"}</span>
+                      </div>
+
+                      <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-comfortaa leading-tight text-primary-foreground">
+                        {selectedContent.name}
+                      </h2>
+
+                      <div className="border-l-4 border-primary-foreground/40 pl-5 py-2">
+                        <p className="text-lg sm:text-xl font-medium text-primary-foreground/95 italic leading-relaxed">
+                          "{selectedContent.explanation || (isEn
+                            ? "We act with honesty, transparency, and professional ethics in every interaction, building trust and lasting value."
+                            : "Actuamos con honestidad, transparencia y ética profesional en cada interacción, construyendo confianza duradera.")}"
+                        </p>
+                      </div>
+
+                      <div className="grid sm:grid-cols-2 gap-4 pt-4">
+                        <div className="bg-primary-foreground/10 border border-primary-foreground/20 rounded-xl p-4 backdrop-blur-sm">
+                          <div className="text-sm font-bold text-primary-foreground flex items-center gap-2 mb-1">
+                            <CheckCircle2 className="h-4 w-4 text-primary-foreground" />
+                            {isEn ? "Data Governance" : "Soberanía de Datos"}
+                          </div>
+                          <p className="text-xs text-primary-foreground/80 leading-relaxed">
+                            {isEn ? "Confidential, protected cadastral and spatial information." : "Protección estricta y blindaje legal de información técnica y catastral."}
                           </p>
+                        </div>
+
+                        <div className="bg-primary-foreground/10 border border-primary-foreground/20 rounded-xl p-4 backdrop-blur-sm">
+                          <div className="text-sm font-bold text-primary-foreground flex items-center gap-2 mb-1">
+                            <CheckCircle2 className="h-4 w-4 text-primary-foreground" />
+                            {isEn ? "Contractual Transparency" : "Transparencia Contractual"}
+                          </div>
+                          <p className="text-xs text-primary-foreground/80 leading-relaxed">
+                            {isEn ? "Traceable milestones and open accountability." : "Trazabilidad completa, cumplimiento de metas y rendición de cuentas pública."}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Right: Pro High-Tech Gyroscopic Core (TEXT REMOVED FROM BALL!) */}
+                    <div className="w-full lg:w-5/12 flex items-center justify-center relative">
+                      <div className="relative w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] md:w-[420px] md:h-[420px] flex items-center justify-center">
+                        {/* Outer Gyro Ring 1 */}
+                        <div className="absolute inset-0 rounded-full border-2 border-dashed border-primary-foreground/25 animate-spin [animation-duration:35s]" />
+
+                        {/* Outer Gyro Ring 2 (counter-rotating) */}
+                        <div className="absolute inset-6 rounded-full border border-primary-foreground/35 animate-spin [animation-duration:22s] [animation-direction:reverse]" />
+
+                        {/* Geometric Orbit Accent Ring */}
+                        <div className="absolute inset-14 rounded-full border-2 border-primary-foreground/45 rotate-45" />
+
+                        {/* Pristine Glassmorphic Sphere without text */}
+                        <div className="relative w-48 h-48 sm:w-60 sm:h-60 rounded-full bg-gradient-to-tr from-accent/90 via-primary-foreground/20 to-primary-foreground/40 backdrop-blur-xl shadow-2xl flex items-center justify-center border border-primary-foreground/40 animate-pulse [animation-duration:4s]">
+                          <div className="w-28 h-28 rounded-full bg-primary-foreground/20 flex items-center justify-center border border-primary-foreground/50 shadow-inner">
+                            <Shield className="h-14 w-14 text-primary-foreground" />
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              ) : selectedValue === 'innovation' || selectedValue === 'innovacion' ? (
-                <div key="innovation-content" className="flex h-full w-full animate-fade-in relative overflow-hidden">
-                    {bubbles.map((bubble) => (
-                      <div
-                        key={bubble.id}
-                        className={cn('absolute rounded-full animate-bubble-roam opacity-80', bubble.className)}
-                        style={bubble.style as React.CSSProperties}
-                      />
-                    ))}
+              )}
 
-                    <div className="relative z-10 flex h-full w-full flex-col justify-between p-8 md:p-12 lg:p-16">
-                        <h3 className="text-7xl md:text-9xl font-thin text-accent-foreground tracking-tight lowercase">
-                            {selectedContent.name}
-                        </h3>
-                        <div className="flex w-full justify-start">
-                            <p
-                                className="text-lg md:text-xl leading-relaxed text-accent-foreground/80 max-w-md text-left"
-                                dangerouslySetInnerHTML={{ __html: content.innovationDescription }}
-                            />
-                        </div>
-                    </div>
+              {/* ---------------- 2. INNOVACIÓN ---------------- */}
+              {isInnovation && (
+                <div key="innovation-content" className="relative h-full w-full animate-fade-in overflow-hidden">
+                  <InnovationAiNetwork isEn={isEn} />
                 </div>
-              ) : (
-                <div key="collaboration-content" className="h-full w-full relative animate-fade-in flex items-center justify-center p-8 md:p-12 lg:p-16 gap-8">
-                  <div className="w-1/4 flex justify-center">
-                    <SelectedIconComponent className="h-32 w-32 sm:h-40 sm:w-40 text-accent" />
-                  </div>
-                  <div className="w-1/2 flex flex-col items-center justify-center text-center z-10">
-                    <h3 className="text-7xl md:text-8xl font-bold text-primary-foreground/20 select-none mb-4 uppercase">
-                        {selectedContent.name}
-                    </h3>
-                    <p className="text-lg text-primary-foreground/90 leading-relaxed max-w-2xl mx-auto">
-                        {content.collaborationPhrases.map((phrase: string, index: number) => (
-                            <span
-                                key={index}
-                                className="inline-block animate-fade-in-up opacity-0 transition-all duration-300 hover:text-accent hover:scale-105 cursor-pointer"
-                                style={{ animationDelay: `${index * 0.12}s`, animationFillMode: 'forwards' }}
-                            >
-                                {phrase}{' '}
-                            </span>
-                        ))}
-                    </p>
-                  </div>
+              )}
+
+              {/* ---------------- 3. COLABORACIÓN ---------------- */}
+              {isCollaboration && (
+                <div key="collaboration-content" className="relative h-full w-full animate-fade-in overflow-hidden">
+                  <CollaborationAbsorb isEn={isEn} />
                 </div>
               )}
             </div>
@@ -207,6 +258,7 @@ export default function AboutPageClient() {
         </div>
       </section>
 
+      {/* Pillars Section */}
       <section className="w-full px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">
           {content.pillars.title}
@@ -215,25 +267,37 @@ export default function AboutPageClient() {
           {content.pillars.items.map((pilar: any) => {
             const PillarIcon = iconMap[pilar.iconName] || FlaskConical;
             return (
-                <Card key={pilar.title} className="text-center group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out transform flex flex-col hover:animate-gradient hover:bg-[length:200%_200%]">
+              <Card
+                key={pilar.title}
+                className="text-center group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out transform flex flex-col hover:animate-gradient hover:bg-[length:200%_200%]"
+              >
                 <CardHeader className="items-center">
-                    <PillarIcon className="h-12 w-12 text-primary group-hover:text-primary-foreground transition-colors" />
-                    <CardTitle className="mt-4 text-2xl group-hover:text-primary-foreground">{pilar.title}</CardTitle>
+                  <PillarIcon className="h-12 w-12 text-primary group-hover:text-primary-foreground transition-colors" />
+                  <CardTitle className="mt-4 text-2xl group-hover:text-primary-foreground">
+                    {pilar.title}
+                  </CardTitle>
                 </CardHeader>
                 <CardContent className="flex-grow">
-                    <p className="text-muted-foreground group-hover:text-primary-foreground/90">{pilar.description}</p>
+                  <p className="text-muted-foreground group-hover:text-primary-foreground/90">
+                    {pilar.description}
+                  </p>
                 </CardContent>
                 <div className="p-6 pt-0">
-                    <Button variant="link" asChild className="text-primary group-hover:text-primary-foreground">
-                    <Link href={pilar.link}><span className="flex items-center">{content.pillars.cta} <ArrowRight className="ml-1 h-4 w-4" /></span></Link>
-                    </Button>
+                  <Button variant="link" asChild className="text-primary group-hover:text-primary-foreground">
+                    <Link href={pilar.link}>
+                      <span className="flex items-center">
+                        {content.pillars.cta} <ArrowRight className="ml-1 h-4 w-4" />
+                      </span>
+                    </Link>
+                  </Button>
                 </div>
-                </Card>
+              </Card>
             );
           })}
         </div>
       </section>
 
+      {/* Closing Statement */}
       <section className="w-full px-4 sm:px-6 lg:px-8">
         <p className="mt-12 text-center text-md text-muted-foreground italic max-w-3xl mx-auto">
           {content.closingStatement}

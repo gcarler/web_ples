@@ -436,5 +436,153 @@ export const translations = {
         ctaSectionDesc: "Permítanos mostrarle cómo la inteligencia geoespacial puede revelar nuevas oportunidades y optimizar sus operaciones.",
         ctaSectionBtn: "Hable con un Experto"
     }
+  },
+  fr: {
+    ...({} as any),
+    Header: {
+      about: "À Propos",
+      login: "Connexion",
+      plesCrea: "PLES CREA",
+      plesTic: "PLES TIC",
+      plesCatastro: "PLES Cadastre",
+      plesConsulting: "PLES Consulting"
+    },
+    Footer: {
+      slogan: "Nous sommes Science, Technologie et Innovation.",
+      linksTitle: "Liens",
+      home: "Accueil",
+      about: "À Propos",
+      services: "Services",
+      contact: "Contactez-nous",
+      contactTitle: "Contact",
+      followUs: "Suivez-nous",
+      rights: "Tous droits réservés."
+    },
+    PlesCatastro: {
+      title: "PLES Cadastre",
+      subtitle: "Experts en gestion territoriale et cadastrale à vocation polyvalente.",
+      description: "Nous modernisons l'administration territoriale en appliquant des technologies de pointe et des méthodologies scientifiques pour garantir la sécurité juridique et le développement durable.",
+      badges: ["#CadastrePolyvalent", "#GestionTerritoriale", "#SIG"],
+      cta: "Parlons de votre Territoire",
+      servicesTitle: "Nos Domaines d'Expertise Cadastrale",
+      services: [
+        { slug: "levantamiento-predial", title: "Levé Parcellaire Polyvalent", description: "Levés cadastraux de haute précision (urbains et ruraux) à des fins fiscales, juridiques et économiques." },
+        { slug: "actualizacion-mantenimiento", title: "Mise à Jour et Conservation Cadastrale", description: "Processus continus et automatisés pour maintenir l'information foncière à jour et fiable." },
+        { slug: "avaluos", title: "Évaluations Foncières Massives et Spécifiques", description: "Évaluations immobilières avec des méthodologies robustes pour une assiette fiscale équitable." },
+        { slug: "ordenamiento-territorial", title: "Plans d'Aménagement du Territoire (POT)", description: "Plans stratégiques guidant la croissance durable et l'occupation efficace du territoire." }
+      ],
+      loading: "Chargement..."
+    }
+  },
+  pt: {
+    ...({} as any),
+    Header: {
+      about: "Sobre Nós",
+      login: "Entrar",
+      plesCrea: "PLES CREA",
+      plesTic: "PLES TIC",
+      plesCatastro: "PLES Cadastro",
+      plesConsulting: "PLES Consulting"
+    },
+    Footer: {
+      slogan: "Somos Ciência, Tecnologia e Inovação.",
+      linksTitle: "Links",
+      home: "Início",
+      about: "Sobre Nós",
+      services: "Serviços",
+      contact: "Contate-nos",
+      contactTitle: "Contato",
+      followUs: "Siga-nos",
+      rights: "Todos os direitos reservados."
+    },
+    PlesCatastro: {
+      title: "PLES Cadastro",
+      subtitle: "Especialistas em gestão territorial e cadastral com abordagem multipropósito.",
+      description: "Modernizamos a administração territorial aplicando tecnologia de ponta e metodologias científicas para garantir a segurança jurídica e o desenvolvimento sustentável.",
+      badges: ["#CadastroMultipropósito", "#GestãoTerritorial", "#SIG"],
+      cta: "Vamos Conversar Sobre Seu Território",
+      servicesTitle: "Nossos Serviços Cadastrais",
+      services: [
+        { slug: "levantamiento-predial", title: "Levantamento Predial Multipropósito", description: "Levantamentos cadastrais precisos (urbanos e rurais) para fins fiscais, jurídicos e econômicos." },
+        { slug: "actualizacion-mantenimiento", title: "Atualização e Manutenção Cadastral", description: "Processos contínuos e automatizados para manter as informações cadastrais atualizadas e confiáveis." },
+        { slug: "avaluos", title: "Avaliações Massivas e Pontuais", description: "Avaliações de propriedades com metodologias robustas para uma base tributária justa." },
+        { slug: "ordenamiento-territorial", title: "Planos de Ordenamento Territorial (POT)", description: "Planos estratégicos que guiam o crescimento sustentável e a ocupação eficiente do território." }
+      ],
+      loading: "Carregando..."
+    }
+  },
+  de: {
+    ...({} as any),
+    Header: {
+      about: "Über Uns",
+      login: "Anmelden",
+      plesCrea: "PLES CREA",
+      plesTic: "PLES TIC",
+      plesCatastro: "PLES Kataster",
+      plesConsulting: "PLES Consulting"
+    },
+    Footer: {
+      slogan: "Wir sind Wissenschaft, Technologie und Innovation.",
+      linksTitle: "Links",
+      home: "Startseite",
+      about: "Über Uns",
+      services: "Dienstleistungen",
+      contact: "Kontakt",
+      contactTitle: "Kontakt",
+      followUs: "Folgen Sie uns",
+      rights: "Alle Rechte vorbehalten."
+    },
+    PlesCatastro: {
+      title: "PLES Kataster",
+      subtitle: "Experten für territoriales und Katastermanagement mit Mehrzweckansatz.",
+      description: "Wir modernisieren die Raumverwaltung durch den Einsatz modernster Technologien und wissenschaftlicher Methoden, um Rechtssicherheit und nachhaltige Entwicklung zu gewährleisten.",
+      badges: ["#Mehrzweckkataster", "#Raumordnung", "#GIS"],
+      cta: "Lassen Sie uns über Ihr Gebiet sprechen",
+      servicesTitle: "Unsere Katasterdienste",
+      services: [
+        { slug: "levantamiento-predial", title: "Mehrzweck-Grundstücksvermessung", description: "Präzise Katastervermessungen (städtisch und ländlich) für steuerliche, rechtliche und wirtschaftliche Zwecke." },
+        { slug: "actualizacion-mantenimiento", title: "Fortführung und Aktualisierung des Katasters", description: "Kontinuierliche und automatisierte Prozesse zur stets aktuellen und verlässlichen Datenhaltung." },
+        { slug: "avaluos", title: "Massen- und Einzelschätzungen", description: "Immobilienbewertungen mit robusten Methoden für eine gerechte Steuerbemessungsgrundlage." },
+        { slug: "ordenamiento-territorial", title: "Flächennutzungs- und Raumordnungspläne (POT)", description: "Strategische Pläne zur Steuerung eines nachhaltigen Wachstums und einer effizienten Raumnutzung." }
+      ],
+      loading: "Wird geladen..."
+    }
+  },
+  it: {
+    ...({} as any),
+    Header: {
+      about: "Chi Siamo",
+      login: "Accedi",
+      plesCrea: "PLES CREA",
+      plesTic: "PLES TIC",
+      plesCatastro: "PLES Catasto",
+      plesConsulting: "PLES Consulting"
+    },
+    Footer: {
+      slogan: "Siamo Scienza, Tecnologia e Innovazione.",
+      linksTitle: "Link",
+      home: "Home",
+      about: "Chi Siamo",
+      services: "Servizi",
+      contact: "Contattaci",
+      contactTitle: "Contatto",
+      followUs: "Seguici",
+      rights: "Tutti i diritti riservati."
+    },
+    PlesCatastro: {
+      title: "PLES Catasto",
+      subtitle: "Esperti in gestione territoriale e catastale con approccio polivalente.",
+      description: "Modernizziamo l'amministrazione del territorio applicando tecnologie all'avanguardia e metodologie scientifiche per garantire sicurezza giuridica e sviluppo sostenibile.",
+      badges: ["#CatastoPolivalente", "#GestioneTerritoriale", "#GIS"],
+      cta: "Parliamo del Tuo Territorio",
+      servicesTitle: "I Nostri Servizi Catastali",
+      services: [
+        { slug: "levantamiento-predial", title: "Rilievo Prediale Polivalente", description: "Rilievi catastali precisi (urbani e rurali) a fini fiscali, giuridici ed economici." },
+        { slug: "actualizacion-mantenimiento", title: "Aggiornamento e Conservazione Catastale", description: "Processi continui e automatizzati per mantenere le informazioni catastali sempre aggiornate e affidabili." },
+        { slug: "avaluos", title: "Stime di Massa e Perizie Commerciali", description: "Valutazioni immobiliari con metodologie rigorose per una base imponibile equa." },
+        { slug: "ordenamiento-territorial", title: "Piani di Assetto Territoriale (POT)", description: "Piani strategici che guidano la crescita sostenibile e l'occupazione efficiente del territorio." }
+      ],
+      loading: "Caricamento..."
+    }
   }
 };
