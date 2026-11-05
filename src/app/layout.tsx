@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 };
 
 const comfortaa = Comfortaa({ 
-    subsets: ['latin'],
+    subsets: ['latin', 'latin-ext'],
     display: 'swap',
     variable: '--font-comfortaa',
 });

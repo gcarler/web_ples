@@ -83,12 +83,12 @@ export function AddUserForm() {
             name="email"
             render={({ field }) => (
                 <FormItem>
-                <FormLabel>Direcci?n de Correo Electr?nico</FormLabel>
+                <FormLabel>Dirección de Correo Electrónico</FormLabel>
                 <FormControl>
                     <Input type="email" placeholder="usuario@ejemplo.com" {...field} />
                 </FormControl>
                  <FormDescription>
-                    La direcci?n de correo electr?nico que el usuario usar? para iniciar sesi?n.
+                    La dirección de correo electrónico que el usuario usar? para iniciar sesión.
                  </FormDescription>
                 <FormMessage />
                 </FormItem>
@@ -100,7 +100,7 @@ export function AddUserForm() {
                 name="password"
                 render={({ field }) => (
                     <FormItem>
-                    <FormLabel>Contrase?a</FormLabel>
+                    <FormLabel>Contraseña</FormLabel>
                     <FormControl>
                         <Input type="password" placeholder="••••••••" {...field} />
                     </FormControl>
@@ -122,7 +122,7 @@ export function AddUserForm() {
                         <Input placeholder="John Doe" {...field} />
                     </FormControl>
                      <FormDescription>
-                        C?mo aparecer? el nombre del usuario.
+                        Cómo aparecer? el nombre del usuario.
                     </FormDescription>
                     <FormMessage />
                     </FormItem>

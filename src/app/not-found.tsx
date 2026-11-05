@@ -33,10 +33,10 @@ export default function NotFoundPage() {
             <Compass className="h-12 w-12 text-primary animate-pulse" />
           </div>
           <CardTitle className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">
-            P?gina No Encontrada
+            Página No Encontrada
           </CardTitle>
           <CardDescription className="text-lg text-muted-foreground mt-2">
-            ?Ups! Parece que te has perdido en el ciberespacio.
+            ¡Ups! Parece que te has perdido en el ciberespacio.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
