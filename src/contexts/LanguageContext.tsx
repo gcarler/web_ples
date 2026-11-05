@@ -4,22 +4,17 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { translations } from '@/lib/translations';
 
-export type Language = 'es' | 'en' | 'fr' | 'pt' | 'de' | 'it';
+export type Language = 'es' | 'en';
 
 export interface LanguageOption {
   code: Language;
   label: string;
-  flag: string;
   nativeName: string;
 }
 
 export const AVAILABLE_LANGUAGES: LanguageOption[] = [
-  { code: 'es', label: 'Español', flag: '🇪🇸', nativeName: 'Español' },
-  { code: 'en', label: 'English', flag: '🇺🇸', nativeName: 'English' },
-  { code: 'fr', label: 'Français', flag: '🇫🇷', nativeName: 'Français' },
-  { code: 'pt', label: 'Português', flag: '🇧🇷', nativeName: 'Português' },
-  { code: 'de', label: 'Deutsch', flag: '🇩🇪', nativeName: 'Deutsch' },
-  { code: 'it', label: 'Italiano', flag: '🇮🇹', nativeName: 'Italiano' },
+  { code: 'es', label: 'Español', nativeName: 'Español' },
+  { code: 'en', label: 'English', nativeName: 'English' },
 ];
 
 interface LanguageContextType {
@@ -34,9 +29,8 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 /**
  * Deep merge base dictionary with target override dictionary.
- * Guarantees that any missing section or key in a secondary language
- * seamlessly falls back to the primary dictionary (translations.es)
- * without ever causing undefined errors.
+ * Ensures that if any key is missing in English, it seamlessly falls
+ * back to Spanish without ever throwing undefined.
  */
 function deepMergeFallback(base: any, override: any): any {
   if (!override) return base;
@@ -70,16 +64,18 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     try {
       const savedLang = localStorage.getItem('language') as Language;
-      const validCodes = AVAILABLE_LANGUAGES.map(l => l.code);
+      const validCodes: Language[] = ['es', 'en'];
       if (savedLang && validCodes.includes(savedLang)) {
         setLanguageState(savedLang);
         document.documentElement.lang = savedLang;
       } else {
-        // Check browser language
-        const browserLang = navigator.language?.slice(0, 2) as Language;
-        if (validCodes.includes(browserLang)) {
-          setLanguageState(browserLang);
-          document.documentElement.lang = browserLang;
+        const browserLang = (navigator.language?.slice(0, 2) || '').toLowerCase() as Language;
+        if (browserLang === 'en') {
+          setLanguageState('en');
+          document.documentElement.lang = 'en';
+        } else {
+          setLanguageState('es');
+          document.documentElement.lang = 'es';
         }
       }
     } catch {
@@ -99,9 +95,10 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   const currentLanguageMeta = AVAILABLE_LANGUAGES.find(l => l.code === language) || AVAILABLE_LANGUAGES[0];
 
-  // Resolve translation dictionary with deep fallback so no section or key is ever undefined
-  const rawTarget = (translations as any)[language];
-  const translationDict = deepMergeFallback(translations.es, rawTarget);
+  // Resolve translation dictionary
+  const translationDict = language === 'en'
+    ? deepMergeFallback(translations.es, translations.en)
+    : translations.es;
 
   const value: LanguageContextType = {
     language,
