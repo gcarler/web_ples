@@ -1,30 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <defs>
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0b0f19" />
-      <stop offset="100%" stop-color="#020617" />
-    </linearGradient>
-    <radialGradient id="dotGlow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#38bdf8" />
-      <stop offset="70%" stop-color="#05c7f2" />
-      <stop offset="100%" stop-color="#0284c7" />
-    </radialGradient>
-  </defs>
-
-  <!-- Circular background badge -->
-  <circle cx="32" cy="32" r="30" fill="url(#bgGrad)" stroke="#049DD9" stroke-width="2" stroke-opacity="0.8" />
-
-  <!-- Geodetic / Radar subtle ring -->
-  <circle cx="32" cy="32" r="26" fill="none" stroke="#38bdf8" stroke-width="0.75" stroke-dasharray="2 3" opacity="0.4" />
-
-  <!-- PLES lowercase 'p' in Comfortaa geometry -->
-  <!-- Stem -->
-  <rect x="14" y="14" width="9" height="36" rx="4.5" fill="#f8fafc" />
-
-  <!-- Bowl -->
-  <circle cx="34" cy="24" r="13" fill="none" stroke="#f8fafc" stroke-width="7" />
-
-  <!-- Iconic PLES radar sonar dot -->
-  <circle cx="34" cy="24" r="4.5" fill="url(#dotGlow)" />
-  <circle cx="34" cy="24" r="7.5" fill="none" stroke="#38bdf8" stroke-width="1" opacity="0.7" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="80" fill="#009FE3" />
+  <g transform="translate(105.79, 472.00) scale(0.54522, -0.54522) translate(-90.00, 234.00)">
+    <path d="M141 -234Q119 -234 104.5 -219.5Q90 -205 90 -183V273Q90.99159663865547 351.8509090909091 127.18487394957984 415.03272727272724Q163.3781512605042 478.21454545454543 225.3529411764706 514.6072727272727Q287.327731092437 551 364.672268907563 551Q444 551 506.0 514.5Q568 478 604.5 415.2210526315789Q641 352.4421052631579 641 272.72280701754386Q641 194 607.3407407407408 131.31658291457285Q573.6814814814815 68.63316582914572 515.8444444444444 32.31658291457286Q458.0074074074074 -4 385 -4Q326 -4 276.5 20.5Q227 45 192 87V-183Q192 -205 177.9078947368421 -219.5Q163.81578947368422 -234 141 -234ZM364.94208494208493 86Q416 86 456.0 110.5Q496 135 519.5 177.61682242990656Q543 220.2336448598131 543 273.1682242990654Q543 327 519.5 369.5Q496 412 455.77777777777777 436.5Q415.55555555555554 461 364.84057971014494 461Q315 461 274.43055555555554 436.2705223880597Q233.86111111111111 411.5410447761194 210.93055555555554 369.27611940298505Q188 327.01119402985074 188 273.0559701492537Q188 220 210.88803088803087 177.28187919463087Q233.77606177606177 134.56375838926175 274.27027027027026 110.28187919463087Q314.7644787644788 86 364.94208494208493 86Z" fill="#FFFFFF" fill-rule="evenodd" />
+  </g>
 </svg>
