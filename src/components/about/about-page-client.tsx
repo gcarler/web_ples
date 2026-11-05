@@ -38,7 +38,7 @@ const iconMap: { [key: string]: React.ElementType } = {
 export default function AboutPageClient() {
   const { t, language } = useLanguage();
   const isEn = language === 'en';
-  const content = t.AboutPage;
+  const content = t?.AboutPage || (translations.es as any)?.AboutPage;
 
   // Selected value tab
   const [selectedValue, setSelectedValue] = useState(content.coreValues[2]?.id || 'integridad');

@@ -14,7 +14,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function PlesTicPage() {
   const { t } = useLanguage();
-  const content = t.PlesTic;
+  const content = t?.PlesTic || (translations.es as any)?.PlesTic;
 
   return (
     <div className="space-y-0">

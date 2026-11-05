@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -51,8 +51,8 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
   const [metricIndices, setMetricIndices] = useState([0, 0, 0]);
   const [isAnimatingOut, setIsAnimatingOut] = useState<number | null>(null);
 
-  const heroStatements = t.HomePage.heroStatements || initialHeroStatements;
-  const metricsData = t.HomePage.metrics;
+  const heroStatements = t?.HomePage?.heroStatements || initialHeroStatements || [];
+  const metricsData = t?.HomePage?.metrics || (translations.es as any)?.HomePage?.metrics || [];
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -118,9 +118,13 @@ export default function HomePageClient({ initialHeroStatements }: HomePageClient
             {t.HomePage.experienceTitle}
           </h1>
           <div className="grid grid-cols-1 sm:grid-cols-3 justify-center items-stretch gap-8 md:gap-12 text-lg text-foreground mb-20">
-            {metricsData.map((metrics, cardIndex) => {
-                const metric = metrics[metricIndices[cardIndex]];
-                const Icon = metric.icon;
+            {(metricsData || []).map((metrics: any, cardIndex: number) => {
+                if (!metrics || !Array.isArray(metrics)) return null;
+                const safeCardIndex = cardIndex < metricIndices.length ? cardIndex : 0;
+                const safeMetricIndex = (metricIndices[safeCardIndex] || 0) % metrics.length;
+                const metric = metrics[safeMetricIndex] || metrics[0];
+                if (!metric) return null;
+                const Icon = metric.icon || LucideIcons.HelpCircle;
                 return (
                     <div key={cardIndex} className="flex flex-col items-center p-6 bg-card rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 ease-in-out h-40 overflow-hidden">
                         <Icon className="h-12 w-12 text-primary mb-4" />

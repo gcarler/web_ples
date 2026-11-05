@@ -13,7 +13,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function PlesConsultingPage() {
   const { t } = useLanguage();
-  const content = t.PlesConsulting;
+  const content = t?.PlesConsulting || (translations.es as any)?.PlesConsulting;
 
   return (
     <div className="space-y-16">

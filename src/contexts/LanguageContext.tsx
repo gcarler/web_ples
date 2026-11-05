@@ -32,6 +32,37 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
+/**
+ * Deep merge base dictionary with target override dictionary.
+ * Guarantees that any missing section or key in a secondary language
+ * seamlessly falls back to the primary dictionary (translations.es)
+ * without ever causing undefined errors.
+ */
+function deepMergeFallback(base: any, override: any): any {
+  if (!override) return base;
+  if (typeof base !== 'object' || base === null) return override ?? base;
+  if (Array.isArray(base)) {
+    return Array.isArray(override) && override.length > 0 ? override : base;
+  }
+  const result: any = { ...base };
+  for (const key of Object.keys(override)) {
+    if (override[key] !== undefined && override[key] !== null) {
+      if (
+        typeof override[key] === 'object' &&
+        !Array.isArray(override[key]) &&
+        base[key] &&
+        typeof base[key] === 'object' &&
+        !Array.isArray(base[key])
+      ) {
+        result[key] = deepMergeFallback(base[key], override[key]);
+      } else {
+        result[key] = override[key];
+      }
+    }
+  }
+  return result;
+}
+
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguageState] = useState<Language>('es');
 
@@ -68,8 +99,9 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   const currentLanguageMeta = AVAILABLE_LANGUAGES.find(l => l.code === language) || AVAILABLE_LANGUAGES[0];
 
-  // Resolve translation dictionary with safe fallback
-  const translationDict = (translations as any)[language] || translations.en || translations.es;
+  // Resolve translation dictionary with deep fallback so no section or key is ever undefined
+  const rawTarget = (translations as any)[language];
+  const translationDict = deepMergeFallback(translations.es, rawTarget);
 
   const value: LanguageContextType = {
     language,

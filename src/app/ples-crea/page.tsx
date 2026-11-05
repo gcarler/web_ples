@@ -34,7 +34,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 export default function PlesCreaPage() {
   const { t, language } = useLanguage();
   const isEn = language === 'en';
-  const content = t.PlesCrea;
+  const content = t?.PlesCrea || (translations.es as any)?.PlesCrea;
 
   const [activeSpecTab, setActiveSpecTab] = useState<'aero' | 'sensors' | 'accuracy'>('aero');
 
