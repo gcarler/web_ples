@@ -1,5 +1,6 @@
 
 // src/app/layout.tsx
+import type { Metadata } from 'next';
 import type { PropsWithChildren } from 'react';
 import './globals.css'; // Use relative path to globals.css
 import { Header } from '@/components/layout/header';
@@ -10,6 +11,18 @@ import { Comfortaa } from "next/font/google";
 import { Toaster } from '@/components/ui/toaster';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import { ChatAssistant } from '@/components/ai/chat-assistant';
+
+export const metadata: Metadata = {
+  title: 'PLES | Ciencia, Tecnología e Innovación Territorial',
+  description: 'Soluciones territoriales, catastro multipropósito, tecnologías de la información y consultoría estratégica.',
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: 'any' },
+    ],
+    apple: '/apple-touch-icon.png',
+  },
+};
 
 const comfortaa = Comfortaa({ 
     subsets: ['latin'],
