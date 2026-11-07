@@ -13,8 +13,10 @@ const WORDS = [
 
 export function RotatingWord() {
   const [index, setIndex] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
     const timer = setInterval(() => {
       setIndex((prev) => (prev + 1) % WORDS.length);
     }, 5000);
@@ -23,10 +25,10 @@ export function RotatingWord() {
 
   return (
     <span className="inline-block relative align-baseline min-w-[210px] sm:min-w-[280px] h-[1.15em] overflow-hidden">
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="wait" initial={false}>
         <motion.span
           key={WORDS[index]}
-          initial={{ y: '100%', opacity: 0, filter: 'blur(6px)' }}
+          initial={isMounted ? { y: '100%', opacity: 0, filter: 'blur(6px)' } : false}
           animate={{ y: '0%', opacity: 1, filter: 'blur(0px)' }}
           exit={{ y: '-100%', opacity: 0, filter: 'blur(6px)' }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}

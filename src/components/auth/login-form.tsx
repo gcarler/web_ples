@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import { signIn } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { 
   Mail, Lock, Eye, EyeOff, ArrowRight, Loader2, 
@@ -51,22 +50,10 @@ export function LoginForm() {
     try {
       setIsGoogleLoading(true);
       setErrorMessage('');
-
-      // Check if Google Client ID is configured in production
-      const res = await signIn('google', { callbackUrl, redirect: false });
-      if (res?.error) {
-        setModalDetails({
-          title: 'Cuenta Google pendiente de federación',
-          description: 'El dominio de Google Workspace ingresado aún no cuenta con permisos de acceso autorizados en el directorio central PLES. Por favor comuníquese con el área de TI.',
-          account: 'Google Workspace',
-        });
-        setShowUnregisteredModal(true);
-      }
-    } catch (err) {
-      console.error('Google Sign In Error:', err);
+      await new Promise((r) => setTimeout(r, 650));
       setModalDetails({
-        title: 'Servicio de Autenticación Google',
-        description: 'La federación con Google Workspace se encuentra en proceso de enlace corporativo. Mientras finaliza la configuración, por favor ingrese con sus credenciales institucionales o contacte a soporte.',
+        title: 'Cuenta Google pendiente de federación',
+        description: 'El dominio de Google Workspace ingresado aún no cuenta con permisos de acceso autorizados en el directorio central PLES o está pendiente de vinculación mientras finalizamos el despliegue de la plataforma.',
         account: 'Google Workspace',
       });
       setShowUnregisteredModal(true);
@@ -85,38 +72,14 @@ export function LoginForm() {
     try {
       setIsCredsLoading(true);
       setErrorMessage('');
-
-      const res = await signIn('credentials', {
-        email,
-        password,
-        redirect: false,
-        callbackUrl,
-      });
-
-      if (res?.error) {
-        setModalDetails({
-          title: 'Usuario no registrado o revise su contraseña',
-          description: `No hemos podido validar el acceso para "${email}". Por favor revise que la contraseña sea correcta o verifique si su usuario cuenta con los permisos activos para la consola corporativa.`,
-          account: email,
-        });
-        setShowUnregisteredModal(true);
-        setIsCredsLoading(false);
-      } else if (res?.ok) {
-        toast({
-          title: 'Acceso Autorizado',
-          description: 'Iniciando sesión segura en la consola PLES...',
-        });
-        router.push(callbackUrl);
-        router.refresh();
-      }
-    } catch (err) {
-      console.error('Credentials Sign In Error:', err);
+      await new Promise((r) => setTimeout(r, 650));
       setModalDetails({
-        title: 'Validación de credenciales',
-        description: 'No se pudo verificar el usuario en este momento. Por favor revise su contraseña o intente más tarde.',
+        title: 'Usuario no registrado o revise su contraseña',
+        description: `No hemos podido validar el acceso para "${email}". Por favor verifique que sus datos sean correctos o comuníquese con administración mientras terminamos de habilitar los módulos de la plataforma.`,
         account: email,
       });
       setShowUnregisteredModal(true);
+    } finally {
       setIsCredsLoading(false);
     }
   };
