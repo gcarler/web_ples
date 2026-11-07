@@ -53,26 +53,13 @@ export function LoginForm() {
       setErrorMessage('');
       setSecurityNotice((prev) => ({ ...prev, visible: false }));
       
-      // Fast Google Workspace corporate verification
-      await new Promise((r) => setTimeout(r, 600));
-      
-      if (typeof window !== 'undefined') {
-        localStorage.setItem(
-          'ples_user_session',
-          JSON.stringify({
-            email: 'admin@ples.com.co',
-            name: 'Administrador PLES',
-            provider: 'google',
-            role: 'admin',
-            authenticatedAt: new Date().toISOString(),
-          })
-        );
-      }
-
-      router.push(callbackUrl);
+      // Inicia el flujo oficial de autenticación OAuth 2.0 con Google
+      await signIn('google', {
+        callbackUrl: callbackUrl || '/',
+      });
     } catch (err: any) {
-      setErrorMessage('No se pudo completar la conexión con Google Workspace.');
-    } finally {
+      console.error('Error al conectar con Google:', err);
+      setErrorMessage('No se pudo establecer conexión con el proveedor de identidad de Google.');
       setIsGoogleLoading(false);
     }
   };
@@ -89,40 +76,40 @@ export function LoginForm() {
       setErrorMessage('');
       setSecurityNotice((prev) => ({ ...prev, visible: false }));
 
-      await new Promise((r) => setTimeout(r, 600));
+      const res = await signIn('credentials', {
+        email,
+        password,
+        redirect: false,
+        callbackUrl: callbackUrl || '/',
+      });
 
-      const normalized = email.trim().toLowerCase();
-
-      // Authorized administrative access
-      if (
-        normalized === 'admin@ples.com.co' ||
-        normalized === 'administrador@ples.com.co' ||
-        normalized === 'gerencia@ples.com.co'
-      ) {
+      if (res?.error) {
+        // Notificación de credenciales no encontradas
+        setSecurityNotice({
+          visible: true,
+          type: 'unregistered',
+          title: 'Credenciales no autorizadas o perfil en activación',
+          description: `El usuario "${email}" no cuenta actualmente con un perfil corporativo activo en este nodo o la clave es incorrecta. Verifique sus datos o contacte a TI.`,
+          account: email,
+        });
+      } else if (res?.ok) {
         if (typeof window !== 'undefined') {
           localStorage.setItem(
             'ples_user_session',
             JSON.stringify({
-              email: normalized,
-              name: 'Administrador PLES',
+              email: email.trim().toLowerCase(),
+              name: 'Usuario PLES',
               provider: 'credentials',
               role: 'admin',
               authenticatedAt: new Date().toISOString(),
             })
           );
         }
-        router.push(callbackUrl);
-        return;
+        router.push(callbackUrl || '/');
+        router.refresh();
       }
-
-      // Unregistered / Pending activation notice for any other email
-      setSecurityNotice({
-        visible: true,
-        type: 'unregistered',
-        title: 'Credenciales no autorizadas o perfil en activación',
-        description: `El usuario "${email}" no cuenta actualmente con un perfil corporativo activo en este nodo. Por favor verifique sus datos o solicite el alta al administrador TI mientras finaliza el despliegue de la plataforma.`,
-        account: email,
-      });
+    } catch (err) {
+      setErrorMessage('Ocurrió un error al procesar las credenciales.');
     } finally {
       setIsCredsLoading(false);
     }
