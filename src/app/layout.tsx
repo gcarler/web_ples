@@ -136,7 +136,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
         >
             <LanguageProvider>
             <AuthProvider>
-                <GoogleAnalytics />
+                <GoogleAnalytics gaId="G-GPLWXM6607" />
                 <Header />
                 <main className="flex-grow w-full">{children}</main>
                 <Footer />
