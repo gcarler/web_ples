@@ -5,11 +5,20 @@ import { signIn } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { 
   Mail, Lock, Eye, EyeOff, ArrowRight, Loader2, 
-  ShieldCheck, AlertCircle, CheckCircle2, HelpCircle 
+  ShieldCheck, AlertCircle, CheckCircle2, HelpCircle,
+  KeyRound, UserX, PhoneCall
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
 import { useToast } from '@/hooks/use-toast';
 
 export function LoginForm() {
@@ -25,6 +34,13 @@ export function LoginForm() {
   const [rememberMe, setRememberMe] = useState(true);
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const [isCredsLoading, setIsCredsLoading] = useState(false);
+  const [showUnregisteredModal, setShowUnregisteredModal] = useState(false);
+  const [modalDetails, setModalDetails] = useState({
+    title: 'Usuario no registrado o pendiente de activación',
+    description: 'No se encontró una cuenta activa asociada a estas credenciales en la consola corporativa PLES. Por favor revise su usuario y contraseña o solicite su alta al administrador del sistema.',
+    account: '',
+  });
+
   const [errorMessage, setErrorMessage] = useState(
     urlError === 'OAuthSignin' || urlError === 'OAuthCallback'
       ? 'No se pudo completar el inicio de sesión con Google. Intente nuevamente o use credenciales corporativas.'
@@ -35,10 +51,26 @@ export function LoginForm() {
     try {
       setIsGoogleLoading(true);
       setErrorMessage('');
-      await signIn('google', { callbackUrl });
+
+      // Check if Google Client ID is configured in production
+      const res = await signIn('google', { callbackUrl, redirect: false });
+      if (res?.error) {
+        setModalDetails({
+          title: 'Cuenta Google pendiente de federación',
+          description: 'El dominio de Google Workspace ingresado aún no cuenta con permisos de acceso autorizados en el directorio central PLES. Por favor comuníquese con el área de TI.',
+          account: 'Google Workspace',
+        });
+        setShowUnregisteredModal(true);
+      }
     } catch (err) {
       console.error('Google Sign In Error:', err);
-      setErrorMessage('Ocurrió un error al contactar el servicio de autenticación de Google.');
+      setModalDetails({
+        title: 'Servicio de Autenticación Google',
+        description: 'La federación con Google Workspace se encuentra en proceso de enlace corporativo. Mientras finaliza la configuración, por favor ingrese con sus credenciales institucionales o contacte a soporte.',
+        account: 'Google Workspace',
+      });
+      setShowUnregisteredModal(true);
+    } finally {
       setIsGoogleLoading(false);
     }
   };
@@ -62,7 +94,12 @@ export function LoginForm() {
       });
 
       if (res?.error) {
-        setErrorMessage('Credenciales no autorizadas. Verifique su usuario o comuníquese con la administración.');
+        setModalDetails({
+          title: 'Usuario no registrado o revise su contraseña',
+          description: `No hemos podido validar el acceso para "${email}". Por favor revise que la contraseña sea correcta o verifique si su usuario cuenta con los permisos activos para la consola corporativa.`,
+          account: email,
+        });
+        setShowUnregisteredModal(true);
         setIsCredsLoading(false);
       } else if (res?.ok) {
         toast({
@@ -74,25 +111,31 @@ export function LoginForm() {
       }
     } catch (err) {
       console.error('Credentials Sign In Error:', err);
-      setErrorMessage('Error de red al procesar la autenticación. Intente más tarde.');
+      setModalDetails({
+        title: 'Validación de credenciales',
+        description: 'No se pudo verificar el usuario en este momento. Por favor revise su contraseña o intente más tarde.',
+        account: email,
+      });
+      setShowUnregisteredModal(true);
       setIsCredsLoading(false);
     }
   };
 
   const handleForgotPassword = () => {
-    toast({
-      title: 'Recuperación Institucional',
-      description: 'Por políticas de ciberseguridad PLES, comuníquese con mesa de ayuda a contacto@ples.com.co o al PBX (+57) 322 513 7924.',
-      duration: 6000,
+    setModalDetails({
+      title: 'Restablecimiento de Credenciales',
+      description: 'Por estrictas políticas de gobernanza territorial y ciberseguridad PLES (ISO 27001 / TLS 1.3), las contraseñas institucionales son administradas directamente por el oficial de seguridad TI.',
+      account: email || 'soporte@ples.com.co',
     });
+    setShowUnregisteredModal(true);
   };
 
   return (
-    <div className="space-y-6 w-full">
+    <div className="space-y-6 w-full font-sans">
       {/* Error alert banner */}
       {errorMessage && (
-        <div className="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-500 dark:text-rose-400 text-xs flex items-start gap-2.5 animate-in fade-in duration-200">
-          <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
+        <div className="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-300 text-xs flex items-start gap-2.5 animate-in fade-in duration-200">
+          <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0 text-rose-400" />
           <span className="leading-relaxed">{errorMessage}</span>
         </div>
       )}
@@ -109,7 +152,7 @@ export function LoginForm() {
           {isGoogleLoading ? (
             <>
               <Loader2 className="w-4 h-4 animate-spin text-[#00D2FF]" />
-              <span>Conectando con Google...</span>
+              <span>Verificando cuenta Google...</span>
             </>
           ) : (
             <>
@@ -211,7 +254,7 @@ export function LoginForm() {
 
         {/* Remember me & Forgot Password */}
         <div className="flex items-center justify-between text-xs pt-1">
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center gap-2">
             <Checkbox
               id="remember-device"
               checked={rememberMe}
@@ -260,6 +303,58 @@ export function LoginForm() {
         <ShieldCheck className="w-4 h-4 text-emerald-400 flex-shrink-0" />
         <span>Conexión cifrada TLS 1.3 / AES-256 • PLES S.A.S.</span>
       </div>
+
+      {/* Enterprise Feedback Modal for Unregistered / Pending Users */}
+      <Dialog open={showUnregisteredModal} onOpenChange={setShowUnregisteredModal}>
+        <DialogContent className="max-w-md bg-[#0A192F]/95 backdrop-blur-2xl border border-white/20 text-white shadow-2xl rounded-2xl p-6">
+          <DialogHeader className="text-left space-y-3">
+            <div className="w-12 h-12 rounded-xl bg-[#009FE3]/20 border border-[#009FE3]/40 flex items-center justify-center text-[#00D2FF]">
+              <KeyRound className="w-6 h-6" />
+            </div>
+            <DialogTitle className="text-lg font-bold text-white tracking-tight">
+              {modalDetails.title}
+            </DialogTitle>
+            <DialogDescription className="text-sm text-slate-200 leading-relaxed">
+              {modalDetails.description}
+            </DialogDescription>
+          </DialogHeader>
+
+          <div className="my-2 p-3.5 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 space-y-1.5">
+            <div className="flex items-center justify-between">
+              <span className="text-slate-400">Estado de plataforma:</span>
+              <span className="text-amber-300 font-semibold flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                Despliegue y Activación
+              </span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-slate-400">Mesa de ayuda TI:</span>
+              <span className="text-white font-medium">contacto@ples.com.co</span>
+            </div>
+          </div>
+
+          <DialogFooter className="flex flex-col sm:flex-row gap-2 pt-2">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => setShowUnregisteredModal(false)}
+              className="border-white/20 bg-white/10 hover:bg-white/15 text-white rounded-xl text-xs"
+            >
+              Revisar datos
+            </Button>
+            <Button
+              type="button"
+              asChild
+              className="bg-gradient-to-r from-[#009FE3] to-[#0077b6] hover:from-[#00A8F3] hover:to-[#0088cc] text-white rounded-xl text-xs gap-2 font-medium"
+            >
+              <a href="mailto:contacto@ples.com.co?subject=Solicitud%20de%20Acceso%20o%20Revisi%C3%B3n%20de%20Cuenta%20-%20PLES">
+                <Mail className="w-3.5 h-3.5" />
+                <span>Contactar Soporte TI</span>
+              </a>
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

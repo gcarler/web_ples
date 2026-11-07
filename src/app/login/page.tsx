@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ArrowLeft, Sparkles, Shield, Compass, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { LoginForm } from '@/components/auth/login-form';
+import { RotatingWord } from '@/components/auth/rotating-word';
 import { PlesGroupLogo } from '@/components/logo';
 import { ThemeToggle } from '@/components/theme-toggle';
 
@@ -60,11 +61,9 @@ export default function LoginPage() {
             <span>EL USO INTELIGENTE DE LA EXPERIENCIA</span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-[1.15] drop-shadow-sm">
-            Elevamos el potencial de cada{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00D2FF] via-[#009FE3] to-[#48CAE4]">
-              territorio.
-            </span>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-[1.2] drop-shadow-sm flex flex-wrap items-baseline gap-x-2">
+            <span>Elevamos el potencial de cada</span>
+            <RotatingWord />
           </h1>
 
           <p className="mt-4 text-base sm:text-lg text-slate-100/90 leading-relaxed font-light drop-shadow">
