@@ -22,16 +22,16 @@ export default function LoginPage() {
       {/* ======================================================== */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/auth/kite-boy-horizon.webp"
+          src="/images/auth/kite-boy-photojournalism.webp"
           alt="Visión PLES - Elevando el potencial territorial"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[30%_center] lg:object-[45%_center] scale-100 transition-transform duration-1000 ease-out"
+          className="object-cover object-[center_top] scale-100 transition-transform duration-1000 ease-out"
         />
         {/* Luminous, translucent veil - Keeps kite, boy, and Caribbean sea radiant (STRICT: NO PURPLE) */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#060D17]/45 via-transparent to-[#060D17]/35" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#060D17]/80 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#060D17]/85 via-transparent to-transparent" />
         {/* Subtle cyber/GIS coordinate grid */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#009fe30f_1px,transparent_1px),linear-gradient(to_bottom,#009fe30f_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none opacity-20" />
       </div>
@@ -59,22 +59,16 @@ export default function LoginPage() {
 
         {/* Bottom Editorial Copy: Anchored gracefully below the skyline */}
         <div className="pt-6 pb-2 max-w-xl">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#009FE3]/25 border border-[#009FE3]/40 text-xs font-semibold text-[#00D2FF] mb-3 backdrop-blur-md shadow-sm">
-            <Compass className="w-3.5 h-3.5" />
-            <span>EL USO INTELIGENTE DE LA EXPERIENCIA</span>
-          </div>
-
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white leading-[1.25] drop-shadow-md flex flex-wrap items-baseline gap-x-2">
             <span>Elevamos el potencial de cada</span>
             <RotatingWord />
           </h1>
 
-          <p className="mt-3 text-sm sm:text-base text-slate-100/95 leading-relaxed font-light drop-shadow">
-            Infraestructura tecnológica crítica, catastro multipropósito de precisión y consultoría estratégica de alto rendimiento.
+          <p className="mt-2.5 text-sm sm:text-base text-slate-100/90 leading-relaxed font-light drop-shadow">
+            Infraestructura tecnológica crítica y catastro multipropósito de alta precisión.
           </p>
 
-          {/* Quick Technical Highlights */}
-          <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-slate-200 drop-shadow">
+          <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-slate-200/90 drop-shadow">
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-3.5 h-3.5 text-[#00D2FF]" />
               <span>Alta disponibilidad Tier II & III</span>
@@ -82,10 +76,6 @@ export default function LoginPage() {
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-3.5 h-3.5 text-[#00D2FF]" />
               <span>Gobernanza Geoespacial TLS 1.3</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-3.5 h-3.5 text-[#00D2FF]" />
-              <span>Google Workspace SSO</span>
             </div>
           </div>
         </div>
