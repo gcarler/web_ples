@@ -155,16 +155,16 @@ export default function DashboardPage() {
 
         <div className="flex items-center gap-3">
           <Button asChild variant="outline" size="sm" className="rounded-xl border-border text-xs gap-2">
-            <Link href="/cotizador">
-              <Sparkles className="w-3.5 h-3.5 text-primary" />
-              <span>Cotizador</span>
+            <Link href="/ples-catastro#estimador">
+              <Building2 className="w-3.5 h-3.5 text-primary" />
+              <span>Estimador Catastro</span>
             </Link>
           </Button>
 
           <Button asChild size="sm" className="rounded-xl bg-primary text-primary-foreground text-xs gap-2">
-            <Link href="/verificar">
-              <ShieldCheck className="w-3.5 h-3.5" />
-              <span>Validador CUV</span>
+            <Link href="/ples-tic#estimador">
+              <Server className="w-3.5 h-3.5" />
+              <span>Estimador TIC</span>
             </Link>
           </Button>
         </div>
@@ -294,10 +294,9 @@ export default function DashboardPage() {
               {filteredRadicados.map((rad) => (
                 <tr key={rad.id} className="hover:bg-muted/30 transition-colors">
                   <td className="py-3.5 px-4 font-mono font-bold text-foreground">
-                    <Link href={`/verificar?radicado=${encodeURIComponent(rad.codigo)}`} className="text-primary hover:underline flex items-center gap-1.5">
+                    <span className="text-primary flex items-center gap-1.5">
                       {rad.codigo}
-                      <ExternalLink className="w-3 h-3 opacity-60" />
-                    </Link>
+                    </span>
                   </td>
                   <td className="py-3.5 px-4">
                     <div className="font-semibold text-foreground">{rad.solicitante}</div>
@@ -323,12 +322,6 @@ export default function DashboardPage() {
                         </Button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end" className="text-xs">
-                        <DropdownMenuItem asChild>
-                          <Link href={`/verificar?radicado=${encodeURIComponent(rad.codigo)}`}>
-                            <Eye className="w-3.5 h-3.5 mr-2" />
-                            Ver Trazabilidad
-                          </Link>
-                        </DropdownMenuItem>
                         <DropdownMenuItem onClick={() => changeStatus(rad.id, 'EN_CAMPO')}>
                           Mover a: En Campo (RTK)
                         </DropdownMenuItem>
@@ -336,7 +329,7 @@ export default function DashboardPage() {
                           Mover a: LADM-COL Revisión
                         </DropdownMenuItem>
                         <DropdownMenuItem onClick={() => changeStatus(rad.id, 'FINALIZADO')}>
-                          Mover a: Finalizado (Emitir CUV)
+                          Mover a: Finalizado
                         </DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>
@@ -397,18 +390,18 @@ export default function DashboardPage() {
           <CardHeader>
             <div className="flex items-center gap-3">
               <div className="p-3 bg-emerald-500/10 rounded-xl text-emerald-600 dark:text-emerald-400 group-hover:bg-emerald-500 group-hover:text-white transition-all">
-                <ShieldCheck className="w-6 h-6" />
+                <Building2 className="w-6 h-6" />
               </div>
               <div>
-                <CardTitle className="text-base font-bold">Validador Oficial</CardTitle>
-                <CardDescription className="text-xs">Herramienta pública de CUV y QR</CardDescription>
+                <CardTitle className="text-base font-bold">Portal Catastro & GIS</CardTitle>
+                <CardDescription className="text-xs">Inspección de capas y simulador predial</CardDescription>
               </div>
             </div>
           </CardHeader>
           <CardContent>
             <Button asChild variant="outline" size="sm" className="w-full rounded-xl text-xs">
-              <Link href="/verificar">
-                Abrir Validador <ArrowRight className="w-3.5 h-3.5 ml-1" />
+              <Link href="/ples-catastro" target="_blank">
+                Abrir Portal <ArrowRight className="w-3.5 h-3.5 ml-1" />
               </Link>
             </Button>
           </CardContent>

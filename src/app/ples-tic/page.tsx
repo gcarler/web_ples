@@ -14,6 +14,7 @@ import { Badge } from '@/components/ui/badge';
 import { InteractiveSoftwareSuites } from '@/components/ples-tic/interactive-software-suites';
 import { InfrastructureCores } from '@/components/ples-tic/infrastructure-cores';
 import { CloudMeshConsole } from '@/components/ples-tic/cloud-mesh-console';
+import { TicEstimator } from '@/components/ples-tic/tic-estimator';
 import { CodeTypingIllustration } from '@/components/illustrations/CodeTypingIllustration';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { translations } from '@/lib/translations';
@@ -154,6 +155,11 @@ export default function PlesTicPage() {
       {/* Software Suites Showcase */}
       <section className="w-full">
         <InteractiveSoftwareSuites />
+      </section>
+
+      {/* Estimador de Proyectos PLES TIC */}
+      <section className="w-full px-4 sm:px-6 lg:px-8">
+        <TicEstimator />
       </section>
 
       {/* Final Call to Action */}

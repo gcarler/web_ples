@@ -58,6 +58,7 @@ import {
 } from 'lucide-react';
 import { useLanguage, Language } from '@/contexts/LanguageContext';
 import { LanguageSelector } from '@/components/language-selector';
+import { CatastroEstimator } from '@/components/ples-catastro/catastro-estimator';
 
 export default function PlesCatastroPage() {
   return (
@@ -1694,14 +1695,6 @@ function PlesCatastroContent() {
                       >
                         {copiedCuv ? <Check className="h-3.5 w-3.5 text-emerald-500" /> : <Copy className="h-3.5 w-3.5" />}
                       </button>
-                      <Link
-                        href={`/verificar?cuv=CUV-2026-IGAC-9377-${activeParcel.fmi.replace('-', '')}`}
-                        target="_blank"
-                        className="p-1 rounded hover:bg-muted text-primary hover:text-primary/80 transition-colors inline-flex items-center"
-                        title="Verificar Autenticidad en Línea"
-                      >
-                        <ExternalLink className="h-3.5 w-3.5" />
-                      </Link>
                     </div>
                   </div>
                 </div>
@@ -1866,6 +1859,11 @@ function PlesCatastroContent() {
             );
           })}
         </div>
+      </section>
+
+      {/* Estimador Paramétrico de Cartografía y Topografía */}
+      <section className="w-full px-4 sm:px-6 lg:px-12 xl:px-16 2xl:px-24 py-8">
+        <CatastroEstimator />
       </section>
 
       {/* Banner CTA Inferior */}

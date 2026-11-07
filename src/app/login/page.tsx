@@ -22,7 +22,7 @@ export default function LoginPage() {
       {/* ======================================================== */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/auth/kite-boy-ples.webp"
+          src="/images/auth/kite-boy-horizon.webp"
           alt="Visión PLES - Elevando el potencial territorial"
           fill
           priority

@@ -44,8 +44,6 @@ export function Header() {
     { href: "/ples-tic", label: "PLES TIC" },
     { href: "/ples-catastro", label: "PLES Catastro" },
     { href: "/ples-consulting", label: "PLES Consulting" },
-    { href: "/cotizador", label: language === 'en' ? "Estimator" : "Cotizador" },
-    { href: "/verificar", label: language === 'en' ? "Verify CUV" : "Verificar CUV" },
     { 
       href: "/brochureples/", 
       label: language === 'en' ? "Tech Catalog" : "Catálogo TI",
@@ -60,15 +58,6 @@ export function Header() {
           <Link href="/" className="flex-shrink-0">
             <PlesGroupLogo className="text-5xl" />
           </Link>
-
-          {/* Real-time System Operational Telemetry Badge */}
-          <div className="hidden xl:flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-medium text-emerald-600 dark:text-emerald-400">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-            </span>
-            <span>SLA 99.98% | Sistemas Operativos</span>
-          </div>
         </div>
 
         {/* Desktop Navigation */}
@@ -169,15 +158,7 @@ export function Header() {
       {/* Mobile Drawer / Dropdown */}
       {mobileMenuOpen && (
         <div className="md:hidden border-t bg-card px-4 py-4 space-y-3 animate-in slide-in-from-top-2 duration-200 shadow-xl">
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-xs font-medium text-emerald-600 dark:text-emerald-400">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-            </span>
-            <span>SLA 99.98% | Sistemas Operativos</span>
-          </div>
-
-          <div className="flex flex-col space-y-1 pt-2">
+          <div className="flex flex-col space-y-1 pt-1">
             {navLinks.map((link) => {
               if (link.isExternal) {
                 return (
