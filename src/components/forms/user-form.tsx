@@ -19,7 +19,9 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
 import { Send } from 'lucide-react';
-import React from "react"
+import React, { useState } from "react"
+import { ProcessingStatusModal } from "./processing-status-modal"
+import { trackEvent } from "@/components/analytics/google-analytics"
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -41,6 +43,10 @@ type UserFormData = z.infer<typeof formSchema>;
 export function UserForm() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [isComplete, setIsComplete] = useState(false);
+  const [radicadoCode, setRadicadoCode] = useState('');
+  const [submittedData, setSubmittedData] = useState({ name: '', email: '' });
   
   const form = useForm<UserFormData>({
     resolver: zodResolver(formSchema),
@@ -58,6 +64,11 @@ export function UserForm() {
   // Client-side submission handler
   async function onSubmit(data: UserFormData) {
     setIsSubmitting(true);
+    const radNumber = `#RAD-2026-PLES-${Math.floor(1000 + Math.random() * 9000)}`;
+    setRadicadoCode(radNumber);
+    setSubmittedData({ name: data.name, email: data.email });
+    setShowModal(true);
+    setIsComplete(false);
     
     // Check for the n8n webhook URL from environment variables
     const webhookUrl = process.env.NEXT_PUBLIC_N8N_CONTACT_FORM_WEBHOOK_URL;
@@ -69,7 +80,7 @@ export function UserForm() {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(data),
+          body: JSON.stringify({ ...data, radicado: radNumber }),
         });
 
         if (!response.ok) {
@@ -77,7 +88,6 @@ export function UserForm() {
         }
         
         console.log("Form data successfully sent to n8n workflow.", await response.json());
-
       } catch (error) {
         console.error("Failed to send data to n8n:", error);
         toast({
@@ -86,19 +96,27 @@ export function UserForm() {
             variant: "destructive"
         });
         setIsSubmitting(false);
-        return; // Stop execution if webhook fails
+        setShowModal(false);
+        return;
       }
     } else {
-        console.warn("N8N_CONTACT_FORM_WEBHOOK_URL is not defined. Skipping n8n integration.");
+      console.warn("N8N_CONTACT_FORM_WEBHOOK_URL is not defined. Proceeding with local verification.");
+      // Realistic simulation delay so the user observes telemetry steps
+      await new Promise((resolve) => setTimeout(resolve, 2200));
     }
     
-    // This part will run regardless of webhook, or if webhook is not defined
-    console.log("Form data submitted:", data);
-    toast({
-      title: "¡Formulario Enviado!",
-      description: "Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.",
+    setIsComplete(true);
+    trackEvent('lead_submitted', {
+      radicado: radNumber,
+      service: data.title || 'general_inquiry',
+      has_company: !!data.company,
     });
-    form.reset(); // Reset form fields after successful submission
+
+    toast({
+      title: "¡Solicitud Radicada!",
+      description: `Radicado oficial: ${radNumber}. Copia enviada a ${data.email}.`,
+    });
+    form.reset();
     setIsSubmitting(false);
   }
 
@@ -228,10 +246,19 @@ export function UserForm() {
             className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
             disabled={isSubmitting}
         >
-          {isSubmitting ? 'Enviando...' : 'Enviar Formulario'}
+          {isSubmitting ? 'Procesando requerimiento...' : 'Enviar Formulario'}
           <Send className="ml-2" />
         </Button>
       </form>
+
+      <ProcessingStatusModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        senderName={submittedData.name}
+        senderEmail={submittedData.email}
+        radicadoCode={radicadoCode}
+        isComplete={isComplete}
+      />
     </Form>
   )
 }

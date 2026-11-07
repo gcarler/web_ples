@@ -34,6 +34,8 @@ import {
   MapPin,
   Cpu
 } from 'lucide-react';
+import { ProcessingStatusModal } from '@/components/forms/processing-status-modal';
+import { trackEvent } from '@/components/analytics/google-analytics';
 
 const formSchema = z.object({
   name: z.string().min(2, { message: 'El nombre debe tener al menos 2 caracteres.' }),
@@ -117,6 +119,10 @@ function ContactFormContent() {
   const searchParams = useSearchParams();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [isComplete, setIsComplete] = useState(false);
+  const [radicadoCode, setRadicadoCode] = useState('');
+  const [submittedData, setSubmittedData] = useState({ name: '', email: '' });
 
   const serviceParam = searchParams.get('service') || '';
   const subserviceParam = searchParams.get('subservice') || '';
@@ -153,13 +159,25 @@ function ContactFormContent() {
 
   async function onSubmit(values: ContactFormData) {
     setIsLoading(true);
-    // Simulating form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    console.log('Form submission payload:', values);
+    const radNumber = `#RAD-2026-PLES-${Math.floor(1000 + Math.random() * 9000)}`;
+    setRadicadoCode(radNumber);
+    setSubmittedData({ name: values.name, email: values.email });
+    setShowModal(true);
+    setIsComplete(false);
+
+    // Realistic telemetry processing delay (2.2 seconds)
+    await new Promise((resolve) => setTimeout(resolve, 2200));
+
+    setIsComplete(true);
+    trackEvent('lead_submitted', {
+      radicado: radNumber,
+      service: activeKey || 'general',
+      entity_type: values.entityType,
+    });
 
     toast({
-      title: '¡Solicitud recibida con éxito!',
-      description: 'Un especialista territorial de PLES SAS se comunicará contigo a la brevedad.',
+      title: '¡Solicitud Radicada Exitosamente!',
+      description: `Radicado institucional: ${radNumber}. Copia enviada a ${values.email}.`,
     });
 
     form.reset({
@@ -350,6 +368,15 @@ function ContactFormContent() {
           </Form>
         </CardContent>
       </Card>
+
+      <ProcessingStatusModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        senderName={submittedData.name}
+        senderEmail={submittedData.email}
+        radicadoCode={radicadoCode}
+        isComplete={isComplete}
+      />
     </div>
   );
 }

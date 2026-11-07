@@ -47,7 +47,7 @@ export default function InnovacionPage() {
         setMessages([
             {
                 role: 'assistant',
-                content: "Soy tu asistente de diseño de UI. Descríbeme un componente que necesites, como 'un formulario de inicio de sesión con temática futurista' o 'una tarjeta de perfil de usuario para una red social', y generar? una sugerencia para ti.",
+                content: "Soy tu asistente de diseño de UI. Descríbeme un componente que necesites, como 'un formulario de inicio de sesión con temática futurista' o 'una tarjeta de perfil de usuario para una red social', y generaré una sugerencia para ti.",
             }
         ]);
     }, []);

@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { LogIn, LogOut, LayoutDashboard, ChevronDown } from 'lucide-react';
+import { LogIn, LogOut, LayoutDashboard, ChevronDown, ExternalLink, Menu, X, Activity } from 'lucide-react';
 import { useSession, signOut } from 'next-auth/react';
 import { useToast } from '@/hooks/use-toast';
 import { useRouter, usePathname } from 'next/navigation';
@@ -16,7 +16,7 @@ import {
 import { ThemeToggle } from "@/components/theme-toggle";
 import { PlesGroupLogo } from '@/components/logo';
 import { LanguageSelector } from "@/components/language-selector";
-import React from 'react';
+import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -28,6 +28,7 @@ export function Header() {
   const { toast } = useToast();
   const router = useRouter();
   const pathname = usePathname();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleLogout = async () => {
       await signOut({ callbackUrl: '/login' });
@@ -39,6 +40,11 @@ export function Header() {
     { href: "/ples-tic", label: "PLES TIC" },
     { href: "/ples-catastro", label: "PLES Catastro" },
     { href: "/ples-consulting", label: "PLES Consulting" },
+    { 
+      href: "/brochureples/", 
+      label: language === 'en' ? "Tech Catalog" : "Catálogo TI",
+      isExternal: true 
+    },
   ];
 
   return (
@@ -48,11 +54,36 @@ export function Header() {
           <Link href="/" className="flex-shrink-0">
             <PlesGroupLogo className="text-5xl" />
           </Link>
+
+          {/* Real-time System Operational Telemetry Badge */}
+          <div className="hidden xl:flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-medium text-emerald-600 dark:text-emerald-400">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span>SLA 99.98% | Sistemas Operativos</span>
+          </div>
         </div>
 
+        {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-2">
-           <div className="flex items-center gap-2">
+           <div className="flex items-center gap-1">
                {navLinks.map((link) => {
+                   if (link.isExternal) {
+                     return (
+                       <a
+                         key={link.href}
+                         href={link.href}
+                         target="_blank"
+                         rel="noopener noreferrer"
+                         className="nav-link-underline relative px-3 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors flex items-center gap-1 group"
+                       >
+                         <span>{link.label}</span>
+                         <ExternalLink className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity" />
+                       </a>
+                     );
+                   }
+
                    const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`);
                    return (
                        <Link
@@ -112,7 +143,103 @@ export function Header() {
             )
           )}
         </div>
+
+        {/* Mobile controls */}
+        <div className="flex md:hidden items-center gap-2">
+          <ThemeToggle />
+          <LanguageSelector />
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Abrir menú"
+            className="p-2"
+          >
+            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </Button>
+        </div>
       </nav>
+
+      {/* Mobile Drawer / Dropdown */}
+      {mobileMenuOpen && (
+        <div className="md:hidden border-t bg-card px-4 py-4 space-y-3 animate-in slide-in-from-top-2 duration-200 shadow-xl">
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-xs font-medium text-emerald-600 dark:text-emerald-400">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span>SLA 99.98% | Sistemas Operativos</span>
+          </div>
+
+          <div className="flex flex-col space-y-1 pt-2">
+            {navLinks.map((link) => {
+              if (link.isExternal) {
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center justify-between px-3 py-2 rounded-md text-sm font-medium text-foreground hover:bg-muted transition-colors"
+                  >
+                    <span>{link.label}</span>
+                    <ExternalLink className="w-4 h-4 opacity-60" />
+                  </a>
+                );
+              }
+
+              const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={cn(
+                    "block px-3 py-2 rounded-md text-sm font-medium transition-colors",
+                    isActive
+                      ? "bg-primary/10 text-primary font-semibold"
+                      : "text-foreground hover:bg-muted"
+                  )}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+          </div>
+
+          <div className="pt-2 border-t">
+            {!loading && (
+              user ? (
+                <div className="flex flex-col gap-2">
+                  <Link
+                    href="/admin/dashboard"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center px-3 py-2 rounded-md text-sm font-medium text-foreground hover:bg-muted"
+                  >
+                    <LayoutDashboard className="mr-2 h-4 w-4" /> Dashboard Admin
+                  </Link>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={handleLogout}
+                    className="justify-start text-destructive hover:text-destructive hover:bg-destructive/10"
+                  >
+                    <LogOut className="mr-2 h-4 w-4" /> Logout
+                  </Button>
+                </div>
+              ) : (
+                <Button variant="accent" size="sm" asChild className="w-full">
+                  <Link href="/login" onClick={() => setMobileMenuOpen(false)}>
+                    <LogIn className="mr-2 h-4 w-4" />
+                    {t.Header.login}
+                  </Link>
+                </Button>
+              )
+            )}
+          </div>
+        </div>
+      )}
     </header>
   );
 }

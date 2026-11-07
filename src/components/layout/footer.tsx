@@ -2,7 +2,7 @@
 'use client'
 
 import Link from 'next/link';
-import { Facebook, X, Instagram } from 'lucide-react';
+import { Facebook, X, Instagram, ExternalLink } from 'lucide-react';
 import { PlesGroupLogo } from '@/components/logo';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { LanguageSelector } from '@/components/language-selector';
@@ -33,6 +33,17 @@ export function Footer() {
               <li><Link href="/about" className="hover:text-primary transition-colors">{content.about}</Link></li>
               <li><Link href="/#nuestras-marcas" className="hover:text-primary transition-colors">{content.services}</Link></li>
               <li><Link href="/forms" className="hover:text-primary transition-colors">{content.contact}</Link></li>
+              <li>
+                <a 
+                  href="/brochureples/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="hover:text-primary transition-colors inline-flex items-center gap-1.5 font-medium text-foreground"
+                >
+                  Catálogo TI & Cores
+                  <ExternalLink className="w-3.5 h-3.5 opacity-60" />
+                </a>
+              </li>
             </ul>
           </div>
 

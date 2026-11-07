@@ -35,7 +35,7 @@ export function ChatAssistant() {
       setMessages([
         {
           role: 'assistant',
-          content: '¡Hola! Soy el asistente de PLES. ¿En qu? puedo ayudarte a encontrar hoy?',
+          content: '¡Hola! Soy el asistente de PLES. ¿En qué puedo ayudarte hoy?',
         },
       ]);
     }

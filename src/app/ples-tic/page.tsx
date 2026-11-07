@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { InteractiveSoftwareSuites } from '@/components/ples-tic/interactive-software-suites';
+import { InfrastructureCores } from '@/components/ples-tic/infrastructure-cores';
 import { CodeTypingIllustration } from '@/components/illustrations/CodeTypingIllustration';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -112,6 +113,8 @@ export default function PlesTicPage() {
       </section>
 
       <InteractiveSoftwareSuites />
+
+      <InfrastructureCores />
 
       <section>
         <div className="w-full py-16 px-4 sm:px-6 lg:px-8">
