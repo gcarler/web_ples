@@ -1,4 +1,11 @@
 // server.js - Entry point for cPanel / Phusion Passenger and production runtime
+try {
+  require('dotenv').config({ path: '.env.local' });
+  require('dotenv').config({ path: '.env' });
+} catch (e) {
+  // dotenv optional if environment is injected by host
+}
+
 const { createServer } = require('http');
 const { parse } = require('url');
 const next = require('next');

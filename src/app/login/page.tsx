@@ -20,18 +20,18 @@ export default function LoginPage() {
       {/* ======================================================== */}
       {/* FULL-VIEWPORT BACKDROP: Niño volando cometa hacia el cielo */}
       {/* ======================================================== */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 overflow-hidden">
         <Image
-          src="/images/auth/kite-boy-photojournalism.webp"
+          src="/images/auth/kite-boy-diffused.webp"
           alt="Visión PLES - Elevando el potencial territorial"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[center_top] scale-100 transition-transform duration-1000 ease-out"
+          className="object-cover object-[14%_bottom] lg:object-[20%_bottom] filter blur-[0.4px] scale-[1.02] transition-transform duration-1000 ease-out"
         />
-        {/* Luminous, translucent veil - Keeps kite, boy, and Caribbean sea radiant (STRICT: NO PURPLE) */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#060D17]/45 via-transparent to-[#060D17]/35" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#060D17]/85 via-transparent to-transparent" />
+        {/* Luminous, translucent veil - Softened diffusion and high readability (STRICT: NO PURPLE) */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#060D17]/40 via-transparent to-[#060D17]/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#060D17]/85 via-transparent to-[#060D17]/10" />
         {/* Subtle cyber/GIS coordinate grid */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#009fe30f_1px,transparent_1px),linear-gradient(to_bottom,#009fe30f_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none opacity-20" />
       </div>
@@ -48,10 +48,6 @@ export default function LoginPage() {
           <Link href="/" className="inline-block group" aria-label="PLES, volver al inicio">
             <PlesGroupLogo className="text-4xl sm:text-5xl drop-shadow-md" hoverVariant="white-glow" />
           </Link>
-          <span className="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-medium tracking-wide shadow-sm">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            Consola v2.6 • SLA 99.98%
-          </span>
         </div>
 
         {/* Middle Area: Intentionally left clear and uncluttered so the boy and soaring kite shine */}
@@ -119,19 +115,10 @@ export default function LoginPage() {
         {/* Form Wrap Container */}
         <div className="relative z-10 my-auto w-full max-w-md mx-auto">
           {/* Form Header */}
-          <div className="mb-8 text-left space-y-2">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/15 border border-primary/30 text-xs font-semibold text-primary backdrop-blur-sm">
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              <span>Plataforma Corporativa PLES</span>
-            </div>
-
-            <h2 id="login-heading" className="text-2xl sm:text-3xl font-bold tracking-tight text-white drop-shadow-sm">
-              Qué bueno verte de nuevo<span className="text-primary">.</span>
+          <div className="mb-8 text-left">
+            <h2 id="login-heading" className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white drop-shadow-md leading-[1.15]">
+              Trabajamos para hacerte feliz<span className="text-[#00D2FF]">.</span>
             </h2>
-
-            <p className="text-xs sm:text-sm text-slate-200/80 leading-relaxed">
-              Ingresa con tu cuenta institucional para gestionar tus proyectos, servicios y expedientes territoriales.
-            </p>
           </div>
 
           {/* Form Component with Google & Credentials */}
