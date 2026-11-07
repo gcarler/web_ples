@@ -27,11 +27,11 @@ export default function LoginPage() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center lg:object-[center_35%] scale-100 transition-transform duration-1000 ease-out"
+          className="object-cover object-[15%_center] lg:object-[22%_center] scale-100 transition-transform duration-1000 ease-out"
         />
         {/* Luminous, translucent veil - Softened navy gradient (STRICT: NO PURPLE) */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#060D17]/75 via-[#07182C]/25 to-[#060D17]/45" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#060D17]/80 via-transparent to-[#07182C]/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#060D17]/55 via-transparent to-[#060D17]/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#060D17]/75 via-transparent to-[#07182C]/10" />
         {/* Subtle cyber/GIS coordinate grid */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#009fe30f_1px,transparent_1px),linear-gradient(to_bottom,#009fe30f_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none opacity-30" />
       </div>

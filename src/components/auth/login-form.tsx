@@ -4,21 +4,20 @@ import React, { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { 
   Mail, Lock, Eye, EyeOff, ArrowRight, Loader2, 
-  ShieldCheck, AlertCircle, CheckCircle2, HelpCircle,
-  KeyRound, UserX, PhoneCall
+  ShieldCheck, ShieldAlert, KeyRound, CheckCircle2,
+  ExternalLink, RotateCcw, Building2, Server
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
-import { useToast } from '@/hooks/use-toast';
+
+interface SecurityNoticeState {
+  visible: boolean;
+  type: 'unregistered' | 'google' | 'password';
+  title: string;
+  description: string;
+  account: string;
+}
 
 export function LoginForm() {
   const router = useRouter();
@@ -26,23 +25,25 @@ export function LoginForm() {
   const callbackUrl = searchParams.get('callbackUrl') || '/admin/dashboard';
   const urlError = searchParams.get('error');
 
-  const { toast } = useToast();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
   const [isCredsLoading, setIsCredsLoading] = useState(false);
-  const [showUnregisteredModal, setShowUnregisteredModal] = useState(false);
-  const [modalDetails, setModalDetails] = useState({
-    title: 'Usuario no registrado o pendiente de activación',
-    description: 'No se encontró una cuenta activa asociada a estas credenciales en la consola corporativa PLES. Por favor revise su usuario y contraseña o solicite su alta al administrador del sistema.',
+
+  // Executive inline security clearance notification state
+  const [securityNotice, setSecurityNotice] = useState<SecurityNoticeState>({
+    visible: false,
+    type: 'unregistered',
+    title: '',
+    description: '',
     account: '',
   });
 
   const [errorMessage, setErrorMessage] = useState(
     urlError === 'OAuthSignin' || urlError === 'OAuthCallback'
-      ? 'No se pudo completar el inicio de sesión con Google. Intente nuevamente o use credenciales corporativas.'
+      ? 'No se pudo completar la sesión con Google Workspace. Intente nuevamente con credenciales corporativas.'
       : ''
   );
 
@@ -50,13 +51,19 @@ export function LoginForm() {
     try {
       setIsGoogleLoading(true);
       setErrorMessage('');
-      await new Promise((r) => setTimeout(r, 650));
-      setModalDetails({
-        title: 'Cuenta Google pendiente de federación',
-        description: 'El dominio de Google Workspace ingresado aún no cuenta con permisos de acceso autorizados en el directorio central PLES o está pendiente de vinculación mientras finalizamos el despliegue de la plataforma.',
-        account: 'Google Workspace',
+      setSecurityNotice((prev) => ({ ...prev, visible: false }));
+      
+      // Professional security verification simulation
+      await new Promise((r) => setTimeout(r, 600));
+
+      setSecurityNotice({
+        visible: true,
+        type: 'google',
+        title: 'Dominio Google en Proceso de Enlace Institucional',
+        description:
+          'La federación con Google Workspace requiere autorización previa del dominio en la consola central PLES Identity. Mientras se habilita la sincronización automática, por favor ingrese con sus credenciales corporativas o solicite el alta a soporte.',
+        account: 'Google Workspace Enterprise',
       });
-      setShowUnregisteredModal(true);
     } finally {
       setIsGoogleLoading(false);
     }
@@ -72,34 +79,130 @@ export function LoginForm() {
     try {
       setIsCredsLoading(true);
       setErrorMessage('');
+      setSecurityNotice((prev) => ({ ...prev, visible: false }));
+
+      // Professional directory authentication check simulation
       await new Promise((r) => setTimeout(r, 650));
-      setModalDetails({
-        title: 'Usuario no registrado o revise su contraseña',
-        description: `No hemos podido validar el acceso para "${email}". Por favor verifique que sus datos sean correctos o comuníquese con administración mientras terminamos de habilitar los módulos de la plataforma.`,
+
+      setSecurityNotice({
+        visible: true,
+        type: 'unregistered',
+        title: 'Credenciales no autorizadas o perfil en activación',
+        description: `El usuario "${email}" no cuenta actualmente con un perfil activo en este nodo corporativo. Por favor revise sus datos o consulte con el administrador TI mientras se habilitan los accesos de la plataforma.`,
         account: email,
       });
-      setShowUnregisteredModal(true);
     } finally {
       setIsCredsLoading(false);
     }
   };
 
   const handleForgotPassword = () => {
-    setModalDetails({
-      title: 'Restablecimiento de Credenciales',
-      description: 'Por estrictas políticas de gobernanza territorial y ciberseguridad PLES (ISO 27001 / TLS 1.3), las contraseñas institucionales son administradas directamente por el oficial de seguridad TI.',
+    setSecurityNotice({
+      visible: true,
+      type: 'password',
+      title: 'Restablecimiento de Credenciales de Seguridad',
+      description:
+        'Por directrices de gobernanza territorial y ciberseguridad PLES (ISO 27001 / TLS 1.3), las contraseñas institucionales son administradas directamente por el oficial de seguridad del sistema.',
       account: email || 'soporte@ples.com.co',
     });
-    setShowUnregisteredModal(true);
+  };
+
+  const dismissSecurityNotice = () => {
+    setSecurityNotice((prev) => ({ ...prev, visible: false }));
   };
 
   return (
     <div className="space-y-6 w-full font-sans">
-      {/* Error alert banner */}
+      {/* Basic Error Alert (for URL params or validation) */}
       {errorMessage && (
-        <div className="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-300 text-xs flex items-start gap-2.5 animate-in fade-in duration-200">
-          <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0 text-rose-400" />
+        <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-200 text-xs flex items-start gap-2.5 animate-in fade-in duration-200">
+          <ShieldAlert className="w-4 h-4 mt-0.5 flex-shrink-0 text-amber-400" />
           <span className="leading-relaxed">{errorMessage}</span>
+        </div>
+      )}
+
+      {/* ======================================================== */}
+      {/* EXECUTIVE ENTERPRISE SECURITY CLEARANCE CARD (REFINED) */}
+      {/* ======================================================== */}
+      {securityNotice.visible && (
+        <div 
+          role="alert"
+          className="relative overflow-hidden rounded-2xl bg-[#071324]/95 border border-[#009FE3]/40 p-5 shadow-2xl backdrop-blur-2xl animate-in fade-in slide-in-from-top-3 duration-300 transition-all text-white"
+        >
+          {/* Subtle luminous accent glow */}
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00D2FF] to-transparent opacity-80" />
+
+          {/* Header Bar */}
+          <div className="flex items-center justify-between gap-2 pb-3 mb-3 border-b border-white/10">
+            <div className="inline-flex items-center gap-2">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00D2FF] opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#009FE3]" />
+              </span>
+              <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider text-[#00D2FF]">
+                Control de Acceso Institucional
+              </span>
+            </div>
+            <span className="text-[10px] text-slate-300 font-mono px-2 py-0.5 rounded bg-white/5 border border-white/10">
+              NODO DC-01
+            </span>
+          </div>
+
+          {/* Title & Description */}
+          <div className="space-y-1.5 text-left">
+            <div className="flex items-start gap-2.5">
+              <div className="p-1.5 rounded-lg bg-[#009FE3]/20 text-[#00D2FF] mt-0.5 flex-shrink-0">
+                <KeyRound className="w-4 h-4" />
+              </div>
+              <h3 className="text-sm sm:text-base font-bold text-white tracking-tight">
+                {securityNotice.title}
+              </h3>
+            </div>
+            <p className="text-xs text-slate-200/90 leading-relaxed pl-8">
+              {securityNotice.description}
+            </p>
+          </div>
+
+          {/* Institutional Clearance Data Grid */}
+          <div className="mt-3.5 pt-3 border-t border-white/10 grid grid-cols-2 gap-2 text-[11px] text-slate-300 pl-8">
+            <div className="flex items-center gap-1.5">
+              <Building2 className="w-3 h-3 text-[#00D2FF]" />
+              <span className="text-slate-400">Entorno:</span>
+              <span className="text-white font-medium">Consola v2.6</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <Server className="w-3 h-3 text-[#00D2FF]" />
+              <span className="text-slate-400">Seguridad:</span>
+              <span className="text-emerald-400 font-medium">TLS 1.3 Activo</span>
+            </div>
+          </div>
+
+          {/* Action Row */}
+          <div className="mt-4 pt-3 border-t border-white/10 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5">
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={dismissSecurityNotice}
+              className="text-xs text-slate-300 hover:text-white hover:bg-white/10 rounded-xl h-8 px-3 justify-center gap-1.5"
+            >
+              <RotateCcw className="w-3 h-3" />
+              <span>Verificar datos</span>
+            </Button>
+
+            <Button
+              type="button"
+              asChild
+              size="sm"
+              className="bg-gradient-to-r from-[#009FE3] to-[#0077b6] hover:from-[#00A8F3] hover:to-[#0088cc] text-white rounded-xl h-8 px-3.5 text-xs font-semibold gap-1.5 shadow-md shadow-[#009FE3]/25"
+            >
+              <a href="mailto:contacto@ples.com.co?subject=Solicitud%20de%20Aprovisionamiento%20-%20Consola%20PLES">
+                <Mail className="w-3 h-3" />
+                <span>Mesa de Ayuda TI</span>
+                <ExternalLink className="w-2.5 h-2.5 opacity-70 ml-0.5" />
+              </a>
+            </Button>
+          </div>
         </div>
       )}
 
@@ -115,7 +218,7 @@ export function LoginForm() {
           {isGoogleLoading ? (
             <>
               <Loader2 className="w-4 h-4 animate-spin text-[#00D2FF]" />
-              <span>Verificando cuenta Google...</span>
+              <span className="text-white">Verificando cuenta Google Workspace...</span>
             </>
           ) : (
             <>
@@ -174,7 +277,10 @@ export function LoginForm() {
               required
               placeholder="usuario@ples.com.co"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                if (securityNotice.visible) dismissSecurityNotice();
+              }}
               disabled={isCredsLoading || isGoogleLoading}
               className="pl-10 h-11 rounded-xl bg-white/10 border-white/20 text-white placeholder:text-slate-400 focus:border-[#00D2FF] focus:ring-2 focus:ring-[#00D2FF]/20 text-sm transition-all backdrop-blur-md"
             />
@@ -200,7 +306,10 @@ export function LoginForm() {
               required
               placeholder="••••••••••••"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                if (securityNotice.visible) dismissSecurityNotice();
+              }}
               disabled={isCredsLoading || isGoogleLoading}
               className="pl-10 pr-10 h-11 rounded-xl bg-white/10 border-white/20 text-white placeholder:text-slate-400 focus:border-[#00D2FF] focus:ring-2 focus:ring-[#00D2FF]/20 text-sm transition-all backdrop-blur-md"
             />
@@ -210,32 +319,36 @@ export function LoginForm() {
               className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-300 hover:text-white transition-colors"
               aria-label={showPassword ? 'Ocultar contraseña' : 'Ver contraseña'}
             >
-              {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+              {showPassword ? (
+                <EyeOff className="w-4 h-4" />
+              ) : (
+                <Eye className="w-4 h-4" />
+              )}
             </button>
           </div>
         </div>
 
-        {/* Remember me & Forgot Password */}
+        {/* Remember Me & Forgot Password */}
         <div className="flex items-center justify-between text-xs pt-1">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center space-x-2">
             <Checkbox
-              id="remember-device"
+              id="remember"
               checked={rememberMe}
-              onCheckedChange={(checked) => setRememberMe(!!checked)}
-              disabled={isCredsLoading || isGoogleLoading}
-              className="rounded border-white/30 data-[state=checked]:bg-[#009FE3] data-[state=checked]:border-[#009FE3]"
+              onCheckedChange={(checked) => setRememberMe(checked as boolean)}
+              className="border-white/30 data-[state=checked]:bg-[#009FE3] data-[state=checked]:border-[#009FE3]"
             />
             <label
-              htmlFor="remember-device"
-              className="text-slate-300 hover:text-white cursor-pointer select-none"
+              htmlFor="remember"
+              className="text-slate-300 text-xs font-medium cursor-pointer select-none"
             >
               Recordar este equipo
             </label>
           </div>
+
           <button
             type="button"
             onClick={handleForgotPassword}
-            className="text-[#00D2FF] hover:text-white font-medium transition-colors"
+            className="text-xs text-[#00D2FF] hover:text-[#48CAE4] transition-colors hover:underline focus:outline-none"
           >
             ¿Olvidaste tu contraseña?
           </button>
@@ -250,7 +363,7 @@ export function LoginForm() {
           {isCredsLoading ? (
             <>
               <Loader2 className="w-4 h-4 animate-spin text-white" />
-              <span>Verificando credenciales...</span>
+              <span>Verificando credenciales con directorio central...</span>
             </>
           ) : (
             <>
@@ -266,58 +379,6 @@ export function LoginForm() {
         <ShieldCheck className="w-4 h-4 text-emerald-400 flex-shrink-0" />
         <span>Conexión cifrada TLS 1.3 / AES-256 • PLES S.A.S.</span>
       </div>
-
-      {/* Enterprise Feedback Modal for Unregistered / Pending Users */}
-      <Dialog open={showUnregisteredModal} onOpenChange={setShowUnregisteredModal}>
-        <DialogContent className="max-w-md bg-[#0A192F]/95 backdrop-blur-2xl border border-white/20 text-white shadow-2xl rounded-2xl p-6">
-          <DialogHeader className="text-left space-y-3">
-            <div className="w-12 h-12 rounded-xl bg-[#009FE3]/20 border border-[#009FE3]/40 flex items-center justify-center text-[#00D2FF]">
-              <KeyRound className="w-6 h-6" />
-            </div>
-            <DialogTitle className="text-lg font-bold text-white tracking-tight">
-              {modalDetails.title}
-            </DialogTitle>
-            <DialogDescription className="text-sm text-slate-200 leading-relaxed">
-              {modalDetails.description}
-            </DialogDescription>
-          </DialogHeader>
-
-          <div className="my-2 p-3.5 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 space-y-1.5">
-            <div className="flex items-center justify-between">
-              <span className="text-slate-400">Estado de plataforma:</span>
-              <span className="text-amber-300 font-semibold flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                Despliegue y Activación
-              </span>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-slate-400">Mesa de ayuda TI:</span>
-              <span className="text-white font-medium">contacto@ples.com.co</span>
-            </div>
-          </div>
-
-          <DialogFooter className="flex flex-col sm:flex-row gap-2 pt-2">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => setShowUnregisteredModal(false)}
-              className="border-white/20 bg-white/10 hover:bg-white/15 text-white rounded-xl text-xs"
-            >
-              Revisar datos
-            </Button>
-            <Button
-              type="button"
-              asChild
-              className="bg-gradient-to-r from-[#009FE3] to-[#0077b6] hover:from-[#00A8F3] hover:to-[#0088cc] text-white rounded-xl text-xs gap-2 font-medium"
-            >
-              <a href="mailto:contacto@ples.com.co?subject=Solicitud%20de%20Acceso%20o%20Revisi%C3%B3n%20de%20Cuenta%20-%20PLES">
-                <Mail className="w-3.5 h-3.5" />
-                <span>Contactar Soporte TI</span>
-              </a>
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }
