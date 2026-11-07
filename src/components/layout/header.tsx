@@ -30,6 +30,10 @@ export function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  if (pathname === '/login') {
+    return null;
+  }
+
   const handleLogout = async () => {
       await signOut({ callbackUrl: '/login' });
   };

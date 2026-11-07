@@ -2,14 +2,20 @@
 'use client'
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Facebook, X, Instagram, ExternalLink } from 'lucide-react';
 import { PlesGroupLogo } from '@/components/logo';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { LanguageSelector } from '@/components/language-selector';
 
 export function Footer() {
+  const pathname = usePathname();
   const { t } = useLanguage();
   const content = t.Footer;
+
+  if (pathname === '/login') {
+    return null;
+  }
 
   return (
     <footer className="relative w-full bg-muted text-muted-foreground py-8 overflow-hidden">
