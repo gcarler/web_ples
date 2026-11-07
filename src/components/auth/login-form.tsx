@@ -104,11 +104,11 @@ export function LoginForm() {
           onClick={handleGoogleLogin}
           disabled={isGoogleLoading || isCredsLoading}
           variant="outline"
-          className="w-full h-12 rounded-xl text-sm font-semibold border-border/80 hover:border-primary/50 hover:bg-primary/5 dark:hover:bg-primary/10 transition-all duration-300 shadow-sm flex items-center justify-center gap-3 relative group"
+          className="w-full h-12 rounded-xl text-sm font-semibold border-white/20 bg-white/10 hover:bg-white/15 text-white transition-all duration-300 shadow-md backdrop-blur-md flex items-center justify-center gap-3 relative group"
         >
           {isGoogleLoading ? (
             <>
-              <Loader2 className="w-4 h-4 animate-spin text-primary" />
+              <Loader2 className="w-4 h-4 animate-spin text-[#00D2FF]" />
               <span>Conectando con Google...</span>
             </>
           ) : (
@@ -131,7 +131,7 @@ export function LoginForm() {
                   d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"
                 />
               </svg>
-              <span className="text-foreground group-hover:text-primary transition-colors">
+              <span className="text-white group-hover:text-[#00D2FF] transition-colors">
                 Continuar con Google Workspace
               </span>
             </>
@@ -140,9 +140,9 @@ export function LoginForm() {
       </div>
 
       {/* Modern Separator */}
-      <div className="relative flex items-center justify-center">
-        <div className="w-full border-t border-border/60" />
-        <span className="absolute bg-card px-3 text-[11px] uppercase tracking-wider text-muted-foreground font-medium">
+      <div className="relative flex items-center justify-center my-6">
+        <div className="w-full border-t border-white/15" />
+        <span className="absolute bg-[#06101E]/80 backdrop-blur-md px-3.5 py-0.5 rounded-full border border-white/15 text-[11px] uppercase tracking-wider text-slate-300 font-medium">
           o con correo corporativo
         </span>
       </div>
@@ -153,12 +153,12 @@ export function LoginForm() {
         <div className="space-y-1.5 text-left">
           <label 
             htmlFor="login-email" 
-            className="text-xs font-semibold text-foreground/90 block tracking-wide"
+            className="text-xs font-semibold text-slate-200 block tracking-wide"
           >
             Correo Electrónico
           </label>
           <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-muted-foreground">
+            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-300">
               <Mail className="w-4 h-4" />
             </div>
             <Input
@@ -170,7 +170,7 @@ export function LoginForm() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               disabled={isCredsLoading || isGoogleLoading}
-              className="pl-10 h-11 rounded-xl bg-background/50 border-border/80 focus:border-primary focus:ring-2 focus:ring-primary/20 text-sm transition-all"
+              className="pl-10 h-11 rounded-xl bg-white/10 border-white/20 text-white placeholder:text-slate-400 focus:border-[#00D2FF] focus:ring-2 focus:ring-[#00D2FF]/20 text-sm transition-all backdrop-blur-md"
             />
           </div>
         </div>
@@ -179,12 +179,12 @@ export function LoginForm() {
         <div className="space-y-1.5 text-left">
           <label 
             htmlFor="login-password" 
-            className="text-xs font-semibold text-foreground/90 block tracking-wide"
+            className="text-xs font-semibold text-slate-200 block tracking-wide"
           >
             Contraseña de Seguridad
           </label>
           <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-muted-foreground">
+            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-300">
               <Lock className="w-4 h-4" />
             </div>
             <Input
@@ -196,12 +196,12 @@ export function LoginForm() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               disabled={isCredsLoading || isGoogleLoading}
-              className="pl-10 pr-10 h-11 rounded-xl bg-background/50 border-border/80 focus:border-primary focus:ring-2 focus:ring-primary/20 text-sm transition-all"
+              className="pl-10 pr-10 h-11 rounded-xl bg-white/10 border-white/20 text-white placeholder:text-slate-400 focus:border-[#00D2FF] focus:ring-2 focus:ring-[#00D2FF]/20 text-sm transition-all backdrop-blur-md"
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-muted-foreground hover:text-foreground transition-colors"
+              className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-300 hover:text-white transition-colors"
               aria-label={showPassword ? 'Ocultar contraseña' : 'Ver contraseña'}
             >
               {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
@@ -217,11 +217,11 @@ export function LoginForm() {
               checked={rememberMe}
               onCheckedChange={(checked) => setRememberMe(!!checked)}
               disabled={isCredsLoading || isGoogleLoading}
-              className="rounded"
+              className="rounded border-white/30 data-[state=checked]:bg-[#009FE3] data-[state=checked]:border-[#009FE3]"
             />
             <label
               htmlFor="remember-device"
-              className="text-muted-foreground hover:text-foreground cursor-pointer select-none"
+              className="text-slate-300 hover:text-white cursor-pointer select-none"
             >
               Recordar este equipo
             </label>
@@ -229,7 +229,7 @@ export function LoginForm() {
           <button
             type="button"
             onClick={handleForgotPassword}
-            className="text-primary hover:text-primary/80 font-medium transition-colors"
+            className="text-[#00D2FF] hover:text-white font-medium transition-colors"
           >
             ¿Olvidaste tu contraseña?
           </button>
@@ -239,11 +239,11 @@ export function LoginForm() {
         <Button
           type="submit"
           disabled={isCredsLoading || isGoogleLoading}
-          className="w-full h-11 rounded-xl font-semibold bg-gradient-to-r from-primary to-accent hover:opacity-95 text-primary-foreground shadow-lg shadow-primary/20 transition-all duration-300 flex items-center justify-center gap-2 mt-2"
+          className="w-full h-11 rounded-xl font-semibold bg-gradient-to-r from-[#009FE3] to-[#0077b6] hover:from-[#00A8F3] hover:to-[#0088cc] text-white shadow-lg shadow-[#009FE3]/25 transition-all duration-300 flex items-center justify-center gap-2 mt-2"
         >
           {isCredsLoading ? (
             <>
-              <Loader2 className="w-4 h-4 animate-spin" />
+              <Loader2 className="w-4 h-4 animate-spin text-white" />
               <span>Verificando credenciales...</span>
             </>
           ) : (
@@ -256,8 +256,8 @@ export function LoginForm() {
       </form>
 
       {/* Enterprise Security Footnote */}
-      <div className="pt-4 border-t border-border/50 flex items-center justify-center gap-2 text-[11px] text-muted-foreground text-center">
-        <ShieldCheck className="w-4 h-4 text-emerald-500 flex-shrink-0" />
+      <div className="pt-4 border-t border-white/15 flex items-center justify-center gap-2 text-[11px] text-slate-300/80 text-center">
+        <ShieldCheck className="w-4 h-4 text-emerald-400 flex-shrink-0" />
         <span>Conexión cifrada TLS 1.3 / AES-256 • PLES S.A.S.</span>
       </div>
     </div>
