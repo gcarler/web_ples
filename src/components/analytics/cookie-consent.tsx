@@ -1,10 +1,12 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { ShieldCheck, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export function CookieConsent() {
+  const pathname = usePathname();
   const [showBanner, setShowBanner] = useState(false);
 
   useEffect(() => {
@@ -31,7 +33,7 @@ export function CookieConsent() {
     setShowBanner(false);
   };
 
-  if (!showBanner) return null;
+  if (!showBanner || pathname === '/login' || pathname?.startsWith('/login')) return null;
 
   return (
     <aside

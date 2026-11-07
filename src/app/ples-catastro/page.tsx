@@ -33,6 +33,7 @@ import {
   FileText,
   Database,
   Sparkles,
+  ExternalLink,
   TrendingUp,
   BarChart3,
   Eye,
@@ -1693,6 +1694,14 @@ function PlesCatastroContent() {
                       >
                         {copiedCuv ? <Check className="h-3.5 w-3.5 text-emerald-500" /> : <Copy className="h-3.5 w-3.5" />}
                       </button>
+                      <Link
+                        href={`/verificar?cuv=CUV-2026-IGAC-9377-${activeParcel.fmi.replace('-', '')}`}
+                        target="_blank"
+                        className="p-1 rounded hover:bg-muted text-primary hover:text-primary/80 transition-colors inline-flex items-center"
+                        title="Verificar Autenticidad en Línea"
+                      >
+                        <ExternalLink className="h-3.5 w-3.5" />
+                      </Link>
                     </div>
                   </div>
                 </div>

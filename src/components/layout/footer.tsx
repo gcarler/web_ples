@@ -13,7 +13,7 @@ export function Footer() {
   const { t } = useLanguage();
   const content = t.Footer;
 
-  if (pathname === '/login') {
+  if (pathname === '/login' || pathname?.startsWith('/login')) {
     return null;
   }
 
@@ -37,6 +37,8 @@ export function Footer() {
             <ul className="space-y-2 text-sm">
               <li><Link href="/" className="hover:text-primary transition-colors">{content.home}</Link></li>
               <li><Link href="/about" className="hover:text-primary transition-colors">{content.about}</Link></li>
+              <li><Link href="/cotizador" className="hover:text-primary transition-colors font-medium text-foreground">Cotizador Institucional</Link></li>
+              <li><Link href="/verificar" className="hover:text-primary transition-colors font-medium text-foreground">Verificar CUV / Radicado</Link></li>
               <li><Link href="/#nuestras-marcas" className="hover:text-primary transition-colors">{content.services}</Link></li>
               <li><Link href="/forms" className="hover:text-primary transition-colors">{content.contact}</Link></li>
               <li>

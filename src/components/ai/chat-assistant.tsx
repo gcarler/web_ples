@@ -24,7 +24,7 @@ export function ChatAssistant() {
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  if (pathname === '/login') {
+  if (pathname === '/login' || pathname?.startsWith('/login')) {
     return null;
   }
 

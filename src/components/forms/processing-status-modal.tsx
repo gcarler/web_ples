@@ -192,12 +192,24 @@ export function ProcessingStatusModal({
               Hemos enviado una copia de este acuse de recibo a <strong className="text-foreground">{senderEmail}</strong> conforme a la política de tratamiento de datos (Ley 1581 de 2012).
             </p>
 
-            <Button
-              onClick={onClose}
-              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
-            >
-              Aceptar y Cerrar
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-2 pt-1">
+              <Button
+                asChild
+                variant="outline"
+                className="w-full sm:w-1/2 border-primary/40 text-primary hover:bg-primary/10 text-xs font-semibold gap-1.5"
+              >
+                <a href={`/verificar?radicado=${encodeURIComponent(radicadoCode)}`} target="_blank" rel="noopener noreferrer">
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  <span>Rastrear en Vivo</span>
+                </a>
+              </Button>
+              <Button
+                onClick={onClose}
+                className="w-full sm:w-1/2 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-xs"
+              >
+                Aceptar y Finalizar
+              </Button>
+            </div>
           </div>
         )}
       </div>

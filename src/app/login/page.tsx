@@ -27,20 +27,20 @@ export default function LoginPage() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[15%_center] lg:object-[22%_center] scale-100 transition-transform duration-1000 ease-out"
+          className="object-cover object-[25%_center] lg:object-[32%_center] scale-100 transition-transform duration-1000 ease-out"
         />
         {/* Luminous, translucent veil - Softened navy gradient (STRICT: NO PURPLE) */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#060D17]/55 via-transparent to-[#060D17]/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#060D17]/75 via-transparent to-[#07182C]/10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#060D17]/65 via-[#060D17]/20 to-[#060D17]/45" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#060D17]/85 via-transparent to-[#07182C]/10" />
         {/* Subtle cyber/GIS coordinate grid */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#009fe30f_1px,transparent_1px),linear-gradient(to_bottom,#009fe30f_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none opacity-30" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#009fe30f_1px,transparent_1px),linear-gradient(to_bottom,#009fe30f_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none opacity-20" />
       </div>
 
       {/* ======================================================== */}
       {/* LEFT VISUAL COLUMN: Artwork, Atmosphere & Corporate Vision */}
       {/* ======================================================== */}
       <section 
-        className="relative z-10 lg:w-7/12 min-h-[380px] lg:min-h-screen flex flex-col justify-between p-6 sm:p-10 lg:p-16 text-white"
+        className="relative z-10 lg:w-7/12 min-h-[420px] lg:min-h-screen flex flex-col justify-between p-6 sm:p-10 lg:p-14 text-white"
         aria-label="PLES, Ciencia y Tecnología Territorial"
       >
         {/* Top Header in Visual Area */}
@@ -54,41 +54,44 @@ export default function LoginPage() {
           </span>
         </div>
 
-        {/* Central Editorial Copy */}
-        <div className="my-auto py-10 max-w-xl">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#009FE3]/25 border border-[#009FE3]/40 text-xs font-semibold text-[#00D2FF] mb-6 backdrop-blur-md shadow-sm">
+        {/* Middle Area: Intentionally left clear and uncluttered so the boy and soaring kite shine */}
+        <div className="flex-1" />
+
+        {/* Bottom Editorial Copy: Anchored gracefully below the skyline */}
+        <div className="pt-6 pb-2 max-w-xl">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#009FE3]/25 border border-[#009FE3]/40 text-xs font-semibold text-[#00D2FF] mb-3 backdrop-blur-md shadow-sm">
             <Compass className="w-3.5 h-3.5" />
             <span>EL USO INTELIGENTE DE LA EXPERIENCIA</span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-[1.2] drop-shadow-sm flex flex-wrap items-baseline gap-x-2">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white leading-[1.25] drop-shadow-md flex flex-wrap items-baseline gap-x-2">
             <span>Elevamos el potencial de cada</span>
             <RotatingWord />
           </h1>
 
-          <p className="mt-4 text-base sm:text-lg text-slate-100/90 leading-relaxed font-light drop-shadow">
+          <p className="mt-3 text-sm sm:text-base text-slate-100/95 leading-relaxed font-light drop-shadow">
             Infraestructura tecnológica crítica, catastro multipropósito de precisión y consultoría estratégica de alto rendimiento.
           </p>
 
-          {/* Technical Value Badges */}
-          <div className="mt-8 space-y-2.5 pt-4 border-t border-white/20">
-            <div className="flex items-center gap-3 text-xs sm:text-sm text-slate-100">
-              <CheckCircle2 className="w-4 h-4 text-[#00D2FF] flex-shrink-0" />
-              <span>Alta disponibilidad de enlaces y centros de cómputo (Tier II & III)</span>
+          {/* Quick Technical Highlights */}
+          <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-slate-200 drop-shadow">
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="w-3.5 h-3.5 text-[#00D2FF]" />
+              <span>Alta disponibilidad Tier II & III</span>
             </div>
-            <div className="flex items-center gap-3 text-xs sm:text-sm text-slate-100">
-              <CheckCircle2 className="w-4 h-4 text-[#00D2FF] flex-shrink-0" />
-              <span>Gobernanza geoespacial y radicado seguro con cifrado TLS 1.3</span>
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="w-3.5 h-3.5 text-[#00D2FF]" />
+              <span>Gobernanza Geoespacial TLS 1.3</span>
             </div>
-            <div className="flex items-center gap-3 text-xs sm:text-sm text-slate-100">
-              <CheckCircle2 className="w-4 h-4 text-[#00D2FF] flex-shrink-0" />
-              <span>Autenticación federada corporativa con Google Workspace</span>
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="w-3.5 h-3.5 text-[#00D2FF]" />
+              <span>Google Workspace SSO</span>
             </div>
           </div>
         </div>
 
         {/* Bottom Institutional Info in Visual Area */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pt-6 border-t border-white/15 text-xs text-slate-200/90">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pt-4 border-t border-white/15 text-xs text-slate-300">
           <span>PLES S.A.S. • NIT 901.156.404-0</span>
           <span>Cartagena de Indias, Colombia</span>
         </div>

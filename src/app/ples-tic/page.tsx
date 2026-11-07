@@ -1,167 +1,178 @@
 // src/app/ples-tic/page.tsx
 'use client';
 
+import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {
-  ArrowRight, CheckCircle, Rocket
+  ArrowRight, CheckCircle2, Rocket, Shield, Cpu, 
+  Terminal, Database, Network, Globe, Lock, Layers,
+  Server, BarChart3, Brain, Sparkles, FileText, Compass
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { InteractiveSoftwareSuites } from '@/components/ples-tic/interactive-software-suites';
 import { InfrastructureCores } from '@/components/ples-tic/infrastructure-cores';
+import { CloudMeshConsole } from '@/components/ples-tic/cloud-mesh-console';
 import { CodeTypingIllustration } from '@/components/illustrations/CodeTypingIllustration';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { translations } from '@/lib/translations';
 
 export default function PlesTicPage() {
-  const { t } = useLanguage();
-  const content = t?.PlesTic || (translations.es as any)?.PlesTic;
+  const { t, language } = useLanguage();
+  const content = t?.PlesTic || translations.es.PlesTic;
 
   return (
-    <div className="space-y-0">
-      <section className="relative bg-background overflow-hidden">
-        <div className="w-full px-4 sm:px-6 lg:px-8 min-h-[calc(70vh)] lg:min-h-0 py-16 sm:py-20 md:py-24 lg:py-32 flex items-center">
-          <div className="flex flex-col lg:flex-row items-center w-full gap-12 lg:gap-8">
+    <div className="space-y-16 pb-20">
+      {/* Hero Section */}
+      <section className="relative bg-background overflow-hidden border-b border-border/40">
+        <div className="w-full px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24 lg:py-28 flex items-center">
+          <div className="flex flex-col lg:flex-row items-center w-full gap-12 lg:gap-10">
             <div className="w-full lg:w-5/12 flex justify-center items-center relative order-1 lg:order-none">
+              <div className="relative w-full max-w-md">
+                <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 via-accent/20 to-primary/10 rounded-3xl blur-2xl -z-10" />
                 <CodeTypingIllustration />
+              </div>
             </div>
 
             <div className="w-full lg:w-7/12 text-center lg:text-left relative z-20 order-2 lg:order-none">
-              <h1 className="text-4xl sm:text-5xl xl:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-2 mb-6">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-mono font-medium mb-4">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>DIVISIÓN DE TECNOLOGÍA & ARQUITECTURA DIGITAL</span>
+              </div>
+
+              <h1 className="text-4xl sm:text-5xl xl:text-6xl font-extrabold tracking-tight text-foreground py-1 mb-6 leading-tight">
                 {content.title}
               </h1>
-              <p className="text-lg sm:text-xl text-foreground mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                <strong className="text-primary">{content.subtitle}</strong>. {content.description}
+
+              <p className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light">
+                <strong className="text-foreground font-semibold">{content.subtitle}</strong>. {content.description}
               </p>
+
               <div className="flex flex-wrap justify-center lg:justify-start gap-2 mb-10">
-                {content.badges.map(badge => (
-                    <Badge key={badge} variant="default" className="text-md px-4 py-2 shadow-md">{badge}</Badge>
+                {content.badges.map((badge: string) => (
+                  <Badge key={badge} variant="outline" className="text-xs px-3.5 py-1.5 border-primary/30 bg-primary/5 text-foreground font-mono">
+                    {badge}
+                  </Badge>
                 ))}
               </div>
-              <Button size="lg" variant="accent" className="text-lg px-8 py-3" asChild>
-                <Link href={`/forms?service=ples-tic&subject=Consulta%20Soluciones%20PLES%20TIC`}>
-                  <span className="flex items-center">
-                    {content.cta} <ArrowRight className="ml-2 h-5 w-5" />
-                  </span>
-                </Link>
-              </Button>
+
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-primary-foreground font-semibold px-8 py-3 rounded-xl shadow-lg shadow-primary/20" asChild>
+                  <Link href={`/forms?service=ples-tic&subject=Consulta%20Soluciones%20PLES%20TIC`}>
+                    <span className="flex items-center gap-2">
+                      {content.cta} <ArrowRight className="w-4 h-4" />
+                    </span>
+                  </Link>
+                </Button>
+
+                <Button size="lg" variant="outline" className="border-border rounded-xl px-6" asChild>
+                  <Link href="#cloud-mesh">
+                    <Terminal className="w-4 h-4 mr-2 text-primary" />
+                    <span>Ver Consola de Arquitectura</span>
+                  </Link>
+                </Button>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section>
-        <div className="w-full py-16 px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">{content.whyChooseTitle}</h2>
-            <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
-                {content.whyChooseDesc}
-            </p>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {content.propositions.map(({icon: Icon, title, description}: any) => (
-                <Card key={title} className="text-center group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col hover:animate-gradient hover:bg-[length:200%_200%]">
-                <CardHeader className="items-center">
-                    <Icon className="h-10 w-10 text-primary group-hover:text-primary-foreground" />
-                    <CardTitle className="mt-2 text-xl group-hover:text-primary-foreground">{title}</CardTitle>
-                </CardHeader>
-                <CardContent className="flex-grow">
-                    <p className="text-muted-foreground group-hover:text-primary-foreground/90">{description}</p>
-                </CardContent>
-                </Card>
-            ))}
-            </div>
-        </div>
+      {/* Interactive Cloud Mesh & Architecture Console */}
+      <section id="cloud-mesh" className="w-full px-4 sm:px-6 lg:px-8">
+        <CloudMeshConsole />
       </section>
 
-      <section className="py-12 bg-secondary">
-        <div className="w-full px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">{content.servicesTitle}</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-            {content.services.map(({icon: Icon, title, description, details, cta}: any) => (
-              <Link key={title} href={'/forms'} passHref legacyBehavior>
-                <a className="block group hover:scale-105 transition-all duration-300 ease-in-out">
-                  <Card className="h-full group-hover:shadow-xl group-hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground bg-card group-hover:animate-gradient group-hover:bg-[length:200%_200%]">
-                    <CardHeader className="flex flex-row items-start gap-4">
-                        <Icon className="h-8 w-8 text-primary group-hover:text-primary-foreground" />
-                        <div>
-                        <CardTitle className="text-xl group-hover:text-primary-foreground">{title}</CardTitle>
-                        <CardDescription className="mt-1 group-hover:text-primary-foreground/90">{description}</CardDescription>
-                        </div>
-                    </CardHeader>
-                    <CardContent>
-                        <ul className="space-y-2 text-sm text-muted-foreground group-hover:text-primary-foreground/90">
-                        {details.map((detail: string) => (
-                            <li key={detail} className="flex items-center">
-                            <CheckCircle className="h-4 w-4 text-green-500 group-hover:text-green-300 mr-2 shrink-0" />
-                            {detail}
-                            </li>
-                        ))}
-                        </ul>
-                        {cta && (
-                          <div className="mt-4 text-right">
-                            <span className="inline-flex items-center text-sm font-medium text-primary group-hover:text-primary-foreground">
-                              {cta} <ArrowRight className="ml-1 h-4 w-4"/>
-                            </span>
-                          </div>
-                        )}
-                    </CardContent>
-                  </Card>
-                </a>
-              </Link>
-            ))}
-            </div>
-        </div>
-      </section>
-
-      <InteractiveSoftwareSuites />
-
-      <InfrastructureCores />
-
-      <section>
-        <div className="w-full py-16 px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">{content.approachTitle}</h2>
-            <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
-                {content.approachDesc}
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-            {content.approachSteps.map(({icon: Icon, title, description}: any) => (
-                <Card key={title} className="text-center p-6 group hover:shadow-xl hover:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] hover:from-primary hover:to-accent hover:text-primary-foreground hover:scale-105 transition-all duration-300 ease-in-out flex flex-col items-center bg-card hover:animate-gradient hover:bg-[length:200%_200%]">
-                <Icon className="h-8 w-8 text-primary group-hover:text-primary-foreground mb-2" />
-                <CardTitle className="text-lg mt-2 mb-1 group-hover:text-primary-foreground">{title}</CardTitle>
-                <p className="text-xs text-muted-foreground group-hover:text-primary-foreground/90 flex-grow">{description}</p>
-                </Card>
-            ))}
-            </div>
-        </div>
-      </section>
-
-      <section className="py-12 bg-card shadow-xl">
-        <div className="w-full px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent py-1">{content.techTitle}</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto mb-10">
-            {content.techDesc}
+      {/* Strategic Pillars of Enterprise Technology */}
+      <section className="w-full px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <Badge variant="outline" className="text-primary border-primary/30 font-mono text-xs mb-3">
+            INGENIERÍA & GOBERNANZA
+          </Badge>
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
+            {content.servicesTitle}
+          </h2>
+          <p className="text-muted-foreground mt-3 text-base">
+            Diseñamos e implementamos ecosistemas digitales escalables con enfoque en seguridad, interoperabilidad y cero dependencias obsoletas.
           </p>
-          <div className="flex flex-wrap justify-center items-center gap-3">
-            {['JavaScript (React, Next.js, Node.js)', 'Python (Django, Flask, FastAPI)', 'Java, C#/.NET', 'Bases de Datos (PostgreSQL, MySQL, MongoDB, Redis)', 'Docker, Kubernetes, Terraform', 'AWS, Azure, Google Cloud Platform', 'Inteligencia Artificial (Machine Learning, NLP, Computer Vision)', 'Git, Jenkins, GitLab CI', 'Marcos de Ciberseguridad (NIST, ISO 27001)', 'Herramientas BI (Tableau, Power BI)'].map((tech) => (
-              <Badge key={tech} variant="outline" className="text-md md:text-base px-4 py-2 border-primary text-primary shadow-sm transition-all duration-300 hover:bg-gradient-to-r hover:from-primary hover:to-accent hover:text-primary-foreground hover:border-transparent hover:scale-105">{tech}</Badge>
-            ))}
-          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {content.services.map(({ icon: Icon, title, description, details, cta }: any, idx: number) => (
+            <div 
+              key={title} 
+              className="p-6 rounded-2xl border border-border/60 bg-card hover:border-primary/50 transition-all duration-300 hover:shadow-xl flex flex-col justify-between group"
+            >
+              <div>
+                <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 mb-5">
+                  <Icon className="w-6 h-6" />
+                </div>
+
+                <div className="text-xs font-mono text-primary font-semibold tracking-wider uppercase mb-1">
+                  MÓDULO 0{idx + 1}
+                </div>
+                <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
+                  {title}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-6">
+                  {description}
+                </p>
+
+                <div className="space-y-2 border-t border-border/50 pt-4">
+                  {details.map((detail: string) => (
+                    <div key={detail} className="flex items-start gap-2 text-xs text-foreground/80">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" />
+                      <span>{detail}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="pt-6 mt-6 border-t border-border/40">
+                <Button 
+                  asChild
+                  variant="ghost" 
+                  size="sm" 
+                  className="w-full justify-between text-primary hover:text-primary hover:bg-primary/10 rounded-lg group-hover:translate-x-1 transition-all"
+                >
+                  <Link href={`/forms?service=ples-tic&subject=${encodeURIComponent(title)}`}>
+                    <span>{cta || 'Consultar con un Ingeniero'}</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
-      <section className="text-center py-20 bg-primary text-primary-foreground animate-gradient bg-[length:200%_200%]">
-        <div className="w-full px-4 sm:px-6 lg:px-8">
-            <Rocket className="h-16 w-16 mx-auto mb-6 opacity-80" />
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">{content.ctaSectionTitle}</h2>
-            <p className="text-lg md:text-xl mb-10 max-w-3xl mx-auto opacity-90">
-             {content.ctaSectionDesc}
-            </p>
-            <Button size="xl" variant="accent" className="text-lg px-10 py-4" asChild>
+      {/* Infrastructure Cores */}
+      <section className="w-full">
+        <InfrastructureCores />
+      </section>
+
+      {/* Software Suites Showcase */}
+      <section className="w-full">
+        <InteractiveSoftwareSuites />
+      </section>
+
+      {/* Final Call to Action */}
+      <section className="w-full px-4 sm:px-6 lg:px-8">
+        <div className="rounded-3xl bg-gradient-to-r from-primary via-primary/95 to-accent p-10 sm:p-14 text-primary-foreground text-center relative overflow-hidden shadow-2xl">
+          <Rocket className="h-14 w-14 mx-auto mb-5 opacity-90 animate-bounce" />
+          <h2 className="text-3xl sm:text-4xl font-extrabold mb-4 tracking-tight">
+            {content.ctaSectionTitle}
+          </h2>
+          <p className="text-base sm:text-lg mb-8 max-w-2xl mx-auto opacity-90 leading-relaxed font-light">
+            {content.ctaSectionDesc}
+          </p>
+          <Button size="lg" variant="secondary" className="text-base font-semibold px-8 py-3.5 rounded-xl shadow-lg" asChild>
             <Link href={`/forms?service=ples-tic&subject=Solicitud%20Asesoria%20Tecnologica`}>
-                <span className="flex items-center">
-                    {content.ctaSectionBtn} <ArrowRight className="ml-3 h-5 w-5" />
-                </span>
+              <span className="flex items-center gap-2">
+                {content.ctaSectionBtn} <ArrowRight className="w-4 h-4" />
+              </span>
             </Link>
-            </Button>
+          </Button>
         </div>
       </section>
     </div>

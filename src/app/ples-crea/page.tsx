@@ -30,6 +30,7 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { GlobeIllustration } from '@/components/illustrations/GlobeIllustration';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { translations } from '@/lib/translations';
 
 export default function PlesCreaPage() {
   const { t, language } = useLanguage();

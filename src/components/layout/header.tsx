@@ -30,7 +30,7 @@ export function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  if (pathname === '/login') {
+  if (pathname === '/login' || pathname?.startsWith('/login')) {
     return null;
   }
 
@@ -44,6 +44,8 @@ export function Header() {
     { href: "/ples-tic", label: "PLES TIC" },
     { href: "/ples-catastro", label: "PLES Catastro" },
     { href: "/ples-consulting", label: "PLES Consulting" },
+    { href: "/cotizador", label: language === 'en' ? "Estimator" : "Cotizador" },
+    { href: "/verificar", label: language === 'en' ? "Verify CUV" : "Verificar CUV" },
     { 
       href: "/brochureples/", 
       label: language === 'en' ? "Tech Catalog" : "Catálogo TI",
