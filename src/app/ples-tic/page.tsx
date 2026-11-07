@@ -8,7 +8,7 @@ import Link from 'next/link';
 import {
   ArrowRight, CheckCircle2, Rocket, Shield, Cpu, 
   Terminal, Database, Network, Globe, Lock, Layers,
-  Server, BarChart3, Brain, Sparkles, FileText, Compass
+  Server, BarChart3, Brain, Sparkles, FileText, Compass, Calculator
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { InteractiveSoftwareSuites } from '@/components/ples-tic/interactive-software-suites';
@@ -68,9 +68,16 @@ export default function PlesTicPage() {
                 </Button>
 
                 <Button size="lg" variant="outline" className="border-border rounded-xl px-6" asChild>
+                  <Link href="#estimador">
+                    <Calculator className="w-4 h-4 mr-2 text-primary" />
+                    <span>Calcular Proyecto</span>
+                  </Link>
+                </Button>
+
+                <Button size="lg" variant="outline" className="border-border rounded-xl px-6" asChild>
                   <Link href="#cloud-mesh">
                     <Terminal className="w-4 h-4 mr-2 text-primary" />
-                    <span>Ver Consola de Arquitectura</span>
+                    <span>Consola Cloud</span>
                   </Link>
                 </Button>
               </div>
