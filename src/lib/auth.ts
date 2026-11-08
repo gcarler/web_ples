@@ -2,7 +2,52 @@
 import { NextAuthOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { db } from '@/db';
+
+export async function checkIsRegistered(
+  email: string
+): Promise<{ isRegistered: boolean; role: string; name?: string }> {
+  const normalizedEmail = email.trim().toLowerCase();
+  if (!normalizedEmail) return { isRegistered: false, role: 'user' };
+
+  // 1. Dominio institucional corporativo @ples.com.co siempre autorizado
+  if (normalizedEmail.endsWith('@ples.com.co')) {
+    return { isRegistered: true, role: 'admin' };
+  }
+
+  // 2. Administradores o correos específicos autorizados por variable de entorno
+  const envAuthorized = (process.env.AUTHORIZED_EMAILS || '')
+    .split(',')
+    .map((e) => e.trim().toLowerCase())
+    .filter(Boolean);
+  if (envAuthorized.includes(normalizedEmail)) {
+    return { isRegistered: true, role: 'admin' };
+  }
+
+  // 3. Consulta en tiempo real en la base de datos Neon PostgreSQL
+  if (process.env.DATABASE_URL) {
+    try {
+      const { neon } = await import('@neondatabase/serverless');
+      const sql = neon(process.env.DATABASE_URL);
+      const rows = await sql`
+        SELECT id, email, display_name, role 
+        FROM users 
+        WHERE LOWER(email) = LOWER(${normalizedEmail}) 
+        LIMIT 1
+      `;
+      if (rows && rows.length > 0) {
+        return {
+          isRegistered: true,
+          role: rows[0].role || 'user',
+          name: rows[0].display_name || undefined,
+        };
+      }
+    } catch (err) {
+      console.error('Error al verificar registro de usuario en base de datos:', err);
+    }
+  }
+
+  return { isRegistered: false, role: 'user' };
+}
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -28,24 +73,31 @@ export const authOptions: NextAuthOptions = {
         if (!credentials?.email || !credentials?.password) return null;
         const normalizedEmail = credentials.email.trim().toLowerCase();
 
-        try {
-          // Check if user exists in database
-          const user = await db.query.users?.findFirst?.({
-            where: (users: any, { eq }: any) => eq(users.email, normalizedEmail),
-          });
-          if (user) {
-            return {
-              id: String(user.id),
-              email: user.email,
-              name: (user as any).name || (user as any).display_name || 'Usuario PLES',
-              role: (user as any).role || 'admin',
-            };
+        // 1. Consulta en PostgreSQL Neon
+        if (process.env.DATABASE_URL) {
+          try {
+            const { neon } = await import('@neondatabase/serverless');
+            const sql = neon(process.env.DATABASE_URL);
+            const rows = await sql`
+              SELECT id, email, display_name, role 
+              FROM users 
+              WHERE LOWER(email) = LOWER(${normalizedEmail}) 
+              LIMIT 1
+            `;
+            if (rows && rows.length > 0) {
+              return {
+                id: String(rows[0].id),
+                email: rows[0].email,
+                name: rows[0].display_name || 'Usuario PLES',
+                role: rows[0].role || 'admin',
+              };
+            }
+          } catch (e) {
+            console.warn('Consulta de usuario en Neon DB en fallback:', e);
           }
-        } catch (e) {
-          console.warn('Consulta de usuario en base de datos omitida o en fallback:', e);
         }
 
-        // Acceso administrativo institucional para personal autorizado
+        // 2. Acceso administrativo institucional para personal autorizado
         if (
           (normalizedEmail === 'admin@ples.com.co' ||
            normalizedEmail === 'administrador@ples.com.co' ||
@@ -74,10 +126,19 @@ export const authOptions: NextAuthOptions = {
     error: '/login',
   },
   callbacks: {
-    async signIn({ user, account, profile }) {
+    async signIn({ user, account }) {
       if (account?.provider === 'google') {
-        const email = user?.email?.toLowerCase() || '';
-        // Permitir acceso a todos los correos o restringir a dominios específicos si se desea
+        const email = user?.email?.toLowerCase()?.trim() || '';
+        if (!email) {
+          return `/login?error=AccessDenied`;
+        }
+
+        const reg = await checkIsRegistered(email);
+        if (!reg.isRegistered) {
+          console.warn(`[AUTH] Intento de acceso denegado - Usuario Google no registrado: ${email}`);
+          return `/login?error=AccessDenied&email=${encodeURIComponent(email)}`;
+        }
+
         return true;
       }
       return true;
@@ -89,14 +150,9 @@ export const authOptions: NextAuthOptions = {
         token.name = user.name;
         token.picture = user.image;
 
-        // Asignación de rol corporativo: correos @ples.com.co son administradores
-        const email = (user.email || '').toLowerCase();
-        const isAdmin = 
-          email.endsWith('@ples.com.co') || 
-          email === 'admin@ples.com.co' ||
-          (user as any).role === 'admin';
-
-        token.role = isAdmin ? 'admin' : 'user';
+        const email = (user.email || '').toLowerCase().trim();
+        const reg = await checkIsRegistered(email);
+        token.role = reg.role || (email.endsWith('@ples.com.co') ? 'admin' : 'user');
       }
       return token;
     },
