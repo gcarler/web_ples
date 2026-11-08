@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Iniciando sesión con Google | PLES</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      background: #06101E;
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .spinner {
+      width: 36px;
+      height: 36px;
+      border: 3px solid rgba(0, 210, 255, 0.2);
+      border-top-color: #00D2FF;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 16px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <div style="text-align: center;">
+    <div class="spinner"></div>
+    <div style="font-size: 14px; font-weight: 500;">Conectando de forma segura con Google Workspace...</div>
+  </div>
+
+  <script>
+    var clientId = '918944355472-qhkev3hs7smlmnroj7qeh4h91fdsnm4r.apps.googleusercontent.com';
+    var redirectUri = window.location.origin + '/api/auth/callback/google';
+    var oauthUrl = 'https://accounts.google.com/o/oauth2/v2/auth?' +
+      'client_id=' + encodeURIComponent(clientId) +
+      '&redirect_uri=' + encodeURIComponent(redirectUri) +
+      '&response_type=' + encodeURIComponent('token id_token') +
+      '&scope=' + encodeURIComponent('openid email profile') +
+      '&prompt=select_account' +
+      '&nonce=' + Date.now();
+    window.location.replace(oauthUrl);
+  </script>
+</body>
+</html>

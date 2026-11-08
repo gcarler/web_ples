@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Verificando credenciales Google | PLES</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      background: #06101E;
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .box {
+      text-align: center;
+      padding: 32px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      backdrop-filter: blur(12px);
+      max-width: 360px;
+    }
+    .spinner {
+      width: 36px;
+      height: 36px;
+      border: 3px solid rgba(0, 210, 255, 0.2);
+      border-top-color: #00D2FF;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 16px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="spinner"></div>
+    <div style="font-weight: 600; font-size: 15px; margin-bottom: 6px;">Verificando autorización...</div>
+    <div style="font-size: 12px; color: #94a3b8;">Consultando directorio corporativo de PLES</div>
+  </div>
+
+  <script>
+    (async function() {
+      try {
+        var hash = window.location.hash ? window.location.hash.substring(1) : '';
+        var query = window.location.search ? window.location.search.substring(1) : '';
+        var params = new URLSearchParams(hash || query);
+
+        var idToken = params.get('id_token');
+        var accessToken = params.get('access_token');
+        var email = '';
+        var name = '';
+
+        if (idToken) {
+          try {
+            var base64Url = idToken.split('.')[1];
+            var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            var jsonPayload = decodeURIComponent(
+              atob(base64)
+                .split('')
+                .map(function(c) {
+                  return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                })
+                .join('')
+            );
+            var payload = JSON.parse(jsonPayload);
+            email = payload.email;
+            name = payload.name;
+          } catch(e) {
+            console.error('Error decoding ID token:', e);
+          }
+        }
+
+        if (!email && accessToken) {
+          try {
+            var res = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+              headers: { 'Authorization': 'Bearer ' + accessToken }
+            });
+            var data = await res.json();
+            email = data.email;
+            name = data.name;
+          } catch(e) {
+            console.error('Error fetching userinfo:', e);
+          }
+        }
+
+        var normalizedEmail = (email || '').trim().toLowerCase();
+
+        // Directorio de usuarios autorizados
+        var isDomain = normalizedEmail.endsWith('@ples.com.co');
+        var authorized = [
+          'admin@ples.com.co', 
+          'carlos.gomez@ples.com.co', 
+          'contacto@ples.com.co', 
+          'gcarler@gmail.com'
+        ];
+        var isAuthorized = Boolean(normalizedEmail && (isDomain || authorized.indexOf(normalizedEmail) !== -1));
+
+        if (!isAuthorized) {
+          // Redirigir a login con aviso de Acceso Denegado
+          window.location.replace('/login/?error=AccessDenied&email=' + encodeURIComponent(normalizedEmail || 'usuario.google'));
+        } else {
+          // Guardar sesión y entrar al dashboard
+          localStorage.setItem('ples_user_session', JSON.stringify({
+            email: normalizedEmail,
+            name: name || 'Usuario PLES',
+            provider: 'google',
+            role: 'admin',
+            authenticatedAt: new Date().toISOString()
+          }));
+          window.location.replace('/admin/dashboard');
+        }
+      } catch(err) {
+        console.error('Callback error:', err);
+        window.location.replace('/login/?error=AccessDenied&email=error');
+      }
+    })();
+  </script>
+</body>
+</html>
