@@ -18,12 +18,12 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen w-full flex flex-col lg:flex-row relative overflow-hidden font-sans bg-[#060D17]">
       {/* ======================================================== */}
-      {/* FULL-VIEWPORT BACKDROP: Niño volando cometa hacia el cielo */}
+      {/* FULL-VIEWPORT BACKDROP: Niña soplando flor diente de león al horizonte */}
       {/* ======================================================== */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <Image
           src="/images/auth/kite-boy-diffused.webp"
-          alt="Visión PLES - Elevando el potencial territorial"
+          alt="Visión PLES - Niña soplando diente de león hacia un horizonte prometedor"
           fill
           priority
           sizes="100vw"

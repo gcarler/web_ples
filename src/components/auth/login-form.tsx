@@ -153,6 +153,7 @@ export function LoginForm() {
       'admin@ples.com.co',
       'carlos.gomez@ples.com.co',
       'contacto@ples.com.co',
+      'gscarlosernesto@gmail.com',
       'gcarler@gmail.com',
     ];
 
@@ -260,7 +261,13 @@ export function LoginForm() {
 
       // Validación corporativa directa
       const isDomain = normalizedEmail.endsWith('@ples.com.co');
-      const authorizedCreds = ['admin@ples.com.co', 'carlos.gomez@ples.com.co', 'contacto@ples.com.co'];
+      const authorizedCreds = [
+        'admin@ples.com.co',
+        'carlos.gomez@ples.com.co',
+        'contacto@ples.com.co',
+        'gscarlosernesto@gmail.com',
+        'gcarler@gmail.com',
+      ];
 
       if (isDomain || authorizedCreds.includes(normalizedEmail)) {
         if (typeof window !== 'undefined') {

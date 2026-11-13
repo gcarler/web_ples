@@ -14,7 +14,19 @@ export async function checkIsRegistered(
     return { isRegistered: true, role: 'admin' };
   }
 
-  // 2. Administradores o correos específicos autorizados por variable de entorno
+  // 2. Administradores o cuentas maestras autorizadas
+  const MASTER_AUTHORIZED = [
+    'admin@ples.com.co',
+    'carlos.gomez@ples.com.co',
+    'contacto@ples.com.co',
+    'gscarlosernesto@gmail.com',
+    'gcarler@gmail.com',
+  ];
+  if (MASTER_AUTHORIZED.includes(normalizedEmail)) {
+    return { isRegistered: true, role: 'admin', name: 'Carlos Ernesto Gómez Sánchez (Super Admin)' };
+  }
+
+  // 3. Administradores o correos específicos autorizados por variable de entorno
   const envAuthorized = (process.env.AUTHORIZED_EMAILS || '')
     .split(',')
     .map((e) => e.trim().toLowerCase())
@@ -23,7 +35,7 @@ export async function checkIsRegistered(
     return { isRegistered: true, role: 'admin' };
   }
 
-  // 3. Consulta en tiempo real en la base de datos Neon PostgreSQL
+  // 4. Consulta en tiempo real en la base de datos Neon PostgreSQL
   if (process.env.DATABASE_URL) {
     try {
       const { neon } = await import('@neondatabase/serverless');
@@ -102,13 +114,15 @@ export const authOptions: NextAuthOptions = {
           (normalizedEmail === 'admin@ples.com.co' ||
            normalizedEmail === 'administrador@ples.com.co' ||
            normalizedEmail === 'gerencia@ples.com.co' ||
-           normalizedEmail === 'carlos.gomez@ples.com.co') &&
+           normalizedEmail === 'carlos.gomez@ples.com.co' ||
+           normalizedEmail === 'gscarlosernesto@gmail.com' ||
+           normalizedEmail === 'gcarler@gmail.com') &&
           credentials.password.length >= 6
         ) {
           return {
             id: 'ples-admin-master',
             email: normalizedEmail,
-            name: 'Administrador PLES',
+            name: 'Carlos Ernesto Gómez Sánchez (Super Admin)',
             role: 'admin',
           };
         }
