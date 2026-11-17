@@ -146,30 +146,26 @@ export function CloudMeshConsole() {
   };
 
   return (
-    <div className="w-full bg-[#070D18] border border-cyan-500/20 rounded-3xl p-6 sm:p-8 lg:p-10 shadow-2xl relative overflow-hidden font-sans text-white">
+    <div className="w-full bg-card border-2 border-primary/20 rounded-3xl p-6 sm:p-8 lg:p-10 shadow-xl relative overflow-hidden font-sans text-foreground">
       {/* Decorative Grid Background */}
       <div 
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style={{
-          backgroundImage: 'radial-gradient(circle at 1px 1px, #00D2FF 1px, transparent 0)',
-          backgroundSize: '24px 24px'
-        }}
+        className="absolute inset-0 bg-[radial-gradient(#009fe315_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none opacity-60"
       />
       
       {/* Console Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-white/10 relative z-10">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-border relative z-10">
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-            <Badge variant="outline" className="text-emerald-300 border-emerald-500/30 bg-emerald-500/10 text-xs uppercase tracking-wider font-mono">
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+            <Badge variant="outline" className="text-emerald-700 dark:text-emerald-300 border-emerald-500/30 bg-emerald-500/10 text-xs uppercase tracking-wider font-mono font-medium">
               Consola de Arquitectura PLES TIC
             </Badge>
-            <span className="text-xs text-slate-400 font-mono hidden sm:inline">• Topología Zero-Trust</span>
+            <span className="text-xs text-muted-foreground font-mono hidden sm:inline">• Topología Zero-Trust</span>
           </div>
-          <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white flex items-center gap-3">
+          <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground flex items-center gap-3">
             <span>Malla Tecnológica & Resiliencia Cloud</span>
           </h3>
-          <p className="text-sm text-slate-300 mt-1 max-w-2xl font-light">
+          <p className="text-sm text-muted-foreground mt-1 max-w-2xl font-light">
             Infraestructura elástica de grado institucional, desacoplada y protegida bajo estándares internacionales de ciberseguridad (ISO 27001, TLS 1.3).
           </p>
         </div>
@@ -179,16 +175,17 @@ export function CloudMeshConsole() {
             onClick={triggerStressTest}
             disabled={isSimulatingStress}
             size="sm"
-            className="bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-400/30 text-cyan-200 text-xs font-mono rounded-xl gap-2 transition-all"
+            variant="outline"
+            className="border-primary/30 text-primary hover:bg-primary/10 text-xs font-mono rounded-xl gap-2 transition-all"
           >
-            <RefreshCw className={`w-3.5 h-3.5 ${isSimulatingStress ? 'animate-spin text-cyan-400' : ''}`} />
+            <RefreshCw className={`w-3.5 h-3.5 ${isSimulatingStress ? 'animate-spin text-primary' : ''}`} />
             <span>{isSimulatingStress ? 'Ejecutando Test...' : 'Simular Resiliencia'}</span>
           </Button>
 
           <Button
             asChild
             size="sm"
-            className="bg-gradient-to-r from-[#009FE3] to-[#0077b6] hover:from-[#00A8F3] hover:to-[#0088cc] text-white text-xs font-semibold rounded-xl gap-1.5 shadow-lg shadow-cyan-950/50"
+            className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-primary-foreground text-xs font-semibold rounded-xl gap-1.5 shadow-md shadow-primary/20"
           >
             <Link href="/forms?service=ples-tic&subject=Solicitud%20Arquitectura%20Tecnologica%20Empresarial">
               <span>Cotizar Arquitectura</span>
@@ -203,9 +200,9 @@ export function CloudMeshConsole() {
         
         {/* Left: Interactive Topology Pipeline (5 cols) */}
         <div className="lg:col-span-5 space-y-3">
-          <div className="flex items-center justify-between text-xs font-mono text-slate-400 px-1 mb-1">
+          <div className="flex items-center justify-between text-xs font-mono text-muted-foreground px-1 mb-1">
             <span>NODOS ACTIVOS EN PRODUCCIÓN</span>
-            <span className="text-cyan-400">LATENCIA P99</span>
+            <span className="text-primary font-bold">LATENCIA P99</span>
           </div>
 
           {NODES.map((node) => {
@@ -216,15 +213,15 @@ export function CloudMeshConsole() {
                 onClick={() => setActiveNodeId(node.id)}
                 className={`w-full text-left p-4 rounded-2xl border transition-all duration-200 relative group flex items-center justify-between ${
                   isSelected
-                    ? 'bg-gradient-to-r from-cyan-950/60 to-blue-950/40 border-cyan-400/60 shadow-lg shadow-cyan-950/80 ring-1 ring-cyan-400/30'
-                    : 'bg-white/[0.03] hover:bg-white/[0.07] border-white/10 hover:border-white/20'
+                    ? 'bg-primary/10 border-primary shadow-sm ring-1 ring-primary/30'
+                    : 'bg-background hover:bg-muted/40 border-border hover:border-primary/30'
                 }`}
               >
                 <div className="flex items-center gap-3.5">
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
                     isSelected 
-                      ? 'bg-cyan-500/20 text-[#00D2FF] border border-cyan-400/40' 
-                      : 'bg-white/5 text-slate-400 group-hover:text-white border border-white/5'
+                      ? 'bg-primary text-primary-foreground shadow-sm' 
+                      : 'bg-muted text-muted-foreground group-hover:text-primary group-hover:bg-primary/10 border border-border'
                   }`}>
                     {node.id === 'edge' && <Globe className="w-5 h-5" />}
                     {node.id === 'gateway' && <Shield className="w-5 h-5" />}
@@ -234,21 +231,21 @@ export function CloudMeshConsole() {
                   </div>
 
                   <div>
-                    <div className="text-xs font-mono uppercase tracking-wider text-cyan-400/80">
+                    <div className="text-xs font-mono uppercase tracking-wider text-primary font-semibold">
                       {node.category}
                     </div>
-                    <div className="text-sm font-bold text-white group-hover:text-cyan-200 transition-colors">
+                    <div className="text-sm font-bold text-foreground group-hover:text-primary transition-colors">
                       {node.name}
                     </div>
                   </div>
                 </div>
 
                 <div className="text-right font-mono">
-                  <div className="text-xs font-bold text-emerald-400 flex items-center justify-end gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                  <div className="text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center justify-end gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                     {node.latency}
                   </div>
-                  <div className="text-[10px] text-slate-400 uppercase">
+                  <div className="text-[10px] text-muted-foreground uppercase font-mono">
                     {node.status}
                   </div>
                 </div>
@@ -261,33 +258,33 @@ export function CloudMeshConsole() {
         <div className="lg:col-span-7 flex flex-col gap-6">
           
           {/* Active Node Detail Card */}
-          <div className="p-6 rounded-2xl bg-gradient-to-b from-white/[0.06] to-white/[0.02] border border-white/15 backdrop-blur-md shadow-xl">
-            <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-white/10">
+          <div className="p-6 rounded-2xl bg-background border border-border shadow-sm">
+            <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-border">
               <div>
-                <span className="text-xs font-mono uppercase tracking-wider text-cyan-300">
+                <span className="text-xs font-mono uppercase tracking-wider text-primary font-semibold">
                   {activeNode.category}
                 </span>
-                <h4 className="text-xl font-bold text-white mt-0.5">
+                <h4 className="text-xl font-bold text-foreground mt-0.5">
                   {activeNode.name}
                 </h4>
               </div>
-              <Badge className="bg-emerald-500/20 border-emerald-500/40 text-emerald-300 font-mono text-xs px-3 py-1">
+              <Badge variant="outline" className="bg-emerald-500/10 border-emerald-500/30 text-emerald-700 dark:text-emerald-300 font-mono text-xs px-3 py-1">
                 STATUS: {activeNode.status}
               </Badge>
             </div>
 
-            <p className="text-sm text-slate-200 mt-4 leading-relaxed font-light">
+            <p className="text-sm text-muted-foreground mt-4 leading-relaxed font-light">
               {activeNode.description}
             </p>
 
             {/* Metrics grid */}
             <div className="grid grid-cols-3 gap-3 my-5">
               {activeNode.metrics.map((m, idx) => (
-                <div key={idx} className="p-3 rounded-xl bg-black/40 border border-white/5 text-center">
-                  <div className="text-[11px] font-mono text-slate-400 truncate">
+                <div key={idx} className="p-3 rounded-xl bg-card border border-border text-center shadow-xs">
+                  <div className="text-[11px] font-mono text-muted-foreground truncate">
                     {m.label}
                   </div>
-                  <div className="text-sm font-bold text-cyan-300 mt-1">
+                  <div className="text-sm font-bold text-primary mt-1">
                     {m.value}
                   </div>
                 </div>
@@ -295,15 +292,15 @@ export function CloudMeshConsole() {
             </div>
 
             {/* Tech stack badges */}
-            <div className="pt-2 border-t border-white/10">
-              <span className="text-[11px] font-mono text-slate-400 uppercase block mb-2">
+            <div className="pt-2 border-t border-border">
+              <span className="text-[11px] font-mono text-muted-foreground uppercase block mb-2">
                 Tecnologías & Protocolos Integrados:
               </span>
               <div className="flex flex-wrap gap-2">
                 {activeNode.tech.map((t) => (
                   <span 
                     key={t}
-                    className="px-2.5 py-1 rounded-lg bg-cyan-950/40 border border-cyan-500/30 text-cyan-200 text-xs font-mono"
+                    className="px-2.5 py-1 rounded-lg bg-primary/10 border border-primary/20 text-primary text-xs font-mono font-medium"
                   >
                     {t}
                   </span>
@@ -313,23 +310,23 @@ export function CloudMeshConsole() {
           </div>
 
           {/* Real-time Telemetry Terminal */}
-          <div className="rounded-2xl bg-[#030712] border border-white/10 p-4 font-mono text-xs shadow-inner">
-            <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10 text-slate-400">
+          <div className="rounded-2xl bg-muted/40 border border-border p-4 font-mono text-xs shadow-inner">
+            <div className="flex items-center justify-between pb-3 mb-3 border-b border-border text-muted-foreground">
               <div className="flex items-center gap-2">
-                <Terminal className="w-3.5 h-3.5 text-cyan-400" />
-                <span className="font-semibold text-slate-300">TELEMETRÍA EN VIVO (EVENT STREAM)</span>
+                <Terminal className="w-3.5 h-3.5 text-primary" />
+                <span className="font-semibold text-foreground">TELEMETRÍA EN VIVO (EVENT STREAM)</span>
               </div>
-              <span className="text-[10px] text-emerald-400 flex items-center gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+              <span className="text-[10px] text-emerald-600 dark:text-emerald-400 flex items-center gap-1 font-semibold">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
                 STREAMING
               </span>
             </div>
 
-            <div className="space-y-1.5 text-slate-300 font-mono text-[11px] leading-relaxed min-h-[110px]">
+            <div className="space-y-1.5 text-foreground/90 font-mono text-[11px] leading-relaxed min-h-[110px]">
               {terminalLogs.map((log, index) => (
                 <div key={index} className="flex items-start gap-2">
-                  <span className="text-cyan-400 select-none">&gt;</span>
-                  <span className={index === 0 ? 'text-cyan-200 font-medium' : 'text-slate-400'}>
+                  <span className="text-primary select-none font-bold">&gt;</span>
+                  <span className={index === 0 ? 'text-primary font-medium' : 'text-muted-foreground'}>
                     {log}
                   </span>
                 </div>
@@ -342,22 +339,22 @@ export function CloudMeshConsole() {
       </div>
 
       {/* Security Compliance Strip */}
-      <div className="mt-8 pt-6 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center font-mono">
-        <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5">
-          <div className="text-xs text-slate-400">Gobernanza de Datos</div>
-          <div className="text-sm font-bold text-white mt-1">ISO / IEC 27001</div>
+      <div className="mt-8 pt-6 border-t border-border grid grid-cols-2 sm:grid-cols-4 gap-4 text-center font-mono">
+        <div className="p-3.5 rounded-xl bg-background border border-border shadow-xs">
+          <div className="text-xs text-muted-foreground">Gobernanza de Datos</div>
+          <div className="text-sm font-bold text-foreground mt-1">ISO / IEC 27001</div>
         </div>
-        <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5">
-          <div className="text-xs text-slate-400">Cifrado de Tránsito</div>
-          <div className="text-sm font-bold text-emerald-400 mt-1">TLS 1.3 / AES-256</div>
+        <div className="p-3.5 rounded-xl bg-background border border-border shadow-xs">
+          <div className="text-xs text-muted-foreground">Cifrado de Tránsito</div>
+          <div className="text-sm font-bold text-emerald-600 dark:text-emerald-400 mt-1">TLS 1.3 / AES-256</div>
         </div>
-        <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5">
-          <div className="text-xs text-slate-400">Habeas Data (COL)</div>
-          <div className="text-sm font-bold text-white mt-1">Ley 1581 de 2012</div>
+        <div className="p-3.5 rounded-xl bg-background border border-border shadow-xs">
+          <div className="text-xs text-muted-foreground">Habeas Data (COL)</div>
+          <div className="text-sm font-bold text-foreground mt-1">Ley 1581 de 2012</div>
         </div>
-        <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5">
-          <div className="text-xs text-slate-400">Resiliencia de Red</div>
-          <div className="text-sm font-bold text-cyan-300 mt-1">99.98% SLA Activo</div>
+        <div className="p-3.5 rounded-xl bg-background border border-border shadow-xs">
+          <div className="text-xs text-muted-foreground">Resiliencia de Red</div>
+          <div className="text-sm font-bold text-primary mt-1">99.98% SLA Activo</div>
         </div>
       </div>
     </div>

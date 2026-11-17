@@ -155,7 +155,7 @@ export default function PlesTicPage() {
       </section>
 
       {/* Infrastructure Cores */}
-      <section className="w-full">
+      <section className="w-full px-4 sm:px-6 lg:px-8">
         <InfrastructureCores />
       </section>
 
